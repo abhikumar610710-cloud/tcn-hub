@@ -3,156 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCN Hub - DePIN Projects Ecosystem</title>
+    <title>TCN Hub | by Total Crypto Network</title>
+    <!-- Google Fonts for Ultra Sharp Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            background-color: #0b111e;
-            color: #ffffff;
+            background-color: #080d19;
+            color: #f1f5f9;
             min-height: 100vh;
-            padding-bottom: 50px;
+            padding-bottom: 60px;
         }
 
-        /* Top Navigation Bar */
+        /* Top Navigation Header */
         header {
-            background-color: #0d1527;
-            border-bottom: 1px solid #1a233a;
-            padding: 14px 40px;
+            background: rgba(13, 21, 38, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1e293b;
+            padding: 16px 36px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 36px;
         }
 
         .logo-box {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             text-decoration: none;
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #e50914, #b20710);
-            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 16px;
             color: #ffffff;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
         }
 
         .logo-text h1 {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 21px;
+            font-weight: 800;
             color: #ffffff;
+            letter-spacing: -0.5px;
             line-height: 1.1;
         }
 
         .logo-text span {
-            font-size: 11px;
-            color: #7b8b9a;
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 600;
             display: block;
+            margin-top: 2px;
+        }
+
+        .logo-text span b {
+            color: #38bdf8;
+            font-weight: 700;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
         }
 
         .nav-link {
-            color: #8fa0b5;
+            color: #94a3b8;
             text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             padding-bottom: 4px;
-            transition: color 0.2s;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
         }
 
         .nav-link.active {
-            color: #00d2ff;
-            border-bottom: 2px solid #00d2ff;
+            color: #38bdf8;
+            border-bottom: 2px solid #38bdf8;
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
         }
 
         .lang-btn {
-            background: #141f36;
-            border: 1px solid #223254;
-            color: #8fa0b5;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .join-btn {
-            background: linear-gradient(135deg, #e50914, #b20710);
-            color: #ffffff;
-            border: none;
-            padding: 8px 18px;
+            background: #131d31;
+            border: 1px solid #1e293b;
+            color: #cbd5e1;
+            padding: 8px 16px;
             border-radius: 20px;
             font-size: 13px;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        .join-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #ffffff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+            transition: transform 0.15s, opacity 0.15s;
         }
 
-        /* Hero & Top Controls */
+        .join-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 35px 20px;
         }
 
+        /* Hero Header Section */
         .hero-title-box {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: 25px;
+            margin-bottom: 28px;
+            gap: 20px;
         }
 
         .hero-title-box h2 {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 800;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px;
+            color: #ffffff;
         }
 
         .hero-subtitle {
-            font-size: 13px;
-            color: #72829d;
-            margin-top: 4px;
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 6px;
+            font-weight: 500;
         }
 
         .badge-verified {
-            background: #10233b;
-            border: 1px solid #1a3c68;
-            color: #00d2ff;
-            padding: 6px 14px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: #38bdf8;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* Filter & Search Bar */
@@ -160,64 +207,79 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 16px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
         }
 
         .search-box {
             flex: 1;
-            min-width: 280px;
+            min-width: 290px;
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-            background: #10192d;
-            border: 1px solid #1d2a48;
+            background: #0f172a;
+            border: 1px solid #1e293b;
             color: #ffffff;
-            padding: 12px 18px;
-            border-radius: 8px;
+            padding: 13px 20px;
+            border-radius: 10px;
             font-size: 14px;
+            font-weight: 500;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
+        }
+
+        .search-box input::placeholder {
+            color: #64748b;
         }
 
         .search-box input:focus {
-            border-color: #00d2ff;
+            border-color: #38bdf8;
+            background: #111c34;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
         }
 
         .filter-buttons {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .btn-filter {
-            background: #10192d;
-            border: 1px solid #1d2a48;
-            color: #8fa0b5;
-            padding: 9px 18px;
-            border-radius: 6px;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            color: #94a3b8;
+            padding: 10px 18px;
+            border-radius: 8px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .btn-filter.active, .btn-filter:hover {
-            background: #00d2ff;
-            color: #0b111e;
-            border-color: #00d2ff;
-            font-weight: 600;
+        .btn-filter:hover {
+            color: #ffffff;
+            border-color: #334155;
+            background: #131d31;
         }
 
-        /* Projects Table */
-        .table-container {
+        .btn-filter.active {
+            background: #38bdf8;
+            color: #080d19;
+            border-color: #38bdf8;
+            font-weight: 700;
+        }
+
+        /* Projects Table Card */
+        .table-card {
             background: #0d1527;
-            border: 1px solid #1a233a;
-            border-radius: 12px;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
         }
 
         table {
@@ -227,17 +289,17 @@
         }
 
         thead tr {
-            background: #090e1a;
-            border-bottom: 1px solid #1a233a;
+            background: #090e1b;
+            border-bottom: 1px solid #1e293b;
         }
 
         th {
-            padding: 16px 20px;
+            padding: 16px 24px;
             font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #72829d;
-            font-weight: 600;
+            letter-spacing: 0.8px;
+            color: #64748b;
+            font-weight: 700;
         }
 
         tbody tr {
@@ -246,11 +308,11 @@
         }
 
         tbody tr:hover {
-            background: #111a30;
+            background: #121c33;
         }
 
         td {
-            padding: 16px 20px;
+            padding: 18px 24px;
             font-size: 14px;
             vertical-align: middle;
         }
@@ -258,100 +320,115 @@
         .project-cell {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 15px;
         }
 
         .project-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #1a4b8c;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
             color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 16px;
+            flex-shrink: 0;
         }
 
         .project-name {
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 15px;
             color: #ffffff;
+            letter-spacing: -0.2px;
         }
 
         .project-sub {
             font-size: 12px;
             color: #64748b;
+            margin-top: 2px;
+            font-weight: 500;
         }
 
         .category-pill {
-            background: #141f36;
-            border: 1px solid #1e2e50;
-            color: #94a3b8;
-            padding: 4px 12px;
+            background: #131d31;
+            border: 1px solid #1e293b;
+            color: #cbd5e1;
+            padding: 5px 12px;
             border-radius: 6px;
             font-size: 12px;
+            font-weight: 600;
             display: inline-block;
         }
 
         .status-pill {
-            background: #0f2c42;
-            border: 1px solid #174e78;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.25);
             color: #38bdf8;
-            padding: 4px 12px;
-            border-radius: 14px;
+            padding: 5px 14px;
+            border-radius: 20px;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 700;
             display: inline-block;
         }
 
         .btn-details {
-            background: #111d35;
-            border: 1px solid #1e2f55;
+            background: #131d31;
+            border: 1px solid #1e293b;
             color: #38bdf8;
-            padding: 6px 14px;
-            border-radius: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
             font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             transition: all 0.2s;
         }
 
         .btn-details:hover {
-            background: #00d2ff;
-            color: #0b111e;
-            border-color: #00d2ff;
+            background: #38bdf8;
+            color: #080d19;
+            border-color: #38bdf8;
+            font-weight: 700;
         }
 
-        /* AdSense Container Placeholder */
-        .ads-container {
-            margin: 30px auto;
-            max-width: 1200px;
-            height: 90px;
-            border: 1px dashed #203152;
-            background: #0d1527;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #475569;
-            font-size: 12px;
-            border-radius: 8px;
+        /* Responsive Mobile View */
+        @media (max-width: 768px) {
+            header {
+                padding: 14px 18px;
+            }
+            .header-left {
+                gap: 16px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .container {
+                padding: 20px 14px;
+            }
+            .hero-title-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            th, td {
+                padding: 14px 12px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header Navigation -->
     <header>
         <div class="header-left">
             <a href="#" class="logo-box">
                 <div class="logo-icon">TCN</div>
                 <div class="logo-text">
-                    <h1>TCN Track</h1>
-                    <span>Total Crypto Network</span>
+                    <h1>TCN Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
             <div class="nav-links">
@@ -365,24 +442,18 @@
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main Content Area -->
     <div class="container">
-
-        <!-- AdSense Slot (Ready for Google Ads) -->
-        <!-- In future, paste your <ins class="adsbygoogle"> here -->
-        <div class="ads-container">
-            <span>[ Google AdSense Banner Placement Area ]</span>
-        </div>
 
         <div class="hero-title-box">
             <div>
                 <h2>DePIN Projects Ecosystem</h2>
-                <div class="hero-subtitle" id="projectCount">Showing 8 verified free node projects</div>
+                <div class="hero-subtitle" id="projectCount">Showing verified free node-mining projects</div>
             </div>
-            <div class="badge-verified">⚡ 24/7 Verified Hub</div>
+            <div class="badge-verified">⚡ 100% Free & Verified Hub</div>
         </div>
 
-        <!-- Search & Filter Controls -->
+        <!-- Search & Category Filters -->
         <div class="filter-section">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search projects by name or category..." onkeyup="filterProjects()">
@@ -395,8 +466,8 @@
             </div>
         </div>
 
-        <!-- Projects Table -->
-        <div class="table-container">
+        <!-- Table -->
+        <div class="table-card">
             <table>
                 <thead>
                     <tr>
@@ -407,7 +478,7 @@
                     </tr>
                 </thead>
                 <tbody id="projectsTableBody">
-                    <!-- Sample Free Projects Pre-loaded -->
+                    <!-- Grass Network -->
                     <tr data-category="Bandwidth">
                         <td>
                             <div class="project-cell">
@@ -422,6 +493,7 @@
                         <td><span class="status-pill">Token Listed</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
+                    <!-- Nodepay -->
                     <tr data-category="Bandwidth">
                         <td>
                             <div class="project-cell">
@@ -436,13 +508,14 @@
                         <td><span class="status-pill">Active Points</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
+                    <!-- Honeygain -->
                     <tr data-category="Bandwidth">
                         <td>
                             <div class="project-cell">
                                 <div class="project-avatar" style="background: #f97316;">H</div>
                                 <div>
                                     <div class="project-name">Honeygain</div>
-                                    <div class="project-sub">Passive Traffic</div>
+                                    <div class="project-sub">Passive Bandwidth</div>
                                 </div>
                             </div>
                         </td>
@@ -450,6 +523,7 @@
                         <td><span class="status-pill">Paying Cash/JMPT</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
+                    <!-- Dawn Network -->
                     <tr data-category="Bandwidth">
                         <td>
                             <div class="project-cell">
@@ -464,6 +538,7 @@
                         <td><span class="status-pill">Testnet Active</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
+                    <!-- Nodle Network -->
                     <tr data-category="Mobile">
                         <td>
                             <div class="project-cell">
@@ -478,6 +553,7 @@
                         <td><span class="status-pill">Token Listed</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
+                    <!-- UpRock -->
                     <tr data-category="Compute">
                         <td>
                             <div class="project-cell">
@@ -528,7 +604,7 @@
                 }
             });
 
-            document.getElementById('projectCount').innerText = `Showing ${visibleCount} verified free node projects`;
+            document.getElementById('projectCount').innerText = `Showing ${visibleCount} verified free node-mining projects`;
         }
     </script>
 </body>
