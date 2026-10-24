@@ -10,11 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* Light Theme as Default (एकदम साफ़ और चमकीला) */
+        /* Light Theme Default (शीशे की तरह साफ़) */
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-bg: rgba(255, 255, 255, 0.96);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
             --text-body: #334155;
@@ -28,13 +28,16 @@
             --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
             --toggle-bg: #f1f5f9;
             --toggle-border: #cbd5e1;
+            /* TCN Brand Color */
+            --brand-primary: #dc2626;
+            --brand-hover: #b91c1c;
         }
 
-        /* Dark Theme on Toggle (चाँद पर क्लिक करने के बाद) */
+        /* Dark Theme on Toggle (चाँद पर क्लिक करने पर) */
         [data-theme="dark"] {
             --bg-body: #090d16;
             --bg-surface: #0f172a;
-            --header-bg: rgba(15, 23, 42, 0.95);
+            --header-bg: rgba(15, 23, 42, 0.96);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
@@ -48,6 +51,8 @@
             --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             --toggle-bg: #141f36;
             --toggle-border: #1e293b;
+            --brand-primary: #ef4444;
+            --brand-hover: #dc2626;
         }
 
         * {
@@ -66,7 +71,7 @@
             padding-bottom: 70px;
         }
 
-        /* Top Header Navigation */
+        /* Top Header */
         header {
             background: var(--header-bg);
             backdrop-filter: blur(12px);
@@ -93,18 +98,20 @@
             text-decoration: none;
         }
 
+        /* TCN Original Red Logo Box */
         .logo-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: linear-gradient(135deg, #ef4444, #991b1b);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 15px;
+            font-size: 14px;
             color: #ffffff;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+            letter-spacing: 0.5px;
         }
 
         .logo-text h1 {
@@ -123,7 +130,7 @@
         }
 
         .logo-text span b {
-            color: #2563eb;
+            color: var(--brand-primary);
             font-weight: 700;
         }
 
@@ -142,8 +149,8 @@
         }
 
         .nav-link.active {
-            color: #2563eb;
-            border-bottom: 2px solid #2563eb;
+            color: var(--brand-primary);
+            border-bottom: 2px solid var(--brand-primary);
         }
 
         .header-right {
@@ -172,7 +179,7 @@
         }
 
         .join-btn {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
             color: #ffffff;
             border: none;
             padding: 9px 20px;
@@ -184,10 +191,10 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
         }
 
-        /* Main Container */
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -217,9 +224,9 @@
         }
 
         .badge-verified {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #059669;
+            background: rgba(220, 38, 38, 0.08);
+            border: 1px solid rgba(220, 38, 38, 0.25);
+            color: var(--brand-primary);
             padding: 7px 16px;
             border-radius: 20px;
             font-size: 13px;
@@ -227,7 +234,7 @@
             white-space: nowrap;
         }
 
-        /* Search & Custom Colored Filter Buttons */
+        /* Search & Filters */
         .filter-section {
             display: flex;
             align-items: center;
@@ -255,8 +262,8 @@
         }
 
         .search-box input:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
         }
 
         .filter-buttons {
@@ -266,7 +273,7 @@
             flex-wrap: wrap;
         }
 
-        /* Distinct Color Styles for Each Filter Button */
+        /* Clean Unified Button Color Style (एक ही जैसा प्रोफेशनल कलर) */
         .btn-filter {
             background: var(--bg-surface);
             border: 1.5px solid var(--border-color);
@@ -276,42 +283,20 @@
             font-size: 13px;
             font-weight: 700;
             cursor: pointer;
+            transition: all 0.2s;
         }
 
         .btn-filter:hover {
-            transform: translateY(-1px);
+            color: var(--text-heading);
+            border-color: #94a3b8;
         }
 
-        /* All Projects: Royal Blue */
-        .btn-filter[data-type="all"].active {
-            background: #2563eb;
+        /* Active State - Universal Uniform Premium Brand Color */
+        .btn-filter.active {
+            background: var(--brand-primary);
             color: #ffffff;
-            border-color: #2563eb;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-        }
-
-        /* Bandwidth: Emerald Green */
-        .btn-filter[data-type="Bandwidth"].active {
-            background: #059669;
-            color: #ffffff;
-            border-color: #059669;
-            box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
-        }
-
-        /* Compute: Electric Violet */
-        .btn-filter[data-type="Compute"].active {
-            background: #7c3aed;
-            color: #ffffff;
-            border-color: #7c3aed;
-            box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
-        }
-
-        /* Mobile: Vibrant Orange */
-        .btn-filter[data-type="Mobile"].active {
-            background: #ea580c;
-            color: #ffffff;
-            border-color: #ea580c;
-            box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
+            border-color: var(--brand-primary);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
         }
 
         /* Projects Table Card */
@@ -390,31 +375,17 @@
             font-weight: 500;
         }
 
-        /* Category Badges with Vivid Tones */
         .category-pill {
+            background: var(--th-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
             padding: 5px 12px;
             border-radius: 6px;
             font-size: 12px;
             font-weight: 700;
             display: inline-block;
         }
-        .cat-bandwidth {
-            background: rgba(16, 185, 129, 0.12);
-            color: #059669;
-            border: 1px solid rgba(16, 185, 129, 0.25);
-        }
-        .cat-compute {
-            background: rgba(124, 58, 237, 0.12);
-            color: #7c3aed;
-            border: 1px solid rgba(124, 58, 237, 0.25);
-        }
-        .cat-mobile {
-            background: rgba(234, 88, 12, 0.12);
-            color: #ea580c;
-            border: 1px solid rgba(234, 88, 12, 0.25);
-        }
 
-        /* Status Pills */
         .status-pill {
             padding: 6px 14px;
             border-radius: 20px;
@@ -422,27 +393,30 @@
             font-weight: 700;
             display: inline-block;
         }
+
         .status-listed {
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(16, 185, 129, 0.12);
             color: #059669;
             border: 1px solid #10b981;
         }
+
         .status-active {
-            background: rgba(37, 99, 235, 0.15);
-            color: #2563eb;
-            border: 1px solid #3b82f6;
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--brand-primary);
+            border: 1px solid rgba(220, 38, 38, 0.3);
         }
+
         .status-paying {
-            background: rgba(245, 158, 11, 0.15);
+            background: rgba(245, 158, 11, 0.12);
             color: #d97706;
             border: 1px solid #f59e0b;
         }
 
-        /* Details Action Button */
+        /* Action Details Button */
         .btn-details {
-            background: #ffffff;
-            border: 1.5px solid #2563eb;
-            color: #2563eb;
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-heading);
             padding: 8px 18px;
             border-radius: 8px;
             font-size: 13px;
@@ -456,20 +430,8 @@
         }
 
         .btn-details:hover {
-            background: #2563eb;
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
-        }
-
-        [data-theme="dark"] .btn-details {
-            background: #1e293b;
-            color: #60a5fa;
-            border-color: #3b82f6;
-        }
-
-        [data-theme="dark"] .btn-details:hover {
-            background: #2563eb;
-            color: #ffffff;
+            border-color: var(--brand-primary);
+            color: var(--brand-primary);
         }
 
         @media (max-width: 768px) {
@@ -488,7 +450,8 @@
     <header>
         <div class="header-left">
             <a href="#" class="logo-box">
-                <div class="logo-icon">TCN</div>
+                <!-- TCN Red Emblem with India Flag Accent -->
+                <div class="logo-icon">TCN 🇮🇳</div>
                 <div class="logo-text">
                     <h1>TCN Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
@@ -517,16 +480,16 @@
             <div class="badge-verified">⚡ 100% Free & Verified Hub</div>
         </div>
 
-        <!-- Search & Custom Colored Filters -->
+        <!-- Search & Unified Color Filter Buttons -->
         <div class="filter-section">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search projects by name or category..." onkeyup="filterProjects()">
             </div>
             <div class="filter-buttons">
-                <button class="btn-filter active" data-type="all" onclick="setFilter('all', this)">All Projects</button>
-                <button class="btn-filter" data-type="Bandwidth" onclick="setFilter('Bandwidth', this)">Bandwidth</button>
-                <button class="btn-filter" data-type="Compute" onclick="setFilter('Compute', this)">Compute</button>
-                <button class="btn-filter" data-type="Mobile" onclick="setFilter('Mobile', this)">Mobile</button>
+                <button class="btn-filter active" onclick="setFilter('all', this)">All Projects</button>
+                <button class="btn-filter" onclick="setFilter('Bandwidth', this)">Bandwidth</button>
+                <button class="btn-filter" onclick="setFilter('Compute', this)">Compute</button>
+                <button class="btn-filter" onclick="setFilter('Mobile', this)">Mobile</button>
             </div>
         </div>
 
@@ -542,7 +505,6 @@
                     </tr>
                 </thead>
                 <tbody id="projectsTableBody">
-                    <!-- Grass Network -->
                     <tr data-category="Bandwidth">
                         <td>
                             <div class="project-cell">
@@ -553,11 +515,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="category-pill cat-bandwidth">Bandwidth</span></td>
+                        <td><span class="category-pill">Bandwidth</span></td>
                         <td><span class="status-pill status-listed">Token Listed</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
-                    <!-- Nodepay -->
                     <tr data-category="Bandwidth">
                         <td>
                             <div class="project-cell">
@@ -568,11 +529,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="category-pill cat-bandwidth">Bandwidth</span></td>
+                        <td><span class="category-pill">Bandwidth</span></td>
                         <td><span class="status-pill status-active">Active Points</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
-                    <!-- Honeygain -->
                     <tr data-category="Bandwidth">
                         <td>
                             <div class="project-cell">
@@ -583,11 +543,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="category-pill cat-bandwidth">Bandwidth</span></td>
+                        <td><span class="category-pill">Bandwidth</span></td>
                         <td><span class="status-pill status-paying">Paying Cash/JMPT</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
-                    <!-- Dawn Network -->
                     <tr data-category="Bandwidth">
                         <td>
                             <div class="project-cell">
@@ -598,11 +557,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="category-pill cat-bandwidth">Bandwidth</span></td>
+                        <td><span class="category-pill">Bandwidth</span></td>
                         <td><span class="status-pill status-active">Testnet Active</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
-                    <!-- Nodle Network -->
                     <tr data-category="Mobile">
                         <td>
                             <div class="project-cell">
@@ -613,11 +571,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="category-pill cat-mobile">Mobile</span></td>
+                        <td><span class="category-pill">Mobile</span></td>
                         <td><span class="status-pill status-listed">Token Listed</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
-                    <!-- UpRock -->
                     <tr data-category="Compute">
                         <td>
                             <div class="project-cell">
@@ -628,7 +585,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="category-pill cat-compute">Compute</span></td>
+                        <td><span class="category-pill">Compute</span></td>
                         <td><span class="status-pill status-listed">Token Listed</span></td>
                         <td><a href="#" class="btn-details">Details ↗</a></td>
                     </tr>
@@ -647,23 +604,23 @@
 
             if (currentTheme === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️'; // डार्क होने पर सूरज का बटन दिखेगा
+                toggleBtn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙'; // लाइट होने पर चाँद का बटन दिखेगा
+                toggleBtn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
 
-        // On load, load user choice or default to light
+        // Keep saved user preference
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
             document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
 
-        // Filter and Search logic
+        // Filter and Search
         let currentCategory = 'all';
 
         function setFilter(category, button) {
