@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCN Hub - DePIN Projects Ecosystem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #0b111e;
+            color: #ffffff;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* Top Navigation Bar */
+        header {
+            background-color: #0d1527;
+            border-bottom: 1px solid #1a233a;
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #e50914, #b20710);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: #7b8b9a;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: #8fa0b5;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding-bottom: 4px;
+            transition: color 0.2s;
+        }
+
+        .nav-link.active {
+            color: #00d2ff;
+            border-bottom: 2px solid #00d2ff;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-btn {
+            background: #141f36;
+            border: 1px solid #223254;
+            color: #8fa0b5;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .join-btn {
+            background: linear-gradient(135deg, #e50914, #b20710);
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Hero & Top Controls */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .hero-title-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .hero-title-box h2 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 13px;
+            color: #72829d;
+            margin-top: 4px;
+        }
+
+        .badge-verified {
+            background: #10233b;
+            border: 1px solid #1a3c68;
+            color: #00d2ff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Filter & Search Bar */
+        .filter-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 280px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: #10192d;
+            border: 1px solid #1d2a48;
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: #00d2ff;
+        }
+
+        .filter-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-filter {
+            background: #10192d;
+            border: 1px solid #1d2a48;
+            color: #8fa0b5;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-filter.active, .btn-filter:hover {
+            background: #00d2ff;
+            color: #0b111e;
+            border-color: #00d2ff;
+            font-weight: 600;
+        }
+
+        /* Projects Table */
+        .table-container {
+            background: #0d1527;
+            border: 1px solid #1a233a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        thead tr {
+            background: #090e1a;
+            border-bottom: 1px solid #1a233a;
+        }
+
+        th {
+            padding: 16px 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #72829d;
+            font-weight: 600;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #141e33;
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #111a30;
+        }
+
+        td {
+            padding: 16px 20px;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .project-cell {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .project-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1a4b8c;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .project-sub {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .category-pill {
+            background: #141f36;
+            border: 1px solid #1e2e50;
+            color: #94a3b8;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        .status-pill {
+            background: #0f2c42;
+            border: 1px solid #174e78;
+            color: #38bdf8;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .btn-details {
+            background: #111d35;
+            border: 1px solid #1e2f55;
+            color: #38bdf8;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn-details:hover {
+            background: #00d2ff;
+            color: #0b111e;
+            border-color: #00d2ff;
+        }
+
+        /* AdSense Container Placeholder */
+        .ads-container {
+            margin: 30px auto;
+            max-width: 1200px;
+            height: 90px;
+            border: 1px dashed #203152;
+            background: #0d1527;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 12px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <a href="#" class="logo-box">
+                <div class="logo-icon">TCN</div>
+                <div class="logo-text">
+                    <h1>TCN Track</h1>
+                    <span>Total Crypto Network</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">DePIN Projects</a>
+                <a href="#" class="nav-link">Token Checker</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="lang-btn">🌐 English</button>
+            <a href="https://t.me/" target="_blank" class="join-btn">🔥 Join TCN AI</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- AdSense Slot (Ready for Google Ads) -->
+        <!-- In future, paste your <ins class="adsbygoogle"> here -->
+        <div class="ads-container">
+            <span>[ Google AdSense Banner Placement Area ]</span>
+        </div>
+
+        <div class="hero-title-box">
+            <div>
+                <h2>DePIN Projects Ecosystem</h2>
+                <div class="hero-subtitle" id="projectCount">Showing 8 verified free node projects</div>
+            </div>
+            <div class="badge-verified">⚡ 24/7 Verified Hub</div>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="filter-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search projects by name or category..." onkeyup="filterProjects()">
+            </div>
+            <div class="filter-buttons">
+                <button class="btn-filter active" onclick="setFilter('all', this)">All Projects</button>
+                <button class="btn-filter" onclick="setFilter('Bandwidth', this)">Bandwidth</button>
+                <button class="btn-filter" onclick="setFilter('Compute', this)">Compute</button>
+                <button class="btn-filter" onclick="setFilter('Mobile', this)">Mobile</button>
+            </div>
+        </div>
+
+        <!-- Projects Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Categories</th>
+                        <th>Status / Market</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="projectsTableBody">
+                    <!-- Sample Free Projects Pre-loaded -->
+                    <tr data-category="Bandwidth">
+                        <td>
+                            <div class="project-cell">
+                                <div class="project-avatar" style="background: #16a34a;">G</div>
+                                <div>
+                                    <div class="project-name">Grass Network</div>
+                                    <div class="project-sub">DePIN Ecosystem</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="category-pill">Bandwidth</span></td>
+                        <td><span class="status-pill">Token Listed</span></td>
+                        <td><a href="#" class="btn-details">Details ↗</a></td>
+                    </tr>
+                    <tr data-category="Bandwidth">
+                        <td>
+                            <div class="project-cell">
+                                <div class="project-avatar" style="background: #eab308; color: #000;">N</div>
+                                <div>
+                                    <div class="project-name">Nodepay</div>
+                                    <div class="project-sub">AI Infrastructure</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="category-pill">Bandwidth</span></td>
+                        <td><span class="status-pill">Active Points</span></td>
+                        <td><a href="#" class="btn-details">Details ↗</a></td>
+                    </tr>
+                    <tr data-category="Bandwidth">
+                        <td>
+                            <div class="project-cell">
+                                <div class="project-avatar" style="background: #f97316;">H</div>
+                                <div>
+                                    <div class="project-name">Honeygain</div>
+                                    <div class="project-sub">Passive Traffic</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="category-pill">Bandwidth</span></td>
+                        <td><span class="status-pill">Paying Cash/JMPT</span></td>
+                        <td><a href="#" class="btn-details">Details ↗</a></td>
+                    </tr>
+                    <tr data-category="Bandwidth">
+                        <td>
+                            <div class="project-cell">
+                                <div class="project-avatar" style="background: #8b5cf6;">D</div>
+                                <div>
+                                    <div class="project-name">Dawn Network</div>
+                                    <div class="project-sub">Decentralized Internet</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="category-pill">Bandwidth</span></td>
+                        <td><span class="status-pill">Testnet Active</span></td>
+                        <td><a href="#" class="btn-details">Details ↗</a></td>
+                    </tr>
+                    <tr data-category="Mobile">
+                        <td>
+                            <div class="project-cell">
+                                <div class="project-avatar" style="background: #0284c7;">N</div>
+                                <div>
+                                    <div class="project-name">Nodle Network</div>
+                                    <div class="project-sub">Bluetooth DePIN</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="category-pill">Mobile</span></td>
+                        <td><span class="status-pill">Token Listed</span></td>
+                        <td><a href="#" class="btn-details">Details ↗</a></td>
+                    </tr>
+                    <tr data-category="Compute">
+                        <td>
+                            <div class="project-cell">
+                                <div class="project-avatar" style="background: #ec4899;">U</div>
+                                <div>
+                                    <div class="project-name">UpRock</div>
+                                    <div class="project-sub">Mobile AI Data</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="category-pill">Compute</span></td>
+                        <td><span class="status-pill">Token Listed</span></td>
+                        <td><a href="#" class="btn-details">Details ↗</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        let currentCategory = 'all';
+
+        function setFilter(category, button) {
+            currentCategory = category;
+            document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            filterProjects();
+        }
+
+        function filterProjects() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#projectsTableBody tr');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const name = row.querySelector('.project-name').innerText.toLowerCase();
+                const category = row.getAttribute('data-category');
+
+                const matchesSearch = name.includes(searchVal);
+                const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            document.getElementById('projectCount').innerText = `Showing ${visibleCount} verified free node projects`;
+        }
+    </script>
+</body>
+</html>
