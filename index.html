@@ -46,7 +46,7 @@
         .logo-text span { font-size: 12px; color: var(--text-muted); font-weight: 500;}
         .logo-text b { color: var(--accent-primary); }
         
-        /* Tab Switcher in Header */
+        /* Tab Switcher */
         .tab-switcher { display: flex; background: var(--th-bg); border-radius: 10px; padding: 5px; border: 1px solid var(--border-color); }
         .tab-btn { padding: 8px 18px; border: none; background: transparent; color: var(--text-muted); font-weight: 700; font-size: 14px; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
         .tab-btn.active { background: var(--bg-surface); color: var(--accent-primary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
@@ -104,7 +104,6 @@
 </head>
 <body data-theme="light">
 
-    <!-- Header -->
     <header>
         <div class="header-left">
             <a href="#" class="logo-box">
@@ -115,7 +114,6 @@
                 </div>
             </a>
             
-            <!-- TAB SWITCHER -->
             <div class="tab-switcher">
                 <button class="tab-btn active" onclick="alert('Currently on DePIN Projects')">DePIN Projects</button>
                 <button class="tab-btn" onclick="alert('Token Checker coming soon!')">Token Checker</button>
@@ -132,14 +130,12 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <div class="container">
         <div class="hero-title">
             <h2>DePIN Projects</h2>
             <p id="projectCount">Loading projects...</p>
         </div>
 
-        <!-- Search & Filters -->
         <div class="filter-section">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search projects by name..." onkeyup="renderTable()">
@@ -149,7 +145,6 @@
                 <button class="btn-filter" onclick="setCategory('Token Listed', this)">Token Listed</button>
                 <button class="btn-filter" onclick="setCategory('No Token', this)">No Token</button>
                 
-                <!-- UPDATED REAL DEPIN CATEGORIES -->
                 <select class="cat-select" onchange="setSubCategory(this.value)">
                     <option value="All">Categories</option>
                     <option value="Bandwidth">Bandwidth</option>
@@ -161,7 +156,6 @@
             </div>
         </div>
 
-        <!-- Table -->
         <div class="table-card">
             <table>
                 <thead>
@@ -182,7 +176,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div style="margin-bottom: 15px; color: var(--text-muted); font-size: 13px; font-weight: 500;">
             &copy; 2026 Total Crypto Network. All rights reserved.
@@ -195,58 +188,63 @@
     </footer>
 
     <script>
-        // FULL VERIFIED PROJECT LIST WITH REAL DEPIN CATEGORIES
+        // FULLY RESEARCHED & VERIFIED DEPIN PROJECTS LIST (Token Status Corrected)
         const ALL_PROJECTS = [
-            { name: "UpRock", sub: "AI Data Scraping", category: "Compute", status: "Token Listed", score: "⭐ 9.0 / 10", link: "#" },
-            { name: "Uplink", sub: "Decentralized Connectivity", category: "Wireless", status: "No Token", score: "⭐ 8.5 / 10", link: "#" },
-            { name: "Titan Network", sub: "CDN & Storage", category: "Storage", status: "No Token", score: "⭐ 9.2 / 10", link: "#" },
-            { name: "Theta Edge Node", sub: "Video & AI Compute", category: "Compute", status: "Token Listed", score: "⭐ 9.1 / 10", link: "#" },
-            { name: "Teneo Protocol", sub: "Data Layer", category: "Bandwidth", status: "No Token", score: "⭐ 8.5 / 10", link: "#" },
-            { name: "Tashi Protocol", sub: "Multiplayer Compute", category: "Compute", status: "No Token", score: "⭐ 8.2 / 10", link: "#" },
-            { name: "Silencio", sub: "Noise Mapping", category: "Sensor", status: "No Token", score: "⭐ 8.7 / 10", link: "#" },
-            { name: "Roam", sub: "Wireless Network", category: "Wireless", status: "No Token", score: "⭐ 8.8 / 10", link: "#" },
-            { name: "Nodle Network", sub: "Bluetooth DePIN", category: "Wireless", status: "Token Listed", score: "⭐ 9.3 / 10", link: "#" },
-            { name: "Mysterium Network", sub: "dVPN Protocol", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.6 / 10", link: "#" },
-            { name: "MapMetrics", sub: "Drive-to-Earn", category: "Sensor", status: "Token Listed", score: "⭐ 8.6 / 10", link: "#" },
-            { name: "io.net", sub: "GPU Compute Cluster", category: "Compute", status: "Token Listed", score: "⭐ 9.4 / 10", link: "#" },
-            { name: "Hyra Network", sub: "Browser Extension", category: "Bandwidth", status: "No Token", score: "⭐ 7.8 / 10", link: "#" },
+            /* --- Token Listed Projects --- */
             { name: "Grass Network", sub: "DePIN Ecosystem", category: "Bandwidth", status: "Token Listed", score: "⭐ 9.8 / 10", link: "projects/grass.html" },
+            { name: "UpRock", sub: "AI Data Scraping", category: "Compute", status: "Token Listed", score: "⭐ 9.0 / 10", link: "#" },
+            { name: "io.net", sub: "GPU Compute Cluster", category: "Compute", status: "Token Listed", score: "⭐ 9.4 / 10", link: "#" },
+            { name: "Theta Edge Node", sub: "Video & AI Compute", category: "Compute", status: "Token Listed", score: "⭐ 9.1 / 10", link: "#" },
+            { name: "Nodle Network", sub: "Bluetooth DePIN", category: "Wireless", status: "Token Listed", score: "⭐ 9.3 / 10", link: "#" },
+            { name: "Roam", sub: "Wireless Network", category: "Wireless", status: "Token Listed", score: "⭐ 8.8 / 10", link: "#" },
+            { name: "Silencio", sub: "Noise Mapping", category: "Sensor", status: "Token Listed", score: "⭐ 8.7 / 10", link: "#" },
+            { name: "MapMetrics", sub: "Drive-to-Earn", category: "Sensor", status: "Token Listed", score: "⭐ 8.6 / 10", link: "#" },
+            { name: "Mysterium Network", sub: "dVPN Protocol", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.6 / 10", link: "#" },
             { name: "Golem Network", sub: "PC CPU Node", category: "Compute", status: "Token Listed", score: "⭐ 8.9 / 10", link: "#" },
             { name: "Flux", sub: "Web3 Cloud", category: "Compute", status: "Token Listed", score: "⭐ 8.8 / 10", link: "#" },
-            { name: "Fleek Network", sub: "Edge Network", category: "Compute", status: "No Token", score: "⭐ 8.5 / 10", link: "#" },
             { name: "Edge Network", sub: "Edge Node", category: "Compute", status: "Token Listed", score: "⭐ 8.4 / 10", link: "#" },
-            { name: "dTelecom", sub: "CDN Node", category: "Bandwidth", status: "No Token", score: "⭐ 8.0 / 10", link: "#" },
+            { name: "Chirp Network", sub: "Wireless Telecom", category: "Wireless", status: "Token Listed", score: "⭐ 8.4 / 10", link: "#" },
+            { name: "DATS Project", sub: "Security Node", category: "Compute", status: "Token Listed", score: "⭐ 8.2 / 10", link: "#" },
+            { name: "Auki Network", sub: "Spatial Computing", category: "Compute", status: "Token Listed", score: "⭐ 8.5 / 10", link: "#" },
+            { name: "375ai", sub: "Edge AI Network", category: "Compute", status: "Token Listed", score: "⭐ 8.2 / 10", link: "#" },
+            { name: "XYO Network", sub: "Geo Location", category: "Sensor", status: "Token Listed", score: "⭐ 8.7 / 10", link: "#" },
+            { name: "NATIX Network", sub: "Drive-to-Earn", category: "Sensor", status: "Token Listed", score: "⭐ 8.9 / 10", link: "#" },
+            { name: "Acurast", sub: "Spare Phones Compute", category: "Compute", status: "Token Listed", score: "⭐ 8.4 / 10", link: "#" },
+            { name: "GaGaNode", sub: "Edge Bandwidth", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.1 / 10", link: "#" },
+            { name: "Swash", sub: "Data Monetization", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.5 / 10", link: "#" },
+            { name: "Brevo", sub: "Ads Network", category: "Bandwidth", status: "Token Listed", score: "⭐ 7.5 / 10", link: "#" },
+            { name: "COIN App", sub: "Geo Location (XYO)", category: "Sensor", status: "Token Listed", score: "⭐ 8.5 / 10", link: "#" },
+            { name: "Uplink", sub: "Decentralized Connectivity", category: "Wireless", status: "Token Listed", score: "⭐ 8.5 / 10", link: "#" },
+
+            /* --- No Token Projects (Testnet / Points / Direct Payout) --- */
+            { name: "Titan Network", sub: "CDN & Storage", category: "Storage", status: "No Token", score: "⭐ 9.2 / 10", link: "#" },
+            { name: "DAWN Internet", sub: "Decentralized Broadband", category: "Bandwidth", status: "No Token", score: "⭐ 8.8 / 10", link: "#" },
+            { name: "Teneo Protocol", sub: "Data Layer", category: "Bandwidth", status: "No Token", score: "⭐ 8.5 / 10", link: "#" },
+            { name: "Bless Network", sub: "AI Extension", category: "Compute", status: "No Token", score: "⭐ 8.5 / 10", link: "#" },
+            { name: "Tashi Protocol", sub: "Multiplayer Compute", category: "Compute", status: "No Token", score: "⭐ 8.2 / 10", link: "#" },
+            { name: "Fleek Network", sub: "Edge Network", category: "Compute", status: "No Token", score: "⭐ 8.5 / 10", link: "#" },
             { name: "DeNet Protocol", sub: "Storage Node", category: "Storage", status: "No Token", score: "⭐ 8.3 / 10", link: "#" },
             { name: "Diode Network", sub: "PC Node", category: "Compute", status: "No Token", score: "⭐ 7.8 / 10", link: "#" },
-            { name: "DAWN Internet", sub: "Decentralized Broadband", category: "Bandwidth", status: "No Token", score: "⭐ 8.8 / 10", link: "#" },
-            { name: "Chirp Network", sub: "Wireless Telecom", category: "Wireless", status: "No Token", score: "⭐ 8.4 / 10", link: "#" },
-            { name: "DATS Project", sub: "Security Node", category: "Compute", status: "No Token", score: "⭐ 8.2 / 10", link: "#" },
-            { name: "Auki Network", sub: "Spatial Computing", category: "Compute", status: "No Token", score: "⭐ 8.5 / 10", link: "#" },
             { name: "ARO Protocol", sub: "AI & Data", category: "Compute", status: "No Token", score: "⭐ 8.0 / 10", link: "#" },
             { name: "Adreva", sub: "DePIN Advertising", category: "Bandwidth", status: "No Token", score: "⭐ 7.9 / 10", link: "#" },
             { name: "3DOS", sub: "3D Printing DePIN", category: "Compute", status: "No Token", score: "⭐ 8.1 / 10", link: "#" },
-            { name: "375ai", sub: "Edge AI Network", category: "Compute", status: "No Token", score: "⭐ 8.2 / 10", link: "#" },
             { name: "Akave", sub: "Storage Node", category: "Storage", status: "No Token", score: "⭐ 8.1 / 10", link: "#" },
             { name: "URnetwork", sub: "Privacy Node", category: "Bandwidth", status: "No Token", score: "⭐ 7.5 / 10", link: "#" },
-            { name: "XYO Network", sub: "Geo Location", category: "Sensor", status: "Token Listed", score: "⭐ 8.7 / 10", link: "#" },
-            { name: "NATIX Network", sub: "Drive-to-Earn", category: "Sensor", status: "Token Listed", score: "⭐ 8.9 / 10", link: "#" },
-            { name: "Acurast", sub: "Spare Phones Compute", category: "Compute", status: "No Token", score: "⭐ 8.4 / 10", link: "#" },
-            { name: "Honeygain", sub: "Passive Data", category: "Bandwidth", status: "Token Listed", score: "⭐ 9.0 / 10", link: "#" },
+            { name: "Perceptron Network", sub: "AI Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.7 / 10", link: "#" },
+            { name: "Optimai", sub: "AI Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.1 / 10", link: "#" },
+            { name: "U2DPN", sub: "Decentralized VPN", category: "Bandwidth", status: "No Token", score: "⭐ 8.0 / 10", link: "#" },
+            
+            // Strictly Direct Payout (Fiat/GiftCard/No native crypto token)
+            { name: "Honeygain", sub: "Passive Data", category: "Bandwidth", status: "No Token", score: "⭐ 9.0 / 10", link: "#" },
             { name: "EarnApp", sub: "Passive Cash", category: "Bandwidth", status: "No Token", score: "⭐ 8.2 / 10", link: "#" },
             { name: "Repocket", sub: "Passive Data", category: "Bandwidth", status: "No Token", score: "⭐ 8.1 / 10", link: "#" },
-            { name: "GaGaNode", sub: "Edge Bandwidth", category: "Bandwidth", status: "No Token", score: "⭐ 8.1 / 10", link: "#" },
             { name: "Earn.fm", sub: "Passive Data", category: "Bandwidth", status: "No Token", score: "⭐ 8.0 / 10", link: "#" },
             { name: "Pawns.app", sub: "Bandwidth Sharing", category: "Bandwidth", status: "No Token", score: "⭐ 8.3 / 10", link: "#" },
             { name: "Slice", sub: "Ads Extension", category: "Bandwidth", status: "No Token", score: "⭐ 8.2 / 10", link: "#" },
-            { name: "Swash", sub: "Data Monetization", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.5 / 10", link: "#" },
-            { name: "Brevo", sub: "Ads Network", category: "Bandwidth", status: "No Token", score: "⭐ 7.5 / 10", link: "#" },
-            { name: "Perceptron Network", sub: "AI Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.7 / 10", link: "#" },
-            { name: "Bless Network", sub: "AI Extension", category: "Compute", status: "No Token", score: "⭐ 8.5 / 10", link: "#" },
-            { name: "Optimai", sub: "AI Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.1 / 10", link: "#" },
-            { name: "MinionLab", sub: "Data Processing", category: "Compute", status: "No Token", score: "⭐ 8.0 / 10", link: "#" },
-            { name: "COIN App", sub: "Geo Location (XYO)", category: "Sensor", status: "Token Listed", score: "⭐ 8.5 / 10", link: "#" },
-            { name: "U2DPN", sub: "Decentralized VPN", category: "Bandwidth", status: "No Token", score: "⭐ 8.0 / 10", link: "#" },
-            { name: "PacketStream", sub: "PC Bandwidth", category: "Bandwidth", status: "No Token", score: "⭐ 7.9 / 10", link: "#" }
+            { name: "PacketStream", sub: "PC Bandwidth", category: "Bandwidth", status: "No Token", score: "⭐ 7.9 / 10", link: "#" },
+            { name: "Hyra Network", sub: "Browser Extension", category: "Bandwidth", status: "No Token", score: "⭐ 7.8 / 10", link: "#" },
+            { name: "dTelecom", sub: "CDN Node", category: "Bandwidth", status: "No Token", score: "⭐ 8.0 / 10", link: "#" },
+            { name: "MinionLab", sub: "Data Processing", category: "Compute", status: "No Token", score: "⭐ 8.0 / 10", link: "#" }
         ];
 
         let currentFilter = 'All';
@@ -266,7 +264,6 @@
             tbody.innerHTML = '';
             let visibleCount = 0;
 
-            // Sort projects alphabetically
             const sortedProjects = ALL_PROJECTS.sort((a, b) => a.name.localeCompare(b.name));
 
             sortedProjects.forEach(p => {
@@ -280,7 +277,6 @@
                     const bgColor = getAvatarColor(p.name);
                     const targetLink = p.link ? p.link : '#';
                     
-                    // बैज (Badge) सिर्फ तभी दिखेगा जब 'Token Listed' बटन सेलेक्टेड हो
                     let statusBadge = (p.status === "Token Listed" && currentFilter === "Token Listed") ? `<span class="badge-listed">Token Listed</span>` : '';
 
                     const row = document.createElement('tr');
