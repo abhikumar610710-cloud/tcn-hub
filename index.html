@@ -109,6 +109,7 @@
 </head>
 <body data-theme="light">
 
+    <!-- Header & Tabs -->
     <header>
         <div class="header-left">
             <a href="#" class="logo-box">
@@ -140,13 +141,14 @@
             <p id="projectCount">Loading projects...</p>
         </div>
 
+        <!-- Filter Area -->
         <div class="filter-section">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search projects by name..." onkeyup="renderTable()">
             </div>
             
-            <!-- CLEAN FILTERS IN EXACT REQUESTED ORDER -->
             <div class="filter-buttons">
+                <!-- ORDER: All -> Cash Payouts (No Emoji) -> Token Listed -> No Token -->
                 <button class="btn-filter active" onclick="setCategory('All', this)">All Projects</button>
                 <button class="btn-filter" onclick="setCategory('Cash Payouts', this)">Cash Payouts</button>
                 <button class="btn-filter" onclick="setCategory('Token Listed', this)">Token Listed</button>
@@ -183,6 +185,7 @@
         </div>
     </div>
 
+    <!-- UPGRADED FOOTER WITH TERMS & CONDITIONS -->
     <footer>
         <div style="margin-bottom: 15px; color: var(--text-muted); font-size: 13px; font-weight: 500;">
             &copy; 2026 Total Crypto Network. All rights reserved.
@@ -190,14 +193,15 @@
         <div class="footer-links">
             <a href="pages/about.html">About Us</a>
             <a href="pages/privacy.html">Privacy Policy</a>
+            <a href="pages/terms.html">Terms & Conditions</a>
             <a href="pages/disclaimer.html">Disclaimer</a>
         </div>
     </footer>
 
     <script>
-        // FULL 70+ PROJECTS LIST - ARRANGED BY TIERS (Best projects on top, Testnets at bottom)
+        // FULL 70+ PROJECTS LIST - CUSTOM RANKING TIER SYSTEM
         const ALL_PROJECTS = [
-            // --- TOP TIER (High Trust, Cash Payouts & Emerging Top Projects) ---
+            // --- TOP TIER ---
             { name: "Grass Network", sub: "DePIN Ecosystem", category: "Bandwidth", status: "Token Listed", score: "⭐ 9.8 / 10", link: "projects/grass.html" },
             { name: "Honeygain", sub: "Passive Data", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 9.5 / 10", link: "#" },
             { name: "Titan Network", sub: "CDN & Storage", category: "Storage", status: "No Token", score: "⭐ 9.4 / 10", link: "#" },
@@ -209,7 +213,7 @@
             { name: "Pawns.app", sub: "Bandwidth Sharing", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 9.0 / 10", link: "#" },
             { name: "Gradient Network", sub: "Compute Edge", category: "Compute", status: "Token Listed", score: "⭐ 9.0 / 10", link: "#" },
             
-            // --- MID-HIGH TIER (Established Nodes & Networks) ---
+            // --- MID-HIGH TIER ---
             { name: "Mysterium Network", sub: "dVPN Protocol", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.9 / 10", link: "#" },
             { name: "Teneo Protocol", sub: "Data Layer", category: "Bandwidth", status: "No Token", score: "⭐ 8.8 / 10", link: "#" },
             { name: "Earn.fm", sub: "Passive Data", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.8 / 10", link: "#" },
@@ -223,7 +227,7 @@
             { name: "Acurast", sub: "Spare Phones Compute", category: "Compute", status: "Token Listed", score: "⭐ 8.5 / 10", link: "#" },
             { name: "Bless Network", sub: "AI Extension", category: "Compute", status: "No Token", score: "⭐ 8.4 / 10", link: "#" },
             
-            // --- MID TIER (Good Performing Networks) ---
+            // --- MID TIER ---
             { name: "Traffmonetizer", sub: "Bandwidth Sharing", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.4 / 10", link: "#" },
             { name: "Proxyrack", sub: "Bandwidth Sharing", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.3 / 10", link: "#" },
             { name: "ByteLixir", sub: "Passive Data", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.2 / 10", link: "#" },
@@ -246,7 +250,7 @@
             { name: "GEODNET", sub: "RTK Network", category: "Sensor", status: "Token Listed", score: "⭐ 8.3 / 10", link: "#" },
             { name: "React Network", sub: "Energy Network", category: "Compute", status: "Token Listed", score: "⭐ 8.0 / 10", link: "#" },
             
-            // --- NO TOKEN (Points / Emerging Layers) ---
+            // --- NO TOKEN ---
             { name: "Perceptron Network", sub: "AI Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.3 / 10", link: "#" },
             { name: "Functor Network", sub: "Compute Layer", category: "Compute", status: "No Token", score: "⭐ 8.1 / 10", link: "#" },
             { name: "Oasis Network", sub: "Privacy Layer", category: "Compute", status: "No Token", score: "⭐ 8.2 / 10", link: "#" },
@@ -276,10 +280,11 @@
             { name: "Ocean Nodes", sub: "Data DePIN", category: "Compute", status: "No Token", score: "⭐ 7.9 / 10", link: "#" },
             { name: "Sahara AI", sub: "AI DePIN", category: "Compute", status: "No Token", score: "⭐ 8.4 / 10", link: "#" },
             { name: "Neurochain", sub: "AI Compute", category: "Compute", status: "No Token", score: "⭐ 7.8 / 10", link: "#" },
-            { name: "Hyra Network", sub: "Browser Extension", category: "Bandwidth", status: "No Token", score: "⭐ 7.5 / 10", link: "#" },
+            // HYRA NETWORK UPDATED
+            { name: "Hyra Network", sub: "PC & Mobile Node", category: "Bandwidth & Compute", status: "No Token", score: "⭐ 7.5 / 10", link: "#" },
             { name: "aZen Protocol", sub: "Social DePIN", category: "Bandwidth", status: "No Token", score: "⭐ 7.6 / 10", link: "#" },
 
-            // --- BOTTOM TIER (TESTNETS & EARLY NODES) ---
+            // --- BOTTOM TIER (TESTNETS) ---
             { name: "Babylon Testnet", sub: "Bitcoin Staking", category: "Compute", status: "No Token", score: "⭐ 7.2 / 10", link: "#" },
             { name: "Shardeum", sub: "L1 Testnet Node", category: "Compute", status: "No Token", score: "⭐ 7.3 / 10", link: "#" },
             { name: "Hemi Network", sub: "L2 Testnet Node", category: "Compute", status: "No Token", score: "⭐ 7.1 / 10", link: "#" },
@@ -310,7 +315,6 @@
             tbody.innerHTML = '';
             let visibleCount = 0;
 
-            // NOTE: Sorting function removed to maintain manual Top-to-Bottom ranking
             ALL_PROJECTS.forEach(p => {
                 const matchesSearch = p.name.toLowerCase().includes(searchVal);
                 
@@ -323,7 +327,8 @@
                     matchesFilter = p.status === currentFilter;
                 }
                 
-                const matchesSubCat = currentSubCategory === 'All' || p.category === currentSubCategory;
+                // Updated Sub-Category logic to support dual categories like "Bandwidth & Compute"
+                const matchesSubCat = currentSubCategory === 'All' || p.category.includes(currentSubCategory);
 
                 if (matchesSearch && matchesFilter && matchesSubCat) {
                     visibleCount++;
