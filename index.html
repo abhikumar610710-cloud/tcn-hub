@@ -1,250 +1,303 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCN Hub | by Total Crypto Network</title>
-    <!-- Ultra Sharp & Soft Typography -->
+    <title>TCN Hub | DePIN Projects Directory</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Custom Brand Colors (Teal & Emerald mix)
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6', // Teal 500
+                            600: '#0d9488', // Teal 600
+                            emerald: '#10b981', // Emerald 500
+                        },
+                        darkbg: {
+                            DEFAULT: '#0b0f19', // Deep Navy/Slate Background
+                            surface: '#131b2c', // Surface Color
+                            border: '#1f2937'   // Border Color
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- यह लाइन हमारे अलग किये गए डिज़ाइन (style.css) को जोड़ रही है -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom Select styling to hide default arrow and look sleek */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1em;
+        }
+        .dark select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+        }
+        /* Smooth transition for theme toggle */
+        * { transition: background-color 0.2s ease, border-color 0.2s ease; }
+    </style>
 </head>
-<body data-theme="light">
+<body class="bg-gray-50 text-gray-900 dark:bg-darkbg dark:text-gray-100 min-h-screen flex flex-col antialiased">
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="header-left">
-            <a href="#" class="logo-box">
-                <div class="logo-icon">TCN 🇮🇳</div>
-                <div class="logo-text">
-                    <h1>TCN Hub</h1>
-                    <span>by <b>Total Crypto Network</b></span>
-                </div>
-            </a>
-            <div class="nav-links">
-                <a href="#" class="nav-link active">DePIN Projects</a>
-                <a href="#" class="nav-link">Token Checker</a>
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-darkbg/90 backdrop-blur-md border-b border-gray-200 dark:border-darkbg-border">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Left: Branding -->
+            <div class="flex items-center gap-8">
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-emerald flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:shadow-brand-500/50 transition-shadow">
+                        T
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">TCN Hub</span>
+                </a>
+
+                <!-- Center: Navigation -->
+                <nav class="hidden md:flex gap-6 font-medium text-sm text-gray-600 dark:text-gray-300">
+                    <a href="#" class="text-brand-500 font-semibold drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]">DePIN Projects</a>
+                    <a href="#" class="hover:text-gray-900 dark:hover:text-white transition-colors">Token Checker</a>
+                </nav>
             </div>
-        </div>
-        <div class="header-right">
-            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="मोड बदलें">🌙</button>
-            <a href="https://t.me/" target="_blank" class="join-btn">🔥 Join TCN AI</a>
+
+            <!-- Right: Actions -->
+            <div class="flex items-center gap-4">
+                <!-- Language Selector -->
+                <div class="relative hidden sm:block">
+                    <select class="pl-3 pr-8 py-1.5 text-sm font-medium bg-gray-100 dark:bg-darkbg-surface border border-transparent dark:border-darkbg-border rounded-md text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer">
+                        <option value="en">EN</option>
+                        <option value="hi">HI</option>
+                    </select>
+                </div>
+
+                <!-- Theme Toggle (Moon/Sun) -->
+                <button id="themeToggle" class="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-darkbg-surface transition-colors" title="Toggle Theme">
+                    <!-- Moon Icon -->
+                    <svg id="moonIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    <!-- Sun Icon -->
+                    <svg id="sunIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </button>
+
+                <!-- Join Button -->
+                <a href="#" class="px-5 py-2 text-sm font-semibold rounded-full bg-brand-500 hover:bg-brand-600 text-white shadow-lg shadow-brand-500/20 transition-all flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    Join TCN AI
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <div class="container">
-
-        <div class="hero-title-box">
-            <div>
-                <h2>DePIN Projects Ecosystem</h2>
-                <div class="hero-subtitle" id="projectCount">Loading projects...</div>
-            </div>
-            <div class="badge-verified">⚡ 100% Free & Verified Hub</div>
-        </div>
-
-        <!-- Search & Filters -->
-        <div class="filter-section">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search projects by name or category..." onkeyup="renderTable()">
-            </div>
-            <div class="filter-buttons">
-                <button class="btn-filter active" onclick="setCategory('All', this)">All Projects</button>
-                <button class="btn-filter" onclick="setCategory('Bandwidth', this)">Bandwidth</button>
-                <button class="btn-filter" onclick="setCategory('Compute', this)">Compute</button>
-                <button class="btn-filter" onclick="setCategory('Mobile', this)">Mobile</button>
-            </div>
-        </div>
-
-        <!-- Table Card -->
-        <div class="table-card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Project</th>
-                        <th>Category</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="projectsTableBody">
-                    <!-- Projects will be injected here automatically by JavaScript -->
-                </tbody>
-            </table>
+    <main class="flex-grow max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Header Section (Title & Filters) -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">DePIN Projects</h1>
             
-            <!-- खाली सर्च वाला मैसेज -->
-            <div id="noDataMessage" class="no-data-msg" style="display:none; padding: 30px; text-align: center; color: #64748b;">
-                No project found. We only list verified DePIN nodes.
+            <div class="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
+                
+                <!-- Search Bar -->
+                <div class="relative w-full lg:w-[400px]">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input type="text" id="searchInput" class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 dark:border-darkbg-border rounded-lg leading-5 bg-white dark:bg-darkbg-surface text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:text-sm transition-colors" placeholder="Search projects...">
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- Filter Buttons -->
+                    <div class="flex bg-gray-200/50 dark:bg-darkbg-surface p-1 rounded-lg border border-gray-200 dark:border-darkbg-border">
+                        <button class="px-4 py-1.5 text-sm font-medium rounded-md bg-brand-500 text-white shadow-sm transition-colors">All Projects</button>
+                        <button class="px-4 py-1.5 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Token Listed</button>
+                        <button class="px-4 py-1.5 text-sm font-medium rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">No Token</button>
+                    </div>
+
+                    <!-- Category Dropdown -->
+                    <select class="pl-4 pr-10 py-2.5 text-sm font-medium bg-white dark:bg-darkbg-surface border border-gray-300 dark:border-darkbg-border rounded-lg text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer">
+                        <option>Categories</option>
+                        <option>Bandwidth</option>
+                        <option>Compute</option>
+                        <option>Mobile/Sensor</option>
+                    </select>
+                </div>
+            </div>
+            
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">Showing <span class="font-semibold text-gray-900 dark:text-gray-200">191</span> of 191 projects</p>
+        </div>
+
+        <!-- Projects Table -->
+        <div class="bg-white dark:bg-darkbg-surface rounded-xl border border-gray-200 dark:border-darkbg-border overflow-hidden shadow-sm">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50 dark:bg-[#182134] text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-darkbg-border">
+                            <th class="px-6 py-4">Project</th>
+                            <th class="px-6 py-4">Categories</th>
+                            <th class="px-6 py-4">TCN Coverage</th>
+                            <th class="px-6 py-4">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-darkbg-border text-sm">
+                        
+                        <!-- Row 1 -->
+                        <tr class="hover:bg-gray-50 dark:hover:bg-[#162032] transition-colors group">
+                            <td class="px-6 py-4 flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold shrink-0">A</div>
+                                <div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="font-bold text-gray-900 dark:text-white text-base">Acurast</span>
+                                        <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                    <div class="flex gap-1 mt-1">
+                                        <div class="w-4 h-4 rounded-full bg-blue-500 border border-darkbg-surface"></div>
+                                        <div class="w-4 h-4 rounded-full bg-purple-500 border border-darkbg-surface"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-[#1e293b] text-gray-600 dark:text-gray-300 text-xs font-medium border border-gray-200 dark:border-gray-700">Compute</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-2">
+                                    <span class="flex items-center gap-1 px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-medium border border-blue-500/20"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> (2)</span>
+                                    <span class="flex items-center gap-1 px-2 py-0.5 rounded bg-brand-500/10 text-brand-600 dark:text-brand-500 text-xs font-medium border border-brand-500/20"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> (1)</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#" class="text-brand-500 hover:text-brand-600 font-medium text-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    View Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2 -->
+                        <tr class="hover:bg-gray-50 dark:hover:bg-[#162032] transition-colors group">
+                            <td class="px-6 py-4 flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-slate-800 border border-gray-600 flex items-center justify-center text-white font-bold shrink-0">X</div>
+                                <div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="font-bold text-gray-900 dark:text-white text-base">XYO</span>
+                                        <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-1.5">
+                                    <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-[#1e293b] text-gray-600 dark:text-gray-300 text-xs font-medium border border-gray-200 dark:border-gray-700">Sensor</span>
+                                    <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-[#1e293b] text-gray-600 dark:text-gray-300 text-xs font-medium border border-gray-200 dark:border-gray-700">Geolocation</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-2">
+                                    <span class="flex items-center gap-1 px-2 py-0.5 rounded bg-brand-500/10 text-brand-600 dark:text-brand-500 text-xs font-medium border border-brand-500/20"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> (2)</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#" class="text-brand-500 hover:text-brand-600 font-medium text-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    View Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Row 3 -->
+                        <tr class="hover:bg-gray-50 dark:hover:bg-[#162032] transition-colors group">
+                            <td class="px-6 py-4 flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold shrink-0">H</div>
+                                <div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="font-bold text-gray-900 dark:text-white text-base">Helium</span>
+                                        <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2.5 py-1 rounded bg-gray-100 dark:bg-[#1e293b] text-gray-600 dark:text-gray-300 text-xs font-medium border border-gray-200 dark:border-gray-700">Wireless</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-2">
+                                    <span class="flex items-center gap-1 px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-medium border border-blue-500/20"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> (2)</span>
+                                    <span class="flex items-center gap-1 px-2 py-0.5 rounded bg-brand-500/10 text-brand-600 dark:text-brand-500 text-xs font-medium border border-brand-500/20"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> (10)</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#" class="text-brand-500 hover:text-brand-600 font-medium text-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    View Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
             </div>
         </div>
 
-    </div>
+    </main>
 
-    <!-- Footer / Legal Links (AdSense के लिए बहुत ज़रूरी) -->
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 Total Crypto Network. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="pages/about.html">About Us</a>
-                <a href="pages/contact.html">Contact Us</a>
-                <a href="pages/privacy.html">Privacy Policy</a>
-                <a href="pages/terms.html">Terms & Conditions</a>
-                <a href="pages/disclaimer.html">Disclaimer</a>
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-darkbg-border py-8 mt-auto">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-500 dark:text-gray-400">© 2026 Total Crypto Network. All rights reserved.</p>
+            <div class="flex gap-6 text-sm font-medium">
+                <a href="#" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">About Us</a>
+                <a href="#" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">Disclaimer</a>
             </div>
         </div>
     </footer>
 
+    <!-- Theme Toggle Script -->
     <script>
-        // TCN Verified 100% Free Projects Database
-        const ALL_PROJECTS = [
-            // --- Bandwidth Projects ---
-            { name: "Grass Network", category: "Bandwidth", sub: "DePIN Ecosystem", hasToken: true, link: "projects/grass.html" },
-            { name: "Nodepay", category: "Bandwidth", sub: "AI Infrastructure", hasToken: false, link: "#" },
-            { name: "Dawn Network", category: "Bandwidth", sub: "Decentralized Internet", hasToken: false, link: "#" },
-            { name: "Honeygain", category: "Bandwidth", sub: "Passive Data", hasToken: true, link: "#" },
-            { name: "Teneo Protocol", category: "Bandwidth", sub: "Data Layer", hasToken: false, link: "#" },
-            { name: "Network3", category: "Bandwidth", sub: "AI & Bandwidth", hasToken: false, link: "#" },
-            { name: "EarnApp", category: "Bandwidth", sub: "Passive Cash", hasToken: false, link: "#" },
-            { name: "PacketShare", category: "Bandwidth", sub: "Bandwidth Sharing", hasToken: false, link: "#" },
-            { name: "Repocket", category: "Bandwidth", sub: "Passive Data", hasToken: false, link: "#" },
-            { name: "Pawns.app", category: "Bandwidth", sub: "Bandwidth Sharing", hasToken: false, link: "#" },
-            { name: "PacketStream", category: "Bandwidth", sub: "PC Bandwidth", hasToken: false, link: "#" },
-            { name: "Earn.fm", category: "Bandwidth", sub: "Passive Data", hasToken: false, link: "#" },
-            { name: "Hyra Network", category: "Bandwidth", sub: "Browser Extension", hasToken: false, link: "#" },
-            { name: "Slice", category: "Bandwidth", sub: "Ads Extension", hasToken: false, link: "#" },
-            { name: "Swash", category: "Bandwidth", sub: "Data Monetization", hasToken: true, link: "#" },
-            { name: "URnetwork", category: "Bandwidth", sub: "Privacy Node", hasToken: false, link: "#" },
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const darkIcon = document.getElementById('moonIcon');
+        const lightIcon = document.getElementById('sunIcon');
+        const html = document.documentElement;
 
-            // --- Compute & Storage Projects ---
-            { name: "Titan Network", category: "Compute", sub: "CDN & Storage", hasToken: false, link: "#" },
-            { name: "UpRock", category: "Compute", sub: "Mobile AI Data", hasToken: true, link: "#" },
-            { name: "Kaisar Network", category: "Compute", sub: "AI Computing", hasToken: false, link: "#" },
-            { name: "Koii", category: "Compute", sub: "AI Nodes", hasToken: true, link: "#" },
-            { name: "Perceptron", category: "Compute", sub: "AI Infrastructure", hasToken: false, link: "#" },
-            { name: "DataHive AI", category: "Compute", sub: "AI Data Layer", hasToken: false, link: "#" },
-            { name: "Presearch", category: "Compute", sub: "Decentralized Search", hasToken: true, link: "#" },
-            { name: "Bless Network", category: "Compute", sub: "AI Extension", hasToken: false, link: "#" },
-            { name: "Optimai", category: "Compute", sub: "AI Infrastructure", hasToken: false, link: "#" },
-            { name: "MinionLab", category: "Compute", sub: "Data Processing", hasToken: false, link: "#" },
-            { name: "Theta Edge Node", category: "Compute", sub: "Video & AI Compute", hasToken: true, link: "#" },
-            { name: "Golem", category: "Compute", sub: "PC CPU Node", hasToken: true, link: "#" },
-            { name: "Fleek", category: "Compute", sub: "Edge Network", hasToken: false, link: "#" },
-            { name: "Edge Network", category: "Compute", sub: "Edge Node", hasToken: true, link: "#" },
-            { name: "dTelecom", category: "Compute", sub: "CDN Node", hasToken: false, link: "#" },
-            { name: "Diode", category: "Compute", sub: "PC Node", hasToken: false, link: "#" },
-            { name: "DATS Project", category: "Compute", sub: "PC Security Node", hasToken: false, link: "#" },
-            { name: "Akave", category: "Compute", sub: "Storage Node", hasToken: false, link: "#" },
-            { name: "Hivello", category: "Compute", sub: "DePIN Aggregator", hasToken: false, link: "#" },
-
-            // --- Mobile & Sensor Projects ---
-            { name: "Nodle", category: "Mobile", sub: "Bluetooth DePIN", hasToken: true, link: "#" },
-            { name: "Silencio", category: "Mobile", sub: "Noise Mapping", hasToken: false, link: "#" },
-            { name: "Roam", category: "Mobile", sub: "Wireless Network", hasToken: false, link: "#" },
-            { name: "aZen Protocol", category: "Mobile", sub: "Social DePIN", hasToken: false, link: "#" },
-            { name: "U2DPN", category: "Mobile", sub: "Mobile Bandwidth", hasToken: false, link: "#" },
-            { name: "GagaNode", category: "Mobile", sub: "Edge Node", hasToken: false, link: "#" },
-            { name: "DeNet", category: "Mobile", sub: "Storage Node", hasToken: false, link: "#" },
-            { name: "NATIX", category: "Mobile", sub: "Drive-to-Earn", hasToken: true, link: "#" },
-            { name: "MapMetrics", category: "Mobile", sub: "Drive-to-Earn", hasToken: true, link: "#" },
-            { name: "Auki Network", category: "Mobile", sub: "Spatial Computing", hasToken: false, link: "#" },
-            { name: "Acurast", category: "Mobile", sub: "Spare Phones", hasToken: false, link: "#" },
-            { name: "XYO (Coin App)", category: "Mobile", sub: "Geo Location", hasToken: true, link: "#" }
-        ];
-
-        let currentCategory = 'All';
-
-        // Auto Color Generator for Avatars
-        function getAvatarColor(name) {
-            const colors = ['#2563eb', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#0ea5e9', '#f43f5e'];
-            let hash = 0;
-            for (let i = 0; i < name.length; i++) { hash = name.charCodeAt(i) + ((hash << 5) - hash); }
-            return colors[Math.abs(hash) % colors.length];
+        // Check local storage or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            html.classList.remove('dark');
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
         }
 
-        // Render Table dynamically
-        function renderTable() {
-            const searchVal = document.getElementById('searchInput').value.toLowerCase();
-            const tbody = document.getElementById('projectsTableBody');
-            const noDataMsg = document.getElementById('noDataMessage');
-            tbody.innerHTML = '';
+        // Toggle function
+        themeToggleBtn.addEventListener('click', function() {
+            html.classList.toggle('dark');
             
-            let visibleCount = 0;
-
-            ALL_PROJECTS.forEach(p => {
-                const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.category.toLowerCase().includes(searchVal);
-                const matchesCategory = currentCategory === 'All' || p.category === currentCategory;
-
-                if (matchesSearch && matchesCategory) {
-                    visibleCount++;
-                    const initial = p.name.charAt(0).toUpperCase();
-                    const bgColor = getAvatarColor(p.name);
-                    const statusClass = p.hasToken ? 'status-listed' : 'status-points';
-                    const statusText = p.hasToken ? 'Token Listed' : 'Active Points';
-                    const targetLink = p.link ? p.link : '#';
-
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>
-                            <div class="project-cell">
-                                <div class="project-avatar" style="background: ${bgColor};">${initial}</div>
-                                <div>
-                                    <div class="project-name">${p.name}</div>
-                                    <div class="project-sub">${p.sub}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="category-pill">${p.category}</span></td>
-                        <td><span class="status-pill ${statusClass}">${statusText}</span></td>
-                        <td><a href="${targetLink}" class="btn-details">Details ↗</a></td>
-                    `;
-                    tbody.appendChild(row);
-                }
-            });
-
-            document.getElementById('projectCount').innerText = `Showing ${visibleCount} verified free node projects`;
-            
-            if(visibleCount === 0) {
-                noDataMsg.style.display = "block";
-            } else {
-                noDataMsg.style.display = "none";
-            }
-        }
-
-        // Set Category from Buttons
-        function setCategory(cat, button) {
-            currentCategory = cat;
-            document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            renderTable();
-        }
-
-        // Theme Toggle Functionality
-        function toggleTheme() {
-            const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
-            const currentTheme = body.getAttribute('data-theme');
-
-            if (currentTheme === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+            if (html.classList.contains('dark')) {
                 localStorage.setItem('theme', 'dark');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
             } else {
-                body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
             }
-        }
-
-        // Initialize on load
-        window.onload = function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
-            renderTable(); // First render
-        };
+        });
     </script>
 </body>
 </html>
