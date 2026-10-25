@@ -225,7 +225,9 @@
                     const initial = p.name.charAt(0).toUpperCase();
                     const bgColor = getAvatarColor(p.name);
                     const targetLink = p.link ? p.link : '#';
-                    let statusBadge = p.status === "Token Listed" ? `<span class="badge-listed">Token Listed</span>` : '';
+                    
+                    // सिर्फ तभी टैग दिखेगा जब 'Token Listed' बटन दबा हो
+                    let statusBadge = (p.status === "Token Listed" && currentFilter === "Token Listed") ? `<span class="badge-listed">Token Listed</span>` : '';
 
                     const row = document.createElement('tr');
                     row.innerHTML = `
