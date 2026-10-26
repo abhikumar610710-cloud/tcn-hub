@@ -59,22 +59,73 @@
         /* Container */
         .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
 
-        /* Hero Card */
-        .hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 25px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .hero-left { display: flex; align-items: center; gap: 16px; }
-        .project-img-box { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
+        /* Top Hero Action Card */
+        .hero-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 24px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 24px; 
+            flex-wrap: wrap; 
+        }
+        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
+        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
         .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
         .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 2px; }
+        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
 
-        /* Referral Box */
-        .referral-box { background: var(--bg-body); border: 1px dashed var(--accent-primary); border-radius: 12px; padding: 12px 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-        .ref-label { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 16px; font-weight: 700; color: var(--accent-primary); background: var(--bg-surface); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border-color); }
-        .btn-copy { background: transparent; border: 1px solid var(--accent-primary); color: var(--accent-primary); padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer; }
-        .btn-copy:hover { background: var(--accent-primary); color: white; }
-        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 13px; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25); }
+        /* Clean High-Visibility Referral Box */
+        .referral-box { 
+            background: var(--bg-body); 
+            border: 1.5px solid var(--accent-primary); 
+            border-radius: 14px; 
+            padding: 12px 18px; 
+            display: flex; 
+            align-items: center; 
+            gap: 16px; 
+            box-shadow: 0 2px 10px rgba(13, 148, 136, 0.08);
+        }
+        .ref-details { display: flex; flex-direction: column; gap: 2px; }
+        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
+        .ref-code { font-family: 'Fira Code', monospace; font-size: 17px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
+        
+        .ref-actions { display: flex; align-items: center; gap: 8px; }
+        .btn-copy { 
+            background: var(--bg-surface); 
+            border: 1.5px solid var(--border-color); 
+            color: var(--text-heading); 
+            padding: 8px 14px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 9px 18px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25); 
+            white-space: nowrap;
+        }
+        .btn-join:hover { background: var(--accent-hover); }
 
         /* 3 Platform Tabs */
         .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
@@ -116,8 +167,11 @@
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: flex-start; }
-            .referral-box { width: 100%; justify-content: space-between; }
+            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
+            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
+            .ref-actions { width: 100%; display: flex; }
+            .ref-actions .btn-copy { flex: 1; justify-content: center; }
+            .ref-actions .btn-join { flex: 2; justify-content: center; }
             .content-card { padding: 20px; }
             .container { width: 94%; }
         }
@@ -130,7 +184,7 @@
         <div class="header-inner">
             <a href="../index.html" class="logo-box">
                 <div class="logo-icon">
-                    <img src="../logos/tcnlogo.png.jpeg" alt="TCN Logo" onerror="this.src='../logos/tcn-logo.png'">
+                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
@@ -157,13 +211,17 @@
                     <p>Decentralized Edge Cloud, CDN & Storage Infrastructure (DePIN)</p>
                 </div>
             </div>
+            
+            <!-- Upgraded Referral Box -->
             <div class="referral-box">
-                <div>
-                    <div class="ref-label">Official Invite Code</div>
+                <div class="ref-details">
+                    <span class="ref-label">Official Invite Code</span>
                     <span class="ref-code" id="refCodeText">AFD8CQ3U</span>
                 </div>
-                <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
-                <a href="https://edge.titannet.info/signup?inviteCode=AFD8CQ3U" target="_blank" class="btn-join">⚡ Register with Bonus</a>
+                <div class="ref-actions">
+                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
+                    <a href="https://edge.titannet.info/signup?inviteCode=AFD8CQ3U" target="_blank" class="btn-join">⚡ Register with Bonus</a>
+                </div>
             </div>
         </div>
 
@@ -174,42 +232,42 @@
             <button class="tab-nav-btn" onclick="switchTab('mobile', this)">📱 3. Mobile App (Android)</button>
         </div>
 
-        <!-- TAB 1: EXTENSION GUIDE -->
+        <!-- TAB 1: EXTENSION GUIDE (NO IDENTITY CODE NEEDED - DIRECT LOGIN) -->
         <div id="tab-extension" class="tab-pane content-card">
             <h3>🌐 Browser Extension Setup Guide (Chrome / Kiwi Browser)</h3>
             <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Browser Extension sabse halka tarika hai Titan Network run karne ka. Yeh aapke computer ke processor (CPU) ya hard drive storage ko bilkul touch nahi karta.
+                Browser Extension sabse aasan tarika hai Titan Network run karne ka. Isme koi complex console code bind nahi karna hota, sirf extension me login karke internet share karna hota hai.
             </p>
 
             <div class="step-block">
                 <div class="step-number">1</div>
                 <div class="step-title">Create Account with Referral Bonus</div>
                 <div class="step-desc">
-                    Sabse pehle official web console par register karein: <a href="https://edge.titannet.info/signup?inviteCode=AFD8CQ3U" target="_blank">Titan Edge Platform</a>. Yahan invite code <strong>AFD8CQ3U</strong> apply karein taaki aapka node verified mining bonus ke sath link ho sake.
+                    Sabse pehle Titan ki official console website par register karein: <a href="https://edge.titannet.info/signup?inviteCode=AFD8CQ3U" target="_blank">Titan Edge Platform</a>. Invite code <strong>AFD8CQ3U</strong> laga kar apna email aur password set karein.
                 </div>
             </div>
 
             <div class="step-block">
                 <div class="step-number">2</div>
-                <div class="step-title">Install Chrome Extension</div>
+                <div class="step-title">Install Titan Extension</div>
                 <div class="step-desc">
-                    Chrome Web Store se official <strong>Titan Edge Browser Extension</strong> install karein (Mobile users is extension ko <strong>Kiwi Browser</strong> ya <strong>Mises Browser</strong> me add karein).
+                    Chrome Web Store se official <strong>Titan Edge Browser Extension</strong> add karein. Agar aap Android mobile par hain, toh <strong>Kiwi Browser</strong> ya <strong>Mises Browser</strong> me jakar is extension ko install karein.
                 </div>
             </div>
 
             <div class="step-block">
                 <div class="step-number">3</div>
-                <div class="step-title">Copy Identity Code from Console</div>
+                <div class="step-title">Open Extension & Log In Directly</div>
                 <div class="step-desc">
-                    Titan Edge dashboard par login karein. Left menu me <strong>Node Management</strong> par click karein aur apna personal <strong>Identity Code</strong> copy karein.
+                    Browser ke Extensions menu me jaakar Titan Edge par click karein. Ab apna wahi registered <strong>Email aur Password</strong> enter karke direct <strong>Log In</strong> karein.
                 </div>
             </div>
 
             <div class="step-block">
                 <div class="step-number">4</div>
-                <div class="step-title">Paste Code & Start Earning</div>
+                <div class="step-title">Stay Connected & Earn Points</div>
                 <div class="step-desc">
-                    Browser extension icon par click karein, Identity Code paste karein aur <strong>Bind</strong> dabayein. Extension background me connect ho jayega aur unused internet share karke points banata rahega[cite: 1].
+                    Login hote hi aapka extension "Connected / Online" dikhayega. Browser ko background me open rakhein taaki idle internet bandwidth share hokar rewards points bante rahein.
                 </div>
             </div>
 
@@ -222,11 +280,11 @@
             </div>
         </div>
 
-        <!-- TAB 2: WINDOWS PC GUIDE -->
+        <!-- TAB 2: WINDOWS PC GUIDE (REQUIRES IDENTITY CODE BINDING) -->
         <div id="tab-windows" class="tab-pane content-card" style="display: none;">
             <h3>💻 Windows PC Desktop Application Setup Guide</h3>
             <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Desktop app sabse powerful mining capability deta hai jo Bandwidth, Storage aur Compute power teeno utilize karke sabse zyada points reward deta hai[cite: 1].
+                Desktop app sabse powerful mining capability deta hai jo Bandwidth, Storage aur Compute power teeno utilize karke sabse zyada points reward deta hai.
             </p>
 
             <div class="step-block">
@@ -247,9 +305,9 @@
 
             <div class="step-block">
                 <div class="step-number">3</div>
-                <div class="step-title">Allocate Storage & Bind Identity</div>
+                <div class="step-title">Allocate Storage & Bind Identity Code</div>
                 <div class="step-desc">
-                    Software open karein. Apni hard drive se <strong>30GB se 50GB</strong> free storage allocate karein. Phir apna Identity Code enter karke node daemon start karein.
+                    Software open karein. Apni hard drive se <strong>30GB se 50GB</strong> free storage allocate karein. Web console ke <strong>Node Management</strong> se apna <strong>Identity Code</strong> copy karke PC app me paste karein aur node daemon start karein.
                 </div>
             </div>
 
@@ -270,11 +328,11 @@
             </div>
         </div>
 
-        <!-- TAB 3: MOBILE APP GUIDE -->
+        <!-- TAB 3: MOBILE APP GUIDE (REQUIRES IDENTITY CODE BINDING) -->
         <div id="tab-mobile" class="tab-pane content-card" style="display: none;">
             <h3>📱 Android Mobile App Setup Guide</h3>
             <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Jab aapka phone Wi-Fi se connected aur free/idle ho (jaise raat ko charging par), tab yeh app small-scale computing aur network tasks chala kar points banata hai[cite: 1]. (Note: iPhone/iOS ke liye abhi uplabdh nahi hai[cite: 1]).
+                Jab aapka phone Wi-Fi se connected aur idle ho, tab yeh app small-scale computing aur network tasks chala kar points banata hai (Note: iPhone/iOS ke liye abhi uplabdh nahi hai).
             </p>
 
             <div class="step-block">
@@ -297,7 +355,7 @@
                 <div class="step-number">3</div>
                 <div class="step-title">Bind Identity Hash Code</div>
                 <div class="step-desc">
-                    App open karein aur console se copy kiya gaya <strong>Identity Code</strong> paste karke <strong>Link Device</strong> dabayein.
+                    Web console ke <strong>Node Management</strong> se apna <strong>Identity Code</strong> copy karein. App open karke wahan paste karein aur <strong>Link Device</strong> dabayein.
                 </div>
             </div>
 
@@ -318,11 +376,11 @@
             </div>
         </div>
 
-        <!-- AdSense Content: Direct Platform Comparison Table (250+ Words) -->
+        <!-- AdSense Content: Direct Platform Comparison Table -->
         <div class="content-card">
             <h3>📊 Direct Comparison: Kon Sa Version Kya Leta Hai?</h3>
             <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Titan Network aapke alag-alag devices se unki capability ke hisab se resources leta hai aur unhein decentralized network tasks ke liye use karta hai[cite: 1]:
+                Titan Network aapke alag-alag devices se unki capability ke hisab se resources leta hai aur unhein decentralized network tasks ke liye use karta hai:
             </p>
             <table class="custom-table">
                 <thead>
@@ -335,28 +393,28 @@
                 <tbody>
                     <tr>
                         <td><strong>Titan Browser Extension</strong></td>
-                        <td>IP Address aur Unused Internet Bandwidth. Yeh CPU ya hard drive storage ko touch nahi karta[cite: 1].</td>
-                        <td>Aapke internet connection ko secure proxy network ki tarah share karta hai taaki enterprises valid residential IPs ke sath data route aur research kar sakein[cite: 1].</td>
+                        <td>IP Address aur Unused Internet Bandwidth. Yeh CPU ya hard drive storage ko touch nahi karta.</td>
+                        <td>Aapke internet connection ko secure proxy network ki tarah share karta hai taaki enterprises valid residential IPs ke sath data route aur research kar sakein.</td>
                     </tr>
                     <tr>
                         <td><strong>Titan PC Desktop App</strong> (Windows / Mac)</td>
-                        <td>Bandwidth, Storage (Hard drive space), aur Compute (CPU/GPU) power[cite: 1].</td>
-                        <td>Ek virtual sandbox (VMs ya containers) chala kar bade enterprise computation, AI data processing, big data handling aur decentralized CDN cloud storage host karta hai[cite: 1].</td>
+                        <td>Bandwidth, Storage (Hard drive space), aur Compute (CPU/GPU) power.</td>
+                        <td>Ek virtual sandbox (VMs ya containers) chala kar bade enterprise computation, AI data processing, big data handling aur decentralized CDN cloud storage host karta hai.</td>
                     </tr>
                     <tr>
                         <td><strong>Titan Mobile App</strong> (Android Only)</td>
-                        <td>Internet Connectivity aur limited Storage/Compute power[cite: 1].</td>
-                        <td>Jab phone Wi-Fi se connect aur idle hota hai, tab routing aur data cache jaise minor network tasks handle karta hai[cite: 1].</td>
+                        <td>Internet Connectivity aur limited Storage/Compute power.</td>
+                        <td>Jab phone Wi-Fi se connect aur idle hota hai, tab routing aur data cache jaise minor network tasks handle karta hai.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- AdSense Content: Privacy, Security & Rules (200+ Words) -->
+        <!-- AdSense Content: Privacy, Security & Rules -->
         <div class="content-card">
             <h3>🔒 Data Privacy, Security & Anti-Cheat Rules</h3>
             <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>Data Privacy Guarantee:</strong> Titan Network official architecture ke mutabik, yeh software aapke personal files, photos, browser passwords ya private data ko kabhi access nahi karta[cite: 1]. Yeh sirf hardware ke idle aur blank hisse par secure isolated sandbox chalta hai[cite: 1]. Aap jab chahein application me toggle button dabakar sharing rok sakte hain[cite: 1].
+                <strong>Data Privacy Guarantee:</strong> Titan Network official architecture ke mutabik, yeh software aapke personal files, photos, browser passwords ya private data ko kabhi access nahi karta. Yeh sirf hardware ke idle aur blank hisse par secure isolated sandbox chalta hai. Aap jab chahein application me toggle button dabakar sharing rok sakte hain.
             </p>
 
             <div class="warning-box">
