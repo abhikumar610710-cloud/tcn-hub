@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptimAI Network Setup Guide & AI Node Tutorial | Total Crypto Hub</title>
+    <meta name="description" content="Verified setup guide for OptimAI Network. Learn how to configure Browser Extension (Lite Node), Windows Desktop (Core Node), and Android Mobile (Edge Node) for passive AI rewards.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #10b981;
+            --accent-hover: #059669;
+            --code-bg: #0f172a;
+            --code-text: #34d399;
+            --warning-bg: #fffbeb;
+            --warning-border: #fde68a;
+            --warning-text: #92400e;
+        }
+        [data-theme="dark"] {
+            --bg-body: #060d12;
+            --bg-surface: #0a161e;
+            --header-bg: rgba(10, 22, 30, 0.95);
+            --border-color: #172d3b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981;
+            --accent-hover: #059669;
+            --code-bg: #030712;
+            --code-text: #6ee7b7;
+            --warning-bg: rgba(245, 158, 11, 0.1);
+            --warning-border: rgba(245, 158, 11, 0.3);
+            --warning-text: #fbbf24;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
+        /* Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .logo-text b { color: var(--accent-primary); }
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
+        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+
+        /* Container */
+        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
+
+        /* Top Hero Action Card */
+        .hero-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 24px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
+        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
+        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
+        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
+
+        /* Referral Box */
+        .referral-box { 
+            background: var(--bg-body); 
+            border: 1.5px solid var(--accent-primary); 
+            border-radius: 14px; 
+            padding: 12px 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 16px; 
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);
+        }
+        .ref-details { display: flex; flex-direction: column; gap: 2px; }
+        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
+        .ref-code { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
+        
+        .ref-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-copy { 
+            background: var(--bg-surface); 
+            border: 1.5px solid var(--border-color); 
+            color: var(--text-heading); 
+            padding: 8px 14px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 9px 18px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
+            white-space: nowrap;
+        }
+        .btn-join:hover { background: var(--accent-hover); }
+
+        /* 3 Platform Tabs */
+        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+        .tabs-header::-webkit-scrollbar { display: none; }
+        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
+        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
+
+        /* Guide Card */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
+        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+        /* Steps */
+        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
+        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
+        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
+        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
+        .step-desc a:hover { text-decoration: underline; }
+
+        /* Sub-cards inside guides */
+        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
+        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+
+        /* Video Box */
+        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
+        .video-box iframe { width: 100%; height: 100%; border: none; }
+
+        /* Tables */
+        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
+        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+
+        /* Warning Box */
+        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
+        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
+        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
+        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+
+        /* Footer */
+        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
+        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
+        @media (max-width: 768px) {
+            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
+            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
+            .ref-actions { width: 100%; display: flex; }
+            .ref-actions .btn-copy { flex: 1; justify-content: center; }
+            .ref-actions .btn-join { flex: 2; justify-content: center; }
+            .content-card { padding: 20px; }
+            .container { width: 94%; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="logo-box">
+                <div class="logo-icon">
+                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                </div>
+                <div class="logo-text">
+                    <h1>Total Crypto Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
+                </div>
+            </a>
+            <div class="header-right">
+                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Top Action Card -->
+        <div class="hero-card">
+            <div class="hero-left">
+                <div class="project-img-box">
+                    <img src="../logos/optimai.png" alt="OptimAI Network" onerror="this.src='https://via.placeholder.com/60'">
+                </div>
+                <div class="hero-info">
+                    <h2>OptimAI Network <span class="verified-tick" title="Verified Project">✓</span></h2>
+                    <p>Decentralized AI Infrastructure, Compute Power & Edge Caching Protocol</p>
+                </div>
+            </div>
+            
+            <div class="referral-box">
+                <div class="ref-details">
+                    <span class="ref-label">Official Invite Code</span>
+                    <span class="ref-code" id="refCodeText">652D3F7D</span>
+                </div>
+                <div class="ref-actions">
+                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
+                    <a href="https://node.optimai.network/register?ref=652D3F7D" target="_blank" class="btn-join">⚡ Join OptimAI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Platform Tabs -->
+        <div class="tabs-header">
+            <button class="tab-nav-btn active" onclick="switchTab('extension', this)">🌐 1. Extension (Lite Node)</button>
+            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. Windows (Core Node)</button>
+            <button class="tab-nav-btn" onclick="switchTab('android', this)">📱 3. Android (Edge Node)</button>
+        </div>
+
+        <!-- TAB 1: BROWSER EXTENSION (LITE NODE) -->
+        <div id="tab-extension" class="tab-pane content-card">
+            <h3>🌐 Browser Extension Setup Guide (OptimAI Lite Node)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                The OptimAI Lite Node operates seamlessly as a lightweight browser extension across Chrome, Brave, and Opera. Share idle web verification telemetry to earn passive AI rewards while browsing.
+            </p>
+
+            <div class="step-block">
+                <div class="step-number">1</div>
+                <div class="step-title">Register on OptimAI Web Portal</div>
+                <div class="step-desc">
+                    Visit the official portal via <a href="https://node.optimai.network/register?ref=652D3F7D" target="_blank">Join OptimAI</a>. Complete registration with your email and verify that invite code <strong>652D3F7D</strong> is applied to link your rewards profile.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">2</div>
+                <div class="step-title">Install the Official Chrome / Brave Extension</div>
+                <div class="step-desc">
+                    In your web dashboard, navigate to <strong>Download Nodes → OptimAI Lite Node</strong>. Click your browser icon (Chrome/Brave) to open the Web Store, click <strong>Add to Chrome</strong>, and pin the OptimAI icon to your browser toolbar.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">3</div>
+                <div class="step-title">Log In & Establish Node Connection</div>
+                <div class="step-desc">
+                    Click the OptimAI extension icon and sign in using your dashboard credentials. The extension will test network latency, connect to the decentralized AI compute mesh, and switch to <strong>"Connected / Active"</strong> status.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">4</div>
+                <div class="step-title">Track Real-Time Points & Leaderboard</div>
+                <div class="step-desc">
+                    Keep your browser active during daily activities. The extension tracks uptime score, validated data packets, and epoch reward points directly on your live dashboard.
+                </div>
+            </div>
+
+            <div class="sub-feature-card">
+                <div class="sub-feature-title">💡 Telegram Node Companion:</div>
+                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
+                    OptimAI Lite also includes a Telegram Mini App bot. You can activate the bot alongside your browser extension for synchronized check-ins and extra daily drops.
+                </p>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Extension Video Tutorial:</h4>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+OptimAI+Extension" title="OptimAI Extension Setup" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: WINDOWS DESKTOP (CORE NODE) -->
+        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
+            <h3>💻 Windows Desktop Setup Guide (OptimAI Desktop Core Node)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                The Desktop Core Node contributes broadband bandwidth, idle AI computing power, and edge caching capabilities with a native graphical UI for maximum epoch reward yield.
+            </p>
+
+            <div class="step-block">
+                <div class="step-number">1</div>
+                <div class="step-title">Download Desktop Core Node Installer</div>
+                <div class="step-desc">
+                    Sign in to <a href="https://node.optimai.network/register?ref=652D3F7D" target="_blank">OptimAI Dashboard</a>, head to <strong>Download Nodes → OptimAI Core Node</strong>, and click <strong>Windows</strong> to download the official desktop setup executable (.exe).
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">2</div>
+                <div class="step-title">Install Client & Authenticate Account</div>
+                <div class="step-desc">
+                    Run the setup wizard, launch the OptimAI Desktop application, and sign in using your account registered with code <strong>652D3F7D</strong>. The client will pair your machine's hardware ID with your reward wallet.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">3</div>
+                <div class="step-title">Allocate Compute & Cache Resources</div>
+                <div class="step-desc">
+                    In the desktop client settings, select your desired bandwidth and local disk cache allocation for decentralized AI datasets. The client operates smoothly with minimal background CPU overhead.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">4</div>
+                <div class="step-title">Enable Auto-Start for 24/7 Persistence</div>
+                <div class="step-desc">
+                    Toggle ON <strong>"Launch on System Startup"</strong>. Minimize the client to your system tray to ensure uninterrupted uptime on desktop PCs and mini PCs.
+                </div>
+            </div>
+
+            <div class="sub-feature-card">
+                <div class="sub-feature-title">💡 Mini PC / Broadband Advantage:</div>
+                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
+                    Operating the Desktop Core Node on a dedicated PC or mini PC with low-latency residential broadband earns the highest tier of bandwidth and AI caching multipliers.
+                </p>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Windows Node Video Tutorial:</h4>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+OptimAI+Windows" title="OptimAI Windows Setup" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: ANDROID MOBILE (EDGE NODE) -->
+        <div id="tab-android" class="tab-pane content-card" style="display: none;">
+            <h3>📱 Android Mobile Setup Guide (OptimAI Edge Node)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                Turn your Android smartphone into an AI edge powerhouse. The OptimAI Edge Node client shares idle mobile/Wi-Fi connection resources safely in the background.
+            </p>
+
+            <div class="step-block">
+                <div class="step-number">1</div>
+                <div class="step-title">Download Official Android App</div>
+                <div class="step-desc">
+                    Register on <a href="https://node.optimai.network/register?ref=652D3F7D" target="_blank">OptimAI Portal</a> with code <strong>652D3F7D</strong>. In your dashboard, open <strong>Download Nodes → OptimAI Edge Node</strong> and tap <strong>Google Play</strong> to install the official app.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">2</div>
+                <div class="step-title">Log In & Authorize Edge Sharing</div>
+                <div class="step-desc">
+                    Launch the app, log in using your registered credentials, and tap <strong>Start Edge Node</strong> to connect to the decentralized AI data layer.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">3</div>
+                <div class="step-title">Configure Unrestricted Battery Settings</div>
+                <div class="step-desc">
+                    To maintain continuous node execution without OEM battery killer interference:
+                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
+                        <li>Go to phone <strong>Settings → Apps → OptimAI → Battery</strong>.</li>
+                        <li>Select <strong>Unrestricted / No Restrictions (Don't optimize)</strong>.</li>
+                        <li>Enable <strong>Autostart</strong> permissions.</li>
+                        <li>Lock OptimAI in your <strong>Recent Apps</strong> screen with the padlock icon.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">4</div>
+                <div class="step-title">Verify Active Edge Telemetry</div>
+                <div class="step-desc">
+                    Confirm the app status reads <strong>"Active / Sharing"</strong>. Your mobile uptime and edge rewards automatically sync with your unified dashboard balance.
+                </div>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Setup Video Tutorial:</h4>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+OptimAI+Android" title="OptimAI Mobile Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Comparison Table -->
+        <div class="content-card">
+            <h3>📊 Platform Comparison & Architecture Specifications</h3>
+            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
+                Review resource consumption and deployment status across all supported environments:
+            </p>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Deployment Layer</th>
+                        <th style="width: 35%;">System Resource Usage</th>
+                        <th style="width: 40%;">Operational Status & Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Extension (Lite Node)</strong></td>
+                        <td>Negligible RAM; active during browser navigation.</td>
+                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Best for desktop web browsing)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Windows PC (Core Node)</strong></td>
+                        <td>Low CPU/RAM overhead; configurable local cache.</td>
+                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Highest reward tier for 24/7 uptime)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Android (Edge Node)</strong></td>
+                        <td>Idle background Wi-Fi upload; low battery consumption.</td>
+                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Convenient portable mobile node)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CLI Node (Linux/Mac)</strong></td>
+                        <td>Headless cloud server execution.</td>
+                        <td><strong>Developer Layer</strong> (Supported via official CLI release)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IoT Node (Raspberry Pi/Jetson)</strong></td>
+                        <td>Hardware-tailored edge computing.</td>
+                        <td><strong>Specialized Hardware</strong> (Enterprise IoT layer)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Rules & Security (AdSense Quality Standard) -->
+        <div class="content-card">
+            <h3>🔒 Network Rules & Data Privacy Guarantee</h3>
+            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
+                <strong>Enterprise Data Sandbox:</strong> OptimAI processes encrypted machine learning training sets and public web queries. The node software runs in a secure sandbox and cannot access private files, browsing histories, passwords, or personal credentials.
+            </p>
+
+            <div class="warning-box">
+                <h4>⚠️ Network Compliance & Fair-Use Guidelines:</h4>
+                <ul>
+                    <li><strong>No VPNs or Commercial Proxies:</strong> The network requires authentic residential or mobile connections. Connecting through commercial datacenter VPN tunnels will pause node rewards.</li>
+                    <li><strong>Continuous Uptime:</strong> Nodes with steady 24/7 uptime qualify for higher priority AI model caching tasks and consistent epoch multipliers.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; 2026 Total Crypto Network. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">Terms & Conditions</a>
+                <a href="../pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabId).style.display = 'block';
+            btn.classList.add('active');
+        }
+
+        function copyRefCode() {
+            const code = document.getElementById('refCodeText').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('OptimAI Invite Code Copied: ' + code);
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggleBtn = document.getElementById('themeToggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
