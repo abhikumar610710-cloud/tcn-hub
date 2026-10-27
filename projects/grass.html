@@ -1,1 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grass Network Setup Guide & Node Tutorial | Total Crypto Hub</title>
+    <meta name="description" content="Verified setup guide for Grass Network on Chrome Extension, Windows Desktop Node, and Android Mobile. Learn registration, background node configuration, and uptime optimization.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #10b981;
+            --accent-hover: #059669;
+            --code-bg: #0f172a;
+            --code-text: #34d399;
+            --warning-bg: #fffbeb;
+            --warning-border: #fde68a;
+            --warning-text: #92400e;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981;
+            --accent-hover: #34d399;
+            --code-bg: #030712;
+            --code-text: #34d399;
+            --warning-bg: rgba(245, 158, 11, 0.1);
+            --warning-border: rgba(245, 158, 11, 0.3);
+            --warning-text: #fbbf24;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        /* Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .logo-text b { color: var(--accent-primary); }
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
+        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+
+        /* Container */
+        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
+
+        /* Top Hero Action Card */
+        .hero-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 24px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
+        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
+        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
+        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
+
+        /* Referral Box */
+        .referral-box { 
+            background: var(--bg-body); 
+            border: 1.5px solid var(--accent-primary); 
+            border-radius: 14px; 
+            padding: 12px 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 16px; 
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);
+        }
+        .ref-details { display: flex; flex-direction: column; gap: 2px; }
+        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
+        .ref-code { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
+        
+        .ref-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-copy { 
+            background: var(--bg-surface); 
+            border: 1.5px solid var(--border-color); 
+            color: var(--text-heading); 
+            padding: 8px 14px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 9px 18px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
+            white-space: nowrap;
+        }
+        .btn-join:hover { background: var(--accent-hover); }
+
+        /* 3 Platform Tabs */
+        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+        .tabs-header::-webkit-scrollbar { display: none; }
+        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
+        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
+
+        /* Guide Card */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
+        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+        /* Steps */
+        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
+        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
+        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
+        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
+        .step-desc a:hover { text-decoration: underline; }
+
+        /* Sub-cards inside guides */
+        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
+        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+
+        /* Video Box */
+        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
+        .video-box iframe { width: 100%; height: 100%; border: none; }
+
+        /* Tables */
+        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
+        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+
+        /* Warning Box */
+        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
+        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
+        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
+        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+
+        /* Footer */
+        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
+        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
+        @media (max-width: 768px) {
+            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
+            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
+            .ref-actions { width: 100%; display: flex; }
+            .ref-actions .btn-copy { flex: 1; justify-content: center; }
+            .ref-actions .btn-join { flex: 2; justify-content: center; }
+            .content-card { padding: 20px; }
+            .container { width: 94%; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="logo-box">
+                <div class="logo-icon">
+                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                </div>
+                <div class="logo-text">
+                    <h1>Total Crypto Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
+                </div>
+            </a>
+            <div class="header-right">
+                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Top Action Card -->
+        <div class="hero-card">
+            <div class="hero-left">
+                <div class="project-img-box">
+                    <img src="../logos/grass.png" alt="Grass Network" onerror="this.src='https://via.placeholder.com/60'">
+                </div>
+                <div class="hero-info">
+                    <h2>Grass Network <span class="verified-tick" title="Verified Project">✓</span></h2>
+                    <p>Decentralized AI Web Data Layer & Idle Bandwidth Protocol</p>
+                </div>
+            </div>
+            
+            <div class="referral-box">
+                <div class="ref-details">
+                    <span class="ref-label">Official Invite Code</span>
+                    <span class="ref-code" id="refCodeText">nZ5cWecA5r7c9VU</span>
+                </div>
+                <div class="ref-actions">
+                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
+                    <a href="https://app.grass.io/register?referralCode=nZ5cWecA5r7c9VU" target="_blank" class="btn-join">⚡ Join Grass Network</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Platform Tabs -->
+        <div class="tabs-header">
+            <button class="tab-nav-btn active" onclick="switchTab('extension', this)">🌐 1. Extension</button>
+            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. Windows</button>
+            <button class="tab-nav-btn" onclick="switchTab('mobile', this)">📱 3. Android</button>
+        </div>
+
+        <!-- TAB 1: EXTENSION GUIDE -->
+        <div id="tab-extension" class="tab-pane content-card">
+            <h3>🌐 Browser Extension Setup Guide (Direct Bandwidth Node)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                The Grass Browser Extension turns your idle residential internet bandwidth into passive network points while you browse the web. Follow this verified registration walkthrough.
+            </p>
+
+            <div class="step-block">
+                <div class="step-number">1</div>
+                <div class="step-title">Access the Grass Registration Portal</div>
+                <div class="step-desc">
+                    Click <a href="https://app.grass.io/register?referralCode=nZ5cWecA5r7c9VU" target="_blank">Join Grass Network</a> to open the official registration page. The referral code <strong>nZ5cWecA5r7c9VU</strong> will be automatically linked to your account.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">2</div>
+                <div class="step-title">Enter Email, Referral Code & Complete OTP Verification</div>
+                <div class="step-desc">
+                    On the registration form, enter your Email address (or choose direct Google login). Ensure the <strong>Have a referral code?</strong> section contains <strong>nZ5cWecA5r7c9VU</strong>. Check both required boxes (Terms & Conditions agreement and promotional notices), then click the blue <strong>CONTINUE →</strong> button. Enter the confirmation OTP sent to your inbox to complete verification and log in automatically.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">3</div>
+                <div class="step-title">Install the Official Grass Chrome Extension</div>
+                <div class="step-desc">
+                    From your web dashboard, navigate to the official Chrome Web Store download link for the <strong>Grass Extension</strong>. Click <strong>Add to Chrome</strong> (or <strong>Get</strong>) and pin the extension icon to your desktop browser toolbar.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">4</div>
+                <div class="step-title">Verify Connection & Monitor Live Points</div>
+                <div class="step-desc">
+                    Click the Grass icon in your browser toolbar[cite: 17]. If prompted, sign in with your registered credentials[cite: 17]. Once connected, the power indicator turns bright green, displaying <strong>"Grass is Connected"</strong> alongside your live <strong>Network Quality</strong> score and accumulated <strong>Epoch Earnings</strong>[cite: 17]. Keep your browser open to maintain uninterrupted point collection[cite: 17].
+                </div>
+            </div>
+
+            <div class="sub-feature-card">
+                <div class="sub-feature-title">💡 Network Quality Indicator:</div>
+                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
+                    Your point multiplier is directly tied to the "Network Quality" percentage[cite: 17]. Authentic residential broadband connections typically achieve 75% to 100% quality scores, yielding higher points than mobile hotspots or restricted office networks.
+                </p>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Step-by-Step Extension Video:</h4>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Grass+Network" title="Grass Extension Setup" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: WINDOWS PC GUIDE -->
+        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
+            <h3>💻 Windows Desktop Node Setup Guide (Higher Multiplier Yield)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                The dedicated Grass Windows Desktop Node runs natively in your system tray, delivering enhanced uptime stability and a 2x point multiplier compared to standard browser extensions.
+            </p>
+
+            <div class="step-block">
+                <div class="step-number">1</div>
+                <div class="step-title">Create Account & Download Windows Desktop Node</div>
+                <div class="step-desc">
+                    Sign up at <a href="https://app.grass.io/register?referralCode=nZ5cWecA5r7c9VU" target="_blank">Grass Official Portal</a> with invite code <strong>nZ5cWecA5r7c9VU</strong>. From your dashboard, locate the <strong>Grass Desktop Node for Windows</strong> installer (.exe), download it, and complete the installation process.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">2</div>
+                <div class="step-title">Sign In & Confirm Network Connection</div>
+                <div class="step-desc">
+                    Launch the Grass Windows application and sign in using your registered Email and Password[cite: 17]. Upon login, the interface synchronizes with the network daemon and switches to the green <strong>"Grass is Connected"</strong> status[cite: 17].
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">3</div>
+                <div class="step-title">Configure App Settings: Auto Start & Auto Update</div>
+                <div class="step-desc">
+                    Click the <strong>Settings (gear icon)</strong> located at the top of the application window:
+                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
+                        <li><strong>Enable Auto Start:</strong> Toggle ON so the Grass Node launches automatically whenever your PC reboots.</li>
+                        <li><strong>Enable Auto Update:</strong> Toggle ON to ensure the client stays updated with the latest network protocol patches without manual intervention.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">4</div>
+                <div class="step-title">Desktop Dashboard Access & Epoch Progress</div>
+                <div class="step-desc">
+                    Click the yellow <strong>Desktop Dashboard →</strong> button inside the app to view real-time statistics, referral network performance, epoch reward tiers, and payout balance on the web portal[cite: 17].
+                </div>
+            </div>
+
+            <div class="sub-feature-card">
+                <div class="sub-feature-title">💡 Windows Node Multiplier Advantage:</div>
+                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
+                    The desktop node operates independently of browser memory, eliminating browser sleep tab suspensions. Running the native Windows application typically yields double the point weight compared to extension-only sessions.
+                </p>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Windows Node Video Guide:</h4>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Grass+Windows+Node" title="Grass Windows Setup" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: MOBILE APP GUIDE -->
+        <div id="tab-mobile" class="tab-pane content-card" style="display: none;">
+            <h3>📱 Android Mobile Setup Guide (Background Optimization)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                Operate a background Grass node directly on your Android smartphone. Because aggressive OEM battery killers (MIUI, OneUI, ColorOS) frequently terminate background processes, following these system optimization steps is critical.
+            </p>
+
+            <div class="step-block">
+                <div class="step-number">1</div>
+                <div class="step-title">Register Account via Mobile Browser</div>
+                <div class="step-desc">
+                    Open <a href="https://app.grass.io/register?referralCode=nZ5cWecA5r7c9VU" target="_blank">Grass Mobile Signup</a> and register your account with invite code <strong>nZ5cWecA5r7c9VU</strong>. Complete the OTP verification to prepare your node.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">2</div>
+                <div class="step-title">Deploy Node on Android</div>
+                <div class="step-desc">
+                    Install the official Grass Android APK (or deploy the Grass Extension inside extension-supported mobile browsers such as Kiwi Browser or Mises Browser). Sign in with your registered credentials to establish the initial connection[cite: 17].
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">3</div>
+                <div class="step-title">Set Battery Optimization to "No Restrictions"</div>
+                <div class="step-desc">
+                    Android devices automatically suspend background network apps to save battery. To ensure 24/7 uptime:
+                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
+                        <li>Go to phone <strong>Settings → Apps → Grass (or Kiwi/Mises) → Battery</strong>.</li>
+                        <li>Choose <strong>Unrestricted / No Restrictions / Don't Optimize</strong>.</li>
+                        <li>Enable <strong>Autostart</strong> in permissions (crucial for Xiaomi, Realme, and Vivo devices).</li>
+                        <li>Open your <strong>Recent Apps</strong> screen, long-press the application card, and tap the <strong>Lock (🔒) icon</strong> so it is never cleared by RAM cleaners.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">4</div>
+                <div class="step-title">Device-Specific Instructions & Video Walkthrough</div>
+                <div class="step-desc">
+                    Because Android user interfaces vary across smartphone manufacturers (Samsung OneUI, Xiaomi HyperOS/MIUI, OnePlus OxygenOS, etc.), settings menus may have slightly different labels. Watch our comprehensive video guide below for step-by-step demonstrations across popular phone brands.
+                </div>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Setup Tutorial:</h4>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Grass+Android+Mobile" title="Grass Mobile Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Comparison Table -->
+        <div class="content-card">
+            <h3>📊 Platform Comparison: Resource Requirements & Allocation</h3>
+            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
+                Review the technical footprint and reward multipliers across all Grass Network deployment platforms:
+            </p>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Platform Architecture</th>
+                        <th style="width: 35%;">System Resource Consumption</th>
+                        <th style="width: 40%;">Point Weight & Multiplier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Browser Extension</strong></td>
+                        <td>Very low memory usage; runs only while browser is active.</td>
+                        <td>Standard 1x reward baseline based on residential uptime quality.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Windows Desktop Node</strong></td>
+                        <td>Minimal background RAM (~30MB-50MB); zero CPU strain.</td>
+                        <td>Enhanced 2x multiplier yield with persistent 24/7 background uptime.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Android Mobile</strong></td>
+                        <td>Low background Wi-Fi consumption; negligible battery drain.</td>
+                        <td>Standard reward tier dependent on continuous background execution.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Rules & Security (AdSense Quality Standard) -->
+        <div class="content-card">
+            <h3>🔒 Operational Rules & Network Compliance</h3>
+            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
+                <strong>Data Privacy Guarantee:</strong> The Grass node exclusively routes encrypted public web scraping requests for AI training datasets. It operates in an isolated sandbox and cannot view personal files, banking details, browsing history, or private data.
+            </p>
+
+            <div class="warning-box">
+                <h4>⚠️ Anti-Cheat & Ban Prevention Guidelines:</h4>
+                <ul>
+                    <li><strong>No VPNs or Commercial Proxies:</strong> Using VPNs or datacenter IPs will result in an immediate 0% Network Quality score and potential account suspension[cite: 17]. Use genuine residential broadband or mobile Wi-Fi only.</li>
+                    <li><strong>One Device Per Network:</strong> Operating multiple extensions or nodes on the same public Wi-Fi network splits the bandwidth score rather than multiplying it. Connect additional devices to separate distinct IP addresses.</li>
+                    <li><strong>Uninterrupted Connection:</strong> Point distributions are calculated in 24-hour epochs. Nodes that maintain 24/7 uptime achieve the highest tiered bonus payouts.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; 2026 Total Crypto Network. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">Terms & Conditions</a>
+                <a href="../pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabId).style.display = 'block';
+            btn.classList.add('active');
+        }
+
+        function copyRefCode() {
+            const code = document.getElementById('refCodeText').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Grass Network Invite Code Copied: ' + code);
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggleBtn = document.getElementById('themeToggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
