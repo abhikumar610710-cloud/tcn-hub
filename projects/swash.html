@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swash App Setup Guide & Data Monetization Tutorial | Total Crypto Hub</title>
+    <meta name="description" content="Verified setup guide for Swash App on Desktop Browsers and Android Mobile. Learn data monetization, Swash Ads, offer tasks, and passive $SWASH rewards.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #7c3aed;
+            --accent-hover: #6d28d9;
+            --code-bg: #0f172a;
+            --code-text: #a78bfa;
+            --warning-bg: #fffbeb;
+            --warning-border: #fde68a;
+            --warning-text: #92400e;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070913;
+            --bg-surface: #0f1226;
+            --header-bg: rgba(15, 18, 38, 0.95);
+            --border-color: #1e223f;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #8b5cf6;
+            --accent-hover: #7c3aed;
+            --code-bg: #030712;
+            --code-text: #c4b5fd;
+            --warning-bg: rgba(245, 158, 11, 0.1);
+            --warning-border: rgba(245, 158, 11, 0.3);
+            --warning-text: #fbbf24;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
+        /* Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .logo-text b { color: var(--accent-primary); }
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
+        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+
+        /* Container */
+        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
+
+        /* Top Hero Action Card */
+        .hero-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 24px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
+        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
+        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
+        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
+
+        /* Referral Box */
+        .referral-box { 
+            background: var(--bg-body); 
+            border: 1.5px solid var(--accent-primary); 
+            border-radius: 14px; 
+            padding: 12px 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 16px; 
+            box-shadow: 0 2px 10px rgba(124, 58, 237, 0.08);
+        }
+        .ref-details { display: flex; flex-direction: column; gap: 2px; }
+        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
+        .ref-code { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
+        
+        .ref-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-copy { 
+            background: var(--bg-surface); 
+            border: 1.5px solid var(--border-color); 
+            color: var(--text-heading); 
+            padding: 8px 14px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 9px 18px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25); 
+            white-space: nowrap;
+        }
+        .btn-join:hover { background: var(--accent-hover); }
+
+        /* Tabs */
+        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+        .tabs-header::-webkit-scrollbar { display: none; }
+        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
+        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3); }
+
+        /* Guide Card */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
+        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+        /* Steps */
+        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
+        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
+        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
+        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
+        .step-desc a:hover { text-decoration: underline; }
+
+        /* Sub-cards inside guides */
+        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
+        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+
+        /* Video Box */
+        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
+        .video-box iframe { width: 100%; height: 100%; border: none; }
+
+        /* Tables */
+        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
+        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+
+        /* Warning Box */
+        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
+        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
+        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
+        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+
+        /* Footer */
+        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
+        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
+        @media (max-width: 768px) {
+            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
+            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
+            .ref-actions { width: 100%; display: flex; }
+            .ref-actions .btn-copy { flex: 1; justify-content: center; }
+            .ref-actions .btn-join { flex: 2; justify-content: center; }
+            .content-card { padding: 20px; }
+            .container { width: 94%; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="logo-box">
+                <div class="logo-icon">
+                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                </div>
+                <div class="logo-text">
+                    <h1>Total Crypto Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
+                </div>
+            </a>
+            <div class="header-right">
+                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Top Action Card -->
+        <div class="hero-card">
+            <div class="hero-left">
+                <div class="project-img-box">
+                    <img src="../logos/swash.png" alt="Swash App" onerror="this.src='https://via.placeholder.com/60'">
+                </div>
+                <div class="hero-info">
+                    <h2>Swash App <span class="verified-tick" title="Verified Project">✓</span></h2>
+                    <p>Decentralized Data Monetization & Zero-Effort Web3 Rewards</p>
+                </div>
+            </div>
+            
+            <div class="referral-box">
+                <div class="ref-details">
+                    <span class="ref-label">Official Invite Code</span>
+                    <span class="ref-code" id="refCodeText">54ilgt3uuj1h</span>
+                </div>
+                <div class="ref-actions">
+                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
+                    <a href="https://swashapp.io/download?referral_code=54ilgt3uuj1h" target="_blank" class="btn-join">⚡ Join Swash App</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 Platform Tabs -->
+        <div class="tabs-header">
+            <button class="tab-nav-btn active" onclick="switchTab('extension', this)">🌐 1. Browser Extension</button>
+            <button class="tab-nav-btn" onclick="switchTab('mobile', this)">📱 2. Android Mobile</button>
+        </div>
+
+        <!-- TAB 1: BROWSER EXTENSION GUIDE -->
+        <div id="tab-extension" class="tab-pane content-card">
+            <h3>🌐 Browser Extension Setup Guide (Desktop Web Monetization)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                The Swash Browser Extension rewards you for your daily internet surfing while keeping your identity private. Compatible with Chrome, Edge, Brave, Firefox, Opera, and Yandex browsers.
+            </p>
+
+            <div class="step-block">
+                <div class="step-number">1</div>
+                <div class="step-title">Open the Official Download Portal</div>
+                <div class="step-desc">
+                    Click <a href="https://swashapp.io/download?referral_code=54ilgt3uuj1h" target="_blank">Join Swash App</a>. The referral code <strong>54ilgt3uuj1h</strong> will be automatically applied to unlock bonus earnings.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">2</div>
+                <div class="step-title">Select Your Browser & Install Plugin</div>
+                <div class="step-desc">
+                    Choose your desktop browser (Chrome, Edge, Brave, etc.) and click <strong>Install Swash</strong> to visit the official Web Store. Add the extension and pin it to your browser toolbar.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">3</div>
+                <div class="step-title">Create Wallet & Activate Data Union</div>
+                <div class="step-desc">
+                    Click the Swash icon in your toolbar. Follow the quick onboarding to generate your personal Data Union UID. Once completed, your extension displays a live <strong>$SWASH</strong> balance and active status switch (ON).
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">4</div>
+                <div class="step-title">Maximize Rewards in the "Earn More" Hub</div>
+                <div class="step-desc">
+                    Open your Swash dashboard and navigate to the <strong>Earn More</strong> section to activate multiple income streams:
+                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
+                        <li><strong>Swash Ads:</strong> Enable full-page new tab ads, push notification ads, and integrated display ads to earn extra rewards while browsing.</li>
+                        <li><strong>Earn from Offers:</strong> Complete daily web tasks, opinion surveys, and micro-missions for direct payouts.</li>
+                        <li><strong>Referral Bonus:</strong> Share your unique referral link to grow your network bonus tiers.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-feature-card">
+                <div class="sub-feature-title">💡 Privacy First Protocol:</div>
+                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
+                    Swash strips all Personally Identifiable Information (PII) before masking and aggregating browsing trends. Your passwords, banking details, search histories, and private form inputs are completely excluded.
+                </p>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Extension Video Tutorial:</h4>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Swash+App+Extension" title="Swash Extension Setup" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: ANDROID MOBILE GUIDE -->
+        <div id="tab-mobile" class="tab-pane content-card" style="display: none;">
+            <h3>📱 Android Mobile App Setup Guide (Earnings on the Go)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                The official Swash Android application allows you to monetize mobile browsing and manage your multi-chain $SWASH reward balance seamlessly on your phone.
+            </p>
+
+            <div class="step-block">
+                <div class="step-number">1</div>
+                <div class="step-title">Download Official Android App</div>
+                <div class="step-desc">
+                    Visit <a href="https://swashapp.io/download?referral_code=54ilgt3uuj1h" target="_blank">Swash Mobile Download</a>, switch to the <strong>Android</strong> tab, and download the official app from Google Play or verified APK source.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">2</div>
+                <div class="step-title">Set Up Account with Referral Code</div>
+                <div class="step-desc">
+                    Open the app, tap <strong>Get Started</strong>, and enter your account details. Enter invite code <strong>54ilgt3uuj1h</strong> when prompted to ensure your account receives initial incentive credits.
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">3</div>
+                <div class="step-title">Enable Background Data Sharing & Optimization</div>
+                <div class="step-desc">
+                    To keep earning continuously without background termination:
+                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
+                        <li>Go to phone <strong>Settings → Apps → Swash → Battery</strong>.</li>
+                        <li>Select <strong>Unrestricted / No Restrictions</strong>.</li>
+                        <li>Enable <strong>Autostart</strong> permissions to ensure passive data sync resumes automatically upon restarting your device.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-block">
+                <div class="step-number">4</div>
+                <div class="step-title">Wallet & Multi-Reward Withdrawals</div>
+                <div class="step-desc">
+                    In the app's <strong>Wallet</strong> tab, view your real-time $SWASH earnings. Withdrawals can be executed directly as cryptocurrency ($SWASH on Polygon/Ethereum) or redeemed for gift cards and charity donations.
+                </div>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Setup Tutorial:</h4>
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Swash+Android+App" title="Swash Mobile Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Comparison Table -->
+        <div class="content-card">
+            <h3>📊 Platform Comparison: Earning Features & Capabilities</h3>
+            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
+                Review the earning features available across Swash deployment platforms:
+            </p>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Feature Module</th>
+                        <th style="width: 35%;">Browser Extension</th>
+                        <th style="width: 40%;">Android Mobile App</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Passive Data Union</strong></td>
+                        <td>Automatic surfing rewards via desktop browsers.</td>
+                        <td>Active through mobile web surfing and connected app usage.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Swash Ads Monetization</strong></td>
+                        <td>Full page new-tab ads, push ads, and banner ads.</td>
+                        <td>Mobile targeted web notifications and sponsored tasks.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Offers & Micro-Tasks</strong></td>
+                        <td>Integrated offer wall for web surveys and tasks.</td>
+                        <td>Mobile-optimized surveys, installs, and quick tasks.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payout Flexibility</strong></td>
+                        <td>Direct Web3 crypto transfer, gift cards, charity.</td>
+                        <td>In-app native wallet balance and cross-chain withdrawals.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Rules & Security (AdSense Quality Standard) -->
+        <div class="content-card">
+            <h3>🔒 Privacy Standards & Network Guidelines</h3>
+            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
+                <strong>Enterprise Data Compliance:</strong> Swash is certified compliant with EU GDPR and global data protection standards (supported by the Data & Marketing Association and FEDMA). Users hold 100% data sovereignty.
+            </p>
+
+            <div class="warning-box">
+                <h4>⚠️ Fair Usage Guidelines:</h4>
+                <ul>
+                    <li><strong>No Automated Bots:</strong> Using headless browsers, fake clickers, or bot farms to simulate ad interactions will permanently suspend payout eligibility.</li>
+                    <li><strong>Authentic Surfing:</strong> Rewards scale with your genuine daily search, reading, and shopping browsing activities.</li>
+                    <li><strong>Multi-Device Linking:</strong> You can link both your desktop extension and mobile app under the same Swash account to combine earnings into a single wallet balance.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; 2026 Total Crypto Network. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">Terms & Conditions</a>
+                <a href="../pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabId).style.display = 'block';
+            btn.classList.add('active');
+        }
+
+        function copyRefCode() {
+            const code = document.getElementById('refCodeText').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Swash App Invite Code Copied: ' + code);
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggleBtn = document.getElementById('themeToggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
