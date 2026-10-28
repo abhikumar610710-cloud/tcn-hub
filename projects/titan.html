@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titan Network Setup Guide & Node Tutorial | Total Crypto Hub</title>
-    <meta name="description" content="Step-by-step verified setup guide for Titan Network on Browser Extension, Windows PC, and Android Mobile. Learn account registration, node binding, TSS storage tasks, and reward tracking.">
+    <title>Titan Network Complete Setup Guide & Node Earning Review | Total Crypto Hub</title>
+    <meta name="description" content="In-depth guide on Titan Network edge node: Learn how Titan Network works, earning dual rewards (TNTIP & USDC), automated e-commerce tasks, rules, and video setup.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,13 +16,11 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #0d9488;
-            --accent-hover: #0f766e;
-            --code-bg: #0f172a;
-            --code-text: #38bdf8;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
             --bg-body: #070a12;
@@ -32,152 +30,90 @@
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #14b8a6;
-            --accent-hover: #0d9488;
-            --code-bg: #030712;
-            --code-text: #38bdf8;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
+        .btn-hub { background: var(--card-subtle); color: var(--text-heading); text-decoration: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; border: 1px solid var(--border-color); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
+        /* Quick Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* High Visibility Referral Box */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(13, 148, 136, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 10px; display: flex; align-items: center; gap: 10px; }
+        .invite-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); }
+
+        /* Article Layout (5 Section Architecture) */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
         
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-copy { 
-            background: var(--bg-surface); 
-            border: 1.5px solid var(--border-color); 
-            color: var(--text-heading); 
-            padding: 8px 14px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 12px; 
-            cursor: pointer; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 5px;
-            transition: all 0.2s;
-        }
-        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .btn-join { 
-            background: var(--accent-primary); 
-            color: white; 
-            text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 6px;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25); 
-            white-space: nowrap;
-        }
-        .btn-join:hover { background: var(--accent-hover); }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* 3 Platform Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3); }
+        .article-text { font-size: 14.5px; line-height: 1.75; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; }
+        .feature-box h4 { font-size: 14px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Highlight Boxes */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13px; font-weight: 800; margin-bottom: 6px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        /* Video Showcase */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; }
+        .video-box h4 { font-size: 14px; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
-
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
-
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        /* Advanced Docker Reference */
+        .docker-card { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 24px; }
+        .docker-card h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 8px; }
+        .code-box { background: #070a12; color: #10b981; padding: 12px 16px; border-radius: 8px; font-family: monospace; font-size: 12px; overflow-x: auto; margin-top: 8px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-copy { flex: 1; justify-content: center; }
-            .ref-actions .btn-join { flex: 2; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
         }
     </style>
 </head>
@@ -185,286 +121,188 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
+        <div class="site-container header-inner">
             <a href="../index.html" class="logo-box">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="btn-hub" onclick="toggleTheme()" id="themeBtn" style="cursor: pointer; padding: 6px 12px;">🌙</button>
+                <a href="../index.html" class="btn-hub">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/titan.png" alt="Titan Network" onerror="this.src='https://via.placeholder.com/60'">
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/titan.png" alt="Titan Network" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2>Titan Network <span class="verified-badge">✓</span></h2>
+                        <p>Decentralized Edge Cloud, Storage & Web Automation Network</p>
+                    </div>
                 </div>
-                <div class="hero-info">
-                    <h2>Titan Network <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Decentralized Edge Cloud, Storage & Web Automation Network</p>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code" id="inviteCode">AFD8CQ3U</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    <a href="https://edge.titannet.info/register?code=AFD8CQ3U" target="_blank" class="btn-join">⚡ Join Titan Network</a>
                 </div>
             </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Official Invite Code</span>
-                    <span class="ref-code" id="refCodeText">AFD8CQ3U</span>
+
+            <!-- Full-Length 5-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Titan Network -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Titan Network? (Decentralized Edge Cloud Overview)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Titan Network</strong> is a next-generation decentralized physical infrastructure network (DePIN) designed to aggregate spare computing, distributed internet bandwidth, and idle local storage from everyday consumer devices. Traditional centralized clouds like Amazon AWS and Google Cloud maintain massive, power-hungry data centers that are expensive to run and create high latency for worldwide users.
+                    </p>
+                    <p class="article-text">
+                        Titan Network solves this inefficiency by transforming regular PCs, mobile devices, and lightweight browser sessions into micro-edge nodes. Instead of relying on centralized servers, enterprises and web platforms tap into Titan's globally distributed peer-to-peer cloud to deliver multimedia caching, decentralized file storage, and authenticated web indexing at a fraction of standard commercial costs.
+                    </p>
                 </div>
-                <div class="ref-actions">
-                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
-                    <a href="https://edge.titannet.info/signup?inviteCode=AFD8CQ3U" target="_blank" class="btn-join">⚡ Join Titan Network</a>
+
+                <!-- Point 2: Architecture & How It Works -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>How Titan Network Works (Multi-Node Architecture)</h3>
+                    </div>
+                    <p class="article-text">
+                        The Titan ecosystem operates across several distinct operational modes depending on the hardware power and internet quality of the participating device:
+                    </p>
+                    <div class="feature-grid">
+                        <div class="feature-box">
+                            <h4>🌐 Browser Extension Node</h4>
+                            <p>Runs directly within Chrome or Brave browser. It routes localized residential web requests and validates e-commerce data indexing without utilizing your local hard disk space.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💾 Storage Node (TSS Mode)</h4>
+                            <p>Designed for Windows and Linux systems where users allocate spare storage (50GB+). Files are encrypted, sharded, and redundantly stored across distributed nodes.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚡ Edge Caching (PCDN Mode)</h4>
+                            <p>Utilizes system RAM and high-speed upload bandwidth to serve as a decentralized CDN, delivering commercial video and static media to nearby web consumers with ultra-low latency.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📱 Mobile Background Node</h4>
+                            <p>Operates on Android devices under idle Wi-Fi connectivity to conduct distributed packet verification and keep the edge mesh active around the clock.</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Point 3: Reward Models & Real Earning Streams -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Earning System & Reward Streams (Dual Payout Architecture)</h3>
+                    </div>
+                    <p class="article-text">
+                        Titan Network features a comprehensive <strong>Dual-Reward Structure</strong> that distributes both prospective network tokens and liquid stablecoin rewards to active node operators:
+                    </p>
+                    <div class="feature-grid">
+                        <div class="feature-box">
+                            <h4>💰 Direct USDC Cash Payouts</h4>
+                            <p>Active nodes authorized on the <strong>Titan Revenue Platform</strong> execute automated e-commerce web indexing tasks across international regions (Taiwan, Singapore, Brazil, Thailand, and Indonesia). Each successfully completed task distributes immediate, auditable USDC rewards directly to your internal dashboard balance.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📈 TNTIP Network Points</h4>
+                            <p>Every active minute of verified node uptime earns TNTIP points. These points track your physical infrastructure contribution score and will serve as the primary allocation metric during the upcoming Mainnet Token Generation Event (TGE).</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🎁 Community Missions & Streaks</h4>
+                            <p>Beyond passive bandwidth sharing, operators can claim extra rewards via Daily Check-ins (+200 TNTIP), maintaining a 28-Day Check-in Streak (+10,000 TNTIP milestone bonus), and verifying community social interaction tasks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Operational Rules & Anti-Cheat Compliance -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Operational Rules & Anti-Cheat Compliance (Keep Nodes Safe)</h3>
+                    </div>
+                    <p class="article-text">
+                        To maintain high quality of service for commercial enterprise partners, Titan Network employs strict cryptographic monitoring. Follow these essential guidelines to prevent node penalties and IP bans:
+                    </p>
+                    <div class="alert-box">
+                        <h5>⚠️ Mandatory Network Guidelines:</h5>
+                        <p><strong>1. Strict No-VPN Policy:</strong> Commercial VPNs, Tor exit nodes, and data-center hosting proxy IPs are immediately blacklisted. Run your node strictly over genuine residential broadband or clean mobile ISP connections.</p>
+                        <p style="margin-top:6px;"><strong>2. Single Instance per Public IP:</strong> Running multiple instances of the same extension or desktop client behind a single home router triggers IP saturation penalties. Ensure each device is assigned a unique outbound IP or run different node modes.</p>
+                        <p style="margin-top:6px;"><strong>3. High Uptime Scoring:</strong> The scoring engine assigns a multiplier to nodes operating with continuous 24/7 uptime and low latency ping responses.</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: Step-by-Step Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Step-by-Step Video Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Prefer watching a practical video walkthrough? Follow our official step-by-step video tutorials from <strong>Total Crypto Network</strong> to get your Titan node operational in less than 5 minutes:
+                    </p>
+                    
+                    <div class="video-grid">
+                        <!-- Video 1: Extension / PC Setup -->
+                        <div class="video-box">
+                            <h4>🖥️ Browser Extension & PC Setup Guide</h4>
+                            <div class="video-wrapper">
+                                <!-- Replace YOUR_YOUTUBE_ID_1 with your exact Video ID -->
+                                <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_1" title="Titan Network Extension & PC Setup" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Mobile Setup -->
+                        <div class="video-box">
+                            <h4>📱 Android Mobile Node Setup Guide</h4>
+                            <div class="video-wrapper">
+                                <!-- Replace YOUR_YOUTUBE_ID_2 with your exact Video ID -->
+                                <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_2" title="Titan Network Mobile Setup" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Linux / Docker Note -->
+                    <div class="docker-card">
+                        <h4>⚡ Advanced Operators: Docker & Linux Headless Nodes</h4>
+                        <p class="article-text" style="font-size: 13px; margin-bottom: 0;">
+                            For advanced miners and server operators running 24/7 VPS or Mini-PCs, Titan provides official headless CLI and Docker packages. You can bind your node identity key directly via terminal:
+                        </p>
+                        <div class="code-box">
+                            docker run -d --name titan-node --net=host -v ~/.titanedge:/root/.titanedge titannet/titan-edge
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <!-- 3 Clean Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('extension', this)">🌐 1. Extension</button>
-            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. Windows</button>
-            <button class="tab-nav-btn" onclick="switchTab('mobile', this)">📱 3. Android</button>
-        </div>
-
-        <!-- TAB 1: EXTENSION GUIDE -->
-        <div id="tab-extension" class="tab-pane content-card">
-            <h3>🌐 Browser Extension Setup Guide (Fastest Node Activation)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                The official Titan Browser Extension enables edge routing and automated web task verification without heavy CPU or hard drive requirements. Follow this exact walkthrough to register, install the plugin, and begin earning network rewards automatically.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Open the Official Registration Page</div>
-                <div class="step-desc">
-                    Click the <a href="https://edge.titannet.info/signup?inviteCode=AFD8CQ3U" target="_blank">Join Titan Network</a> button or open the official portal. The invite code <strong>AFD8CQ3U</strong> will be automatically applied to your registration form.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Enter Email, Solve Captcha & Verify OTP</div>
-                <div class="step-desc">
-                    On the <strong>Create new account</strong> screen, enter your active Email address and click the <strong>Get Code</strong> link. A security puzzle/captcha popup will appear on your screen. Complete the captcha to dispatch the 6-digit verification code to your email inbox. Enter the received code, set a secure password, check the "Terms of Service" agreement box, and click the blue <strong>Sign up</strong> button.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Access Dashboard & Download Browser Plugin</div>
-                <div class="step-desc">
-                    Upon successful login, you will arrive at your main web console (<code style="color:var(--accent-primary); background:var(--bg-body); padding:2px 6px; border-radius:4px;">edge.titannet.info/dashboard</code>). The dashboard will display the prompt: <em>"Install Plugin to Start Passive Income"</em>. Click the yellow <strong>Download Browser Plugin</strong> button or select "Install Titan Browser Extension" from the left sidebar.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Install from Chrome Web Store & Start Earning</div>
-                <div class="step-desc">
-                    You will be directed to the official <strong>Titan Browser Extension</strong> page on the Chrome Web Store. Click <strong>Get</strong> (or <strong>Add to Chrome</strong>) to install it. Once installed, click the Titan extension icon in your browser toolbar, log in with your registered Email and Password, and edge routing rewards will start working automatically in the background.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Real-World Extension Performance:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    The browser extension requires zero hard disk allocation and operates on minimal background bandwidth. Keep your desktop browser active during your regular daily internet sessions to maintain uninterrupted point accumulation.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Step-by-Step Video Guide:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Titan+Network" title="Titan Network Extension Guide" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: WINDOWS PC GUIDE -->
-        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
-            <h3>💻 Windows PC Setup Guide (Desktop Client & Resource Allocation)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                The Windows desktop client does not require an invite code or complex identity hashes. You only need the registered account you created during the initial setup. Follow these exact steps to connect your machine and begin earning.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Download & Install the Official Windows Client</div>
-                <div class="step-desc">
-                    Log in to your Titan Edge web dashboard, locate the client download section, and grab the official Windows installer (.exe). Complete the standard installation and launch the <strong>Titan Network</strong> desktop software on your PC.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Bind Account Directly Using Your Registered Email</div>
-                <div class="step-desc">
-                    In the desktop client, navigate to the <strong>Bind</strong> tab from the left navigation panel. Simply enter your registered <strong>Email</strong> into the input box and press <strong>Enter</strong>. The application will instantly synchronize and display the status: <em>"Account linked! Earnings secure."</em> (No referral or identity code is needed here).
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Enable Tasks: TSS (Storage) & PCDN (Bandwidth)</div>
-                <div class="step-desc">
-                    Go to the <strong>Tasks</strong> tab in the client interface to select your earning modes:
-                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
-                        <li><strong>TSS (Titan Storage Service):</strong> Share your unused hard drive space to earn <strong>TNT3</strong> rewards. Toggle the green switch to ON.</li>
-                        <li><strong>PCDN (Peer Content Delivery):</strong> Share upload bandwidth to earn <strong>USDC</strong> and <strong>TNT4</strong> tokens based on commercial traffic demand.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Configure Resource Allocation & Monitor Live Revenue</div>
-                <div class="step-desc">
-                    Open the <strong>Settings</strong> tab to customize your hardware limits:
-                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
-                        <li><strong>TSS Task Settings:</strong> Set your custom storage path (e.g., <code style="color:var(--accent-primary); background:var(--bg-body); padding:1px 5px; border-radius:4px;">C:\titan_network\titanL2\storage</code>) and adjust maximum disk allocation (50GB to 150GB+), then click <strong>Save</strong>.</li>
-                        <li><strong>PCDN Task Settings:</strong> Allocate dedicated CPU cores, RAM limits, and upload bandwidth limits according to your hardware capacity.</li>
-                    </ul>
-                    Return to the <strong>Home</strong> tab to confirm the status displays <strong>"Device is running"</strong> and the <strong>"Making Money"</strong> indicator is active.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Observation Period Note:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Newly connected Windows nodes undergo a standard 3 to 5 day network scoring and observation period. Lower reward output during the initial days is normal. Keep your PC connected 24/7 with UPnP or IPv6 enabled for optimal scoring.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Windows Node Configuration Guide:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Titan+Network+Windows" title="Titan Network Windows Guide" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 3: MOBILE APP GUIDE -->
-        <div id="tab-mobile" class="tab-pane content-card" style="display: none;">
-            <h3>📱 Android Mobile App Setup Guide (Identity Code Binding)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                The Android application operates on a unique Identity Code binding mechanism rather than standard credentials or referral codes. Follow this walkthrough to copy your node hash and link your smartphone.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Retrieve Your Node Identity Code from the Web Console</div>
-                <div class="step-desc">
-                    Log in to your Titan Network account on the official web management console (<a href="https://test1.titannet.io" target="_blank">Titan Console</a> / Node Management). Navigate to the <strong>Node Management</strong> or <strong>Device Binding</strong> section and locate your unique personal <strong>Identity Code</strong> (alphanumeric binding hash). Click copy.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Download & Install Official Android APK</div>
-                <div class="step-desc">
-                    Download the latest official Titan Edge APK package directly from the web dashboard. Allow installation from unknown sources in your Android security settings if prompted, and complete the app installation.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Paste Identity Code & Link Your Device</div>
-                <div class="step-desc">
-                    Launch the Titan application on your phone. In the primary binding input box, paste your copied <strong>Identity Code</strong> and tap <strong>Link Device</strong>. Your smartphone will instantly connect to the network cluster and begin generating <strong>TNT3</strong> rewards through background bandwidth routing.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Configure Battery Optimization to "Unrestricted"</div>
-                <div class="step-desc">
-                    To prevent Android system memory management from killing the background node:
-                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
-                        <li>Go to phone <strong>Settings → Apps → Titan Edge → Battery</strong>.</li>
-                        <li>Select <strong>Unrestricted / No Restrictions</strong>.</li>
-                        <li>Enable <strong>Autostart</strong> permissions to ensure the background process resumes automatically when connected to Wi-Fi.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Setup Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Titan+Network+Mobile" title="Titan Network Mobile Guide" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison: Resource Requirements & Allocation</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Compare how each Titan Network architecture utilizes your system resources:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Platform Architecture</th>
-                        <th style="width: 35%;">System Resource Consumption</th>
-                        <th style="width: 40%;">Primary Network Function</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Extension</strong></td>
-                        <td>Residential IP & light background bandwidth. Zero local storage required.</td>
-                        <td>Active web automation tasks, e-commerce indexing, and residential proxy routing.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Windows (TSS Mode)</strong></td>
-                        <td>Allocated HDD/SSD storage space (50GB - 150GB+) & light bandwidth.</td>
-                        <td>Decentralized cloud storage hosting earning direct TNT3 reward points.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Windows (PCDN Mode)</strong></td>
-                        <td>Configurable CPU cores, RAM memory, and dedicated upload speed.</td>
-                        <td>High-throughput edge caching and commercial data distribution earning USDC/TNT4.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Android Mobile</strong></td>
-                        <td>Idle Wi-Fi connectivity and low background processing.</td>
-                        <td>Mobile edge routing and distributed packet verification earning TNT3 rewards.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Operational Rules & Network Compliance</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>Data Privacy Guarantee:</strong> The Titan Network daemon runs in a secure sandboxed environment. The software never accesses your personal files, private keys, local documents, or sensitive data. You retain full administrative control over resource sharing at all times.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Anti-Cheat & Ban Prevention Guidelines:</h4>
-                <ul>
-                    <li><strong>No Datacenter Proxies or VPNs:</strong> Commercial VPNs and datacenter IP addresses are filtered out by network integrity protocols. Run nodes exclusively on authentic residential broadband or genuine mobile connections.</li>
-                    <li><strong>Single Extension/Node per Public IP:</strong> Running multiple duplicate instances of the same client type under a single home IP will trigger efficiency penalties. Distribute devices across distinct IP networks when possible.</li>
-                    <li><strong>Continuous Uptime:</strong> Keep your desktop PC or browser session running continuously. The scoring algorithm awards a higher multiplier to nodes with stable 24/7 uptime.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
                 &copy; 2026 Total Crypto Network. All rights reserved.
             </div>
@@ -478,32 +316,24 @@
         </div>
     </footer>
 
-    <!-- Script Logic -->
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
-        }
-
-        function copyRefCode() {
-            const code = document.getElementById('refCodeText').innerText;
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
             navigator.clipboard.writeText(code).then(() => {
-                alert('Titan Network Invite Code Copied: ' + code);
+                alert("Invite code copied: " + code);
             });
         }
 
         function toggleTheme() {
             const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
+            const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+                btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
+                btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -511,7 +341,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            document.getElementById('themeBtn').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
     </script>
 </body>
