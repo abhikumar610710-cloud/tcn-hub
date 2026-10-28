@@ -160,9 +160,11 @@
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
-        /* Google Translate UI Fixes */
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
-        body { top: 0px !important; }
+        /* STRONG Google Translate UI Fixes */
+        .goog-te-banner-frame,
+        .goog-te-banner-frame.skiptranslate, 
+        iframe.skiptranslate { display: none !important; }
+        body { top: 0px !important; position: static !important; }
 
         @media (max-width: 1024px) {
             .video-grid-3 { grid-template-columns: repeat(2, 1fr); }
@@ -186,7 +188,7 @@
     <!-- Header -->
     <header>
         <div class="site-container header-inner">
-            <a href="../index.html" class="logo-box">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
                     <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
@@ -213,14 +215,14 @@
                         <img src="../logos/titan.png" alt="Titan Network" onerror="this.src='https://via.placeholder.com/64';">
                     </div>
                     <div class="project-titles">
-                        <h2>Titan Network <span class="verified-badge">✓</span></h2>
+                        <h2 class="notranslate" translate="no">Titan Network <span class="verified-badge">✓</span></h2>
                         <p>Decentralized Edge Routing & Automated Data Execution Network</p>
                     </div>
                 </div>
 
                 <div class="hero-right">
                     <!-- Clean Local Language Selector -->
-                    <select class="local-lang-select" id="localLangSelector" onchange="changeLanguage(this.value)">
+                    <select class="local-lang-select notranslate" id="localLangSelector" onchange="changeLanguage(this.value)" translate="no">
                         <option value="en">🌐 English</option>
                         <option value="hi">🌐 हिंदी (Hindi)</option>
                         <option value="ur">🌐 اردو (Urdu)</option>
@@ -230,12 +232,12 @@
                     <div class="invite-box">
                         <div>
                             <div class="invite-label">Official Invite Code</div>
-                            <div class="invite-code" id="inviteCode">AFD8CQ3U</div>
+                            <!-- FIXED: Added 'notranslate' class and 'translate="no"' so invite code never translates -->
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">AFD8CQ3U</div>
                         </div>
                         <button class="btn-copy" onclick="copyCode()">Copy</button>
                     </div>
                     
-                    <!-- Gift Icon added here -->
                     <a href="https://edge.titannet.info/register?code=AFD8CQ3U" target="_blank" class="btn-join">🎁 Join Titan Network</a>
                 </div>
             </div>
@@ -342,7 +344,7 @@
                         <h3>Complete Step-by-Step Video Walkthroughs</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete video tutorials produced by <strong>Total Crypto Network</strong>. Follow the exact operational walkthrough for your chosen device platform:
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for your chosen device platform:
                     </p>
                     
                     <div class="video-grid-3">
@@ -389,7 +391,7 @@
     <footer>
         <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../pages/about.html">About Us</a>
