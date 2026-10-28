@@ -149,28 +149,7 @@
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); 
         }
         
-        /* Header Right Controls & Language Switcher Styling */
-        .lang-select { 
-            background: var(--bg-surface); 
-            border: 1.5px solid var(--border-color); 
-            color: var(--text-heading); 
-            padding: 7px 12px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 12px; 
-            outline: none; 
-            cursor: pointer; 
-            transition: all 0.2s ease; 
-        }
-        .lang-select:focus { 
-            border-color: var(--accent-primary); 
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
-        }
-        
-        /* Hide Google Translate Default UI Frame & Offset */
-        .goog-te-banner-frame.skiptranslate, iframe.skiptranslate { display: none !important; }
-        body { top: 0px !important; }
-
+        /* Header Right Controls */
         .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
         .join-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); white-space: nowrap; }
         .join-btn:hover { background: var(--accent-hover); }
@@ -270,16 +249,6 @@
                 </a>
                 
                 <div class="header-right">
-                    <!-- Fully Integrated Permanent Language Selector -->
-                    <select class="lang-select" id="languageSelector" onchange="changeWebsiteLanguage(this.value)">
-                        <option value="en">English</option>
-                        <option value="hi">हिंदी (Hindi)</option>
-                        <option value="ur">اردو (Urdu)</option>
-                        <option value="bn">বাংলা (Bengali)</option>
-                    </select>
-                    <!-- Hidden Google Translate Element required for processing -->
-                    <div id="google_translate_element" style="display:none;"></div>
-                    
                     <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
                     <a href="https://t.me/" target="_blank" class="join-btn">⚡ Join TCN AI</a>
                 </div>
@@ -611,34 +580,5 @@
             renderTable();
         };
     </script>
-
-    <!-- Permanent Translation Engine (Must be just before closing body tag) -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,hi,ur,bn', // English, Hindi, Urdu, Bengali
-                autoDisplay: false
-            }, 'google_translate_element');
-
-            // Auto-load previously saved language from localStorage
-            const savedLang = localStorage.getItem('user_lang') || 'en';
-            document.getElementById('languageSelector').value = savedLang;
-        }
-
-        function changeWebsiteLanguage(langCode) {
-            // Save user choice in local storage
-            localStorage.setItem('user_lang', langCode);
-            
-            // Force set the Google Translate global cookie so it applies to all pages
-            const domain = window.location.hostname;
-            document.cookie = `googtrans=/en/${langCode}; path=/; domain=${domain}`;
-            document.cookie = `googtrans=/en/${langCode}; path=/;`;
-
-            // Reload the page instantly to apply the translation engine
-            window.location.reload();
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
