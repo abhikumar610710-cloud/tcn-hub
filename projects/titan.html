@@ -445,10 +445,22 @@
             }, 'google_translate_element');
         }
 
-        // Dedicated Language Change Engine
+        // Bulletproof Language Change Engine for GitHub Pages
         function changeLanguage(langCode) {
+            // 1. Save choice in memory
             localStorage.setItem('project_lang', langCode);
-            document.cookie = `googtrans=/en/${langCode}; path=/;`;
+            
+            // 2. Clear old cookies (Very important for GitHub Pages)
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname + ";";
+            
+            // 3. Set new translation cookies with exact domain
+            if (langCode !== 'en') {
+                document.cookie = `googtrans=/en/${langCode}; path=/;`;
+                document.cookie = `googtrans=/en/${langCode}; path=/; domain=${window.location.hostname};`;
+            }
+            
+            // 4. Reload to apply translation
             window.location.reload();
         }
     </script>
