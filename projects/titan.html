@@ -48,12 +48,43 @@
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
         .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
         .logo-text span { font-size: 11px; color: var(--text-muted); }
-        .btn-hub { background: var(--card-subtle); color: var(--text-heading); text-decoration: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; border: 1px solid var(--border-color); }
+
+        /* Glowing Back to Hub Button */
+        .btn-hub-glow { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
         /* Main Content */
         main { flex: 1; padding: 32px 0 60px; }
 
-        /* Quick Hero Action Card */
+        /* Hero Action Card */
         .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
         .hero-left { display: flex; align-items: center; gap: 16px; }
         .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
@@ -69,7 +100,7 @@
         .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; }
         .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); }
 
-        /* Article Layout (5 Section Architecture) */
+        /* Content Layout */
         .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
         .article-section { margin-bottom: 40px; }
         .article-section:last-child { margin-bottom: 0; }
@@ -81,12 +112,13 @@
         .article-text { font-size: 14.5px; line-height: 1.75; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
         .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
+        /* Balanced 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
         .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; }
         .feature-box h4 { font-size: 14px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
         .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-        /* Highlight Boxes */
+        /* Highlight Alert Box */
         .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
         .alert-box h5 { color: #d97706; font-size: 13px; font-weight: 800; margin-bottom: 6px; }
         .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
@@ -98,7 +130,7 @@
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
         .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
 
-        /* Advanced Docker Reference */
+        /* Docker Section */
         .docker-card { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 24px; }
         .docker-card h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 8px; }
         .code-box { background: #070a12; color: #10b981; padding: 12px 16px; border-radius: 8px; font-family: monospace; font-size: 12px; overflow-x: auto; margin-top: 8px; }
@@ -114,6 +146,7 @@
             .project-hero-card { flex-direction: column; align-items: flex-start; }
             .hero-right { width: 100%; justify-content: space-between; }
             .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -132,8 +165,8 @@
                 </div>
             </a>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <button class="btn-hub" onclick="toggleTheme()" id="themeBtn" style="cursor: pointer; padding: 6px 12px;">🌙</button>
-                <a href="../index.html" class="btn-hub">← Back to Hub</a>
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
@@ -150,7 +183,7 @@
                     </div>
                     <div class="project-titles">
                         <h2>Titan Network <span class="verified-badge">✓</span></h2>
-                        <p>Decentralized Edge Cloud, Storage & Web Automation Network</p>
+                        <p>Decentralized Edge Bandwidth & Automated Web Indexing Network</p>
                     </div>
                 </div>
 
@@ -173,13 +206,13 @@
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">1</div>
-                        <h3>What is Titan Network? (Decentralized Edge Cloud Overview)</h3>
+                        <h3>What is Titan Network? (Decentralized Bandwidth Overview)</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Titan Network</strong> is a next-generation decentralized physical infrastructure network (DePIN) designed to aggregate spare computing, distributed internet bandwidth, and idle local storage from everyday consumer devices. Traditional centralized clouds like Amazon AWS and Google Cloud maintain massive, power-hungry data centers that are expensive to run and create high latency for worldwide users.
+                        <strong>Titan Network</strong> is a next-generation decentralized physical infrastructure network (DePIN) designed to monetize your idle residential internet connection. Instead of letting your unused broadband sit dormant, Titan connects everyday users to a global distributed edge routing network.
                     </p>
                     <p class="article-text">
-                        Titan Network solves this inefficiency by transforming regular PCs, mobile devices, and lightweight browser sessions into micro-edge nodes. Instead of relying on centralized servers, enterprises and web platforms tap into Titan's globally distributed peer-to-peer cloud to deliver multimedia caching, decentralized file storage, and authenticated web indexing at a fraction of standard commercial costs.
+                        The browser extension operates strictly on <strong>zero local storage and zero hard drive sharing</strong>[cite: 3]. It does not touch your personal files, documents, or private device data[cite: 5]. It acts entirely as a lightweight residential edge proxy that verifies public web requests and routes automated data indexing tasks for international enterprises[cite: 5, 6].
                     </p>
                 </div>
 
@@ -187,27 +220,27 @@
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">2</div>
-                        <h3>How Titan Network Works (Multi-Node Architecture)</h3>
+                        <h3>How It Works (Bandwidth Sharing & Automated Tasks)</h3>
                     </div>
                     <p class="article-text">
-                        The Titan ecosystem operates across several distinct operational modes depending on the hardware power and internet quality of the participating device:
+                        Titan Network operates through a clean, multi-layered passive earning architecture that runs silently in the background:
                     </p>
-                    <div class="feature-grid">
+                    <div class="feature-grid-2x2">
                         <div class="feature-box">
-                            <h4>🌐 Browser Extension Node</h4>
-                            <p>Runs directly within Chrome or Brave browser. It routes localized residential web requests and validates e-commerce data indexing without utilizing your local hard disk space.</p>
+                            <h4>🌐 Idle Bandwidth Monetization</h4>
+                            <p>Shares small packets of excess residential upload bandwidth without affecting your regular browsing speed or utilizing local storage[cite: 3].</p>
                         </div>
                         <div class="feature-box">
-                            <h4>💾 Storage Node (TSS Mode)</h4>
-                            <p>Designed for Windows and Linux systems where users allocate spare storage (50GB+). Files are encrypted, sharded, and redundantly stored across distributed nodes.</p>
+                            <h4>🤖 Automated E-commerce Tasks</h4>
+                            <p>Executes automated web indexing tasks across key global regions like Taiwan, Singapore, Brazil, and Indonesia directly through authorized partner nodes[cite: 6, 7].</p>
                         </div>
                         <div class="feature-box">
-                            <h4>⚡ Edge Caching (PCDN Mode)</h4>
-                            <p>Utilizes system RAM and high-speed upload bandwidth to serve as a decentralized CDN, delivering commercial video and static media to nearby web consumers with ultra-low latency.</p>
+                            <h4>⚡ 24/7 Uptime Network Scoring</h4>
+                            <p>Your node continuously reports network quality to the decentralized coordinator, earning consistent passive points for every uninterrupted minute online[cite: 8].</p>
                         </div>
                         <div class="feature-box">
-                            <h4>📱 Mobile Background Node</h4>
-                            <p>Operates on Android devices under idle Wi-Fi connectivity to conduct distributed packet verification and keep the edge mesh active around the clock.</p>
+                            <h4>📱 Multi-Platform Edge Mesh</h4>
+                            <p>Allows nodes to run across Chrome/Brave extensions, Windows clients, and Android background connections on distinct residential IPs[cite: 5, 8].</p>
                         </div>
                     </div>
                 </div>
@@ -219,20 +252,24 @@
                         <h3>Earning System & Reward Streams (Dual Payout Architecture)</h3>
                     </div>
                     <p class="article-text">
-                        Titan Network features a comprehensive <strong>Dual-Reward Structure</strong> that distributes both prospective network tokens and liquid stablecoin rewards to active node operators:
+                        Titan Network features a comprehensive <strong>Dual-Reward Structure</strong> that provides both immediate liquid cash and long-term network points:
                     </p>
-                    <div class="feature-grid">
+                    <div class="feature-grid-2x2">
                         <div class="feature-box">
                             <h4>💰 Direct USDC Cash Payouts</h4>
-                            <p>Active nodes authorized on the <strong>Titan Revenue Platform</strong> execute automated e-commerce web indexing tasks across international regions (Taiwan, Singapore, Brazil, Thailand, and Indonesia). Each successfully completed task distributes immediate, auditable USDC rewards directly to your internal dashboard balance.</p>
+                            <p>Active nodes authorized on the <strong>Titan Revenue Platform</strong> execute e-commerce data automation tasks[cite: 6]. Each task generates between <strong>$0.0015 to $0.0025 USDC</strong> directly withdrawable to your wallet[cite: 6, 7].</p>
                         </div>
                         <div class="feature-box">
                             <h4>📈 TNTIP Network Points</h4>
-                            <p>Every active minute of verified node uptime earns TNTIP points. These points track your physical infrastructure contribution score and will serve as the primary allocation metric during the upcoming Mainnet Token Generation Event (TGE).</p>
+                            <p>Earn passive <strong>TNTIP points</strong> every second your node maintains connection[cite: 6, 8]. Each e-commerce task also awards <strong>+50 TNTIP</strong> toward your mainnet token allocation[cite: 6, 7].</p>
                         </div>
                         <div class="feature-box">
-                            <h4>🎁 Community Missions & Streaks</h4>
-                            <p>Beyond passive bandwidth sharing, operators can claim extra rewards via Daily Check-ins (+200 TNTIP), maintaining a 28-Day Check-in Streak (+10,000 TNTIP milestone bonus), and verifying community social interaction tasks.</p>
+                            <h4>🎁 Daily Missions & Check-ins</h4>
+                            <p>Claim <strong>+200 TNTIP daily</strong> via 1-click check-in, plus massive milestone rewards like <strong>+10,000 TNTIP</strong> for completing a 28-day continuous streak[cite: 9].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🤝 Community Social Tasks</h4>
+                            <p>Boost your earnings balance by completing simple community tasks such as following official updates and retweeting announcements (+500 TNTIP each)[cite: 9].</p>
                         </div>
                     </div>
                 </div>
@@ -244,13 +281,13 @@
                         <h3>Operational Rules & Anti-Cheat Compliance (Keep Nodes Safe)</h3>
                     </div>
                     <p class="article-text">
-                        To maintain high quality of service for commercial enterprise partners, Titan Network employs strict cryptographic monitoring. Follow these essential guidelines to prevent node penalties and IP bans:
+                        To maintain high quality of service for commercial enterprise partners, Titan Network employs strict cryptographic monitoring[cite: 5]. Follow these essential guidelines:
                     </p>
                     <div class="alert-box">
                         <h5>⚠️ Mandatory Network Guidelines:</h5>
-                        <p><strong>1. Strict No-VPN Policy:</strong> Commercial VPNs, Tor exit nodes, and data-center hosting proxy IPs are immediately blacklisted. Run your node strictly over genuine residential broadband or clean mobile ISP connections.</p>
-                        <p style="margin-top:6px;"><strong>2. Single Instance per Public IP:</strong> Running multiple instances of the same extension or desktop client behind a single home router triggers IP saturation penalties. Ensure each device is assigned a unique outbound IP or run different node modes.</p>
-                        <p style="margin-top:6px;"><strong>3. High Uptime Scoring:</strong> The scoring engine assigns a multiplier to nodes operating with continuous 24/7 uptime and low latency ping responses.</p>
+                        <p><strong>1. Strict No-VPN Policy:</strong> Commercial VPNs, Tor exit nodes, and data-center hosting proxy IPs are immediately blacklisted[cite: 5]. Run your node strictly over genuine residential broadband or mobile ISP connections[cite: 5].</p>
+                        <p style="margin-top:6px;"><strong>2. Single Instance per Public IP:</strong> Running multiple instances of the same extension or desktop client behind a single home router triggers IP saturation penalties[cite: 5]. Ensure each device is assigned a unique outbound IP[cite: 5].</p>
+                        <p style="margin-top:6px;"><strong>3. High Uptime Scoring:</strong> The scoring engine assigns a multiplier to nodes operating with continuous 24/7 uptime and low latency ping responses[cite: 5].</p>
                     </div>
                 </div>
 
@@ -261,7 +298,7 @@
                         <h3>Step-by-Step Video Setup Guides</h3>
                     </div>
                     <p class="article-text">
-                        Prefer watching a practical video walkthrough? Follow our official step-by-step video tutorials from <strong>Total Crypto Network</strong> to get your Titan node operational in less than 5 minutes:
+                        Follow our official step-by-step video tutorials from <strong>Total Crypto Network</strong> to get your node operational in less than 5 minutes:
                     </p>
                     
                     <div class="video-grid">
@@ -269,7 +306,6 @@
                         <div class="video-box">
                             <h4>🖥️ Browser Extension & PC Setup Guide</h4>
                             <div class="video-wrapper">
-                                <!-- Replace YOUR_YOUTUBE_ID_1 with your exact Video ID -->
                                 <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_1" title="Titan Network Extension & PC Setup" allowfullscreen></iframe>
                             </div>
                         </div>
@@ -278,7 +314,6 @@
                         <div class="video-box">
                             <h4>📱 Android Mobile Node Setup Guide</h4>
                             <div class="video-wrapper">
-                                <!-- Replace YOUR_YOUTUBE_ID_2 with your exact Video ID -->
                                 <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_2" title="Titan Network Mobile Setup" allowfullscreen></iframe>
                             </div>
                         </div>
@@ -286,9 +321,9 @@
 
                     <!-- Advanced Linux / Docker Note -->
                     <div class="docker-card">
-                        <h4>⚡ Advanced Operators: Docker & Linux Headless Nodes</h4>
+                        <h4>⚡ Advanced Operators: Headless Docker Setup</h4>
                         <p class="article-text" style="font-size: 13px; margin-bottom: 0;">
-                            For advanced miners and server operators running 24/7 VPS or Mini-PCs, Titan provides official headless CLI and Docker packages. You can bind your node identity key directly via terminal:
+                            For advanced users running 24/7 VPS or Mini-PCs, Titan provides official headless CLI and Docker packages:
                         </p>
                         <div class="code-box">
                             docker run -d --name titan-node --net=host -v ~/.titanedge:/root/.titanedge titannet/titan-edge
