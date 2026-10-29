@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>U2U Network Setup Guide & Mobile Node Tutorial | Total Crypto Hub</title>
-    <meta name="description" content="Verified setup guide for U2U Network (Decentralized Subnet & DPN). Learn Android mobile node configuration, referral setup, and passive U2U token bandwidth sharing.">
+    <title>U2U Network (U2DPN) Architecture, Earning Breakdown & Node Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of U2U Network (U2DPN): Decentralized subnet network, encrypted bandwidth sharing, U2U tokens, loyalty points, and node setup tutorials.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,172 +16,143 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #059669;
+            --accent-primary: #059669; 
             --accent-hover: #047857;
-            --code-bg: #0f172a;
-            --code-text: #34d399;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
-            --bg-body: #060d17;
-            --bg-surface: #0a1526;
-            --header-bg: rgba(10, 21, 38, 0.95);
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #10b981;
-            --accent-hover: #059669;
-            --code-bg: #030712;
-            --code-text: #34d399;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
-
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-
-        /* Referral Box */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
-        
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-copy { 
-            background: var(--bg-surface); 
-            border: 1.5px solid var(--border-color); 
-            color: var(--text-heading); 
-            padding: 8px 14px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 12px; 
-            cursor: pointer; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 5px;
-            transition: all 0.2s;
-        }
-        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .btn-join { 
+        .btn-hub-glow { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
             font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .btn-join:hover { background: var(--accent-hover); }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-        /* Maintenance Notice */
-        .notice-card { background: var(--bg-body); border: 1px dashed var(--border-color); border-radius: 12px; padding: 24px; text-align: center; margin: 15px 0; }
-        .notice-badge { display: inline-block; background: #f59e0b; color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* 2-Column Video Showcase (For PC & Mobile Only) */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Note Card */
+        .docker-card { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; margin-top: 26px; }
+        .docker-card h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 8px; }
+        .docker-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+        .docker-badge { display: inline-block; background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--accent-primary); font-weight: 700; font-size: 11px; padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-copy { flex: 1; justify-content: center; }
-            .ref-actions .btn-join { flex: 2; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
         }
     </style>
 </head>
@@ -189,235 +160,142 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-box">
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/u2u.png" alt="U2U Network" onerror="this.src='https://via.placeholder.com/60'">
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/u2u.png" alt="U2U Network" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">U2U Network <span class="verified-badge">✓</span></h2>
+                        <p>Decentralized Subnet Network & Secure Bandwidth Provider</p>
+                    </div>
                 </div>
-                <div class="hero-info">
-                    <h2>U2U Network <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Decentralized Subnet & Real-World Asset (RWA) Bandwidth Layer</p>
-                </div>
-            </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Official Invite Code</span>
-                    <span class="ref-code" id="refCodeText">Q90BH2AT</span>
-                </div>
-                <div class="ref-actions">
-                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
-                    <a href="https://u2dpn.network/invite?ref=Q90BH2AT" target="_blank" class="btn-join">⚡ Join U2U Network</a>
-                </div>
-            </div>
-        </div>
 
-        <!-- 2 Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('android', this)">📱 1. Android</button>
-            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. Windows (Coming Soon)</button>
-        </div>
-
-        <!-- TAB 1: ANDROID MOBILE GUIDE -->
-        <div id="tab-android" class="tab-pane content-card">
-            <h3>📱 Android Mobile Node Setup Guide (Decentralized Subnet Provider)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                The official U2U Network mobile client allows smartphone operators to tokenize idle residential internet bandwidth into real-world decentralized subnet assets, earning U2U tokens passively. Follow this complete live setup walkthrough.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Install U2DPN & Start Onboarding</div>
-                <div class="step-desc">
-                    Download and open the official <strong>U2DPN</strong> application on your Android device. Tap through the introduction screens (<em>"Decentralized Subnet Network"</em> and <em>"Tokenize Bandwidth"</em>) by clicking <strong>Continue</strong>, then tap <strong>Get Started</strong>.
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">Q90BH2AT</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="https://u2dpn.network/invite?ref=Q90BH2AT" target="_blank" class="btn-join">🎁 Join U2U Network</a>
                 </div>
             </div>
 
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Sign In & Apply Official Referral Code</div>
-                <div class="step-desc">
-                    On the <em>Sign in to get your passive income</em> screen, input your Email address (or use direct Google login). In the <strong>Referral code (optional)</strong> field, enter <strong>Q90BH2AT</strong> to ensure your node is properly linked to the subnet incentive pool. Tap <strong>Continue with email</strong> and verify the OTP code sent to your inbox.
+            <!-- Full-Length 5-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is U2U Network -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is U2U Network (U2DPN)?</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>U2U Network</strong> (operating as U2DPN) is an advanced Decentralized Subnet Network powered by modern Web3 technology. It allows everyday users to monetize their idle internet bandwidth by contributing to a secure, community-driven data network. 
+                    </p>
+                    <p class="article-text">
+                        Traditional VPNs and data routing services rely on centralized servers that can be vulnerable to breaches or data selling. U2U Network reverses this model by utilizing a decentralized framework of residential nodes. When you connect your device, you act as a "DPN Provider," routing encrypted data through your unused bandwidth.
+                    </p>
+                    <p class="article-text">
+                        Privacy is the foundational pillar of the U2U ecosystem. The protocol strictly operates on an <strong>Encrypted and No Logs</strong> architecture. This guarantees that your personal traffic, browsing history, and device storage remain completely inaccessible and entirely private while the background daemon runs.
+                    </p>
                 </div>
-            </div>
 
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Grant Background Connection Permissions</div>
-                <div class="step-desc">
-                    A notification prompt reading <em>"Stay informed while earning"</em> will appear. Tap <strong>Allow</strong> so U2U Network can monitor your background network connection and notify you if your session drops or pauses.
+                <!-- Point 2: Architecture & How It Works -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>How U2DPN Operates (Auto-Resume & Data Sharing)</h3>
+                    </div>
+                    <p class="article-text">
+                        The application is designed for true passive income, requiring minimal user interaction once configured:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>⚡ Auto-Resume Earning</h4>
+                            <p>The U2U application features a built-in "Auto-resume earning" toggle. Once enabled in your profile settings, the node automatically reconnects and starts generating rewards in the background whenever your device is online.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔒 Encrypted Web3 Routing</h4>
+                            <p>All data shared through your node is heavily encrypted using Web3 security standards. The network acts as a decentralized proxy, meaning data packets are anonymized and cannot be traced back to your personal activities.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📊 Live Data Tracking</h4>
+                            <p>The home dashboard provides real-time metrics of your active contribution. You can instantly monitor "Today's Earnings" and total "Data Shared (GB)" to ensure your node is performing efficiently.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📱 Dedicated App Ecosystem</h4>
+                            <p>Unlike some networks that run strictly via browser extensions, U2U Network provides dedicated, standalone applications designed specifically for Windows PCs and Mobile Phones to maximize hardware stability.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Verify Active Provider Status & Background Settings</div>
-                <div class="step-desc">
-                    Once on the main screen, confirm the status indicates <strong>"Earning Active"</strong> and <strong>"Network active - Securely sharing bandwidth"</strong>. In the <strong>Profile</strong> tab, verify your unique <em>Provider ID</em> is registered, and ensure the <strong>Auto-resume earning</strong> switch is toggled ON.
+                <!-- Point 3: Reward Models & Real Earning Streams -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>U2U Tokens, Loyalty Points & Wallet Integration</h3>
+                    </div>
+                    <p class="article-text">
+                        U2U Network offers a multi-layered earning dashboard that rewards users through a dual-asset ecosystem:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>💎 U2U Token Mining</h4>
+                            <p>Your primary earnings are credited in U2U tokens based on the volume of data shared (GB). These tokens accumulate directly in your Available Balance on the home dashboard.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>✨ Loyalty Points (PTS)</h4>
+                            <p>Alongside tokens, dedicated DPN Providers earn "Loyalty Points" (PTS) for maintaining consistent uptime. These points contribute to your overall ranking and future ecosystem rewards.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💼 In-Built Web3 Wallet</h4>
+                            <p>The app features a native Wallet tab where you can link your U2U wallet address. This allows you to view balances, track transaction history, and easily send or receive tokens on-chain.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📈 Staking Pools (Coming Soon)</h4>
+                            <p>U2U is rolling out passive Staking Pools. Users will be able to lock their tokens in Flexible Bandwidth pools, 90-day Loyalty Pools, or 180-day Network Pools to generate compounding interest.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">⚙️ Essential Android Background Optimization:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    To keep the node sharing bandwidth 24/7 without being stopped by Android memory management:
-                    <br>• Go to <strong>Settings → Apps → U2DPN → Battery</strong> and select <strong>Unrestricted / No Restrictions</strong>.
-                    <br>• Enable <strong>Autostart</strong> permissions.
-                    <br>• On your Recent Apps screen, lock the U2DPN app so clearing background apps does not terminate your session.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Step-by-Step Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+U2U+Network+Setup" title="U2U Network Mobile Setup Tutorial" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: WINDOWS GUIDE (COMING SOON) -->
-        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
-            <h3>💻 Windows Desktop Node (Under Maintenance / Coming Soon)</h3>
-            
-            <div class="notice-card">
-                <span class="notice-badge">Notice</span>
-                <h4 style="color: var(--text-heading); font-size: 16px; margin-bottom: 8px; font-weight: 800;">Windows Version Temporarily Suspended</h4>
-                <p style="color: var(--text-muted); font-size: 13px; max-width: 580px; margin: 0 auto; line-height: 1.6;">
-                    The desktop client for Windows is currently undergoing infrastructure and stability updates from the official core team to resolve connection errors. We strongly recommend running the verified <strong>Android Mobile App</strong> to ensure uninterrupted daily U2U earnings.
-                </p>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Why Android is Currently Recommended:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    The Android subnet protocol is fully operational and verified. Once the official Windows desktop patch is deployed and stable, full installation instructions, binding steps, and client downloads will be updated immediately on this page.
-                </p>
-            </div>
-        </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison: Resource Requirements & Allocation</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Overview of resource allocation across current and upcoming deployment environments:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Platform Architecture</th>
-                        <th style="width: 35%;">System Resource Consumption</th>
-                        <th style="width: 40%;">Current Operational Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Android Mobile</strong></td>
-                        <td>Idle Wi-Fi upload bandwidth; zero heavy CPU load.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Direct U2U Token Mining)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Windows PC</strong></td>
-                        <td>System memory & network adapter routing.</td>
-                        <td><span style="color:#f59e0b; font-weight:700;">Coming Soon</span> (Under maintenance by core developers)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Browser Extension</strong></td>
-                        <td>Not applicable.</td>
-                        <td><strong>No Extension Available</strong> (Native APK/client architecture only)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Operational Rules & Network Compliance</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>End-to-End Privacy Protection:</strong> The U2U Network daemon enforces a strict zero-log storage policy. Your private credentials, personal files, browsing activity, and media remain entirely inaccessible to the network.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Network Integrity Guidelines:</h4>
-                <ul>
-                    <li><strong>No VPNs or Data Center IPs:</strong> The subnet protocol requires genuine residential or mobile broadband connections. Connecting through third-party VPNs will pause earning sessions.</li>
-                    <li><strong>Stable Background Execution:</strong> Ensure battery saving profiles do not kill background processes. The higher your continuous uptime, the more consistent your daily U2U distribution.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
-            </div>
-            <div class="footer-links">
-                <a href="../pages/about.html">About Us</a>
-                <a href="../pages/contact.html">Contact Us</a>
-                <a href="../pages/privacy.html">Privacy Policy</a>
-                <a href="../pages/terms.html">Terms & Conditions</a>
-                <a href="../pages/disclaimer.html">Disclaimer</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Script Logic -->
-    <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
-        }
-
-        function copyRefCode() {
-            const code = document.getElementById('refCodeText').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                alert('U2U Network Invite Code Copied: ' + code);
-            });
-        }
-
-        function toggleTheme() {
-            const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        window.onload = function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
-        };
-    </script>
-</body>
-</html>
+                <!-- Point 4: Operational Rules & Anti-Cheat Compliance -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Network Compliance & Best Practices</h3>
+                    </div>
+                    <p class="article-text">
+                        To maintain a high-quality decentralized network and ensure you receive your full rewards without account penalties, please follow these standard DePIN guidelines:
+                    </p>
+                    <div class="alert-box">
+                        <h5>⚠️ Mandatory Infrastructure Rules:</h5>
+                        <p><strong>1. Maintain Natural Uptime:</strong> Utilize the "Auto-resume earning" feature to ensure your node stays connected. Frequent manual disconnections can lower your node reliability score.</p>
+                        <p style="margin-top:6px;"><strong>2. No VPNs or Proxies:</strong> The network demands genuine residential IP addresses. Running the U2U app behind a commercial VPN or Datacenter IP will block your data sharing capabilities and halt your earnings.</p>
+                        <p style="margin-top:6px;"><strong>3. One Node per Network:</strong> For optimal earning rates, do not run multiple devices on the exact same Wi-Fi connection, as they will compete for the same bandwidth pool. Separate them (e.g., PC on Wi-Fi, Phone on Mobile Data).</p>
+                   
