@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UpRock AI Setup Guide & DePIN Bandwidth Node | Total Crypto Hub</title>
-    <meta name="description" content="Verified setup guide for UpRock AI Network on Android Mobile and Windows PC. Learn idle bandwidth node deployment, referral bonus activation, and passive $UPT rewards.">
+    <title>UpRock Architecture, AI Data Mining & Node Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of UpRock: A mobile-first DePIN on Solana. Learn how to earn $UPT tokens by sharing idle bandwidth and completing AI tasks.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,168 +16,149 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #e11d48;
-            --accent-hover: #be123c;
-            --code-bg: #0f172a;
-            --code-text: #fda4af;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
-            --bg-body: #080a14;
-            --bg-surface: #0f1222;
-            --header-bg: rgba(15, 18, 34, 0.95);
-            --border-color: #1e243d;
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #f43f5e;
-            --accent-hover: #e11d48;
-            --code-bg: #030712;
-            --code-text: #fecdd3;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
-
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-
-        /* Referral Box */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(225, 29, 72, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
-        
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-copy { 
-            background: var(--bg-surface); 
-            border: 1.5px solid var(--border-color); 
-            color: var(--text-heading); 
-            padding: 8px 14px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 12px; 
-            cursor: pointer; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 5px;
-            transition: all 0.2s;
-        }
-        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .btn-join { 
+        .btn-hub-glow { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
             font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25); 
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .btn-join:hover { background: var(--accent-hover); }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(225, 29, 72, 0.3); }
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-copy { flex: 1; justify-content: center; }
-            .ref-actions .btn-join { flex: 2; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -185,226 +166,227 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-box">
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/uprock.png" alt="UpRock AI" onerror="this.src='https://via.placeholder.com/60'">
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/uprock.png" alt="UpRock Network" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">UpRock <span class="verified-badge">✓</span></h2>
+                        <p>Mobile-First AI Data Mining on Solana</p>
+                    </div>
                 </div>
-                <div class="hero-info">
-                    <h2>UpRock AI <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Decentralized AI Data Infrastructure & Idle Bandwidth Network</p>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">YOUR_UPROCK_INVITE_CODE</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="YOUR_UPROCK_INVITE_LINK" target="_blank" class="btn-join">🎁 Join UpRock</a>
                 </div>
             </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Official Invite Code</span>
-                    <span class="ref-code" id="refCodeText">3108c29c</span>
+
+            <!-- Full-Length 6-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is UpRock -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is UpRock? (AI Data Infrastructure)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>UpRock</strong> is a robust Decentralized AI Data Infrastructure Network (DePIN) operating exclusively on the Solana (SOL) blockchain. It functions as a powerful "knowledge abstraction layer," connecting everyday users with enterprise AI companies.
+                    </p>
+                    <p class="article-text">
+                        By utilizing the idle internet bandwidth of your mobile phones and computers, UpRock facilitates large-scale web-scraping, real-time data mining, and AI model development. In exchange for providing this infrastructure, users are directly rewarded with the network's native cryptocurrency, creating a seamless bridge between Web3 participation and AI advancement.
+                    </p>
                 </div>
-                <div class="ref-actions">
-                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
-                    <a href="https://link.uprock.com/i/3108c29c" target="_blank" class="btn-join">⚡ Join UpRock AI</a>
+
+                <!-- Point 2: Architecture & Hardware Support -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Hardware Support & Cross-Platform Accessibility</h3>
+                    </div>
+                    <p class="article-text">
+                        Unlike many DePIN projects that rely solely on browser extensions, UpRock utilizes a Mobile-First approach with comprehensive cross-platform support:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>📱 Mobile Applications</h4>
+                            <p>UpRock is fully optimized for mobile devices with native applications available directly on the Google Play Store (Android) and the Apple App Store (iOS).</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💻 Desktop Clients</h4>
+                            <p>For users looking to maximize earning potential, dedicated desktop clients are available for both Windows and macOS (supporting both Apple Silicon and Intel architecture).</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🐧 Linux & Docker CLI</h4>
+                            <p>Advanced node operators can deploy UpRock using basic Linux CLI binary support, allowing for efficient containerized deployment on server hardware.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛑 Native Background App</h4>
+                            <p>There is no standalone Chrome browser extension. UpRock operates as a dedicated, lightweight background application to ensure maximum stability and continuous data routing.</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Point 3: Real-Time Stats (Table) -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Real-Time Market Status & Tokenomics</h3>
+                    </div>
+                    <p class="article-text">
+                        The $UPT (UpRock Token) is officially live and actively trading on the Solana mainnet. Below is the verified market and tokenomic data:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Token Ticker</th>
+                                <td>$UPT (Solana SPL Token)</td>
+                            </tr>
+                            <tr>
+                                <th>Blockchain Network</th>
+                                <td>Solana Mainnet (Contract: UPTx1d...QG)</td>
+                            </tr>
+                            <tr>
+                                <th>Maximum Supply</th>
+                                <td>1,000,000,000 (1 Billion) Fixed</td>
+                            </tr>
+                            <tr>
+                                <th>Community Allocation</th>
+                                <td>50% dedicated to community rewards</td>
+                            </tr>
+                            <tr>
+                                <th>Supported Exchanges</th>
+                                <td>Jupiter (DEX), Bitget, Bybit, Coinstore, Biconomy</td>
+                            </tr>
+                            <tr>
+                                <th>TCN Trust Score</th>
+                                <td><strong>8.8 / 10</strong> (Fully operational withdrawals)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 4: Reward Models & Features -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Earning Methods & Ecosystem Features</h3>
+                    </div>
+                    <p class="article-text">
+                        UpRock offers a diversified ecosystem beyond simple bandwidth sharing, allowing users to actively boost their earnings:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🌐 Passive Bandwidth Mining</h4>
+                            <p>Earn $UPT automatically by running the application in the background. The app includes a "Wi-Fi Only" toggle to prevent cellular data consumption.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🎮 Active Tasks & Surveys</h4>
+                            <p>Users can significantly boost their earning rate by playing featured games, answering short surveys, or scanning retail receipts directly within the app.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📈 Stake & Grow (1.5x Boost)</h4>
+                            <p>The built-in staking feature allows users to lock their earned $UPT tokens (e.g., for 90 days) to earn compounding yields and activate up to a 1.5x earning multiplier.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>👥 Referral Kickbacks</h4>
+                            <p>Invite friends to the network and earn a continuous 1% kickback commission on all the $UPT tokens they generate, with no earning cap.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: Network Rules & Withdrawals -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Network Compliance & Withdrawal Mechanics</h3>
+                    </div>
+                    <p class="article-text">
+                        To maintain network health and ensure your rewards are secure, UpRock implements strict verification protocols:
+                    </p>
+                    <div class="alert-box">
+                        <h5>⚠️ Mandatory Rules & Withdrawal Process:</h5>
+                        <p><strong>1. Device Verification (DV):</strong> You can connect multiple devices to one account. However, UpRock monitors hardware specs and usage patterns for 7 days to filter out bots and emulators before unlocking withdrawal capabilities.</p>
+                        <p style="margin-top:6px;"><strong>2. No VPNs or Data Centers:</strong> The network requires genuine residential or mobile connections. Using commercial proxies, VPNs, or Datacenter VPS environments is strictly prohibited and will halt reward generation.</p>
+                        <p style="margin-top:6px;"><strong>3. Solana-Only Withdrawals:</strong> Upon sign-up, a Solana-based in-app wallet is auto-generated. Once verified, you can withdraw your $UPT directly to on-chain Solana wallets (like Phantom or Solflare) or supported CEX deposit addresses. <strong>(Note: EVM wallets like MetaMask are NOT supported).</strong></p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for desktop and mobile setup:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: Windows Setup -->
+                        <div class="video-box">
+                            <h4>🖥️ Windows / macOS Setup Guide</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_WINDOWS_VIDEO_ID" title="UpRock Desktop Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Mobile Setup -->
+                        <div class="video-box">
+                            <h4>📱 Android / iOS App Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_MOBILE_VIDEO_ID" title="UpRock Mobile Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Web3 protocols, DePIN network tokens ($UPT), point distributions, and estimated earnings are dynamic and subject to market volatility, AI compute demand, and network governance changes. Never invest funds or resources you cannot afford to risk.
+                </div>
+
             </div>
         </div>
-
-        <!-- 2 Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('android', this)">📱 1. Android</button>
-            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. Windows</button>
-        </div>
-
-        <!-- TAB 1: ANDROID GUIDE -->
-        <div id="tab-android" class="tab-pane content-card">
-            <h3>📱 Android Mobile Setup Guide (Background Node & $UPT Mining)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                The official UpRock Android app turns your smartphone into an automated DePIN edge node, gathering open AI web data and accumulating $UPT tokens continuously.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Register Account with Referral Link</div>
-                <div class="step-desc">
-                    Open <a href="https://link.uprock.com/i/3108c29c" target="_blank">Join UpRock AI</a> on your phone to link invite code <strong>3108c29c</strong>. Download the official UpRock app directly from Google Play or download the direct APK.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Sign In & Complete Email Verification</div>
-                <div class="step-desc">
-                    Launch the app, enter your email address, and confirm the instant verification code sent to your inbox. Your decentralized wallet address is provisioned automatically upon initial sign-in.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Configure Unrestricted Background Permissions</div>
-                <div class="step-desc">
-                    To maintain 24/7 uptime without Android killing the process:
-                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
-                        <li>Navigate to phone <strong>Settings → Apps → UpRock → Battery</strong>.</li>
-                        <li>Select <strong>Unrestricted / No Restrictions</strong> (Turn off battery optimization).</li>
-                        <li>Enable <strong>Autostart</strong> permissions.</li>
-                        <li>Lock UpRock in your <strong>Recent Apps</strong> screen using the lock icon.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Monitor $UPT Token Yield & Claim Daily Drops</div>
-                <div class="step-desc">
-                    Confirm that the status indicator reflects <strong>"Earning / Active"</strong>. Track your daily $UPT mining rate directly in the built-in Wallet tab, and check the Rewards section daily for additional token drops.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 LFG Alarm Daily Bonus:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    UpRock ecosystem members can also connect the companion LFG Alarm app to claim extra daily drops (+50 bonus points) and earn additional perks simply by checking in each morning.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Setup Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+UpRock+Mobile+Setup" title="UpRock Mobile Setup" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: WINDOWS GUIDE -->
-        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
-            <h3>💻 Windows Desktop Node Setup Guide (Dedicated Broadband Mining)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                The native UpRock Windows client runs quietly in your desktop background, leveraging residential broadband for enterprise AI telemetry with maximum uptime consistency.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Download Official Windows Installer</div>
-                <div class="step-desc">
-                    Visit <a href="https://link.uprock.com/i/3108c29c" target="_blank">Join UpRock AI</a>, navigate to the desktop downloads, and grab the official Windows installer (.exe).
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Install & Authenticate Your Desktop Client</div>
-                <div class="step-desc">
-                    Run the setup file and log in using the same email associated with your invite code <strong>3108c29c</strong>. The desktop client connects your PC node to your unified reward wallet.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Enable Auto-Start with Windows</div>
-                <div class="step-desc">
-                    In the application settings, toggle ON <strong>"Start with Windows"</strong>. This ensures your broadband sharing daemon initializes automatically whenever your PC reboots.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Track Desktop Bandwidth Telemetry</div>
-                <div class="step-desc">
-                    Minimize the client to your system tray. The desktop node operates with near-zero CPU footprint and steady data routing, syncing all earnings seamlessly with your main dashboard.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Multi-Device Advantage:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    You can operate both your Android phone and Windows desktop under the same verified UpRock account on different networks to multiply your total daily $UPT token yield.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Windows Node Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+UpRock+Windows" title="UpRock Windows Setup" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison: Architecture & Workload</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Overview of resource allocation across UpRock deployment environments:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Deployment Layer</th>
-                        <th style="width: 35%;">System Resource Usage</th>
-                        <th style="width: 40%;">Operational Status & Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Android Mobile</strong></td>
-                        <td>Idle Wi-Fi upload routing; minimal battery impact.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Convenient portable edge node)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Windows Desktop</strong></td>
-                        <td>Ultra-low background RAM (~20MB-35MB); zero GPU load.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Best for 24/7 broadband uptime)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Linux / MacOS</strong></td>
-                        <td>Native terminal daemon / Apple Silicon package.</td>
-                        <td><strong>Advanced Architecture</strong> (Cross-platform support available)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Operational Rules & Network Privacy</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>End-to-End Privacy Guarantee:</strong> UpRock exclusively gathers public, non-sensitive web data for AI indexing. It operates in an isolated sandbox and cannot access private files, personal browsing histories, or confidential device credentials.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Network Guidelines & Best Practices:</h4>
-                <ul>
-                    <li><strong>No VPNs or Commercial Proxies:</strong> The network requires authentic residential or mobile connections. Connecting through datacenter VPNs will pause node telemetry.</li>
-                    <li><strong>Continuous Connection:</strong> Keeping nodes online ensures priority routing for high-value AI telemetry requests and maximizes epoch token distributions.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../pages/about.html">About Us</a>
@@ -416,32 +398,24 @@
         </div>
     </footer>
 
-    <!-- Script Logic -->
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
-        }
-
-        function copyRefCode() {
-            const code = document.getElementById('refCodeText').innerText;
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
             navigator.clipboard.writeText(code).then(() => {
-                alert('UpRock Invite Code Copied: ' + code);
+                alert("Invite code copied: " + code);
             });
         }
 
         function toggleTheme() {
             const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
+            const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+                btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
+                btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -449,7 +423,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            document.getElementById('themeBtn').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
     </script>
 </body>
