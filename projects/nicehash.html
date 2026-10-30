@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NiceHash Setup Guide & Crypto Mining Marketplace | Total Crypto Hub</title>
-    <meta name="description" content="Verified setup guide for NiceHash. Learn how to configure Windows PC (QuickMiner) and Android Mobile (CPU Mining & Rig Manager) to earn automated Bitcoin (BTC) rewards.">
+    <title>NiceHash Architecture, Hashrate Marketplace & Mining Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of NiceHash: The world's leading Hashpower Marketplace. Learn how to rent your CPU/GPU/ASIC power and earn Bitcoin or USDT.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,155 +16,153 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #f59e0b;
-            --accent-hover: #d97706;
-            --code-bg: #0f172a;
-            --code-text: #fde68a;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
-            --bg-body: #0a0c10;
-            --bg-surface: #121620;
-            --header-bg: rgba(18, 22, 32, 0.95);
-            --border-color: #232b3f;
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #fbbf24;
-            --accent-hover: #f59e0b;
-            --code-bg: #030712;
-            --code-text: #fef3c7;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: #000; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
-
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-
-        /* Open Portal Box (No Invite Code Required) */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 15px; font-weight: 800; color: var(--accent-primary); letter-spacing: 0.5px; }
-        
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-join { 
+        .btn-hub-glow { 
             background: var(--accent-primary); 
-            color: #000; 
+            color: white; 
             text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
             font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25); 
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .btn-join:hover { background: var(--accent-hover); }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* 2 Platform Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: #000; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3); }
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: #000; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badges */
+        .btc-badge { background: #f59e0b; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* Terminal Code Block */
-        .terminal-box { background: var(--code-bg); border-radius: 10px; padding: 14px 18px; margin-top: 10px; font-family: 'Fira Code', monospace; font-size: 12px; color: var(--code-text); overflow-x: auto; border: 1px solid var(--border-color); }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-join { flex: 1; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -172,223 +170,233 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-box">
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/nicehash.png" alt="NiceHash" onerror="this.src='https://via.placeholder.com/60'">
-                </div>
-                <div class="hero-info">
-                    <h2>NiceHash <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Automated Hashpower Marketplace | Multi-Algorithm GPU/CPU Mining in Bitcoin</p>
-                </div>
-            </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Access Model</span>
-                    <span class="ref-code">Open Hashpower Marketplace</span>
-                </div>
-                <div class="ref-actions">
-                    <a href="https://www.nicehash.com" target="_blank" class="btn-join">🌐 Open NiceHash Portal</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2 Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('windows', this)">💻 1. Windows PC (QuickMiner)</button>
-            <button class="tab-nav-btn" onclick="switchTab('mobile', this)">📱 2. Android (Mobile Mining & Rig Manager)</button>
-        </div>
-
-        <!-- TAB 1: WINDOWS PC SETUP -->
-        <div id="tab-windows" class="tab-pane content-card">
-            <h3>💻 Windows PC Setup Guide (NiceHash QuickMiner & Auto-Mining)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                NiceHash QuickMiner automatically detects your graphics card (NVIDIA / AMD) and CPU, switching to the most profitable cryptocurrency algorithm in real time while paying you directly in Bitcoin ($BTC).
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Create Free Account on NiceHash</div>
-                <div class="step-desc">
-                    Go to the official website at <a href="https://www.nicehash.com" target="_blank">NiceHash Portal</a>. Complete your account registration with email and set up Two-Factor Authentication (2FA) for wallet security.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Download NiceHash QuickMiner Installer</div>
-                <div class="step-desc">
-                    In your dashboard, click <strong>Mining → Download Miner or Add ASIC</strong>. Choose <strong>NiceHash QuickMiner</strong> (recommended for beginners) or NiceHash Miner for multi-algorithm benchmarking.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Authorize Mining Address & Hardware Benchmark</div>
-                <div class="step-desc">
-                    Launch QuickMiner and log in or paste your <em>Mining Address</em> from your web dashboard. The software runs an automatic benchmark to identify peak efficiency settings for your hardware.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Start Mining & Receive Automated BTC Payouts</div>
-                <div class="step-desc">
-                    Click <strong>Start</strong>. Your PC will begin hashing. NiceHash calculates your accepted shares and credits Bitcoin directly into your internal wallet every 4 hours once minimum payout thresholds are reached.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">⚙️ Hardware Optimization Profile:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    QuickMiner includes built-in <strong>OCTune</strong> optimization presets (Lite, Medium, Efficient). These automatically tune GPU core clocks and undervolt power consumption to maintain cool operating temperatures.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 QuickMiner Walkthrough Video:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+NiceHash+QuickMiner" title="NiceHash Setup Tutorial" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: ANDROID MOBILE SETUP -->
-        <div id="tab-mobile" class="tab-pane content-card" style="display: none;">
-            <h3>📱 Android Mobile Guide: CPU Mining & Rig Monitoring</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Android phones can participate in NiceHash through two distinct channels: direct mobile CPU hashing via Stratum pool connections, and 24/7 rig fleet monitoring with the official mobile manager.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Method A: Direct Mobile CPU Mining via Stratum</div>
-                <div class="step-desc">
-                    You can connect your Android smartphone's multi-core ARM processor directly to NiceHash CPU algorithms (such as RandomX) using an ARM-compatible miner APK (e.g., XMRig for Android):
-                    <div class="terminal-box">
-                        Pool URL: stratum+tcp://randomxmonero.auto.nicehash.com:9200<br>
-                        User: YOUR_NICEHASH_MINING_ADDRESS.WorkerName<br>
-                        Password: x
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/nicehash.png" alt="NiceHash" onerror="this.src='https://via.placeholder.com/64';">
                     </div>
-                    Enter your NiceHash Bitcoin mining address as the username. The submitted mobile shares will register as an active worker directly in your dashboard.
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">NiceHash <span class="verified-badge">✓</span> <span class="btc-badge">Bitcoin & USDT Payouts</span></h2>
+                        <p>The World's Leading Hashrate Broker Marketplace</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">YOUR_NICEHASH_CODE</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="YOUR_NICEHASH_LINK" target="_blank" class="btn-join">🎁 Join NiceHash</a>
                 </div>
             </div>
 
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Method B: Official NiceHash Mobile Rig Manager</div>
-                <div class="step-desc">
-                    Install the official <strong>NiceHash</strong> app from the Google Play Store on your Android phone and sign in with your verified credentials. This app serves as your mobile command center to monitor all active phone and PC workers.
-                </div>
-            </div>
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
 
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Configure Unrestricted Battery & Thermal Guard</div>
-                <div class="step-desc">
-                    If running direct mobile mining, lock the app in your <strong>Recent Apps</strong> screen and set battery optimization to <strong>"No Restrictions"</strong>. Keep thread usage at 50%-75% of your total CPU cores to prevent phone overheating.
+                <!-- Point 1: What is NiceHash -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is NiceHash? (Hashrate Broker)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>NiceHash</strong> is fundamentally different from standard DePIN or single-coin mining pools. It operates as the world's largest global <strong>Hashrate Broker Marketplace</strong>. 
+                    </p>
+                    <p class="article-text">
+                        It acts as an intelligent middleman. On one side are "Buyers" who bid in real-time to rent computing power for specific cryptographic algorithms (like SHA256 or Scrypt). On the other side are "Sellers" (everyday miners like you) who connect their CPUs, GPUs, or ASICs to the network. NiceHash automatically routes your hardware's computing power to the highest-paying buyer, ensuring maximum profitability without you needing to manually switch coins.
+                    </p>
                 </div>
-            </div>
 
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Track Real-Time Worker Hashrate & Earnings</div>
-                <div class="step-desc">
-                    Both your mobile workers and desktop rigs will appear under the Rig Manager tab. Track accepted shares, speed, temperatures, and watch accumulated Bitcoin rewards update every payout cycle.
+                <!-- Point 2: Architecture & Blockchain Integration -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Blockchain Ecosystem (Agnostic Mining)</h3>
+                    </div>
+                    <p class="article-text">
+                        NiceHash does not run on its own proprietary Layer-1 blockchain. Instead, it is a blockchain-agnostic infrastructure layer:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🌐 Multi-Chain Proof-of-Work</h4>
+                            <p>Because buyers determine the workload, your hardware may be solving cryptographic puzzles for Bitcoin, Litecoin, Dogecoin, or Ravencoin networks simultaneously, depending on market demand.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚡ Stratum Connection Nodes</h4>
+                            <p>Miners connect directly to NiceHash via Stratum connection URLs. The platform manages the complex routing of these cryptographic shares (valid workloads) back to the buyers' selected mining pools.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📊 Real-Time Pay-Per-Share (RTPPS)</h4>
+                            <p>You are compensated using an RTPPS infrastructure. You earn fractions of a coin for every valid cryptographic share submitted by your hardware, regardless of whether a block is actually found by the buyer.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛡️ Custodial Web Wallet</h4>
+                            <p>You do not need a third-party Web3 wallet (like MetaMask) to start. Mining rewards accumulate automatically inside your secure, custodial web wallet hosted directly on the NiceHash Platform.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Setup Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+NiceHash+App" title="NiceHash Mobile App Tutorial" allowfullscreen></iframe>
+                <!-- Point 3: Hardware Support & Custom OS -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Hardware Support & NiceHash OS (NHOS)</h3>
+                    </div>
+                    <p class="article-text">
+                        NiceHash provides professional-grade tools for every level of miner, from casual gamers to enterprise ASIC farms:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Windows (QuickMiner)</th>
+                                <td>A highly optimized, 1-click miner utilizing an in-house engine (Excavator). Ideal for beginners looking to monetize gaming GPUs.</td>
+                            </tr>
+                            <tr>
+                                <th>NiceHash OS (NHOS)</th>
+                                <td>A proprietary, lightweight Linux-based operating system. It is designed to flash onto a USB drive and run entirely out of a rig's memory, maximizing hash stability.</td>
+                            </tr>
+                            <tr>
+                                <th>ASIC & Custom Firmware</th>
+                                <td>Natively supports direct Stratum URL connections for ASICs. Offers custom NiceHash Firmware to auto-tune specialized hardware for peak efficiency.</td>
+                            </tr>
+                            <tr>
+                                <th>Docker Environments</th>
+                                <td>Officially supported via the NiceHash Docker Miner, allowing containerized, isolated mining deployments on enterprise servers.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+                <!-- Point 4: Payouts & The Lightning Network -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Default Currencies, Payouts & Lightning Network</h3>
+                    </div>
+                    <p class="article-text">
+                        NiceHash simplifies the chaotic world of alt-coin mining by paying you exclusively in highly liquid, blue-chip assets:
+                    </p>
+                    <div class="alert-box">
+                        <h5>💸 Understanding the Payout Infrastructure:</h5>
+                        <p><strong>1. Default Earning Currencies (BTC or USDT):</strong> Regardless of which alt-coin your hardware is actually mining, NiceHash auto-converts the buyer's payment and deposits pure <strong>Bitcoin (BTC)</strong> or <strong>Tether (USDT)</strong> directly into your account balance.</p>
+                        <p style="margin-top:6px;"><strong>2. Payout Frequency:</strong> Depending on your hashpower, payout cycles trigger automatically. Balances update constantly, and internal payouts can occur as frequently as every 4 hours.</p>
+                        <p style="margin-top:6px;"><strong>3. Lightning Network Withdrawals:</strong> For withdrawing your BTC to an external wallet, NiceHash natively supports the <strong>Bitcoin Lightning Network</strong>. This allows for instant micro-withdrawals with near-zero transaction fees, bypassing the slow and expensive Layer-1 Bitcoin mainnet.</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: Network Rules & Infrastructure -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Network Allowances & Connection Rules</h3>
+                    </div>
+                    <p class="article-text">
+                        Because NiceHash is a raw computational marketplace, its network rules are much more permissive than bandwidth-sharing DePINs:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>♾️ Unlimited Devices Per IP</h4>
+                            <p>You can connect an unlimited number of mining rigs or ASICs under a single external IP address. There are no penalties for scaling a massive local farm.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚡ Low Latency is Crucial</h4>
+                            <p>While broadband and cellular connections are allowed, high latency (ping) will result in "stale" or rejected cryptographic shares, directly reducing your profitability.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛡️ VPN & VPS Routing</h4>
+                            <p>VPNs and VPS architectures are fully allowed for routing traffic, provided they do not introduce severe latency. This is often used by miners to bypass ISP throttling.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🏢 Enterprise Private Endpoints</h4>
+                            <p>For large-scale, institutional mining farms, NiceHash officially offers dedicated Private Endpoints to securely handle heavy traffic bypassing standard network firewalls.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 6: Mobile Rig Management -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Mobile App Clarification (Rig Manager)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Important Note on Mobile Mining:</strong> While NiceHash offers official applications on the Google Play Store and iOS App Store, <strong>native mobile mining (mining directly on your phone's processor) is NOT supported.</strong> 
+                    </p>
+                    <p class="article-text">
+                        These mobile apps function strictly as a "Rig Manager" portal. They allow you to remotely monitor your external desktop GPUs or ASIC hardware temperatures, track wallet deposits, and configure payout settings while away from your desk.
+                    </p>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for secure node deployment and wallet configuration:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: QuickMiner Setup -->
+                        <div class="video-box">
+                            <h4>🖥️ Windows QuickMiner Auto-Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_WINDOWS_VIDEO_ID" title="NiceHash Windows QuickMiner Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: NHOS USB Setup -->
+                        <div class="video-box">
+                            <h4>🐧 Flash & Boot NiceHash OS (NHOS)</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_NHOS_VIDEO_ID" title="NiceHash OS Bootable USB Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Hashrate marketplaces, Bitcoin (BTC) values, algorithmic difficulty, and hardware profitability are highly dynamic and subject to extreme market volatility. Always calculate your local electricity costs (kWh) against projected mining yields. Never invest funds or purchase hardware resources you cannot afford to risk.
+                </div>
+
             </div>
         </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison & System Specifications</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Overview of hardware roles and deployment status across NiceHash environments:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Deployment Layer</th>
-                        <th style="width: 35%;">Hardware Requirements</th>
-                        <th style="width: 40%;">Operational Role & Payout</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Windows PC (QuickMiner)</strong></td>
-                        <td>Dedicated NVIDIA / AMD GPU (4GB+ VRAM) or modern CPU.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Active</strong> (Primary hashing engine; automated BTC payouts)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Android Mobile (Mining & Control)</strong></td>
-                        <td>Modern multi-core Android phone (ARM64).</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Active</strong> (Stratum CPU worker hashing + remote rig fleet control)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>NiceHash OS (Linux)</strong></td>
-                        <td>Flashable USB drive for dedicated multi-GPU mining rigs.</td>
-                        <td><strong>Dedicated Mining Rigs</strong> (Headless Linux distribution for multi-GPU setups)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>ASIC Mining Layer</strong></td>
-                        <td>Dedicated SHA-256 / Scrypt ASIC hardware units.</td>
-                        <td><strong>Industrial Layer</strong> (Direct stratum connection for high-throughput mining)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Operational Rules & Hardware Safety Standard</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>Enterprise Security & Safety:</strong> NiceHash connects hashpower sellers with verified global buyers. All mining payouts are settled directly on the Bitcoin blockchain.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Mining Safety & Thermal Guidelines:</h4>
-                <ul>
-                    <li><strong>Mobile Thermal Care:</strong> When hashing on Android phones, never cover the device or charge with fast chargers during mining to avoid battery degradation.</li>
-                    <li><strong>Desktop Temperatures:</strong> Maintain PC GPU core temperatures below 70°C and VRAM junction temperatures below 90°C for hardware longevity.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../pages/about.html">About Us</a>
@@ -400,25 +408,24 @@
         </div>
     </footer>
 
-    <!-- Script Logic -->
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite code copied: " + code);
+            });
         }
 
         function toggleTheme() {
             const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
+            const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+                btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
+                btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -426,7 +433,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            document.getElementById('themeBtn').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
     </script>
 </body>
