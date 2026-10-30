@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EarnApp Setup Guide & Residential Bandwidth Node | Total Crypto Hub</title>
-    <meta name="description" content="Verified setup guide for EarnApp on Android Mobile and Windows PC. Learn how to configure residential bandwidth sharing, optimize battery settings, and earn passive rewards.">
+    <title>EarnApp Architecture, Real-Time Payouts & Node Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of EarnApp by Bright Data: A fiat-based passive income app. Learn how to earn USD via PayPal by sharing idle bandwidth with a pay-per-hour model.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,168 +16,154 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #16a34a;
-            --accent-hover: #15803d;
-            --code-bg: #0f172a;
-            --code-text: #4ade80;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
-            --bg-body: #060e0a;
-            --bg-surface: #0a1711;
-            --header-bg: rgba(10, 23, 17, 0.95);
-            --border-color: #173224;
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #22c55e;
-            --accent-hover: #16a34a;
-            --code-bg: #030712;
-            --code-text: #86efac;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
-
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-
-        /* Referral Box */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(22, 163, 74, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
-        
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-copy { 
-            background: var(--bg-surface); 
-            border: 1.5px solid var(--border-color); 
-            color: var(--text-heading); 
-            padding: 8px 14px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 12px; 
-            cursor: pointer; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 5px;
-            transition: all 0.2s;
-        }
-        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .btn-join { 
+        .btn-hub-glow { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
             font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25); 
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .btn-join:hover { background: var(--accent-hover); }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* 2 Platform Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3); }
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badges for EarnApp */
+        .fiat-badge { background: #3b82f6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .hourly-badge { background: #f59e0b; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-copy { flex: 1; justify-content: center; }
-            .ref-actions .btn-join { flex: 2; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -185,231 +171,248 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-box">
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/earnapp.png" alt="EarnApp" onerror="this.src='https://via.placeholder.com/60'">
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/earnapp.png" alt="EarnApp" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">EarnApp <span class="verified-badge">✓</span> <span class="fiat-badge">Fiat Only (USD)</span> <span class="hourly-badge">Pay-Per-Hour</span></h2>
+                        <p>Fiat-Based Passive Income & Web-Scraping by Bright Data</p>
+                    </div>
                 </div>
-                <div class="hero-info">
-                    <h2>EarnApp <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Verified Residential Proxy & Passive Bandwidth Monetization</p>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Link</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">pHAB3U3l</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy ID</button>
+                    </div>
+                    
+                    <a href="https://earnapp.com/i/pHAB3U3l" target="_blank" class="btn-join">🎁 Join EarnApp</a>
                 </div>
             </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Official Invite Code</span>
-                    <span class="ref-code" id="refCodeText">pHAB3U3l</span>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is EarnApp -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is EarnApp? (Core Infrastructure)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>EarnApp</strong> is a premier passive income platform operated by Bright Data, one of the world's leading web-intelligence and data scraping firms. Unlike the majority of projects listed on Total Crypto Hub, EarnApp is <strong>NOT</strong> a blockchain or Web3 token mining project. It is a traditional fiat-based application.
+                    </p>
+                    <p class="article-text">
+                        The application allows enterprise companies to conduct market research, monitor global pricing, and download public web pages by utilizing the idle internet bandwidth of everyday users' devices. In return for sharing your internet "pipeline," you are compensated directly in real USD (Fiat Cash).
+                    </p>
                 </div>
-                <div class="ref-actions">
-                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
-                    <a href="https://earnapp.com/i/pHAB3U3l" target="_blank" class="btn-join">⚡ Join EarnApp</a>
+
+                <!-- Point 2: Architecture & Hardware Support -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Hardware Support & Cross-Platform Accessibility</h3>
+                    </div>
+                    <p class="article-text">
+                        EarnApp is designed for seamless integration across almost all major hardware platforms, allowing you to maximize your connected devices:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>📱 Mobile Applications</h4>
+                            <p>Available on Android via direct APK download from their dashboard, and officially on the iOS App Store under the name "Bright Rewards."</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💻 Desktop Clients</h4>
+                            <p>Fully supported on Windows (64-bit) systems. A beta version is currently available for macOS users to monetize their desktop bandwidth.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🐧 Linux & Mini-PCs</h4>
+                            <p>EarnApp provides robust support for Linux (64-bit) and is highly optimized for lightweight 24/7 devices like the Raspberry Pi (arm7, arm64 architecture).</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛑 Strict Container Ban</h4>
+                            <p>In adherence to strict network quality rules, running EarnApp inside Linux Docker containers, Virtual Machines (VMs), or Emulators is strictly prohibited and will result in a ban.</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Point 3: The New Pay-Per-Hour Model -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>The New Earning Model (Pay-Per-Time)</h3>
+                    </div>
+                    <p class="article-text">
+                        Recently, EarnApp completely overhauled its compensation structure, moving away from the traditional Pay-per-GB (Data Transfer) model:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>⏱️ Active Time Accounting</h4>
+                            <p>You are now paid based on "Active Time" (Hourly Basis). Your earnings depend entirely on how many hours your device actively maintains a connection to the network and routes traffic.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🇺🇸 United States (US) Rates</h4>
+                            <p>US IPs earn a maximum of <strong>$0.0138 per active hour</strong> (capped at a maximum of $10 per month per IP). A minimum internet speed of 100 Mbps is required for optimal routing.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🌍 Rest of the World (ROW)</h4>
+                            <p>For global IPs (including India), the rate is <strong>$0.0069 per active hour</strong> (capped at a maximum of $5 per month per IP). A minimum speed of 10 Mbps is required.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚖️ Proportional Demand</h4>
+                            <p>Earnings are strictly proportional to network demand. If Bright Data only requires your IP for 30 minutes in a given hour, your earnings for that hour will be halved accordingly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Fiat Payouts & Fees -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Fiat Payouts, Thresholds & Transaction Fees</h3>
+                    </div>
+                    <p class="article-text">
+                        Because EarnApp operates exclusively in fiat currency (USD), there is zero support for crypto tokens (like USDT or BTC). Withdrawals are processed via traditional financial channels with the following real-time limits and fees:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>PayPal (Cash)</th>
+                                <td>Min. $2.50 for Manual / $10 for Auto-Redeem. <strong>(2% Handling Fee)</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Wise (Bank Transfer)</th>
+                                <td>Min. $10.00 threshold. <strong>($1.13 Flat Fee per transaction)</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Amazon Gift Cards</th>
+                                <td>Min. $50.00 threshold. <strong>(0% Fee - No transaction charge)</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Email Verification</th>
+                                <td>Your EarnApp login email MUST match your PayPal/Wise email to avoid rejected transactions.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 5: Privacy & Network Security -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Security, Privacy & IP Rules</h3>
+                    </div>
+                    <p class="article-text">
+                        EarnApp requires high-quality, authentic network connections to service its enterprise clients. To ensure your account remains in good standing, you must understand the following security parameters:
+                    </p>
+                    <div class="alert-box">
+                        <h5>🛡️ Safety & Mandatory Network Compliance:</h5>
+                        <p><strong>1. Antivirus Whitelisted:</strong> EarnApp is 100% safe. Its code is whitelisted by major antivirus engines (Windows Defender, McAfee, Avast). It does NOT access your personal data, passwords, or browsing history.</p>
+                        <p style="margin-top:6px;"><strong>2. No VPNs or Data Centers:</strong> The network demands authentic Residential Wi-Fi or Cellular 4G/5G connections. The use of Data Centers (DCH), Cloud Hosting (AWS, Azure), Virtual Machines (VM), or VPNs will result in an immediate, unnotified account ban.</p>
+                        <p style="margin-top:6px;"><strong>3. One Device Per IP (Optimization):</strong> While you can connect multiple devices to one account, EarnApp prioritizes only 1 device per IP address. Running 5 devices on the same home Wi-Fi will NOT multiply your earnings beyond the single IP monthly cap. You must use unique IPs (e.g., separate mobile carrier networks) for each device to scale earnings.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Hidden Earning Optimizations -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Hidden Earning Rules & Optimizations (TCN Tips)</h3>
+                    </div>
+                    <p class="article-text">
+                        Maximize your monthly USD yield by leveraging these advanced technical optimizations and avoiding hidden expiration traps:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🔋 Disable Battery Optimization</h4>
+                            <p>On Android devices, the OS will naturally put background apps to sleep. You must manually go into your device settings and allow unrestricted background activity for EarnApp, otherwise, your active time will halt.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚡ Ping Rate is King</h4>
+                            <p>Raw internet speed matters less than latency. A lower Ping ensures your device can accept and return micro-tasks faster than other nodes in your region, securing maximum hourly capacity.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⏰ The 365-Day Expiration Rule</h4>
+                            <p>If your account remains completely inactive for 1 year (365 days) with no active devices online, EarnApp will automatically delete your account and permanently forfeit all unwithdrawn USD balances.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🎯 Active Offerwall & VPN Referrals</h4>
+                            <p>Supplement passive income by completing surveys and app-testing via the dashboard Offerwall. Furthermore, you can earn daily bonuses by referring US friends to install the sister app, Bright VPN.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for desktop and mobile setup:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: Windows Setup -->
+                        <div class="video-box">
+                            <h4>🖥️ Windows & Raspberry Pi Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_WINDOWS_VIDEO_ID" title="EarnApp Desktop Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Mobile Setup -->
+                        <div class="video-box">
+                            <h4>📱 Android APK / iOS Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_MOBILE_VIDEO_ID" title="EarnApp Mobile Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Fiat reward distributions, hourly pay caps, and network demand are dynamic and determined entirely by Bright Data's enterprise routing requirements. Occasional CAPTCHAs or temporary IP flagging by third-party websites may occur while running bandwidth-sharing applications.
+                </div>
+
             </div>
         </div>
-
-        <!-- 2 Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('android', this)">📱 1. Android</button>
-            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. Windows</button>
-        </div>
-
-        <!-- TAB 1: ANDROID MOBILE GUIDE -->
-        <div id="tab-android" class="tab-pane content-card">
-            <h3>📱 Android Mobile Setup Guide (Background Residential Node)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                EarnApp allows Android smartphone operators to monetize idle residential Wi-Fi and mobile data. Powered by Bright Data, it delivers reliable passive USD earnings per connected IP address.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Register Account via Official Referral Portal</div>
-                <div class="step-desc">
-                    Open <a href="https://earnapp.com/i/pHAB3U3l" target="_blank">Join EarnApp</a> and sign up using your Google account to ensure invite code <strong>pHAB3U3l</strong> is linked to your dashboard.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Download & Install Official Android APK</div>
-                <div class="step-desc">
-                    From the web dashboard, click <strong>Download for Android</strong> to get the verified EarnApp APK installer. Open the downloaded package and complete the installation.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Log In & Link Device to Dashboard</div>
-                <div class="step-desc">
-                    Launch the EarnApp mobile application and tap <strong>Sign in with Google</strong> using the exact same email account created in Step 1. Your device will automatically bind and show up in your active dashboard device list.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Apply Unrestricted Battery Permissions</div>
-                <div class="step-desc">
-                    To keep the node sharing 24/7 without Android terminating the background process:
-                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
-                        <li>Go to phone <strong>Settings → Apps → EarnApp → Battery</strong>.</li>
-                        <li>Select <strong>Unrestricted / No Restrictions</strong> (Turn off battery optimization).</li>
-                        <li>Enable <strong>Autostart</strong> permissions.</li>
-                        <li>Lock EarnApp in your <strong>Recent Apps</strong> screen with the padlock icon.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Automated Daily Earnings:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Ensure the app toggle indicates <strong>"Status: Online"</strong>. Your traffic balance and real-time USD balance sync across your centralized EarnApp web dashboard every few minutes.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Android Setup Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+EarnApp+Android" title="EarnApp Android Setup Tutorial" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: WINDOWS DESKTOP GUIDE -->
-        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
-            <h3>💻 Windows Desktop Node Setup Guide (System Tray Execution)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Running EarnApp on a desktop or mini PC connected to unmetered residential broadband delivers the highest stability and maximum traffic allocation.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Download Windows Desktop Installer</div>
-                <div class="step-desc">
-                    Visit <a href="https://earnapp.com/i/pHAB3U3l" target="_blank">Join EarnApp</a>, sign in to your dashboard, and download the official <strong>EarnApp for Windows (.exe)</strong> installer.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Install Client & Link Account</div>
-                <div class="step-desc">
-                    Run the setup wizard. When prompted, complete the browser authentication with your Google account. Your PC node identity will register instantly on your web dashboard.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Enable Auto-Start with Windows</div>
-                <div class="step-desc">
-                    Right-click the EarnApp icon in your Windows Taskbar tray, open settings, and verify that <strong>"Run on Startup"</strong> is enabled. This guarantees continuous uptime even after system restarts or power cuts.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Configure Auto-Redeem / Payouts</div>
-                <div class="step-desc">
-                    In your web dashboard, set up your preferred payment method (PayPal, Amazon Gift Cards, or Wise). You can enable <strong>Auto-Redeem</strong> to automatically cash out whenever your balance hits the threshold ($2.50 for gift cards or $5.00 for PayPal).
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Multi-Device / Multi-IP Strategy:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    EarnApp permits one active device per residential IP address. If you manage multiple distinct broadband connections (home, office, or mobile hotspot), connect one device per IP to scale your monthly payouts.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Windows Setup Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+EarnApp+Windows" title="EarnApp Windows Setup Tutorial" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison & Deployment Architecture</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Overview of hardware footprints and operational support across deployment environments:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Platform Architecture</th>
-                        <th style="width: 35%;">System Resource Usage</th>
-                        <th style="width: 40%;">Deployment Recommendation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Android Mobile</strong></td>
-                        <td>Idle background network routing; low battery footprint.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Best for mobile Wi-Fi setups)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Windows PC</strong></td>
-                        <td>Ultra-low RAM (~15MB-30MB); zero CPU or disk overhead.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Recommended for 24/7 desktop / mini PC)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Linux / Raspberry Pi</strong></td>
-                        <td>Headless CLI daemon / Docker container.</td>
-                        <td><strong>Advanced Developer Layer</strong> (Official terminal package available)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>macOS / iOS</strong></td>
-                        <td>Apple Silicon / native app support.</td>
-                        <td><strong>Official Release</strong> (Supported via official dashboard download)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Operational Rules & Network Security</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>Enterprise Security Standard:</strong> EarnApp routes verified public web intelligence traffic (e.g., e-commerce pricing, search indexing, and cybersecurity verification). The client operates in an isolated sandbox with zero access to personal files, browsing histories, or private credentials.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Network Compliance & Fair-Use Rules:</h4>
-                <ul>
-                    <li><strong>No Datacenter IPs or Commercial VPNs:</strong> The network strictly accepts residential or mobile IP addresses. Hosting IPs or commercial VPN proxies are rejected automatically.</li>
-                    <li><strong>One Device Per Residential IP:</strong> Connecting multiple devices on the same Wi-Fi router will share the same allocation. For higher aggregate earnings, run devices on separate unique networks.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../pages/about.html">About Us</a>
@@ -421,32 +424,24 @@
         </div>
     </footer>
 
-    <!-- Script Logic -->
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
-        }
-
-        function copyRefCode() {
-            const code = document.getElementById('refCodeText').innerText;
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
             navigator.clipboard.writeText(code).then(() => {
-                alert('EarnApp Invite Code Copied: ' + code);
+                alert("Invite link copied: https://earnapp.com/i/" + code);
             });
         }
 
         function toggleTheme() {
             const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
+            const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+                btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
+                btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -454,7 +449,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            document.getElementById('themeBtn').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
     </script>
 </body>
