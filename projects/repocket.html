@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repocket Setup Guide & Passive Bandwidth Monetization | Total Crypto Hub</title>
-    <meta name="description" content="Verified setup guide for Repocket on Android Mobile and Windows PC. Learn idle internet bandwidth sharing, device optimization, and claiming your $5 sign-up bonus.">
+    <title>Repocket Architecture, Proxy Network & Payout Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of Repocket. Learn how to earn passive income by sharing internet bandwidth via Windows, Mac, Android, or Docker and cash out via Wise, Stake, or Binance.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,168 +16,153 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #ef4444;
-            --accent-hover: #dc2626;
-            --code-bg: #0f172a;
-            --code-text: #fca5a5;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
-            --bg-body: #0d0a0b;
-            --bg-surface: #171113;
-            --header-bg: rgba(23, 17, 19, 0.95);
-            --border-color: #2b1f23;
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #f87171;
-            --accent-hover: #ef4444;
-            --code-bg: #030712;
-            --code-text: #fecaca;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
-
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-
-        /* Referral Box */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(239, 68, 68, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; }
-        
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-copy { 
-            background: var(--bg-surface); 
-            border: 1.5px solid var(--border-color); 
-            color: var(--text-heading); 
-            padding: 8px 14px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 12px; 
-            cursor: pointer; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 5px;
-            transition: all 0.2s;
-        }
-        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .btn-join { 
+        .btn-hub-glow { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
             font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25); 
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .btn-join:hover { background: var(--accent-hover); }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* 2 Platform Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3); }
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badge */
+        .proxy-badge { background: #3b82f6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-copy { flex: 1; justify-content: center; }
-            .ref-actions .btn-join { flex: 2; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -185,231 +170,222 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-box">
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/repocket.png" alt="Repocket" onerror="this.src='https://via.placeholder.com/60'">
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/repocket.png" alt="Repocket" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Repocket <span class="verified-badge">✓</span> <span class="proxy-badge">Proxy Network</span></h2>
+                        <p>Passive Income Bandwidth Sharing & Micro-Task Marketplace</p>
+                    </div>
                 </div>
-                <div class="hero-info">
-                    <h2>Repocket <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Residential Bandwidth Sharing & Global Proxy Mesh Infrastructure</p>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Portal</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">REPOCKET</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="https://repocket.com" target="_blank" class="btn-join">🎁 Open Repocket Portal</a>
                 </div>
             </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Starter Bonus Code ($5 Bonus)</span>
-                    <span class="ref-code" id="refCodeText">zI8S</span>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Repocket -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Repocket? (Core Infrastructure)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Repocket</strong> is a global passive income platform and mobile application that enables users to earn money by sharing their unused internet bandwidth and completing micro-tasks[cite: 86]. Operating similarly to proxy network platforms like Honeygain, Repocket rents out your idle internet connection to verified corporate businesses[cite: 86].
+                    </p>
+                    <p class="article-text">
+                        Led by CEO Jean-Patrick Bisson[cite: 86], the platform has scaled significantly, claiming over 2 million users globally[cite: 86] and establishing itself as a reliable supplemental income stream for web intelligence, SEO monitoring, and data aggregation[cite: 86].
+                    </p>
                 </div>
-                <div class="ref-actions">
-                    <button class="btn-copy" onclick="copyRefCode()">📋 Copy</button>
-                    <a href="https://link.repocket.com/zI8S" target="_blank" class="btn-join">⚡ Claim $5 Bonus</a>
+
+                <!-- Point 2: Platform Fundamentals & Metrics -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Platform Fundamentals & Traction</h3>
+                    </div>
+                    <p class="article-text">
+                        Unlike blockchain-native Web3 protocols, Repocket is structured as a traditional web software service optimized for global data routing:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Leadership</th>
+                                <td>Led by CEO Jean-Patrick Bisson[cite: 86].</td>
+                            </tr>
+                            <tr>
+                                <th>Global Scale</th>
+                                <td>Claims over 2 million registered users worldwide with more than $500,000 paid out[cite: 86].</td>
+                            </tr>
+                            <tr>
+                                <th>Native Token</th>
+                                <td><strong>None.</strong> Operates as a traditional fiat/digital rewards platform without an on-chain token.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+                <!-- Point 3: Hardware Support & Docker Integration -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Hardware Support & Docker API Integration</h3>
+                    </div>
+                    <p class="article-text">
+                        Repocket provides extensive cross-platform compatibility, allowing individual users and server operators to deploy nodes effortlessly:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>📱 Mobile Applications</h4>
+                            <p>Fully supported native background apps available for both Android and iOS devices[cite: 86].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💻 Desktop Clients</h4>
+                            <p>Optimized desktop applications for Windows, macOS, and Linux systems[cite: 86].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🐳 Docker Container Support</h4>
+                            <p>Server operators can deploy Repocket using containerized environments by inputting their unique Dashboard API Key[cite: 86].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔄 Multi-Device Limits</h4>
+                            <p>Users can link up to <strong>5 concurrent devices</strong>, provided each device operates on a distinct IP network[cite: 86].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Active Earning (Bandwidth & Offers) -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Active Earning: Bandwidth & Offer Marketplace</h3>
+                    </div>
+                    <p class="article-text">
+                        To accelerate earnings beyond passive background data sharing, Repocket incorporates an interactive micro-task marketplace:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🌐 Passive Bandwidth Sharing</h4>
+                            <p>The app runs quietly in the background, securely routing encrypted proxy traffic for market research and SEO monitoring[cite: 86].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🎁 Complete Offers & Surveys</h4>
+                            <p>Users can boost cash flow by finishing promotional micro-tasks, installing partner apps (like Zenshield), and completing surveys[cite: 86, 87].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: Low Payout Threshold & Partners -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Payout Methods & Low Threshold ($7.00)</h3>
+                    </div>
+                    <p class="article-text">
+                        A major benefit of Repocket is its low barrier to cash out compared to traditional competitor platforms:
+                    </p>
+                    <div class="alert-box">
+                        <h5>💸 Withdrawal Rules & Partners:</h5>
+                        <p><strong>1. Low Minimum Payout:</strong> The minimum cash-out threshold starts at just <strong>$7.00</strong>, allowing users to redeem earnings much faster[cite: 88].</p>
+                        <p style="margin-top:6px;"><strong>2. Trusted Payout Partners:</strong> The platform integrates directly with trusted financial partners such as <strong>Stake, Wise, and Binance</strong>, alongside standard crypto and exchange-linked payouts depending on user jurisdiction[cite: 86, 88].</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Platform Rules & Security Warnings -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Platform Rules & Fraud Prevention (TCN Tips)</h3>
+                    </div>
+                    <p class="article-text">
+                        To keep your account safe and prevent permanent balance forfeiture, adhere strictly to Repocket's compliance guidelines:
+                    </p>
+                    <div class="rule-box">
+                        <h5>⚠️ Strict Anti-Fraud Parameters:</h5>
+                        <p><strong>1. Zero Tolerance for VPNs/Proxies:</strong> Using a VPN, commercial proxy, emulator, bot, or location-masking tool is strictly prohibited. Doing so triggers automated fraud alerts, leading to immediate account termination and forfeiture of your entire balance[cite: 86].</p>
+                        <p style="margin-top:6px;"><strong>2. Data Retention Policy:</strong> Note that according to their privacy policy, essential account details and bandwidth metrics cannot be deleted upon request once registered[cite: 86].</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for desktop app deployment and Docker API key setup:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: Desktop Setup -->
+                        <div class="video-box">
+                            <h4>🖥️ Repocket Desktop & Mobile Guide</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_DESKTOP_VIDEO_ID" title="Repocket Desktop Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Docker Setup -->
+                        <div class="video-box">
+                            <h4>🐳 Docker API Key Server Deployment</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_DOCKER_VIDEO_ID" title="Repocket Docker Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Proxyware earnings, payout thresholds, and supported cash-out channels vary by region. Never use VPNs or emulators on bandwidth-sharing platforms. Never invest funds or resources you cannot afford to risk.
+                </div>
+
             </div>
         </div>
-
-        <!-- 2 Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('android', this)">📱 1. Android</button>
-            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. Windows</button>
-        </div>
-
-        <!-- TAB 1: ANDROID MOBILE GUIDE -->
-        <div id="tab-android" class="tab-pane content-card">
-            <h3>📱 Android Mobile Setup Guide (Background Edge Node)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Repocket allows smartphone users to safely monetize unmetered residential Wi-Fi and mobile data in the background, routing public web indexing requests to generate passive earnings.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Claim $5 Welcome Bonus via Referral Link</div>
-                <div class="step-desc">
-                    Visit <a href="https://link.repocket.com/zI8S" target="_blank">Join Repocket</a> and create your account. Applying code <strong>zI8S</strong> activates an instant $5 starter balance in your dashboard.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Install Official Android Application</div>
-                <div class="step-desc">
-                    Download the official <strong>Repocket</strong> app from the Google Play Store or obtain the official standalone APK from your web portal. Sign in using your registered credentials.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Enable Sharing & Apply Unrestricted Battery Settings</div>
-                <div class="step-desc">
-                    Inside the app, toggle ON <strong>"Share Internet"</strong>. To prevent Android from terminating the background service:
-                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
-                        <li>Go to phone <strong>Settings → Apps → Repocket → Battery</strong>.</li>
-                        <li>Select <strong>Unrestricted / No Restrictions (Don't optimize)</strong>.</li>
-                        <li>Enable <strong>Autostart</strong> permissions.</li>
-                        <li>Lock Repocket in your <strong>Recent Apps</strong> screen with the padlock icon.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Track Real-Time Bandwidth & Payouts</div>
-                <div class="step-desc">
-                    The app will run quietly and display your shared megabytes in real time. Once reaching the payout threshold, withdraw funds via PayPal, Wise, or supported crypto options.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Cellular Data Controls:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Inside the app settings, you can toggle between Wi-Fi only mode or enable cellular data sharing with customizable monthly usage limits.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Setup Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Repocket+Android" title="Repocket Android Tutorial" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: WINDOWS DESKTOP GUIDE -->
-        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
-            <h3>💻 Windows Desktop Setup Guide (24/7 Fixed Broadband Node)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Running Repocket on a desktop PC or mini PC connected to home fiber broadband ensures maximum node uptime and prioritizes your connection for high-volume residential proxy traffic.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Download Official Windows Desktop Client</div>
-                <div class="step-desc">
-                    Log in to your account at <a href="https://link.repocket.com/zI8S" target="_blank">Repocket Dashboard</a>. Click <strong>Download App → Windows (.exe)</strong> to download the official desktop client.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Install & Authenticate System Tray Client</div>
-                <div class="step-desc">
-                    Run the setup wizard, sign in with your email and password, and the Repocket icon will dock into your Windows taskbar system tray, showing an active green sharing state.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Enable Auto-Start with Windows</div>
-                <div class="step-desc">
-                    Right-click the Repocket tray icon, open settings, and ensure <strong>"Launch on System Startup"</strong> is enabled so the node resumes sharing automatically after system reboots.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Multi-Device Deployment Strategy</div>
-                <div class="step-desc">
-                    Repocket permits multiple devices on distinct IP connections. Deploying instances across home broadband, office Wi-Fi, and cellular networks multiplies passive monthly yield.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Mini PC / 24/7 Setup Advantage:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    The desktop client consumes negligible memory (~20MB RAM) and zero GPU/CPU load, making it ideal to run concurrently alongside your other DePIN nodes.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Windows Node Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Repocket+Windows" title="Repocket Windows Setup" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison & System Specifications</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Review resource consumption and deployment status across all supported environments:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Deployment Layer</th>
-                        <th style="width: 35%;">System Resource Usage</th>
-                        <th style="width: 40%;">Operational Status & Recommendation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Android Mobile</strong></td>
-                        <td>Idle background network routing; low battery impact.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Best for mobile Wi-Fi & cellular data)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Windows PC (GUI)</strong></td>
-                        <td>Ultra-low RAM (~15MB-30MB); zero CPU or disk load.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Verified</strong> (Recommended for 24/7 desktop / mini PC)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Linux / Docker / CLI</strong></td>
-                        <td>Headless Docker container execution.</td>
-                        <td><strong>Advanced Developer Layer</strong> (Official Docker container available)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>macOS / iOS</strong></td>
-                        <td>Native Apple Silicon & iOS background sharing.</td>
-                        <td><strong>Official Release</strong> (Supported via official dashboard download)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Operational Rules & Network Security Standard</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>Enterprise Data Sandbox:</strong> Repocket routes verified commercial web traffic (such as search engine indexing, ad verification, and pricing intelligence). The application operates in an isolated environment with zero access to personal files, stored passwords, contacts, or private browsing history.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Network Compliance & Fair-Use Guidelines:</h4>
-                <ul>
-                    <li><strong>No Datacenter IPs or Commercial VPNs:</strong> The network strictly requires authentic residential or mobile IP addresses. Hosting IPs or commercial VPN tunnels will be rejected automatically.</li>
-                    <li><strong>One Device Per Residential IP:</strong> Connecting multiple devices on the same Wi-Fi router shares a single bandwidth pool. Connect devices to distinct networks for higher payouts.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../pages/about.html">About Us</a>
@@ -421,32 +397,24 @@
         </div>
     </footer>
 
-    <!-- Script Logic -->
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
-        }
-
-        function copyRefCode() {
-            const code = document.getElementById('refCodeText').innerText;
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
             navigator.clipboard.writeText(code).then(() => {
-                alert('Repocket Starter Bonus Code Copied: ' + code);
+                alert("Portal code copied: " + code);
             });
         }
 
         function toggleTheme() {
             const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
+            const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+                btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
+                btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -454,7 +422,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            document.getElementById('themeBtn').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
     </script>
 </body>
