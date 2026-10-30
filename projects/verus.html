@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VerusCoin Setup Guide & Mobile CPU Mining | Total Crypto Hub</title>
-    <meta name="description" content="Verified setup guide for VerusCoin (VRSC). Learn how to configure Android Mobile (Verus Miner APK) and Windows PC CPU mining using the VerusHash algorithm for passive crypto rewards.">
+    <title>Verus Mobile Architecture, CPU Mining & VerusID Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of Verus Network (VRSC). Learn how to mine with your CPU, set up a VerusID, and secure your 24-word non-custodial wallet seed phrase.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,155 +16,153 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #3165d4;
-            --accent-hover: #214bb0;
-            --code-bg: #0f172a;
-            --code-text: #93c5fd;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
-            --bg-body: #060913;
-            --bg-surface: #0c1122;
-            --header-bg: rgba(12, 17, 34, 0.95);
-            --border-color: #1a233d;
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #3b82f6;
-            --accent-hover: #2563eb;
-            --code-bg: #030712;
-            --code-text: #bfdbfe;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
-
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-
-        /* Open Protocol Box (No Invite Code Required) */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(49, 101, 212, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 15px; font-weight: 800; color: var(--accent-primary); letter-spacing: 0.5px; }
-        
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-join { 
+        .btn-hub-glow { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
             font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(49, 101, 212, 0.25); 
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .btn-join:hover { background: var(--accent-hover); }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* 2 Platform Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(49, 101, 212, 0.3); }
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badges */
+        .cpu-badge { background: #6366f1; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* Terminal Code Block */
-        .terminal-box { background: var(--code-bg); border-radius: 10px; padding: 14px 18px; margin-top: 10px; font-family: 'Fira Code', monospace; font-size: 12px; color: var(--code-text); overflow-x: auto; border: 1px solid var(--border-color); }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-join { flex: 1; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -172,234 +170,219 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-box">
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/verus.png" alt="VerusCoin" onerror="this.src='https://via.placeholder.com/60'">
-                </div>
-                <div class="hero-info">
-                    <h2>VerusCoin (VRSC) <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Community-Driven Proof-of-Power Blockchain | CPU & Mobile-Optimized VerusHash Mining</p>
-                </div>
-            </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Access Model</span>
-                    <span class="ref-code">Open-Source PoW Blockchain</span>
-                </div>
-                <div class="ref-actions">
-                    <a href="https://verus.io" target="_blank" class="btn-join">🌐 Open Verus Portal</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2 Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('android', this)">📱 1. Android Mobile Mining</button>
-            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. Windows PC Mining</button>
-        </div>
-
-        <!-- TAB 1: ANDROID MOBILE SETUP -->
-        <div id="tab-android" class="tab-pane content-card">
-            <h3>📱 Android Mobile Mining Setup Guide (Verus Miner APK)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                VerusCoin is globally famous for its mobile CPU efficiency. The proprietary <strong>VerusHash 2.2b</strong> algorithm is specifically designed to equalize ARM processors with desktop CPUs, making Android phones ideal for mining farms.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Create a Verus Wallet & Get VRSC Address</div>
-                <div class="step-desc">
-                    Visit <a href="https://verus.io" target="_blank">Verus Official Portal</a> and download the <strong>Verus Mobile Wallet</strong> from Google Play or GitHub. Set up your wallet, securely back up your 24-word seed phrase, and copy your native <code>VRSC Receiving Address</code> (starting with 'R').
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Download Verus Miner APK</div>
-                <div class="step-desc">
-                    Download the official open-source <strong>VerusMiner</strong> APK (e.g., from the official Verus GitHub release page). Install the package on your Android phone and grant basic network storage permissions.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Configure Mining Pool & Worker Settings</div>
-                <div class="step-desc">
-                    Launch the VerusMiner app and configure the following pool parameters:
-                    <div class="terminal-box">
-                        Pool: stratum+tcp://pool.verus.io:9999 (or vipor.net:3999)<br>
-                        Wallet Address: YOUR_VERUS_WALLET_ADDRESS.Worker1<br>
-                        Password: x<br>
-                        CPU Threads: Set to 6 or 7 (on an 8-core processor)
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/verus.png" alt="Verus Mobile" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Verus Network <span class="verified-badge">✓</span> <span class="cpu-badge">CPU Mining & VerusID</span></h2>
+                        <p>Independent Layer-1 Ecosystem & Self-Sovereign Identity Protocol</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Start Mining & Keep Device Cool</div>
-                <div class="step-desc">
-                    Tap <strong>Start Mining</strong>. The app will display real-time hashrate (typically 3 to 6 MH/s per modern smartphone). Ensure the phone is kept in a well-ventilated area, lock the app in your <strong>Recent Apps</strong> screen, and set battery settings to <strong>"No Restrictions"</strong>.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Farm Scalability Tip:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Operators running multi-phone setups can designate unique worker IDs (e.g., <code>Address.Phone1</code>, <code>Address.Phone2</code>) to track individual device temperature and hashrate metrics directly on the pool dashboard.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Mining Walkthrough Video:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Verus+Mobile+Mining" title="Verus Mobile Mining Setup" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: WINDOWS PC SETUP -->
-        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
-            <h3>💻 Windows PC CPU Mining Guide (ccminer / nheqminer)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Running Verus mining on Windows utilizes desktop CPU instruction sets (AVX-512 / AES) to achieve high multi-megahash throughput on multi-core processors.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Download Verified Verus CPU Miner</div>
-                <div class="step-desc">
-                    Visit <a href="https://verus.io" target="_blank">Verus Portal</a>, navigate to the mining section, and download the official <strong>ccminer</strong> or <strong>nheqminer</strong> release built for Windows (x64).
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Configure Start Batch File (.bat)</div>
-                <div class="step-desc">
-                    Extract the downloaded archive. Right-click the <code>run.bat</code> file, select Edit, and replace the contents with your pool and wallet address:
-                    <div class="terminal-box">
-                        ccminer.exe -a verus -o stratum+tcp://pool.verus.io:9999 -u YOUR_VERUS_WALLET_ADDRESS.DesktopRig -p x -t 6
+                <div class="hero-right">
+                    <div class="invite-box" style="flex: 1; justify-content: center; padding: 10px 18px;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Use Official Download Link Below 👇</span>
                     </div>
-                    <em>(Adjust <code>-t 6</code> to match your preferred number of CPU threads).</em>
+                    
+                    <a href="https://verus.io/wallet/mobile" target="_blank" class="btn-join">🎁 Download Verus Mobile</a>
                 </div>
             </div>
 
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Execute Mining Daemon & Monitor Megahashes</div>
-                <div class="step-desc">
-                    Save the batch file and run it as Administrator. The terminal will establish connection to the stratum pool and display live accepted shares with current hashrate.
-                </div>
-            </div>
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
 
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Track Payouts on Pool Dashboard</div>
-                <div class="step-desc">
-                    Open your mining pool website (e.g., pool.verus.io or vipor.net) and paste your VRSC address in the search box to monitor unpaid balance, daily estimated rewards, and automated wallet payouts.
+                <!-- Point 1: What is Verus -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Verus Network (VRSC)?</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Verus</strong> is a fundamentally community-driven, open-source Layer-1 decentralized ecosystem built on a customizable cross-chain consensus mechanism called PBaaS (Public Blockchains as a Service). It operates independently, connected natively via a trustless bridge to Ethereum.
+                    </p>
+                    <p class="article-text">
+                        Unlike traditional Web3 protocols backed by heavy venture capital, Verus represents a true decentralized ethos. It currently focuses on core infrastructure pillars: Self-Sovereign Identity (VerusID), protocol-level MEV-resistant DeFi, zero-knowledge data encryption, and robust, scalable cross-chain architecture.
+                    </p>
                 </div>
-            </div>
 
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Mini PC / CPU Efficiency:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Modern low-power desktop CPUs and mini PCs (such as Intel Core i5/i7 or AMD Ryzen) mine VerusHash with great electrical efficiency, generating steady rewards without running expensive graphics cards.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Windows CPU Setup Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Verus+PC+Mining" title="Verus PC Mining Setup" allowfullscreen></iframe>
+                <!-- Point 2: Architecture & Tokenomics -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Blockchain Fundamentals & 100% Fair Launch</h3>
+                    </div>
+                    <p class="article-text">
+                        Verus (VRSC) operates with a maximum supply cap of 83,540,184 tokens. Its tokenomic model is a rarity in the modern crypto landscape:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>100% Fair Launch</th>
+                                <td>There was absolutely 0% pre-mine and 0% ICO allocation. Every token in circulation is generated purely via network validation (mining and staking).</td>
+                            </tr>
+                            <tr>
+                                <th>No VC Backing</th>
+                                <td>Verus has no traditional venture capital backing or institutional lead investors. It is sustained entirely by continuous community donations and open ecosystem grants.</td>
+                            </tr>
+                            <tr>
+                                <th>Hybrid PoP Consensus</th>
+                                <td>Employs a "Proof-of-Power" (PoP) consensus mechanism, securely splitting block rewards 50/50 between Proof-of-Work (PoW) miners and Proof-of-Stake (PoS) stakers.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+                <!-- Point 3: CPU Mining Accessibility -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Accessible CPU Mining (No ASICs Required)</h3>
+                    </div>
+                    <p class="article-text">
+                        One of Verus's most defining characteristics is its extreme accessibility for everyday users:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>💻 CPU-Friendly Algorithm</h4>
+                            <p>The network is intentionally optimized to be highly CPU-friendly. You do not need expensive ASIC rigs or high-end GPUs. You can actively participate in block validation using standard personal computers.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📱 Mobile Mining Support</h4>
+                            <p>Verus pushes accessibility further by allowing active participation and staking directly from consumer mobile devices via the Verus Mobile application.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: The Verus Mobile App -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>The Verus Mobile Hub & Core Features</h3>
+                    </div>
+                    <p class="article-text">
+                        Developed by the Autonomous Software Foundation, the <strong>Verus Mobile App</strong> (available for Android and iOS) functions as a non-custodial, multi-currency wallet and a central command center for your digital identity:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>👛 Multi-Currency Support</h4>
+                            <p>Beyond managing native VRSC, the wallet acts as a secure hub to store and manage Bitcoin (BTC), Ethereum (ETH), and other compatible ecosystem tokens.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛡️ VerusID (Self-Sovereign Identity)</h4>
+                            <p>Say goodbye to long, confusing hexadecimal wallet addresses. VerusID allows you to create human-readable, friendly names (e.g., <em>name@</em>) for receiving funds and interacting with the blockchain.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🕵️ Zero-Knowledge Privacy</h4>
+                            <p>The application supports advanced zk-SNARK privacy addresses, enabling completely confidential transactions and secure, encrypted messaging.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>👥 Multi-Profile Setup</h4>
+                            <p>The non-custodial architecture allows for locally encrypted, multi-profile setups on a single device, secured by your device's biometrics or master passwords.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: CRITICAL Security - The Seed Phrase -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>CRITICAL WALLET SECURITY (The 24-Word Seed Phrase)</h3>
+                    </div>
+                    <p class="article-text">
+                        Because Verus Mobile is a <strong>Non-Custodial Wallet</strong>, there is no "Forgot Password" button. Your 24-word Recovery Phrase (Seed Phrase) is the absolute Master Key to your funds. If you lose it, your funds are gone forever. Follow these strict security protocols:
+                    </p>
+                    <div class="alert-box">
+                        <h5>⚠️ Mandatory Seed Phrase Safety Protocols:</h5>
+                        <p><strong>1. Write it on Physical Paper:</strong> ALWAYS write the 24 words down on paper with a pen, in the exact 1-to-24 order. NEVER take a screenshot, photograph, or save the phrase in digital apps (WhatsApp, Google Drive, Email, Notepad). If your phone is hacked, your funds will be stolen instantly.</p>
+                        <p style="margin-top:6px;"><strong>2. Store Duplicate Copies:</strong> Create at least two physical copies. Store one in a secure home safe, and another in a separate, trusted location to protect against fire or water damage.</p>
+                        <p style="margin-top:6px;"><strong>3. Upgrade to Metal Backups:</strong> For long-term security, invest in a "Crypto Steel" or metal seed storage plate. Engraving your 24 words onto stainless steel protects your master key from fire, floods, and physical degradation.</p>
+                        <p style="margin-top:6px;"><strong>4. NEVER Share Your Phrase:</strong> The Verus Foundation, customer support, or community admins will NEVER ask for your 24 words. Anyone asking for this phrase is a scammer. You only input these words directly into the official app when restoring a wallet on a new device.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Pro Tip - The Verification Wipe -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Security Optimization (TCN Pro Tip)</h3>
+                    </div>
+                    <p class="article-text">
+                        Before transferring any significant amount of VRSC, BTC, or ETH into your newly created Verus Mobile wallet, perform the <strong>Verification Wipe</strong>:
+                    </p>
+                    <div class="rule-box">
+                        <h5>✅ The Verification Wipe Process:</h5>
+                        <p>Immediately after generating your wallet and writing down the 24 words, deliberately delete the app or wipe the wallet data. Then, attempt to <strong>Restore</strong> the wallet using the paper copy you just created. If you successfully regain access, you have 100% confirmation that your backup is accurate and safe to use for deposits.</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for securely generating your Verus wallet and setting up your VerusID:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: Wallet Setup & Backup -->
+                        <div class="video-box">
+                            <h4>📱 Verus Mobile Wallet & Seed Backup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_WALLET_VIDEO_ID" title="Verus Mobile Wallet Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: VerusID & Mining Setup -->
+                        <div class="video-box">
+                            <h4>🛡️ VerusID Setup & CPU Mining Guide</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_MINING_VIDEO_ID" title="VerusID & CPU Mining Setup" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Web3 protocols, PoP consensus, Verus (VRSC) tokenomics, and CPU mining yields are dynamic and subject to market volatility. Maintaining the physical security of your 24-word recovery phrase is entirely your personal responsibility. Never invest funds or resources you cannot afford to risk.
+                </div>
+
             </div>
         </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison & Mining Specifications</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Overview of hardware roles and operational parameters across Verus mining architectures:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Mining Layer</th>
-                        <th style="width: 35%;">Hardware Requirements</th>
-                        <th style="width: 40%;">Expected Hashrate & Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Android Mobile (Verus Miner)</strong></td>
-                        <td>ARM64 smartphone (8-core CPU recommended).</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Active</strong> (~3.5 MH/s - 6.5 MH/s per modern device)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Windows PC (ccminer)</strong></td>
-                        <td>Multi-core desktop / laptop / mini PC CPU.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Active</strong> (~5.0 MH/s - 25.0+ MH/s depending on CPU cores)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Linux / Headless VPS</strong></td>
-                        <td>Ubuntu / Debian server with ccminer CLI daemon.</td>
-                        <td><strong>Server Deployment</strong> (Terminal-based background service)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Proof of Stake (PoS)</strong></td>
-                        <td>Verus Desktop Wallet with staking enabled.</td>
-                        <td><strong>Staking Layer</strong> (Hold VRSC in desktop wallet to validate blocks passively)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Operational Rules & Hardware Safety Standard</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>Decentralized Consensus Standard:</strong> Verus uses a hybrid Proof-of-Power (50% PoW + 50% PoS) consensus that prevents 51% attacks and ASIC centralization. Mining rewards are distributed directly by the blockchain without intermediaries.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Mining Safety & Hardware Protection:</h4>
-                <ul>
-                    <li><strong>Leave Spare CPU Cores:</strong> On an 8-core mobile phone, mine on 6 or 7 threads. Leaving 1 thread free prevents the phone UI from lagging and keeps temperatures manageable.</li>
-                    <li><strong>Active Air Circulation:</strong> When running 24/7 mobile mining farms, remove bulky phone cases and use a small USB cooling fan to prevent battery swelling.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../pages/about.html">About Us</a>
@@ -411,25 +394,24 @@
         </div>
     </footer>
 
-    <!-- Script Logic -->
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite code copied: " + code);
+            });
         }
 
         function toggleTheme() {
             const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
+            const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+                btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
+                btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -437,7 +419,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            document.getElementById('themeBtn').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
     </script>
 </body>
