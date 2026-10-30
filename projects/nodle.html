@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nodle Network Setup Guide & Smartphone DePIN Node | Total Crypto Hub</title>
-    <meta name="description" content="Verified setup guide for Nodle Network. Learn how to turn your Android smartphone into an IoT connectivity edge node to earn passive NODL crypto rewards.">
+    <title>Nodle Network Architecture, BLE Tracking & Node Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of Nodle Network: A Bluetooth-powered DePIN on ZKsync. Learn how to earn $NODL by tracking IoT devices passively with your smartphone.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,152 +16,153 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #10b981;
-            --accent-hover: #059669;
-            --code-bg: #0f172a;
-            --code-text: #6ee7b7;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
-            --bg-body: #060d0b;
-            --bg-surface: #0b1713;
-            --header-bg: rgba(11, 23, 19, 0.95);
-            --border-color: #1a352b;
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #10b981;
-            --accent-hover: #059669;
-            --code-bg: #030712;
-            --code-text: #a7f3d0;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
-
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-
-        /* Open Protocol Box (No Invite Code Required) */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 15px; font-weight: 800; color: var(--accent-primary); letter-spacing: 0.5px; }
-        
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-join { 
+        .btn-hub-glow { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
             font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .btn-join:hover { background: var(--accent-hover); }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* 2 Platform Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badge */
+        .ble-badge { background: #3b82f6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-join { flex: 1; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -169,230 +170,230 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-box">
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/nodle.png" alt="Nodle Network" onerror="this.src='https://via.placeholder.com/60'">
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/nodle.png" alt="Nodle Network" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Nodle Network <span class="verified-badge">✓</span> <span class="ble-badge">Open Bluetooth DePIN</span></h2>
+                        <p>Decentralized IoT & Physical Infrastructure Network via Smartphone Edge Nodes</p>
+                    </div>
                 </div>
-                <div class="hero-info">
-                    <h2>Nodle Network (NODL) <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Decentralized IoT & BLE Physical Infrastructure Network | Smartphone Edge Node</p>
+
+                <div class="hero-right">
+                    <div class="invite-box" style="flex: 1; justify-content: center; padding: 10px 18px;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Use Official Download Link Below 👇</span>
+                    </div>
+                    
+                    <a href="https://www.nodle.com/" target="_blank" class="btn-join">🎁 Join Nodle Network</a>
                 </div>
             </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Access Model</span>
-                    <span class="ref-code">Open Bluetooth DePIN</span>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Nodle -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Nodle Network? (The Bluetooth DePIN)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Nodle Network</strong> represents a massive paradigm shift in the Decentralized Physical Infrastructure Network (DePIN) sector. Unlike traditional projects that rely on renting your internet bandwidth or heavy CPU processing power, Nodle transforms your everyday smartphone into an edge-node IoT gateway using <strong>Bluetooth Low Energy (BLE)</strong> technology.
+                    </p>
+                    <p class="article-text">
+                        By passively running the app in the background, your phone securely discovers, tracks, and logs interactions with smart devices, lost items, and industrial internet-of-things (IoT) assets in your immediate physical vicinity. This creates a global "Trust Network" powered entirely by the devices already in people's pockets.
+                    </p>
                 </div>
-                <div class="ref-actions">
-                    <a href="https://www.nodle.com" target="_blank" class="btn-join">🌐 Open Nodle Portal</a>
+
+                <!-- Point 2: Architecture & Blockchain Migration -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Blockchain Migration: Polkadot to ZKsync (L2)</h3>
+                    </div>
+                    <p class="article-text">
+                        Nodle has a deep history in the Web3 space. Originally built and launched as a prominent Parachain within the Polkadot Network, the project recently executed a massive architectural migration to ensure future scalability and multichain DeFi integration:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>ZKsync Era (L2)</th>
+                                <td>The network officially migrated its core smart contracts and bridge deployment to the Ethereum Layer-2 ZKsync Era ecosystem on May 15, 2024.</td>
+                            </tr>
+                            <tr>
+                                <th>Total Funding</th>
+                                <td>Backed by Blockchain.com Ventures, Blockchange Ventures, and BootstrapLabs, raising approximately $9.7 million across seed rounds and Polkadot crowdloans.</td>
+                            </tr>
+                            <tr>
+                                <th>Token Supply</th>
+                                <td>A fixed maximum cap of 21 billion $NODL, with roughly 6 billion tokens currently in active circulation.</td>
+                            </tr>
+                            <tr>
+                                <th>Trading Liquidity</th>
+                                <td>The $NODL token is actively traded on major centralized exchanges (like Gate.io) and Web3 decentralized hubs (like SyncSwap).</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+                <!-- Point 3: The Technology Layers (ConnectX & ContentSign) -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Core Technology Layers & Enterprise Utility</h3>
+                    </div>
+                    <p class="article-text">
+                        The Nodle Network generates revenue and utility through two distinct, highly scalable enterprise software layers:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>📡 ConnectX (Asset Tracking)</h4>
+                            <p>The foundational infrastructure layer. It discovers and logs BLE-equipped physical assets onto an immutable ledger. It is heavily utilized for industrial logistics, retail inventory, and smart city deployments.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📸 ContentSign (Anti-Deepfake)</h4>
+                            <p>A crucial tool for media security. It provides C2PA-compatible digital watermarking, authenticating photos and videos directly at the hardware source to combat AI deepfakes and verify content provenance.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🤖 MCP AI Agent Integration</h4>
+                            <p>Nodle recently deployed an MCP (Model Context Protocol) server. This allows AI agents (like ChatGPT or Claude) to interact with the IoT tracking dashboards via plain natural language.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🚗 The Roole Partnership</h4>
+                            <p>Proving real-world utility, Nodle partnered with the mobility network 'Roole' in France. Over 40% of stolen vehicles in their system (valued at over €9 Million) were recovered using crowd-sourced Nodle location data.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Network Size & Earning Mechanics -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Network Size & Passive Earning Mechanics</h3>
+                    </div>
+                    <p class="article-text">
+                        With over <strong>2.4 Million Active Devices</strong> deployed worldwide across 100+ countries, Nodle relies on organic "Proof of Availability" mobile mining.
+                    </p>
+                    <div class="alert-box">
+                        <h5>💸 How You Earn $NODL:</h5>
+                        <p><strong>1. Zero Hardware Required:</strong> You do not need expensive ASIC rigs or dedicated antennas. Simply install the official Nodle App on your iOS or Android smartphone.</p>
+                        <p style="margin-top:6px;"><strong>2. Passive "Missions":</strong> Once active, the app continuously scans for nearby BLE tags. It encrypts this beacon data and pushes it to the decentralized ledger. Rewards accumulate daily inside the app based on your node's uptime and structural coverage contribution.</p>
+                        <p style="margin-top:6px;"><strong>3. The S-Curve Algorithm:</strong> 60% of the total 21 billion token supply is allocated purely to Mining Rewards, distributed asynchronously via an S-Curve algorithm to active Edge Nodes over time.</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: Network Rules & Battery Usage -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Network Compliance & Battery Management</h3>
+                    </div>
+                    <p class="article-text">
+                        Because Nodle operates exclusively via mobile devices, it is engineered to be as unobtrusive as possible:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🔋 Minimal Battery Drain</h4>
+                            <p>Unlike heavy CPU-mining apps, Nodle relies on Bluetooth Low Energy (BLE). It is specifically designed to run passively with negligible impact on your smartphone's daily battery life.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📶 Low Data Consumption</h4>
+                            <p>The app requires only a tiny fraction of background cellular data bandwidth to ping the encrypted packet routing tasks to the blockchain ledger.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📍 Mandatory Permissions</h4>
+                            <p>To function correctly, the app MUST be granted 'Bluetooth' access and 'Precise Location (Allow all the time)' permissions. The network cannot map IoT devices without exact geospatial telemetry.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛡️ Privacy-First Architecture</h4>
+                            <p>Nodle anonymously passes structural tracking information (the payload). It does NOT gather, store, or upload your personal identification data, private communications, or browsing history.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 6: Bridging Legacy Tokens (TCN Tips) -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Bridging Legacy Tokens (TCN Pro Tips)</h3>
+                    </div>
+                    <p class="article-text">
+                        If you are an early adopter who mined $NODL during the Polkadot era, you must utilize the official migration tools to access the new Ethereum L2 liquidity:
+                    </p>
+                    <div class="rule-box">
+                        <h5>✅ The ZKsync Migration Bridge:</h5>
+                        <p>During the L2 chain shift, the Nodle Foundation deployed a specific Migration Bridge contract (<code>0x5de7fefe...</code>). This allows veteran holders to securely move their legacy native Polkadot assets over to the new ZKsync ERC-20 equivalents to trade on modern DEXs. Always verify you are using the official bridge link provided in the Nodle app or documentation portal to avoid phishing scams.</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for mobile deployment and token bridging:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: App Setup -->
+                        <div class="video-box">
+                            <h4>📱 Nodle Mobile App Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_APP_VIDEO_ID" title="Nodle Mobile App Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Migration Setup -->
+                        <div class="video-box">
+                            <h4>🔄 Polkadot to ZKsync Bridge Guide</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_BRIDGE_VIDEO_ID" title="Nodle Migration Bridge Setup" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Web3 protocols, DePIN Bluetooth networks, IoT tracking rewards, and $NODL tokenomics are dynamic and subject to market volatility and enterprise client demand. Ensure your device usage complies with local privacy regulations regarding location tracking. Never invest funds or resources you cannot afford to risk.
+                </div>
+
             </div>
         </div>
-
-        <!-- 2 Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('android', this)">📱 1. Android Mobile Node</button>
-            <button class="tab-nav-btn" onclick="switchTab('windows', this)">💻 2. PC & Emulation</button>
-        </div>
-
-        <!-- TAB 1: ANDROID MOBILE NODE -->
-        <div id="tab-android" class="tab-pane content-card">
-            <h3>📱 Android Mobile Setup Guide (Bluetooth Edge Node)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Nodle transforms any Android smartphone into a decentralized IoT gateway. By utilizing Bluetooth Low Energy (BLE), your phone securely connects smart devices, sensors, and trackers in your vicinity to earn $NODL tokens automatically.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Install Official Nodle Mobile App</div>
-                <div class="step-desc">
-                    Visit the <a href="https://www.nodle.com" target="_blank">Nodle Official Portal</a> or search for <strong>Nodle</strong> directly on the Google Play Store. Download and install the verified application.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Create On-Chain Wallet & Back Up Seed Phrase</div>
-                <div class="step-desc">
-                    Launch the app and tap <strong>Create Account</strong>. Write down your secret 12 or 24-word recovery seed phrase on paper and store it securely. Your wallet is created on-chain with zero personal KYC requirements.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Grant Bluetooth & Location Permissions</div>
-                <div class="step-desc">
-                    Allow <strong>Bluetooth Low Energy (BLE)</strong> and <strong>Location Permissions (Allow all the time)</strong>. Android requires location access to scan nearby BLE beacons. Nodle does not track or store your personal identity.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Configure Unrestricted Battery Optimization</div>
-                <div class="step-desc">
-                    To maintain continuous node execution without OEM battery killer interference:
-                    <ul style="margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6;">
-                        <li>Go to phone <strong>Settings → Apps → Nodle → Battery</strong>.</li>
-                        <li>Select <strong>Unrestricted / No Restrictions (Don't optimize)</strong>.</li>
-                        <li>Enable <strong>Autostart</strong> permissions.</li>
-                        <li>Lock Nodle in your <strong>Recent Apps</strong> screen with the padlock icon.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Smart Earning Mode:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Keep the app in <strong>"Ludicrous Mode"</strong> or standard active mode. When traveling through crowded areas, markets, or transport hubs with high IoT density, your reward rate increases significantly.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Mobile Setup Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Nodle+App+Setup" title="Nodle Mobile Tutorial" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: PC & EMULATION -->
-        <div id="tab-windows" class="tab-pane content-card" style="display: none;">
-            <h3>💻 PC & Desktop Deployment Guide (Bluetooth Gateway Architecture)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                While Nodle is native to mobile operating systems, desktop operators can run dedicated BLE gateway environments using hardware Bluetooth passthrough or monitor network telemetry.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Hardware Requirements for PC Gateways</div>
-                <div class="step-desc">
-                    To run a Nodle edge instance on Windows, your machine or mini PC must feature a dedicated <strong>Bluetooth 5.0+ USB Dongle</strong> with BLE (Bluetooth Low Energy) scanning capabilities.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Set Up Android Environment with BLE Passthrough</div>
-                <div class="step-desc">
-                    Install a high-performance Android virtualization layer (such as Windows Subsystem for Android or a dedicated emulator) that supports direct USB Bluetooth passthrough to allow native peripheral scanning.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Import Existing Wallet Identity</div>
-                <div class="step-desc">
-                    Launch the Nodle application inside the virtual environment and choose <strong>Import Wallet</strong> using your 12/24-word seed phrase to link your primary payout address.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">24/7 Fixed Location Gateway Operation</div>
-                <div class="step-desc">
-                    Position your desktop or mini PC near windows or ground-floor rooms. A stationary node continuously bridges smart utilities, connected tags, and passing smart devices to the decentralized mesh.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Multi-Device Farming Note:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Operating spare secondary Android smartphones on dedicated charging stations with fans is generally more energy-efficient than running full desktop PCs for Nodle.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Desktop Gateway Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Nodle+PC+Setup" title="Nodle Desktop Tutorial" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison & System Specifications</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Overview of hardware roles and operational specifications across Nodle environments:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Deployment Layer</th>
-                        <th style="width: 35%;">Hardware Requirements</th>
-                        <th style="width: 40%;">Operational Status & Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Android Mobile (Native)</strong></td>
-                        <td>Any modern smartphone with BLE 4.2 / 5.0+ support.</td>
-                        <td><strong style="color:var(--accent-primary);">Live & Active</strong> (Primary portable DePIN edge node)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>iOS Client (Apple)</strong></td>
-                        <td>iPhone with iOS 14.0+ background refresh enabled.</td>
-                        <td><strong style="color:var(--accent-primary);">Official Release</strong> (Native App Store release)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>PC / Mini PC Gateway</strong></td>
-                        <td>Dedicated Bluetooth 5.0+ adapter with BLE virtualization.</td>
-                        <td><strong>Fixed Gateway</strong> (Stationary IoT beacon bridge)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Click App (Content Authenticity)</strong></td>
-                        <td>Nodle camera certification protocol on zkSync / Polkadot.</td>
-                        <td><strong>Ecosystem Product</strong> (Digital media proof-of-authenticity tool)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Network Rules & Data Privacy Guarantee</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>Zero Personal Data Interception:</strong> Nodle never collects or transmits private personal data, contact lists, photos, or browsing activities. The network only relays tiny cryptographic packets between IoT sensors and their respective manufacturer backends.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Operational Guidelines & Compliance:</h4>
-                <ul>
-                    <li><strong>No Location Spoofing / Mock Locations:</strong> The Nodle network actively validates GPS and BLE signal consistency. Using fake GPS or location mocking software will trigger anti-cheat algorithms and halt rewards.</li>
-                    <li><strong>Battery Consumption:</strong> Nodle uses optimized Bluetooth Low Energy (BLE) routines, consuming less than 1% to 3% of standard smartphone battery per day.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../pages/about.html">About Us</a>
@@ -404,25 +405,17 @@
         </div>
     </footer>
 
-    <!-- Script Logic -->
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
-        }
-
         function toggleTheme() {
             const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
+            const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+                btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
+                btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -430,7 +423,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            document.getElementById('themeBtn').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
     </script>
 </body>
