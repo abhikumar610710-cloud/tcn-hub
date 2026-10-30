@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helium Network Setup Guide & Decentralized Wireless DePIN | Total Crypto Hub</title>
-    <meta name="description" content="Verified setup guide for Helium Network. Learn how to configure Helium Mobile Discovery Mapping and deploy LoRaWAN IoT Hotspots to earn passive HNT, IOT, and MOBILE rewards.">
+    <title>Helium Architecture, DePIN Wireless & Node Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of Helium Network (HNT, MOBILE, IOT). Learn how this pioneer DePIN project powers decentralized wireless infrastructure on Solana.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #f8fafc;
@@ -16,152 +16,155 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #06b6d4;
-            --accent-hover: #0891b2;
-            --code-bg: #0f172a;
-            --code-text: #67e8f9;
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
         }
         [data-theme="dark"] {
-            --bg-body: #07090e;
-            --bg-surface: #0e121a;
-            --header-bg: rgba(14, 18, 26, 0.95);
-            --border-color: #1e2638;
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --accent-primary: #22d3ee;
-            --accent-hover: #06b6d4;
-            --code-bg: #030712;
-            --code-text: #a5f3fc;
-            --warning-bg: rgba(245, 158, 11, 0.1);
-            --warning-border: rgba(245, 158, 11, 0.3);
-            --warning-text: #fbbf24;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
         /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 12px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { width: 92%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: #000; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
 
-        /* Container */
-        .container { width: 92%; max-width: 1000px; margin: 25px auto 40px; flex: 1; }
-
-        /* Top Hero Action Card */
-        .hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 24px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 20px; 
-            flex-wrap: wrap; 
-        }
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; }
-        .project-img-box { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); padding: 2px; background: var(--bg-surface); flex-shrink: 0; }
-        .project-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-info h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .verified-tick { background: #3b82f6; color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
-        .hero-info p { color: var(--text-muted); font-size: 13px; font-weight: 500; margin-top: 3px; }
-
-        /* Open Protocol Box (No Invite Code Required) */
-        .referral-box { 
-            background: var(--bg-body); 
-            border: 1.5px solid var(--accent-primary); 
-            border-radius: 14px; 
-            padding: 12px 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            box-shadow: 0 2px 10px rgba(6, 182, 212, 0.08);
-        }
-        .ref-details { display: flex; flex-direction: column; gap: 2px; }
-        .ref-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .ref-code { font-family: 'Fira Code', monospace; font-size: 15px; font-weight: 800; color: var(--accent-primary); letter-spacing: 0.5px; }
-        
-        .ref-actions { display: flex; align-items: center; gap: 10px; }
-        .btn-join { 
+        .btn-hub-glow { 
             background: var(--accent-primary); 
-            color: #000; 
+            color: white; 
             text-decoration: none; 
-            padding: 9px 18px; 
-            border-radius: 8px; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
             font-weight: 700; 
-            font-size: 13px; 
-            display: inline-flex; 
-            align-items: center; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.25); 
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
-        .btn-join:hover { background: var(--accent-hover); color: #fff; }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* 2 Platform Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-        .tabs-header::-webkit-scrollbar { display: none; }
-        .tab-nav-btn { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 10px; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: all 0.2s; }
-        .tab-nav-btn.active { background: var(--accent-primary); color: #000; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3); }
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
 
-        /* Guide Card */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); }
-        .content-card h3 { font-size: 18px; color: var(--text-heading); font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
 
-        /* Steps */
-        .step-block { margin-bottom: 24px; position: relative; padding-left: 45px; }
-        .step-number { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: #000; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .step-desc { font-size: 13px; line-height: 1.6; color: var(--text-body); }
-        .step-desc a { color: var(--accent-primary); font-weight: 700; text-decoration: none; }
-        .step-desc a:hover { text-decoration: underline; }
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badges */
+        .sol-badge { background: #9333ea; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .depin-badge { background: #0284c7; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
 
-        /* Sub-cards inside guides */
-        .sub-feature-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .sub-feature-title { font-size: 13px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
-        /* Video Box */
-        .video-box { margin-top: 20px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; max-width: 680px; }
-        .video-box iframe { width: 100%; height: 100%; border: none; }
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Tables */
-        .custom-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-        .custom-table th { text-align: left; background: var(--bg-body); padding: 12px 14px; color: var(--text-muted); font-weight: 700; border-bottom: 1px solid var(--border-color); }
-        .custom-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-body); vertical-align: top; line-height: 1.5; }
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
-        /* Warning Box */
-        .warning-box { background: var(--warning-bg); border-left: 4px solid var(--warning-text); border: 1px solid var(--warning-border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-        .warning-box h4 { font-size: 13px; font-weight: 800; color: var(--warning-text); margin-bottom: 6px; }
-        .warning-box p, .warning-box li { font-size: 12px; color: var(--text-body); line-height: 1.6; }
-        .warning-box ul { margin-left: 18px; margin-top: 6px; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
         /* Footer */
-        footer { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-content { width: 92%; max-width: 1100px; margin: 0 auto; }
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
 
         @media (max-width: 768px) {
-            .hero-card { flex-direction: column; align-items: stretch; padding: 18px; }
-            .referral-box { flex-direction: column; align-items: stretch; gap: 12px; }
-            .ref-actions { width: 100%; display: flex; }
-            .ref-actions .btn-join { flex: 1; justify-content: center; }
-            .content-card { padding: 20px; }
-            .container { width: 94%; }
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -169,219 +172,233 @@
 
     <!-- Header -->
     <header>
-        <div class="header-inner">
-            <a href="../index.html" class="logo-box">
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.src='../logos/tcnlogo.png.jpeg'">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
                     <span>by <b>Total Crypto Network</b></span>
                 </div>
             </a>
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <a href="../index.html" class="back-btn">← Back to Hub</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
 
-        <!-- Top Action Card -->
-        <div class="hero-card">
-            <div class="hero-left">
-                <div class="project-img-box">
-                    <img src="../logos/helium.png" alt="Helium Network" onerror="this.src='https://via.placeholder.com/60'">
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/helium.png" alt="Helium Network" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Helium Network <span class="verified-badge">✓</span> <span class="sol-badge">Solana Ecosystem</span> <span class="depin-badge">DePIN Wireless</span></h2>
+                        <p>Pioneering Decentralized Wireless Infrastructure & IoT/5G Network</p>
+                    </div>
                 </div>
-                <div class="hero-info">
-                    <h2>Helium Network <span class="verified-tick" title="Verified Project">✓</span></h2>
-                    <p>Decentralized Global Wireless Infrastructure (DePIN) | IoT LongFi & Mobile 5G</p>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Portal Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">HELIUM</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="YOUR_HELIUM_LINK" target="_blank" class="btn-join">🎁 Visit Helium Portal</a>
                 </div>
             </div>
-            
-            <div class="referral-box">
-                <div class="ref-details">
-                    <span class="ref-label">Access Model</span>
-                    <span class="ref-code">Open Wireless DePIN</span>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Helium -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Helium Network? (The Pioneer of DePIN)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Helium</strong> is universally recognized as the pioneer and foundational pillar of the Decentralized Physical Infrastructure Network (DePIN) movement. Launched originally in 2013, it has evolved into a massive crowdsourced, decentralized wireless infrastructure network powering global IoT connectivity and cellular 5G coverage.
+                    </p>
+                    <p class="article-text">
+                        Instead of relying on multi-billion-dollar telecom monopolies to lay fiber and erect cell towers, Helium empowers everyday individuals and enterprises to deploy hardware hotspots, bridging the physical world to Web3 while servicing real-world telecommunication demands.
+                    </p>
                 </div>
-                <div class="ref-actions">
-                    <a href="https://www.helium.com" target="_blank" class="btn-join">🌐 Open Helium Portal</a>
+
+                <!-- Point 2: Funding & Tier-1 Backers -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Massive Institutional Backing & Funding</h3>
+                    </div>
+                    <p class="article-text">
+                        Helium boasts some of the heaviest venture capital backing in crypto history, spanning eight private funding rounds:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Total Capital Raised</th>
+                                <div><strong>$370 Million USD</strong> total capital raised ($250M for Nova Labs equity, remainder via token sales).</div>
+                            </tr>
+                            <tr>
+                                <th>Lead Investors</th>
+                                <td>Tiger Global Management, Andreessen Horowitz (a16z), and FTX Ventures (who co-led a massive $200M Series D at a $1.2B valuation).</td>
+                            </tr>
+                            <tr>
+                                <th>Institutional Partners</th>
+                                <td>Multicoin Capital, Khosla Ventures, Google Ventures (GV), Union Square Ventures, and Ribbit Capital.</td>
+                            </tr>
+                            <tr>
+                                <th>Notable Angels</th>
+                                <td>Early-stage backing from Marc Benioff (CEO of Salesforce).</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+                <!-- Point 3: Blockchain & Solana Migration -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Solana Ecosystem & The Multi-Token Model</h3>
+                    </div>
+                    <p class="article-text">
+                        To achieve extreme scalability and handle millions of micro-transactions, Helium successfully migrated off its custom Layer-1 protocol onto the <strong>Solana Blockchain</strong> on April 18, 2023. The ecosystem utilizes a sophisticated multi-token architecture:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🪙 HNT (The Core Asset)</h4>
+                            <p>The native Layer-1 currency with a fixed deflationary hard cap of 223,000,000 tokens, governed by a Burn-and-Mint Equilibrium (BME) model.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📡 IOT (LoRaWAN Subnet)</h4>
+                            <p>Ecosystem sub-token generated by IoT hotspot miners maintaining global low-power wide-area network coverage.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📱 MOBILE (5G Subnet)</h4>
+                            <p>Ecosystem sub-token generated by carriers and operators providing high-bandwidth 5G and CBRS carrier offloading.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔥 Burn-and-Mint Equilibrium</h4>
+                            <p>Enterprise data consumption requires buying and burning HNT out of circulation to create non-transferable Data Credits (DCs).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Active Earning & Hardware Nodes -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Active Earning via IoT & Mobile Subnets</h3>
+                    </div>
+                    <p class="article-text">
+                        Helium has successfully shifted away from speculative rewards toward utility-driven economics, indexing earnings directly against real-world data transport:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🌐 IoT Subnet Nodes</h4>
+                            <p>Requires specialized LoRaWAN hotspot miners (e.g., Bobcat Miner 300, SenseCAP). They draw minimal electricity (~5–8W) and run passively on standard broadband.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📶 Mobile Subnet Nodes</h4>
+                            <p>Requires high-bandwidth, US-only CBRS/5G hardware or specialized indoor/outdoor Wi-Fi Access Points to handle carrier traffic.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📊 Useful Data Transfer Fees</h4>
+                            <p>Rewards are generated primarily through structural Data Transfer fees (earning per GB of real data routed) rather than arbitrary proof-of-coverage pings.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>👥 Massive Adoption Scale</h4>
+                            <p>Helium Mobile boasts over 595,000+ registered customer accounts, alongside 43,000+ highly active, high-yield IoT hotspots globally.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: Real-World Enterprise Verticals -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Real-World Enterprise Adoption & T-Mobile</h3>
+                    </div>
+                    <p class="article-text">
+                        Helium is a rare DePIN project that has achieved massive Web2 enterprise integration, moving far beyond speculative crypto circles:
+                    </p>
+                    <div class="alert-box">
+                        <h5>🏢 Bridging Telecom Giants:</h5>
+                        <p><strong>1. Carrier Roaming Agreements:</strong> Helium has established official roaming partnerships with major traditional telecommunication carriers like <strong>T-Mobile</strong>, allowing cellular subscribers to seamlessly offload mobile data onto the decentralized Helium network.</p>
+                        <p style="margin-top:6px;"><strong>2. Enterprise Offloading:</strong> Major commercial entities are actively deploying Helium infrastructure. A prime example is the massive rollout converting supermarket chains like Wakefern and ShopRite into physical network nodes.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Governance & Tokenomics (HIP-149) -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Governance & Network Operations (TCN Pro Tips)</h3>
+                    </div>
+                    <p class="article-text">
+                        Holders and node operators should stay informed regarding community-led governance proposals that reshape emission schedules:
+                    </p>
+                    <div class="rule-box">
+                        <h5>⚙️ Understanding HIP-149:</h5>
+                        <p>The community passed <strong>HIP-149</strong>, which implements a 36-month network operations minting schedule of up to 141M HNT. This allocation is directed toward strategic ecosystem growth and operational expansion rather than traditional on-chain hotspot mining alone. Users can also lock HNT into <em>veHNT</em> governance positions to boost voting weight and rewards.</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for setting up your Helium Hotspot or joining Helium Mobile:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: IoT Hotspot Setup -->
+                        <div class="video-box">
+                            <h4>📡 Helium IoT Hotspot Setup Guide</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_IOT_VIDEO_ID" title="Helium IoT Hotspot Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Solana Wallet & Mobile Setup -->
+                        <div class="video-box">
+                            <h4>📱 Helium Mobile & Solana Wallet Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_MOBILE_VIDEO_ID" title="Helium Mobile & Solana Setup" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Web3 protocols, Solana network fees, HNT/MOBILE/IOT tokenomics, and hardware mining yields are dynamic and subject to market volatility and community governance proposals (HIPs). Always verify the official Solana SPL mint address (`hntyVP6YFm1...`) when trading tokens. Never invest funds or hardware resources you cannot afford to risk.
+                </div>
+
             </div>
         </div>
-
-        <!-- 2 Platform Tabs -->
-        <div class="tabs-header">
-            <button class="tab-nav-btn active" onclick="switchTab('mobile', this)">📱 1. Mobile & Discovery Mapping</button>
-            <button class="tab-nav-btn" onclick="switchTab('iot', this)">📡 2. IoT Hotspot Deployment</button>
-        </div>
-
-        <!-- TAB 1: MOBILE & DISCOVERY MAPPING -->
-        <div id="tab-mobile" class="tab-pane content-card">
-            <h3>📱 Helium Mobile App Guide (Discovery Mapping & $MOBILE Rewards)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Helium Mobile combines carrier network offloading with user-driven coverage discovery. By keeping Discovery Mapping active on your smartphone as you travel, you validate wireless coverage and earn daily $MOBILE token rewards.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Install Official Helium Mobile / Helium Wallet App</div>
-                <div class="step-desc">
-                    Visit <a href="https://hellohelium.com" target="_blank">Helium Mobile Portal</a> or search for <strong>Helium Mobile</strong> on the Google Play Store or Apple App Store. For on-chain asset management, also download the official <strong>Helium Wallet</strong> app.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Set Up Solana-Compatible Identity</div>
-                <div class="step-desc">
-                    Create or import your wallet. Helium runs on the high-performance Solana blockchain. Back up your secret 12 or 24-word seed phrase securely.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Enable Discovery Mapping & Location Permissions</div>
-                <div class="step-desc">
-                    Inside the Helium Mobile app, navigate to <strong>Mapping</strong> and toggle ON <strong>Discovery Mapping</strong>. Set location access to <strong>"Allow All The Time"</strong> so the app can register coverage hexes as you commute.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Qualify for Daily Epoch Mapping Drops</div>
-                <div class="step-desc">
-                    To qualify for daily reward shares, your phone must record a minimum threshold of qualifying location events across distinct hexagonal mapping zones throughout the day. Accumulated $MOBILE rewards can be claimed directly into your wallet.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Privacy Guard:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Discovery Mapping uses randomized location hex verification. The protocol does not link your personal identity to travel history, only verifying that physical coverage exists in mapped zones.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Helium Mobile Setup Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Helium+Mobile+Mapping" title="Helium Mobile Tutorial" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: IOT HOTSPOT DEPLOYMENT -->
-        <div id="tab-iot" class="tab-pane content-card" style="display: none;">
-            <h3>📡 LoRaWAN IoT Hotspot Guide (Proof-of-Coverage & $IOT Rewards)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-                Deploying a physical LoRaWAN hotspot provides long-range wireless connectivity (LongFi) for billions of IoT devices, sensors, and asset trackers, earning automated Proof-of-Coverage rewards.
-            </p>
-
-            <div class="step-block">
-                <div class="step-number">1</div>
-                <div class="step-title">Obtain a Certified LoRaWAN Hotspot</div>
-                <div class="step-desc">
-                    Select an approved third-party Helium manufacturer (such as SenseCAP, Bobcat, RAK Wireless, or Linxdot) matching your country's radio frequency (e.g., US915, EU868, IN865).
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">2</div>
-                <div class="step-title">Optimize Antenna Placement & Height</div>
-                <div class="step-desc">
-                    Mount the fiberglass antenna as high as possible (rooftop or high-floor window) with a clear line-of-sight view of your surroundings. Higher elevation maximizes beacon broadcasts and witness connections.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">3</div>
-                <div class="step-title">Connect to Power & Ethernet</div>
-                <div class="step-desc">
-                    Power the hotspot and connect it via Ethernet cable (recommended for minimal packet latency) or stable Wi-Fi. Open the manufacturer’s pairing app to link the device to your Helium Wallet address.
-                </div>
-            </div>
-
-            <div class="step-block">
-                <div class="step-number">4</div>
-                <div class="step-title">Assert Location & Begin Mining $IOT</div>
-                <div class="step-desc">
-                    Assert your hotspot location on-chain. The device will automatically participate in daily Proof-of-Coverage (PoC) challenges, transmit IoT sensor data packets, and deposit $IOT token rewards into your Solana wallet.
-                </div>
-            </div>
-
-            <div class="sub-feature-card">
-                <div class="sub-feature-title">💡 Ultra-Low Power Consumption:</div>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.5;">
-                    Helium IoT hotspots consume only ~5W of power (similar to a standard LED bulb), making them among the most energy-efficient passive DePIN hardware nodes in existence.
-                </p>
-            </div>
-
-            <div style="margin-top: 25px;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">📺 Hotspot Setup Video Tutorial:</h4>
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network+Helium+Miner+Setup" title="Helium Hotspot Setup" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Comparison Table -->
-        <div class="content-card">
-            <h3>📊 Platform Comparison & SubDAO Architecture</h3>
-            <p style="font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 12px;">
-                Review specifications and operational roles across Helium's multi-token ecosystem:
-            </p>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Network SubDAO</th>
-                        <th style="width: 35%;">Hardware Requirements</th>
-                        <th style="width: 40%;">Reward Token & Utility</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Helium Mobile</strong></td>
-                        <td>Smartphones (Android / iOS) + 5G CBRS / Wi-Fi Hotspots.</td>
-                        <td><strong style="color:var(--accent-primary);">$MOBILE</strong> (Mobile data offloading & discovery mapping rewards)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Helium IoT (LongFi)</strong></td>
-                        <td>LoRaWAN Gateway Hotspot (SenseCAP, Bobcat, RAK, etc.).</td>
-                        <td><strong style="color:var(--accent-primary);">$IOT</strong> (Proof-of-Coverage & smart sensor data transmission)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Helium Governance ($HNT)</strong></td>
-                        <td>Native Solana blockchain consensus & Data Credits (DC).</td>
-                        <td><strong>$HNT</strong> (Core governance token; burned to mint Data Credits for network usage)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Rules & Security (AdSense Quality Standard) -->
-        <div class="content-card">
-            <h3>🔒 Network Rules & Data Privacy Guarantee</h3>
-            <p style="font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
-                <strong>Decentralized Physical Infrastructure Standard:</strong> Helium replaces traditional telecommunications monopolies with community-owned wireless nodes. The network protocol strictly handles RF transmission packets and location telemetry without accessing private user data.
-            </p>
-
-            <div class="warning-box">
-                <h4>⚠️ Network Compliance & Fair-Use Guidelines:</h4>
-                <ul>
-                    <li><strong>No Location Mocking / Spoofing:</strong> Helium uses algorithmic radio signal analysis and GPS cross-validation. Using mock GPS apps or asserting false hotspot locations will place your device on the denylist, forfeiting rewards.</li>
-                    <li><strong>Antenna Matching:</strong> Ensure your antenna gain (dBi) and cable loss are correctly entered in your hotspot configuration to comply with regional radio regulatory standards.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../pages/about.html">About Us</a>
@@ -393,25 +410,24 @@
         </div>
     </footer>
 
-    <!-- Script Logic -->
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('tab-' + tabId).style.display = 'block';
-            btn.classList.add('active');
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Portal code copied: " + code);
+            });
         }
 
         function toggleTheme() {
             const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
+            const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
+                btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
+                btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -419,7 +435,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            document.getElementById('themeBtn').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
     </script>
 </body>
