@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privasea Architecture, FHE Privacy & ImHuman App Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete deep-dive into Privasea. Learn how to use the ImHuman app to mint your FheID NFT and earn rewards in the leading FHE DePIN ecosystem.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --accent-privasea: #0f172a; /* Deep Navy Blue based on their UI */
+            --accent-privasea-light: #3b82f6;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --accent-privasea: #38bdf8;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 8px; background: #0f172a; display: flex; align-items: center; justify-content: center; }
+        .project-big-logo svg { width: 100%; height: 100%; fill: #ffffff; }
+        
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-privasea-light); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badge */
+        .fhe-badge { background: #6366f1; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .ai-badge { background: #8b5cf6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-privasea-light); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-privasea-light); color: var(--accent-privasea-light); }
+        
+        .btn-join { background: #0f172a; color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: #1e293b; transform: translateY(-1px); }
+        [data-theme="dark"] .btn-join { background: #38bdf8; color: #0f172a; }
+        [data-theme="dark"] .btn-join:hover { background: #7dd3fc; }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: #0f172a; color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        [data-theme="dark"] .section-number { background: #38bdf8; color: #0f172a; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; border-top: 3px solid #0f172a; }
+        [data-theme="dark"] .feature-box { border-top-color: #38bdf8; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+            .invite-box { flex: 1; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Abstract 'P' logo representation for Privasea -->
+                            <path d="M7 4V20H10V14H14C16.76 14 19 11.76 19 9C19 6.24 16.76 4 14 4H7ZM10 7H14C15.1 7 16 7.9 16 9C16 10.1 15.1 11 14 11H10V7Z" />
+                        </svg>
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Privasea <span class="verified-badge">✓</span> <span class="fhe-badge">FHE Privacy</span> <span class="ai-badge">AI Network</span></h2>
+                        <p>The Advanced FHE Machine Learning (FHEML) & Decentralized AI Network</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">O5v3dR9</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="https://www.privasea.ai/download-app" target="_blank" class="btn-join">🛡️ Download ImHuman App</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Privasea -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Privasea? (The FHE-Powered AI Network)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Privasea</strong> is a highly advanced DePIN and Artificial Intelligence network focused entirely on absolute data privacy. It solves one of the biggest problems in Web3 and AI: how to verify human identity and process sensitive data without exposing that data to hackers or centralized corporations.
+                    </p>
+                    <p class="article-text">
+                        The network utilizes <strong>Fully Homomorphic Encryption (FHE)</strong> mixed with Machine Learning (FHEML). In simple terms, FHE allows AI servers to perform calculations on your data while it remains completely encrypted. The server never actually "sees" your face, your passwords, or your private information, yet it can still mathematically verify that the data is authentic.
+                    </p>
+                </div>
+
+                <!-- Point 2: Enterprise Tech & Funding -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Institutional Funding & Tier-1 Backing</h3>
+                    </div>
+                    <p class="article-text">
+                        Building advanced cryptography like FHE requires massive financial backing from the largest players in the cryptocurrency space:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Top-Tier Venture Capitalists</th>
+                                <td>Privasea is heavily backed by the biggest names in the industry, including <strong>Binance Labs</strong>, <strong>OKX Ventures</strong>, and Gate Labs.</td>
+                            </tr>
+                            <tr>
+                                <th>Total Capital Raised</th>
+                                <td>Secured significant multi-million dollar funding across Seed and Strategic rounds to scale their FHEML inference network.</td>
+                            </tr>
+                            <tr>
+                                <th>Core Network Infrastructure</th>
+                                <td>Operates the "DeepSea" network, a distributed computing grid powered by FHE hardware node operators.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 3: The ImHuman App -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Active Earning: The ImHuman App & Proof of Human (PoHu)</h3>
+                    </div>
+                    <p class="article-text">
+                        While the physical hardware nodes (WorkHeart USBs) are currently sold out, ordinary users can still actively participate and qualify for ecosystem rewards using their smartphones:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>📱 The ImHuman App</h4>
+                            <p>Available on Google Play and the App Store. This is Privasea's flagship consumer application designed to help users "take back control of their human likeness."</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>👤 Human Liveness Verification</h4>
+                            <p>To combat AI bots in Web3, users scan their faces in the app. Thanks to FHE, your biometric data is encrypted on your phone before being sent, meaning Privasea never stores your actual face.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🖼️ Minting Your FheID NFT</h4>
+                            <p>Once verified, the network mints a unique "Human Liveness NFT" (FheID) to your wallet. This NFT acts as your universal, sybil-resistant passport for future airdrops.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🤝 Referral System</h4>
+                            <p>Users must input an invite code (like <strong>O5v3dR9</strong>) during account creation to maximize their genesis ecosystem points and boost their network standing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Hardware Nodes -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>The Infrastructure: WorkHeart Combo Nodes</h3>
+                    </div>
+                    <p class="article-text">
+                        The backbone of the Privasea network relies on physical hardware. The <strong>WorkHeart Combo (USB)</strong> nodes are specialized hardware units designed to process FHE computations efficiently. While the initial batches are currently marked as "Sold Out" and preparing for shipment, these nodes represent the heavy-duty earning layer of the ecosystem, rewarding operators for contributing dedicated compute power to the DeepSea network.
+                    </p>
+                </div>
+
+                <!-- Point 5: Total Crypto Network Pro Tips -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Total Crypto Network Pro Tips: The FHE Password Warning</h3>
+                    </div>
+                    <p class="article-text">
+                        Because Privasea uses military-grade cryptography, managing your account is fundamentally different from a Web2 app:
+                    </p>
+                    <div class="alert-box">
+                        <h5>⚠️ No Password Recovery Exists:</h5>
+                        <p>During the ImHuman app setup, the system explicitly warns you: <strong>"ImHuman uses FHE which means, even we cannot recover your password, if you were to forget it."</strong> Unlike Google or Facebook, Privasea has no central database of passwords. If you lose your password and your wallet backup, you will permanently lose access to your FheID NFT and any accumulated airdrop points. Write it down on physical paper and store it securely.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for securely setting up the ImHuman app and minting your first FheID NFT:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: App Setup -->
+                        <div class="video-box">
+                            <h4>📱 Privasea ImHuman App Setup & Face Verification Guide</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_PRIVASEA_APP_VIDEO_ID" title="Privasea App Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: FHE Explanation -->
+                        <div class="video-box">
+                            <h4>🛡️ What is FHE? Privasea Tech & Tokenomics Explained</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_PRIVASEA_DEEPDIVE_VIDEO_ID" title="Privasea FHE Explained" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Minting NFTs often requires a small amount of gas fees (e.g., BNB or ETH) depending on the deployed network. Ensure you have the correct network selected in your wallet before attempting to mint your FheID. Never invest funds or purchase third-party hardware from unverified sources.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function copyCode() {
+            const code = "O5v3dR9";
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite Code copied: " + code);
+            });
+        }
+    </script>
+</body>
+</html>
