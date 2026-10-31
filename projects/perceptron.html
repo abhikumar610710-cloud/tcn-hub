@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perceptron Architecture, AI Data DePIN & $PERC Node Mining Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete deep-dive into Perceptron Network. Learn how to mine $PERC tokens by running a lightweight AI Data Node on your Chrome browser or Android mobile.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --accent-perc: #ff5722; /* Vibrant Orange matching their UI */
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --accent-perc: #ff7043;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        
+        /* Updated Logo matching Perceptron UI */
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 8px; background: #ffffff; display: flex; align-items: center; justify-content: center; }
+        .project-big-logo svg { width: 100%; height: 100%; }
+        
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-perc); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badge */
+        .depin-badge { background: #3b82f6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .ai-badge { background: #8b5cf6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-perc); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-perc); color: var(--accent-perc); }
+        
+        .btn-join { background: var(--accent-perc); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(255, 87, 34, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: #e64a19; transform: translateY(-1px); }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-perc); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; border-top: 3px solid var(--accent-perc); }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+            .invite-box { flex: 1; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#1e293b"/>
+                            <path d="M50 25 C75 25 75 75 50 75 C25 75 25 25 50 25" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Perceptron Network <span class="verified-badge">✓</span> <span class="depin-badge">DePIN</span> <span class="ai-badge">AI Data Mesh</span></h2>
+                        <p>The Decentralized AI Compute & Data Sourcing Layer</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">EB3B75</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="https://backend.perceptrons.xyz/register?invite_code=5967bf95-ef62-4a69-975f-026e3aec9eea" target="_blank" class="btn-join">🎁 Join Perceptron</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Perceptron -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Perceptron Network? (The $750B AI Data Mesh)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Perceptron Network</strong> is a highly advanced DePIN project operating at the exact intersection of <strong>Artificial Intelligence (AI)</strong> and <strong>Decentralized Infrastructure</strong>. It is designed to act as the primary data and compute sourcing layer for the rapidly expanding $757.6 Billion AI industry[cite: 36].
+                    </p>
+                    <p class="article-text">
+                        Currently, major AI companies rely heavily on centralized, highly expensive corporate server farms (like Scale AI) to gather and verify training data. Perceptron disrupts this monopoly. It creates a global "Data Mesh" by utilizing the idle internet bandwidth and compute power of everyday users (human nodes) around the world. By supplying real-world data streams and verifying AI outputs natively on your devices, you directly fuel the next generation of AI while earning tangible crypto rewards.
+                    </p>
+                </div>
+
+                <!-- Point 2: Enterprise Tech & Funding -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Institutional Funding & Tier-1 Backing</h3>
+                    </div>
+                    <p class="article-text">
+                        The sheer scale of competing with centralized AI data giants requires massive institutional liquidity and strategic backing:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Total Capital Raised</th>
+                                <td><strong>$6.5 Million USD</strong> secured across early-stage and strategic financing rounds (Finalized July 30, 2026).</td>
+                            </tr>
+                            <tr>
+                                <th>Lead Venture Capitalists</th>
+                                <td>Prominently backed by major Web3 and quantitative trading firms including <strong>P2 Ventures, Sigma Capital, Selini Capital, QCP Capital, and CoinDCX Ventures</strong>.</td>
+                            </tr>
+                            <tr>
+                                <th>Ecosystem Collaborators</th>
+                                <td>Supported by heavyweights like the Walrus Foundation, Colosseum, and Aethir, ensuring robust decentralized compute distribution.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 3: Massive Network Scale -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Global Scale: Over 800,000+ Active Nodes</h3>
+                    </div>
+                    <p class="article-text">
+                        According to live dashboard metrics, Perceptron is already one of the fastest-growing DePIN networks globally[cite: 38, 42]:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🌍 Massive Node Density</h4>
+                            <p>The network is fully live and currently coordinates over <strong>805,353+ total nodes</strong> across more than 150 countries[cite: 38, 42].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚡ Daily Bandwidth Volume</h4>
+                            <p>The decentralized grid processes an average of <strong>10 to 11.5 Terabytes (TB)</strong> of raw data and micro-packet routing every single day[cite: 38, 40].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>👥 Top Global Regions</h4>
+                            <p>Adoption is incredibly strong in emerging tech hubs. The top participating regions are <strong>Vietnam (16%), India (11%), and Indonesia (11%)</strong>[cite: 40, 42].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💻 Dominant OS Platform</h4>
+                            <p>Currently, the vast majority of network compute power (74%) is being supplied by users running nodes on Windows-based PCs[cite: 40].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Tokenomics & $PERC -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Tokenomics, Airdrop Criteria & The $PERC Token</h3>
+                    </div>
+                    <p class="article-text">
+                        The entire AI data-sourcing ecosystem is structured around the native <strong>$PERC</strong> token, which is currently in its highly lucrative pre-airdrop accumulation phase:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🪙 Pre-TGE Accumulation</h4>
+                            <p>The network is in an Alpha infrastructure phase. Users earn pre-TGE "PERC Points" natively which will dictate their final $PERC token allocation.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🪂 Airdrop Criteria</h4>
+                            <p>Incentives are tightly mapped to baseline node runtime (uptime), accumulated data quest points, on-chain trust reputation, and historical migrations from early protocols (like BlockMesh).</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔒 Anti-Dump Vesting</h4>
+                            <p>To ensure long-term price stability, early node contributors will face a sustainable vesting design: a 30% unlock at TGE, followed by a 4-month linear vesting schedule.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💧 Launchpool Dynamics</h4>
+                            <p>The tokenomics structure features an early 5.00 Million token threshold reserved for early Launchpool allocations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: Active Earning & Setup -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Active Earning: No Heavy Hardware Required</h3>
+                    </div>
+                    <p class="article-text">
+                        Unlike traditional crypto mining that requires expensive GPUs, Perceptron is built purely for consumers. It uses low-footprint, idle internet capacity to route micro-packets silently in the background:
+                    </p>
+                    <div class="alert-box">
+                        <h5>🛡️ 3 Easy Ways to Start Earning:</h5>
+                        <p><strong>1. Chrome Extension (PC/Mac):</strong> The most popular method. Simply install the lightweight extension on Chrome, Edge, or Firefox. It runs quietly with zero complex setup, providing instant rewards while you browse normally[cite: 41].</p>
+                        <p style="margin-top:6px;"><strong>2. Android Mobile App:</strong> Earn "Mobile Points" on the go. Available natively on Google Play, this app allows your smartphone to contribute bandwidth directly to the AI network[cite: 41].</p>
+                        <p style="margin-top:6px;"><strong>3. iOS App (Waitlist):</strong> iPhone users can currently join the waitlist to secure first access and exclusive launch rewards when the Apple version deploys.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Total Crypto Network Pro Tips -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Total Crypto Network Pro Tips: Maximizing Uptime</h3>
+                    </div>
+                    <p class="article-text">
+                        The Perceptron dashboard strictly tracks your node's reliability. To guarantee the highest airdrop allocation, you must maintain excellent metrics:
+                    </p>
+                    <div class="rule-box">
+                        <h5>💡 The Uptime Multiplier:</h5>
+                        <p>The network requires stable data routing. Ensure that you turn off any aggressive "Sleep Mode" or "Battery Saver" settings on your PC or Android device that might kill the Perceptron background process. Nodes that maintain a continuous, uninterrupted connection for 24+ hours historically receive priority airdrop weighting and higher trust reputation scores.</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for setting up your first node on PC or Android using the exclusive invite code:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: Extension Setup -->
+                        <div class="video-box">
+                            <h4>💻 Perceptron Chrome Extension Setup & Dashboard</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_PERC_PC_VIDEO_ID" title="Perceptron Node Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Android Setup -->
+                        <div class="video-box">
+                            <h4>📱 Earning Mobile Points with the Perceptron Android App</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_PERC_MOBILE_VIDEO_ID" title="Perceptron Android Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. The $PERC token is currently in a pre-TGE phase and points accumulation does not guarantee a fixed monetary value. Running background data-routing nodes consumes cellular bandwidth; if you are on a metered or limited mobile data plan, ensure you restrict the Android app to Wi-Fi only to avoid carrier overage charges.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function copyCode() {
+            const code = "EB3B75";
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite Code copied: " + code);
+            });
+        }
+    </script>
+</body>
+</html>
