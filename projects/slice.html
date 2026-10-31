@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slice Architecture, Browse-to-Earn & Lightning Payout Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete deep-dive into the Slice extension. Learn how to passively monetize your web browsing, block traditional ads, and get paid in Bitcoin via the Lightning Network.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --accent-slice: #4f46e5;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --accent-slice: #6366f1;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 8px; background: var(--bg-body); display: flex; align-items: center; justify-content: center; }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-slice); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badge */
+        .extension-badge { background: #3b82f6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .crypto-badge { background: #f59e0b; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .btn-join { background: var(--accent-slice); color: white; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: #4338ca; transform: translateY(-1px); }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-slice); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; border-top: 3px solid var(--accent-slice); }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: flex-end; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Hero Action Card (No Referral Code Needed for Slice) -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <!-- Standard Slice Icon -->
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#4f46e5"/>
+                            <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Slice <span class="verified-badge">✓</span> <span class="extension-badge">Browser Extension</span> <span class="crypto-badge">Lightning Payouts</span></h2>
+                        <p>The "Browse-to-Earn" Ad Revenue Sharing Protocol</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <!-- Direct Link Button -->
+                    <a href="https://addslice.com/" target="_blank" class="btn-join">Add Slice to Browser</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Slice -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Slice? (Flipping the $455B Ad Industry)</h3>
+                    </div>
+                    <p class="article-text">
+                        Currently, the average internet user spends about <strong>3 hours daily</strong> in unpaid browsing time[cite: 35]. During those hours, massive tech corporations generate a staggering $455 billion digital advertising pie from your attention, without sharing a single penny with you[cite: 35]. 
+                    </p>
+                    <p class="article-text">
+                        <strong>Slice (addslice.com)</strong> is a passive income "browse-to-earn" extension that completely flips this traditional advertising model. Available on Google Chrome, Mozilla Firefox, Brave, Microsoft Edge, and Opera, Slice intercepts the traditional ad-delivery system. Instead of websites and tech giants taking 100% of the ad revenue, Slice shares that revenue directly with the person actually viewing the advertisement—you[cite: 34].
+                    </p>
+                </div>
+
+                <!-- Point 2: The Core Mechanics -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>The Core Mechanics: How Ad Injection Works</h3>
+                    </div>
+                    <p class="article-text">
+                        Slice offers the most effortless path to personal monetization because it does not require you to change your habits[cite: 34]:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>1. One-Click Install</th>
+                                <td>Simply add the extension to your desktop browser. There are no annoying sign-ups or complex onboarding procedures[cite: 34].</td>
+                            </tr>
+                            <tr>
+                                <th>2. Ad Injection</th>
+                                <td>As you browse normally, the extension dynamically injects highly curated, low-profile banner ads into the blank spaces of the websites you already visit (such as Google search results or Wikipedia margins).</td>
+                            </tr>
+                            <tr>
+                                <th>3. Seamless Operation</th>
+                                <td>Slice is fully compatible with most standard Ad-Blockers. You can block malicious and intrusive pop-ups globally, while allowing Slice's clean, revenue-generating ads to display.</td>
+                            </tr>
+                            <tr>
+                                <th>4. The Slice Token</th>
+                                <td>You are paid for every view. You accumulate a virtual currency called "Slices" representing your share of the advertiser's payment.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 3: Earning Potential & Control -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Earning Potential & User Control</h3>
+                    </div>
+                    <p class="article-text">
+                        Slice has rapidly grown to accommodate over <strong>750,000+ happy users</strong> worldwide[cite: 35]. 
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>💰 Average Monthly Yield</h4>
+                            <p>This is a passive income stream. Highly active users who browse the internet daily earn an average of <strong>$3 to $5 per month</strong> effortlessly[cite: 35].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🎛️ The Ad Control Slider</h4>
+                            <p>You have total control over your experience. The extension features a slider allowing you to choose between <em>"Less ads"</em>, <em>"Balanced"</em>, or <em>"More ads"</em> depending on your earnings goal[cite: 31].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📈 Actual Useful Graphs</h4>
+                            <p>The dashboard provides highly detailed analytics and useful graphs, allowing you to track your daily ad views and real-time revenue accumulation[cite: 35].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛡️ Privacy First</h4>
+                            <p>Slice uses public ad delivery frameworks. It explicitly does not collect, record, or sell your personal search history or commercial browsing data to third parties.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Micro-Transactions via Lightning Network -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>The Tech Magic: Bitcoin Lightning Payouts</h3>
+                    </div>
+                    <p class="article-text">
+                        Historically, paying users tiny fractions of a cent for viewing an ad was impossible due to massive banking and blockchain transaction fees. Slice solves this by utilizing the <strong>Bitcoin Lightning Network</strong>.
+                    </p>
+                    <p class="article-text">
+                        The Lightning Network is a Layer-2 solution built on top of Bitcoin that allows for instant, near-zero fee micro-transactions. This means Slice can afford to stream your accumulated "Sats" (Satoshis—fractions of a Bitcoin) directly to your digital wallet the moment you request a withdrawal, avoiding traditional banking bottlenecks[cite: 31, 32].
+                    </p>
+                </div>
+
+                <!-- Point 5: Payouts & Security Architecture -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Payout Options & Anti-Fraud Security</h3>
+                    </div>
+                    <p class="article-text">
+                        Slice offers incredibly easy, diverse payout options including PayPal, direct Bitcoin Lightning transfers, and retail Giftcards[cite: 35]. However, strict anti-fraud mechanisms protect the ecosystem:
+                    </p>
+                    <div class="alert-box">
+                        <h5>⚠️ Mandatory Payout Protocols:</h5>
+                        <p><strong>1. Fraud Prevention Lock:</strong> To prevent bots and click-fraud, newly earned Slices undergo a holding period. They unlock and become available for withdrawal after a designated review period (typically 30 days)[cite: 32].</p>
+                        <p style="margin-top:6px;"><strong>2. Phone Verification:</strong> Before you can initiate your first withdrawal, you must securely verify your identity using an active mobile phone number. This ensures a 1-to-1 ratio of real humans to accounts[cite: 32, 33].</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Total Crypto Network Pro Tips -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Total Crypto Network Pro Tips: Speed Wallet Bonus</h3>
+                    </div>
+                    <p class="article-text">
+                        Want to maximize your first Bitcoin withdrawal? Leverage Slice's official partnership with Speed Wallet:
+                    </p>
+                    <div class="rule-box">
+                        <h5>💡 The SLICE500 Bonus Code:</h5>
+                        <p>When you are ready to cash out, install the <strong>Speed Wallet App</strong> (which offers instant, secure, and low-fee Bitcoin & USDT payments). During signup, use the promotional code <strong>SLICE500</strong>. Once you have successfully transacted at least 1,000 Sats from your Slice dashboard to your Speed Wallet, a massive extra reward will be automatically added to your wallet within 24 hours[cite: 32].</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for installing the extension and withdrawing via the Speed Wallet:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: Extension Setup -->
+                        <div class="video-box">
+                            <h4>🌐 Slice Browser Extension Setup & Ad Control</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_SLICE_VIDEO_ID" title="Slice Extension Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Lightning Payout -->
+                        <div class="video-box">
+                            <h4>⚡ Lightning Network Payouts & SLICE500 Bonus</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_LIGHTNING_VIDEO_ID" title="Slice Speed Wallet Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. The value of accumulated Slices tied to Satoshis (Bitcoin) will fluctuate based on global cryptocurrency market conditions. The availability of gift cards and PayPal payouts may vary depending on your geographic region. Never attempt to use automated clicking bots or VPNs to falsify ad views, as this will result in a permanent account ban.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
