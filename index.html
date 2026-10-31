@@ -3,15 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Total Crypto Hub by Total Crypto Network - Discover, filter, and track verified DePIN projects, crypto nodes, and passive cash payout apps.">
-    <meta name="keywords" content="DePIN, Passive Income, Crypto Nodes, Grass Network, Honeygain, Total Crypto Hub, Total Crypto Network">
-    
-    <!-- Favicon (Browser Tab Icon) -->
+    <meta name="description" content="Total Crypto Hub by Total Crypto Network - The premier Web3 portal for DePIN nodes, mobile mining, airdrops, and crypto tools.">
+    <meta name="keywords" content="Total Crypto Hub, DePIN, Mobile Mining, Airdrops, Crypto Tools, Crypto Wallets">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
-    <title>Total Crypto Hub | by Total Crypto Network</title>
+    <title>Total Crypto Hub | Ecosystem Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,16 +17,7 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --th-bg: #f8fafc;
-            --th-text: #64748b;
-            /* Smart Crypto Green for Light Mode (Deep Emerald) */
-            --accent-primary: #059669; 
-            --accent-hover: #047857;
-            --row-hover: #f1f5f9;
-            --ring-border: rgba(5, 150, 105, 0.25);
-            --ring-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
-
-            /* Standard Screen Sizing Variables (Binance & CMC Standard) */
+            --accent-primary: #059669;
             --container-max-width: 1240px;
             --container-padding: 24px;
         }
@@ -43,466 +29,136 @@
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
-            --th-bg: #0f172a;
-            --th-text: #94a3b8;
-            /* Smart Crypto Green for Dark Mode (Vibrant/Glowing) */
-            --accent-primary: #10b981; 
-            --accent-hover: #34d399;
-            --row-hover: #131c31;
-            --ring-border: rgba(16, 185, 129, 0.35);
-            --ring-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+            --accent-primary: #10b981;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--container-padding); }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
-        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-        
-        /* --- Premium Container Wrapper --- */
-        .site-container {
-            width: 100%;
-            max-width: var(--container-max-width);
-            margin: 0 auto;
-            padding-left: var(--container-padding);
-            padding-right: var(--container-padding);
-        }
-
-        /* --- Header --- */
-        header { 
-            background: var(--header-bg); 
-            border-bottom: 1px solid var(--border-color); 
-            padding: 14px 0 0 0; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            backdrop-filter: blur(12px); 
-        }
-        .header-inner { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 16px; 
-        }
-        .header-top-row { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            width: 100%; 
-        }
-        .header-right { 
-            display: flex; 
-            align-items: center; 
-            gap: 14px; 
-        }
-        
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; flex-direction: column; gap: 16px; }
+        .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { 
-            width: 42px; 
-            height: 42px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            overflow: hidden; 
-            background: var(--bg-surface);
-            border: 1.5px solid var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); 
-            flex-shrink: 0; 
-            padding: 1px;
-        }
+        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); padding: 1px; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; white-space: nowrap; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; white-space: nowrap; }
+        .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
         .logo-text b { color: var(--accent-primary); }
-        
-        /* --- Responsive Tabs --- */
-        .tab-switcher { 
-            display: flex; 
-            gap: 10px; 
-            overflow-x: auto; 
-            white-space: nowrap; 
-            padding-bottom: 12px; 
-            -webkit-overflow-scrolling: touch; 
-            scrollbar-width: none; 
-            width: 100%;
-        }
+        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; }
+
+        .tab-switcher { display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; padding-bottom: 12px; scrollbar-width: none; width: 100%; }
         .tab-switcher::-webkit-scrollbar { display: none; }
-        
-        .tab-btn { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 6px; 
-            padding: 9px 18px; 
-            border: 1px solid var(--border-color); 
-            background: var(--bg-surface); 
-            color: var(--text-muted); 
-            font-weight: 700; 
-            font-size: 13px; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            text-decoration: none;
-            transition: all 0.2s; 
-            flex-shrink: 0; 
-        }
-        .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-        
-        .tab-btn.active { 
-            background: var(--accent-primary); 
-            color: white; 
-            border-color: var(--accent-primary); 
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); 
-        }
-        
-        /* Header Right Controls */
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
-        
-        /* --- Main Layout Section --- */
-        main { flex: 1; padding: 32px 0 48px; }
-        
-        .hero-title h2 { font-size: 28px; color: var(--text-heading); margin-bottom: 6px; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px;}
-        .hero-title h2 svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-        .hero-title p { color: var(--text-muted); font-weight: 500; font-size: 13px; }
-        
-        /* Filters */
-        .filter-section { display: flex; justify-content: space-between; align-items: center; margin: 24px 0 18px; gap: 14px; flex-wrap: wrap; }
-        .search-box { flex: 1; min-width: 260px; max-width: 360px; }
-        .search-box input { width: 100%; padding: 11px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-heading); outline: none; font-weight: 500; font-size: 13px; }
-        .search-box input:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
-        
-        .filter-buttons { display: flex; gap: 8px; align-items: center; }
-        .btn-filter { padding: 9px 15px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 12px; white-space: nowrap; transition: all 0.2s; }
-        .btn-filter.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25); }
-        
-        .cat-select { padding: 9px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 12px; outline: none; }
-        
-        /* Table Structure */
-        .table-card { background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); }
-        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 650px; }
-        th { background: var(--th-bg); padding: 14px 20px; font-size: 11px; color: var(--th-text); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
-        td { padding: 14px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; white-space: nowrap; }
-        tr:last-child td { border-bottom: none; }
-        tr:hover { background: var(--row-hover); }
-        
-        .project-cell { display: flex; align-items: center; gap: 12px; }
-        
-        .project-avatar-box { 
-            width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; 
-            background: var(--bg-surface); border: 1.5px solid var(--ring-border); box-shadow: var(--ring-shadow); padding: 2px;
-        }
-        .project-avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .project-initial { width: 100%; height: 100%; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 14px; color: white; }
-        
-        .project-name { font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; font-size: 14px; }
-        .project-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; font-weight: 500;}
-        
-        .verified-tick { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: var(--accent-primary); color: white; border-radius: 50%; font-size: 9px; font-weight: 800; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3); }
-        .badge-listed { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.25); padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
-        .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); display: inline-block; }
-        .score-text { font-weight: 800; color: var(--accent-primary); font-size: 13px; }
-        
-        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; transition: all 0.2s; white-space: nowrap; }
-        .btn-details:hover { background: var(--accent-primary); color: white; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
-        
-        /* Footer */
+        .tab-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; font-size: 13px; border-radius: 50px; text-decoration: none; flex-shrink: 0; }
+        .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+
+        main { flex: 1; padding: 48px 0 64px; }
+        .hero-banner { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+        .hero-banner h2 { font-size: 34px; font-weight: 800; color: var(--text-heading); margin-bottom: 12px; letter-spacing: -0.5px; }
+        .hero-banner p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px; }
+        .dash-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+        .dash-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.06); border-color: var(--accent-primary); }
+        .card-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .card-icon svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.2; }
+        .dash-card h3 { font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px; }
+        .dash-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; flex: 1; }
+        .card-action { font-size: 12px; font-weight: 800; color: var(--accent-primary); display: flex; align-items: center; gap: 6px; }
+
         footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
-
-        /* --- Pixel-Perfect Responsive Breakpoints --- */
-        @media (max-width: 1024px) {
-            :root { --container-padding: 20px; }
-            .hero-title h2 { font-size: 24px; }
-        }
-
-        @media (max-width: 768px) {
-            :root { --container-padding: 14px; }
-            header { padding: 10px 0 0 0; }
-            .header-inner { gap: 12px; }
-            .logo-text h1 { font-size: 16px; }
-            main { padding: 20px 0 36px; }
-            .hero-title h2 { font-size: 21px; }
-            
-            .filter-section { flex-direction: column; align-items: stretch; gap: 10px; margin: 18px 0 14px; }
-            .search-box { max-width: 100%; min-width: 100%; }
-            
-            .filter-buttons { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: none; white-space: nowrap; width: 100%; }
-            .filter-buttons::-webkit-scrollbar { display: none; }
-            
-            th, td { padding: 12px 14px; }
-            .btn-details { padding: 6px 12px; font-size: 11px; }
-        }
     </style>
 </head>
 <body data-theme="light">
-
-    <!-- Header -->
     <header>
         <div class="site-container header-inner">
             <div class="header-top-row">
                 <a href="index.html" class="logo-box">
-                    <div class="logo-icon">
-                        <img src="logos/tcn-logo.png" alt="TCN Logo" onerror="this.style.display='none'; this.parentNode.innerText='TCN';">
-                    </div>
-                    <div class="logo-text">
-                        <h1>Total Crypto Hub</h1>
-                        <span>by <b>Total Crypto Network</b></span>
-                    </div>
+                    <div class="logo-icon"><img src="logos/tcn-logo.png" alt="TCN Logo" onerror="this.style.display='none'; this.parentNode.innerText='TCN';"></div>
+                    <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
                 </a>
-                
-                <div class="header-right">
-                    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                </div>
+                <div class="header-right"><button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button></div>
             </div>
-
-            <!-- Tabs Linked to Separate Pages -->
             <div class="tab-switcher">
-                <a href="index.html" class="tab-btn active">
-                    <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> 
-                    DePIN Projects
-                </a>
-                <a href="pages/mobile-mining.html" class="tab-btn">
-                    <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg> 
-                    Mobile Mining
-                </a>
-                <a href="pages/airdrops.html" class="tab-btn">
-                    <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg> 
-                    Airdrops & Campaigns
-                </a>
-                <a href="pages/wallets.html" class="tab-btn">
-                    <svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> 
-                    Wallets & Exchanges
-                </a>
-                <a href="pages/token-checker.html" class="tab-btn">
-                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> 
-                    Token Checker
-                </a>
-                <a href="pages/calculator.html" class="tab-btn">
-                    <svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg> 
-                    Earning Calculator
-                </a>
+                <a href="depin-pages/depin.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> DePIN Projects</a>
+                <a href="mobile-pages/mobile-mining.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg> Mobile Mining</a>
+                <a href="airdrop-pages/airdrops.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg> Airdrops & Campaigns</a>
+                <a href="wallet-pages/wallets.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> Wallets & Exchanges</a>
+                <a href="token-pages/token-checker.html" class="tab-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Token Checker</a>
+                <a href="earning-pages/earning-calculator.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg> Earning Calculator</a>
             </div>
         </div>
     </header>
 
-    <!-- Main Body Layout -->
     <main>
         <div class="site-container">
-            <div class="hero-title">
-                <h2>
-                    <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> 
-                    DePIN Projects
-                </h2>
-            </div>
-            <p id="projectCount" style="color: var(--text-muted); font-weight: 500; font-size: 13px; margin-bottom: 20px;">Loading projects...</p>
-
-            <div class="filter-section">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search projects by name..." onkeyup="renderTable()">
-                </div>
-                
-                <div class="filter-buttons">
-                    <button class="btn-filter active" onclick="setCategory('All', this)">All Projects</button>
-                    <button class="btn-filter" onclick="setCategory('Cash Payouts', this)">Cash Payouts</button>
-                    <button class="btn-filter" onclick="setCategory('Token Listed', this)">Token Listed</button>
-                    <button class="btn-filter" onclick="setCategory('No Token', this)">No Token</button>
-                    
-                    <select class="cat-select" onchange="setSubCategory(this.value)">
-                        <option value="All">Categories</option>
-                        <option value="Bandwidth">Bandwidth</option>
-                        <option value="Compute">Compute</option>
-                        <option value="Storage">Storage</option>
-                        <option value="Sensor">Sensor</option>
-                        <option value="Wireless">Wireless</option>
-                    </select>
-                </div>
+            <div class="hero-banner">
+                <h2>Explore the Total Crypto Ecosystem</h2>
+                <p>Verified DePIN hardware, bandwidth sharing nodes, zero-investment mobile mining, airdrops, and crypto utility tools in one decentralized hub.</p>
             </div>
 
-            <div class="table-card">
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>PROJECT</th>
-                                <th>CATEGORIES</th>
-                                <th>TCN SCORE</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody id="projectsTableBody">
-                            <!-- Injected by JS -->
-                        </tbody>
-                    </table>
-                </div>
-                <div id="noDataMessage" style="display:none; padding: 40px; text-align: center; color: var(--text-muted); font-weight: 600; font-size: 13px;">
-                    No project found. We only list verified nodes.
-                </div>
+            <div class="dashboard-grid">
+                <a href="depin-pages/depin.html" class="dash-card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                    <h3>DePIN Projects Hub</h3>
+                    <p>Track 45+ verified background nodes, bandwidth sharing apps, and AI compute protocols.</p>
+                    <span class="card-action">Explore DePIN Nodes &rarr;</span>
+                </a>
+
+                <a href="mobile-pages/mobile-mining.html" class="dash-card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
+                    <h3>Mobile Mining Ecosystem</h3>
+                    <p>Verified mobile apps for token distribution, consensus rewards, and lightweight smartphone mining.</p>
+                    <span class="card-action">View Mobile Miners &rarr;</span>
+                </a>
+
+                <a href="airdrop-pages/airdrops.html" class="dash-card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></div>
+                    <h3>Airdrops & Campaigns</h3>
+                    <p>Hand-picked incentive testnets, early network participation tasks, and verified zero-cost drops.</p>
+                    <span class="card-action">Explore Airdrops &rarr;</span>
+                </a>
+
+                <a href="wallet-pages/wallets.html" class="dash-card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></div>
+                    <h3>Wallets & Top Exchanges</h3>
+                    <p>Recommended self-custodial wallets and high-liquidity partner exchanges for your rewards.</p>
+                    <span class="card-action">Open Wallets &rarr;</span>
+                </a>
+
+                <a href="token-pages/token-checker.html" class="dash-card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+                    <h3>Token Checker</h3>
+                    <p>Verify smart contract safety, liquidity pools, and network details across multiple blockchains.</p>
+                    <span class="card-action">Launch Checker &rarr;</span>
+                </a>
+
+                <a href="earning-pages/earning-calculator.html" class="dash-card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></div>
+                    <h3>Earning Calculator</h3>
+                    <p>Simulate passive data sharing rewards, device power costs, and projected token payouts.</p>
+                    <span class="card-action">Calculate Rewards &rarr;</span>
+                </a>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="site-container">
-            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; 2026 Total Crypto Network. All rights reserved.
-            </div>
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">&copy; 2026 Total Crypto Network. All rights reserved.</div>
             <div class="footer-links">
-                <a href="pages/about.html">About Us</a>
-                <a href="pages/contact.html">Contact Us</a>
-                <a href="pages/privacy.html">Privacy Policy</a>
-                <a href="pages/terms.html">Terms & Conditions</a>
-                <a href="pages/disclaimer.html">Disclaimer</a>
+                <a href="legal-pages/about.html">About Us</a>
+                <a href="legal-pages/contact.html">Contact Us</a>
+                <a href="legal-pages/privacy.html">Privacy Policy</a>
+                <a href="legal-pages/terms.html">Terms & Conditions</a>
+                <a href="legal-pages/disclaimer.html">Disclaimer</a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript Data -->
     <script>
-        const ALL_PROJECTS = [
-            // --- TOP PRIORITY & VERIFIED DEPIN PROJECTS ---
-            { name: "Titan Network", sub: "CDN & Storage", category: "Storage", status: "No Token", score: "⭐ 9.4 / 10", link: "projects/titan.html", logo: "logos/titan.png", verified: true },
-            { name: "Grass Network", sub: "DePIN Ecosystem", category: "Bandwidth", status: "Token Listed", score: "⭐ 9.8 / 10", link: "projects/grass.html", logo: "logos/grass.png", verified: true },
-            { name: "U2U Network", sub: "DePIN Infrastructure", category: "Compute", status: "Token Listed", score: "⭐ 8.3 / 10", link: "projects/u2u.html", logo: "logos/u2u.png", verified: true },
-            { name: "Swash", sub: "Data Monetization", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.0 / 10", link: "projects/swash.html", logo: "logos/swash.png", verified: true },
-            { name: "Bixberry", sub: "Mobile Background Mining", category: "Compute", status: "No Token", score: "⭐ 8.2 / 10", link: "projects/bixberry.html", logo: "logos/Bixberry.png", verified: true },
-            { name: "Adreva", sub: "DePIN Advertising", category: "Bandwidth", status: "No Token", score: "⭐ 7.7 / 10", link: "projects/adreva.html", logo: "logos/adreva.png", verified: true },
-            { name: "Hyra Network", sub: "PC & Mobile Node", category: "Compute", status: "No Token", score: "⭐ 7.5 / 10", link: "projects/hyra.html", logo: "logos/Hyra Network.png", verified: true },
-            { name: "ARO Protocol", sub: "AI & Data", category: "Compute", status: "No Token", score: "⭐ 7.8 / 10", link: "projects/aro.html", logo: "logos/aro.png", verified: true },
-            { name: "UpRock", sub: "Mobile AI Data", category: "Compute", status: "Token Listed", score: "⭐ 9.4 / 10", link: "projects/uprock.html", logo: "logos/uprock.png", verified: true },
-            { name: "EarnApp", sub: "Passive Cash", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 9.2 / 10", link: "projects/earnapp.html", logo: "logos/earnapp.png", verified: true },
-            { name: "Mysterium Network", sub: "dVPN Protocol", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.9 / 10", link: "projects/mysterium.html", logo: "logos/Mysterium Network.png", verified: true },
-            { name: "Acurast", sub: "Spare Phones Compute", category: "Compute", status: "Token Listed", score: "⭐ 8.5 / 10", link: "projects/acurast.html", logo: "logos/Acurast.png", verified: true },
-            { name: "OptimAI", sub: "AI Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.0 / 10", link: "projects/optimai.html", logo: "logos/OptimAI.png", verified: true },
-            { name: "Bee Maps", sub: "Mapping Network", category: "Sensor", status: "No Token", score: "⭐ 7.9 / 10", link: "projects/beemaps.html", logo: "logos/Bee Maps.png", verified: true },
-
-            { name: "Sweatcoin", sub: "Move-to-Earn & Wallet", category: "Sensor", status: "Token Listed", score: "⭐ 8.9 / 10", link: "projects/sweatcoin.html", logo: "logos/sweatcoin.png", verified: true },
-            { name: "MapMetrics", sub: "Decentralized Navigation", category: "Sensor", status: "Token Listed", score: "⭐ 8.4 / 10", link: "projects/mapmetrics.html", logo: "logos/mapmetrics.png", verified: true },
-
-            { name: "NiceHash", sub: "CPU & GPU Hashrate", category: "Compute", status: "Cash Payouts", score: "⭐ 9.1 / 10", link: "projects/nicehash.html", logo: "logos/NiceHash.png", verified: true },
-            { name: "Kryptex", sub: "PC & Mobile Mining", category: "Compute", status: "Cash Payouts", score: "⭐ 8.9 / 10", link: "projects/kryptex.html", logo: "logos/Kryptex.png", verified: true },
-            { name: "Verus Mobile", sub: "Mobile CPU Hash Mining", category: "Compute", status: "Token Listed", score: "⭐ 8.5 / 10", link: "projects/verus.html", logo: "logos/Verus Mobile.png", verified: true },
-
-            { name: "Honeygain", sub: "Passive Data", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 9.5 / 10", link: "projects/honeygain.html", logo: "logos/Honeygain.png", verified: true },
-            { name: "Nodepay", sub: "AI Infrastructure", category: "Bandwidth", status: "No Token", score: "⭐ 9.3 / 10", link: "projects/nodepay.html", logo: "logos/Nodepay.png", verified: true },
-            { name: "DAWN Internet", sub: "Decentralized Broadband", category: "Bandwidth", status: "No Token", score: "⭐ 9.2 / 10", link: "projects/dawn.html", logo: "logos/DAWN Internet.png", verified: true },
-            { name: "Nodle Network", sub: "Bluetooth DePIN", category: "Wireless", status: "Token Listed", score: "⭐ 9.1 / 10", link: "projects/nodle.html", logo: "logos/Nodle Network.png", verified: true },
-            { name: "Pawns.app", sub: "Bandwidth Sharing", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 9.0 / 10", link: "projects/pawns.html", logo: "logos/Pawns.app.png", verified: true },
-            { name: "Gradient Network", sub: "Compute Edge", category: "Compute", status: "Token Listed", score: "⭐ 9.0 / 10", link: "projects/gradient.html", logo: "logos/Gradient Network.png", verified: true },
-            { name: "Teneo Protocol", sub: "Data Layer", category: "Bandwidth", status: "No Token", score: "⭐ 8.8 / 10", link: "projects/teneo.html", logo: "logos/Teneo Protocol.png", verified: true },
-            { name: "Earn.fm", sub: "Passive Data", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.8 / 10", link: "projects/earnfm.html", logo: "logos/Earn.fm.png", verified: true },
-            { name: "Helium", sub: "Wireless Network", category: "Wireless", status: "Token Listed", score: "⭐ 8.8 / 10", link: "projects/helium.html", logo: "logos/Helium.png", verified: true },
-            { name: "NATIX Network", sub: "Drive-to-Earn", category: "Sensor", status: "Token Listed", score: "⭐ 8.7 / 10", link: "projects/natix.html", logo: "logos/NATIX Network.png", verified: true },
-            { name: "Theta Edge Node", sub: "Video & AI Compute", category: "Compute", status: "Token Listed", score: "⭐ 8.7 / 10", link: "projects/theta.html", logo: "logos/Theta Edge Node.png", verified: true },
-            { name: "Repocket", sub: "Passive Data", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.6 / 10", link: "projects/repocket.html", logo: "logos/Repocket.png", verified: true },
-            { name: "Silencio", sub: "Noise Mapping", category: "Sensor", status: "Token Listed", score: "⭐ 8.6 / 10", link: "projects/silencio.html", logo: "logos/Silencio.png", verified: true },
-            { name: "PacketStream", sub: "PC Bandwidth", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.5 / 10", link: "projects/packetstream.html", logo: "logos/PacketStream.png", verified: true },
-            { name: "Bless Network", sub: "AI Extension", category: "Compute", status: "No Token", score: "⭐ 8.4 / 10", link: "projects/bless.html", logo: "logos/Bless.png", verified: true },
-            { name: "Traffmonetizer", sub: "Bandwidth Sharing", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.4 / 10", link: "projects/traffmonetizer.html", logo: "logos/Traffmonetizer.png", verified: true },
-            { name: "Proxyrack", sub: "Bandwidth Sharing", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.3 / 10", link: "projects/proxyrack.html", logo: "logos/Proxyrack.png", verified: true },
-            { name: "ByteLixir", sub: "Passive Data", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.2 / 10", link: "projects/bytelixir.html", logo: "logos/ByteLixir.png", verified: true },
-            { name: "COIN App", sub: "Geo Location", category: "Sensor", status: "Token Listed", score: "⭐ 8.4 / 10", link: "projects/coinapp.html", logo: "logos/COIN App.png", verified: true },
-            { name: "GaGaNode", sub: "Edge Bandwidth", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.2 / 10", link: "projects/gaganode.html", logo: "logos/GaGaNode.png", verified: true },
-            { name: "375ai", sub: "Edge AI Network", category: "Compute", status: "Token Listed", score: "⭐ 8.1 / 10", link: "projects/375ai.html", logo: "logos/375ai.png", verified: true },
-            { name: "Slice", sub: "Ads Extension", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.0 / 10", link: "projects/slice.html", logo: "logos/Slice.png", verified: true },
-            { name: "URnetwork", sub: "Privacy Node", category: "Bandwidth", status: "Token Listed", score: "⭐ 7.9 / 10", link: "projects/urnetwork.html", logo: "logos/URnetwork.png", verified: true },
-            { name: "Chirp Network", sub: "Wireless Telecom", category: "Wireless", status: "Token Listed", score: "⭐ 8.1 / 10", link: "projects/chirp.html", logo: "logos/Chirp.png", verified: true },
-            { name: "Roam", sub: "Wireless Network", category: "Wireless", status: "Token Listed", score: "⭐ 8.2 / 10", link: "projects/roam.html", logo: "logos/Roam.png", verified: true },
-            { name: "Uplink", sub: "Decentralized Connectivity", category: "Wireless", status: "Token Listed", score: "⭐ 8.2 / 10", link: "projects/uplink.html", logo: "logos/Uplink.png", verified: true },
-            { name: "Perceptron Network", sub: "AI Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.3 / 10", link: "projects/perceptron.html", logo: "logos/Perceptron Network.png", verified: true },
-            { name: "Functor Network", sub: "Compute Layer", category: "Compute", status: "No Token", score: "⭐ 8.1 / 10", link: "projects/functor.html", logo: "logos/Functor Network.png", verified: true },
-            { name: "Pipe Network", sub: "CDN Node", category: "Bandwidth", status: "No Token", score: "⭐ 8.1 / 10", link: "projects/pipe.html", logo: "logos/Pipe Network.png", verified: true },
-            { name: "3DOS", sub: "3D Printing DePIN", category: "Compute", status: "No Token", score: "⭐ 7.8 / 10", link: "projects/3dos.html", logo: "logos/3DOS.png", verified: true },
-            { name: "MinionLab", sub: "Data Processing", category: "Compute", status: "No Token", score: "⭐ 7.9 / 10", link: "projects/minionlab.html", logo: "logos/MinionLab.png", verified: true },
-            { name: "Kaito Pulse", sub: "AI Data Node", category: "Compute", status: "No Token", score: "⭐ 7.9 / 10", link: "projects/kaitopulse.html", logo: "logos/Kaito Pulse.png", verified: true },
-            { name: "Privasea", sub: "FHE Network", category: "Compute", status: "No Token", score: "⭐ 8.3 / 10", link: "projects/privasea.html", logo: "logos/Privasea.png", verified: true }
-        ];
-
-        let currentFilter = 'All';
-        let currentSubCategory = 'All';
-
-        function getAvatarColor(name) {
-            const colors = ['#059669', '#10b981', '#2563eb', '#6366f1', '#8b5cf6', '#d946ef', '#f43f5e', '#f59e0b', '#0ea5e9'];
-            let hash = 0;
-            for (let i = 0; i < name.length; i++) { hash = name.charCodeAt(i) + ((hash << 5) - hash); }
-            return colors[Math.abs(hash) % colors.length];
-        }
-
-        function renderTable() {
-            const searchVal = document.getElementById('searchInput').value.toLowerCase();
-            const tbody = document.getElementById('projectsTableBody');
-            const noDataMsg = document.getElementById('noDataMessage');
-            tbody.innerHTML = '';
-            let visibleCount = 0;
-
-            ALL_PROJECTS.forEach(p => {
-                const matchesSearch = p.name.toLowerCase().includes(searchVal);
-                
-                let matchesFilter = false;
-                if(currentFilter === 'All') {
-                    matchesFilter = true;
-                } else if(currentFilter === 'No Token') {
-                    matchesFilter = p.status === 'No Token';
-                } else {
-                    matchesFilter = p.status === currentFilter;
-                }
-                
-                const matchesSubCat = currentSubCategory === 'All' || p.category.includes(currentSubCategory);
-
-                if (matchesSearch && matchesFilter && matchesSubCat) {
-                    visibleCount++;
-                    const initial = p.name.charAt(0).toUpperCase();
-                    const bgColor = getAvatarColor(p.name);
-                    const targetLink = p.link ? p.link : '#';
-                    
-                    let avatarHtml = '';
-                    if (p.logo) {
-                        avatarHtml = `<div class="project-avatar-box"><img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="project-initial" style="background: ${bgColor}; display:none;">${initial}</div></div>`;
-                    } else {
-                        avatarHtml = `<div class="project-avatar-box"><div class="project-initial" style="background: ${bgColor};">${initial}</div></div>`;
-                    }
-
-                    let verifiedBadge = p.verified ? `<span class="verified-tick" title="Verified TCN Project">✓</span>` : '';
-
-                    let statusBadge = '';
-                    if(p.status === "Token Listed" && currentFilter === "Token Listed") {
-                        statusBadge = `<span class="badge-listed">Token Listed</span>`;
-                    } else if(p.status === "Cash Payouts" && currentFilter === "Cash Payouts") {
-                        statusBadge = `<span class="badge-listed" style="color:#10b981; border-color:rgba(16,185,129,0.25); background:rgba(16,185,129,0.1);">USD Pay</span>`;
-                    }
-
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>
-                            <div class="project-cell">
-                                ${avatarHtml}
-                                <div>
-                                    <div class="project-name">${p.name} ${verifiedBadge} ${statusBadge}</div>
-                                    <div class="project-sub">${p.sub}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="category-pill">${p.category}</span></td>
-                        <td class="score-text">${p.score}</td>
-                        <td><a href="${targetLink}" class="btn-details">View Details</a></td>
-                    `;
-                    tbody.appendChild(row);
-                }
-            });
-
-            document.getElementById('projectCount').innerText = `Showing ${visibleCount} verified DePIN projects`;
-            noDataMsg.style.display = visibleCount === 0 ? "block" : "none";
-        }
-
-        function setCategory(filter, button) {
-            currentFilter = filter;
-            document.querySelectorAll('.filter-buttons .btn-filter').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            renderTable();
-        }
-
-        function setSubCategory(cat) {
-            currentSubCategory = cat;
-            renderTable();
-        }
-
         function toggleTheme() {
             const body = document.body;
             const toggleBtn = document.getElementById('themeToggle');
@@ -516,12 +172,10 @@
                 localStorage.setItem('theme', 'light');
             }
         }
-
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
             document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
-            renderTable();
         };
     </script>
 </body>
