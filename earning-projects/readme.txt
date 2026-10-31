@@ -1,0 +1,1 @@
+Earning projects folder
