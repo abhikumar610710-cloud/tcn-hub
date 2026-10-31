@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipe Network Architecture, Solana dCDN & Guardian Node Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete deep-dive into Pipe Network by Permissionless Labs. Learn how to earn rewards by running a Guardian Node on this Solana-based Decentralized CDN.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --accent-pipe: #e4ff00; /* Vibrant Neon Yellow based on their logo */
+            --accent-pipe-dark: #b8cc00;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --accent-pipe: #e4ff00;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        
+        /* Updated Logo matching Pipe Network UI */
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 12px; background: #111827; display: flex; align-items: center; justify-content: center; }
+        .project-big-logo svg { width: 100%; height: 100%; fill: var(--accent-pipe); }
+        
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: #111827; color: var(--accent-pipe); width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badge */
+        .depin-badge { background: #3b82f6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .solana-badge { background: #14b8a6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .btn-join { background: #111827; color: var(--accent-pipe); text-decoration: none; padding: 12px 24px; border-radius: 10px; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(17, 24, 39, 0.3); transition: all 0.2s; border: 1px solid var(--accent-pipe); }
+        .btn-join:hover { background: #1f2937; transform: translateY(-1px); }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: #111827; color: var(--accent-pipe); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; border-top: 3px solid #111827; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <!-- Custom Abstract Geo-Logo for Pipe -->
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.3L19.5 8L12 11.7L4.5 8L12 4.3ZM4 15.6V9.4L11 12.9V19.7L4 15.6ZM13 19.7V12.9L20 9.4V15.6L13 19.7Z" />
+                        </svg>
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Pipe Network <span class="verified-badge">✓</span> <span class="depin-badge">dCDN DePIN</span> <span class="solana-badge">Solana</span></h2>
+                        <p>The Decentralized Content Delivery Network (dCDN) by Permissionless Labs</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <!-- Direct Official Link -->
+                    <a href="https://pipesnodes.com/" target="_blank" class="btn-join">🌐 Open Guardian Dashboard</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Pipe Network -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Pipe Network? (The Decentralized Cloudflare)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Pipe Network</strong> (developed by Permissionless Labs) is a revolutionary Decentralized Content Delivery Network (dCDN) built natively on the blazing-fast <strong>Solana blockchain</strong>. 
+                    </p>
+                    <p class="article-text">
+                        Traditionally, massive Web2 giants like Cloudflare and Akamai monopolize how videos, websites, and apps load on your screen, relying on expensive, centralized server farms. Pipe Network completely decentralizes this infrastructure. It creates a global mesh of community-operated "hyperlocal" nodes that store and deliver cached content right from your local neighborhood. This dramatically reduces latency, cuts bandwidth costs, and makes the internet resilient against centralized outages.
+                    </p>
+                </div>
+
+                <!-- Point 2: Enterprise Tech & Funding -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Institutional Funding & Solana Ecosystem Backing</h3>
+                    </div>
+                    <p class="article-text">
+                        Taking on multi-billion dollar traditional CDNs requires massive institutional support. Pipe Network is positioned as a flagship infrastructure project on Solana:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Total Capital Raised</th>
+                                <td><strong>$17.5 Million USD</strong>. This includes an initial $10M venture round followed by a heavily oversubscribed $7.5M public sale via CoinList.</td>
+                            </tr>
+                            <tr>
+                                <th>Lead Venture Capitalists</th>
+                                <td>Funded by the biggest names in the ecosystem, including <strong>Multicoin Capital</strong>, <strong>Solana Ventures</strong>, and Solana co-founder Anatoly Yakovenko.</td>
+                            </tr>
+                            <tr>
+                                <th>Blockchain Technology</th>
+                                <td>Leverages Solana's sub-second finality to process automated micropayments and utilize complex <strong>ZK-TCP proofs</strong> for node verification.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 3: Tokenomics & $PIPE Utility -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Tokenomics & The Burn-to-Credit Model</h3>
+                    </div>
+                    <p class="article-text">
+                        The network introduces a highly deflationary economic model using its native <strong>$PIPE</strong> utility token:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🪙 1 Billion Max Supply</h4>
+                            <p>The token has a hard-capped maximum supply of 1,000,000,000 PIPE at TGE, with 22% strictly reserved for the community and active operators.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔥 Burn-to-Credit Deflation</h4>
+                            <p>Customers (like developers or streaming apps) must buy $PIPE and permanently burn it to generate "Data Credits" for network usage, creating constant deflationary pressure.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛠️ Proof-of-Useful-Work (PoUW)</h4>
+                            <p>Nodes do not mine blocks arbitrarily. Tokens are emitted and rewarded exclusively when a node provides mathematically verified bandwidth delivery.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔒 Staking Dynamics</h4>
+                            <p>Node operators must stake PIPE to join the network, ensuring accountability. A portion of network fees is redistributed to stakers via the LovePIPE liquidity pool.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Active Earning (PoP vs Guardian) -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Active Earning: PoP Nodes vs. Guardian Nodes</h3>
+                    </div>
+                    <p class="article-text">
+                        Pipe Network utilizes a dual-node architecture to ensure content is delivered quickly and accurately. Users can participate in two different ways:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🛡️ Guardian Nodes (For Everyone)</h4>
+                            <p>This is the lightweight entry point. By installing the <strong>Pipe Guardian Chrome Extension</strong>, your browser conducts background network audits, checking the speed and integrity of the main network. Guardians accumulate points for future airdrops without needing heavy hardware.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🚀 PoP Nodes (For Pro Users)</h4>
+                            <p>Point-of-Presence (PoP) nodes are the heavy lifters. These are dedicated servers or high-end PCs that actually cache and deliver the video/data files to local users. They require high bandwidth and consistent uptime, earning the bulk of the Proof-of-Useful-Work rewards.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: Enterprise Use Cases -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Real-World Enterprise Use Cases</h3>
+                    </div>
+                    <p class="article-text">
+                        Pipe Network is built to handle massive, heavy-compute bandwidth tasks that traditional CDNs struggle with:
+                    </p>
+                    <div class="alert-box">
+                        <h5>🎯 Primary Targets:</h5>
+                        <p><strong>1. Content Streaming:</strong> Ultra low-latency delivery for high-definition video and media platforms.</p>
+                        <p style="margin-top:6px;"><strong>2. Solana Validator Snapshot Syncing:</strong> Drastically speeding up how fast new validators can download the Solana ledger history to join the mainnet.</p>
+                        <p style="margin-top:6px;"><strong>3. Edge AI Inference:</strong> Supporting Artificial Intelligence workloads natively at the network edge, closer to the actual user.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Total Crypto Network Pro Tips -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Total Crypto Network Pro Tips: Dashboard Overloads</h3>
+                    </div>
+                    <p class="article-text">
+                        If you are trying to register for the Guardian Node extension and the dashboard at `pipesnodes.com` is failing, understand the network mechanics:
+                    </p>
+                    <div class="rule-box">
+                        <h5>💡 Navigating High Traffic & reCAPTCHA Errors:</h5>
+                        <p>During major onboarding phases (or following large VC announcements), the Pipe Network Guardian Dashboard frequently experiences severe server overloads, resulting in red banner errors like <strong>"currently experiencing high traffic"</strong> or <strong>"Invalid domain for site key (reCAPTCHA)"</strong>. This is a frontend server bottleneck, not a block on your IP. Wait for off-peak hours (usually early morning) to register your account and generate your referral code.</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for bypassing dashboard errors and deploying your Guardian Node extension:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: Guardian Node Setup -->
+                        <div class="video-box">
+                            <h4>🛡️ Pipe Network Guardian Node Chrome Extension Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_PIPE_GUARDIAN_VIDEO_ID" title="Pipe Guardian Node Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Project Deep Dive -->
+                        <div class="video-box">
+                            <h4>🚀 Pipe Network Deep Dive & Tokenomics Explained</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_PIPE_DEEPDIVE_VIDEO_ID" title="Pipe Network Tokenomics" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. The $PIPE token and Guardian Node points system are currently in pre-mainnet phases. Running background auditing nodes utilizes small amounts of idle bandwidth. Token yields, airdrop criteria, and PoP node hardware requirements are dynamic and determined exclusively by Permissionless Labs. Never invest funds you cannot afford to risk.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
