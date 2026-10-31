@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DOS Architecture, 3D Printing DePIN & $3DOS Token Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete deep-dive into 3DOS Network. Learn how to earn rewards by running an AI browser node for global decentralized 3D printing and manufacturing on the Sui blockchain.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --accent-3dos: #3b82f6; /* Trust Blue based on their logo */
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --accent-3dos: #60a5fa;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        
+        /* Updated Logo matching 3DOS UI */
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 8px; background: #ffffff; display: flex; align-items: center; justify-content: center; }
+        .project-big-logo svg { width: 100%; height: 100%; fill: var(--accent-3dos); }
+        
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-3dos); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badge */
+        .depin-badge { background: #14b8a6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .sui-badge { background: #0ea5e9; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-3dos); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-3dos); color: var(--accent-3dos); }
+        
+        .btn-join { background: var(--accent-3dos); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: #2563eb; transform: translateY(-1px); }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-3dos); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; border-top: 3px solid var(--accent-3dos); }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+            .invite-box { flex: 1; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7.8V16.2L12 22L22 16.2V7.8L12 2ZM12 4.3L19.5 8.6L12 12.9L4.5 8.6L12 4.3ZM4 15.1V10.8L11 14.8V19.1L4 15.1ZM13 19.1V14.8L20 10.8V15.1L13 19.1Z" />
+                        </svg>
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">3DOS Network <span class="verified-badge">✓</span> <span class="depin-badge">3D Mfg DePIN</span> <span class="sui-badge">Sui Blockchain</span></h2>
+                        <p>The World’s Largest Decentralized 3D Printing & Manufacturing Network</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">adb5f9</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="https://dashboard.3dos.io/public/whitelist?invite_code=adb5f9" target="_blank" class="btn-join">🎁 Join 3DOS Network</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is 3DOS -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is 3DOS? (Decentralized Manufacturing)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>3DOS</strong> is a groundbreaking Decentralized Physical Infrastructure Network (DePIN) built on the <strong>Sui blockchain</strong>. Unlike most web3 projects that focus strictly on digital data or wireless routers, 3DOS is revolutionizing the actual, physical manufacturing industry through peer-to-peer 3D printing[cite: 44].
+                    </p>
+                    <p class="article-text">
+                        Currently, global manufacturing relies on massive centralized factories, international shipping, and massive carbon emissions. 3DOS eliminates this entirely. It acts as a routing layer (an "operating system" for manufacturing) that takes a digital 3D design and routes it to the idle 3D printer physically closest to the buyer. This completely cuts out international shipping costs, avoids physical waste, and eliminates minimum order quantities (MOQs)[cite: 44].
+                    </p>
+                </div>
+
+                <!-- Point 2: The Foundation (3DPrinterOS) & Backers -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>The Foundation: 3DPrinterOS & Institutional Backing</h3>
+                    </div>
+                    <p class="article-text">
+                        This is not a theoretical project built from scratch; it is built on top of a massive, pre-existing Web2 enterprise infrastructure:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>The 3DPrinterOS Backbone</th>
+                                <td>The underlying technology stack—<strong>3DPrinterOS</strong>—is already deployed across thousands of printers globally and used by premier institutions such as <strong>MIT, Harvard, NASA, and the US Navy</strong>[cite: 44].</td>
+                            </tr>
+                            <tr>
+                                <th>Total Capital Raised</th>
+                                <td>Raised $450K+ in initial strategic rounds, significantly augmented by public Reg CF crowdfunding via StartEngine[cite: 44].</td>
+                            </tr>
+                            <tr>
+                                <th>Strategic Ecosystems</th>
+                                <td>Backed by heavy-hitting Web3 and DePIN accelerators including IoTeX, Athena Ventures, Frontures, IronKey Capital, and Alchemist Accelerator[cite: 44].</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 3: NFTs & Royalty Protection -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Creator Copyrights & NFT Royalty Distribution</h3>
+                    </div>
+                    <p class="article-text">
+                        One of the biggest problems in 3D printing is intellectual property theft. 3DOS solves this natively on the blockchain:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🎨 Tokenized Designs</h4>
+                            <p>When creators upload their digital creations to the 3DOS network, the CAD files and designs are securely minted as NFTs[cite: 44].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💰 Automated Royalties</h4>
+                            <p>This integration ensures automated, tamper-proof royalty payments directly to the creator every single time that specific item is printed anywhere in the world[cite: 44].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛡️ Bypassing Legal Friction</h4>
+                            <p>By automating payouts via smart contracts on Sui, creators bypass traditional billing overhead, licensing lawyers, and international banking fees[cite: 44].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🪙 The $3DOS Token</h4>
+                            <p>The native utility token handles all these micro-transactions. Buyers pay for manufacturing with tokens, and printer operators earn them for fulfilling the job[cite: 44].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Active Earning Without a Printer -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Active Earning: The 3DOS Browser Node</h3>
+                    </div>
+                    <p class="article-text">
+                        You do not need to own an actual 3D printer to earn rewards in the 3DOS ecosystem. The network utilizes a lightweight browser extension to aggregate capacity data:
+                    </p>
+                    <div class="alert-box">
+                        <h5>🛡️ How to Farm Pre-TGE Points:</h5>
+                        <p><strong>1. Install the Node:</strong> Download the official 3DOS AI Chrome Extension on your PC, Mac, or Linux computer[cite: 44].</p>
+                        <p style="margin-top:6px;"><strong>2. Activate with API Key:</strong> Register on the dashboard, verify your email, and click <strong>"Generate API Key"</strong>. Paste this key into the Chrome extension to activate your node[cite: 44].</p>
+                        <p style="margin-top:6px;"><strong>3. Passive Uptime:</strong> Keep the browser extension active as much as possible. It runs quietly in the background, utilizing minimal resources to help map regional manufacturing capacity[cite: 44].</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: Multi-Stream Revenue -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Multi-Stream Earning for Hardware Owners</h3>
+                    </div>
+                    <p class="article-text">
+                        While browser nodes earn standard airdrop points, users who actually own physical 3D printers can unlock dual-revenue streams:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🖨️ Connect Your Hardware</h4>
+                            <p>If you own an idle 3D printer at home or in your business, you can directly register it to the network via the dashboard[cite: 44].</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💸 Dual Revenue Generation</h4>
+                            <p>By handling actual network print workloads, you earn the standard $3DOS token rewards for providing capacity, plus the actual service fees paid by the buyer for the physical product[cite: 44].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 6: Total Crypto Network Pro Tips -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Total Crypto Network Pro Tips: Maximizing Dashboard Points</h3>
+                    </div>
+                    <p class="article-text">
+                        The current phase is highly focused on accumulating "Reward Points" which are explicitly designated to convert into native utility tokens upon the token launch[cite: 44]. To maximize your airdrop:
+                    </p>
+                    <div class="rule-box">
+                        <h5>💡 Daily Claim Routine:</h5>
+                        <p>Do not rely solely on the background extension. You must log into the 3DOS dashboard daily to collect explicit daily claim pop-ups (which add points directly to your ledger). Additionally, ensure you connect your Twitter/X, Discord, and Telegram in the dashboard for minor one-time boosts and long-term ecosystem reputation[cite: 44].</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for generating your API key and securing your browser node:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: Node Setup -->
+                        <div class="video-box">
+                            <h4>💻 3DOS AI Browser Extension & API Key Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_3DOS_EXTENSION_VIDEO_ID" title="3DOS Node Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Hardware Setup -->
+                        <div class="video-box">
+                            <h4>🖨️ Connecting a Physical 3D Printer to the 3DOS Network</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_3DOS_PRINTER_VIDEO_ID" title="3DOS Hardware Setup" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. The $3DOS token is currently in a pre-TGE phase, and Reward Points do not guarantee a fixed monetary value. If you connect physical 3D printing hardware to fulfill orders, ensure you comply with local manufacturing regulations and safety standards. Never invest funds or purchase hardware you cannot afford to risk.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function copyCode() {
+            const code = "adb5f9";
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite Code copied: " + code);
+            });
+        }
+    </script>
+</body>
+</html>
