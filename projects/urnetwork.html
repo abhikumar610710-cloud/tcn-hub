@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URnetwork Architecture, Bittensor SN25 & Decentralized VPN Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete deep-dive into URnetwork (UR.io). Learn how this Decentralized VPN operates on Bittensor Subnet 25 and pays users in USDC for providing residential bandwidth.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --accent-ur: #0ea5e9;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --accent-ur: #38bdf8;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 8px; background: #000; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; font-size: 18px; letter-spacing: 1px;}
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-ur); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badge */
+        .depin-badge { background: #3b82f6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .tao-badge { background: #14b8a6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-ur); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-ur); color: var(--accent-ur); }
+        
+        .btn-join { background: var(--accent-ur); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: #0284c7; transform: translateY(-1px); }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-ur); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; border-top: 3px solid var(--accent-ur); }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+            .invite-box { flex: 1; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo notranslate" translate="no">
+                        UR
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">URnetwork <span class="verified-badge">✓</span> <span class="depin-badge">DePIN VPN</span> <span class="tao-badge">Subnet 25</span></h2>
+                        <p>Decentralized Peer-to-Peer Privacy Routing Protocol</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Signup Bonus Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">6A9CU0</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="https://ur.io/c?bonus=6A9CU0" target="_blank" class="btn-join">🎁 Get UR Bonus</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is URnetwork -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is URnetwork? (The Decentralized VPN Overlay)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>URnetwork (UR.io)</strong> is a cutting-edge Decentralized Physical Infrastructure Network (DePIN) that functions as a highly secure, peer-to-peer privacy routing protocol. In simple terms, it is a next-generation <strong>Decentralized VPN (dVPN)</strong>.
+                    </p>
+                    <p class="article-text">
+                        Traditional consumer VPNs (like NordVPN or ExpressVPN) route your internet traffic through centralized corporate servers. This creates a massive single point of failure and privacy risk, as the VPN company holds all your data logs. URnetwork completely disrupts this model. Instead of corporate server farms, URnetwork routes encrypted web traffic dynamically through the residential internet connections of everyday users globally, creating an untraceable, "whole-internet" encryption mesh.
+                    </p>
+                </div>
+
+                <!-- Point 2: Funding & The Bittensor Connection -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Institutional Funding & Bittensor Integration</h3>
+                    </div>
+                    <p class="article-text">
+                        The protocol is deeply embedded in the most powerful AI and decentralized routing network in the world—<strong>Bittensor (TAO)</strong>. It officially operates as <strong>Subnet 25 (SN25)</strong> on the Bittensor Mainnet:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Total Capital Raised</th>
+                                <td><strong>$2.03 Million USD</strong> total. This includes a massive $2M Seed round closed in 2024 and an early $500k pre-seed debt allocation in 2023.</td>
+                            </tr>
+                            <tr>
+                                <th>Lead Backers</th>
+                                <td>Venture capital rounds were led by top-tier infrastructure specialists <strong>Proof Group</strong> and <strong>The General Partnership</strong>.</td>
+                            </tr>
+                            <tr>
+                                <th>Programmatic Funding</th>
+                                <td>Beyond VC money, the network self-funds. 100% of its initial validator and miner emission distributions on Subnet 25 were routed back into a public capability reserve to scale the infrastructure.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 3: Tokenomics & USDC Yield -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Tokenomics & Earning Structure (No-Airdrop Model)</h3>
+                    </div>
+                    <p class="article-text">
+                        Unlike transient DePIN projects that rely on one-time speculative airdrops, URnetwork is built for sustainable, long-term yield generation powered by actual consumer revenue:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🪙 The "UR" Alpha Token</h4>
+                            <p>UR is the native Alpha token of the ecosystem. Its total supply and emission logic are heavily dictated by Bittensor’s systemic liquidity pool structures.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💸 Stablecoin Payouts</h4>
+                            <p>To provide stable value to infrastructure providers, rewards are distributed directly as <strong>USDC stablecoins</strong> to users' connected Polygon or Solana Web3 wallets.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔄 20% Revenue Share</h4>
+                            <p>URnetwork maintains a continuous community rewards program where 20% of all premium subscription revenue is pooled and systematically distributed back to active routing nodes.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📊 Performance Baseline</h4>
+                            <p>The network guarantees a baseline floor of $0.10 per Monthly Active User (MAU), which scales upward aggressively based on the total bandwidth your node successfully processes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Active Earning -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Active Earning: Becoming a Provider Node</h3>
+                    </div>
+                    <p class="article-text">
+                        The network serves over <strong>100,000 active providers</strong> across 100+ countries. You can join them by operating as a routing "Extender" or "Provider":
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>💻 Zero Heavy Compute</h4>
+                            <p>No intensive enterprise-grade GPUs or mining rigs are required. The main requirement is simply an active, fast internet connection running the background app.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚡ High Speed & Uptime</h4>
+                            <p>Earnings are driven by a proof-of-performance framework. Nodes with 24/7 uptime, fast upload speeds, and clean residential IP allocations drastically maximize yield.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚖️ Performance Auctions</h4>
+                            <p>A client performance auction dynamically matches consumer traffic to the best available routing paths. Subnet 25 validators continuously measure this quality.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>👁️ Transparent Tracking</h4>
+                            <p>On-chain staking statistics, miner allocations, and pool distributions can be audited live via sub-network tools like the TaoMarketCap SN25 Tracker.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: Consumer VPN Tiers -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Consumer VPN Features & Product Tiers</h3>
+                    </div>
+                    <p class="article-text">
+                        Even if you don't want to mine, URnetwork offers one of the most generous consumer VPN products on the market, available across Windows, macOS, iOS, Android, and Chrome:
+                    </p>
+                    <div class="alert-box">
+                        <h5>🛡️ Massive Value for Free Users:</h5>
+                        <p><strong>1. The "Free" Community Tier:</strong> Most free VPNs cap you at 2GB per month. URnetwork provides an unprecedented <strong>30 GiB per day</strong> for free users. It includes Post-Quantum Encryption, Split-tunneling, Custom DNS, and native blocking for ads, trackers, and malware at the network level.</p>
+                        <p style="margin-top:6px;"><strong>2. UR Pro ($40/year):</strong> For heavy users, the Pro tier (costing just $5/month or $40/year) upgrades your bandwidth limit to a massive <strong>10 TiB per month</strong>, supports up to 1000 concurrent clients, and adds advanced WireGuard profiles and SOCKS proxy configurations.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Total Crypto Network Pro Tips -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Total Crypto Network Pro Tips: Authentication Flow</h3>
+                    </div>
+                    <p class="article-text">
+                        To maintain absolute anonymity and security (ensuring a 100% no-logs policy), URnetwork utilizes a unique login mechanism that differs from standard web platforms:
+                    </p>
+                    <div class="rule-box">
+                        <h5>🔐 The "Auth Code" System:</h5>
+                        <p>When you download the mobile app or Chrome extension, you will not log in with a standard email and password on the app itself. Instead, you must log into your secure dashboard on the <code>ur.io</code> website, generate an <strong>Authentication Code</strong> (a long, secure cryptographic string), and paste that code directly into the extension/app to launch your secure tunnel.</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for setting up your dVPN extension and configuring your provider node for USDC yield:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: VPN Client Setup -->
+                        <div class="video-box">
+                            <h4>🛡️ URnetwork dVPN Setup & Auth Code Guide</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_UR_CLIENT_VIDEO_ID" title="URnetwork VPN Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Node Provider Setup -->
+                        <div class="video-box">
+                            <h4>💻 Becoming a Provider: Earn USDC on Bittensor</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_UR_NODE_VIDEO_ID" title="URnetwork Provider Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. While URnetwork utilizes advanced Post-Quantum Encryption and a decentralized routing mesh, users should still comply with local internet regulations. The conversion and yield rates of USDC tied to bandwidth provision are dynamic and depend on global network demand and Subnet 25 emission protocols. Never invest funds you cannot afford to risk.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function copyCode() {
+            const code = "6A9CU0";
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Bonus Code copied: " + code);
+            });
+        }
+    </script>
+</body>
+</html>
