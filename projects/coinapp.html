@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COIN App Architecture, Geomining & XYO Rewards Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of the COIN App. Learn how to earn crypto ($XYO) and physical rewards like iPhones and PS5s by geomining and sharing location data.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is COIN App -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is the COIN App? (Geomining Ecosystem)</h3>
+                    </div>
+                    <p class="article-text">
+                        The <strong>COIN App</strong> is a highly interactive, gamified mobile application that allows users to earn cryptocurrency by participating in a decentralized geospatial network. Unlike background bandwidth-sharing apps, COIN requires active or semi-active physical movement.
+                    </p>
+                    <p class="article-text">
+                        Users literally "Geomine" the real world. By walking, driving, or commuting with the app open, your smartphone’s GPS and location data are utilized to verify geospatial location nodes. In return for validating this data, you are rewarded with an in-app currency called 'COIN', which can be converted into valuable crypto assets or high-end physical electronics.
+                    </p>
+                </div>
+
+                <!-- Point 2: The Foundation (XYO Network) -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>The Foundation: XYO Network & Tokenomics</h3>
+                    </div>
+                    <p class="article-text">
+                        The COIN App operates as the primary data-gathering frontend for the <strong>XYO Network</strong>, a massive decentralized oracle network providing cryptographic proof of location:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>The Utility Token ($XYO)</th>
+                                <td>$XYO is a traded ERC-20 token (on Ethereum and Polygon) used to power the XYO network. This is the primary cryptocurrency you swap your earned 'COIN' for.</td>
+                            </tr>
+                            <tr>
+                                <th>Geospatial Oracles</th>
+                                <td>The movement data you generate while geomining helps build a trustless ledger of physical locations used for smart contracts and supply chain tracking.</td>
+                            </tr>
+                            <tr>
+                                <th>HODL Rewards</th>
+                                <td>Users earn daily interest (HODL Rewards) simply by holding COIN in their app or maintaining a verified balance in external Web3 wallets.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 3: Active Earning & Geomining Features -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Active Earning: Geomining, Games & Features</h3>
+                    </div>
+                    <p class="article-text">
+                        The COIN App is packed with a massive variety of earning mechanisms tailored to how active you want to be:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>⛏️ Core Geomining & Auto Explore</h4>
+                            <p>Travel to new digital tiles on the map to uncover hidden rewards. Turning on <strong>Auto Explore</strong> allows the app to mine automatically while you drive or walk.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🎮 In-App Mini Games</h4>
+                            <p>Engage with the "Rewards for Games" feature directly on your geomining map to earn 2x bonus multipliers while stationary.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🏠 Home Base & Store Visits</h4>
+                            <p>Establish a 'Home Base' to earn bonuses while staying stationary, or get paid for scanning products and visiting sponsored retail stores.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📋 Rewarded Surveys & Badges</h4>
+                            <p>Boost your balance significantly by completing market research surveys directly in the app. Earn <strong>In-App Badges</strong> to showcase your veteran geominer status.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: SentinelX Hardware & Subscriptions -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>SentinelX Hardware & Multiplier Tiers</h3>
+                    </div>
+                    <p class="article-text">
+                        To protect the network from GPS spoofers and reward dedicated users, COIN introduced physical hardware validation:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>💳 SentinelX NFC Card</h4>
+                            <p>A physical card you tap against your phone. It verifies your location authenticity and provides a massive <strong>12x boost</strong> to your base geomining rewards.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📡 SentinelX BLE</h4>
+                            <p>A Bluetooth beacon device you carry on your keychain. It provides the same 12x boost but connects wirelessly without needing to tap.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: Geoclaiming & Team Play -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Advanced Tactics: Geoclaiming & Team Play</h3>
+                    </div>
+                    <p class="article-text">
+                        For users who have mastered the basics, the app offers competitive and cooperative ways to generate passive yield:
+                    </p>
+                    <div class="alert-box">
+                        <h5>🏆 Geoclaiming & Leaderboards:</h5>
+                        <p><strong>1. Geoclaim Regions:</strong> Users can invest their COIN to "claim" a specific geographical region for a week. As other users geomine in that area, the owners earn a percentage of their rewards. (Use a <em>Geoclaim Shield</em> to protect your own rewards from being claimed).</p>
+                        <p style="margin-top:6px;"><strong>2. Team Lift & Socialize:</strong> Group up with other geominers to discover additional rewards, pick a unique username, and climb the global leaderboards.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Withdrawals & Physical Redemptions -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Withdrawals (Crypto & Premium Physical Prizes)</h3>
+                    </div>
+                    <p class="article-text">
+                        The COIN App features one of the most robust and unique Redemption Centers in the DePIN sector:
+                    </p>
+                    <div class="rule-box">
+                        <h5>🎁 The Redeem Store Inventory:</h5>
+                        <p><strong>1. Digital Crypto Swaps:</strong> The core redemption path is swapping your COIN directly for <strong>$XYO ERC-20 tokens</strong> (starting at 10,000 COIN). The exchange rate floats based on market conditions (e.g., 142.1 XYO per 1000 COIN).</p>
+                        <p style="margin-top:6px;"><strong>2. Premium Electronics:</strong> You can redeem your COIN balance for high-end tech, including Apple AirPods (3.18M COIN), PlayStation 5 Consoles (16.21M COIN), Nintendo Switch 2, and even an iPhone 16 Pro Max (30.9M COIN).</p>
+                        <p style="margin-top:6px;"><strong>3. Precious Metals:</strong> Uniquely, users can redeem their digital balance for physical assets like a 1-gram Valcambi Gold Bar (5.20M COIN) or an American Eagle Silver Coin.</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for setting up the app, linking your SentinelX, and claiming physical prizes:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: App Setup -->
+                        <div class="video-box">
+                            <h4>📱 COIN App & Auto Explore Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_COIN_VIDEO_ID" title="COIN App Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Redemptions -->
+                        <div class="video-box">
+                            <h4>💳 XYO Crypto & PS5 Prize Redemptions</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_XYO_VIDEO_ID" title="COIN XYO Redemption Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. The conversion rate between in-app COIN and $XYO tokens fluctuates based on the current market value of Ethereum and XYO. Running a GPS-heavy application constantly on Auto Explore will cause significant battery drain on mobile devices. Never invest funds or purchase hardware (like SentinelX) without understanding the potential ROI.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
