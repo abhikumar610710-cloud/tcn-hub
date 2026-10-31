@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>375.ai Architecture, Physical AI & Edge Node Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete overview of 375.ai. Learn how to earn $EAT tokens by mapping the physical world via the 375go app and 375edge hardware nodes on Solana.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Full-Length 7-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is 375.ai -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is 375.ai? (Physical AI & Sensory Network)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>375.ai</strong> is a Decentralized Physical Infrastructure Network (DePIN) built natively on the Solana blockchain. Founded in 2022, it functions as the ultimate observed-world data layer for physical AI systems.
+                    </p>
+                    <p class="article-text">
+                        The project bridges the massive gap between digital AI knowledge and real-world dynamics. By building a decentralized "sensory nervous system," 375.ai utilizes crowd-sourced edge computing devices to generate real-time, anonymized metadata from physical environments. This high-fidelity data—covering traffic vectors, pedestrian flow, and infrastructure usage—acts as the primary training "ground truth" for autonomous vehicles, robotics, and spatial computing developers.
+                    </p>
+                </div>
+
+                <!-- Point 2: Funding & Tier-1 Backers -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Institutional Funding & Enterprise Partnerships</h3>
+                    </div>
+                    <p class="article-text">
+                        375.ai operates at an enterprise scale, backed by massive capital raises and physical real estate integrations:
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Total Funding Raised</th>
+                                <td><strong>$12 Million USD</strong> cumulative. Includes a $5M Seed round (Aug 2024), a $5M strategic venture round (Oct 2025), and a $2M public ICO.</td>
+                            </tr>
+                            <tr>
+                                <th>Lead VCs</th>
+                                <td>Co-led by heavyweights including <strong>Delphi Ventures</strong>, <strong>Hack VC</strong>, and <strong>Strobe Capital</strong>.</td>
+                            </tr>
+                            <tr>
+                                <th>OUTFRONT Media Partnership</th>
+                                <td>Secured a massive nationwide partnership with OUTFRONT Media to deploy hardware nodes across 40,000 premium public-space locations.</td>
+                            </tr>
+                            <tr>
+                                <th>Daily Network Volume</th>
+                                <td>The network already observes and processes tracking data for more than <strong>2 million physical vehicles daily</strong>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Point 3: Tokenomics & $EAT Utility -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Tokenomics & The $EAT Utility Token</h3>
+                    </div>
+                    <p class="article-text">
+                        The network operates using its native utility token on Solana, establishing a highly deflationary economic model:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🪙 The $EAT Token</h4>
+                            <p>$EAT (Edge Activity Token) has a fixed maximum supply of 1,000,000,000 (1 Billion) tokens.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔥 Buy-and-Burn Mechanism</h4>
+                            <p>Enterprise buyers (logistics firms, municipal governments) purchase physical data using data credits. This permanently removes $EAT tokens from circulation, decreasing supply over time.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🪂 Airdrop & Community Allocation</h4>
+                            <p>40% of the total supply is designated for community incentives. The Mainnet TGE concluded on October 29, 2025.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔒 Staking & Validation</h4>
+                            <p>Network security, node validation, and data verification require token staking. Long-term lockups (6-12 months) provide yield bonuses ranging from 50% to 100%.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Active Earning & Dual Node Products -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Active Earning via Hardware & Mobile Nodes</h3>
+                    </div>
+                    <p class="article-text">
+                        The network expands and collects data through two primary, highly distinct consumer-facing products:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>📹 375edge (Enterprise Hardware)</h4>
+                            <p>An industrial edge-compute node equipped with an <strong>NVIDIA Jetson processor</strong> and up to 6 HD cameras. Deployed in high-value public spaces to perform heavy edge AI inference.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📱 375go (Free Mobile App)</h4>
+                            <p>A free mobile application allowing users to passively map geographical hexagonal cells via GPS/cellular data to earn $EAT tokens as they move.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🧠 On-Device AI Privacy</h4>
+                            <p>Instead of streaming raw video to the cloud, on-device AI extracts only structured metadata (e.g., vehicle counts) while strictly filtering out personal identity to protect privacy.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📈 Earnings Distribution</h4>
+                            <p>Tokens are distributed based on localized uptime, the volume of data classified via on-device inference, and referral multipliers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5: Real-World Use Cases -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Real-World Commercial Use Cases</h3>
+                    </div>
+                    <p class="article-text">
+                        By utilizing decentralized edge computing, 375.ai provides actionable spatial intelligence to massive industries:
+                    </p>
+                    <div class="alert-box">
+                        <h5>🎯 Enterprise Data Demand:</h5>
+                        <p><strong>1. Autonomous Vehicles:</strong> Providing "ground truth" traffic flow and pedestrian density data for self-driving AI training.</p>
+                        <p style="margin-top:6px;"><strong>2. Urban Planning & Logistics:</strong> Allowing municipal governments and logistics firms to analyze infrastructure usage and route efficiency in real-time.</p>
+                    </div>
+                </div>
+
+                <!-- Point 6: Total Crypto Network Pro Tips -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Total Crypto Network Pro Tips: 375go Optimization</h3>
+                    </div>
+                    <p class="article-text">
+                        If you are participating using the free 375go mobile application, utilize these scanning strategies to maximize your token yield:
+                    </p>
+                    <div class="rule-box">
+                        <h5>💡 Mapbox Exploration & Scanning Modes:</h5>
+                        <p><strong>1. Active Missions (Product Onboarding):</strong> Beyond passive mapping, check the "Missions" tab frequently. You can earn high-yield payouts by completing active tasks, such as scanning product barcodes (e.g., soft drinks) and building 360° views.</p>
+                        <p style="margin-top:6px;"><strong>2. Smart Scanning Allocation:</strong> In the Network Coverage settings, use <strong>Maximum Coverage</strong> (continuous 10m scanning) only when actively moving or driving and your phone is charging. Switch to <strong>Balanced</strong> (100m interval smart scanning) for daily ambient walking to prevent severe battery drain.</p>
+                    </div>
+                </div>
+
+                <!-- Point 7: Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for setting up the 375go app and executing product scanning missions:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video 1: 375go Setup -->
+                        <div class="video-box">
+                            <h4>📱 375go Mobile App & Mapbox Setup</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_375GO_VIDEO_ID" title="375go App Setup Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2: Product Missions -->
+                        <div class="video-box">
+                            <h4>🎯 Maximizing $EAT via Product Onboarding Missions</h4>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/YOUR_MISSIONS_VIDEO_ID" title="375ai Missions Guide" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. Web3 protocols, Solana network fees, and $EAT tokenomics are dynamic and subject to market volatility. Operating the 375go application on Maximum Coverage mode utilizes continuous GPS tracking, which will result in significant mobile battery consumption. Never invest funds or resources you cannot afford to risk.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
