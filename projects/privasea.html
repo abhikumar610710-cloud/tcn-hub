@@ -40,15 +40,9 @@
         
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
-        /* Top Bar Header with Back Button */
-        .page-top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-top: 24px; flex-wrap: wrap; gap: 16px; }
-        .hub-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .hub-logo { width: 36px; height: 36px; background: #0f172a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 16px; }
-        [data-theme="dark"] .hub-logo { background: #38bdf8; color: #0f172a; }
-        .hub-title { font-size: 15px; font-weight: 800; color: var(--text-heading); line-height: 1.2; }
-        .hub-subtitle { font-size: 11px; color: var(--text-muted); font-weight: 600; }
-
-        .back-btn { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); text-decoration: none; padding: 9px 18px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s; }
+        /* Top Bar Header with Clean Back Button ONLY */
+        .page-top-bar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 24px; padding-top: 24px; }
+        .back-btn { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); text-decoration: none; padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s; }
         .back-btn:hover { border-color: var(--accent-privasea-light); color: var(--accent-privasea-light); transform: translateY(-1px); }
 
         /* Hero Action Card */
@@ -112,12 +106,12 @@
         .stats-table td { color: var(--text-body); }
         .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-        /* 2-Column Video Showcase */
-        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
-        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
-        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
-        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+        /* Channel Promo Box (Replaces video embeds) */
+        .channel-promo-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; text-align: center; margin-top: 20px; }
+        .channel-promo-box h4 { font-size: 16px; color: var(--text-heading); font-weight: 800; margin-bottom: 8px; }
+        .channel-promo-box p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px; }
+        .btn-channel { background: #ff0000; color: white; text-decoration: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.2s; }
+        .btn-channel:hover { opacity: 0.9; }
 
         /* Standard Disclosure Box */
         .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
@@ -130,7 +124,6 @@
             .hero-right { width: 100%; justify-content: flex-start; }
             .section-header h3 { font-size: 17px; }
             .feature-grid-2x2 { grid-template-columns: 1fr; }
-            .video-grid-2 { grid-template-columns: 1fr; }
             .stats-table th, .stats-table td { padding: 12px 14px; }
             .invite-box { flex: 1; justify-content: space-between; }
         }
@@ -142,23 +135,17 @@
     <main>
         <div class="site-container">
 
-            <!-- Top Header Bar with Correct Back to DePIN Button -->
+            <!-- Clean Top Bar Header with ONLY Back Button -->
             <div class="page-top-bar">
-                <a href="../depin.html" class="hub-brand">
-                    <div class="hub-logo">TCN</div>
-                    <div>
-                        <div class="hub-title">Total Crypto Hub</div>
-                        <div class="hub-subtitle">Verified DePIN Ecosystem</div>
-                    </div>
-                </a>
                 <a href="../depin.html" class="back-btn">🔙 Back to DePIN</a>
             </div>
 
-            <!-- Hero Action Card with Original Logo -->
+            <!-- Hero Action Card -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Abstract 'P' logo representation for Privasea -->
                             <path d="M7 4V20H10V14H14C16.76 14 19 11.76 19 9C19 6.24 16.76 4 14 4H7ZM10 7H14C15.1 7 16 7.9 16 9C16 10.1 15.1 11 14 11H10V7Z" />
                         </svg>
                     </div>
@@ -280,32 +267,20 @@
                     </div>
                 </div>
 
-                <!-- Point 6: Video Guides (Linked to Total Crypto Network Channel) -->
+                <!-- Point 6: Total Crypto Network YouTube Channel Promo -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">6</div>
                         <h3>Complete Step-by-Step Setup Guides</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for securely setting up the ImHuman app and minting your first FheID NFT:
+                        Watch our complete video tutorials and updates produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Subscribe to our channel for live operational walkthroughs and future video guides:
                     </p>
                     
-                    <div class="video-grid-2">
-                        <!-- Video 1: App Setup linked to Channel -->
-                        <div class="video-box">
-                            <h4>📱 Privasea ImHuman App Setup & Face Verification Guide</h4>
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network" title="Privasea App Setup Guide" allowfullscreen></iframe>
-                            </div>
-                        </div>
-
-                        <!-- Video 2: FHE Explanation linked to Channel -->
-                        <div class="video-box">
-                            <h4>🛡️ What is FHE? Privasea Tech & Tokenomics Explained</h4>
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed?listType=search&list=Total+Crypto+Network" title="Privasea FHE Explained" allowfullscreen></iframe>
-                            </div>
-                        </div>
+                    <div class="channel-promo-box">
+                        <h4>🎥 Total Crypto Network - Official YouTube Channel</h4>
+                        <p>Explore all video guides, DePIN passive income updates, and airdrop tutorials in one place.</p>
+                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="btn-channel">🔴 Watch & Subscribe on YouTube</a>
                     </div>
                 </div>
 
