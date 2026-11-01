@@ -11,6 +11,7 @@
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
             --text-body: #334155;
@@ -25,6 +26,7 @@
         [data-theme="dark"] {
             --bg-body: #070a12;
             --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
@@ -41,7 +43,7 @@
 
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
-        /* --- Restored Master Header Styles --- */
+        /* --- Master Header Styles --- */
         .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; margin-bottom: 30px; border-bottom: 1px solid var(--border-color); }
         .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .header-logo { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--border-color); }
@@ -74,7 +76,14 @@
         .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
 
         .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .btn-join { background: var(--accent-slice); color: white; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); transition: all 0.2s; }
+
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-slice); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-slice); color: var(--accent-slice); }
+
+        .btn-join { background: var(--accent-slice); color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); transition: all 0.2s; }
         .btn-join:hover { background: #4338ca; transform: translateY(-1px); }
 
         /* Article Layout */
@@ -138,6 +147,7 @@
             .feature-grid-2x2 { grid-template-columns: 1fr; }
             .video-grid-2 { grid-template-columns: 1fr; }
             .stats-table th, .stats-table td { padding: 12px 14px; }
+            .invite-box { flex: 1; justify-content: space-between; }
         }
     </style>
 </head>
@@ -163,7 +173,7 @@
                 <div class="header-actions">
                     <!-- Dark Mode Moon Button -->
                     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
-                    <!-- Fixed Green Back Button pointing to DePIN hub -->
+                    <!-- Fixed Green Back Button pointing directly to DePIN hub -->
                     <a href="../depin-pages/depin.html" class="back-to-hub-btn">← Back to DePIN</a>
                 </div>
             </header>
@@ -182,6 +192,14 @@
                 </div>
 
                 <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Bonus Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">SLICE500</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+
                     <!-- Direct Link Button -->
                     <a href="https://addslice.com/" target="_blank" class="btn-join">Add Slice to Browser</a>
                 </div>
@@ -322,7 +340,7 @@
                     <div class="video-grid-2">
                         <!-- Video Box 1 -->
                         <div class="video-box">
-                            <h4>🌐 Slice Browser Extension Setup & Ad Control</h4>
+                            <h4>🌐 Slice Browser Extension Setup</h4>
                             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
                                 <div class="yt-play-btn"></div>
                             </a>
@@ -330,7 +348,7 @@
 
                         <!-- Video Box 2 -->
                         <div class="video-box">
-                            <h4>⚡ Lightning Network Payouts & SLICE500 Bonus</h4>
+                            <h4>⚡ Lightning Payouts & SLICE500 Bonus</h4>
                             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
                                 <div class="yt-play-btn"></div>
                             </a>
@@ -365,6 +383,13 @@
     </footer>
 
     <script>
+        function copyCode() {
+            const code = "SLICE500";
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Bonus Code copied: " + code);
+            });
+        }
+
         // Added Dark Mode Toggle Script
         function toggleTheme() {
             const body = document.body;
