@@ -11,12 +11,14 @@
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
             --accent-primary: #059669; 
             --accent-hover: #047857;
+            --accent-gaga: #0284c7;
             --card-subtle: #f1f5f9;
             --container-max-width: 1240px;
             --container-padding: 24px;
@@ -24,18 +26,58 @@
         [data-theme="dark"] {
             --bg-body: #070a12;
             --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
             --accent-primary: #10b981; 
             --accent-hover: #34d399;
+            --accent-gaga: #38bdf8;
             --card-subtle: #131c31;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
-        
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* --- Master Header Styles --- */
+        .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; margin-bottom: 30px; border-bottom: 1px solid var(--border-color); }
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .header-logo { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--border-color); }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .header-title-box { display: flex; flex-direction: column; }
+        .header-title { font-size: 18px; font-weight: 800; color: var(--text-heading); line-height: 1.2; }
+        .header-subtitle { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+        
+        .header-actions { display: flex; align-items: center; gap: 16px; }
+        .theme-toggle { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; color: var(--text-heading); transition: all 0.2s; }
+        .theme-toggle:hover { background: var(--card-subtle); }
+        
+        .back-to-hub-btn { background: var(--accent-primary); color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 24px; font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2); }
+        .back-to-hub-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* Main Content */
+        main { flex: 1; padding-bottom: 60px; }
+
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); display: flex; align-items: center; justify-content: center; }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-gaga); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        
+        /* Custom Badges */
+        .depin-badge { background: #3b82f6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+        .meson-badge { background: #8b5cf6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
+
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .btn-join { background: var(--accent-gaga); color: white; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: #0284c7; transform: translateY(-1px); }
 
         /* Article Layout */
         .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
@@ -43,7 +85,7 @@
         .article-section:last-child { margin-bottom: 0; }
         
         .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-gaga); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
         .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
 
         .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
@@ -51,7 +93,7 @@
 
         /* 2x2 Feature Grid */
         .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
-        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; border-top: 3px solid var(--accent-gaga); }
         .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
         .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
@@ -67,20 +109,33 @@
         .stats-table td { color: var(--text-body); }
         .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-        /* 2-Column Video Showcase */
+        /* 🚀 Premium YouTube Player Look (Matching Master Template) */
         .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
-        .video-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
-        .video-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
-        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+        .video-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; transition: all 0.2s; }
+        .video-box:hover { border-color: #ff0000; box-shadow: 0 4px 12px rgba(255,0,0,0.1); }
+        .video-box h4 { font-size: 14px; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        
+        .mock-youtube-player { background: #000; border-radius: 12px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.1); }
+        
+        .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
 
         /* Standard Disclosure Box */
         .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
         .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
+        /* Footer */
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
         @media (max-width: 768px) {
             :root { --container-padding: 16px; }
             .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .site-header { flex-direction: column; align-items: flex-start; gap: 16px; }
             .section-header h3 { font-size: 17px; }
             .feature-grid-2x2 { grid-template-columns: 1fr; }
             .video-grid-2 { grid-template-columns: 1fr; }
@@ -93,6 +148,44 @@
     <!-- Main Content Area -->
     <main>
         <div class="site-container">
+
+            <!-- 100% Correct Master Header with DePIN Back Button -->
+            <header class="site-header">
+                <a href="../index.html" class="header-brand">
+                    <div class="header-logo">
+                        <!-- TCN Red Logo Image -->
+                        <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
+                    </div>
+                    <div class="header-title-box">
+                        <div class="header-title">Total Crypto Hub</div>
+                        <div class="header-subtitle">by Total Crypto Network</div>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <!-- Dark Mode Moon Button -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
+                    <!-- Fixed Green Back Button pointing directly to DePIN hub -->
+                    <a href="../depin-pages/depin.html" class="back-to-hub-btn">← Back to DePIN</a>
+                </div>
+            </header>
+
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/gaganode.png" alt="GaGaNode Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" onerror="this.src='https://via.placeholder.com/64';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">GaGaNode <span class="verified-badge">✓</span> <span class="depin-badge">DePIN</span> <span class="meson-badge">Meson Network</span></h2>
+                        <p>Decentralized Residential IP & Bandwidth Marketplace</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <a href="https://gaganode.com/" target="_blank" class="btn-join">🌐 Open GaGaNode Portal</a>
+                </div>
+            </div>
 
             <!-- Full-Length 7-Point Article Architecture -->
             <div class="content-card">
@@ -228,7 +321,7 @@
                     </div>
                 </div>
 
-                <!-- Point 7: Video Guides -->
+                <!-- Point 7: Video Guides (Premium Mock Player) -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">7</div>
@@ -239,20 +332,20 @@
                     </p>
                     
                     <div class="video-grid-2">
-                        <!-- Video 1: Node Setup -->
+                        <!-- Video Box 1 -->
                         <div class="video-box">
                             <h4>🖥️ GaGaNode SDK & Node Setup Guide</h4>
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed/YOUR_GAGANODE_VIDEO_ID" title="GaGaNode Setup Guide" allowfullscreen></iframe>
-                            </div>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
                         </div>
 
-                        <!-- Video 2: MSN Token Mapping -->
+                        <!-- Video Box 2 -->
                         <div class="video-box">
                             <h4>💳 Mapping GaGa Credits to $MSN Tokens</h4>
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed/YOUR_MSN_VIDEO_ID" title="MSN Token Redemption Guide" allowfullscreen></iframe>
-                            </div>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -267,5 +360,46 @@
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">Terms & Conditions</a>
+                <a href="../pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Added Dark Mode Toggle Script
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeBtn');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                if(btn) btn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                if(btn) btn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            const btn = document.getElementById('themeBtn');
+            if(btn) {
+                btn.innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            }
+        };
+    </script>
 </body>
 </html>
