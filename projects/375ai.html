@@ -191,13 +191,13 @@
                 <div class="hero-right">
                     <div class="invite-box">
                         <div>
-                            <div class="invite-label">Official Portal</div>
-                            <div class="invite-code notranslate" id="inviteCode" translate="no">375AI</div>
+                            <div class="invite-label">Invitation Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">8wRJRiiAQTe6Ng1Z6EbjaD</div>
                         </div>
                         <button class="btn-copy" onclick="copyCode()">Copy</button>
                     </div>
                     
-                    <a href="https://375.ai" target="_blank" class="btn-join">🎁 Open 375.ai Portal</a>
+                    <a href="https://app.375.ai/auth?invitation_code=8wRJRiiAQTe6Ng1Z6EbjaD" target="_blank" class="btn-join">🎁 Join 375.ai</a>
                 </div>
             </div>
 
@@ -398,7 +398,7 @@
         function copyCode() {
             const code = document.getElementById('inviteCode').innerText;
             navigator.clipboard.writeText(code).then(() => {
-                alert("Portal code copied: " + code);
+                alert("Invitation code copied: " + code);
             });
         }
 
@@ -407,11 +407,11 @@
             const btn = document.getElementById('themeBtn');
             if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
-                btn.innerText = '☀️';
+                if(btn) btn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
-                btn.innerText = '🌙';
+                if(btn) btn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
