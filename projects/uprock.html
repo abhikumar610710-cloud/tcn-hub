@@ -44,7 +44,7 @@
         header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
         .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #dc2626; }
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
         .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
         .logo-text span { font-size: 11px; color: var(--text-muted); }
@@ -63,6 +63,7 @@
             align-items: center;
             gap: 6px;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
         .btn-hub-glow:hover { 
             background: var(--accent-hover); 
@@ -86,7 +87,7 @@
         /* Hero Action Card */
         .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
         .hero-left { display: flex; align-items: center; gap: 16px; }
-        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--bg-body); }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--card-subtle); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; color: var(--accent-primary); flex-shrink: 0; }
         .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
         .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
         .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
@@ -169,7 +170,7 @@
         <div class="site-container header-inner">
             <a href="../index.html" class="logo-box notranslate" translate="no">
                 <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerText='TCN';">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
                 </div>
                 <div class="logo-text">
                     <h1>Total Crypto Hub</h1>
@@ -178,7 +179,8 @@
             </a>
             <div style="display: flex; align-items: center; gap: 12px;">
                 <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
-                <a href="../index.html" class="btn-hub-glow">← Back to Hub</a>
+                <!-- 🚀 Smart Back Button with "Back to DePIN" text -->
+                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to DePIN</button>
             </div>
         </div>
     </header>
@@ -191,7 +193,7 @@
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
-                        <img src="../logos/uprock.png" alt="UpRock Network" onerror="this.src='https://via.placeholder.com/64';">
+                        <img src="../logos/uprock.png" alt="UpRock Network" onerror="this.parentNode.innerHTML='U';">
                     </div>
                     <div class="project-titles">
                         <h2 class="notranslate" translate="no">UpRock <span class="verified-badge">✓</span></h2>
@@ -383,20 +385,20 @@
                     </p>
                     
                     <div class="video-grid-2">
-                        <!-- Video 1: Windows Setup -->
+                        <!-- Video Box 1 -->
                         <div class="video-box">
                             <h4>🖥️ Windows / macOS Setup Guide</h4>
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed/YOUR_WINDOWS_VIDEO_ID" title="UpRock Desktop Setup Guide" allowfullscreen></iframe>
-                            </div>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
                         </div>
 
-                        <!-- Video 2: Mobile Setup -->
+                        <!-- Video Box 2 -->
                         <div class="video-box">
                             <h4>📱 Android / iOS App Setup</h4>
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed/YOUR_MOBILE_VIDEO_ID" title="UpRock Mobile Setup Guide" allowfullscreen></iframe>
-                            </div>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -433,6 +435,15 @@
             navigator.clipboard.writeText(code).then(() => {
                 alert("Invite code copied: " + code);
             });
+        }
+
+        /* 🚀 Smart Back Function (Restores "Back to DePIN" routing) */
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '../depin-pages/depin.html';
+            }
         }
 
         function toggleTheme() {
