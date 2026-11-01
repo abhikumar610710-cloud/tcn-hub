@@ -15,7 +15,7 @@
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
-            --accent-primary: #059669; 
+            --accent-primary: #059669; /* Green for buttons */
             --accent-hover: #047857;
             --accent-privasea: #0f172a;
             --accent-privasea-light: #3b82f6;
@@ -40,10 +40,21 @@
         
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
-        /* Top Bar Header with Clean Back Button ONLY */
-        .page-top-bar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 24px; padding-top: 24px; }
-        .back-btn { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); text-decoration: none; padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s; }
-        .back-btn:hover { border-color: var(--accent-privasea-light); color: var(--accent-privasea-light); transform: translateY(-1px); }
+        /* --- Restored Original Top Header Styles --- */
+        .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; margin-bottom: 30px; border-bottom: 1px solid var(--border-color); }
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .header-logo { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--border-color); }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .header-title-box { display: flex; flex-direction: column; }
+        .header-title { font-size: 18px; font-weight: 800; color: var(--text-heading); line-height: 1.2; }
+        .header-subtitle { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+        
+        .header-actions { display: flex; align-items: center; gap: 16px; }
+        .theme-toggle { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; color: var(--text-heading); transition: all 0.2s; }
+        .theme-toggle:hover { background: var(--card-subtle); }
+        
+        .back-to-hub-btn { background: var(--accent-primary); color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 24px; font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2); }
+        .back-to-hub-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* Hero Action Card */
         .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
@@ -55,7 +66,6 @@
         .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .verified-badge { background: var(--accent-privasea-light); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
         
-        /* Custom Badge */
         .fhe-badge { background: #6366f1; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
         .ai-badge { background: #8b5cf6; color: white; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; text-transform: uppercase;}
 
@@ -67,12 +77,9 @@
         .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
         .invite-code { font-weight: 800; color: var(--accent-privasea-light); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
         .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-        .btn-copy:hover { border-color: var(--accent-privasea-light); color: var(--accent-privasea-light); }
         
         .btn-join { background: #0f172a; color: white; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.3); transition: all 0.2s; }
-        .btn-join:hover { background: #1e293b; transform: translateY(-1px); }
         [data-theme="dark"] .btn-join { background: #38bdf8; color: #0f172a; }
-        [data-theme="dark"] .btn-join:hover { background: #7dd3fc; }
 
         /* Article Layout */
         .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
@@ -94,26 +101,23 @@
         .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
         .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-        /* Highlight Alert Box */
         .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
         .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
         .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
 
-        /* Real-Time Stats Table */
         .stats-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--bg-body); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
         .stats-table th, .stats-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
         .stats-table th { background: var(--card-subtle); color: var(--text-heading); font-weight: 700; width: 35%; }
         .stats-table td { color: var(--text-body); }
-        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-        /* Channel Promo Box (Replaces video embeds) */
-        .channel-promo-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; text-align: center; margin-top: 20px; }
-        .channel-promo-box h4 { font-size: 16px; color: var(--text-heading); font-weight: 800; margin-bottom: 8px; }
-        .channel-promo-box p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px; }
-        .btn-channel { background: #ff0000; color: white; text-decoration: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.2s; }
-        .btn-channel:hover { opacity: 0.9; }
+        /* Direct Link Promo Boxes (Replaces broken videos) */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+        .promo-link-card { background: var(--bg-body); border: 2px dashed var(--border-color); border-radius: 12px; padding: 32px 20px; text-align: center; text-decoration: none; transition: all 0.2s; display: block; }
+        .promo-link-card:hover { border-color: #ff0000; background: var(--card-subtle); transform: translateY(-2px); }
+        .promo-link-card h4 { font-size: 16px; color: var(--text-heading); margin-bottom: 10px; font-weight: 800; }
+        .promo-link-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+        .btn-youtube { background: #ff0000; color: white; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 13px; display: inline-block; }
 
-        /* Standard Disclosure Box */
         .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-top: 30px; font-size: 12px; color: var(--text-muted); line-height: 1.6; text-align: center; }
         .disclosure-box strong { color: var(--text-heading); font-weight: 700; display: block; margin-bottom: 4px; font-size: 13px; }
 
@@ -122,30 +126,42 @@
             .content-card { padding: 20px 16px; }
             .project-hero-card { flex-direction: column; align-items: flex-start; }
             .hero-right { width: 100%; justify-content: flex-start; }
-            .section-header h3 { font-size: 17px; }
-            .feature-grid-2x2 { grid-template-columns: 1fr; }
-            .stats-table th, .stats-table td { padding: 12px 14px; }
-            .invite-box { flex: 1; justify-content: space-between; }
+            .site-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .feature-grid-2x2, .video-grid-2 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body data-theme="light">
 
-    <!-- Main Content Area -->
     <main>
         <div class="site-container">
 
-            <!-- Clean Top Bar Header with ONLY Back Button -->
-            <div class="page-top-bar">
-                <a href="../depin.html" class="back-btn">🔙 Back to DePIN</a>
-            </div>
+            <!-- 100% Original Style Header from Titan Page Screenshot -->
+            <header class="site-header">
+                <a href="../index.html" class="header-brand">
+                    <div class="header-logo">
+                        <!-- TCN Red Logo Image -->
+                        <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
+                    </div>
+                    <div class="header-title-box">
+                        <div class="header-title">Total Crypto Hub</div>
+                        <div class="header-subtitle">by Total Crypto Network</div>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <!-- Original Dark Mode Moon Button -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
+                    <!-- Original Green Back Button with updated text and link -->
+                    <a href="../depin.html" class="back-to-hub-btn">← Back to DePIN</a>
+                </div>
+            </header>
 
-            <!-- Hero Action Card -->
+            <!-- Hero Action Card (Privasea Logo Kept Intact) -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Abstract 'P' logo representation for Privasea -->
                             <path d="M7 4V20H10V14H14C16.76 14 19 11.76 19 9C19 6.24 16.76 4 14 4H7ZM10 7H14C15.1 7 16 7.9 16 9C16 10.1 15.1 11 14 11H10V7Z" />
                         </svg>
                     </div>
@@ -171,7 +187,6 @@
             <!-- Full-Length 7-Point Article Architecture -->
             <div class="content-card">
 
-                <!-- Point 1: What is Privasea -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">1</div>
@@ -185,15 +200,12 @@
                     </p>
                 </div>
 
-                <!-- Point 2: Enterprise Tech & Funding -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">2</div>
                         <h3>Institutional Funding & Tier-1 Backing</h3>
                     </div>
-                    <p class="article-text">
-                        Building advanced cryptography like FHE requires massive financial backing from the largest players in the cryptocurrency space:
-                    </p>
+                    <p class="article-text">Building advanced cryptography like FHE requires massive financial backing from the largest players in the cryptocurrency space:</p>
                     <table class="stats-table">
                         <tbody>
                             <tr>
@@ -212,15 +224,12 @@
                     </table>
                 </div>
 
-                <!-- Point 3: The ImHuman App -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">3</div>
                         <h3>Active Earning: The ImHuman App & Proof of Human (PoHu)</h3>
                     </div>
-                    <p class="article-text">
-                        While the physical hardware nodes (WorkHeart USBs) are currently sold out, ordinary users can still actively participate and qualify for ecosystem rewards using their smartphones:
-                    </p>
+                    <p class="article-text">While the physical hardware nodes (WorkHeart USBs) are currently sold out, ordinary users can still actively participate and qualify for ecosystem rewards using their smartphones:</p>
                     <div class="feature-grid-2x2">
                         <div class="feature-box">
                             <h4>📱 The ImHuman App</h4>
@@ -241,7 +250,6 @@
                     </div>
                 </div>
 
-                <!-- Point 4: Hardware Nodes -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">4</div>
@@ -252,39 +260,45 @@
                     </p>
                 </div>
 
-                <!-- Point 5: Total Crypto Network Pro Tips -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">5</div>
                         <h3>Total Crypto Network Pro Tips: The FHE Password Warning</h3>
                     </div>
-                    <p class="article-text">
-                        Because Privasea uses military-grade cryptography, managing your account is fundamentally different from a Web2 app:
-                    </p>
+                    <p class="article-text">Because Privasea uses military-grade cryptography, managing your account is fundamentally different from a Web2 app:</p>
                     <div class="alert-box">
                         <h5>⚠️ No Password Recovery Exists:</h5>
                         <p>During the ImHuman app setup, the system explicitly warns you: <strong>"ImHuman uses FHE which means, even we cannot recover your password, if you were to forget it."</strong> Unlike Google or Facebook, Privasea has no central database of passwords. If you lose your password and your wallet backup, you will permanently lose access to your FheID NFT and any accumulated airdrop points. Write it down on physical paper and store it securely.</p>
                     </div>
                 </div>
 
-                <!-- Point 6: Total Crypto Network YouTube Channel Promo -->
+                <!-- Fixed Video Section: Direct YouTube Links -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">6</div>
                         <h3>Complete Step-by-Step Setup Guides</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete video tutorials and updates produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Subscribe to our channel for live operational walkthroughs and future video guides:
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Click below to watch the operational walkthroughs directly on our channel:
                     </p>
                     
-                    <div class="channel-promo-box">
-                        <h4>🎥 Total Crypto Network - Official YouTube Channel</h4>
-                        <p>Explore all video guides, DePIN passive income updates, and airdrop tutorials in one place.</p>
-                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="btn-channel">🔴 Watch & Subscribe on YouTube</a>
+                    <div class="video-grid-2">
+                        <!-- Direct Link Box 1 -->
+                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="promo-link-card">
+                            <h4>📱 Privasea App Setup Guide</h4>
+                            <p>Watch the full step-by-step face verification and setup tutorial on our official YouTube channel.</p>
+                            <span class="btn-youtube">▶ Watch on YouTube</span>
+                        </a>
+
+                        <!-- Direct Link Box 2 -->
+                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="promo-link-card">
+                            <h4>🛡️ What is FHE? Tech Explained</h4>
+                            <p>Understand how Privasea's cryptography and Tokenomics work in this deep-dive video.</p>
+                            <span class="btn-youtube">▶ Watch on YouTube</span>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Standard Disclosure Box -->
                 <div class="disclosure-box">
                     <strong>Important Disclosure</strong>
                     Total Crypto Hub provides educational and technical guides only. Minting NFTs often requires a small amount of gas fees (e.g., BNB or ETH) depending on the deployed network. Ensure you have the correct network selected in your wallet before attempting to mint your FheID. Never invest funds or purchase third-party hardware from unverified sources.
@@ -300,6 +314,15 @@
             navigator.clipboard.writeText(code).then(() => {
                 alert("Invite Code copied: " + code);
             });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+            }
         }
     </script>
 </body>
