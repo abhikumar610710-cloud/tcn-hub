@@ -4,8 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Token Checker | Total Crypto Hub</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #06b6d4; /* Cyan color for Tool */
+            --accent-hover: #0891b2;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #22d3ee; 
+            --accent-hover: #67e8f9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0 0 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; flex-direction: column; gap: 16px; }
+        .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .logo-text b { color: var(--accent-primary); }
+        
+        /* Community Dropdown Styles */
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .community-dropdown { position: relative; display: inline-block; }
+        .community-btn { background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+        .community-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .dropdown-content { display: none; position: absolute; right: 0; top: 120%; background-color: var(--bg-surface); min-width: 180px; box-shadow: 0px 8px 24px rgba(0,0,0,0.15); border: 1px solid var(--border-color); border-radius: 12px; z-index: 101; overflow: hidden; }
+        .dropdown-content.show { display: block; animation: fadeIn 0.2s ease-in-out; }
+        .dropdown-content a { color: var(--text-heading); padding: 12px 16px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: rgba(6, 182, 212, 0.08); color: var(--accent-primary); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
+
+        .tab-switcher { display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; padding-bottom: 12px; scrollbar-width: none; width: 100%; }
+        .tab-switcher::-webkit-scrollbar { display: none; }
+        .tab-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; font-size: 13px; border-radius: 50px; cursor: pointer; text-decoration: none; flex-shrink: 0; }
+        .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); }
+
+        main { flex: 1; padding: 64px 0; display: flex; justify-content: center; align-items: center; }
+        
+        .coming-soon-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 20px; padding: 48px 32px; text-align: center; max-width: 500px; width: 100%; box-shadow: 0 12px 32px rgba(0,0,0,0.05); }
+        .coming-soon-icon { width: 80px; height: 80px; background: rgba(6, 182, 212, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 24px; }
+        .coming-soon-icon svg { width: 40px; height: 40px; stroke: var(--accent-primary); fill: none; stroke-width: 2; }
+        .coming-soon-box h2 { font-size: 24px; color: var(--text-heading); font-weight: 800; margin-bottom: 12px; }
+        .coming-soon-box p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
+        .back-btn { background: var(--accent-primary); color: white; padding: 10px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; display: inline-block; transition: background 0.2s; }
+        .back-btn:hover { background: var(--accent-hover); }
+
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+    </style>
 </head>
-<body>
-    <h1>Token Checker Tool - Coming Soon</h1>
+<body data-theme="light">
+    <header>
+        <div class="site-container header-inner">
+            <div class="header-top-row">
+                <a href="../index.html" class="logo-box">
+                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.style.display='none';"></div>
+                    <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
+                </a>
+                
+                <div class="header-right">
+                    <div class="community-dropdown">
+                        <button class="community-btn" onclick="toggleCommunityMenu()">👥 Community</button>
+                        <div class="dropdown-content" id="communityMenu">
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank">▶️ YouTube</a>
+                            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank">💬 WhatsApp</a>
+                            <a href="https://x.com/TotalCryptoOff" target="_blank">✖️ Twitter (X)</a>
+                            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank">📘 Facebook</a>
+                        </div>
+                    </div>
+                    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+                </div>
+            </div>
+            
+            <div class="tab-switcher">
+                <a href="../depin-pages/depin.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> DePIN Projects</a>
+                <a href="../mobile-pages/mobile-mining.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg> Community Projects</a>
+                <a href="../airdrop-pages/airdrops.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg> Airdrops & Campaigns</a>
+                <a href="../wallet-pages/wallets.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> Wallets & Exchanges</a>
+                <a href="token-checker.html" class="tab-btn active"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Token Checker</a>
+                <a href="../earning-pages/earning-calculator.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg> Earning Calculator</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="site-container">
+            <div class="coming-soon-box">
+                <div class="coming-soon-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+                <h2>Token Checker Tool</h2>
+                <p>We are currently building a powerful tool to verify smart contracts, liquidity pools, and network details across multiple blockchains. Stay tuned!</p>
+                <a href="../index.html" class="back-btn">Return to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">&copy; 2026 Total Crypto Network. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/contact.html">Contact Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggleBtn = document.getElementById('themeToggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Dropdown Function
+        function toggleCommunityMenu() {
+            document.getElementById("communityMenu").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.community-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
 </body>
 </html>
