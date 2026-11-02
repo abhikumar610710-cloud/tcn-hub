@@ -84,6 +84,7 @@
         .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
         .filter-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; }
         .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+        .filter-btn.upcoming.active { background: #d97706; border-color: #d97706; color: white; }
         .filter-btn.risk.active { background: #e11d48; border-color: #e11d48; color: white; }
 
         .table-card { background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); }
@@ -98,11 +99,17 @@
         .project-avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .project-name { font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; font-size: 14px; }
         .project-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; font-weight: 500; }
-        .verified-tick { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: var(--accent-primary); color: white; border-radius: 50%; font-size: 9px; font-weight: 800; }
-        .warning-tick { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: #e11d48; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
+        
+        /* Traffic Light System Badges */
+        .badge-listed { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: #059669; color: white; border-radius: 50%; font-size: 9px; font-weight: 800; }
+        .badge-upcoming { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: #d97706; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
+        .badge-notoken { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: #e11d48; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
+        
+        .score-listed { font-weight: 800; color: var(--accent-primary); font-size: 13px; }
+        .score-upcoming { font-weight: 800; color: #d97706; font-size: 13px; }
+        .score-notoken { font-weight: 800; color: #e11d48; font-size: 13px; }
+
         .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); }
-        .score-text { font-weight: 800; color: var(--accent-primary); font-size: 13px; }
-        .score-risk { font-weight: 800; color: #e11d48; font-size: 13px; }
         .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; }
         .btn-details:hover { background: var(--accent-primary); color: white; }
 
@@ -158,9 +165,9 @@
                 </div>
                 <div class="filter-group">
                     <button class="filter-btn active" onclick="setFilter('all', this)">All Projects</button>
-                    <button class="filter-btn" onclick="setFilter('listed', this)">Token Listed</button>
-                    <button class="filter-btn" onclick="setFilter('notoken', this)">No Token</button>
-                    <button class="filter-btn risk" onclick="setFilter('risk', this)">High Risk / Early</button>
+                    <button class="filter-btn" onclick="setFilter('listed', this)">🟢 Token Listed</button>
+                    <button class="filter-btn upcoming" onclick="setFilter('upcoming', this)">🟡 Upcoming / Review</button>
+                    <button class="filter-btn risk" onclick="setFilter('notoken', this)">🔴 No Token / Early</button>
                 </div>
             </div>
 
@@ -197,30 +204,32 @@
 
     <script>
         const MOBILE_PROJECTS = [
-            // Batch 1: Top Verified & Established Projects
-            { name: "Holana Network", sub: "Solana Ecosystem Integration", category: "Solana", score: "⭐ 9.2 / 10", status: "listed", link: "../mobile-projects/holana-network.html", logo: "../logos/holana.png", isRisk: false },
-            { name: "Toleno Network", sub: "Fixed 1B Supply • Revoked Authorities", category: "Solana", score: "⭐ 9.4 / 10", status: "listed", link: "../mobile-projects/toleno-network.html", logo: "../logos/toleno.png", isRisk: false },
-            { name: "Mirex Network", sub: "Active PancakeSwap Pool", category: "BSC / DEX", score: "⭐ 9.0 / 10", status: "listed", link: "../mobile-projects/mirex-network.html", logo: "../logos/mirex.png", isRisk: false },
-            { name: "Pi Network", sub: "Enclosed Mainnet • Social Mining", category: "Layer 1", score: "⭐ 8.7 / 10", status: "notoken", link: "../mobile-projects/pi-network.html", logo: "../logos/pi.png", isRisk: false },
-            { name: "Omega Network", sub: "OMN Ecosystem • EVM Smart Contracts", category: "EVM", score: "⭐ 8.5 / 10", status: "listed", link: "../mobile-projects/omega-network.html", logo: "../logos/omega.png", isRisk: false },
-            { name: "TTcoin Network", sub: "TRC20 / BEP20 Community Token", category: "Tron / BSC", score: "⭐ 8.3 / 10", status: "listed", link: "../mobile-projects/ttcoin-network.html", logo: "../logos/ttcoin.png", isRisk: false },
-            { name: "Avalun Network", sub: "Polygon PoS • QuickSwap Live Pair", category: "Polygon", score: "⭐ 8.9 / 10", status: "listed", link: "../mobile-projects/avalun-network.html", logo: "../logos/avalun.png", isRisk: false },
-            { name: "Rubi Network", sub: "Digital Commodity • Mobile Protocol", category: "Commodity", score: "⭐ 8.2 / 10", status: "notoken", link: "../mobile-projects/rubi-network.html", logo: "../logos/rubi.png", isRisk: false },
-            { name: "Miningperia", sub: "Multi-Asset Mining Tracker", category: "Aggregator", score: "⭐ 8.0 / 10", status: "notoken", link: "../mobile-projects/miningperia.html", logo: "../logos/miningperia.png", isRisk: false },
+            // 🟢 Green / Listed Projects
+            { name: "Holana Network", sub: "Solana Ecosystem Integration", category: "Solana", score: "⭐ 9.2 / 10", status: "listed", link: "../mobile-projects/holana-network.html", logo: "../logos/holana.png" },
+            { name: "Toleno Network", sub: "Fixed 1B Supply • Revoked Authorities", category: "Solana", score: "⭐ 9.4 / 10", status: "listed", link: "../mobile-projects/toleno-network.html", logo: "../logos/toleno.png" },
+            { name: "Mirex Network", sub: "Active PancakeSwap Pool", category: "BSC / DEX", score: "⭐ 9.0 / 10", status: "listed", link: "../mobile-projects/mirex-network.html", logo: "../logos/mirex.png" },
+            { name: "Pi Network", sub: "Enclosed Mainnet • Social Mining", category: "Layer 1", score: "⭐ 8.7 / 10", status: "listed", link: "../mobile-projects/pi-network.html", logo: "../logos/pi.png" },
+            { name: "Omega Network", sub: "OMN Ecosystem • EVM Smart Contracts", category: "EVM", score: "⭐ 8.5 / 10", status: "listed", link: "../mobile-projects/omega-network.html", logo: "../logos/omega.png" },
+            { name: "TTcoin Network", sub: "TRC20 / BEP20 Community Token", category: "Tron / BSC", score: "⭐ 8.3 / 10", status: "listed", link: "../mobile-projects/ttcoin-network.html", logo: "../logos/ttcoin.png" },
+            { name: "Avalun Network", sub: "Polygon PoS • QuickSwap Live Pair", category: "Polygon", score: "⭐ 8.9 / 10", status: "listed", link: "../mobile-projects/avalun-network.html", logo: "../logos/avalun.png" },
+            { name: "Rubi Network", sub: "Digital Commodity • Mobile Protocol", category: "Commodity", score: "⭐ 8.2 / 10", status: "listed", link: "../mobile-projects/rubi-network.html", logo: "../logos/rubi.png" },
+            { name: "Miningperia", sub: "Peria Coin (BEP-20)", category: "Aggregator", score: "⭐ 8.0 / 10", status: "listed", link: "../mobile-projects/miningperia.html", logo: "../logos/miningperia.png" },
+            { name: "cPen Network", sub: "Decentralized Social Mining", category: "SocialFi", score: "⭐ 8.1 / 10", status: "listed", link: "../mobile-projects/cpen-network.html", logo: "../logos/cpen.png" },
+            { name: "Alpha Network", sub: "Digital Asset Mining Protocol", category: "Mobile Mining", score: "⭐ 8.0 / 10", status: "listed", link: "../mobile-projects/alpha-network.html", logo: "../logos/alpha.png" },
 
-            // Batch 2: Evaluated & Early Community Projects
-            { name: "Unich Network", sub: "Pre-TGE Tracking • OTC Market Monitoring", category: "Pre-Market", score: "⚠️ 6.2 / 10", status: "risk", link: "../mobile-projects/unich-network.html", logo: "../logos/unich.png", isRisk: true },
-            { name: "InterLink Network", sub: "Human Layer • Bot-Resistant Protocol", category: "Identity", score: "⭐ 7.5 / 10", status: "notoken", link: "../mobile-projects/interlink-network.html", logo: "../logos/interlink.png", isRisk: false },
-            { name: "Verro Network", sub: "Built on Solana • AI Micro Tasks", category: "Solana", score: "⭐ 7.8 / 10", status: "notoken", link: "../mobile-projects/verro-network.html", logo: "../logos/verro.png", isRisk: false },
-            { name: "Orex Network", sub: "Fixed 500M ORX • Gaming & Mining", category: "Web3 Gaming", score: "⭐ 8.1 / 10", status: "notoken", link: "../mobile-projects/orex-network.html", logo: "../logos/orex.png", isRisk: false },
-            { name: "Cpen Network", sub: "Decentralized Social Mining", category: "SocialFi", score: "⭐ 7.4 / 10", status: "notoken", link: "../mobile-projects/cpen-network.html", logo: "../logos/cpen.png", isRisk: false },
-            { name: "Starx Network", sub: "Gamified Node Mining Architecture", category: "Mobile Mining", score: "⭐ 7.2 / 10", status: "notoken", link: "../mobile-projects/starx-network.html", logo: "../logos/starx.png", isRisk: false },
-            { name: "Hype Network", sub: "Community Engagement & Rewards", category: "Community", score: "⭐ 7.0 / 10", status: "notoken", link: "../mobile-projects/hype-network.html", logo: "../logos/hype.png", isRisk: false },
-            { name: "Alpha Network", sub: "Digital Asset Mining Protocol", category: "Mobile Mining", score: "⭐ 7.3 / 10", status: "notoken", link: "../mobile-projects/alpha-network.html", logo: "../logos/alpha.png", isRisk: false },
-            { name: "Vrox Network", sub: "Early Stage Community Mining", category: "Experimental", score: "⚠️ 5.8 / 10", status: "risk", link: "../mobile-projects/vrox-network.html", logo: "../logos/vrox.png", isRisk: true },
-            { name: "Rabit Network", sub: "Asset Staking & Daily Consensus", category: "Mobile Mining", score: "⭐ 7.1 / 10", status: "notoken", link: "../mobile-projects/rabit-network.html", logo: "../logos/rabit.png", isRisk: false },
-            { name: "Vespera Network", sub: "Base Chain L2 • Governance Ecosystem", category: "Base L2", score: "⭐ 7.7 / 10", status: "notoken", link: "../mobile-projects/vespera-network.html", logo: "../logos/vespera.png", isRisk: false },
-            { name: "Sprout Network", sub: "Mobile Farming • 350K+ Community", category: "Community", score: "⚠️ 6.0 / 10", status: "risk", link: "../mobile-projects/sprout-network.html", logo: "../logos/sprout.png", isRisk: true }
+            // 🟡 Yellow / Upcoming / Pre-TGE / Review
+            { name: "Unich Network", sub: "Pre-TGE Tracking • OTC Market", category: "Pre-Market", score: "⏳ 7.5 / 10", status: "upcoming", link: "../mobile-projects/unich-network.html", logo: "../logos/unich.png" },
+            { name: "InterLink Network", sub: "Human Layer • Bot-Resistant Protocol", category: "Identity", score: "⏳ 7.6 / 10", status: "upcoming", link: "../mobile-projects/interlink-network.html", logo: "../logos/interlink.png" },
+            { name: "Verro Network", sub: "Built on Solana • AI Micro Tasks", category: "Solana", score: "⏳ 7.8 / 10", status: "upcoming", link: "../mobile-projects/verro-network.html", logo: "../logos/verro.png" },
+            { name: "Orex Network", sub: "Fixed 500M ORX • Gaming & Mining", category: "Web3 Gaming", score: "⏳ 8.1 / 10", status: "upcoming", link: "../mobile-projects/orex-network.html", logo: "../logos/orex.png" },
+            { name: "Hype Network", sub: "Community Engagement & Rewards", category: "Community", score: "⏳ 7.0 / 10", status: "upcoming", link: "../mobile-projects/hype-network.html", logo: "../logos/hype.png" },
+            { name: "Vespera Network", sub: "Base Chain L2 • Governance", category: "Base L2", score: "⏳ 7.7 / 10", status: "upcoming", link: "../mobile-projects/vespera-network.html", logo: "../logos/vespera.png" },
+
+            // 🔴 Red / No Token / High Risk
+            { name: "Starx Network", sub: "Gamified Node Mining Architecture", category: "Mobile Mining", score: "⚠️ 5.5 / 10", status: "notoken", link: "../mobile-projects/starx-network.html", logo: "../logos/starx.png" },
+            { name: "Vrox Network", sub: "Early Stage Community Mining", category: "Experimental", score: "⚠️ 5.8 / 10", status: "notoken", link: "../mobile-projects/vrox-network.html", logo: "../logos/vrox.png" },
+            { name: "Rabit Network", sub: "Asset Staking & Daily Consensus", category: "Mobile Mining", score: "⚠️ 5.9 / 10", status: "notoken", link: "../mobile-projects/rabit-network.html", logo: "../logos/rabit.png" },
+            { name: "Sprout Network", sub: "Mobile Farming • 350K+ Community", category: "Community", score: "⚠️ 6.0 / 10", status: "notoken", link: "../mobile-projects/sprout-network.html", logo: "../logos/sprout.png" }
         ];
 
         let currentFilter = 'all';
@@ -234,11 +243,22 @@
                 const matchesSearch = p.name.toLowerCase().includes(query) || p.sub.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
                 if (!matchesSearch) return false;
                 if (currentFilter === 'all') return true;
-                if (currentFilter === 'risk') return p.isRisk;
                 return p.status === currentFilter;
             });
 
             filtered.forEach(p => {
+                let badgeClass = '';
+                let badgeIcon = '';
+                let scoreClass = '';
+                
+                if (p.status === 'listed') {
+                    badgeClass = 'badge-listed'; badgeIcon = '✓'; scoreClass = 'score-listed';
+                } else if (p.status === 'upcoming') {
+                    badgeClass = 'badge-upcoming'; badgeIcon = '⏳'; scoreClass = 'score-upcoming';
+                } else {
+                    badgeClass = 'badge-notoken'; badgeIcon = '!'; scoreClass = 'score-notoken';
+                }
+
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>
@@ -247,19 +267,19 @@
                                 <img src="${p.logo}" alt="${p.name}" onerror="this.src='../logos/tcn-logo.png';">
                             </div>
                             <div>
-                                <div class="project-name">${p.name} <span class="${p.isRisk ? 'warning-tick' : 'verified-tick'}">${p.isRisk ? '!' : '✓'}</span></div>
+                                <div class="project-name">${p.name} <span class="${badgeClass}">${badgeIcon}</span></div>
                                 <div class="project-sub">${p.sub}</div>
                             </div>
                         </div>
                     </td>
                     <td><span class="category-pill">${p.category}</span></td>
-                    <td class="${p.isRisk ? 'score-risk' : 'score-text'}">${p.score}</td>
+                    <td class="${scoreClass}">${p.score}</td>
                     <td><a href="${p.link}" class="btn-details">View Details</a></td>
                 `;
                 tbody.appendChild(row);
             });
 
-            document.getElementById('projectCount').innerText = `Showing ${filtered.length} verified community projects`;
+            document.getElementById('projectCount').innerText = `Showing ${filtered.length} community projects`;
         }
 
         function setFilter(filterType, btn) {
