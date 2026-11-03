@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token Checker | Total Crypto Hub</title>
+    <title>Token Checker & Contract Audit | Total Crypto Hub</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -13,10 +13,15 @@
             --header-bg: rgba(255, 255, 255, 0.95);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
-            --text-body: #334155;
-            --text-muted: #64748b;
-            --accent-primary: #06b6d4; /* Cyan color for Tool */
-            --accent-hover: #0891b2;
+            --text-body: #1e293b;
+            --text-muted: #475569;
+            --th-bg: #f8fafc;
+            --th-text: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --row-hover: #f1f5f9;
+            --ring-border: rgba(5, 150, 105, 0.25);
+            --ring-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
             --container-max-width: 1240px;
             --container-padding: 24px;
         }
@@ -26,10 +31,15 @@
             --header-bg: rgba(11, 17, 32, 0.95);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
-            --text-body: #cbd5e1;
+            --text-body: #e2e8f0;
             --text-muted: #94a3b8;
-            --accent-primary: #22d3ee; 
-            --accent-hover: #67e8f9;
+            --th-bg: #0f172a;
+            --th-text: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --row-hover: #131c31;
+            --ring-border: rgba(16, 185, 129, 0.35);
+            --ring-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
@@ -39,13 +49,12 @@
         .header-inner { display: flex; flex-direction: column; gap: 16px; }
         .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); flex-shrink: 0; padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
         .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
         .logo-text b { color: var(--accent-primary); }
         
-        /* Community Dropdown Styles */
         .header-right { display: flex; align-items: center; gap: 12px; }
         .community-dropdown { position: relative; display: inline-block; }
         .community-btn { background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
@@ -54,7 +63,7 @@
         .dropdown-content.show { display: block; animation: fadeIn 0.2s ease-in-out; }
         .dropdown-content a { color: var(--text-heading); padding: 12px 16px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
         .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: rgba(6, 182, 212, 0.08); color: var(--accent-primary); }
+        .dropdown-content a:hover { background-color: rgba(16, 185, 129, 0.08); color: var(--accent-primary); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
         .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
@@ -63,17 +72,229 @@
         .tab-switcher::-webkit-scrollbar { display: none; }
         .tab-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; font-size: 13px; border-radius: 50px; cursor: pointer; text-decoration: none; flex-shrink: 0; }
         .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
-        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); }
+        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
 
-        main { flex: 1; padding: 64px 0; display: flex; justify-content: center; align-items: center; }
+        main { flex: 1; padding: 32px 0 48px; }
+        .hero-title h2 { font-size: 28px; color: var(--text-heading); margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .hero-title h2 svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; }
+        .project-count { color: var(--text-muted); font-weight: 600; font-size: 13px; margin-bottom: 20px; }
+
+        /* ================= OVERVIEW CARD ================= */
+        .community-overview-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 26px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+        }
+        .overview-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .overview-pill {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent-primary);
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 6px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .overview-main-heading { font-size: 17px; font-weight: 800; color: var(--text-heading); }
+        .overview-main-desc { font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 22px; font-weight: 500; }
+        .overview-main-desc b { color: var(--text-heading); font-weight: 800; }
+
+        .overview-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        .overview-feature-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: var(--bg-body);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            border-top: 3.5px solid var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .overview-feature-title { font-size: 14px; font-weight: 800; color: var(--text-heading); display: flex; align-items: center; gap: 8px; line-height: 1.3; }
+        .overview-feature-text { font-size: 13px; line-height: 1.65; color: var(--text-body); font-weight: 500; }
         
-        .coming-soon-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 20px; padding: 48px 32px; text-align: center; max-width: 500px; width: 100%; box-shadow: 0 12px 32px rgba(0,0,0,0.05); }
-        .coming-soon-icon { width: 80px; height: 80px; background: rgba(6, 182, 212, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 24px; }
-        .coming-soon-icon svg { width: 40px; height: 40px; stroke: var(--accent-primary); fill: none; stroke-width: 2; }
-        .coming-soon-box h2 { font-size: 24px; color: var(--text-heading); font-weight: 800; margin-bottom: 12px; }
-        .coming-soon-box p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
-        .back-btn { background: var(--accent-primary); color: white; padding: 10px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; display: inline-block; transition: background 0.2s; }
-        .back-btn:hover { background: var(--accent-hover); }
+        .hl-green { color: var(--accent-primary); font-weight: 800; background: rgba(16, 185, 129, 0.12); padding: 1px 6px; border-radius: 4px; display: inline-block; }
+        .hl-dark { color: var(--text-heading); font-weight: 700; }
+
+        /* ================= LIVE QUICK SCANNER BOX ================= */
+        .scanner-card {
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 26px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.05);
+        }
+        .scanner-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .chain-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+        .chain-selector::-webkit-scrollbar { display: none; }
+        .chain-pill {
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .chain-pill.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .input-group input {
+            flex: 1;
+            min-width: 280px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-heading);
+            font-size: 13px;
+            font-family: monospace;
+            outline: none;
+        }
+        .input-group input:focus {
+            border-color: var(--accent-primary);
+        }
+        .btn-clear {
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .scanner-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .btn-audit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-heading);
+            transition: all 0.2s;
+        }
+        .btn-audit:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: rgba(16, 185, 129, 0.06);
+        }
+
+        /* Controls & Filter Bar */
+        .controls-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+        .search-box { position: relative; flex: 1; min-width: 240px; max-width: 380px; }
+        .search-box input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-body); font-size: 13px; outline: none; }
+        .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; }
+        .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+
+        /* Table */
+        .table-card { background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); }
+        .table-responsive { width: 100%; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 780px; }
+        th { background: var(--th-bg); padding: 14px 20px; font-size: 11px; color: var(--th-text); font-weight: 800; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
+        td { padding: 14px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+        tr:hover { background: var(--row-hover); }
+
+        .project-cell { display: flex; align-items: center; gap: 12px; }
+        .project-avatar-box { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: var(--bg-surface); border: 1.5px solid var(--ring-border); box-shadow: var(--ring-shadow); padding: 2px; }
+        .project-avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .project-initial { width: 100%; height: 100%; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 14px; color: white; }
+        .project-name { font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; font-size: 14px; }
+        .project-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; font-weight: 600; }
+        
+        .badge-verified { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #059669; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
+        .badge-upcoming { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #d97706; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
+        
+        .score-verified { font-weight: 800; color: var(--accent-primary); font-size: 13.5px; }
+        .score-upcoming { font-weight: 800; color: #d97706; font-size: 13.5px; }
+
+        .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); white-space: nowrap; }
+        
+        /* Contract Copy Box */
+        .contract-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-body);
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--text-heading);
+        }
+        .btn-copy {
+            background: transparent;
+            border: none;
+            color: var(--accent-primary);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .btn-copy:hover {
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; transition: all 0.2s; white-space: nowrap; }
+        .btn-details:hover { background: var(--accent-primary); color: white; }
 
         footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
@@ -85,7 +306,7 @@
         <div class="site-container header-inner">
             <div class="header-top-row">
                 <a href="../index.html" class="logo-box">
-                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.style.display='none';"></div>
+                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';"></div>
                     <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
                 </a>
                 
@@ -116,13 +337,118 @@
 
     <main>
         <div class="site-container">
-            <div class="coming-soon-box">
-                <div class="coming-soon-icon">
-                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <div class="hero-title">
+                <h2><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Token Checker & Contract Audit</h2>
+            </div>
+            <p id="tokenCount" class="project-count">Inspect smart contracts, verify official token addresses, and avoid honeypots</p>
+
+            <!-- ================= CRISP OVERVIEW ARCHITECTURE CARD ================= -->
+            <div class="community-overview-card">
+                <div class="overview-badge-row">
+                    <span class="overview-pill">Anti-Scam Architecture</span>
+                    <span class="overview-main-heading">Why Contract Verification is Mandatory in Web3 & Airdrops</span>
                 </div>
-                <h2>Token Checker Tool</h2>
-                <p>We are currently building a powerful tool to verify smart contracts, liquidity pools, and network details across multiple blockchains. Stay tuned!</p>
-                <a href="../index.html" class="back-btn">Return to Home</a>
+                
+                <p class="overview-main-desc">
+                    In decentralized trading, malicious actors frequently launch <b>counterfeit clone tokens</b> and <b>honeypots</b> mimicking legitimate Web3 projects. Interacting with unverified contracts can lead to permanent loss of capital through hidden sales taxes or frozen selling functions. <b>Total Crypto Hub</b> provides this neutral verification suite to help users inspect contracts before connecting wallets or approving liquidity swaps.
+                </p>
+
+                <div class="overview-features-grid">
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🍯</span> Honeypot & Sell Restrictions
+                        </div>
+                        <div class="overview-feature-text">
+                            Malicious contracts permit buying but <span class="hl-green">block token sales</span> by reverting sell transactions. Always check contract functions to ensure open liquidity withdrawal.
+                        </div>
+                    </div>
+
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🎭</span> Counterfeit Token Clones
+                        </div>
+                        <div class="overview-feature-text">
+                            Scammers issue fake tokens with identical tickers on decentralized exchanges. Always confirm the <span class="hl-green">official contract address (CA)</span> from verified protocol documentation.
+                        </div>
+                    </div>
+
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>📉</span> Hidden Buy / Sell Taxes
+                        </div>
+                        <div class="overview-feature-text">
+                            Predatory developers embed <span class="hl-green">50% to 99% transfer fees</span> directly inside token contracts, draining your swap value without prior warning on decentralized front-ends.
+                        </div>
+                    </div>
+
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🔒</span> Liquidity Lock & Mint Control
+                        </div>
+                        <div class="overview-feature-text">
+                            Verify whether the protocol's liquidity pool (LP) is <span class="hl-green">permanently burned or time-locked</span>, and whether the developer retains the authority to arbitrarily mint new tokens.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= LIVE QUICK SCANNER BOX ================= -->
+            <div class="scanner-card">
+                <div class="scanner-title">
+                    <span>⚡</span> Live Contract Quick-Audit Engine
+                </div>
+                
+                <div class="chain-selector">
+                    <button class="chain-pill active" onclick="setChain('eth', this)">Ethereum (ETH)</button>
+                    <button class="chain-pill" onclick="setChain('bsc', this)">BNB Chain (BSC)</button>
+                    <button class="chain-pill" onclick="setChain('solana', this)">Solana (SOL)</button>
+                    <button class="chain-pill" onclick="setChain('base', this)">Base Chain</button>
+                    <button class="chain-pill" onclick="setChain('polygon', this)">Polygon (PoS)</button>
+                    <button class="chain-pill" onclick="setChain('arbitrum', this)">Arbitrum</button>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="contractInput" placeholder="Paste Contract Address (0x... or Solana Mint)" oninput="handleContractInput()">
+                    <button class="btn-clear" onclick="clearContractInput()">Clear</button>
+                </div>
+
+                <div class="scanner-actions">
+                    <a id="btnHoneypot" href="https://honeypot.is/" target="_blank" class="btn-audit">🛡️ Check Honeypot.is</a>
+                    <a id="btnDex" href="https://dexscreener.com/" target="_blank" class="btn-audit">📊 DexScreener Chart</a>
+                    <a id="btnSecurity" href="https://gopluslabs.io/token-security" target="_blank" class="btn-audit">🔍 GoPlus Security</a>
+                    <a id="btnExplorer" href="https://etherscan.io/" target="_blank" class="btn-audit">🌐 Block Explorer</a>
+                </div>
+            </div>
+
+            <!-- Controls & Filters for Verified Directory -->
+            <div class="controls-bar">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search verified tokens by name or chain..." oninput="handleSearch()">
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn active" onclick="setFilter('all', this)">All Verified Tokens</button>
+                    <button class="filter-btn" onclick="setFilter('evm', this)">EVM Tokens</button>
+                    <button class="filter-btn" onclick="setFilter('solana', this)">Solana</button>
+                    <button class="filter-btn" onclick="setFilter('l1', this)">Native L1</button>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-card">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>TOKEN</th>
+                                <th>ECOSYSTEM</th>
+                                <th>OFFICIAL CONTRACT (CA)</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tokenTableBody"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
@@ -141,6 +467,218 @@
     </footer>
 
     <script>
+        // ================= VERIFIED TOKENS DATABASE =================
+        const TOKEN_DATABASE = [
+            { 
+                name: "Core DAO (CORE)", 
+                sub: "Layer 1 Blockchain • Satoshi Ecosystem", 
+                category: "Native L1", 
+                type: "l1",
+                contract: "Native L1 Coin (Core Chain)", 
+                fullContract: "Native Layer-1 Asset",
+                statusText: "🟢 Listed & Audited",
+                statusClass: "score-verified",
+                auditLink: "https://scan.coredao.org/",
+                logo: "../logos/satoshi.png" 
+            },
+            { 
+                name: "Pi Network (PI)", 
+                sub: "Enclosed Mainnet • Peer-to-Peer Protocol", 
+                category: "Native L1", 
+                type: "l1",
+                contract: "Enclosed Mainnet (No External CA)", 
+                fullContract: "Enclosed Mainnet Protocol",
+                statusText: "🟡 Pre-Market / Enclosed",
+                statusClass: "score-upcoming",
+                auditLink: "https://minepi.com/blockexplorer/",
+                logo: "../logos/pi.png" 
+            },
+            { 
+                name: "Grass (GRASS)", 
+                sub: "Solana DePIN Bandwidth Protocol", 
+                category: "Solana", 
+                type: "solana",
+                contract: "Grass7B4RdKf...Mint", 
+                fullContract: "Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
+                statusText: "🟢 Listed & Audited",
+                statusClass: "score-verified",
+                auditLink: "https://solscan.io/token/Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
+                logo: "../logos/tcn-logo.png" 
+            },
+            { 
+                name: "Bondex (BDXN)", 
+                sub: "Web3 Professional Talent Network", 
+                category: "BSC / EVM", 
+                type: "evm",
+                contract: "0xd1C7...4e31 (BEP-20)", 
+                fullContract: "0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
+                statusText: "🟢 Listed & Audited",
+                statusClass: "score-verified",
+                auditLink: "https://bscscan.com/token/0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
+                logo: "../logos/bondex.png" 
+            },
+            { 
+                name: "Omega Network (OMN)", 
+                sub: "EVM Smart Contract Consensus Token", 
+                category: "EVM", 
+                type: "evm",
+                contract: "0x1d37...BEP20", 
+                fullContract: "0x1d37c3da33ecf00a7fae4b525164bc7a529e74d1",
+                statusText: "🟢 Listed & Audited",
+                statusClass: "score-verified",
+                auditLink: "https://bscscan.com/token/0x1d37c3da33ecf00a7fae4b525164bc7a529e74d1",
+                logo: "../logos/omega.png" 
+            },
+            { 
+                name: "TTcoin (TC)", 
+                sub: "TRC20 / BEP20 Community Ecosystem", 
+                category: "Tron / BSC", 
+                type: "evm",
+                contract: "0x6f4...BEP20", 
+                fullContract: "0x6f4e049be7811979203998be770b7f8c057cfb19",
+                statusText: "🟢 Listed & Audited",
+                statusClass: "score-verified",
+                auditLink: "https://bscscan.com/token/0x6f4e049be7811979203998be770b7f8c057cfb19",
+                logo: "../logos/ttcoin.png" 
+            }
+        ];
+
+        let currentChain = 'eth';
+        let currentFilter = 'all';
+
+        function getAvatarColor(name) {
+            const colors = ['#059669', '#10b981', '#2563eb', '#6366f1', '#8b5cf6', '#d946ef', '#f43f5e', '#f59e0b', '#0ea5e9'];
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) { hash = name.charCodeAt(i) + ((hash << 5) - hash); }
+            return colors[Math.abs(hash) % colors.length];
+        }
+
+        // ================= SCANNER LOGIC =================
+        function setChain(chain, btn) {
+            currentChain = chain;
+            document.querySelectorAll('.chain-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateAuditLinks();
+        }
+
+        function handleContractInput() {
+            updateAuditLinks();
+        }
+
+        function clearContractInput() {
+            document.getElementById('contractInput').value = '';
+            updateAuditLinks();
+        }
+
+        function updateAuditLinks() {
+            const ca = document.getElementById('contractInput').value.trim();
+            const btnHoneypot = document.getElementById('btnHoneypot');
+            const btnDex = document.getElementById('btnDex');
+            const btnSecurity = document.getElementById('btnSecurity');
+            const btnExplorer = document.getElementById('btnExplorer');
+
+            if (!ca) {
+                btnHoneypot.href = "https://honeypot.is/";
+                btnDex.href = "https://dexscreener.com/";
+                btnSecurity.href = "https://gopluslabs.io/token-security";
+                btnExplorer.href = currentChain === 'bsc' ? "https://bscscan.com/" : (currentChain === 'solana' ? "https://solscan.io/" : "https://etherscan.io/");
+                return;
+            }
+
+            // Smart Deep Links
+            if (currentChain === 'solana') {
+                btnHoneypot.href = `https://rugcheck.xyz/tokens/${ca}`;
+                btnHoneypot.innerHTML = "⚡ RugCheck (Solana)";
+                btnDex.href = `https://dexscreener.com/solana/${ca}`;
+                btnSecurity.href = `https://solscan.io/token/${ca}`;
+                btnExplorer.href = `https://solscan.io/token/${ca}`;
+            } else {
+                btnHoneypot.href = `https://honeypot.is/?address=${ca}`;
+                btnHoneypot.innerHTML = "🛡️ Check Honeypot.is";
+                btnDex.href = `https://dexscreener.com/search?q=${ca}`;
+                btnSecurity.href = `https://gopluslabs.io/token-security/56/${ca}`;
+
+                if (currentChain === 'bsc') btnExplorer.href = `https://bscscan.com/token/${ca}`;
+                else if (currentChain === 'base') btnExplorer.href = `https://basescan.org/token/${ca}`;
+                else if (currentChain === 'polygon') btnExplorer.href = `https://polygonscan.com/token/${ca}`;
+                else if (currentChain === 'arbitrum') btnExplorer.href = `https://arbiscan.io/token/${ca}`;
+                else btnExplorer.href = `https://etherscan.io/token/${ca}`;
+            }
+        }
+
+        // ================= COPY FUNCTIONALITY =================
+        function copyContract(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "✓ Copied!";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 1800);
+            });
+        }
+
+        // ================= TABLE RENDER =================
+        function renderTable() {
+            const tbody = document.getElementById('tokenTableBody');
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            tbody.innerHTML = '';
+
+            const filtered = TOKEN_DATABASE.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(query) || p.sub.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+                if (!matchesSearch) return false;
+                if (currentFilter === 'all') return true;
+                return p.type === currentFilter;
+            });
+
+            filtered.forEach(p => {
+                const initial = p.name.charAt(0).toUpperCase();
+                const bgColor = getAvatarColor(p.name);
+
+                const avatarHtml = `
+                    <div class="project-avatar-box">
+                        <img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="project-initial" style="background: ${bgColor}; display: none;">${initial}</div>
+                    </div>
+                `;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <div class="project-cell">
+                            ${avatarHtml}
+                            <div>
+                                <div class="project-name">${p.name}</div>
+                                <div class="project-sub">${p.sub}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="category-pill">${p.category}</span></td>
+                    <td>
+                        <div class="contract-box">
+                            <span>${p.contract}</span>
+                            <button class="btn-copy" onclick="copyContract('${p.fullContract}', this)">📋 Copy</button>
+                        </div>
+                    </td>
+                    <td class="${p.statusClass}">${p.statusText}</td>
+                    <td><a href="${p.auditLink}" target="_blank" class="btn-details">Audit Contract ↗</a></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            document.getElementById('tokenCount').innerText = `Showing ${filtered.length} verified official protocol tokens`;
+        }
+
+        function setFilter(filterType, btn) {
+            currentFilter = filterType;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderTable();
+        }
+
+        function handleSearch() {
+            renderTable();
+        }
+
         function toggleTheme() {
             const body = document.body;
             const toggleBtn = document.getElementById('themeToggle');
@@ -148,14 +686,15 @@
                 body.setAttribute('data-theme', 'dark');
                 toggleBtn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
                 toggleBtn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
+                document.documentElement.setAttribute('data-theme', 'light');
             }
         }
 
-        // Dropdown Function
         function toggleCommunityMenu() {
             document.getElementById("communityMenu").classList.toggle("show");
         }
@@ -175,7 +714,10 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
+            document.documentElement.setAttribute('data-theme', savedTheme);
             document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+            updateAuditLinks();
+            renderTable();
         };
     </script>
 </body>
