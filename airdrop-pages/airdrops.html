@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airdrops & Testnets | Total Crypto Hub</title>
+    <meta name="description" content="Total Crypto Hub - Track verified Web3 airdrops, testnet campaigns, quest rewards, and zero-capital crypto distributions.">
+    <meta name="keywords" content="Airdrops, Web3 Campaigns, Testnet Faucet, Galxe Quests, TaskOn, Zero Investment Crypto, Total Crypto Hub, Total Crypto Network">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <title>Airdrops & Campaigns | Total Crypto Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,14 +15,15 @@
             --header-bg: rgba(255, 255, 255, 0.95);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
-            --text-body: #334155;
-            --text-muted: #64748b;
+            --text-body: #1e293b;
+            --text-muted: #475569;
             --th-bg: #f8fafc;
             --th-text: #64748b;
-            --accent-primary: #3b82f6; 
-            --accent-hover: #2563eb;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
             --row-hover: #f1f5f9;
-            --ring-border: rgba(59, 130, 246, 0.25);
+            --ring-border: rgba(5, 150, 105, 0.25);
+            --ring-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
             --container-max-width: 1240px;
             --container-padding: 24px;
         }
@@ -30,30 +33,31 @@
             --header-bg: rgba(11, 17, 32, 0.95);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
-            --text-body: #cbd5e1;
+            --text-body: #e2e8f0;
             --text-muted: #94a3b8;
             --th-bg: #0f172a;
             --th-text: #94a3b8;
-            --accent-primary: #60a5fa; 
-            --accent-hover: #93c5fd;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
             --row-hover: #131c31;
-            --ring-border: rgba(96, 165, 250, 0.35);
+            --ring-border: rgba(16, 185, 129, 0.35);
+            --ring-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
-        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
         header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0 0 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
         .header-inner { display: flex; flex-direction: column; gap: 16px; }
         .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); flex-shrink: 0; padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; white-space: nowrap; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; white-space: nowrap; }
         .logo-text b { color: var(--accent-primary); }
         
-        /* New Community Dropdown Styles */
+        /* Community Dropdown */
         .header-right { display: flex; align-items: center; gap: 12px; }
         .community-dropdown { position: relative; display: inline-block; }
         .community-btn { background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
@@ -62,46 +66,170 @@
         .dropdown-content.show { display: block; animation: fadeIn 0.2s ease-in-out; }
         .dropdown-content a { color: var(--text-heading); padding: 12px 16px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
         .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: rgba(59, 130, 246, 0.08); color: var(--accent-primary); }
+        .dropdown-content a:hover { background-color: rgba(16, 185, 129, 0.08); color: var(--accent-primary); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
+        .tab-switcher { display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; padding-bottom: 12px; -webkit-overflow-scrolling: touch; scrollbar-width: none; width: 100%; }
+        .tab-switcher::-webkit-scrollbar { display: none; }
+        .tab-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; font-size: 13px; border-radius: 50px; cursor: pointer; text-decoration: none; transition: all 0.2s; flex-shrink: 0; }
+        .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
         .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
 
-        .tab-switcher { display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; padding-bottom: 12px; scrollbar-width: none; width: 100%; }
-        .tab-switcher::-webkit-scrollbar { display: none; }
-        .tab-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; font-size: 13px; border-radius: 50px; cursor: pointer; text-decoration: none; flex-shrink: 0; }
-        .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
-        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
-
         main { flex: 1; padding: 32px 0 48px; }
-        .hero-title h2 { font-size: 28px; color: var(--text-heading); margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
-        .hero-title h2 svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; }
-        .project-count { color: var(--text-muted); font-weight: 500; font-size: 13px; margin-bottom: 20px; }
+        .hero-title h2 { font-size: 28px; color: var(--text-heading); margin-bottom: 6px; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
+        .hero-title h2 svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+        .project-count { color: var(--text-muted); font-weight: 600; font-size: 13px; margin-bottom: 20px; }
 
-        .controls-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-        .search-box { position: relative; flex: 1; min-width: 240px; max-width: 380px; }
-        .search-box input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-body); font-size: 13px; outline: none; }
-        .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
-        .filter-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; }
-        .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+        /* ================= AIRDROPS & CAMPAIGNS ARCHITECTURE CARD ================= */
+        .campaigns-overview-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 26px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+        }
+        .overview-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .overview-pill {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent-primary);
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 6px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .overview-main-heading {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-heading);
+        }
+        .overview-main-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-body);
+            margin-bottom: 22px;
+            font-weight: 500;
+        }
+        .overview-main-desc b {
+            color: var(--text-heading);
+            font-weight: 800;
+        }
+        .overview-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        .overview-feature-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: var(--bg-body);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            border-top: 3.5px solid var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .overview-feature-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.3;
+        }
+        .overview-feature-text {
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text-body);
+            font-weight: 500;
+        }
+        
+        /* Vibrant Emerald Capsule Highlights */
+        .hl-green {
+            color: var(--accent-primary);
+            font-weight: 800;
+            background: rgba(16, 185, 129, 0.12);
+            padding: 1px 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .hl-dark {
+            color: var(--text-heading);
+            font-weight: 700;
+        }
 
+        /* Controls & Filter Bar */
+        .controls-bar { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+        .search-box { flex: 1; min-width: 260px; max-width: 360px; }
+        .search-box input { width: 100%; padding: 11px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-heading); outline: none; font-weight: 500; font-size: 13px; }
+        .search-box input:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
+        .filter-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .filter-btn { padding: 9px 15px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25); }
+        .cat-select { padding: 9px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 12px; outline: none; }
+
+        /* Dynamic Status Badges for Time-Sensitive Campaigns */
+        .badge-status {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .badge-live {
+            background: rgba(16, 185, 129, 0.12);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .badge-ending {
+            background: rgba(245, 158, 11, 0.12);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .badge-confirmed {
+            background: rgba(99, 102, 241, 0.12);
+            color: #6366f1;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Table Standard */
         .table-card { background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); }
-        .table-responsive { width: 100%; overflow-x: auto; }
+        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; border-collapse: collapse; text-align: left; min-width: 650px; }
-        th { background: var(--th-bg); padding: 14px 20px; font-size: 11px; color: var(--th-text); font-weight: 800; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
-        td { padding: 14px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+        th { background: var(--th-bg); padding: 14px 20px; font-size: 11px; color: var(--th-text); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
+        td { padding: 14px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; white-space: nowrap; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: var(--row-hover); }
 
         .project-cell { display: flex; align-items: center; gap: 12px; }
-        .project-avatar-box { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: var(--bg-surface); border: 1.5px solid var(--ring-border); padding: 2px; }
+        .project-avatar-box { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: var(--bg-surface); border: 1.5px solid var(--ring-border); box-shadow: var(--ring-shadow); padding: 2px; }
         .project-avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .project-initial { width: 100%; height: 100%; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 14px; color: white; }
         .project-name { font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; font-size: 14px; }
-        .project-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; font-weight: 500; }
-        .verified-tick { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: var(--accent-primary); color: white; border-radius: 50%; font-size: 9px; font-weight: 800; }
-        .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); }
-        .score-text { font-weight: 800; color: var(--accent-primary); font-size: 13px; }
-        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; }
-        .btn-details:hover { background: var(--accent-primary); color: white; }
+        .project-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; font-weight: 600; }
+        .verified-tick { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: var(--accent-primary); color: white; border-radius: 50%; font-size: 9px; font-weight: 800; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3); }
+        .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); display: inline-block; }
+        .score-text { font-weight: 800; color: var(--accent-primary); font-size: 13.5px; }
+        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; transition: all 0.2s; white-space: nowrap; }
+        .btn-details:hover { background: var(--accent-primary); color: white; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
 
         footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
@@ -113,11 +241,10 @@
         <div class="site-container header-inner">
             <div class="header-top-row">
                 <a href="../index.html" class="logo-box">
-                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.style.display='none';"></div>
+                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';"></div>
                     <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
                 </a>
                 
-                <!-- Updated Header Right Section with Community Dropdown -->
                 <div class="header-right">
                     <div class="community-dropdown">
                         <button class="community-btn" onclick="toggleCommunityMenu()">👥 Community</button>
@@ -134,12 +261,11 @@
             
             <div class="tab-switcher">
                 <a href="../depin-pages/depin.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> DePIN Projects</a>
-                <!-- Updated Tab Name -->
                 <a href="../mobile-pages/mobile-mining.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg> Community Projects</a>
                 <a href="airdrops.html" class="tab-btn active"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg> Airdrops & Campaigns</a>
                 <a href="../wallet-pages/wallets.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> Wallets & Exchanges</a>
-                <a href="../tools-pages/token-checker.html" class="tab-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Token Checker</a>
-                <a href="../tools-pages/calculator.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg> Earning Calculator</a>
+                <a href="../token-pages/token-checker.html" class="tab-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Token Checker</a>
+                <a href="../earning-pages/earning-calculator.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg> Earning Calculator</a>
             </div>
         </div>
     </header>
@@ -147,35 +273,106 @@
     <main>
         <div class="site-container">
             <div class="hero-title">
-                <h2><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg> Airdrops & Testnets</h2>
+                <h2><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg> Airdrops & Campaigns</h2>
             </div>
             <p id="projectCount" class="project-count">Showing verified airdrop campaigns</p>
 
+            <!-- ================= AIRDROPS & CAMPAIGNS OVERVIEW CARD ================= -->
+            <div class="campaigns-overview-card">
+                <div class="overview-badge-row">
+                    <span class="overview-pill">Ecosystem Architecture</span>
+                    <span class="overview-main-heading">What are Web3 Campaigns and How Does Airdrop Allocation Work?</span>
+                </div>
+                
+                <p class="overview-main-desc">
+                    <b>Web3 Campaigns & Protocol Airdrops</b> enable decentralized networks to bootstrap early liquidity and community governance with <span class="hl-green">Zero Capital Investment</span>. Instead of spending capital, participants earn allocation shares by stress-testing testnet smart contracts, claiming daily ecosystem points, or completing verified quests across reputable platforms such as <b>Galxe, TaskOn, and Zealy</b>.
+                </p>
+
+                <div class="overview-features-grid">
+                    <!-- Feature 1: User Routine -->
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>⚡</span> What Do Users Need to Do?
+                        </div>
+                        <div class="overview-feature-text">
+                            Users participate by requesting <span class="hl-green">free testnet faucets</span> to test swaps, bridging, or daily social quests. There is <span class="hl-dark">no financial purchase required</span>; simply interact using a dedicated non-custodial Web3 wallet (MetaMask or Phantom) and build active on-chain history.
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Campaign Mechanics -->
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>⚙️</span> How Do Web3 Campaigns Work?
+                        </div>
+                        <div class="overview-feature-text">
+                            Emerging L1/L2 blockchains and dApps allocate dedicated marketing pools. By partnering with quest hubs like <span class="hl-green">Galxe and TaskOn</span>, they track user credentials through on-chain badges (OATs), Discord roles, and <span class="hl-dark">XP point leaderboards</span> ahead of mainnet deployment.
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Claiming & Cashouts -->
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🎁</span> Reward Distribution & Claiming
+                        </div>
+                        <div class="overview-feature-text">
+                            Upon reaching the official <span class="hl-green">Token Generation Event (TGE)</span>, verified campaign points convert into tradeable crypto tokens based on snapshot criteria. Tokens are claimed directly to user wallets and can be converted into liquid assets on major exchanges.
+                        </div>
+                    </div>
+
+                    <!-- Feature 4: Audit & Safety -->
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🛡️</span> Total Crypto Network Audit Policy
+                        </div>
+                        <div class="overview-feature-text">
+                            Phishing protection is strictly enforced. The research desk at <b>Total Crypto Network</b> audits every contract link to prevent <span class="hl-green">wallet drainer scripts</span>, verifying that listed campaigns never request private keys or high-risk fund approvals.
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 16px; text-align: center; border-top: 1px dashed var(--border-color); padding-top: 12px; font-weight: 500;">
+                    <b>Disclaimer:</b> All campaign listings on Total Crypto Hub are published strictly for educational and informational research. Total Crypto Network never offers financial, trading, or investment advice.
+                </p>
+            </div>
+
+            <!-- Controls & Dynamic Filters -->
             <div class="controls-bar">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search airdrops..." oninput="handleSearch()">
+                    <input type="text" id="searchInput" placeholder="Search airdrops, testnets, or quests..." onkeyup="renderTable()">
                 </div>
                 <div class="filter-group">
-                    <button class="filter-btn active" onclick="setFilter('all', this)">All Airdrops</button>
-                    <button class="filter-btn" onclick="setFilter('testnet', this)">Testnet</button>
-                    <button class="filter-btn" onclick="setFilter('node', this)">Node Airdrop</button>
-                    <button class="filter-btn" onclick="setFilter('free', this)">Zero Investment</button>
+                    <button class="filter-btn active" onclick="setFilter('All', this)">All Campaigns</button>
+                    <button class="filter-btn" onclick="setFilter('Active', this)">🟢 Active Only</button>
+                    <button class="filter-btn" onclick="setFilter('Confirmed', this)">🎁 Confirmed</button>
+                    <button class="filter-btn" onclick="setFilter('Testnet', this)">🧪 Testnets</button>
+                    <button class="filter-btn" onclick="setFilter('Quest', this)">⚡ Quest Hubs</button>
+                    <select class="cat-select" onchange="setSubCategory(this.value)">
+                        <option value="All">All Categories</option>
+                        <option value="Testnet">Testnet Faucets</option>
+                        <option value="Quest Hub">Quest Platforms</option>
+                        <option value="Social Quests">Social & Daily</option>
+                        <option value="Node Airdrop">Node Campaigns</option>
+                    </select>
                 </div>
             </div>
 
+            <!-- Table Card -->
             <div class="table-card">
                 <div class="table-responsive">
                     <table>
                         <thead>
                             <tr>
                                 <th>CAMPAIGN</th>
-                                <th>TYPE</th>
-                                <th>ESTIMATED VALUE</th>
+                                <th>CATEGORIES</th>
+                                <th>SCORE</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody id="airdropTableBody"></tbody>
                     </table>
+                </div>
+                <div id="noDataMessage" style="display:none; padding: 40px; text-align: center; color: var(--text-muted); font-weight: 600; font-size: 13px;">
+                    No campaign found matching your criteria.
                 </div>
             </div>
         </div>
@@ -195,58 +392,169 @@
     </footer>
 
     <script>
+        // Sample campaigns showing how dynamic time & status tags function
         const AIRDROP_PROJECTS = [
-            { name: "DAWN Protocol", sub: "Solana DePIN Bandwidth", category: "Node Airdrop", score: "High Potential", status: "node", link: "../airdrop-projects/dawn-protocol.html", logo: "../logos/tcn-logo.png" },
-            { name: "Gradient Network", sub: "Decentralized Compute", category: "Zero Investment", score: "Confirmed", status: "free", link: "../airdrop-projects/gradient-network.html", logo: "../logos/tcn-logo.png" },
-            { name: "Titan Network", sub: "Edge Computing Incentive", category: "Testnet", score: "Tier 1", status: "testnet", link: "../airdrop-projects/titan-network.html", logo: "../logos/tcn-logo.png" }
+            { 
+                name: "TaskOn Hub", 
+                sub: "Web3 Quest Platform • Daily CAP Tasks", 
+                category: "Quest Hub", 
+                status: "Quest", 
+                liveStatus: "Active", 
+                score: "⭐ 9.5 / 10", 
+                link: "../airdrop-projects/taskon.html", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Galxe Protocol", 
+                sub: "Ecosystem Passport & Loyalty OATs", 
+                category: "Quest Hub", 
+                status: "Quest", 
+                liveStatus: "Active", 
+                score: "⭐ 9.6 / 10", 
+                link: "../airdrop-projects/galxe.html", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Monad Testnet", 
+                sub: "High-Throughput EVM • Free Faucet Guide", 
+                category: "Testnet", 
+                status: "Testnet", 
+                liveStatus: "Active", 
+                score: "⭐ 9.7 / 10", 
+                link: "../airdrop-projects/monad.html", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Berachain bArtio", 
+                sub: "Proof of Liquidity • Testnet Swaps", 
+                category: "Testnet", 
+                status: "Testnet", 
+                liveStatus: "Ending Soon", 
+                score: "⭐ 9.4 / 10", 
+                link: "../airdrop-projects/berachain.html", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "DAWN Protocol", 
+                sub: "Solana DePIN Bandwidth • Confirmed TGE", 
+                category: "Node Airdrop", 
+                status: "Confirmed", 
+                liveStatus: "Confirmed", 
+                score: "⭐ 9.3 / 10", 
+                link: "../airdrop-projects/dawn-protocol.html", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Gradient Network", 
+                sub: "Decentralized Compute • Incentive Phase", 
+                category: "Social Quests", 
+                status: "Active", 
+                liveStatus: "Active", 
+                score: "⭐ 9.1 / 10", 
+                link: "../airdrop-projects/gradient-network.html", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            }
         ];
 
-        let currentFilter = 'all';
+        let currentFilter = 'All';
+        let currentSubCategory = 'All';
+
+        function getAvatarColor(name) {
+            const colors = ['#059669', '#10b981', '#2563eb', '#6366f1', '#8b5cf6', '#d946ef', '#f43f5e', '#f59e0b', '#0ea5e9'];
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) { hash = name.charCodeAt(i) + ((hash << 5) - hash); }
+            return colors[Math.abs(hash) % colors.length];
+        }
 
         function renderTable() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
             const tbody = document.getElementById('airdropTableBody');
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const noDataMsg = document.getElementById('noDataMessage');
             tbody.innerHTML = '';
+            let visibleCount = 0;
 
-            const filtered = AIRDROP_PROJECTS.filter(p => {
-                const matchesSearch = p.name.toLowerCase().includes(query) || p.sub.toLowerCase().includes(query);
-                if (!matchesSearch) return false;
-                if (currentFilter === 'all') return true;
-                return p.status === currentFilter;
+            AIRDROP_PROJECTS.forEach(p => {
+                const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.sub.toLowerCase().includes(searchVal);
+                
+                let matchesFilter = false;
+                if (currentFilter === 'All') {
+                    matchesFilter = true;
+                } else if (currentFilter === 'Active') {
+                    matchesFilter = p.liveStatus === 'Active' || p.liveStatus === 'Ending Soon';
+                } else if (currentFilter === 'Confirmed') {
+                    matchesFilter = p.status === 'Confirmed' || p.liveStatus === 'Confirmed';
+                } else if (currentFilter === 'Testnet') {
+                    matchesFilter = p.status === 'Testnet' || p.category.includes('Testnet');
+                } else if (currentFilter === 'Quest') {
+                    matchesFilter = p.status === 'Quest' || p.category.includes('Quest');
+                }
+
+                const matchesSubCat = currentSubCategory === 'All' || p.category.includes(currentSubCategory);
+
+                if (matchesSearch && matchesFilter && matchesSubCat) {
+                    visibleCount++;
+                    const initial = p.name.charAt(0).toUpperCase();
+                    const bgColor = getAvatarColor(p.name);
+                    const targetLink = p.link ? p.link : '#';
+
+                    // Avatar HTML with fallback
+                    let avatarHtml = '';
+                    if (p.logo) {
+                        avatarHtml = `<div class="project-avatar-box"><img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="project-initial" style="background: ${bgColor}; display:none;">${initial}</div></div>`;
+                    } else {
+                        avatarHtml = `<div class="project-avatar-box"><div class="project-initial" style="background: ${bgColor};">${initial}</div></div>`;
+                    }
+
+                    // Dynamic Status Pill
+                    let statusBadge = '';
+                    if (p.liveStatus === 'Active') {
+                        statusBadge = `<span class="badge-status badge-live">● Live</span>`;
+                    } else if (p.liveStatus === 'Ending Soon') {
+                        statusBadge = `<span class="badge-status badge-ending">⏳ Ending Soon</span>`;
+                    } else if (p.liveStatus === 'Confirmed') {
+                        statusBadge = `<span class="badge-status badge-confirmed">🎁 Confirmed</span>`;
+                    }
+
+                    let verifiedBadge = p.verified ? `<span class="verified-tick" title="Verified Campaign">✓</span>` : '';
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>
+                            <div class="project-cell">
+                                ${avatarHtml}
+                                <div>
+                                    <div class="project-name">${p.name} ${verifiedBadge} ${statusBadge}</div>
+                                    <div class="project-sub">${p.sub}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="category-pill">${p.category}</span></td>
+                        <td class="score-text">${p.score}</td>
+                        <td><a href="${targetLink}" class="btn-details">Guide & Join</a></td>
+                    `;
+                    tbody.appendChild(row);
+                }
             });
 
-            filtered.forEach(p => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>
-                        <div class="project-cell">
-                            <div class="project-avatar-box">
-                                <img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none';">
-                            </div>
-                            <div>
-                                <div class="project-name">${p.name} <span class="verified-tick">✓</span></div>
-                                <div class="project-sub">${p.sub}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td><span class="category-pill">${p.category}</span></td>
-                    <td class="score-text">${p.score}</td>
-                    <td><a href="${p.link}" class="btn-details">Guide & Join</a></td>
-                `;
-                tbody.appendChild(row);
-            });
-
-            document.getElementById('projectCount').innerText = `Showing ${filtered.length} verified airdrop campaigns`;
+            document.getElementById('projectCount').innerText = `Showing ${visibleCount} verified airdrop campaigns`;
+            noDataMsg.style.display = visibleCount === 0 ? "block" : "none";
         }
 
         function setFilter(filterType, btn) {
             currentFilter = filterType;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.filter-group .filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             renderTable();
         }
 
-        function handleSearch() {
+        function setSubCategory(cat) {
+            currentSubCategory = cat;
             renderTable();
         }
 
@@ -264,12 +572,10 @@
             }
         }
 
-        // New Dropdown Function
         function toggleCommunityMenu() {
             document.getElementById("communityMenu").classList.toggle("show");
         }
 
-        // Close dropdown when clicking outside
         window.onclick = function(event) {
             if (!event.target.matches('.community-btn')) {
                 var dropdowns = document.getElementsByClassName("dropdown-content");
