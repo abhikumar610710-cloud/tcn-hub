@@ -21,6 +21,7 @@
             --accent-hover: #047857;
             --row-hover: #f1f5f9;
             --ring-border: rgba(5, 150, 105, 0.25);
+            --ring-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
             --container-max-width: 1240px;
             --container-padding: 24px;
         }
@@ -38,6 +39,7 @@
             --accent-hover: #34d399;
             --row-hover: #131c31;
             --ring-border: rgba(16, 185, 129, 0.35);
+            --ring-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
@@ -47,8 +49,8 @@
         .header-inner { display: flex; flex-direction: column; gap: 16px; }
         .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); flex-shrink: 0; padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
         .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
         .logo-text b { color: var(--accent-primary); }
@@ -187,8 +189,9 @@
         tr:hover { background: var(--row-hover); }
 
         .project-cell { display: flex; align-items: center; gap: 12px; }
-        .project-avatar-box { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: var(--bg-surface); border: 1.5px solid var(--ring-border); padding: 2px; }
+        .project-avatar-box { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: var(--bg-surface); border: 1.5px solid var(--ring-border); box-shadow: var(--ring-shadow); padding: 2px; }
         .project-avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .project-initial { width: 100%; height: 100%; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 14px; color: white; }
         .project-name { font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; font-size: 14px; }
         .project-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; font-weight: 600; }
         
@@ -200,7 +203,7 @@
         .score-upcoming { font-weight: 800; color: #d97706; font-size: 13.5px; }
 
         .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); }
-        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; }
+        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; transition: all 0.2s; }
         .btn-details:hover { background: var(--accent-primary); color: white; }
 
         footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
@@ -387,6 +390,13 @@
 
         let currentFilter = 'all';
 
+        function getAvatarColor(name) {
+            const colors = ['#059669', '#10b981', '#2563eb', '#6366f1', '#8b5cf6', '#d946ef', '#f43f5e', '#f59e0b', '#0ea5e9'];
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) { hash = name.charCodeAt(i) + ((hash << 5) - hash); }
+            return colors[Math.abs(hash) % colors.length];
+        }
+
         function renderTable() {
             const tbody = document.getElementById('mobileTableBody');
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -405,13 +415,22 @@
                 const badgeIcon = '✓';
                 const scoreClass = isListed ? 'score-listed' : 'score-upcoming';
 
+                const initial = p.name.charAt(0).toUpperCase();
+                const bgColor = getAvatarColor(p.name);
+
+                // Smart Avatar Fallback: Shows project image if available, else switches cleanly to colorful initial
+                const avatarHtml = `
+                    <div class="project-avatar-box">
+                        <img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="project-initial" style="background: ${bgColor}; display: none;">${initial}</div>
+                    </div>
+                `;
+
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>
                         <div class="project-cell">
-                            <div class="project-avatar-box">
-                                <img src="${p.logo}" alt="${p.name}" onerror="this.src='../logos/tcn-logo.png';">
-                            </div>
+                            ${avatarHtml}
                             <div>
                                 <div class="project-name">${p.name} <span class="${badgeClass}">${badgeIcon}</span></div>
                                 <div class="project-sub">${p.sub}</div>
