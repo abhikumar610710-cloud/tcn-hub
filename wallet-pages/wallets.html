@@ -13,19 +13,17 @@
             --header-bg: rgba(255, 255, 255, 0.95);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
-            --text-body: #334155;
-            --text-muted: #64748b;
+            --text-body: #1e293b;
+            --text-muted: #475569;
             --th-bg: #f8fafc;
             --th-text: #64748b;
-            --accent-primary: #8b5cf6; 
-            --accent-hover: #7c3aed;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
             --row-hover: #f1f5f9;
-            --ring-border: rgba(139, 92, 246, 0.25);
+            --ring-border: rgba(5, 150, 105, 0.25);
+            --ring-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
             --container-max-width: 1240px;
             --container-padding: 24px;
-            --card-warning-bg: #fffbeb;
-            --card-warning-border: #fef3c7;
-            --card-warning-text: #92400e;
         }
         [data-theme="dark"] {
             --bg-body: #070a12;
@@ -33,17 +31,15 @@
             --header-bg: rgba(11, 17, 32, 0.95);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
-            --text-body: #cbd5e1;
+            --text-body: #e2e8f0;
             --text-muted: #94a3b8;
             --th-bg: #0f172a;
             --th-text: #94a3b8;
-            --accent-primary: #a78bfa; 
-            --accent-hover: #c4b5fd;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
             --row-hover: #131c31;
-            --ring-border: rgba(167, 139, 250, 0.35);
-            --card-warning-bg: #1c1917;
-            --card-warning-border: #292524;
-            --card-warning-text: #fde68a;
+            --ring-border: rgba(16, 185, 129, 0.35);
+            --ring-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
@@ -53,12 +49,13 @@
         .header-inner { display: flex; flex-direction: column; gap: 16px; }
         .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); flex-shrink: 0; padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
         .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
         .logo-text b { color: var(--accent-primary); }
         
+        /* Community Dropdown */
         .header-right { display: flex; align-items: center; gap: 12px; }
         .community-dropdown { position: relative; display: inline-block; }
         .community-btn { background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
@@ -67,7 +64,7 @@
         .dropdown-content.show { display: block; animation: fadeIn 0.2s ease-in-out; }
         .dropdown-content a { color: var(--text-heading); padding: 12px 16px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
         .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: rgba(139, 92, 246, 0.08); color: var(--accent-primary); }
+        .dropdown-content a:hover { background-color: rgba(16, 185, 129, 0.08); color: var(--accent-primary); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
         .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
@@ -76,63 +73,138 @@
         .tab-switcher::-webkit-scrollbar { display: none; }
         .tab-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; font-size: 13px; border-radius: 50px; cursor: pointer; text-decoration: none; flex-shrink: 0; }
         .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
-        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); }
+        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
 
         main { flex: 1; padding: 32px 0 48px; }
-        .hero-title h2 { font-size: 28px; color: var(--text-heading); margin-bottom: 8px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
-        .hero-title h2 svg { width: 28px; height: 28px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; }
-        .project-count { color: var(--text-muted); font-weight: 500; font-size: 13px; margin-bottom: 24px; }
+        .hero-title h2 { font-size: 28px; color: var(--text-heading); margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .hero-title h2 svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; }
+        .project-count { color: var(--text-muted); font-weight: 600; font-size: 13px; margin-bottom: 20px; }
 
-        /* Security Education Section */
-        .security-banner { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 32px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04); }
-        .security-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-        .security-header h3 { font-size: 18px; font-weight: 800; color: var(--text-heading); }
-        .security-intro { font-size: 13px; line-height: 1.6; color: var(--text-body); margin-bottom: 20px; }
-        .security-intro b { color: var(--accent-primary); }
+        /* ================= HIGH-CONTRAST CRISP OVERVIEW CARD ================= */
+        .community-overview-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 26px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+        }
+        .overview-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .overview-pill {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent-primary);
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 6px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .overview-main-heading {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-heading);
+        }
+        .overview-main-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-body);
+            margin-bottom: 22px;
+            font-weight: 500;
+        }
+        .overview-main-desc b {
+            color: var(--text-heading);
+            font-weight: 800;
+        }
+        .overview-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        .overview-feature-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: var(--bg-body);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            border-top: 3.5px solid var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .overview-feature-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.3;
+        }
+        .overview-feature-text {
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text-body);
+            font-weight: 500;
+        }
         
-        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 20px; }
-        .tier-card { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; position: relative; }
-        .tier-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; background: rgba(139, 92, 246, 0.12); color: var(--accent-primary); }
-        .tier-card h4 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 6px; }
-        .tier-card p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+        /* Vibrant Highlights */
+        .hl-green {
+            color: var(--accent-primary);
+            font-weight: 800;
+            background: rgba(16, 185, 129, 0.12);
+            padding: 1px 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .hl-dark {
+            color: var(--text-heading);
+            font-weight: 700;
+        }
 
-        .security-warning-box { background: var(--card-warning-bg); border: 1px solid var(--card-warning-border); border-radius: 10px; padding: 14px 18px; display: flex; align-items: flex-start; gap: 12px; }
-        .security-warning-box span { font-size: 18px; }
-        .security-warning-box p { font-size: 12px; color: var(--card-warning-text); line-height: 1.5; font-weight: 600; }
-
-        /* Controls and Filters */
+        /* Controls & Filter Bar */
         .controls-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-        .search-box { position: relative; flex: 1; min-width: 260px; max-width: 380px; }
-        .search-box input { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-body); font-size: 13px; outline: none; }
+        .search-box { position: relative; flex: 1; min-width: 240px; max-width: 380px; }
+        .search-box input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-body); font-size: 13px; outline: none; }
         .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
         .filter-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; }
         .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+        .filter-btn.vault.active { background: #d97706; border-color: #d97706; color: white; }
 
-        /* Table Card */
-        .table-card { background: var(--bg-surface); border-radius: 14px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); }
+        /* Table */
+        .table-card { background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); }
         .table-responsive { width: 100%; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; text-align: left; min-width: 780px; }
         th { background: var(--th-bg); padding: 14px 20px; font-size: 11px; color: var(--th-text); font-weight: 800; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
         td { padding: 14px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
         tr:hover { background: var(--row-hover); }
 
-        .project-cell { display: flex; align-items: center; gap: 14px; }
-        .project-avatar-box { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: var(--bg-surface); border: 1.5px solid var(--ring-border); padding: 3px; }
+        .project-cell { display: flex; align-items: center; gap: 12px; }
+        .project-avatar-box { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: var(--bg-surface); border: 1.5px solid var(--ring-border); box-shadow: var(--ring-shadow); padding: 2px; }
         .project-avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .project-initial { width: 100%; height: 100%; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 14px; color: white; }
         .project-name { font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; font-size: 14px; }
-        .project-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 500; }
-        .verified-tick { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: var(--accent-primary); color: white; border-radius: 50%; font-size: 9px; font-weight: 800; }
-        .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); white-space: nowrap; }
-        .security-badge { font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; }
-        .badge-cold { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
-        .badge-hot { background: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.2); }
-        .badge-cex { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .project-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; font-weight: 600; }
         
-        .score-text { font-weight: 800; color: var(--accent-primary); font-size: 13px; white-space: nowrap; }
-        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 16px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; white-space: nowrap; }
+        /* Two-Tier Badge Architecture */
+        .badge-verified { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #059669; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
+        .badge-vault { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #d97706; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
+        
+        .score-verified { font-weight: 800; color: var(--accent-primary); font-size: 13.5px; }
+        .score-vault { font-weight: 800; color: #d97706; font-size: 13.5px; }
+
+        .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); white-space: nowrap; }
+        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; transition: all 0.2s; white-space: nowrap; }
         .btn-details:hover { background: var(--accent-primary); color: white; }
-        .btn-affiliate { background: var(--accent-primary); border: 1.5px solid var(--accent-primary); color: white; padding: 7px 16px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; white-space: nowrap; }
-        .btn-affiliate:hover { background: var(--accent-hover); }
 
         footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
@@ -144,7 +216,7 @@
         <div class="site-container header-inner">
             <div class="header-top-row">
                 <a href="../index.html" class="logo-box">
-                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.style.display='none';"></div>
+                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';"></div>
                     <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
                 </a>
                 
@@ -176,73 +248,87 @@
     <main>
         <div class="site-container">
             <div class="hero-title">
-                <h2><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> Verified Wallets & Top Exchanges</h2>
+                <h2><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> Wallets & Exchanges</h2>
             </div>
-            <p id="projectCount" class="project-count">Showing verified Web3 wallets, CEX platforms, and hardware vaults</p>
+            <p id="projectCount" class="project-count">Showing verified Web3 platforms & vaults</p>
 
-            <!-- Security Blueprint Section -->
-            <div class="security-banner">
-                <div class="security-header">
-                    <span>🛡️</span>
-                    <h3>Web3 Security Blueprint & Defense Framework</h3>
+            <!-- ================= HIGH-CONTRAST SECURITY ARCHITECTURE CARD ================= -->
+            <div class="community-overview-card">
+                <div class="overview-badge-row">
+                    <span class="overview-pill">Security Framework</span>
+                    <span class="overview-main-heading">What are Non-Custodial Wallets and the 4-Tier Defense Blueprint?</span>
                 </div>
-                <p class="security-intro">
-                    Web3 और एयरड्रॉप्स में सुरक्षा ही सबसे बड़ा नियम है: <b>"Not Your Keys, Not Your Coins"</b>। एक ग़लत कॉन्ट्रैक्ट या फ़िशिंग लिंक आपके महीनों की मेहनत को साफ़ कर सकता है। सुरक्षित काम करने के लिए Total Crypto Network के इस 4-टियर सुरक्षा मॉडल का पालन करें:
-                </p>
                 
-                <div class="tier-grid">
-                    <div class="tier-card">
-                        <span class="tier-tag">Tier 1: Daily Burner</span>
-                        <h4>EVM & Web3 Wallets</h4>
-                        <p>MetaMask व Rabby जैसे हॉट वॉलेट्स। इनका उपयोग केवल रोज़मर्रा के टेस्टनेट्स, एयरड्रॉप्स और नए dApps कनेक्ट करने के लिए करें। इनमें कभी बड़ा फंड न रखें।</p>
-                    </div>
-                    <div class="tier-card">
-                        <span class="tier-tag">Tier 2: Cold Storage</span>
-                        <h4>Hardware Vaults</h4>
-                        <p>Tangem, Ledger या SafePal। एयरड्रॉप और ट्रेडिंग से कमाए गए बड़े मुनाफ़े को 100% ऑफ़लाइन सुरक्षित रखने के लिए इसका उपयोग करें।</p>
-                    </div>
-                    <div class="tier-card">
-                        <span class="tier-tag">Tier 3: Liquidity Hub</span>
-                        <h4>Global Exchanges</h4>
-                        <p>Binance व Bybit। अपने एयरड्रॉप टोकन्स को तेज़ी से USDT में बदलने और लिक्विडिटी हासिल करने के लिए सबसे सुरक्षित मंच।</p>
-                    </div>
-                    <div class="tier-card">
-                        <span class="tier-tag">Tier 4: Cashout Gate</span>
-                        <h4>FIU-IND Indian CEX</h4>
-                        <p>CoinDCX व Delta Exchange। बिना किसी बैंक फ़्रीज़ के 100% लीगल तरीक़े से अपने मुनाफ़े को भारतीय बैंक खाते (INR) में सुरक्षित निकालना।</p>
-                    </div>
-                </div>
+                <p class="overview-main-desc">
+                    Web3 और क्रिप्टो में सुरक्षा का बुनियादी नियम है: <b>"Not Your Keys, Not Your Coins"</b>। एक ग़लत फ़िशिंग लिंक या स्कैम कॉन्ट्रैक्ट अप्रूवल आपके पूरे फ़ंड को ख़ाली कर सकता है। <b>Total Crypto Hub</b> पर सूचीबद्ध सभी प्लेटफ़ॉर्म्स को सख्त सुरक्षा ऑडिट के बाद विभाजित किया गया है, ताकि नए और अनुभवी यूज़र्स सुरक्षित तरीक़े से एयरड्रॉप्स, टेस्टनेट्स और बैंक कैशआउट कर सकें।
+                </p>
 
-                <div class="security-warning-box">
-                    <span>⚠️</span>
-                    <p><b>5 सुनहरे सुरक्षा नियम:</b> (1) 12/24 शब्दों का रिकवरी फ़्रेज़ कभी ऑनलाइन या स्क्रीनशॉट में सेव न करें। (2) किसी भी टेलीग्राम एडमिन को अपनी की (Key) न दें। (3) नए एयरड्रॉप्स के लिए हमेशा बर्नर वॉलेट का इस्तेमाल करें। (4) काम पूरा होने के बाद रेवोक (Revoke.cash) से परमिशन हटाएँ। (5) हमेशा आधिकारिक लिंक्स से ही वॉलेट डाउनलोड करें।</p>
+                <div class="overview-features-grid">
+                    <!-- Feature 1: EVM Wallets -->
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🦊</span> Tier 1: Daily Airdrop Burner
+                        </div>
+                        <div class="overview-feature-text">
+                            MetaMask और Rabby जैसे सॉफ़्टवेयर वॉलेट्स। इनका उपयोग केवल <span class="hl-green">रोज़मर्रा के टेस्टनेट्स, dApps और नए एयरड्रॉप्स</span> से कनेक्ट करने के लिए करें। मुख्य फंड कभी भी बर्नर वॉलेट में न रखें।
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Multi-Chain Wallets -->
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🌐</span> Tier 2: Cross-Chain Portals
+                        </div>
+                        <div class="overview-feature-text">
+                            Phantom, OKX और Trust Wallet सोलाना, बिटकॉइन और 100+ अन्य ब्लॉकचेन्स को सपोर्ट करते हैं। यह <span class="hl-green">DePIN नोड्स और मल्टी-चेन टोकन्स</span> को आसानी से मैनेज करने का सेल्फ़-कस्टोडियल विकल्प हैं।
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Exchanges / CEX -->
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🏛️</span> Tier 3: Liquidity & Bank Cashout
+                        </div>
+                        <div class="overview-feature-text">
+                            Binance और Bybit टोकन स्वैपिंग और लिक्विडिटी के लिए हैं, जबकि CoinDCX, CoinSwitch और Mudrex <span class="hl-green">FIU-IND रजिस्टर्ड गेटवे</span> हैं जो सुरक्षित तरीक़े से मुनाफ़ा भारतीय बैंक खाते (INR) में ट्रांसफर करते हैं।
+                        </div>
+                    </div>
+
+                    <!-- Feature 4: Hardware Vaults -->
+                    <div class="overview-feature-box">
+                        <div class="overview-feature-title">
+                            <span>🔐</span> Tier 4: Cold Offline Vaults
+                        </div>
+                        <div class="overview-feature-text">
+                            Tangem, Ledger और Trezor जैसे फ़िज़िकल गैजेट्स। इनकी सीक्रेट की कभी इंटरनेट पर नहीं आती। यह एयरड्रॉप और ट्रेडिंग से कमाए बड़े मुनाफ़े को <span class="hl-green">100% ऑफ़लाइन सुरक्षित लॉक</span> रखने का एकमात्र तरीका है।
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Controls and Filters -->
+            <!-- Controls & Filters -->
             <div class="controls-bar">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search wallets, networks, or exchanges..." oninput="handleSearch()">
+                    <input type="text" id="searchInput" placeholder="Search platforms by name..." oninput="handleSearch()">
                 </div>
                 <div class="filter-group">
                     <button class="filter-btn active" onclick="setFilter('all', this)">All Platforms (18)</button>
                     <button class="filter-btn" onclick="setFilter('evm', this)">EVM Wallets</button>
                     <button class="filter-btn" onclick="setFilter('multichain', this)">Multi-Chain</button>
                     <button class="filter-btn" onclick="setFilter('exchange', this)">Exchanges (CEX)</button>
-                    <button class="filter-btn" onclick="setFilter('vault', this)">Hardware Vaults</button>
+                    <button class="filter-btn vault" onclick="setFilter('vault', this)">🔒 Hardware Vaults</button>
                 </div>
             </div>
 
-            <!-- Table Card -->
+            <!-- Table -->
             <div class="table-card">
                 <div class="table-responsive">
                     <table>
                         <thead>
                             <tr>
                                 <th>PLATFORM</th>
-                                <th>CATEGORY</th>
-                                <th>SECURITY TYPE</th>
-                                <th>TRUST SCORE</th>
+                                <th>CATEGORIES</th>
+                                <th>SCORE</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -268,250 +354,41 @@
 
     <script>
         const WALLET_PROJECTS = [
-            // --- 1. EVM Wallets (Tier 1: Daily Airdrops & dApps) ---
-            { 
-                name: "MetaMask", 
-                sub: "Ethereum & All EVM Testnets", 
-                category: "EVM Wallets", 
-                secType: "Hot / Non-Custodial", 
-                secBadge: "badge-hot", 
-                score: "⭐ 9.8 / 10", 
-                status: "evm", 
-                link: "https://metamask.io/download/", 
-                btnText: "Get MetaMask",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Rabby Wallet", 
-                sub: "Anti-Scam & Pro Airdrop Wallet", 
-                category: "EVM Wallets", 
-                secType: "Hot / Non-Custodial", 
-                secBadge: "badge-hot", 
-                score: "⭐ 9.7 / 10", 
-                status: "evm", 
-                link: "https://rabby.io/", 
-                btnText: "Get Rabby",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Coinbase Wallet", 
-                sub: "Base Chain & Global Web3 Hub", 
-                category: "EVM Wallets", 
-                secType: "Hot / Non-Custodial", 
-                secBadge: "badge-hot", 
-                score: "⭐ 9.4 / 10", 
-                status: "evm", 
-                link: "https://www.coinbase.com/wallet", 
-                btnText: "Get Coinbase",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
+            // ================= 1. EVM Wallets (Tier 1: Daily Airdrops & dApps) =================
+            { name: "MetaMask", sub: "Ethereum & All EVM Testnets • Browser & Mobile", category: "EVM Wallets", score: "⭐ 9.8 / 10", status: "evm", link: "../wallet-projects/metamask.html", logo: "../logos/metamask.png" },
+            { name: "Rabby Wallet", sub: "Anti-Scam Protection • Pro Airdrop Wallet", category: "EVM Wallets", score: "⭐ 9.7 / 10", status: "evm", link: "../wallet-projects/rabby-wallet.html", logo: "../logos/rabby.png" },
+            { name: "Coinbase Wallet", sub: "Base Chain Ecosystem • Global Web3 Hub", category: "EVM Wallets", score: "⭐ 9.4 / 10", status: "evm", link: "../wallet-projects/coinbase-wallet.html", logo: "../logos/coinbase.png" },
 
-            // --- 2. Multi-Chain Wallets (Tier 1: Cross-Chain Ecosystems) ---
-            { 
-                name: "Phantom", 
-                sub: "Solana, Bitcoin, EVM & Polygon", 
-                category: "Multi-Chain", 
-                secType: "Hot / Non-Custodial", 
-                secBadge: "badge-hot", 
-                score: "⭐ 9.9 / 10", 
-                status: "multichain", 
-                link: "https://phantom.app/download", 
-                btnText: "Get Phantom",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "OKX Web3 Wallet", 
-                sub: "100+ Blockchains & DePIN Portal", 
-                category: "Multi-Chain", 
-                secType: "Hot / Non-Custodial", 
-                secBadge: "badge-hot", 
-                score: "⭐ 9.6 / 10", 
-                status: "multichain", 
-                link: "https://www.okx.com/web3", 
-                btnText: "Open OKX Web3",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Trust Wallet", 
-                sub: "Beginner-Friendly Multi-Asset Storage", 
-                category: "Multi-Chain", 
-                secType: "Hot / Non-Custodial", 
-                secBadge: "badge-hot", 
-                score: "⭐ 9.5 / 10", 
-                status: "multichain", 
-                link: "https://trustwallet.com/download", 
-                btnText: "Get Trust Wallet",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Bitget Wallet", 
-                sub: "Airdrop Center & Swap Portal", 
-                category: "Multi-Chain", 
-                secType: "Hot / Non-Custodial", 
-                secBadge: "badge-hot", 
-                score: "⭐ 9.3 / 10", 
-                status: "multichain", 
-                link: "https://web3.bitget.com/", 
-                btnText: "Get Bitget Wallet",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
+            // ================= 2. Multi-Chain Wallets (Tier 2: Cross-Chain Ecosystems) =================
+            { name: "Phantom", sub: "Solana, Bitcoin, EVM & Polygon Support", category: "Multi-Chain", score: "⭐ 9.9 / 10", status: "multichain", link: "../wallet-projects/phantom-wallet.html", logo: "../logos/phantom.png" },
+            { name: "OKX Web3 Wallet", sub: "100+ Blockchains • DePIN & Airdrop Portal", category: "Multi-Chain", score: "⭐ 9.6 / 10", status: "multichain", link: "../wallet-projects/okx-wallet.html", logo: "../logos/okx.png" },
+            { name: "Trust Wallet", sub: "Beginner-Friendly Multi-Asset Self-Custody", category: "Multi-Chain", score: "⭐ 9.5 / 10", status: "multichain", link: "../wallet-projects/trust-wallet.html", logo: "../logos/trust.png" },
+            { name: "Bitget Wallet", sub: "Built-in Airdrop Rewards & Cross-Chain Swap", category: "Multi-Chain", score: "⭐ 9.3 / 10", status: "multichain", link: "../wallet-projects/bitget-wallet.html", logo: "../logos/bitget-wallet.png" },
 
-            // --- 3. Exchanges / CEX (Tier 3 & 4: Liquidity & Cashout) ---
-            { 
-                name: "Binance", 
-                sub: "World's #1 Liquidity & Global P2P", 
-                category: "Global CEX", 
-                secType: "Custodial Hub", 
-                secBadge: "badge-cex", 
-                score: "⭐ 9.8 / 10", 
-                status: "exchange", 
-                link: "https://www.binance.com/", 
-                btnText: "Trade on Binance",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Bybit", 
-                sub: "Fastest Airdrop Token Listings", 
-                category: "Global CEX", 
-                secType: "Custodial Hub", 
-                secBadge: "badge-cex", 
-                score: "⭐ 9.5 / 10", 
-                status: "exchange", 
-                link: "https://www.bybit.com/", 
-                btnText: "Join Bybit",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "KuCoin", 
-                sub: "Altcoin Gem Spot Exchange", 
-                category: "Global CEX", 
-                secType: "Custodial Hub", 
-                secBadge: "badge-cex", 
-                score: "⭐ 9.2 / 10", 
-                status: "exchange", 
-                link: "https://www.kucoin.com/", 
-                btnText: "Explore KuCoin",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "CoinDCX", 
-                sub: "FIU-IND Registered INR Bank Gateway", 
-                category: "Indian CEX", 
-                secType: "FIU Compliant", 
-                secBadge: "badge-cex", 
-                score: "⭐ 9.4 / 10", 
-                status: "exchange", 
-                link: "https://coindcx.com/", 
-                btnText: "Cashout INR",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "CoinSwitch", 
-                sub: "Easy UPI Deposits & INR Withdrawals", 
-                category: "Indian CEX", 
-                secType: "FIU Compliant", 
-                secBadge: "badge-cex", 
-                score: "⭐ 9.1 / 10", 
-                status: "exchange", 
-                link: "https://coinswitch.co/", 
-                btnText: "Join CoinSwitch",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Delta Exchange", 
-                sub: "Crypto Futures & F&O with INR Rail", 
-                category: "Indian CEX", 
-                secType: "FIU Compliant", 
-                secBadge: "badge-cex", 
-                score: "⭐ 9.0 / 10", 
-                status: "exchange", 
-                link: "https://www.delta.exchange/", 
-                btnText: "Trade F&O",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Mudrex", 
-                sub: "Zero Fee Vault & Crypto SIPs (INR)", 
-                category: "Indian CEX", 
-                secType: "FIU Compliant", 
-                secBadge: "badge-cex", 
-                score: "⭐ 8.9 / 10", 
-                status: "exchange", 
-                link: "https://mudrex.com/", 
-                btnText: "Open Mudrex",
-                btnClass: "btn-details",
-                logo: "../logos/tcn-logo.png" 
-            },
+            // ================= 3. Exchanges / CEX (Tier 3: Liquidity & Bank Cashout) =================
+            { name: "Binance", sub: "Global #1 Liquidity • High Volume P2P Hub", category: "Global CEX", score: "⭐ 9.8 / 10", status: "exchange", link: "../wallet-projects/binance.html", logo: "../logos/binance.png" },
+            { name: "Bybit", sub: "Fastest Airdrop Token Listings & Launchpool", category: "Global CEX", score: "⭐ 9.5 / 10", status: "exchange", link: "../wallet-projects/bybit.html", logo: "../logos/bybit.png" },
+            { name: "KuCoin", sub: "Altcoin Gem Spot Trading & Low-Cap Market", category: "Global CEX", score: "⭐ 9.2 / 10", status: "exchange", link: "../wallet-projects/kucoin.html", logo: "../logos/kucoin.png" },
+            { name: "CoinDCX", sub: "FIU-IND Registered • Direct INR Bank Transfers", category: "Indian CEX", score: "⭐ 9.4 / 10", status: "exchange", link: "../wallet-projects/coindcx.html", logo: "../logos/coindcx.png" },
+            { name: "CoinSwitch", sub: "Zero Hassle UPI Deposits & Instant INR Cashout", category: "Indian CEX", score: "⭐ 9.1 / 10", status: "exchange", link: "../wallet-projects/coinswitch.html", logo: "../logos/coinswitch.png" },
+            { name: "Delta Exchange", sub: "Crypto Futures & F&O with Direct INR Rails", category: "Indian CEX", score: "⭐ 9.0 / 10", status: "exchange", link: "../wallet-projects/delta-exchange.html", logo: "../logos/delta.png" },
+            { name: "Mudrex", sub: "Zero Fee Vault • Automated Crypto SIPs (INR)", category: "Indian CEX", score: "⭐ 8.9 / 10", status: "exchange", link: "../wallet-projects/mudrex.html", logo: "../logos/mudrex.png" },
 
-            // --- 4. Hardware Vaults (Tier 2: Cold Storage & High Affiliate) ---
-            { 
-                name: "Tangem Wallet", 
-                sub: "NFC Smart Card (No Battery/Wires)", 
-                category: "Hardware Vault", 
-                secType: "100% Cold Offline", 
-                secBadge: "badge-cold", 
-                score: "⭐ 9.8 / 10", 
-                status: "vault", 
-                link: "https://tangem.com/", 
-                btnText: "Order Tangem (10% Off)",
-                btnClass: "btn-affiliate",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Ledger Nano", 
-                sub: "Nano S Plus & X (Industry Standard)", 
-                category: "Hardware Vault", 
-                secType: "100% Cold Offline", 
-                secBadge: "badge-cold", 
-                score: "⭐ 9.7 / 10", 
-                status: "vault", 
-                link: "https://www.ledger.com/", 
-                btnText: "Buy Ledger Vault",
-                btnClass: "btn-affiliate",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "Trezor Safe", 
-                sub: "100% Open-Source Security Vault", 
-                category: "Hardware Vault", 
-                secType: "100% Cold Offline", 
-                secBadge: "badge-cold", 
-                score: "⭐ 9.6 / 10", 
-                status: "vault", 
-                link: "https://trezor.io/", 
-                btnText: "Get Trezor Safe",
-                btnClass: "btn-affiliate",
-                logo: "../logos/tcn-logo.png" 
-            },
-            { 
-                name: "SafePal S1", 
-                sub: "Air-Gapped QR Vault (Binance Backed)", 
-                category: "Hardware Vault", 
-                secType: "100% Air-Gapped", 
-                secBadge: "badge-cold", 
-                score: "⭐ 9.4 / 10", 
-                status: "vault", 
-                link: "https://www.safepal.com/", 
-                btnText: "Order SafePal S1",
-                btnClass: "btn-affiliate",
-                logo: "../logos/tcn-logo.png" 
-            }
+            // ================= 4. Hardware Vaults (Tier 4: Cold Offline Storage) =================
+            { name: "Tangem Wallet", sub: "NFC Smart Card • Wire-free & Battery-less Cold Vault", category: "Hardware Vault", score: "⭐ 9.8 / 10", status: "vault", link: "../wallet-projects/tangem-wallet.html", logo: "../logos/tangem.png" },
+            { name: "Ledger Nano", sub: "Nano S Plus & X • Global Cold Storage Standard", category: "Hardware Vault", score: "⭐ 9.7 / 10", status: "vault", link: "../wallet-projects/ledger-nano.html", logo: "../logos/ledger.png" },
+            { name: "Trezor Safe", sub: "100% Open-Source Audited Hardware Security", category: "Hardware Vault", score: "⭐ 9.6 / 10", status: "vault", link: "../wallet-projects/trezor-safe.html", logo: "../logos/trezor.png" },
+            { name: "SafePal S1", sub: "100% Air-Gapped QR Vault • Binance Labs Backed", category: "Hardware Vault", score: "⭐ 9.4 / 10", status: "vault", link: "../wallet-projects/safepal-s1.html", logo: "../logos/safepal.png" }
         ];
 
         let currentFilter = 'all';
+
+        function getAvatarColor(name) {
+            const colors = ['#059669', '#10b981', '#2563eb', '#6366f1', '#8b5cf6', '#d946ef', '#f43f5e', '#f59e0b', '#0ea5e9'];
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) { hash = name.charCodeAt(i) + ((hash << 5) - hash); }
+            return colors[Math.abs(hash) % colors.length];
+        }
 
         function renderTable() {
             const tbody = document.getElementById('walletTableBody');
@@ -519,32 +396,43 @@
             tbody.innerHTML = '';
 
             const filtered = WALLET_PROJECTS.filter(p => {
-                const matchesSearch = p.name.toLowerCase().includes(query) || 
-                                      p.sub.toLowerCase().includes(query) || 
-                                      p.category.toLowerCase().includes(query);
+                const matchesSearch = p.name.toLowerCase().includes(query) || p.sub.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
                 if (!matchesSearch) return false;
                 if (currentFilter === 'all') return true;
                 return p.status === currentFilter;
             });
 
             filtered.forEach(p => {
+                const isVault = p.status === 'vault';
+                const badgeClass = isVault ? 'badge-vault' : 'badge-verified';
+                const badgeIcon = '✓';
+                const scoreClass = isVault ? 'score-vault' : 'score-verified';
+
+                const initial = p.name.charAt(0).toUpperCase();
+                const bgColor = getAvatarColor(p.name);
+
+                // Smart Avatar Fallback: Shows project image if available, else switches cleanly to colorful initial
+                const avatarHtml = `
+                    <div class="project-avatar-box">
+                        <img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="project-initial" style="background: ${bgColor}; display: none;">${initial}</div>
+                    </div>
+                `;
+
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>
                         <div class="project-cell">
-                            <div class="project-avatar-box">
-                                <img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none';">
-                            </div>
+                            ${avatarHtml}
                             <div>
-                                <div class="project-name">${p.name} <span class="verified-tick">✓</span></div>
+                                <div class="project-name">${p.name} <span class="${badgeClass}">${badgeIcon}</span></div>
                                 <div class="project-sub">${p.sub}</div>
                             </div>
                         </div>
                     </td>
                     <td><span class="category-pill">${p.category}</span></td>
-                    <td><span class="security-badge ${p.secBadge}">${p.secType}</span></td>
-                    <td class="score-text">${p.score}</td>
-                    <td><a href="${p.link}" target="_blank" class="${p.btnClass}">${p.btnText}</a></td>
+                    <td class="${scoreClass}">${p.score}</td>
+                    <td><a href="${p.link}" class="btn-details">View Details</a></td>
                 `;
                 tbody.appendChild(row);
             });
@@ -570,10 +458,12 @@
                 body.setAttribute('data-theme', 'dark');
                 toggleBtn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
                 toggleBtn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
+                document.documentElement.setAttribute('data-theme', 'light');
             }
         }
 
@@ -596,6 +486,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
+            document.documentElement.setAttribute('data-theme', savedTheme);
             document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
             renderTable();
         };
