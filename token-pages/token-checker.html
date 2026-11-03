@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token Checker & Contract Audit | Total Crypto Hub</title>
+    <title>Token & Project Checker | Total Crypto Hub</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -15,8 +15,6 @@
             --text-heading: #0f172a;
             --text-body: #1e293b;
             --text-muted: #475569;
-            --th-bg: #f8fafc;
-            --th-text: #64748b;
             --accent-primary: #059669; 
             --accent-hover: #047857;
             --row-hover: #f1f5f9;
@@ -33,8 +31,6 @@
             --text-heading: #f8fafc;
             --text-body: #e2e8f0;
             --text-muted: #94a3b8;
-            --th-bg: #0f172a;
-            --th-text: #94a3b8;
             --accent-primary: #10b981; 
             --accent-hover: #34d399;
             --row-hover: #131c31;
@@ -74,227 +70,314 @@
         .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
         .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
 
-        main { flex: 1; padding: 32px 0 48px; }
-        .hero-title h2 { font-size: 28px; color: var(--text-heading); margin-bottom: 6px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
-        .hero-title h2 svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; }
-        .project-count { color: var(--text-muted); font-weight: 600; font-size: 13px; margin-bottom: 20px; }
+        main { flex: 1; padding: 24px 0 60px; }
 
-        /* ================= OVERVIEW CARD ================= */
-        .community-overview-card {
+        /* ================= SPONSORED BANNER (COINGECKO STYLE) ================= */
+        .sponsored-banner-box {
+            width: 100%;
+            max-width: 728px;
+            min-height: 90px;
+            margin: 0 auto 32px auto;
+            border: 1px dashed var(--border-color);
             background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px 26px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
-        }
-        .overview-badge-row {
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-        .overview-pill {
-            background: rgba(16, 185, 129, 0.12);
-            color: var(--accent-primary);
-            font-size: 11.5px;
-            font-weight: 800;
-            padding: 5px 12px;
-            border-radius: 6px;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-        .overview-main-heading { font-size: 17px; font-weight: 800; color: var(--text-heading); }
-        .overview-main-desc { font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 22px; font-weight: 500; }
-        .overview-main-desc b { color: var(--text-heading); font-weight: 800; }
-
-        .overview-features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-        .overview-feature-box {
-            display: flex;
+            justify-content: center;
             flex-direction: column;
-            gap: 8px;
-            background: var(--bg-body);
-            padding: 18px;
-            border-radius: 12px;
-            border: 1.5px solid var(--border-color);
-            border-top: 3.5px solid var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            gap: 4px;
+            position: relative;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
         }
-        .overview-feature-title { font-size: 14px; font-weight: 800; color: var(--text-heading); display: flex; align-items: center; gap: 8px; line-height: 1.3; }
-        .overview-feature-text { font-size: 13px; line-height: 1.65; color: var(--text-body); font-weight: 500; }
-        
-        .hl-green { color: var(--accent-primary); font-weight: 800; background: rgba(16, 185, 129, 0.12); padding: 1px 6px; border-radius: 4px; display: inline-block; }
-        .hl-dark { color: var(--text-heading); font-weight: 700; }
+        .ad-tag {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .banner-placeholder-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+        .banner-subtext {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .banner-subtext a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
 
-        /* ================= LIVE QUICK SCANNER BOX ================= */
-        .scanner-card {
-            background: var(--bg-surface);
-            border: 1.5px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px 26px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.05);
+        /* ================= PURE SEARCH SECTION ================= */
+        .search-hero {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
         }
-        .scanner-title {
-            font-size: 16px;
+        .search-hero h2 {
+            font-size: 32px;
             font-weight: 800;
             color: var(--text-heading);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .search-hero p {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .search-bar-wrapper {
+            position: relative;
+            width: 100%;
             margin-bottom: 16px;
+        }
+        .search-input-box {
+            width: 100%;
+            padding: 18px 24px 18px 52px;
+            border-radius: 50px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-surface);
+            color: var(--text-heading);
+            font-size: 16px;
+            font-weight: 600;
+            outline: none;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.06);
+            transition: all 0.25s ease;
+        }
+        .search-input-box:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 12px 35px -5px rgba(16, 185, 129, 0.2);
+        }
+        .search-icon-inside {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-muted);
+            fill: none;
+            stroke-width: 2.2;
+            pointer-events: none;
+        }
+        .btn-clear-search {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        /* Quick Suggestion Pills */
+        .quick-tags {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
         }
-        .chain-selector {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            padding-bottom: 4px;
-        }
-        .chain-selector::-webkit-scrollbar { display: none; }
-        .chain-pill {
-            padding: 7px 14px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-body);
+        .tag-label {
+            font-size: 12px;
+            font-weight: 700;
             color: var(--text-muted);
+        }
+        .tag-btn {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-heading);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tag-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-1px);
+        }
+
+        /* ================= DYNAMIC RESULT CARD ================= */
+        .result-container {
+            width: 100%;
+            display: none;
+            text-align: left;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card {
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 12px 40px -10px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--accent-primary);
+        }
+        .result-card.scam-warning {
+            border-top-color: #d97706;
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .result-title-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .result-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            border: 1.5px solid var(--ring-border);
+        }
+        .result-title-box h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-heading);
+            line-height: 1.2;
+        }
+        .result-title-box span {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .badge-status {
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        .badge-live { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-mining { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+
+        /* Contract Box */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .info-tile {
+            background: var(--bg-body);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .info-tile-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+        .info-tile-value { font-size: 13.5px; font-weight: 800; color: var(--text-heading); }
+
+        .ca-box {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .ca-text {
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--text-heading);
+            word-break: break-all;
+        }
+        .btn-copy {
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
             font-size: 12px;
             font-weight: 700;
             cursor: pointer;
             white-space: nowrap;
         }
-        .chain-pill.active {
-            background: var(--accent-primary);
-            color: white;
-            border-color: var(--accent-primary);
-        }
-        .input-group {
+
+        /* Scam Alert Banner */
+        .alert-banner {
+            background: rgba(217, 119, 6, 0.08);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
             display: flex;
-            gap: 10px;
-            margin-bottom: 16px;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .alert-banner.green-alert {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        .alert-icon { font-size: 20px; flex-shrink: 0; }
+        .alert-text { font-size: 13px; line-height: 1.6; color: var(--text-heading); font-weight: 600; }
+
+        /* Action Buttons */
+        .action-row {
+            display: flex;
+            gap: 12px;
             flex-wrap: wrap;
         }
-        .input-group input {
+        .btn-action {
             flex: 1;
-            min-width: 280px;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 1.5px solid var(--border-color);
-            background: var(--bg-body);
-            color: var(--text-heading);
-            font-size: 13px;
-            font-family: monospace;
-            outline: none;
-        }
-        .input-group input:focus {
-            border-color: var(--accent-primary);
-        }
-        .btn-clear {
+            min-width: 180px;
             padding: 12px 18px;
             border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-surface);
-            color: var(--text-muted);
-            font-weight: 700;
             font-size: 13px;
-            cursor: pointer;
-        }
-        .scanner-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        .btn-audit {
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 11px 16px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            border: 1px solid var(--border-color);
-            background: var(--bg-body);
-            color: var(--text-heading);
             transition: all 0.2s;
         }
-        .btn-audit:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            background: rgba(16, 185, 129, 0.06);
-        }
-
-        /* Controls & Filter Bar */
-        .controls-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-        .search-box { position: relative; flex: 1; min-width: 240px; max-width: 380px; }
-        .search-box input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-body); font-size: 13px; outline: none; }
-        .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
-        .filter-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; }
-        .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
-
-        /* Table */
-        .table-card { background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); }
-        .table-responsive { width: 100%; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 780px; }
-        th { background: var(--th-bg); padding: 14px 20px; font-size: 11px; color: var(--th-text); font-weight: 800; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
-        td { padding: 14px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
-        tr:hover { background: var(--row-hover); }
-
-        .project-cell { display: flex; align-items: center; gap: 12px; }
-        .project-avatar-box { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; flex-shrink: 0; background: var(--bg-surface); border: 1.5px solid var(--ring-border); box-shadow: var(--ring-shadow); padding: 2px; }
-        .project-avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .project-initial { width: 100%; height: 100%; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 14px; color: white; }
-        .project-name { font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; font-size: 14px; }
-        .project-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; font-weight: 600; }
-        
-        .badge-verified { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #059669; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
-        .badge-upcoming { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #d97706; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
-        
-        .score-verified { font-weight: 800; color: var(--accent-primary); font-size: 13.5px; }
-        .score-upcoming { font-weight: 800; color: #d97706; font-size: 13.5px; }
-
-        .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); white-space: nowrap; }
-        
-        /* Contract Copy Box */
-        .contract-box {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--bg-body);
-            padding: 5px 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            font-family: monospace;
-            font-size: 12px;
-            color: var(--text-heading);
-        }
-        .btn-copy {
-            background: transparent;
-            border: none;
-            color: var(--accent-primary);
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 11px;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        .btn-copy:hover {
-            background: rgba(16, 185, 129, 0.15);
-        }
-
-        .btn-details { background: transparent; border: 1.5px solid var(--accent-primary); color: var(--accent-primary); padding: 7px 15px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; display: inline-block; transition: all 0.2s; white-space: nowrap; }
-        .btn-details:hover { background: var(--accent-primary); color: white; }
+        .btn-primary-action { background: var(--accent-primary); color: white; }
+        .btn-primary-action:hover { background: var(--accent-hover); }
+        .btn-secondary-action { background: var(--bg-body); color: var(--text-heading); border: 1px solid var(--border-color); }
+        .btn-secondary-action:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
 
         footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
@@ -337,117 +420,41 @@
 
     <main>
         <div class="site-container">
-            <div class="hero-title">
-                <h2><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Token Checker & Contract Audit</h2>
-            </div>
-            <p id="tokenCount" class="project-count">Inspect smart contracts, verify official token addresses, and avoid honeypots</p>
-
-            <!-- ================= CRISP OVERVIEW ARCHITECTURE CARD ================= -->
-            <div class="community-overview-card">
-                <div class="overview-badge-row">
-                    <span class="overview-pill">Anti-Scam Architecture</span>
-                    <span class="overview-main-heading">Why Contract Verification is Mandatory in Web3 & Airdrops</span>
-                </div>
-                
-                <p class="overview-main-desc">
-                    In decentralized trading, malicious actors frequently launch <b>counterfeit clone tokens</b> and <b>honeypots</b> mimicking legitimate Web3 projects. Interacting with unverified contracts can lead to permanent loss of capital through hidden sales taxes or frozen selling functions. <b>Total Crypto Hub</b> provides this neutral verification suite to help users inspect contracts before connecting wallets or approving liquidity swaps.
-                </p>
-
-                <div class="overview-features-grid">
-                    <div class="overview-feature-box">
-                        <div class="overview-feature-title">
-                            <span>🍯</span> Honeypot & Sell Restrictions
-                        </div>
-                        <div class="overview-feature-text">
-                            Malicious contracts permit buying but <span class="hl-green">block token sales</span> by reverting sell transactions. Always check contract functions to ensure open liquidity withdrawal.
-                        </div>
-                    </div>
-
-                    <div class="overview-feature-box">
-                        <div class="overview-feature-title">
-                            <span>🎭</span> Counterfeit Token Clones
-                        </div>
-                        <div class="overview-feature-text">
-                            Scammers issue fake tokens with identical tickers on decentralized exchanges. Always confirm the <span class="hl-green">official contract address (CA)</span> from verified protocol documentation.
-                        </div>
-                    </div>
-
-                    <div class="overview-feature-box">
-                        <div class="overview-feature-title">
-                            <span>📉</span> Hidden Buy / Sell Taxes
-                        </div>
-                        <div class="overview-feature-text">
-                            Predatory developers embed <span class="hl-green">50% to 99% transfer fees</span> directly inside token contracts, draining your swap value without prior warning on decentralized front-ends.
-                        </div>
-                    </div>
-
-                    <div class="overview-feature-box">
-                        <div class="overview-feature-title">
-                            <span>🔒</span> Liquidity Lock & Mint Control
-                        </div>
-                        <div class="overview-feature-text">
-                            Verify whether the protocol's liquidity pool (LP) is <span class="hl-green">permanently burned or time-locked</span>, and whether the developer retains the authority to arbitrarily mint new tokens.
-                        </div>
-                    </div>
-                </div>
+            <!-- SPONSORED BANNER -->
+            <div class="sponsored-banner-box">
+                <span class="ad-tag">Sponsored</span>
+                <div class="banner-placeholder-text">⚡ Total Crypto Network • Official Partner Banner Slot</div>
+                <div class="banner-subtext">Want to reach thousands of active Web3 traders & node runners? <a href="https://t.me/" target="_blank">Book this spot ↗</a></div>
             </div>
 
-            <!-- ================= LIVE QUICK SCANNER BOX ================= -->
-            <div class="scanner-card">
-                <div class="scanner-title">
-                    <span>⚡</span> Live Contract Quick-Audit Engine
-                </div>
-                
-                <div class="chain-selector">
-                    <button class="chain-pill active" onclick="setChain('eth', this)">Ethereum (ETH)</button>
-                    <button class="chain-pill" onclick="setChain('bsc', this)">BNB Chain (BSC)</button>
-                    <button class="chain-pill" onclick="setChain('solana', this)">Solana (SOL)</button>
-                    <button class="chain-pill" onclick="setChain('base', this)">Base Chain</button>
-                    <button class="chain-pill" onclick="setChain('polygon', this)">Polygon (PoS)</button>
-                    <button class="chain-pill" onclick="setChain('arbitrum', this)">Arbitrum</button>
+            <!-- SEARCH HERO -->
+            <div class="search-hero">
+                <h2>Instant Token & Project Checker</h2>
+                <p>Verify official contract addresses, detect fake honeypots, and confirm live listing status for DePIN & mobile mining networks.</p>
+
+                <!-- PURE SEARCH BOX -->
+                <div class="search-bar-wrapper">
+                    <svg class="search-icon-inside" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" id="searchInput" class="search-input-box" placeholder="Type project name (e.g. Grass, Pi, Nodle) or paste 0x address..." oninput="handleSearch()">
+                    <button id="btnClear" class="btn-clear-search" onclick="clearSearch()">✕</button>
                 </div>
 
-                <div class="input-group">
-                    <input type="text" id="contractInput" placeholder="Paste Contract Address (0x... or Solana Mint)" oninput="handleContractInput()">
-                    <button class="btn-clear" onclick="clearContractInput()">Clear</button>
+                <!-- QUICK TAGS -->
+                <div class="quick-tags">
+                    <span class="tag-label">Popular Searches:</span>
+                    <button class="tag-btn" onclick="quickSearch('Grass')">🌱 Grass</button>
+                    <button class="tag-btn" onclick="quickSearch('Pi Network')">🥧 Pi Network</button>
+                    <button class="tag-btn" onclick="quickSearch('Nodle')">📡 Nodle</button>
+                    <button class="tag-btn" onclick="quickSearch('Bondex')">💼 Bondex</button>
+                    <button class="tag-btn" onclick="quickSearch('Sidra')">🕌 Sidra Chain</button>
+                    <button class="tag-btn" onclick="quickSearch('Helium')">🎈 Helium</button>
                 </div>
 
-                <div class="scanner-actions">
-                    <a id="btnHoneypot" href="https://honeypot.is/" target="_blank" class="btn-audit">🛡️ Check Honeypot.is</a>
-                    <a id="btnDex" href="https://dexscreener.com/" target="_blank" class="btn-audit">📊 DexScreener Chart</a>
-                    <a id="btnSecurity" href="https://gopluslabs.io/token-security" target="_blank" class="btn-audit">🔍 GoPlus Security</a>
-                    <a id="btnExplorer" href="https://etherscan.io/" target="_blank" class="btn-audit">🌐 Block Explorer</a>
-                </div>
-            </div>
-
-            <!-- Controls & Filters for Verified Directory -->
-            <div class="controls-bar">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search verified tokens by name or chain..." oninput="handleSearch()">
-                </div>
-                <div class="filter-group">
-                    <button class="filter-btn active" onclick="setFilter('all', this)">All Verified Tokens</button>
-                    <button class="filter-btn" onclick="setFilter('evm', this)">EVM Tokens</button>
-                    <button class="filter-btn" onclick="setFilter('solana', this)">Solana</button>
-                    <button class="filter-btn" onclick="setFilter('l1', this)">Native L1</button>
-                </div>
-            </div>
-
-            <!-- Table -->
-            <div class="table-card">
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>TOKEN</th>
-                                <th>ECOSYSTEM</th>
-                                <th>OFFICIAL CONTRACT (CA)</th>
-                                <th>STATUS</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tokenTableBody"></tbody>
-                    </table>
+                <!-- DYNAMIC RESULT CARD -->
+                <div id="resultContainer" class="result-container">
+                    <div id="resultCard" class="result-card">
+                        <!-- Populated by JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -467,216 +474,259 @@
     </footer>
 
     <script>
-        // ================= VERIFIED TOKENS DATABASE =================
-        const TOKEN_DATABASE = [
-            { 
-                name: "Core DAO (CORE)", 
-                sub: "Layer 1 Blockchain • Satoshi Ecosystem", 
-                category: "Native L1", 
-                type: "l1",
-                contract: "Native L1 Coin (Core Chain)", 
-                fullContract: "Native Layer-1 Asset",
-                statusText: "🟢 Listed & Audited",
-                statusClass: "score-verified",
-                auditLink: "https://scan.coredao.org/",
-                logo: "../logos/satoshi.png" 
+        // ================= VERIFIED DATABASE (DePIN & MINING NETWORKS) =================
+        const PROJECT_DATABASE = [
+            {
+                name: "Grass Network",
+                ticker: "GRASS",
+                icon: "🌱",
+                chain: "Solana",
+                status: "live",
+                statusText: "🟢 Token Live & Listed",
+                ca: "Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
+                website: "https://www.getgrass.io/",
+                dexLink: "https://dexscreener.com/solana/Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
+                auditLink: "https://rugcheck.xyz/tokens/Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
+                alertType: "green",
+                alert: "Official Solana Mint verified. Grass केवल Solana ब्लॉकचेन पर है। BSC (PancakeSwap) या Ethereum पर बिकने वाले Grass टोकन 100% स्कैम/हनीपॉट हैं।"
             },
-            { 
-                name: "Pi Network (PI)", 
-                sub: "Enclosed Mainnet • Peer-to-Peer Protocol", 
-                category: "Native L1", 
-                type: "l1",
-                contract: "Enclosed Mainnet (No External CA)", 
-                fullContract: "Enclosed Mainnet Protocol",
-                statusText: "🟡 Pre-Market / Enclosed",
-                statusClass: "score-upcoming",
+            {
+                name: "Pi Network",
+                ticker: "PI",
+                icon: "🥧",
+                chain: "Enclosed Mainnet",
+                status: "mining",
+                statusText: "🟡 Mining Phase / Enclosed Mainnet",
+                ca: "No Public Contract (Native Chain)",
+                website: "https://minepi.com/",
+                dexLink: "",
                 auditLink: "https://minepi.com/blockexplorer/",
-                logo: "../logos/pi.png" 
+                alertType: "warning",
+                alert: "🚨 HIGH RISK ALERT: Pi Network का कोई भी पब्लिक टोकन Uniswap या PancakeSwap पर लिस्ट नहीं है! DEX पर दिखने वाले सभी 'Pi' टोकन नकली हनीपॉट हैं। कभी भी अपना वॉलेट कनेक्ट न करें।"
             },
-            { 
-                name: "Grass (GRASS)", 
-                sub: "Solana DePIN Bandwidth Protocol", 
-                category: "Solana", 
-                type: "solana",
-                contract: "Grass7B4RdKf...Mint", 
-                fullContract: "Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
-                statusText: "🟢 Listed & Audited",
-                statusClass: "score-verified",
-                auditLink: "https://solscan.io/token/Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
-                logo: "../logos/tcn-logo.png" 
+            {
+                name: "Nodle Network",
+                ticker: "NODL",
+                icon: "📡",
+                chain: "zkSync Era / Polkadot",
+                status: "live",
+                statusText: "🟢 Token Live & Listed",
+                ca: "0xbd4372e44c3260a2e79601d81f13b584988e0b23",
+                website: "https://www.nodle.com/",
+                dexLink: "https://dexscreener.com/zksync/0xbd4372e44c3260a2e79601d81f13b584988e0b23",
+                auditLink: "https://explorer.zksync.io/address/0xbd4372e44c3260a2e79601d81f13b584988e0b23",
+                alertType: "green",
+                alert: "Official zkSync Era Contract verified. Nodle का माइग्रेशन zkSync L2 पर सफलतापूर्वक हो चुका है और टोकन शीर्ष एक्सचेंजों पर ट्रेड हो रहा है।"
             },
-            { 
-                name: "Bondex (BDXN)", 
-                sub: "Web3 Professional Talent Network", 
-                category: "BSC / EVM", 
-                type: "evm",
-                contract: "0xd1C7...4e31 (BEP-20)", 
-                fullContract: "0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
-                statusText: "🟢 Listed & Audited",
-                statusClass: "score-verified",
-                auditLink: "https://bscscan.com/token/0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
-                logo: "../logos/bondex.png" 
+            {
+                name: "Bondex",
+                ticker: "BDXN",
+                icon: "💼",
+                chain: "BNB Chain (BEP-20)",
+                status: "live",
+                statusText: "🟢 Token Live & Listed",
+                ca: "0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
+                website: "https://bondex.app/",
+                dexLink: "https://dexscreener.com/bsc/0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
+                auditLink: "https://honeypot.is/?address=0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
+                alertType: "green",
+                alert: "Official BNB Chain Contract verified. BDXN टोकन लिस्टेड है। हमेशा आधिकारिक कॉन्ट्रैक्ट एड्रेस से ही स्वैप करें।"
             },
-            { 
-                name: "Omega Network (OMN)", 
-                sub: "EVM Smart Contract Consensus Token", 
-                category: "EVM", 
-                type: "evm",
-                contract: "0x1d37...BEP20", 
-                fullContract: "0x1d37c3da33ecf00a7fae4b525164bc7a529e74d1",
-                statusText: "🟢 Listed & Audited",
-                statusClass: "score-verified",
-                auditLink: "https://bscscan.com/token/0x1d37c3da33ecf00a7fae4b525164bc7a529e74d1",
-                logo: "../logos/omega.png" 
+            {
+                name: "Sidra Chain",
+                ticker: "SDA",
+                icon: "🕌",
+                chain: "Sidra Ledger (Mining)",
+                status: "mining",
+                statusText: "🟡 Mining Phase / Testnet",
+                ca: "Off-Chain / Internal Ledger",
+                website: "https://sidra.info/",
+                dexLink: "",
+                auditLink: "",
+                alertType: "warning",
+                alert: "🚨 WARNING: Sidra Chain का कोई भी पब्लिक DEX कॉन्ट्रैक्ट नहीं है। केवल ऑफिशियल Sidra ऐप और पोर्टल पर KYC व माइनिंग पूरी करें। बाहरी लिंक्स से बचें।"
             },
-            { 
-                name: "TTcoin (TC)", 
-                sub: "TRC20 / BEP20 Community Ecosystem", 
-                category: "Tron / BSC", 
-                type: "evm",
-                contract: "0x6f4...BEP20", 
-                fullContract: "0x6f4e049be7811979203998be770b7f8c057cfb19",
-                statusText: "🟢 Listed & Audited",
-                statusClass: "score-verified",
-                auditLink: "https://bscscan.com/token/0x6f4e049be7811979203998be770b7f8c057cfb19",
-                logo: "../logos/ttcoin.png" 
+            {
+                name: "Helium",
+                ticker: "HNT / MOBILE",
+                icon: "🎈",
+                chain: "Solana",
+                status: "live",
+                statusText: "🟢 Token Live & Listed",
+                ca: "hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux",
+                website: "https://www.helium.com/",
+                dexLink: "https://dexscreener.com/solana/hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux",
+                auditLink: "https://solscan.io/token/hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux",
+                alertType: "green",
+                alert: "Helium इकोसिस्टम पूरी तरह Solana ब्लॉकचेन पर माइग्रेट हो चुका है। HNT, MOBILE और IOT टोकन्स वेरिफाइड हैं।"
             }
         ];
 
-        let currentChain = 'eth';
-        let currentFilter = 'all';
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const btnClear = document.getElementById('btnClear');
+            const resultBox = document.getElementById('resultContainer');
+            const resultCard = document.getElementById('resultCard');
 
-        function getAvatarColor(name) {
-            const colors = ['#059669', '#10b981', '#2563eb', '#6366f1', '#8b5cf6', '#d946ef', '#f43f5e', '#f59e0b', '#0ea5e9'];
-            let hash = 0;
-            for (let i = 0; i < name.length; i++) { hash = name.charCodeAt(i) + ((hash << 5) - hash); }
-            return colors[Math.abs(hash) % colors.length];
-        }
-
-        // ================= SCANNER LOGIC =================
-        function setChain(chain, btn) {
-            currentChain = chain;
-            document.querySelectorAll('.chain-pill').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            updateAuditLinks();
-        }
-
-        function handleContractInput() {
-            updateAuditLinks();
-        }
-
-        function clearContractInput() {
-            document.getElementById('contractInput').value = '';
-            updateAuditLinks();
-        }
-
-        function updateAuditLinks() {
-            const ca = document.getElementById('contractInput').value.trim();
-            const btnHoneypot = document.getElementById('btnHoneypot');
-            const btnDex = document.getElementById('btnDex');
-            const btnSecurity = document.getElementById('btnSecurity');
-            const btnExplorer = document.getElementById('btnExplorer');
-
-            if (!ca) {
-                btnHoneypot.href = "https://honeypot.is/";
-                btnDex.href = "https://dexscreener.com/";
-                btnSecurity.href = "https://gopluslabs.io/token-security";
-                btnExplorer.href = currentChain === 'bsc' ? "https://bscscan.com/" : (currentChain === 'solana' ? "https://solscan.io/" : "https://etherscan.io/");
+            if (!query) {
+                btnClear.style.display = 'none';
+                resultBox.style.display = 'none';
                 return;
             }
 
-            // Smart Deep Links
-            if (currentChain === 'solana') {
-                btnHoneypot.href = `https://rugcheck.xyz/tokens/${ca}`;
-                btnHoneypot.innerHTML = "⚡ RugCheck (Solana)";
-                btnDex.href = `https://dexscreener.com/solana/${ca}`;
-                btnSecurity.href = `https://solscan.io/token/${ca}`;
-                btnExplorer.href = `https://solscan.io/token/${ca}`;
-            } else {
-                btnHoneypot.href = `https://honeypot.is/?address=${ca}`;
-                btnHoneypot.innerHTML = "🛡️ Check Honeypot.is";
-                btnDex.href = `https://dexscreener.com/search?q=${ca}`;
-                btnSecurity.href = `https://gopluslabs.io/token-security/56/${ca}`;
+            btnClear.style.display = 'flex';
 
-                if (currentChain === 'bsc') btnExplorer.href = `https://bscscan.com/token/${ca}`;
-                else if (currentChain === 'base') btnExplorer.href = `https://basescan.org/token/${ca}`;
-                else if (currentChain === 'polygon') btnExplorer.href = `https://polygonscan.com/token/${ca}`;
-                else if (currentChain === 'arbitrum') btnExplorer.href = `https://arbiscan.io/token/${ca}`;
-                else btnExplorer.href = `https://etherscan.io/token/${ca}`;
+            // Check if user entered an unknown 0x contract address
+            if (query.startsWith("0x") && query.length >= 20) {
+                renderUnknownContract(query);
+                resultBox.style.display = 'block';
+                return;
+            }
+
+            // Find in Local Verified Database
+            const matched = PROJECT_DATABASE.find(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.ticker.toLowerCase() === query ||
+                p.ca.toLowerCase() === query
+            );
+
+            if (matched) {
+                renderMatchedProject(matched);
+                resultBox.style.display = 'block';
+            } else {
+                renderNotFound(query);
+                resultBox.style.display = 'block';
             }
         }
 
-        // ================= COPY FUNCTIONALITY =================
-        function copyContract(text, btn) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btn.innerText;
-                btn.innerText = "✓ Copied!";
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                }, 1800);
-            });
-        }
+        function renderMatchedProject(p) {
+            const isLive = p.status === 'live';
+            const card = document.getElementById('resultCard');
+            card.className = isLive ? 'result-card' : 'result-card scam-warning';
 
-        // ================= TABLE RENDER =================
-        function renderTable() {
-            const tbody = document.getElementById('tokenTableBody');
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            tbody.innerHTML = '';
+            let buttonsHtml = '';
+            if (isLive) {
+                buttonsHtml = `
+                    <a href="${p.dexLink}" target="_blank" class="btn-action btn-primary-action">📊 Live Dex Chart</a>
+                    <a href="${p.auditLink}" target="_blank" class="btn-action btn-secondary-action">🛡️ Audit on RugCheck / Explorer</a>
+                    <a href="${p.website}" target="_blank" class="btn-action btn-secondary-action">🌐 Official Website</a>
+                `;
+            } else {
+                buttonsHtml = `
+                    <a href="${p.website}" target="_blank" class="btn-action btn-primary-action">🌐 Official Project Website</a>
+                `;
+            }
 
-            const filtered = TOKEN_DATABASE.filter(p => {
-                const matchesSearch = p.name.toLowerCase().includes(query) || p.sub.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
-                if (!matchesSearch) return false;
-                if (currentFilter === 'all') return true;
-                return p.type === currentFilter;
-            });
-
-            filtered.forEach(p => {
-                const initial = p.name.charAt(0).toUpperCase();
-                const bgColor = getAvatarColor(p.name);
-
-                const avatarHtml = `
-                    <div class="project-avatar-box">
-                        <img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="project-initial" style="background: ${bgColor}; display: none;">${initial}</div>
+            card.innerHTML = `
+                <div class="result-header">
+                    <div class="result-title-box">
+                        <div class="result-avatar">${p.icon}</div>
+                        <div>
+                            <h3>${p.name} (${p.ticker})</h3>
+                            <span>Verified Ecosystem: <b>${p.chain}</b></span>
+                        </div>
                     </div>
-                `;
+                    <span class="badge-status ${isLive ? 'badge-live' : 'badge-mining'}">${p.statusText}</span>
+                </div>
 
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>
-                        <div class="project-cell">
-                            ${avatarHtml}
-                            <div>
-                                <div class="project-name">${p.name}</div>
-                                <div class="project-sub">${p.sub}</div>
-                            </div>
+                <div class="info-grid">
+                    <div class="info-tile">
+                        <div class="info-tile-label">Blockchain Ecosystem</div>
+                        <div class="info-tile-value">${p.chain}</div>
+                    </div>
+                    <div class="info-tile">
+                        <div class="info-tile-label">Listing Reality</div>
+                        <div class="info-tile-value">${isLive ? 'Traded on DEX / CEX' : 'No Public DEX Trading'}</div>
+                    </div>
+                </div>
+
+                <div class="ca-box">
+                    <div>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px;">Official Contract Address (CA)</div>
+                        <div class="ca-text" id="caToCopy">${p.ca}</div>
+                    </div>
+                    ${p.ca.startsWith("0x") || p.ca.length > 25 ? `<button class="btn-copy" onclick="copyCA('${p.ca}', this)">📋 Copy CA</button>` : ''}
+                </div>
+
+                <div class="alert-banner ${p.alertType === 'green' ? 'green-alert' : ''}">
+                    <div class="alert-icon">${p.alertType === 'green' ? '🛡️' : '🚨'}</div>
+                    <div class="alert-text">${p.alert}</div>
+                </div>
+
+                <div class="action-row">
+                    ${buttonsHtml}
+                </div>
+            `;
+        }
+
+        function renderUnknownContract(ca) {
+            const card = document.getElementById('resultCard');
+            card.className = 'result-card';
+            card.innerHTML = `
+                <div class="result-header">
+                    <div class="result-title-box">
+                        <div class="result-avatar">🔍</div>
+                        <div>
+                            <h3>Custom Smart Contract Audit</h3>
+                            <span>Raw Contract Address Detected</span>
                         </div>
-                    </td>
-                    <td><span class="category-pill">${p.category}</span></td>
-                    <td>
-                        <div class="contract-box">
-                            <span>${p.contract}</span>
-                            <button class="btn-copy" onclick="copyContract('${p.fullContract}', this)">📋 Copy</button>
-                        </div>
-                    </td>
-                    <td class="${p.statusClass}">${p.statusText}</td>
-                    <td><a href="${p.auditLink}" target="_blank" class="btn-details">Audit Contract ↗</a></td>
-                `;
-                tbody.appendChild(row);
+                    </div>
+                    <span class="badge-status badge-mining">Live Diagnostics</span>
+                </div>
+
+                <div class="ca-box">
+                    <div>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px;">Target Contract Address</div>
+                        <div class="ca-text">${ca}</div>
+                    </div>
+                    <button class="btn-copy" onclick="copyCA('${ca}', this)">📋 Copy</button>
+                </div>
+
+                <div class="alert-banner">
+                    <div class="alert-icon">⚡</div>
+                    <div class="alert-text">This contract is not yet in our pre-verified DePIN directory. Run instant diagnostics below to check for honeypots, sales taxes, and liquidity lock status.</div>
+                </div>
+
+                <div class="action-row">
+                    <a href="https://honeypot.is/?address=${ca}" target="_blank" class="btn-action btn-primary-action">🛡️ Check on Honeypot.is</a>
+                    <a href="https://dexscreener.com/search?q=${ca}" target="_blank" class="btn-action btn-secondary-action">📊 DexScreener Live Pool</a>
+                    <a href="https://gopluslabs.io/token-security/56/${ca}" target="_blank" class="btn-action btn-secondary-action">🔍 GoPlus Security Audit</a>
+                </div>
+            `;
+        }
+
+        function renderNotFound(q) {
+            const card = document.getElementById('resultCard');
+            card.className = 'result-card scam-warning';
+            card.innerHTML = `
+                <div style="text-align: center; padding: 20px 10px;">
+                    <div style="font-size: 40px; margin-bottom: 12px;">⚠️</div>
+                    <h3 style="font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px;">No Verified Project Found for "${q}"</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); max-width: 480px; margin: 0 auto 20px auto; line-height: 1.6;">
+                        If someone is selling you a token named "${q}" on Telegram or WhatsApp, it might be a newly created honeypot clone. Always paste the raw 0x contract address above to audit it.
+                    </p>
+                    <a href="https://dexscreener.com/search?q=${encodeURIComponent(q)}" target="_blank" class="btn-action btn-primary-action" style="display: inline-flex; width: auto;">🔍 Search on DexScreener</a>
+                </div>
+            `;
+        }
+
+        function quickSearch(name) {
+            document.getElementById('searchInput').value = name;
+            handleSearch();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('btnClear').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'none';
+        }
+
+        function copyCA(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const old = btn.innerText;
+                btn.innerText = "✓ Copied!";
+                setTimeout(() => { btn.innerText = old; }, 1800);
             });
-
-            document.getElementById('tokenCount').innerText = `Showing ${filtered.length} verified official protocol tokens`;
-        }
-
-        function setFilter(filterType, btn) {
-            currentFilter = filterType;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderTable();
-        }
-
-        function handleSearch() {
-            renderTable();
         }
 
         function toggleTheme() {
@@ -686,12 +736,10 @@
                 body.setAttribute('data-theme', 'dark');
                 toggleBtn.innerText = '☀️';
                 localStorage.setItem('theme', 'dark');
-                document.documentElement.setAttribute('data-theme', 'dark');
             } else {
                 body.setAttribute('data-theme', 'light');
                 toggleBtn.innerText = '🌙';
                 localStorage.setItem('theme', 'light');
-                document.documentElement.setAttribute('data-theme', 'light');
             }
         }
 
@@ -714,10 +762,7 @@
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
-            document.documentElement.setAttribute('data-theme', savedTheme);
             document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
-            updateAuditLinks();
-            renderTable();
         };
     </script>
 </body>
