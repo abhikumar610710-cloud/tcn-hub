@@ -277,7 +277,7 @@
             </div>
             <p id="projectCount" class="project-count">Showing verified airdrop campaigns</p>
 
-            <!-- ================= AIRDROPS & CAMPAIGNS OVERVIEW CARD ================= -->
+            <!-- ================= AIRDROPS & CAMPAIGNS ARCHITECTURE CARD ================= -->
             <div class="campaigns-overview-card">
                 <div class="overview-badge-row">
                     <span class="overview-pill">Ecosystem Architecture</span>
@@ -345,13 +345,13 @@
                     <button class="filter-btn" onclick="setFilter('Active', this)">🟢 Active Only</button>
                     <button class="filter-btn" onclick="setFilter('Confirmed', this)">🎁 Confirmed</button>
                     <button class="filter-btn" onclick="setFilter('Testnet', this)">🧪 Testnets</button>
-                    <button class="filter-btn" onclick="setFilter('Quest', this)">⚡ Quest Hubs</button>
+                    <button class="filter-btn" onclick="setFilter('Quest', this)">⚡ Quests & Tasks</button>
                     <select class="cat-select" onchange="setSubCategory(this.value)">
                         <option value="All">All Categories</option>
-                        <option value="Testnet">Testnet Faucets</option>
-                        <option value="Quest Hub">Quest Platforms</option>
-                        <option value="Social Quests">Social & Daily</option>
+                        <option value="Testnet">Testnets & Trading</option>
+                        <option value="Social Quests">Social & Daily Tasks</option>
                         <option value="Node Airdrop">Node Campaigns</option>
+                        <option value="AI & Waitlist">AI & Waitlists</option>
                     </select>
                 </div>
             </div>
@@ -392,71 +392,104 @@
     </footer>
 
     <script>
-        // Sample campaigns showing how dynamic time & status tags function
+        // Verified 100% Zero-Capital Campaigns Array - Strictly Audited for Total Crypto Network
         const AIRDROP_PROJECTS = [
             { 
-                name: "TaskOn Hub", 
-                sub: "Web3 Quest Platform • Daily CAP Tasks", 
-                category: "Quest Hub", 
+                name: "Titan Exchange", 
+                sub: "Incentivized Perp DEX • Free Faucet Testnet", 
+                category: "Testnet", 
+                status: "Testnet", 
+                liveStatus: "Active", 
+                score: "⭐ 9.8 / 10", 
+                link: "https://testnet.titanx.cc/?ref=7D96F96244", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Sweep.finance", 
+                sub: "Sweepbird Mini-Game • Free Social XP Tasks", 
+                category: "Social Quests", 
                 status: "Quest", 
                 liveStatus: "Active", 
                 score: "⭐ 9.5 / 10", 
-                link: "../airdrop-projects/taskon.html", 
+                link: "https://sweep.finance/?referrer_code=R2QSHUBD", 
                 logo: "../logos/tcn-logo.png", 
                 verified: true 
             },
             { 
-                name: "Galxe Protocol", 
-                sub: "Ecosystem Passport & Loyalty OATs", 
-                category: "Quest Hub", 
+                name: "Arktion Protocol", 
+                sub: "Daily Prediction Quests • Free Airdrop Spin", 
+                category: "Social Quests", 
+                status: "Quest", 
+                liveStatus: "Ending Soon", 
+                score: "⭐ 9.3 / 10", 
+                link: "https://arktion.app/ref/B7FF585C", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Sleepagotchi", 
+                sub: "Mobile Sleep-to-Earn • Consumer AI Quests", 
+                category: "Social Quests", 
                 status: "Quest", 
                 liveStatus: "Active", 
-                score: "⭐ 9.6 / 10", 
-                link: "../airdrop-projects/galxe.html", 
+                score: "⭐ 9.2 / 10", 
+                link: "https://hub.sleepagotchi.com/loyalty?referral_code=GJ2JRTEN", 
                 logo: "../logos/tcn-logo.png", 
                 verified: true 
             },
             { 
-                name: "Monad Testnet", 
-                sub: "High-Throughput EVM • Free Faucet Guide", 
-                category: "Testnet", 
-                status: "Testnet", 
-                liveStatus: "Active", 
-                score: "⭐ 9.7 / 10", 
-                link: "../airdrop-projects/monad.html", 
-                logo: "../logos/tcn-logo.png", 
-                verified: true 
-            },
-            { 
-                name: "Berachain bArtio", 
-                sub: "Proof of Liquidity • Testnet Swaps", 
-                category: "Testnet", 
-                status: "Testnet", 
-                liveStatus: "Ending Soon", 
-                score: "⭐ 9.4 / 10", 
-                link: "../airdrop-projects/berachain.html", 
-                logo: "../logos/tcn-logo.png", 
-                verified: true 
-            },
-            { 
-                name: "DAWN Protocol", 
-                sub: "Solana DePIN Bandwidth • Confirmed TGE", 
+                name: "Perceptron Network", 
+                sub: "AI Browser Node • Loyalty Points Program", 
                 category: "Node Airdrop", 
-                status: "Confirmed", 
-                liveStatus: "Confirmed", 
-                score: "⭐ 9.3 / 10", 
-                link: "../airdrop-projects/dawn-protocol.html", 
+                status: "Testnet", 
+                liveStatus: "Active", 
+                score: "⭐ 9.0 / 10", 
+                link: "https://quests.perceptrons.xyz/loyalty", 
                 logo: "../logos/tcn-logo.png", 
                 verified: true 
             },
             { 
-                name: "Gradient Network", 
-                sub: "Decentralized Compute • Incentive Phase", 
+                name: "Pear Protocol", 
+                sub: "1-Click Daily Streaks • Social Points Hub", 
                 category: "Social Quests", 
-                status: "Active", 
+                status: "Quest", 
                 liveStatus: "Active", 
-                score: "⭐ 9.1 / 10", 
-                link: "../airdrop-projects/gradient-network.html", 
+                score: "⭐ 8.9 / 10", 
+                link: "https://rewards.pear.trade/r/abhikumar610710", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Wick", 
+                sub: "Early Trader Waitlist • EVM Wallet Quests", 
+                category: "Testnet", 
+                status: "Testnet", 
+                liveStatus: "Active", 
+                score: "⭐ 8.8 / 10", 
+                link: "https://www.wick.xyz/waitlist?r=975988", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Raycash", 
+                sub: "Solana Payments Waitlist • 6 Zero-Cost Tasks", 
+                category: "Social Quests", 
+                status: "Quest", 
+                liveStatus: "Active", 
+                score: "⭐ 8.7 / 10", 
+                link: "https://www.raycash.xyz/r/78U5ZF", 
+                logo: "../logos/tcn-logo.png", 
+                verified: true 
+            },
+            { 
+                name: "Nuance Labs", 
+                sub: "$50M Funded AI Avatar • Research Waitlist", 
+                category: "AI & Waitlist", 
+                status: "Quest", 
+                liveStatus: "Active", 
+                score: "⭐ 8.6 / 10", 
+                link: "https://www.nuancelabs.ai/waitlist", 
                 logo: "../logos/tcn-logo.png", 
                 verified: true 
             }
@@ -492,7 +525,7 @@
                 } else if (currentFilter === 'Testnet') {
                     matchesFilter = p.status === 'Testnet' || p.category.includes('Testnet');
                 } else if (currentFilter === 'Quest') {
-                    matchesFilter = p.status === 'Quest' || p.category.includes('Quest');
+                    matchesFilter = p.status === 'Quest' || p.category.includes('Social') || p.category.includes('Quest');
                 }
 
                 const matchesSubCat = currentSubCategory === 'All' || p.category.includes(currentSubCategory);
@@ -536,7 +569,7 @@
                         </td>
                         <td><span class="category-pill">${p.category}</span></td>
                         <td class="score-text">${p.score}</td>
-                        <td><a href="${targetLink}" class="btn-details">Guide & Join</a></td>
+                        <td><a href="${targetLink}" target="_blank" rel="noopener noreferrer" class="btn-details">Guide & Join</a></td>
                     `;
                     tbody.appendChild(row);
                 }
