@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pi Network Technical Architecture, SCP Consensus & Verification Hub | Total Crypto Hub</title>
-    <meta name="description" content="Technical audit and architecture of Pi Network: Stellar Consensus Protocol (SCP), Trust Graph Security Circles, 100B tokenomics, Enclosed Mainnet firewall, and official block explorer.">
+    <meta name="description" content="Technical audit of Pi Network: Stellar Consensus Protocol, Security Circles, 100B supply distribution, and official block explorer.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Anti-Flash Script -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
@@ -49,7 +48,6 @@
 
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
-        /* Header */
         header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
         .header-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -90,10 +88,9 @@
             font-size: 14px;
         }
 
-        /* Main Content */
         main { flex: 1; padding: 32px 0 60px; }
 
-        /* Hero Action Card */
+        /* Hero Card */
         .project-hero-card { 
             background: var(--bg-surface); 
             border: 1px solid var(--border-color); 
@@ -130,7 +127,6 @@
         .tag-enclosed { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
         .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
 
-        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .btn-join { 
             background: var(--accent-primary); 
             color: white; 
@@ -147,40 +143,32 @@
         }
         .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        /* Prominent Verification & Explorer Strip */
+        /* Crisp 3-Item Verification Strip */
         .verification-strip {
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
             border-radius: 14px;
-            padding: 22px 26px;
+            padding: 18px 24px;
             margin-bottom: 28px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            box-shadow: 0 2px 14px rgba(0,0,0,0.03);
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
         }
-        .strip-item { display: flex; flex-direction: column; gap: 6px; }
-        .strip-label { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.6px; }
-        .strip-value { font-size: 14px; font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; line-height: 1.3; }
-        
-        /* Prominent Large Link Styling */
-        .strip-link-prominent { 
-            font-size: 15px; 
-            font-weight: 800; 
+        .strip-item { display: flex; flex-direction: column; gap: 4px; }
+        .strip-label { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
+        .strip-link { 
+            font-size: 14px; 
+            font-weight: 700; 
             color: var(--accent-primary); 
             text-decoration: none; 
             display: inline-flex; 
             align-items: center; 
             gap: 6px; 
-            transition: all 0.2s; 
         }
-        .strip-link-prominent:hover { 
-            color: var(--accent-hover); 
-            text-decoration: underline; 
-            transform: translateX(2px); 
-        }
+        .strip-link:hover { text-decoration: underline; color: var(--accent-hover); }
 
-        /* Full-Width 1240px Article Canvas */
+        /* Article Container */
         .content-card { 
             background: var(--bg-surface); 
             border: 1px solid var(--border-color); 
@@ -189,13 +177,13 @@
             margin-bottom: 28px; 
             box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
         }
-        .article-section { margin-bottom: 42px; }
+        .article-section { margin-bottom: 38px; }
         .article-section:last-child { margin-bottom: 0; }
         
-        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
         .section-number { 
-            width: 34px; 
-            height: 34px; 
+            width: 32px; 
+            height: 32px; 
             border-radius: 8px; 
             background: var(--accent-primary); 
             color: white; 
@@ -206,66 +194,46 @@
             font-size: 14px; 
             flex-shrink: 0; 
         }
-        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+        .section-header h3 { font-size: 19px; color: var(--text-heading); font-weight: 800; }
 
-        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
         .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Brand Emerald Highlight Pill */
+        /* DePIN-Style Compact Highlight (No Size Change, Just Bold & Subtle Tint) */
         .hl-green {
             color: var(--accent-primary);
-            font-weight: 800;
+            font-weight: 700;
             background: rgba(16, 185, 129, 0.12);
-            padding: 2px 7px;
+            padding: 1px 6px;
             border-radius: 4px;
-            display: inline-block;
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            display: inline;
         }
-
-        /* Linear Breakdown Rows */
-        .linear-flow { display: flex; flex-direction: column; gap: 14px; margin: 20px 0; }
-        .flow-step {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-primary);
-            border-radius: 8px;
-            padding: 18px 22px;
-        }
-        .flow-step h4 { font-size: 15px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
-        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
 
         /* Alert Box */
         .alert-box { 
             background: rgba(245, 158, 11, 0.08); 
             border-left: 4px solid #f59e0b; 
-            padding: 20px 24px; 
+            padding: 18px 22px; 
             border-radius: 0 8px 8px 0; 
-            margin: 24px 0; 
+            margin: 20px 0; 
         }
-        .alert-box h5 { color: #d97706; font-size: 14.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
         .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
         .alert-box p:last-child { margin-bottom: 0; }
 
-        /* Dedicated Video Walkthrough Section */
-        .video-guide-card {
-            background: var(--bg-body);
+        /* Clean Video Card */
+        .video-box-clean {
+            background: var(--card-subtle);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 24px;
-            margin-top: 16px;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 14px;
+            max-width: 580px;
         }
-        .video-box { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 14px; 
-            padding: 16px; 
-            max-width: 680px; 
-            margin: 14px auto 0; 
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04); 
-        }
+        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         .mock-youtube-player { 
             background: #000; 
-            border-radius: 10px; 
+            border-radius: 8px; 
             position: relative; 
             padding-bottom: 56.25%; 
             height: 0; 
@@ -274,33 +242,33 @@
             display: block; 
             text-decoration: none; 
         }
-        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.1); }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
         .yt-play-btn { 
             position: absolute; 
             top: 50%; 
             left: 50%; 
             transform: translate(-50%, -50%); 
-            width: 68px; 
-            height: 48px; 
+            width: 60px; 
+            height: 42px; 
             background-color: #ff0000; 
-            border-radius: 12px; 
-            transition: transform 0.2s ease-in-out; 
+            border-radius: 10px; 
+            transition: transform 0.2s ease; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
         }
-        .yt-play-btn::before { content: ""; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
 
-        /* Disclosure Box */
+        /* Disclosure */
         .disclosure-box {
             background: var(--card-subtle);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 20px 24px;
+            padding: 18px 22px;
             font-size: 13px;
             line-height: 1.65;
             color: var(--text-muted);
-            margin-top: 32px;
+            margin-top: 30px;
         }
         .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
 
@@ -313,9 +281,7 @@
             :root { --container-padding: 16px; }
             .content-card { padding: 24px 18px; }
             .project-hero-card { flex-direction: column; align-items: flex-start; }
-            .hero-right { width: 100%; }
             .btn-join { width: 100%; justify-content: center; }
-            .section-header h3 { font-size: 18px; }
             .verification-strip { grid-template-columns: 1fr; }
         }
     </style>
@@ -341,11 +307,11 @@
         </div>
     </header>
 
-    <!-- Main Content Area (1240px Canvas) -->
+    <!-- Main Content Area -->
     <main>
         <div class="site-container">
 
-            <!-- Hero Action Card (Direct Clean Portal - No Personal Referral Clutter) -->
+            <!-- Hero Action Card -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
@@ -353,7 +319,7 @@
                     </div>
                     <div class="project-titles">
                         <h2 translate="no">Pi Network <span class="verified-badge">✓</span></h2>
-                        <p>First Mobile-Native Social Cryptocurrency & Distributed Trust Graph Protocol</p>
+                        <p>Mobile-Native Consensus & Distributed Trust Graph Protocol</p>
                         <div class="hero-tags">
                             <span class="tag-pill tag-enclosed">🟡 Enclosed Mainnet</span>
                             <span class="tag-pill tag-subtle">Stellar Consensus (SCP)</span>
@@ -367,160 +333,125 @@
                 </div>
             </div>
 
-            <!-- Prominent Verification & Explorer Strip -->
+            <!-- Crisp Verification Strip (Only Critical Tools) -->
             <div class="verification-strip">
                 <div class="strip-item">
-                    <span class="strip-label">Official Web Portal</span>
-                    <span class="strip-value">
-                        <a href="https://minepi.com/" target="_blank" class="strip-link-prominent">🌐 minepi.com ↗</a>
-                    </span>
+                    <span class="strip-label">Official Website</span>
+                    <a href="https://minepi.com/" target="_blank" class="strip-link">🌐 minepi.com ↗</a>
                 </div>
                 <div class="strip-item">
-                    <span class="strip-label">Pi BlockExplorer</span>
-                    <span class="strip-value">
-                        <a href="https://minepi.com/blockexplorer/" target="_blank" class="strip-link-prominent">🔍 Live BlockExplorer ↗</a>
-                    </span>
+                    <span class="strip-label">Live BlockExplorer</span>
+                    <a href="https://minepi.com/blockexplorer/" target="_blank" class="strip-link">🔍 BlockExplorer ↗</a>
                 </div>
                 <div class="strip-item">
                     <span class="strip-label">Official Whitepaper</span>
-                    <span class="strip-value">
-                        <a href="https://minepi.com/white-paper/" target="_blank" class="strip-link-prominent">📄 Read Whitepaper ↗</a>
-                    </span>
-                </div>
-                <div class="strip-item">
-                    <span class="strip-label">Consensus Protocol</span>
-                    <span class="strip-value">Stellar Consensus Protocol (SCP / FBA)</span>
-                </div>
-                <div class="strip-item">
-                    <span class="strip-label">Corporate Provenance</span>
-                    <span class="strip-value">SocialChain Inc. (Stanford Founded)</span>
-                </div>
-                <div class="strip-item">
-                    <span class="strip-label">Capital & Funding Model</span>
-                    <span class="strip-value">100% Community Bootstrapped (Zero VC / No Public ICO)</span>
+                    <a href="https://minepi.com/white-paper/" target="_blank" class="strip-link">📄 Read Whitepaper ↗</a>
                 </div>
             </div>
 
-            <!-- Full-Length Technical Deep Dive -->
+            <!-- Full-Length Clean Article -->
             <div class="content-card">
 
-                <!-- Point 1: Origin & Core Identity -->
+                <!-- Point 1: What is Pi Network -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">1</div>
-                        <h3>Origin & Architecture: What is Pi Network?</h3>
+                        <h3>What is Pi Network? (Mobile-First Layer 1 Architecture)</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Pi Network</strong> is a mobile-first Layer-1 social cryptocurrency protocol launched on March 14, 2019 (Pi Day) by Stanford University PhD scholars <span class="hl-green">Dr. Nicolas Kokkalis</span> and <span class="hl-green">Dr. Chengdiao Fan</span>[cite: 9]. It was specifically engineered to solve the extreme barriers to entry inherent in traditional Proof-of-Work (PoW) networks like Bitcoin—specifically astronomical electricity consumption, specialized ASIC mining hardware costs, and mining pool centralisation[cite: 9].
+                        <strong>Pi Network</strong> is an independent Layer-1 cryptocurrency protocol established on March 14, 2019, by Stanford PhD researchers <span class="hl-green">Dr. Nicolas Kokkalis</span> and <span class="hl-green">Dr. Chengdiao Fan</span>[cite: 9]. It was created to provide a decentralized alternative to traditional Proof-of-Work (PoW) blockchains like Bitcoin, which demand massive electricity consumption and expensive mining rigs[cite: 9].
                     </p>
                     <p class="article-text">
-                        Rather than conducting hash-based computations on device silicon, Pi allows everyday smartphone users to participate in distributed consensus by checking in once every 24 hours[cite: 9]. The client operates inside a sandboxed mobile application requiring <span class="hl-green">Zero Energy Draw</span>, <span class="hl-green">Zero CPU Load</span>, and zero disruption to daily cellular operations[cite: 9].
+                        Pi replaces heavy cryptographic computation with a lightweight consensus model. Users verify their daily presence by checking in once every 24 hours via smartphones with <span class="hl-green">zero battery drainage</span>, <span class="hl-green">zero CPU load</span>, and no background resource consumption[cite: 9].
                     </p>
                 </div>
 
-                <!-- Point 2: Consensus & Trust Graph Engine -->
+                <!-- Point 2: Consensus & How It Works -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">2</div>
-                        <h3>Consensus Engine: Stellar Protocol & Security Circles</h3>
+                        <h3>How Pi Network Operates: The SCP Consensus Engine</h3>
                     </div>
                     <p class="article-text">
-                        Pi Network operates an implementation of the <strong>Stellar Consensus Protocol (SCP)</strong>, governed by Federated Byzantine Agreement (FBA)[cite: 9]:
+                        Instead of hash mining, Pi's blockchain runs on an implementation of the <span class="hl-green">Stellar Consensus Protocol (SCP)</span>[cite: 9]:
                     </p>
-
-                    <div class="linear-flow">
-                        <div class="flow-step">
-                            <h4>🌐 1. Security Circles & Quorum Slices</h4>
-                            <p>Network integrity is maintained through individual Security Circles composed of <span class="hl-green">3 to 5 trusted peers</span> vouched for by each pioneer[cite: 9]. These interconnected circles form a global trust graph, allowing the decentralized ledger to determine transaction legitimacy without burning electrical power[cite: 9].</p>
-                        </div>
-                        <div class="flow-step">
-                            <h4>⚡ 2. The Multi-Tier Network Roles</h4>
-                            <p><strong>Pioneers</strong> verify active daily human presence; <strong>Contributors</strong> fortify the global trust graph via 100% security circles[cite: 9]; <strong>Ambassadors</strong> onboard authenticated participants; and <strong>Node Operators</strong> run the core SCP validation daemon across personal computers to execute decentralized block validation.</p>
-                        </div>
-                        <div class="flow-step">
-                            <h4>🔒 3. Self-Custody Pi Browser & Non-Custodial Wallet</h4>
-                            <p>Native balances are secured through a non-custodial cryptographic wallet anchored by an independent <span class="hl-green">24-word Passphrase</span>. Pioneers maintain exclusive custody of their Layer-1 private keys through the dedicated decentralized Pi Browser[cite: 9].</p>
-                        </div>
-                    </div>
+                    <p class="article-text">
+                        • <strong>Security Circles:</strong> Pioneers build trust circles of <span class="hl-green">3 to 5 trusted members</span>[cite: 9]. These interconnected circles form a global trust graph that helps the network validate transactions without burning energy[cite: 9].<br>
+                        • <strong>Multi-Tier Roles:</strong> Everyday users participate as Pioneers and Contributors[cite: 9], while dedicated PC users run the desktop Pi Node to compute consensus and secure the distributed ledger.<br>
+                        • <strong>Self-Custody Keys:</strong> Balances migrate to independent non-custodial wallets controlled exclusively by a <span class="hl-green">24-word Passphrase</span> through the decentralized Pi Browser[cite: 9].
+                    </p>
                 </div>
 
-                <!-- Point 3: Supply, Halving & Tokenomics -->
+                <!-- Point 3: Supply & Halving -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">3</div>
-                        <h3>Supply Hard-Cap, Tokenomics & Halving Mechanics</h3>
+                        <h3>Tokenomics & Maximum Supply Hard-Cap</h3>
                     </div>
                     <p class="article-text">
-                        The monetary policy of Pi Network is governed by a strict, pre-programmed mathematical issuance model[cite: 9]:
+                        Pi's economic issuance follows a fixed mathematical rule[cite: 9]:
                     </p>
                     <p class="article-text">
-                        • <strong>Maximum Hard Cap:</strong> <span class="hl-green">100 Billion PI tokens</span> (Zero infinite minting capability)[cite: 9].<br>
-                        • <strong>Community Distribution:</strong> <span class="hl-green">80% (80 Billion PI)</span> allocated directly to the global community for mobile mining rewards, ecosystem liquidity, and developer hackathon grants.<br>
-                        • <strong>Core Team Reserve:</strong> 20% (20 Billion PI) allocated to SocialChain Inc. for continuous core blockchain engineering, server infrastructure, and legal compliance.<br>
-                        • <strong>Dynamic Monthly Halving:</strong> The base mining rate decreases automatically on the first day of every calendar month based on an exponential decay formula balancing network-wide active participants.
+                        • <strong>Max Hard Cap:</strong> <span class="hl-green">100 Billion PI</span> total supply (No unlimited minting)[cite: 9].<br>
+                        • <strong>Community Pool:</strong> <span class="hl-green">80% (80 Billion PI)</span> reserved entirely for community mobile mining, ecosystem rewards, and liquidity.<br>
+                        • <strong>Core Team Pool:</strong> 20% (20 Billion PI) allocated for long-term development, infrastructure, and legal governance under SocialChain Inc.<br>
+                        • <strong>Monthly Dynamic Halving:</strong> Base mining rewards adjust automatically on the first day of every month as total active users increase.
                     </p>
                 </div>
 
-                <!-- Point 4: Enclosed Mainnet vs. IOU Trading Advisory -->
+                <!-- Point 4: Enclosed Mainnet Advisory -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">4</div>
-                        <h3>Enclosed Mainnet Firewall & Secondary Market Reality</h3>
+                        <h3>Enclosed Mainnet Status & IOU Market Reality</h3>
                     </div>
                     <p class="article-text">
-                        To protect the nascent ecosystem while millions of users complete decentralized identity verification, Pi operates under an <strong>Enclosed Mainnet</strong> phase protected by a technical firewall[cite: 9]:
+                        Pi currently functions within an <strong>Enclosed Mainnet</strong> phase protected by a technical firewall[cite: 9]:
                     </p>
                     
                     <div class="alert-box">
-                        <h5>⚠️ Critical Exchange & IOU Advisory:</h5>
-                        <p><strong>1. Unauthorized IOU Tickers:</strong> The Pi Core Team has authorized zero external centralized exchange listings. Price tickers displayed on secondary exchanges represent speculative IOUs (debt promises) with zero on-chain deposit or withdrawal connectivity to the real Pi blockchain.</p>
-                        <p><strong>2. Ecosystem Utility Only:</strong> During the Enclosed phase, real PI tokens migrated to mainnet wallets can only be used for peer-to-peer ecosystem commerce and dApp utilities within the verified Pi ecosystem[cite: 9]. Direct exchange trading unlocks only upon official Open Network transition[cite: 9].</p>
+                        <h5>⚠️ Important Security & Exchange Advisory:</h5>
+                        <p><strong>1. No Centralized Exchange Listing:</strong> The Pi Core Team has authorized zero external exchange listings. Prices shown on secondary exchanges are synthetic IOUs (futures contracts) with no connection to the real Pi blockchain.</p>
+                        <p><strong>2. Ecosystem Transfers Only:</strong> Migrated PI can only be used for peer-to-peer commerce and verified dApps inside the Pi Browser[cite: 9]. Open exchange trading unlocks only during the official Open Network phase[cite: 9].</p>
                     </div>
                 </div>
 
-                <!-- Point 5: Security Hygiene & Seed Safeguards -->
+                <!-- Point 5: Seed Phrase Protection -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">5</div>
-                        <h3>Security Standards: Protecting Your 24-Word Passphrase</h3>
+                        <h3>Passphrase Protection & Fraud Prevention</h3>
                     </div>
                     <p class="article-text">
-                        As balance migrations progress, account security relies strictly on individual user custody practices[cite: 10]:
+                        <strong>Standalone Sovereign Ledger:</strong> Pi has its own native Layer-1 network. There is <span class="hl-green">no official BEP-20 (BNB Chain) or ERC-20 (Ethereum) contract</span>. Tokens traded on DEXs (PancakeSwap/Uniswap) claiming to be Pi are honeypots.
                     </p>
                     <p class="article-text">
-                        <strong>1. Sovereign Layer 1 Infrastructure:</strong> Pi operates on its own standalone sovereign blockchain. There is <span class="hl-green">No BEP-20 (BNB Chain), No ERC-20 (Ethereum), and No Solana smart contract</span>. Any token listed on DEXs (PancakeSwap/Uniswap/Raydium) claiming to be Pi is an unauthorized drainer contract.
-                    </p>
-                    <p class="article-text">
-                        <strong>2. Absolute Passphrase Isolation:</strong> Your 24-word Passphrase must never be entered on any search engine, Telegram bot, Discord server, or external website. The Core Team will never request your secret keys. Legitimate wallet authorization occurs solely inside <code>wallet.pi</code> within the official Pi Browser.
+                        <strong>Passphrase Security:</strong> Never type your 24-word Passphrase into external websites, forms, or Telegram bots. Official wallet transactions occur solely within <code>wallet.pi</code> inside the official Pi Browser.
                     </p>
                 </div>
 
-                <!-- Point 6: Dedicated Video Setup Guide -->
+                <!-- Point 6: Video Walkthrough -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">6</div>
-                        <h3>Dedicated Video Setup & Migration Guide</h3>
+                        <h3>Video Setup & Migration Walkthrough</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete operational video walkthrough produced by <strong>Total Crypto Network</strong>. Follow the exact step-by-step guidance covering account creation, Security Circle optimization, and official Mainnet Checklist completion:
+                        Follow our complete video tutorial from <strong>Total Crypto Network</strong> for account optimization and official Mainnet Checklist completion:
                     </p>
                     
-                    <div class="video-guide-card">
-                        <div class="video-box">
-                            <h4 style="font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                                <span>▶️</span> Pi Network Complete Setup & Mainnet Migration Guide
-                            </h4>
-                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
-                                <div class="yt-play-btn"></div>
-                            </a>
-                        </div>
+                    <div class="video-box-clean">
+                        <h4>▶️ Pi Network Setup & Mainnet Migration Guide</h4>
+                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                            <div class="yt-play-btn"></div>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Standard Disclosure Box -->
+                <!-- Disclosure -->
                 <div class="disclosure-box">
                     <strong>Important Protocol Disclosure</strong>
-                    Total Crypto Hub provides independent educational directories and technical architecture reviews only. Pi Network is an autonomous decentralized blockchain protocol operated under SocialChain Inc. Community mining rewards and point accumulations represent early network participation. No initial capital investment or paid purchases are required to mine native Pi tokens[cite: 9].
+                    Total Crypto Hub provides independent educational information and technical directories only. Pi Network is an autonomous Layer-1 blockchain project. Early mobile check-in points require zero financial investment and zero purchase fees[cite: 9].
                 </div>
 
             </div>
@@ -544,7 +475,6 @@
     </footer>
 
     <script>
-        /* Smart Navigation: Return directly to active table position */
         function goBack() {
             if (document.referrer && document.referrer !== window.location.href) {
                 window.history.back();
@@ -553,7 +483,6 @@
             }
         }
 
-        /* Stable Theme Toggle */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
