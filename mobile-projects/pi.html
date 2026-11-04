@@ -91,7 +91,7 @@
 
         main { flex: 1; padding: 32px 0 60px; }
 
-        /* Hero Action Card */
+        /* Clean Top Hero Action Card */
         .project-hero-card { 
             background: var(--bg-surface); 
             border: 1px solid var(--border-color); 
@@ -129,13 +129,11 @@
         .tag-enclosed { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
         .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
 
-        .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-        
         .btn-join { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 11px 22px; 
+            padding: 12px 24px; 
             border-radius: 10px; 
             font-weight: 700; 
             font-size: 13.5px; 
@@ -146,28 +144,6 @@
             transition: all 0.2s; 
         }
         .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
-
-        /* 2 Official Verification Chips */
-        .hero-official-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .official-chip {
-            background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            color: var(--text-heading);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12.5px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
-        }
-        .official-chip:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            background: var(--bg-surface);
-        }
 
         /* 1240px Content Card */
         .content-card { 
@@ -211,6 +187,42 @@
         }
         .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
         .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+
+        /* Section 3 Verification Box (Whitepaper & Explorer Links) */
+        .tokenomics-verify-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
+        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
+        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .btn-audit {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-heading);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-audit:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
 
         /* Alert Box */
         .alert-box { 
@@ -284,9 +296,10 @@
             :root { --container-padding: 16px; }
             .content-card { padding: 24px 18px; }
             .project-hero-card { flex-direction: column; align-items: flex-start; }
-            .hero-right { width: 100%; align-items: stretch; }
-            .btn-join { justify-content: center; }
-            .hero-official-links { justify-content: flex-start; }
+            .btn-join { width: 100%; justify-content: center; }
+            .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
+            .verify-buttons { width: 100%; }
+            .btn-audit { width: 100%; justify-content: center; }
             .section-header h3 { font-size: 18px; }
         }
     </style>
@@ -316,7 +329,7 @@
     <main>
         <div class="site-container">
 
-            <!-- Hero Action Card -->
+            <!-- Hero Action Card (Clean & Focused) -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
@@ -335,10 +348,6 @@
 
                 <div class="hero-right">
                     <a href="https://minepi.com/" target="_blank" class="btn-join">⚡ Launch Official Pi Portal ↗</a>
-                    <div class="hero-official-links">
-                        <a href="https://minepi.com/blockexplorer/" target="_blank" class="official-chip">🔍 BlockExplorer ↗</a>
-                        <a href="https://minepi.com/white-paper/" target="_blank" class="official-chip">📄 Whitepaper ↗</a>
-                    </div>
                 </div>
             </div>
 
@@ -384,14 +393,14 @@
                     </div>
                 </div>
 
-                <!-- Point 3: Supply & Halving -->
+                <!-- Point 3: Supply, Halving & Dedicated Verification Box -->
                 <div class="article-section">
                     <div class="section-header">
                         <div class="section-number">3</div>
                         <h3>Supply Metrics, Allocation & Monthly Issuance Adjustments</h3>
                     </div>
                     <p class="article-text">
-                        Pi Network's token issuance is defined by a mathematical framework outlined in its official whitepaper:
+                        Pi Network's token issuance is defined by a mathematical framework outlined in its official documentation:
                     </p>
                     <p class="article-text">
                         • <strong>Maximum Hard Cap:</strong> <strong>100 Billion PI</strong> maximum total supply (fixed protocol cap).<br>
@@ -399,6 +408,18 @@
                         • <strong>Core Team Allocation:</strong> <strong>20% (20 Billion PI)</strong> reserved by SocialChain Inc. for continuous core blockchain engineering, server infrastructure, and legal governance.<br>
                         • <strong>Monthly Dynamic Halving:</strong> The base mining rate decreases automatically at the beginning of each calendar month using a system-wide decay formula linked to overall active pioneers.
                     </p>
+
+                    <!-- Verification Box inside Tokenomics Section -->
+                    <div class="tokenomics-verify-box">
+                        <div class="verify-text-area">
+                            <h5>Official Protocol Audits & Documentation</h5>
+                            <p>Verify supply caps, mathematical formulas, and live on-chain balances directly via official tools:</p>
+                        </div>
+                        <div class="verify-buttons">
+                            <a href="https://minepi.com/white-paper/" target="_blank" class="btn-audit">📄 Read Official Whitepaper ↗</a>
+                            <a href="https://minepi.com/blockexplorer/" target="_blank" class="btn-audit">🔍 Track Live BlockExplorer ↗</a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Point 4: Enclosed Mainnet Advisory -->
