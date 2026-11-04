@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holana Network (HOL) Complete Architecture, Mobile Mining & Technical Audit | Total Crypto Hub</title>
+    <meta name="description" content="Technical audit of Holana Network (HOL): Polygon PoS architecture, 10:1 HP to HOL conversion, 1B fixed supply, QuickSwap liquidity, and on-chain Polygonscan verification.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg-surface); padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
+
+        .btn-hub-glow { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
+
+        main { flex: 1; padding: 24px 0 60px; }
+
+        /* Compact Hero Action Card */
+        .project-hero-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 14px; 
+            padding: 18px 24px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 16px; 
+            margin-bottom: 22px; 
+            box-shadow: 0 2px 14px -2px rgba(0,0,0,0.03); 
+        }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { 
+            width: 56px; 
+            height: 56px; 
+            border-radius: 14px; 
+            overflow: hidden; 
+            border: 1.5px solid var(--border-color); 
+            padding: 3px; 
+            background: var(--card-subtle); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0; 
+        }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+        .project-titles h2 { font-size: 21px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; }
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 3px; font-weight: 500; }
+        
+        .hero-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+        .tag-pill { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
+        .tag-live { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
+
+        .hero-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 5px 6px 5px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+        .invite-label { font-size: 9px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.4px; margin-bottom: 1px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 13.5px; letter-spacing: 0.4px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px 18px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
+            transition: all 0.2s; 
+        }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        /* 1240px Content Card */
+        .content-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 36px 40px; 
+            margin-bottom: 28px; 
+            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
+        }
+        .article-section { margin-bottom: 36px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .section-number { 
+            width: 30px; 
+            height: 30px; 
+            border-radius: 8px; 
+            background: var(--accent-primary); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            font-size: 13.5px; 
+            flex-shrink: 0; 
+        }
+        .section-header h3 { font-size: 18.5px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* Linear Flow Boxes */
+        .linear-flow { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .flow-step {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+        .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
+        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+
+        /* Section 3 Verification Box */
+        .tokenomics-verify-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
+        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
+        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .btn-audit {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-heading);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-audit:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Alert Box */
+        .alert-box { 
+            background: rgba(245, 158, 11, 0.08); 
+            border-left: 4px solid #f59e0b; 
+            padding: 18px 22px; 
+            border-radius: 0 8px 8px 0; 
+            margin: 20px 0; 
+        }
+        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
+        .alert-box p:last-child { margin-bottom: 0; }
+
+        /* Video Showcase */
+        .video-box-clean {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 14px;
+            max-width: 580px;
+        }
+        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .mock-youtube-player { 
+            background: #000; 
+            border-radius: 8px; 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            cursor: pointer; 
+            display: block; 
+            text-decoration: none; 
+        }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
+        .yt-play-btn { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 60px; 
+            height: 42px; 
+            background-color: #ff0000; 
+            border-radius: 10px; 
+            transition: transform 0.2s ease; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* Disclosure */
+        .disclosure-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 22px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-top: 30px;
+        }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
+
+        /* Footer */
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 22px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; flex-direction: column; align-items: stretch; }
+            .invite-box { justify-content: space-between; }
+            .btn-join { width: 100%; justify-content: center; }
+            .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
+            .verify-buttons { width: 100%; }
+            .btn-audit { width: 100%; justify-content: center; }
+            .section-header h3 { font-size: 17.5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box" translate="no">
+                <div class="logo-icon">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
+                </div>
+                <div class="logo-text">
+                    <h1>Total Crypto Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
+                </div>
+            </a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to Community</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (1240px Canvas) -->
+    <main>
+        <div class="site-container">
+
+            <!-- Compact Hero Action Card with Referral Box -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/holana.png" alt="Holana Network Logo" onerror="this.parentNode.innerHTML='H';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 translate="no">Holana Network (HOL) <span class="verified-badge">✓</span></h2>
+                        <p>Polygon PoS Tap Mining Architecture, 10:1 Point Conversion & DEX Liquidity</p>
+                        <div class="hero-tags">
+                            <span class="tag-pill tag-live">🟢 Live on Polygon (ERC-20)</span>
+                            <span class="tag-pill tag-subtle">1B Max Hard Cap</span>
+                            <span class="tag-pill tag-subtle">QuickSwap Traded</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Referral Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">totalcryptonet</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+
+                    <a href="https://play.google.com/store/apps/details?id=com.holana.app" target="_blank" class="btn-join">⚡ Download & Mine HOL ↗</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 1240px Content Card -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Holana Network -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Holana Network? (Origins & Polygon PoS Framework)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Holana Network (HOL)</strong> is a mobile-first cryptocurrency distribution protocol deployed on the <strong>Polygon PoS (ERC-20)</strong> blockchain[cite: 14]. Designed to remove technical barriers to cryptocurrency onboarding, Holana replaces computationally intensive proof-of-work mining with a cloud-validated tap consensus framework[cite: 14].
+                    </p>
+                    <p class="article-text">
+                        Unlike traditional mining projects that operate on closed testnets, Holana's native token contract is fully live on Polygon[cite: 14]. Users participate through either the official Android application or directly through a zero-install web browser interface, linking their Google identity to begin collecting points with zero device battery drain or hardware wear[cite: 15, 16].
+                    </p>
+                </div>
+
+                <!-- Point 2: Mining Mechanics & 10:1 Ratio -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Mining Architecture: 24-Hour Cycle & 10:1 Conversion Ratio</h3>
+                    </div>
+                    <p class="article-text">
+                        Holana operates on a mathematical points-to-token redemption pipeline[cite: 14]:
+                    </p>
+                    <div class="linear-flow">
+                        <div class="flow-step">
+                            <h4>⚡ 1. Daily 24-Hour Check-In Session</h4>
+                            <p>Participants initialize an active production cycle once every 24 hours with a single tap[cite: 14]. The session runs continuously in the cloud, generating Holana Points (HP) based on active participation without requiring the browser or app to stay open[cite: 14, 16].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>🔄 2. Fixed 10:1 HP to HOL Redemption</h4>
+                            <p>Accumulated Holana Points convert into native on-chain tokens at a fixed mathematical ratio of <strong>10 HP = 1 HOL</strong>[cite: 14]. This formula eliminates arbitrary exchange rate manipulation and provides absolute accounting clarity[cite: 14].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>🌐 3. Multi-Platform Browser Accessibility</h4>
+                            <p>Mining sessions and reward claims can be executed seamlessly across mobile phones, tablets, or desktop browsers using unified Google account authentication[cite: 16].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>💼 4. Direct Self-Custody Polygonscan Withdrawals</h4>
+                            <p>Converted $HOL balances migrate directly to self-custody Web3 wallets (MetaMask, Bitget Wallet, Trust Wallet), with every transaction verifiable in real time on Polygonscan[cite: 14].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 3: Supply, Tokenomics & Audits -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Supply Metrics, Allocation & Smart Contract Transparency</h3>
+                    </div>
+                    <p class="article-text">
+                        Holana Network's token issuance is governed by an on-chain smart contract schedule deployed directly on Polygon:
+                    </p>
+                    <p class="article-text">
+                        • <strong>Maximum Hard Cap:</strong> <strong>1,000,000,000 HOL</strong> (1 Billion HOL total ceiling, fixed at deployment)[cite: 17].<br>
+                        • <strong>Community Vault:</strong> <strong>698,000,000 HOL (69.8%)</strong> contract-locked with a strict maximum release of 2.9% per 30-day period[cite: 17].<br>
+                        • <strong>Liquidity Allocation:</strong> <strong>150,000,000 HOL (15%)</strong> with LP tokens permanently burned to secure decentralized trading[cite: 17].<br>
+                        • <strong>Core Team Allocation:</strong> <strong>150,000,000 HOL (15%)</strong> subject to a 180-day cliff followed by a 12-month linear unlock schedule[cite: 17].<br>
+                        • <strong>Operations & Payouts:</strong> <strong>2,000,000 HOL (0.2%)</strong> reserved for live user distribution infrastructure[cite: 17].<br>
+                        • <strong>Contract Address (Polygon):</strong> <code>0x8530FC1a182D09E1f1b51473A96bD10e07e23bde</code>[cite: 14].
+                    </p>
+
+                    <!-- Section 3 Verification Box -->
+                    <div class="tokenomics-verify-box">
+                        <div class="verify-text-area">
+                            <h5>Official Protocol Audits & Documentation</h5>
+                            <p>Verify smart contract locking, live supply metrics, and liquidity on Polygon:</p>
+                        </div>
+                        <div class="verify-buttons">
+                            <a href="https://holana.io/" target="_blank" class="btn-audit">📄 Read Official Whitepaper ↗</a>
+                            <a href="https://polygonscan.com/token/0x8530FC1a182D09E1f1b51473A96bD10e07e23bde" target="_blank" class="btn-audit">🔍 Track Live Polygonscan Explorer ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Verification & Anti-Sybil Standards -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Anti-Sybil Architecture & Withdrawal SMS Authentication</h3>
+                    </div>
+                    <p class="article-text">
+                        To protect community allocations from automated scripts and multi-account bot networks[cite: 16]:
+                    </p>
+                    
+                    <div class="alert-box">
+                        <h5>🛡️ Compliance & Identity Protocol:</h5>
+                        <p><strong>1. SMS Phone Verification for Withdrawals:</strong> While users can accumulate points freely via browser or app, on-chain token withdrawal requires an SMS phone verification check to confirm individual human authenticity[cite: 16].</p>
+                        <p><strong>2. Unified Account Sync:</strong> A single account coordinates production across both mobile app and web browser sessions, preventing duplicate instance farming[cite: 16].</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: DEX Liquidity & Safety -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Decentralized Exchange (DEX) Liquidity & Safety</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Active QuickSwap Trading:</strong> Holana (HOL) has open trading pools active on <strong>QuickSwap (Polygon DEX)</strong>, with real-time price monitoring available on <strong>DEXTools</strong> and <strong>GeckoTerminal</strong>[cite: 14, 15].
+                    </p>
+                    <p class="article-text">
+                        <strong>Passphrase Protection:</strong> When connecting external non-custodial wallets (like MetaMask) to claim or trade HOL, never enter your secret 12 or 24-word recovery phrase[cite: 14]. The Holana core team will never ask for your private credentials.
+                    </p>
+                </div>
+
+                <!-- Point 6: Dedicated Video Walkthrough -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Dedicated Video Setup & Mining Guide</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video guide produced by <strong>Total Crypto Network</strong> covering registration, referral activation, HP-to-HOL conversion, and QuickSwap trading routes:
+                    </p>
+                    
+                    <div class="video-box-clean">
+                        <h4>▶️ Holana Network Complete Setup & Withdrawal Walkthrough</h4>
+                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                            <div class="yt-play-btn"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Disclosure -->
+                <div class="disclosure-box">
+                    <strong>Important Protocol Disclosure</strong>
+                    Total Crypto Hub provides independent educational information and technical directories only. Holana Network is an autonomous digital asset deployed on Polygon PoS[cite: 14]. Community points accumulation and tap rewards represent early participation. No upfront capital investment is required to participate[cite: 14].
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; <span translate="no">2026 Total Crypto Network</span>. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/contact.html">Contact Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Referral code copied: " + code);
+            });
+        }
+
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '../mobile-pages/mobile-mining.html';
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
