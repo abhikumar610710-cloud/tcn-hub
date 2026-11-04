@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidra Chain (SDA) Complete Architecture, Ledger Audit & KYCPort | Total Crypto Hub</title>
+    <meta name="description" content="Technical audit of Sidra Chain ($SDA): Verified-Human Financial Network, self-hosted EVM ledger with 44M+ transactions, ERC-4337 smart-account wallets, SidraSwap DEX, and KYCPort proof of personhood.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg-surface); padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
+
+        .btn-hub-glow { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
+
+        main { flex: 1; padding: 24px 0 60px; }
+
+        /* Compact Hero Action Card */
+        .project-hero-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 14px; 
+            padding: 18px 24px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 16px; 
+            margin-bottom: 22px; 
+            box-shadow: 0 2px 14px -2px rgba(0,0,0,0.03); 
+        }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { 
+            width: 56px; 
+            height: 56px; 
+            border-radius: 14px; 
+            overflow: hidden; 
+            border: 1.5px solid var(--border-color); 
+            padding: 3px; 
+            background: var(--card-subtle); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0; 
+        }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+        .project-titles h2 { font-size: 21px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
+        .verified-badge { background: #d97706; color: white; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; }
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 3px; font-weight: 500; }
+        
+        .hero-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+        .tag-pill { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
+        .tag-upcoming { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+        .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
+
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px 22px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
+            transition: all 0.2s; 
+        }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        /* 1240px Content Card */
+        .content-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 36px 40px; 
+            margin-bottom: 28px; 
+            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
+        }
+        .article-section { margin-bottom: 36px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .section-number { 
+            width: 30px; 
+            height: 30px; 
+            border-radius: 8px; 
+            background: var(--accent-primary); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            font-size: 13.5px; 
+            flex-shrink: 0; 
+        }
+        .section-header h3 { font-size: 18.5px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* Linear Flow Boxes */
+        .linear-flow { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .flow-step {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+        .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
+        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+
+        /* Live Explorer Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .metric-card {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 18px;
+        }
+        .metric-card span { font-size: 11.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
+        .metric-card h4 { font-size: 18px; font-weight: 800; color: var(--accent-primary); margin-top: 4px; line-height: 1.2; }
+
+        /* Section 3 Verification Box */
+        .tokenomics-verify-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
+        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
+        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .btn-audit {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-heading);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-audit:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Alert Box */
+        .alert-box { 
+            background: rgba(245, 158, 11, 0.08); 
+            border-left: 4px solid #f59e0b; 
+            padding: 18px 22px; 
+            border-radius: 0 8px 8px 0; 
+            margin: 20px 0; 
+        }
+        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
+        .alert-box p:last-child { margin-bottom: 0; }
+
+        /* Video Showcase */
+        .video-box-clean {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 14px;
+            max-width: 580px;
+        }
+        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .mock-youtube-player { 
+            background: #000; 
+            border-radius: 8px; 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            cursor: pointer; 
+            display: block; 
+            text-decoration: none; 
+        }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
+        .yt-play-btn { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 60px; 
+            height: 42px; 
+            background-color: #ff0000; 
+            border-radius: 10px; 
+            transition: transform 0.2s ease; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* Disclosure */
+        .disclosure-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 22px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-top: 30px;
+        }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
+
+        /* Footer */
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 22px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .btn-join { width: 100%; justify-content: center; }
+            .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
+            .verify-buttons { width: 100%; }
+            .btn-audit { width: 100%; justify-content: center; }
+            .section-header h3 { font-size: 17.5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box" translate="no">
+                <div class="logo-icon">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
+                </div>
+                <div class="logo-text">
+                    <h1>Total Crypto Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
+                </div>
+            </a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to Community</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (1240px Canvas) -->
+    <main>
+        <div class="site-container">
+
+            <!-- Compact Hero Action Card with Direct Portal Route -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/sidra.png" alt="Sidra Chain Logo" onerror="this.parentNode.innerHTML='⚡';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 translate="no">Sidra Chain (SDA) <span class="verified-badge">✓</span></h2>
+                        <p>Verified-Human Financial Network, Self-Hosted EVM Blockchain & SidraSwap</p>
+                        <div class="hero-tags">
+                            <span class="tag-pill tag-upcoming">🟡 Self-Hosted EVM Chain</span>
+                            <span class="tag-pill tag-subtle">ERC-4337 Smart Accounts</span>
+                            <span class="tag-pill tag-subtle">KYCPort Personhood</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <a href="https://www.sidrachain.com/" target="_blank" class="btn-join">⚡ Join Sidra Chain ↗</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 1240px Content Card -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Sidra Chain -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Sidra Chain? (Origins, EVM Framework & Human Network)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Sidra Chain</strong> is a sovereign, self-hosted decentralized Layer-1 financial infrastructure designed under the fundamental mission of <strong>"One verified human. One account."</strong> Engineered to eliminate automated sybil attacks, bot-driven liquidity extraction, and fake account manipulation, Sidra deploys an identity-bound consensus model where daily minting participation is tied strictly to verified individual human beings[cite: 48, 49].
+                    </p>
+                    <p class="article-text">
+                        Unlike experimental mobile airdrops that run on closed mock servers, Sidra operates a fully functional <strong>self-hosted EVM blockchain</strong>[cite: 48, 49]. Its core consensus ledger utilizes double-entry cryptographic accounting, maintaining high throughput, low gas transaction finality, and complete interoperability with EVM smart contracts, decentralized finance protocols, and asset tokenization frameworks[cite: 44, 49].
+                    </p>
+                </div>
+
+                <!-- Point 2: Mining Mechanics & ERC-4337 Smart Accounts -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Protocol Mechanics: Daily Rewards & Account Abstraction (ERC-4337)</h3>
+                    </div>
+                    <p class="article-text">
+                        Sidra Chain removes the friction of standard Web3 wallets by implementing next-generation smart contract architecture[cite: 48, 49]:
+                    </p>
+                    <div class="linear-flow">
+                        <div class="flow-step">
+                            <h4>⚡ 1. Daily Human Ledger Claim</h4>
+                            <p>Participants access their account once daily to claim authenticated reward allocations. Because ledger balances reflect genuine double-entry on-chain state, balances are recorded permanently on the self-hosted network[cite: 48, 49].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>🔑 2. ERC-4337 Smart-Account Wallet (No Seed Phrases)</h4>
+                            <p>Sidra eliminates complex 12-word seed phrases through Account Abstraction[cite: 48, 49]. Accounts feature social recovery through trusted guardians, biometric authentication, and protocol-level gasless execution[cite: 49].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>💱 3. SidraSwap Decentralized Exchange (DEX)</h4>
+                            <p>The sovereign chain features a live native DEX (<code>dex.sidrachain.com</code>) supporting token swaps across ecosystem assets with multi-million SDA liquidity pools.</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>🏛️ 4. Tokenized Real-World Assets (L3 Layer)</h4>
+                            <p>Sidra's Layer-3 infrastructure supports compliant issuance of permissioned real-world assets (RWA), digital banking instruments, and logistics tokens[cite: 46, 49].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 3: Live On-Chain Metrics & Ledger Verification -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Live On-Chain Ledger Audit & Network Performance</h3>
+                    </div>
+                    <p class="article-text">
+                        Sidra Chain's performance is publicly verifiable in real-time through its dedicated Blockscout-powered block explorer[cite: 44, 45]:
+                    </p>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <span>Total Blocks Processed</span>
+                            <h4>37,062,992+ Blocks</h4>
+                        </div>
+                        <div class="metric-card">
+                            <span>Average Block Time</span>
+                            <h4>2.0s Fast Finality</h4>[cite: 44]
+                        </div>
+                        <div class="metric-card">
+                            <span>Total Ledger Transactions</span>
+                            <h4>44,444,812+ Txns</h4>[cite: 44]
+                        </div>
+                        <div class="metric-card">
+                            <span>Registered Wallet Addresses</span>
+                            <h4>2,456,724+ Nodes</h4>[cite: 44]
+                        </div>
+                    </div>
+
+                    <p class="article-text">
+                        • <strong>Native Gas Asset:</strong> <strong>SDA (Sidra Asset)</strong> settles all smart contract interactions and DEX pool swaps[cite: 44, 46].<br>
+                        • <strong>Network Gas Fee:</strong> Ultra-low transaction fees (~0.00004 to 0.0001 SDA per transfer)[cite: 44, 45].<br>
+                        • <strong>SidraSwap TVL:</strong> Over <strong>3.81 Million SDA</strong> locked in liquidity pools across verified ecosystem assets[cite: 46].
+                    </p>
+
+                    <!-- Section 3 Verification Box -->
+                    <div class="tokenomics-verify-box">
+                        <div class="verify-text-area">
+                            <h5>Official Protocol Audits & Documentation</h5>
+                            <p>Verify blockchain transactions, live blocks, DEX liquidity pools, and smart contracts directly[cite: 44, 46]:</p>
+                        </div>
+                        <div class="verify-buttons">
+                            <a href="https://ledger.sidrachain.com/" target="_blank" class="btn-audit">🔍 Live Sidra Ledger Explorer ↗</a>[cite: 44]
+                            <a href="https://dex.sidrachain.com/#/explore/tokens" target="_blank" class="btn-audit">💱 SidraSwap DEX Explorer ↗</a>[cite: 46]
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Verification & Anti-Sybil Standards -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Proof of Personhood: Two-Step KYCPort Verification</h3>
+                    </div>
+                    <p class="article-text">
+                        To enforce strict anti-sybil standards and guarantee that one person commands exactly one node[cite: 48, 49]:
+                    </p>
+                    
+                    <div class="alert-box">
+                        <h5>🛡️ KYCPort Compliance Protocol:</h5>
+                        <p><strong>1. Document Validation:</strong> Participants verify identity via <strong>KYCPort</strong> (<code>kycport.com</code>) using government-issued National ID cards or Passports.</p>
+                        <p><strong>2. Passive Liveness Biometric Check:</strong> A browser/app interactive 3D face liveness scan proves real human existence, systematically eradicating bot farms and multiple automated accounts[cite: 49, 50, 51].</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: Smart Account Safety -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Smart Account Security & Social Recovery Hygiene</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Guardian Configuration:</strong> Because Sidra accounts utilize Account Abstraction (ERC-4337), ensure you configure verified guardian emails or backup signers within your account settings[cite: 49]. This enables seamless social recovery without fear of losing physical seed phrases[cite: 48, 49].
+                    </p>
+                    <p class="article-text">
+                        <strong>Zero Upfront Investment:</strong> Participating in Sidra Chain ledger distribution requires zero upfront capital, zero mining equipment purchases, and zero paid subscription packages[cite: 48].
+                    </p>
+                </div>
+
+                <!-- Point 6: Dedicated Video Walkthrough -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Dedicated Video Setup & KYC Walkthrough</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video guide produced by <strong>Total Crypto Network</strong> covering registration, KYCPort verification steps, smart-account security, and SidraSwap DEX navigation:
+                    </p>
+                    
+                    <div class="video-box-clean">
+                        <h4>▶️ Sidra Chain Complete Setup, KYCPort & Ledger Guide</h4>
+                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                            <div class="yt-play-btn"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Disclosure -->
+                <div class="disclosure-box">
+                    <strong>Important Protocol Disclosure</strong>
+                    Total Crypto Hub provides independent educational information and technical directories only. Sidra Chain is an autonomous self-hosted EVM blockchain[cite: 45, 48]. Community ledger distributions represent early network participation. No upfront capital investment is required to participate[cite: 48].
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; <span translate="no">2026 Total Crypto Network</span>. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/contact.html">Contact Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '../mobile-pages/mobile-mining.html';
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
