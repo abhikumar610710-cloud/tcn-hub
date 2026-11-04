@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi App (Core DAO) Guide & Airdrop Hub | Total Crypto Hub</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #1e293b;
+            --text-muted: #475569;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --row-hover: #f1f5f9;
+            --container-max-width: 1100px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --row-hover: #131c31;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .logo-text b { color: var(--accent-primary); }
+
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .back-nav-btn { background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-color); padding: 7px 16px; border-radius: 20px; font-size: 12.5px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+        .back-nav-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
+
+        main { flex: 1; padding: 36px 0 64px; }
+
+        /* Project Banner Card */
+        .project-header-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .project-avatar-large {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            border: 2px solid var(--accent-primary);
+            padding: 3px;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+            flex-shrink: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-avatar-large img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .project-title-area h2 { font-size: 26px; font-weight: 800; color: var(--text-heading); line-height: 1.2; margin-bottom: 6px; }
+        .project-meta-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .badge-pill { padding: 4px 10px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-live { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-chain { background: var(--bg-body); color: var(--text-muted); border: 1px solid var(--border-color); }
+        
+        .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-cta { padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+        .btn-cta-primary { background: var(--accent-primary); color: white; border: none; }
+        .btn-cta-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn-cta-secondary { background: var(--bg-body); color: var(--text-heading); border: 1px solid var(--border-color); }
+        .btn-cta-secondary:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+
+        /* Content Sections */
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+        @media (max-width: 860px) { .content-grid { grid-template-columns: 1fr; } }
+
+        .info-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 26px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.03);
+        }
+        .card-heading {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .card-body p { font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px; font-weight: 500; }
+        .card-body b { color: var(--text-heading); font-weight: 700; }
+
+        /* Step List */
+        .step-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+        .step-item { display: flex; gap: 14px; align-items: flex-start; }
+        .step-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .step-content h4 { font-size: 14.5px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; }
+        .step-content p { font-size: 13.5px; color: var(--text-body); line-height: 1.6; margin-bottom: 0; }
+
+        /* Highlight Notice */
+        .notice-box {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin: 18px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .notice-icon { font-size: 20px; line-height: 1; flex-shrink: 0; }
+        .notice-text { font-size: 13px; line-height: 1.6; color: var(--text-heading); font-weight: 600; }
+
+        /* Spec Table / Sidebar */
+        .spec-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .spec-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); font-size: 13px; }
+        .spec-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .spec-key { color: var(--text-muted); font-weight: 600; }
+        .spec-val { color: var(--text-heading); font-weight: 800; text-align: right; }
+
+        /* Contract Address Container */
+        .contract-display {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--text-heading);
+        }
+        .btn-copy-mini {
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+    </style>
+</head>
+<body data-theme="light">
+    <header>
+        <div class="site-container">
+            <div class="header-top-row">
+                <a href="../index.html" class="logo-box">
+                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="Total Crypto Network" onerror="this.style.display='none';"></div>
+                    <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
+                </a>
+                
+                <div class="header-right">
+                    <a href="../mobile-pages/mobile-mining.html" class="back-nav-btn">← Back to Community</a>
+                    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="site-container">
+            <!-- HEADER HERO CARD -->
+            <div class="project-header-card">
+                <div class="header-left">
+                    <div class="project-avatar-large">
+                        <img src="../logos/satoshi.png" alt="Satoshi App Logo" onerror="this.src='https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/128/color/generic.png';">
+                    </div>
+                    <div class="project-title-area">
+                        <h2>Satoshi App (Core DAO)</h2>
+                        <div class="project-meta-badges">
+                            <span class="badge-pill badge-live">🟢 Core Mainnet Live</span>
+                            <span class="badge-pill badge-chain">EVM Layer 1</span>
+                            <span class="badge-pill badge-chain">Satoshi Plus Consensus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="https://www.btcs.fan/" target="_blank" class="btn-cta btn-cta-primary">📥 Official App Portal ↗</a>
+                    <a href="https://scan.coredao.org/" target="_blank" class="btn-cta btn-cta-secondary">🔍 CoreScan Explorer</a>
+                </div>
+            </div>
+
+            <!-- TWO-COLUMN CONTENT GRID -->
+            <div class="content-grid">
+                <!-- MAIN COLUMN -->
+                <div class="main-column">
+                    <!-- OVERVIEW -->
+                    <div class="info-card">
+                        <h3 class="card-heading">📖 Project Overview: What is Satoshi App?</h3>
+                        <div class="card-body">
+                            <p>
+                                <b>Satoshi App</b> is the official free airdrop and decentralized infrastructure application originated by the <b>Core DAO</b> community. It pioneered mobile-first crypto distribution by allowing millions of global users to participate in the early distribution of <b>CORE tokens</b> without requiring expensive ASIC rigs or electricity consumption.
+                            </p>
+                            <p>
+                                Following the successful launch of the <b>Core Mainnet</b> in January 2023, Satoshi App transitioned into a premiere <b>Multi-Project Free Airdrop Launchpad</b>. Rather than mining standard Bitcoin or Core directly on mobile phones, users now participate in scheduled airdrop rounds from vetted Web3 partner protocols building on the Core Layer-1 chain.
+                            </p>
+
+                            <div class="notice-box">
+                                <div class="notice-icon">💡</div>
+                                <div class="notice-text">
+                                    <b>Current Operational Status:</b> The original CORE mining phase concluded with the Mainnet genesis. Currently, Satoshi App operates as a zero-cost airdrop aggregator where users accumulate daily project tokens (such as OpenEX and ecosystem partner rewards) by maintaining their Hash power.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HOW IT WORKS -->
+                    <div class="info-card">
+                        <h3 class="card-heading">⚙️ Step-by-Step: How to Participate & Claim</h3>
+                        <div class="card-body">
+                            <ul class="step-list">
+                                <li class="step-item">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <h4>Download via Official Portal</h4>
+                                        <p>Visit the official Satoshi website (<code>btcs.fan</code>) and install the official APK or Google Play release. Never install unofficial packages distributed via Telegram channels.</p>
+                                    </div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <h4>Complete I'm Not a Robot Facial Verification</h4>
+                                        <p>To prevent multi-account Sybil bot manipulation, the application requires a simple on-device biometric angle verification. No national identity card is required for basic app registration.</p>
+                                    </div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <h4>Select Active Airdrop Projects</h4>
+                                        <p>Navigate to the <i>Projects</i> tab inside the application and tap <b>Participate in Airdrop</b> on ongoing ecosystem tokens.</p>
+                                    </div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <h4>Claim Daily Airdrop Blocks (Every 24 Hours)</h4>
+                                        <p>Airdrop rounds generate automatically every hour. You must tap the <b>Claim</b> button at least once every 24 hours (before 25 rounds accumulate) to prevent automated round suspension.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- HASH POWER & ACCELERATION -->
+                    <div class="info-card">
+                        <h3 class="card-heading">⚡ Increasing Claim Velocity: HashCards & GiftCards</h3>
+                        <div class="card-body">
+                            <p>
+                                Your reward output in Satoshi App is proportional to your <b>My Hash</b> score relative to the total global hash pool:
+                            </p>
+                            <p>
+                                • <b>HashCards:</b> Exchange card codes (Beetle Card, Ant Card, Spider Card, Rock Card, Satoshi Card) with fellow community members in verification groups to amplify your personal hashing rate by up to 120,000 Hash.<br>
+                                • <b>GiftCards:</b> Share 30K GiftCard codes with new community recruits to give them an instant starting boost while securing 1K permanent Hash for your node profile.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SECURITY WARNING -->
+                    <div class="info-card">
+                        <h3 class="card-heading">🛡️ Security & Anti-Scam Verification</h3>
+                        <div class="card-body">
+                            <p>
+                                <b>Core DAO</b> and Satoshi App will <b>never ask for private keys, seed phrases, or gas fees</b> to claim in-app airdrop rounds.
+                            </p>
+                            <p>
+                                Always cross-reference smart contract addresses directly on the official CoreScan explorer. Avoid counterfeit Core or partner tokens traded on unauthorized decentralized exchanges.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR COLUMN -->
+                <div class="sidebar-column">
+                    <!-- QUICK SPECS -->
+                    <div class="info-card">
+                        <h3 class="card-heading">📊 Protocol Metrics</h3>
+                        <ul class="spec-list">
+                            <li class="spec-row">
+                                <span class="spec-key">Ecosystem</span>
+                                <span class="spec-val">Core DAO</span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">Native Token</span>
+                                <span class="spec-val">CORE</span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">Consensus Model</span>
+                                <span class="spec-val">Satoshi Plus (PoW + DPoS)</span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">Max Supply</span>
+                                <span class="spec-val">2.1 Billion CORE</span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">In-App Cost</span>
+                                <span class="spec-val">100% Free ($0)</span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">Daily Duty</span>
+                                <span class="spec-val">1 Claim / 24 Hours</span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">Trading Status</span>
+                                <span class="spec-val">Listed (OKX, Bybit, Gate)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CONTRACT ADDRESS -->
+                    <div class="info-card">
+                        <h3 class="card-heading">🔗 Native Core Network</h3>
+                        <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 8px;">
+                            Core is a standalone Layer-1 EVM blockchain. CORE tokens function as native gas coins (similar to ETH on Ethereum).
+                        </p>
+                        <div class="contract-display">
+                            <span>Chain ID: 1116</span>
+                            <button class="btn-copy-mini" onclick="copyText('1116', this)">Copy ID</button>
+                        </div>
+                    </div>
+
+                    <!-- OFFICIAL CHANNELS -->
+                    <div class="info-card">
+                        <h3 class="card-heading">🌐 Verified Portals</h3>
+                        <ul class="spec-list">
+                            <li class="spec-row">
+                                <span class="spec-key">Official Website</span>
+                                <span class="spec-val"><a href="https://coredao.org/" target="_blank" style="color: var(--accent-primary); text-decoration: none;">coredao.org ↗</a></span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">App Download</span>
+                                <span class="spec-val"><a href="https://www.btcs.fan/" target="_blank" style="color: var(--accent-primary); text-decoration: none;">btcs.fan ↗</a></span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">Block Explorer</span>
+                                <span class="spec-val"><a href="https://scan.coredao.org/" target="_blank" style="color: var(--accent-primary); text-decoration: none;">CoreScan ↗</a></span>
+                            </li>
+                            <li class="spec-row">
+                                <span class="spec-key">Official X (Twitter)</span>
+                                <span class="spec-val"><a href="https://x.com/CoreDAO_Org" target="_blank" style="color: var(--accent-primary); text-decoration: none;">@CoreDAO_Org ↗</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">&copy; 2026 Total Crypto Network. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/contact.html">Contact Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const old = btn.innerText;
+                btn.innerText = "✓ Copied";
+                setTimeout(() => { btn.innerText = old; }, 1800);
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggleBtn = document.getElementById('themeToggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
