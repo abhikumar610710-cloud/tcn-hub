@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Network (ALPHA) Complete Architecture, Auctions & Technical Audit | Total Crypto Hub</title>
+    <meta name="description" content="Technical audit of Alpha Network (ALPHA): Mobile cloud consensus protocol, 24-hour mining cycles, in-app BNB withdrawals, Alpha Auctions liquidity mechanics, and staking architecture.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg-surface); padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
+
+        .btn-hub-glow { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
+
+        main { flex: 1; padding: 24px 0 60px; }
+
+        /* Compact Hero Action Card */
+        .project-hero-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 14px; 
+            padding: 18px 24px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 16px; 
+            margin-bottom: 22px; 
+            box-shadow: 0 2px 14px -2px rgba(0,0,0,0.03); 
+        }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { 
+            width: 56px; 
+            height: 56px; 
+            border-radius: 14px; 
+            overflow: hidden; 
+            border: 1.5px solid var(--border-color); 
+            padding: 3px; 
+            background: var(--card-subtle); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0; 
+        }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+        .project-titles h2 { font-size: 21px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
+        .verified-badge { background: #d97706; color: white; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; }
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 3px; font-weight: 500; }
+        
+        .hero-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+        .tag-pill { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
+        .tag-upcoming { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+        .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
+
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px 22px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
+            transition: all 0.2s; 
+        }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        /* 1240px Content Card */
+        .content-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 36px 40px; 
+            margin-bottom: 28px; 
+            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
+        }
+        .article-section { margin-bottom: 36px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .section-number { 
+            width: 30px; 
+            height: 30px; 
+            border-radius: 8px; 
+            background: var(--accent-primary); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            font-size: 13.5px; 
+            flex-shrink: 0; 
+        }
+        .section-header h3 { font-size: 18.5px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* Linear Flow Boxes */
+        .linear-flow { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .flow-step {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+        .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
+        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+
+        /* Auctions Showcase Grid */
+        .auctions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .auction-card {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+        .auction-card h5 { font-size: 13.5px; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
+        .auction-card p { font-size: 12px; color: var(--text-muted); margin: 0; }
+        .auction-card span { font-weight: 800; color: var(--accent-primary); }
+
+        /* Section 3 Verification Box */
+        .tokenomics-verify-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
+        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
+        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .btn-audit {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-heading);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-audit:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Alert Box */
+        .alert-box { 
+            background: rgba(245, 158, 11, 0.08); 
+            border-left: 4px solid #f59e0b; 
+            padding: 18px 22px; 
+            border-radius: 0 8px 8px 0; 
+            margin: 20px 0; 
+        }
+        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
+        .alert-box p:last-child { margin-bottom: 0; }
+
+        /* Video Showcase */
+        .video-box-clean {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 14px;
+            max-width: 580px;
+        }
+        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .mock-youtube-player { 
+            background: #000; 
+            border-radius: 8px; 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            cursor: pointer; 
+            display: block; 
+            text-decoration: none; 
+        }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
+        .yt-play-btn { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 60px; 
+            height: 42px; 
+            background-color: #ff0000; 
+            border-radius: 10px; 
+            transition: transform 0.2s ease; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* Disclosure */
+        .disclosure-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 22px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-top: 30px;
+        }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
+
+        /* Footer */
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 22px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .btn-join { width: 100%; justify-content: center; }
+            .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
+            .verify-buttons { width: 100%; }
+            .btn-audit { width: 100%; justify-content: center; }
+            .section-header h3 { font-size: 17.5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box" translate="no">
+                <div class="logo-icon">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
+                </div>
+                <div class="logo-text">
+                    <h1>Total Crypto Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
+                </div>
+            </a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to Community</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (1240px Canvas) -->
+    <main>
+        <div class="site-container">
+
+            <!-- Compact Hero Action Card with Direct Join Route -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/alpha.png" alt="Alpha Network Logo" onerror="this.parentNode.innerHTML='α';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 translate="no">Alpha Network (ALPHA) <span class="verified-badge">✓</span></h2>
+                        <p>Mobile Cloud Consensus Protocol, Alpha Auctions & In-App BNB Liquidity</p>
+                        <div class="hero-tags">
+                            <span class="tag-pill tag-upcoming">🟡 Mining Phase / Auctions</span>
+                            <span class="tag-pill tag-subtle">2M+ Registered Pioneers</span>
+                            <span class="tag-pill tag-subtle">In-App BNB Withdraw</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <a href="https://www.minealpha.net" target="_blank" class="btn-join">⚡ Join & Mine Alpha ↗</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 1240px Content Card -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Alpha Network -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Alpha Network? (Origins, Community Scale & Architecture)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Alpha Network</strong> is an established decentralized mobile cryptocurrency protocol launched in late 2020 to introduce mainstream smartphone users to cloud-based digital asset mining[cite: 53, 55]. Built with an emphasis on simplicity, security, and low device overhead (<em>"Fast, Safe, Easy"</em>), the network has scaled its global community to over <strong>2,000,000+ registered members</strong>[cite: 53, 55].
+                    </p>
+                    <p class="article-text">
+                        Operating under the mission of building a fair and decentralized mobile currency ledger, Alpha eliminates the need for expensive proof-of-work graphic processors or battery-intensive background tasks[cite: 53, 54]. Instead, the system leverages authenticated cloud epochs to coordinate verified user check-ins and gradual token issuance directly across iOS and Android ecosystems.
+                    </p>
+                </div>
+
+                <!-- Point 2: Mining Mechanics & In-App Features -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Mining Architecture: 24-Hour Cycle, Staking & Collect Rewards</h3>
+                    </div>
+                    <p class="article-text">
+                        Alpha Network utilizes an automated server-side distribution framework[cite: 53, 57]:
+                    </p>
+                    <div class="linear-flow">
+                        <div class="flow-step">
+                            <h4>⚡ 1. Daily 24-Hour Mining Epoch</h4>
+                            <p>Miners initialize a 24-hour mining session with a single tap[cite: 57]. The cloud session records progress autonomously at a baseline yield rate (e.g., <strong>+0.06 ALPHA / hour</strong>), generating zero hardware strain, heat, or battery drainage on the phone[cite: 53, 57].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>🎁 2. Periodic "Collect Rewards" Loot Chests</h4>
+                            <p>In addition to standard hourly yields, users can engage with recurring loot chest intervals to unlock temporary mining rate multipliers and direct coin bonuses[cite: 57].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>📈 3. Integrated Staking Modules</h4>
+                            <p>Participants can lock accumulated Alpha holdings into in-app staking pools, earning yield interest while reinforcing long-term circulating supply stability[cite: 57].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>💰 4. In-App BNB Liquidity & Withdrawals</h4>
+                            <p>Alpha features an integrated withdrawal gateway allowing verified balances to interface with the Binance Smart Chain (BNB) ecosystem directly within the application.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 3: Alpha Auctions & Liquidity Dynamics -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Alpha Auctions Architecture: Tiered Order Book & Market Discovery</h3>
+                    </div>
+                    <p class="article-text">
+                        A core distinguishing mechanism of Alpha Network is the <strong>Alpha Auctions</strong> feature, providing dynamic peer-to-peer liquidity and token bidding pools directly within the interface:
+                    </p>
+
+                    <div class="auctions-grid">
+                        <div class="auction-card">
+                            <h5>Tier IV Auction <span>$25</span></h5>
+                            <p>Pool Size: <strong>43.3K ALPHA</strong> (Equitable Model)[cite: 56]</p>
+                        </div>
+                        <div class="auction-card">
+                            <h5>Tier V Auction <span>$30</span></h5>
+                            <p>Pool Size: <strong>2.3K ALPHA</strong> (Competitive Bids)[cite: 56]</p>
+                        </div>
+                        <div class="auction-card">
+                            <h5>Tier VI Auction <span>$35</span></h5>
+                            <p>Pool Size: <strong>4.4K ALPHA</strong> (Multi-Seat Pools)[cite: 56]</p>
+                        </div>
+                        <div class="auction-card">
+                            <h5>Tier VII High Volume <span>$40</span></h5>
+                            <p>Pool Size: <strong>1.2M+ ALPHA</strong> (Major Participant Pool)[cite: 56]</p>
+                        </div>
+                    </div>
+
+                    <p class="article-text">
+                        • <strong>P2P Price Discovery:</strong> Auctions establish internal algorithmic liquidity matching buyers and sellers across varying pool tiers[cite: 56].<br>
+                        • <strong>Winner Settlements:</strong> Successful bids settle directly into user balances, establishing empirical demand metrics prior to external tier-1 exchange listings[cite: 56].
+                    </p>
+
+                    <!-- Section 3 Verification Box -->
+                    <div class="tokenomics-verify-box">
+                        <div class="verify-text-area">
+                            <h5>Official Protocol Audits & Documentation</h5>
+                            <p>Inspect the official white paper, roadmap milestones, and FAQs on the authenticated domain[cite: 53]:</p>
+                        </div>
+                        <div class="verify-buttons">
+                            <a href="https://www.minealpha.net" target="_blank" class="btn-audit">📄 Read Official Whitepaper ↗</a>[cite: 53]
+                            <a href="https://www.minealpha.net" target="_blank" class="btn-audit">🌐 Official Alpha Portal ↗</a>[cite: 53]
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Verification & Anti-Sybil Standards -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Anti-Sybil Protocols & Account Integrity</h3>
+                    </div>
+                    <p class="article-text">
+                        To guarantee that mined balances reflect genuine human participants rather than automated script networks[cite: 54]:
+                    </p>
+                    
+                    <div class="alert-box">
+                        <h5>🛡️ Compliance & Node Verification Standard:</h5>
+                        <p><strong>1. One-Account Policy:</strong> Alpha Network binds accounts to unique device credentials and secure Google/Apple sign-in certificates to eliminate parallel emulator farms[cite: 53].</p>
+                        <p><strong>2. Auction & Withdrawal Gating:</strong> Entering high-tier liquidity auctions and executing external BNB withdrawals requires complete account integrity checks to prevent fraudulent asset extraction[cite: 54, 56].</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: Non-Custodial Safety & Security Hygiene -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Wallet Hygiene & External Transfer Security</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Passphrase Protection:</strong> When configuring external Web3 wallets for BNB withdrawals, never share your 12 or 24-word recovery phrase with anyone[cite: 54]. Alpha Network developers, moderators, and support channels will never ask for your private keys or seed passphrases.
+                    </p>
+                    <p class="article-text">
+                        <strong>Zero Upfront Investment:</strong> Participating in Alpha Network cloud mining and daily token collection requires zero deposit fees, zero paid node rentals, and zero compulsory hardware upgrades[cite: 53].
+                    </p>
+                </div>
+
+                <!-- Point 6: Dedicated Video Walkthrough -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Dedicated Video Setup & Mining Guide</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video guide produced by <strong>Total Crypto Network</strong> covering registration, daily reward collection, staking mechanics, and Alpha Auctions bidding strategies:
+                    </p>
+                    
+                    <div class="video-box-clean">
+                        <h4>▶️ Alpha Network Setup, Staking & Auctions Walkthrough</h4>
+                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                            <div class="yt-play-btn"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Disclosure -->
+                <div class="disclosure-box">
+                    <strong>Important Protocol Disclosure</strong>
+                    Total Crypto Hub provides independent educational information and technical directories only. Alpha Network is an autonomous mobile mining platform[cite: 53]. Community mobile mining rewards and auction metrics represent early network participation[cite: 53, 56]. No upfront capital investment is required to participate[cite: 53].
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; <span translate="no">2026 Total Crypto Network</span>. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/contact.html">Contact Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '../mobile-pages/mobile-mining.html';
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
