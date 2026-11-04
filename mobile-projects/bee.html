@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bee Network ($BEE) Complete Architecture, Mobile Mining & Technical Audit | Total Crypto Hub</title>
+    <meta name="description" content="Technical audit of Bee Network ($BEE): Global Web3 portal, 58M+ verified participants, multi-chain DApp ecosystem, KYC verification batches, and mining halving mechanics.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg-surface); padding: 1px; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
+
+        .btn-hub-glow { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
+
+        main { flex: 1; padding: 24px 0 60px; }
+
+        /* Compact Hero Action Card */
+        .project-hero-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 14px; 
+            padding: 18px 24px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 16px; 
+            margin-bottom: 22px; 
+            box-shadow: 0 2px 14px -2px rgba(0,0,0,0.03); 
+        }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { 
+            width: 56px; 
+            height: 56px; 
+            border-radius: 14px; 
+            overflow: hidden; 
+            border: 1.5px solid var(--border-color); 
+            padding: 3px; 
+            background: var(--card-subtle); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0; 
+        }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+        .project-titles h2 { font-size: 21px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
+        .verified-badge { background: #d97706; color: white; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; }
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 3px; font-weight: 500; }
+        
+        .hero-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+        .tag-pill { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
+        .tag-upcoming { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+        .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
+
+        .hero-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 5px 6px 5px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+        .invite-label { font-size: 9px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.4px; margin-bottom: 1px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 13px; letter-spacing: 0.4px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px 18px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
+            transition: all 0.2s; 
+        }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        /* 1240px Content Card */
+        .content-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 36px 40px; 
+            margin-bottom: 28px; 
+            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
+        }
+        .article-section { margin-bottom: 36px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .section-number { 
+            width: 30px; 
+            height: 30px; 
+            border-radius: 8px; 
+            background: var(--accent-primary); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            font-size: 13.5px; 
+            flex-shrink: 0; 
+        }
+        .section-header h3 { font-size: 18.5px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* Linear Flow Boxes */
+        .linear-flow { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .flow-step {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+        .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
+        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+
+        /* Ecosystem Chips Grid */
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .eco-chip {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* Section 3 Verification Box */
+        .tokenomics-verify-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
+        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
+        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .btn-audit {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-heading);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-audit:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Alert Box */
+        .alert-box { 
+            background: rgba(245, 158, 11, 0.08); 
+            border-left: 4px solid #f59e0b; 
+            padding: 18px 22px; 
+            border-radius: 0 8px 8px 0; 
+            margin: 20px 0; 
+        }
+        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
+        .alert-box p:last-child { margin-bottom: 0; }
+
+        /* Video Showcase */
+        .video-box-clean {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 14px;
+            max-width: 580px;
+        }
+        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .mock-youtube-player { 
+            background: #000; 
+            border-radius: 8px; 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            cursor: pointer; 
+            display: block; 
+            text-decoration: none; 
+        }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
+        .yt-play-btn { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 60px; 
+            height: 42px; 
+            background-color: #ff0000; 
+            border-radius: 10px; 
+            transition: transform 0.2s ease; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* Disclosure */
+        .disclosure-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 22px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-top: 30px;
+        }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
+
+        /* Footer */
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 22px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; flex-direction: column; align-items: stretch; }
+            .invite-box { justify-content: space-between; }
+            .btn-join { width: 100%; justify-content: center; }
+            .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
+            .verify-buttons { width: 100%; }
+            .btn-audit { width: 100%; justify-content: center; }
+            .section-header h3 { font-size: 17.5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box" translate="no">
+                <div class="logo-icon">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
+                </div>
+                <div class="logo-text">
+                    <h1>Total Crypto Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
+                </div>
+            </a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to Community</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (1240px Canvas) -->
+    <main>
+        <div class="site-container">
+
+            <!-- Compact Hero Action Card with Referral Box -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/bee.png" alt="Bee Network Logo" onerror="this.parentNode.innerHTML='🐝';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 translate="no">Bee Network <span class="verified-badge">✓</span></h2>
+                        <p>Global Web3 Portal, Multi-Chain Ecosystem & 58M+ Decentralized Node Community</p>
+                        <div class="hero-tags">
+                            <span class="tag-pill tag-upcoming">🟡 Mining Phase / Web3 Portal</span>
+                            <span class="tag-pill tag-subtle">58M+ Registered Users</span>
+                            <span class="tag-pill tag-subtle">Multi-Chain Hub</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code (Claim 88 $BEE)</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">totalcryptonetwork</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+
+                    <a href="https://j.bee.com/s?a=totalcryptonetwork" target="_blank" class="btn-join">⚡ Download & Mine BEE ↗</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 1240px Content Card -->
+            <div class="content-card">
+
+                <!-- Point 1: What is Bee Network -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Bee Network? (Origins, Scale & Web3 Gateway)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Bee Network</strong> is one of the world's largest gamified decentralized Web3 platforms, launched to provide mainstream smartphone users with seamless entry into digital asset ownership. Branded as <strong>"The Portal to The Web3 World,"</strong> the network coordinates over <strong>58,065,367+ registered global pioneers</strong>, surpassing 1 million active users across more than 11 countries and geographic territories.
+                    </p>
+                    <p class="article-text">
+                        Rather than requiring expensive supercomputers, graphics rigs, or energy-draining proof-of-work computation, Bee Network democratizes blockchain participation through an intuitive mobile interface[cite: 38]. It functions as a complete decentralized hub—combining zero-hardware social consensus mining with an integrated Web3 DApp Store and non-custodial multi-chain wallet[cite: 37, 38].
+                    </p>
+                </div>
+
+                <!-- Point 2: Mining Mechanics & Halving Decay -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>Mining Architecture: 24-Hour Tap Cycles & Algorithmic Halving</h3>
+                    </div>
+                    <p class="article-text">
+                        Bee Network enforces an energy-efficient human presence protocol that safeguards smartphone hardware integrity[cite: 38]:
+                    </p>
+                    <div class="linear-flow">
+                        <div class="flow-step">
+                            <h4>⚡ 1. Daily 24-Hour Tap Session</h4>
+                            <p>Users initiate their mining epoch by pressing the bee hive button once every 24 hours[cite: 36]. The session accumulates rewards automatically in the cloud without keeping device screens on or consuming mobile battery power[cite: 36, 38].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>📉 2. Fixed Algorithmic Halving Cycles</h4>
+                            <p>To preserve token scarcity, Bee Network enforces system-wide rate halvings as user milestones are reached. Following its 3rd rate halving upon crossing 10 million users, the baseline mining throughput was stabilized at <strong>0.2 Bee/hour</strong>, scaling down toward final supply saturation[cite: 37].</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>🍯 3. Dual Utility Assets ($BEE vs. Bee Honey)</h4>
+                            <p>The network distinguishes between core governance token rights (<strong>$BEE</strong>) and in-app interaction units (<strong>Bee Honey</strong>), creating structured monetization loops across platform games, quests, and community activities.</p>
+                        </div>
+                        <div class="flow-step">
+                            <h4>👥 4. Security Circles & Team Velocity Boosts</h4>
+                            <p>Participants scale base production by building trusted referral circles, earning an additional <strong>+25% bonus rate per active miner</strong> during concurrent 24-hour sessions[cite: 36].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 3: Multi-Chain Architecture & Ecosystem Audits -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Multi-Chain Architecture, DApp Store & Technical Verification</h3>
+                    </div>
+                    <p class="article-text">
+                        Unlike isolated mobile mining projects, Bee Network is natively architected as an interoperable gateway compatible across tier-1 blockchain infrastructures[cite: 36, 40, 41]:
+                    </p>
+
+                    <div class="ecosystem-grid">
+                        <div class="eco-chip">🔷 Ethereum</div>
+                        <div class="eco-chip">🟡 BNB Chain[cite: 41]</div>
+                        <div class="eco-chip">🟣 Polygon[cite: 40]</div>
+                        <div class="eco-chip">🟢 Solana[cite: 40]</div>
+                        <div class="eco-chip">⚫ OKX Chain[cite: 40, 41]</div>
+                        <div class="eco-chip">🔴 Optimism[cite: 40]</div>
+                        <div class="eco-chip">🔺 Avalanche[cite: 41]</div>
+                        <div class="eco-chip">🔵 Cardano[cite: 41]</div>
+                    </div>
+
+                    <p class="article-text">
+                        • <strong>Web3 DApp Integration:</strong> Users directly interact with decentralized exchanges, NFT marketplaces, and gamefi protocols from within the integrated browser[cite: 37].<br>
+                        • <strong>Scalable Infrastructure:</strong> Designed to serve as the unified identity and login layer for 58M+ users transitioning into on-chain Web3 economies[cite: 36, 37].
+                    </p>
+
+                    <!-- Section 3 Verification Box -->
+                    <div class="tokenomics-verify-box">
+                        <div class="verify-text-area">
+                            <h5>Official Protocol Audits & Documentation</h5>
+                            <p>Verify halving milestones, ecosystem documentation, and developer updates via official portals[cite: 36, 37]:</p>
+                        </div>
+                        <div class="verify-buttons">
+                            <a href="https://bee.com/" target="_blank" class="btn-audit">📄 Official Bee Portal ↗</a>
+                            <a href="https://wp.bee.com/en/beeHive" target="_blank" class="btn-audit">🔍 BeeHive Whitepaper Docs ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: KYC Batches & Anti-Sybil Integrity -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Tiered KYC Verification: Bot Disqualification Framework</h3>
+                    </div>
+                    <p class="article-text">
+                        To guarantee that mined allocations represent authentic human contributors rather than script-driven farms[cite: 38]:
+                    </p>
+                    
+                    <div class="alert-box">
+                        <h5>🛡️ Compliance & Batch KYC Releases:</h5>
+                        <p><strong>1. Periodic 100,000+ KYC Rounds:</strong> Bee Network releases progressive batches of identity verification slots (such as major 100K KYC releases), requiring government-issued documentation and biometric liveness checks prior to token transferability.</p>
+                        <p><strong>2. Inactive Node Burn Policy:</strong> Tokens accumulated by unverified accounts or fraudulent multi-instance emulators are subject to system recovery, protecting active pioneer equity.</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: Multi-Chain Wallet Safety -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Self-Custody Multi-Chain Wallet & Security Standards</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Non-Custodial Key Storage:</strong> Bee Network includes a built-in decentralized multi-chain wallet[cite: 37, 40, 41]. When backing up your 12-word recovery phrase, store it offline in an air-gapped physical medium. The Bee Network core team will never ask for your private keys, seed passphrases, or account recovery credentials[cite: 37].
+                    </p>
+                    <p class="article-text">
+                        <strong>Zero Upfront Investment:</strong> Participating in Bee Network daily mining requires zero capital deposits, zero VIP membership upgrades, and zero paid accelerator packages[cite: 38].
+                    </p>
+                </div>
+
+                <!-- Point 6: Dedicated Video Walkthrough -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Dedicated Video Setup & Mining Guide</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video guide produced by <strong>Total Crypto Network</strong> covering registration, referral claim optimization (claim 88 $BEE), KYC checklist preparation, and DApp store navigation:
+                    </p>
+                    
+                    <div class="video-box-clean">
+                        <h4>▶️ Bee Network Setup, 88 $BEE Claim & KYC Guide</h4>
+                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                            <div class="yt-play-btn"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Disclosure -->
+                <div class="disclosure-box">
+                    <strong>Important Protocol Disclosure</strong>
+                    Total Crypto Hub provides independent educational information and technical directories only. Bee Network is an autonomous Web3 platform[cite: 36]. Community mobile points and $BEE mining allocations represent early participation[cite: 38, 39]. No initial capital investment or paid purchases are required to participate[cite: 38].
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; <span translate="no">2026 Total Crypto Network</span>. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/contact.html">Contact Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite code copied: " + code);
+            });
+        }
+
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '../mobile-pages/mobile-mining.html';
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
