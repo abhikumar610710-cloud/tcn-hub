@@ -261,41 +261,29 @@
                 </p>
 
                 <div class="overview-features-grid">
-                    <!-- Feature 1: EVM Wallets -->
                     <div class="overview-feature-box">
-                        <div class="overview-feature-title">
-                            <span>🦊</span> Tier 1: Daily Airdrop Burners
-                        </div>
+                        <div class="overview-feature-title"><span>🦊</span> Tier 1: Daily Airdrop Burners</div>
                         <div class="overview-feature-text">
                             Software-based hot wallets such as MetaMask and Rabby. These interfaces are dedicated exclusively to <span class="hl-green">daily testnets, experimental smart contracts, and dApps</span>. Never store primary long-term savings in a wallet actively signing daily on-chain allowances.
                         </div>
                     </div>
 
-                    <!-- Feature 2: Multi-Chain Wallets -->
                     <div class="overview-feature-box">
-                        <div class="overview-feature-title">
-                            <span>🌐</span> Tier 2: Cross-Chain Portals
-                        </div>
+                        <div class="overview-feature-title"><span>🌐</span> Tier 2: Cross-Chain Portals</div>
                         <div class="overview-feature-text">
                             Phantom, OKX Web3, and Trust Wallet support Solana, Bitcoin, and over 100+ native architectures. They provide <span class="hl-green">self-custodial client-side encryption</span>, ideal for tracking DePIN nodes and multi-chain tokens without relying on centralized custody.
                         </div>
                     </div>
 
-                    <!-- Feature 3: Exchanges / CEX -->
                     <div class="overview-feature-box">
-                        <div class="overview-feature-title">
-                            <span>🏛️</span> Tier 3: Liquidity & Bank Rails
-                        </div>
+                        <div class="overview-feature-title"><span>🏛️</span> Tier 3: Liquidity & Bank Rails</div>
                         <div class="overview-feature-text">
                             Binance and Bybit offer high-depth global liquidity matching, while CoinDCX, CoinSwitch, and Mudrex provide <span class="hl-green">FIU-IND compliant direct bank rails</span>. Centralized platforms carry counterparty risk; use them for conversion rather than permanent storage.
                         </div>
                     </div>
 
-                    <!-- Feature 4: Hardware Vaults -->
                     <div class="overview-feature-box">
-                        <div class="overview-feature-title">
-                            <span>🔐</span> Tier 4: Cold Offline Vaults
-                        </div>
+                        <div class="overview-feature-title"><span>🔐</span> Tier 4: Cold Offline Vaults</div>
                         <div class="overview-feature-text">
                             Tangem, Ledger, and Trezor represent physical security isolated from the internet. Private keys remain sealed within <span class="hl-green">bank-grade EAL6+ Secure Elements</span>, ensuring complete immunity against remote spyware, malware, and unauthorized remote access.
                         </div>
@@ -408,9 +396,10 @@
                 const initial = p.name.charAt(0).toUpperCase();
                 const bgColor = getAvatarColor(p.name);
 
+                // Smart 2-Level Avatar Fallback: Custom Logo -> Default TCN Logo -> Initial Letter
                 const avatarHtml = `
                     <div class="project-avatar-box">
-                        <img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <img src="${p.logo}" alt="${p.name}" onerror="if(this.src.indexOf('tcn-logo.png') === -1){ this.src='../logos/tcn-logo.png'; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
                         <div class="project-initial" style="background: ${bgColor}; display: none;">${initial}</div>
                     </div>
                 `;
