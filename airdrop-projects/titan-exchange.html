@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titan Exchange Testnet Airdrop Guide | Total Crypto Hub</title>
+    <title>Titan Exchange Architecture & Research | Total Crypto Hub</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -18,7 +18,7 @@
             --accent-primary: #059669; 
             --accent-hover: #047857;
             --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
-            --container-max-width: 1000px;
+            --container-max-width: 1040px;
         }
         [data-theme="dark"] {
             --bg-body: #070a12;
@@ -33,7 +33,7 @@
             --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
-        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding: 0 20px; }
 
         header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
@@ -43,34 +43,104 @@
         .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); }
 
         main { flex: 1; padding: 32px 0 60px; }
+
+        /* Top Hero Section with Split Header */
         .project-hero { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; box-shadow: var(--card-shadow); margin-bottom: 24px; }
-        .hero-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
-        .hero-avatar { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); flex-shrink: 0; padding: 2px; background: var(--bg-surface); }
+        .hero-split-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+        
+        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; flex: 1; }
+        .hero-avatar { width: 68px; height: 68px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); flex-shrink: 0; padding: 2px; background: var(--bg-surface); }
         .hero-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .hero-meta h1 { font-size: 24px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
         .hero-meta p { color: var(--text-muted); font-size: 13px; font-weight: 600; margin-top: 3px; }
         .badge-verified { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        /* Hero Right: Two Distinct Action Boxes */
+        .hero-right-boxes { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .action-box-ref {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 140px;
+        }
+        .action-box-label { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .action-box-code-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .action-box-code { font-size: 14px; font-weight: 800; color: var(--text-heading); font-family: monospace; }
+        .btn-copy-code {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--accent-primary);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-copy-code:hover { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+
+        .btn-launch-join {
+            background: var(--accent-primary);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            transition: all 0.2s;
+            height: 100%;
+            min-height: 52px;
+            white-space: nowrap;
+        }
+        .btn-launch-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); }
         .stat-box { background: var(--bg-body); border: 1px solid var(--border-color); padding: 14px 16px; border-radius: 10px; }
         .stat-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
         .stat-value { font-size: 16px; font-weight: 800; color: var(--text-heading); }
         .stat-value.highlight { color: var(--accent-primary); }
 
+        /* Content Cards */
         .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; box-shadow: var(--card-shadow); margin-bottom: 24px; }
         .section-title { font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 14px; border-left: 4px solid var(--accent-primary); padding-left: 10px; }
         .desc-text { font-size: 14px; line-height: 1.7; color: var(--text-body); font-weight: 500; margin-bottom: 14px; }
+        .desc-text b { color: var(--text-heading); font-weight: 800; }
 
-        .steps-container { display: flex; flex-direction: column; gap: 14px; margin-top: 18px; }
-        .step-item { display: flex; gap: 14px; background: var(--bg-body); border: 1px solid var(--border-color); padding: 16px 18px; border-radius: 12px; align-items: flex-start; }
-        .step-number { width: 28px; height: 28px; border-radius: 50%; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
-        .step-content h3 { font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 4px; }
-        .step-content p { font-size: 13px; line-height: 1.6; color: var(--text-body); font-weight: 500; }
-        .step-content b { color: var(--text-heading); }
+        /* Architecture Breakdown Table/List */
+        .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+        .arch-box { background: var(--bg-body); border: 1px solid var(--border-color); padding: 18px; border-radius: 12px; }
+        .arch-title { font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
+        .arch-desc { font-size: 13px; line-height: 1.6; color: var(--text-muted); font-weight: 500; }
 
-        .cta-box { text-align: center; padding: 24px 0 10px; }
-        .btn-join { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent-primary); color: white; text-decoration: none; font-weight: 800; font-size: 15px; padding: 14px 32px; border-radius: 10px; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35); transition: all 0.2s; }
-        .btn-join:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        /* Video Section Container */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: #000;
+            margin-top: 16px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
         footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
@@ -87,97 +157,120 @@
 
     <main>
         <div class="site-container">
-            <!-- Project Hero -->
+            <!-- Project Hero with Top Action Boxes -->
             <div class="project-hero">
-                <div class="hero-top">
-                    <div class="hero-avatar">
-                        <img src="../logos/titan-exchange.png" alt="Titan Exchange Logo" onerror="this.src='../logos/tcn-logo.png'">
+                <div class="hero-split-row">
+                    <div class="hero-left">
+                        <div class="hero-avatar">
+                            <img src="../logos/titan-exchange.png" alt="Titan Exchange Logo" onerror="this.src='../logos/tcn-logo.png'">
+                        </div>
+                        <div class="hero-meta">
+                            <h1>Titan Exchange <span class="badge-verified">Verified Testnet</span></h1>
+                            <p>Next-Gen On-Chain Perpetual DEX Architecture</p>
+                        </div>
                     </div>
-                    <div class="hero-meta">
-                        <h1>Titan Exchange <span class="badge-verified">Verified Testnet</span></h1>
-                        <p>Incentivized Perpetual DEX • Free Faucet Trading Campaign</p>
+
+                    <div class="hero-right-boxes">
+                        <!-- Box 1: Referral Code Box with Copy Action -->
+                        <div class="action-box-ref">
+                            <span class="action-box-label">Referral Code</span>
+                            <div class="action-box-code-row">
+                                <span class="action-box-code" id="refCodeText">7D96F96244</span>
+                                <button class="btn-copy-code" id="copyBtn" onclick="copyReferralCode()">Copy</button>
+                            </div>
+                        </div>
+
+                        <!-- Box 2: Direct Join / Launch Link Box -->
+                        <a href="https://testnet.titanx.cc/?ref=7D96F96244" target="_blank" rel="noopener noreferrer" class="btn-launch-join">
+                            Launch Testnet Exchange →
+                        </a>
                     </div>
                 </div>
 
+                <!-- Stats Overview Row -->
                 <div class="stats-grid">
                     <div class="stat-box">
-                        <div class="stat-label">Capital Required</div>
-                        <div class="stat-value highlight">$0.00 (Zero Investment)</div>
+                        <div class="stat-label">Capital Investment</div>
+                        <div class="stat-value highlight">$0.00 (100% Free Faucet)</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">Platform Type</div>
-                        <div class="stat-value">Perp DEX / Testnet</div>
+                        <div class="stat-label">Testnet Initial Balance</div>
+                        <div class="stat-value">10,000.00 USDCx</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">Free Testnet Faucet</div>
-                        <div class="stat-value">10,000 USDCx</div>
+                        <div class="stat-label">Reward Allocation Model</div>
+                        <div class="stat-value">Leaderboard Points / TGE Share</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">TCN Security Score</div>
+                        <div class="stat-label">TCN Audit Score</div>
                         <div class="stat-value highlight">9.8 / 10</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Overview Card -->
+            <!-- Deep Architectural & Protocol Analysis -->
             <div class="content-card">
-                <h2 class="section-title">Protocol Overview & Architecture</h2>
+                <h2 class="section-title">Protocol Overview & Deep Architecture</h2>
                 <p class="desc-text">
-                    <b>Titan Exchange</b> is an advanced decentralized perpetual contract exchange (Perp DEX) designed to offer lightning-fast on-chain execution with zero slippage. Ahead of its upcoming Mainnet launch and Token Generation Event (TGE), the core development team has launched an <b>Incentivized Testnet Campaign</b>.
+                    <b>Titan Exchange</b> is an advanced decentralized derivatives engine built to address liquidity fragmentation and execution latency in on-chain perpetual trading. Unlike traditional Automated Market Makers (AMMs) that suffer from high slippage and impermanent loss, Titan leverages a <b>Virtual Central Limit Order Book (vCLOB)</b> model paired with decentralized liquidity routing.
                 </p>
                 <p class="desc-text">
-                    Participants test protocol features using free simulated liquidity (USDCx). All trading volume, open positions, and daily activity are tracked into on-chain <b>Rewards Points</b>, which will directly qualify testers for future protocol governance token airdrops.
+                    By decoupling trade execution from base-layer network congestion, the protocol achieves sub-second trade confirmations and high capital efficiency for institutional and retail traders alike.
                 </p>
-            </div>
 
-            <!-- Step by Step Guide -->
-            <div class="content-card">
-                <h2 class="section-title">Step-by-Step Join Guide (100% Free)</h2>
-                <div class="steps-container">
-                    <div class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Open Official Testnet Portal</h3>
-                            <p>Click the <b>"Launch Titan Testnet"</b> button below to visit the official testnet onboarding interface.</p>
-                        </div>
+                <div class="arch-grid">
+                    <div class="arch-box">
+                        <div class="arch-title">High-Throughput Settlement</div>
+                        <div class="arch-desc">Off-chain order matching ensures instant fills with zero gas spikes, while final trade states settle trustlessly on-chain.</div>
                     </div>
-                    <div class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Claim 10,000 USDCx Testnet Balance</h3>
-                            <p>Follow the quick setup prompt. The system will automatically assign your unique testnet identifier and fund your account with <b>10,000.00 USDCx</b> free virtual balance.</p>
-                        </div>
+                    <div class="arch-box">
+                        <div class="arch-title">Risk Engine & Auto-Liquidation</div>
+                        <div class="arch-desc">Multi-tiered collateralization and real-time oracle feeds safeguard the liquidity pool against bad debt during extreme volatility.</div>
                     </div>
-                    <div class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Execute Testnet Perpetual Trades</h3>
-                            <p>Navigate to the <b>Trade</b> tab. Open Long or Short positions on BTC-USDCx or ETH-USDCx pairs using your testnet funds to build volume history.</p>
-                        </div>
+                    <div class="arch-box">
+                        <div class="arch-title">Isolated Margin Architecture</div>
+                        <div class="arch-desc">Traders can deploy flexible leverage across BTC and ETH perpetual contracts without exposing whole-portfolio capital.</div>
                     </div>
-                    <div class="step-item">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Track Daily Points & Leaderboard</h3>
-                            <p>Check the <b>Rewards</b> tab daily to verify your earned points. Consistent trading sessions increase your ranking on the airdrop tier board.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cta-box">
-                    <a href="https://testnet.titanx.cc/?ref=7D96F96244" target="_blank" rel="noopener noreferrer" class="btn-join">
-                        Launch Titan Testnet & Claim Free Faucet →
-                    </a>
                 </div>
             </div>
 
-            <!-- Audit Note -->
+            <!-- Whitepaper, Backing & Tokenomics Research -->
             <div class="content-card">
-                <h2 class="section-title">Total Crypto Network Safety Audit</h2>
+                <h2 class="section-title">Whitepaper, Funding & Tokenomics Research</h2>
                 <p class="desc-text">
-                    • <b>Zero Real Capital at Risk:</b> All trades and balances are strictly conducted using simulated testnet tokens (USDCx).<br>
-                    • <b>No Seed Phrase Required:</b> Titan Exchange never asks for your wallet private keys or recovery words.<br>
-                    • <b>Recommended Practice:</b> Always use a secondary/burner Web3 wallet for interacting with testnet dApps.
+                    According to protocol technical disclosures and whitepaper documentation, Titan Exchange has dedicated a reserved percentage of its <b>Genesis Community Allocation</b> to early testnet contributors and system stress-testers.
+                </p>
+                <p class="desc-text">
+                    • <b>Incentivized Stress-Testing:</b> The live testnet environment allows developers to simulate high trading volume, API stress loads, and liquidation cascade scenarios using synthetic assets (USDCx).<br>
+                    • <b>Points-to-Airdrop Valuation:</b> Users accumulate protocol points through cumulative trading volume, position frequency, and referral participation. Accumulated points act as a proportional multiplier during the Token Generation Event (TGE) snapshot.<br>
+                    • <b>Capital Preservation Guarantee:</b> Zero real capital or fiat deposit is ever requested. The system provides an automated virtual grant of <b>10,000 USDCx</b> upon wallet identity initialization.
+                </p>
+            </div>
+
+            <!-- Dedicated Video Walkthrough Section -->
+            <div class="content-card">
+                <h2 class="section-title">Dedicated Video Walkthrough (Total Crypto Network)</h2>
+                <p class="desc-text">
+                    Watch our step-by-step technical breakdown from <b>Total Crypto Network</b> covering testnet faucet claims, opening leverage positions, volume generation, and maximizing your reward tier score.
+                </p>
+                <div class="video-wrapper">
+                    <!-- Replace the embed URL below with your specific YouTube video link once published -->
+                    <iframe 
+                        src="https://www.youtube.com/embed?listType=user_uploads&list=TotalCryptoNetwork" 
+                        title="Titan Exchange Complete Airdrop Guide" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Audit & Security Clearance -->
+            <div class="content-card">
+                <h2 class="section-title">Total Crypto Network Security Clearance</h2>
+                <p class="desc-text">
+                    • <b>Contract Interaction:</b> Verified testnet contract environment. No approvals over high-value mainnet assets are required.<br>
+                    • <b>Data & Privacy:</b> Identity allocation is managed via pseudonymous testnet hashes without mandatory KYC.<br>
+                    • <b>Best Practice:</b> Maintain a dedicated testnet wallet address (MetaMask/Phantom) for interacting with Web3 airdrop campaigns.
                 </p>
             </div>
         </div>
@@ -196,6 +289,21 @@
     </footer>
 
     <script>
+        function copyReferralCode() {
+            const code = document.getElementById('refCodeText').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.innerText = 'Copied!';
+                btn.style.background = 'var(--accent-primary)';
+                btn.style.color = '#ffffff';
+                setTimeout(() => {
+                    btn.innerText = 'Copy';
+                    btn.style.background = 'transparent';
+                    btn.style.color = 'var(--accent-primary)';
+                }, 2000);
+            });
+        }
+
         function toggleTheme() {
             const body = document.body;
             const toggleBtn = document.getElementById('themeToggle');
