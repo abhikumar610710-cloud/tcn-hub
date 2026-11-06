@@ -164,9 +164,25 @@
             border-radius: 4px;
             display: inline-block;
         }
-        .hl-dark {
-            color: var(--text-heading);
-            font-weight: 700;
+
+        /* NEW Badge Styling */
+        .badge-new {
+            background: #ef4444;
+            color: white;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 6px;
+            vertical-align: middle;
+            animation: pulseNew 2s infinite;
+        }
+        @keyframes pulseNew {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
         }
 
         /* Controls & Filter Bar */
@@ -174,8 +190,9 @@
         .search-box { position: relative; flex: 1; min-width: 240px; max-width: 380px; }
         .search-box input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-body); font-size: 13px; outline: none; }
         .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
-        .filter-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; }
+        .filter-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
         .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+        .filter-btn.earn.active { background: #0284c7; border-color: #0284c7; color: white; }
         .filter-btn.vault.active { background: #d97706; border-color: #d97706; color: white; }
 
         /* Table Card */
@@ -194,9 +211,11 @@
         .project-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; font-weight: 600; }
         
         .badge-verified { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #059669; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
+        .badge-earn { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #0284c7; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
         .badge-vault { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #d97706; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
         
         .score-verified { font-weight: 800; color: var(--accent-primary); font-size: 13.5px; }
+        .score-earn { font-weight: 800; color: #0284c7; font-size: 13.5px; }
         .score-vault { font-weight: 800; color: #d97706; font-size: 13.5px; }
 
         .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); }
@@ -249,7 +268,7 @@
             </div>
             <p id="projectCount" class="project-count">Showing verified Web3 wallets, CEX platforms, and hardware vaults</p>
 
-            <!-- ================= HIGH-CONTRAST CRISP OVERVIEW CARD ================= -->
+            <!-- Overview Card -->
             <div class="community-overview-card">
                 <div class="overview-badge-row">
                     <span class="overview-pill">Security Framework</span>
@@ -291,13 +310,14 @@
                 </div>
             </div>
 
-            <!-- Controls & Filters -->
+            <!-- Controls & Filters with EARN REWARD Button -->
             <div class="controls-bar">
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Search platforms by name..." oninput="handleSearch()">
                 </div>
                 <div class="filter-group">
-                    <button class="filter-btn active" onclick="setFilter('all', this)">All Platforms (18)</button>
+                    <button class="filter-btn active" onclick="setFilter('all', this)">All Platforms</button>
+                    <button class="filter-btn earn" onclick="setFilter('earn', this)">⚡ Earn Reward</button>
                     <button class="filter-btn" onclick="setFilter('evm', this)">EVM Wallets</button>
                     <button class="filter-btn" onclick="setFilter('multichain', this)">Multi-Chain</button>
                     <button class="filter-btn" onclick="setFilter('exchange', this)">Exchanges (CEX)</button>
@@ -339,6 +359,13 @@
 
     <script>
         const WALLET_PROJECTS = [
+            // ================= EARN REWARD / AIRDROP WALLETS (NEW) =================
+            { name: "Deblock <span class='badge-new'>New</span>", sub: "$32M Funded Airdrop Wallet • Early Access", category: "Earn Reward", score: "⭐ 9.6 / 10", status: "earn", link: "../wallet-projects/deblock.html", logo: "../logos/deblock.png" },
+            { name: "El Dorado <span class='badge-new'>New</span>", sub: "$9M Paradigm Backed Earn Wallet", category: "Earn Reward", score: "⭐ 9.4 / 10", status: "earn", link: "../wallet-projects/eldorado.html", logo: "../logos/eldorado.png" },
+            { name: "Utila <span class='badge-new'>New</span>", sub: "$22M Funded Multi-Chain Institutional Earn", category: "Earn Reward", score: "⭐ 9.6 / 10", status: "earn", link: "../wallet-projects/utila.html", logo: "../logos/utila.png" },
+            { name: "Kontigo <span class='badge-new'>New</span>", sub: "$20M Coinbase Backed Quest Wallet", category: "Earn Reward", score: "⭐ 9.5 / 10", status: "earn", link: "../wallet-projects/kontigo.html", logo: "../logos/kontigo.png" },
+            { name: "Squads <span class='badge-new'>New</span>", sub: "$18M Solana Smart Earn Ecosystem", category: "Earn Reward", score: "⭐ 9.4 / 10", status: "earn", link: "../wallet-projects/squads.html", logo: "../logos/squads.png" },
+
             // ================= 1. EVM Wallets (Tier 1: Daily Airdrops & dApps) =================
             { name: "MetaMask", sub: "Ethereum & All EVM Testnets • Browser & Mobile", category: "EVM Wallets", score: "⭐ 9.8 / 10", status: "evm", link: "../wallet-projects/metamask.html", logo: "../logos/metamask.png" },
             { name: "Rabby Wallet", sub: "Anti-Scam Protection • Pro Airdrop Wallet", category: "EVM Wallets", score: "⭐ 9.7 / 10", status: "evm", link: "../wallet-projects/rabby-wallet.html", logo: "../logos/rabby.png" },
@@ -379,27 +406,33 @@
             const tbody = document.getElementById('walletTableBody');
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             tbody.innerHTML = '';
+            let visibleCount = 0;
 
             const filtered = WALLET_PROJECTS.filter(p => {
-                const matchesSearch = p.name.toLowerCase().includes(query) || p.sub.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+                // Remove HTML tags for clean search matching
+                const cleanName = p.name.replace(/<[^>]*>?/gm, '').toLowerCase();
+                const matchesSearch = cleanName.includes(query) || p.sub.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
                 if (!matchesSearch) return false;
                 if (currentFilter === 'all') return true;
                 return p.status === currentFilter;
             });
 
             filtered.forEach(p => {
+                visibleCount++;
                 const isVault = p.status === 'vault';
-                const badgeClass = isVault ? 'badge-vault' : 'badge-verified';
+                const isEarn = p.status === 'earn';
+                const badgeClass = isVault ? 'badge-vault' : (isEarn ? 'badge-earn' : 'badge-verified');
                 const badgeIcon = '✓';
-                const scoreClass = isVault ? 'score-vault' : 'score-verified';
+                const scoreClass = isVault ? 'score-vault' : (isEarn ? 'score-earn' : 'score-verified');
 
-                const initial = p.name.charAt(0).toUpperCase();
-                const bgColor = getAvatarColor(p.name);
+                const rawName = p.name.replace(/<[^>]*>?/gm, '');
+                const initial = rawName.charAt(0).toUpperCase();
+                const bgColor = getAvatarColor(rawName);
 
-                // Smart 2-Level Avatar Fallback: Custom Logo -> Default TCN Logo -> Initial Letter
+                // Smart Avatar Fallback
                 const avatarHtml = `
                     <div class="project-avatar-box">
-                        <img src="${p.logo}" alt="${p.name}" onerror="if(this.src.indexOf('tcn-logo.png') === -1){ this.src='../logos/tcn-logo.png'; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
+                        <img src="${p.logo}" alt="${rawName}" onerror="if(this.src.indexOf('tcn-logo.png') === -1){ this.src='../logos/tcn-logo.png'; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
                         <div class="project-initial" style="background: ${bgColor}; display: none;">${initial}</div>
                     </div>
                 `;
@@ -422,7 +455,7 @@
                 tbody.appendChild(row);
             });
 
-            document.getElementById('projectCount').innerText = `Showing ${filtered.length} verified Web3 platforms & vaults`;
+            document.getElementById('projectCount').innerText = `Showing ${visibleCount} verified Web3 platforms & vaults`;
         }
 
         function setFilter(filterType, btn) {
