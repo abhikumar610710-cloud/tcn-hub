@@ -130,6 +130,13 @@
         .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
 
         .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        /* Referral Code Box */
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 5px 6px 5px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+        .invite-label { font-size: 9px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 14px; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
 
         .btn-join { 
             background: var(--accent-primary); 
@@ -333,8 +340,8 @@
             :root { --container-padding: 16px; }
             .content-card { padding: 22px 18px; }
             .project-hero-card { flex-direction: column; align-items: flex-start; }
-            .hero-right { width: 100%; justify-content: flex-start; }
-            .btn-join { width: 100%; justify-content: center; }
+            .hero-right { width: 100%; justify-content: space-between; }
+            .btn-join { flex: 1; justify-content: center; }
             .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
             .verify-buttons { width: 100%; }
             .btn-audit { width: 100%; justify-content: center; }
@@ -367,7 +374,7 @@
     <main>
         <div class="site-container">
 
-            <!-- Hero Action Card -->
+            <!-- Hero Action Card With Invite Code & Link -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
@@ -385,7 +392,14 @@
                 </div>
 
                 <div class="hero-right">
-                    <a href="https://play.google.com/store/apps/details?id=io.kgen.app" target="_blank" class="btn-join">📲 Download KGeN App (Play Store) ↗</a>
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">7CiJkp</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    <a href="https://link.kgen.io/7CiJkp" target="_blank" class="btn-join">📲 Download & Join KGeN ↗</a>
                 </div>
             </div>
 
@@ -479,7 +493,7 @@
                         </div>
                         <div class="verify-buttons">
                             <a href="https://kgen.io/" target="_blank" class="btn-audit">🌐 Official Website ↗</a>
-                            <a href="https://play.google.com/store/apps/details?id=io.kgen.app" target="_blank" class="btn-audit">📲 Play Store App ↗</a>
+                            <a href="https://link.kgen.io/7CiJkp" target="_blank" class="btn-audit">📲 Install App with Code ↗</a>
                         </div>
                     </div>
                 </div>
@@ -547,6 +561,13 @@
     </footer>
 
     <script>
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite code copied: " + code);
+            });
+        }
+
         function goBack() {
             if (document.referrer && document.referrer !== window.location.href) {
                 window.history.back();
