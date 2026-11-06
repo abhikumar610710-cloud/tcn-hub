@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOM Network Complete Architecture, Cloud GPU Earning Breakdown & Node Review | Total Crypto Hub</title>
+    <meta name="description" content="Technical guide for YOM DePIN: Distributed cloud gaming, pixel streaming nodes, 60% session fee revenue share, GPU requirements, and zero-cost PC rig check.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 🚀 Instant Theme Fix -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-subtle: #f1f5f9;
+            --container-max-width: 1240px;
+            --container-padding: 24px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-subtle: #131c31;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #dc2626; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); }
+
+        .btn-hub-glow { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 8px 18px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-hub-glow:hover { 
+            background: var(--accent-hover); 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .theme-btn { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            cursor: pointer; 
+            padding: 7px 12px; 
+            border-radius: 50px; 
+            font-size: 14px;
+        }
+
+        /* Main Content */
+        main { flex: 1; padding: 32px 0 60px; }
+
+        /* Hero Action Card */
+        .project-hero-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; box-shadow: 0 4px 20px -4px rgba(0,0,0,0.03); }
+        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-big-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 2px solid var(--border-color); padding: 4px; background: var(--card-subtle); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; color: var(--accent-primary); flex-shrink: 0; }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .project-titles h2 { font-size: 22px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 6px 6px 6px 14px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .invite-label { font-size: 9.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 15px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        
+        .btn-join { background: var(--accent-primary); color: white; text-decoration: none; padding: 11px 20px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); transition: all 0.2s; }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        .btn-secondary { background: var(--card-subtle); border: 1px solid var(--border-color); color: var(--text-heading); text-decoration: none; padding: 11px 18px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+        .btn-secondary:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+
+        /* Article Layout */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px; margin-bottom: 28px; }
+        .article-section { margin-bottom: 40px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-number { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+        .section-header h3 { font-size: 20px; color: var(--text-heading); font-weight: 800; }
+
+        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* Upgraded Metrics Banner */
+        .metrics-banner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+        .metric-card { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px 20px; text-align: center; }
+        .metric-value { font-size: 26px; font-weight: 800; color: var(--accent-primary); line-height: 1.1; margin-bottom: 4px; }
+        .metric-label { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
+
+        /* 2x2 Feature Grid */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .feature-box { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .feature-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 8px; font-weight: 700; }
+        .feature-box p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Highlight Alert Box */
+        .alert-box { background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .alert-box h5 { color: #d97706; font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+        .alert-box p { color: var(--text-body); font-size: 13px; line-height: 1.6; }
+
+        /* 3-Column Video Showcase */
+        .video-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+        .video-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; transition: all 0.2s; }
+        .video-box:hover { border-color: #ff0000; box-shadow: 0 4px 12px rgba(255,0,0,0.1); }
+        .video-box h4 { font-size: 14px; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        
+        .mock-youtube-player { background: #000; border-radius: 12px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.1); }
+        
+        .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
+
+        /* Pro Hardware vs Free Node Notice Card */
+        .hardware-choice-card { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; margin-top: 26px; }
+        .hardware-choice-card h4 { font-size: 15px; color: var(--text-heading); font-weight: 700; margin-bottom: 8px; }
+        .hardware-choice-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+        .hardware-badge { display: inline-block; background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--accent-primary); font-weight: 700; font-size: 11px; padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; }
+
+        /* Standard Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 16px 20px; border-radius: 10px; margin-top: 30px; font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+        .disclosure-box strong { color: var(--text-heading); }
+
+        /* Footer */
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+
+        @media (max-width: 1024px) {
+            .video-grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .metrics-banner { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 20px 16px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .section-header h3 { font-size: 17px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-3 { grid-template-columns: 1fr; }
+            .invite-box { flex: 1; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box" translate="no">
+                <div class="logo-icon">
+                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
+                </div>
+                <div class="logo-text">
+                    <h1>Total Crypto Hub</h1>
+                    <span>by <b>Total Crypto Network</b></span>
+                </div>
+            </a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to DePIN</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/yom.png" alt="YOM" onerror="this.parentNode.innerHTML='Y';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">YOM Network <span class="verified-badge">✓</span></h2>
+                        <p>Decentralized Cloud Gaming, Pixel Streaming & AI Edge GPU Mesh</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">2046B813</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <!-- Free Option (Recommended) -->
+                    <a href="https://app.yom.net/rigcheck?ref=2046B813" target="_blank" class="btn-join">💻 Free PC Rig Check</a>
+
+                    <!-- Optional Hardware Box -->
+                    <a href="https://freshminers.com/shop/hardware/yom-nano/?ref=2046B813" target="_blank" class="btn-secondary" title="Optional Pre-Built Hardware">📦 Buy NANO Box (Optional)</a>
+                </div>
+            </div>
+
+            <!-- Full-Length 5-Point Article Architecture -->
+            <div class="content-card">
+
+                <!-- Point 1: What is YOM -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is YOM Network? (DePIN Cloud Gaming & Pixel Streaming)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>YOM (Your Open Metaverse)</strong> is a decentralized cloud rendering and pixel-streaming infrastructure protocol engineered to eliminate centralized cloud monopolies like AWS G4/G5 instances and Google Stadia. Traditional cloud gaming and Unreal Engine 5 interactive streams depend on massive, centralized server farms. These data centers suffer from high round-trip network latency, expensive continuous operational charges (often exceeding $1.20 per streaming hour), and geographic isolation from everyday players.
+                    </p>
+                    <p class="article-text">
+                        YOM replaces high-cost data centers with a globally distributed edge mesh composed of everyday gaming PCs, regional telco server racks, and dedicated hardware nodes. By rendering graphics on local GPUs geographically closest to the active player, YOM delivers sub-16ms low-latency pixel streams straight to web browsers without requiring end-users to install large game files or run high-end hardware.
+                    </p>
+                    <p class="article-text">
+                        The project is backed by Tier-1 Web3 venture firms and ecosystem leaders including <strong>Outlier Ventures, Borderless Capital, Avalanche, Protein Capital, CV VC, and Simms Capital</strong>. For PC owners, YOM converts idle GPU computing capacity into a reliable passive income engine, paying out 60% of all real-world session rendering fees directly to hosting machines.
+                    </p>
+
+                    <!-- Real-Time Production Network Metrics -->
+                    <div class="metrics-banner">
+                        <div class="metric-card">
+                            <div class="metric-value">93,700+</div>
+                            <div class="metric-label">Live Sessions Streamed (30d)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">16 ms</div>
+                            <div class="metric-label">One-Way Network Latency</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$0.08</div>
+                            <div class="metric-label">Session Cost vs $1.23 Data-Center</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 2: Architecture & How It Works -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>How YOM Operates (Local Workload Routing Engine)</h3>
+                    </div>
+                    <p class="article-text">
+                        The YOM protocol operates autonomously through a 3-step real-time execution cycle:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🎯 1. Bring a Workload</h4>
+                            <p>Game developers, metaverse studios, and AI container publishers upload interactive applications to the YOM network. Any client request requiring immediate real-time rendering is submitted directly to the network scheduler.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📍 2. Routed Nearby</h4>
+                            <p>The scheduler determines the player's physical location and routes the instance to the closest qualifying GPU node located in a nearby home PC or telco rack, slashing network hops and packet delay.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚡ 3. Streamed & Paid</h4>
+                            <p>Video frames are compressed, encrypted, and streamed directly into standard browser tabs in milliseconds. The host machine is automatically credited session fees as the workload executes.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🔒 4. Isolated Process Security</h4>
+                            <p>Rendering workloads run inside fully sandboxed container runtimes without access to operator disk storage, system personal files, or private credentials.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 3: Reward Models & Real Earning Streams -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>Earning Breakdown & Multi-Tier Compensation Model</h3>
+                    </div>
+                    <p class="article-text">
+                        Unlike inflationary testnet point schemes, YOM features real utility-based network fee allocations settled on the <strong>Avalanche</strong> blockchain:
+                    </p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>💰 60% Gross Session Revenue Share</h4>
+                            <p>60% of every real-time streaming fee paid by enterprise publishers and game clients is credited directly to the operator PC that hosted the rendering compute cycle.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🪙 Native $YOM Token Settlements</h4>
+                            <p>Node hosting revenues and network availability rewards accumulate transparently inside your operator dashboard, ready for on-chain settlement across Avalanche-compatible wallets.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚙️ Dynamic Hardware Multipliers</h4>
+                            <p>Systems featuring higher VRAM capacity (RTX 3070, 3080, 4080, 4090) unlock multiple concurrent stream allocations, multiplying hourly earning potential over baseline rigs.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🤝 Tiered Referral Commissions</h4>
+                            <p>Inviting additional node operators with code <strong>2046B813</strong> grants ongoing referral rewards across active rig check completions and optional hardware setups.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4: Operational Rules & Anti-Cheat Compliance -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>Rig Qualification & Network Compliance Standards</h3>
+                    </div>
+                    <p class="article-text">
+                        Because cloud rendering requires high frame stability, YOM enforces strict automated hardware screening. Out of thousands of test submissions, only qualifying rigs receive production workloads:
+                    </p>
+                    
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🎮 Dedicated GPU & VRAM (Minimum 8 GB)</h4>
+                            <p>60% of rejected nodes fail due to VRAM under 8 GB. Rigs require modern dedicated GPUs (primarily <strong>NVIDIA RTX series</strong>; Intel and basic integrated APUs do not pass compatibility checks).</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🌐 Low-Latency Broadband (< 50ms)</h4>
+                            <p>Interactive pixel streaming cannot tolerate lag. Network latency must remain under 50 ms. Datacenter VPS proxies and commercial VPN tunnels are blocked.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🚀 Symmetric High-Speed Bandwidth</h4>
+                            <p>Stable connection speed requirements: at least <strong>50 Mbps Download</strong> and <strong>10 Mbps Upload</strong> to continuously upload high-bitrate video streams.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🕒 System Clock Synchronization</h4>
+                            <p>Windows operating systems must have automated time synchronization enabled (UTC+05:30 IST / Sri Jayawardenepura) to prevent Web3 authentication handshake rejections.</p>
+                        </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <h5>⚠️ Important Rig Integrity Advisory:</h5>
+                        <p>Do not run multi-instance virtual machines on a single physical GPU. The YOM daemon conducts automated hardware inspection; virtualization attempts or spoofed driver parameters trigger instantaneous qualification failure.</p>
+                    </div>
+                </div>
+
+                <!-- Point 5: Step-by-Step Video Guides -->
+                <div class="article-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Complete Step-by-Step Operator Walkthrough</h3>
+                    </div>
+                    <p class="article-text">
+                        Follow the complete video setup instructions produced by <strong>Total Crypto Network</strong> to run your node correctly:
+                    </p>
+                    
+                    <div class="video-grid-3">
+                        <!-- Video 1: Free Rig Check Setup -->
+                        <div class="video-box">
+                            <h4>💻 Free PC Rig Check Guide</h4>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
+                        </div>
+
+                        <!-- Video 2: GPU Daemon Setup -->
+                        <div class="video-box">
+                            <h4>🎮 Windows Host Node Setup</h4>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
+                        </div>
+
+                        <!-- Video 3: Dashboard & Payout Setup -->
+                        <div class="video-box">
+                            <h4>📊 Avalanche Payout Guide</h4>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hardware Notice Card -->
+                    <div class="hardware-choice-card">
+                        <span class="hardware-badge">ZERO-INVESTMENT vs PLUG-AND-PLAY HARDWARE</span>
+                        <h4>💡 Free Existing PC Node or Dedicated YOM NANO Miner?</h4>
+                        <p>
+                            <strong>Zero-Cost Participation (Recommended):</strong> You do NOT need to buy hardware. If you already own an NVIDIA gaming PC or high-spec laptop, use the <strong>Free PC Rig Check</strong> to run the node software without spending money.
+                        </p>
+                        <p style="margin-top:10px;">
+                            <strong>Optional Plug-and-Play Miner:</strong> For community members without an eligible gaming rig who prefer an out-of-the-box pre-configured system, YOM offers the official <strong>YOM NANO</strong> hardware box via Freshminers (use referral code <strong>2046B813</strong> for a 10% discount).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational guides and technical evaluations only. DePIN network yields, cloud streaming volume, and $YOM token earnings depend entirely on third-party gaming workloads, geographic demand, and device availability. No revenue guarantees are implied.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact Us</a>
+                <a href="../pages/privacy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">Terms & Conditions</a>
+                <a href="../pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite code copied: " + code);
+            });
+        }
+
+        /* 🚀 Smart Back Function */
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '../depin-pages/depin.html';
+            }
+        }
+
+        /* 🚀 Stable Theme Toggle Function */
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
