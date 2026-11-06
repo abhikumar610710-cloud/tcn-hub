@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wick Protocol Architecture & Waitlist Research | Total Crypto Hub</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #1e293b;
+            --text-muted: #475569;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+            --container-max-width: 1040px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding: 0 20px; }
+
+        /* Standard Hub Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .logo-text b { color: var(--accent-primary); }
+
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
+        
+        /* Green Capsule Back Button */
+        .btn-back-capsule {
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-back-capsule:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        main { flex: 1; padding: 32px 0 60px; }
+
+        /* Top Hero Section */
+        .project-hero { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; box-shadow: var(--card-shadow); margin-bottom: 24px; }
+        .hero-split-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+        
+        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; flex: 1; }
+        .hero-avatar { width: 68px; height: 68px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); flex-shrink: 0; padding: 2px; background: var(--bg-surface); }
+        .hero-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .hero-meta h1 { font-size: 24px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .hero-meta p { color: var(--text-muted); font-size: 13px; font-weight: 600; margin-top: 3px; }
+        .badge-verified { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+
+        /* Hero Right Action Boxes */
+        .hero-right-boxes { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .action-box-ref {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 140px;
+        }
+        .action-box-label { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .action-box-code-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .action-box-code { font-size: 14px; font-weight: 800; color: var(--text-heading); font-family: monospace; }
+        .btn-copy-code {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--accent-primary);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-copy-code:hover { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+
+        .btn-launch-join {
+            background: var(--accent-primary);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            transition: all 0.2s;
+            height: 100%;
+            min-height: 52px;
+            white-space: nowrap;
+        }
+        .btn-launch-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .stat-box { background: var(--bg-body); border: 1px solid var(--border-color); padding: 14px 16px; border-radius: 10px; }
+        .stat-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+        .stat-value { font-size: 16px; font-weight: 800; color: var(--text-heading); }
+        .stat-value.highlight { color: var(--accent-primary); }
+
+        /* Content Cards */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; box-shadow: var(--card-shadow); margin-bottom: 24px; }
+        .section-title { font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 14px; border-left: 4px solid var(--accent-primary); padding-left: 10px; }
+        .desc-text { font-size: 14px; line-height: 1.7; color: var(--text-body); font-weight: 500; margin-bottom: 14px; }
+        .desc-text b { color: var(--text-heading); font-weight: 800; }
+
+        .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+        .arch-box { background: var(--bg-body); border: 1px solid var(--border-color); padding: 18px; border-radius: 12px; }
+        .arch-title { font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
+        .arch-desc { font-size: 13px; line-height: 1.6; color: var(--text-muted); font-weight: 500; }
+
+        /* Video Section */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: #000;
+            margin-top: 16px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+    </style>
+</head>
+<body data-theme="light">
+    <header>
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box">
+                <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.src='../logos/tcn-logo.png'"></div>
+                <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
+            </a>
+            
+            <div class="header-right">
+                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+                <button onclick="goBackToAirdrops()" class="btn-back-capsule">← Back to Airdrops</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="site-container">
+            <!-- Project Hero with Top Action Boxes -->
+            <div class="project-hero">
+                <div class="hero-split-row">
+                    <div class="hero-left">
+                        <div class="hero-avatar">
+                            <img src="../logos/wick.png" alt="Wick Logo" onerror="this.src='../logos/tcn-logo.png'">
+                        </div>
+                        <div class="hero-meta">
+                            <h1>Wick Protocol <span class="badge-verified">Verified Waitlist</span></h1>
+                            <p>The Home of Real World Finance • Lighter EVM Infrastructure</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-right-boxes">
+                        <!-- Box 1: Referral Code Box with Copy Action -->
+                        <div class="action-box-ref">
+                            <span class="action-box-label">Invite Code</span>
+                            <div class="action-box-code-row">
+                                <span class="action-box-code" id="refCodeText">975988</span>
+                                <button class="btn-copy-code" id="copyBtn" onclick="copyReferralCode()">Copy</button>
+                            </div>
+                        </div>
+
+                        <!-- Box 2: Direct Join / Launch Link Box -->
+                        <a href="https://www.wick.xyz/waitlist?r=975988" target="_blank" rel="noopener noreferrer" class="btn-launch-join">
+                            Join Wick Waitlist →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stats Overview Row -->
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Financial Focus</div>
+                        <div class="stat-value highlight">Real World Finance (RWA)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Execution Environment</div>
+                        <div class="stat-value">Lighter EVM Chain</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Early Access Phase</div>
+                        <div class="stat-value highlight">Genesis Trader Waitlist</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">TCN Audit Score</div>
+                        <div class="stat-value highlight">8.8 / 10</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Protocol Overview & Core Engine -->
+            <div class="content-card">
+                <h2 class="section-title">Protocol Overview & Real World Finance Architecture</h2>
+                <p class="desc-text">
+                    <b>Wick</b> positions itself as the foundational layer for <b>Real World Finance</b> built directly on high-performance <b>Lighter EVM infrastructure</b>. Traditional DeFi Automated Market Makers (AMMs) face fragmented capital distribution, high latency, and poor liquidity efficiency when bridging real-world financial instruments on-chain.
+                </p>
+                <p class="desc-text">
+                    Wick solves this by unifying options, limit orders, and decentralized index trading directly across a single consolidated pool architecture. Institutional-grade quantitative arbitrage and high-frequency market-making (HFT) mechanics operate friction-free without continuous gas degradation.
+                </p>
+
+                <div class="arch-grid">
+                    <div class="arch-box">
+                        <div class="arch-title">State of the Art AMM</div>
+                        <div class="arch-desc">Enables multi-asset options, decentralized limit orders, and index markets settled trustlessly on unified pool liquidity.</div>
+                    </div>
+                    <div class="arch-box">
+                        <div class="arch-title">Institutional Arbitrage & HFT</div>
+                        <div class="arch-desc">Purpose-built algorithmic execution routes designed for high-frequency trading and low-slippage market making.</div>
+                    </div>
+                    <div class="arch-box">
+                        <div class="arch-title">LIT Liquid Staking & LP Yield</div>
+                        <div class="arch-desc">Features wLIT autocompounding liquid staking paired with Wick Lighter LP (wLLP) to maximize yield while retaining on-chain exit liquidity.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Whitepaper & Early Trader Allocation Model -->
+            <div class="content-card">
+                <h2 class="section-title">Whitepaper, Ecosystem Roadmap & Waitlist Allocation</h2>
+                <p class="desc-text">
+                    According to protocol whitepaper documentation, the early <b>Wick Genesis Waitlist</b> is engineered to identify authentic on-chain traders, liquidity providers, and active testnet participants prior to mainnet deployment:
+                </p>
+                <p class="desc-text">
+                    • <b>Zero-Capital Onboarding:</b> Registering for the waitlist requires zero upfront capital ($0.00). Users simply connect their non-custodial EVM wallet or submit early email credentials.<br>
+                    • <b>Trader Priority Quests:</b> Early waitlist members receive prioritized access to private testnet faucet distributions, Genesis LP pools, and future protocol fee rebates.<br>
+                    • <b>Referral Queue Boost:</b> Submitting the official invite code <b>975988</b> accelerates waitlist position ranking ahead of upcoming protocol governance token distribution snapshots.
+                </p>
+            </div>
+
+            <!-- Dedicated Video Walkthrough Section -->
+            <div class="content-card">
+                <h2 class="section-title">Dedicated Video Walkthrough (Total Crypto Network)</h2>
+                <p class="desc-text">
+                    Watch our step-by-step video guide from <b>Total Crypto Network</b> covering Wick’s Real World Finance model, connecting your EVM wallet, securing early waitlist ranking, and preparing for the testnet phase.
+                </p>
+                <div class="video-wrapper">
+                    <!-- Replace the embed URL below with your dedicated Wick video link once uploaded -->
+                    <iframe 
+                        src="https://www.youtube.com/embed?listType=user_uploads&list=TotalCryptoNetwork" 
+                        title="Wick Complete Waitlist Guide" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Security & Risk Clearance -->
+            <div class="content-card">
+                <h2 class="section-title">Total Crypto Network Security Clearance</h2>
+                <p class="desc-text">
+                    • <b>Zero Initial Risk:</b> Waitlist registration is 100% free with no deposit required.<br>
+                    • <b>Wallet Safety:</b> The waitlist interface only requests basic signature verification. Never share recovery phrases or grant high-risk token spending permissions.<br>
+                    • <b>Recommended Practice:</b> Connect using a dedicated secondary Web3 wallet address for participating in emerging DeFi waitlists.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">&copy; 2026 Total Crypto Network. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Exact history back preservation function
+        function goBackToAirdrops() {
+            if (document.referrer && document.referrer.indexOf('airdrops.html') !== -1) {
+                history.back();
+            } else {
+                window.location.href = '../airdrop-pages/airdrops.html';
+            }
+        }
+
+        function copyReferralCode() {
+            const code = document.getElementById('refCodeText').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.innerText = 'Copied!';
+                btn.style.background = 'var(--accent-primary)';
+                btn.style.color = '#ffffff';
+                setTimeout(() => {
+                    btn.innerText = 'Copy';
+                    btn.style.background = 'transparent';
+                    btn.style.color = 'var(--accent-primary)';
+                }, 2000);
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggleBtn = document.getElementById('themeToggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
