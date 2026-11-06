@@ -79,7 +79,7 @@
         .hero-title h2 svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; }
         .project-count { color: var(--text-muted); font-weight: 600; font-size: 13px; margin-bottom: 20px; }
 
-        /* ================= HIGH-CONTRAST CRISP OVERVIEW CARD ================= */
+        /* Overview Card */
         .community-overview-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
@@ -165,22 +165,6 @@
             display: inline-block;
         }
 
-        /* Professional Theme-Matched NEW Badge */
-        .badge-new {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-primary);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            font-size: 9px;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: 6px;
-            vertical-align: middle;
-            display: inline-block;
-        }
-
         /* Controls & Filter Bar */
         .controls-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
         .search-box { position: relative; flex: 1; min-width: 240px; max-width: 380px; }
@@ -188,7 +172,6 @@
         .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
         .filter-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
         .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
-        .filter-btn.earn.active { background: var(--accent-primary); border-color: var(--accent-primary); color: white; }
         .filter-btn.vault.active { background: #d97706; border-color: #d97706; color: white; }
 
         /* Table Card */
@@ -207,11 +190,9 @@
         .project-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; font-weight: 600; }
         
         .badge-verified { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #059669; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
-        .badge-earn { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: var(--accent-primary); color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
         .badge-vault { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #d97706; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
         
         .score-verified { font-weight: 800; color: var(--accent-primary); font-size: 13.5px; }
-        .score-earn { font-weight: 800; color: var(--accent-primary); font-size: 13.5px; }
         .score-vault { font-weight: 800; color: #d97706; font-size: 13.5px; }
 
         .category-pill { background: var(--bg-body); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); font-weight: 700; border: 1px solid var(--border-color); }
@@ -306,14 +287,13 @@
                 </div>
             </div>
 
-            <!-- Controls & Filters with EARN REWARD Button -->
+            <!-- Controls & Filters (Restored to Standard) -->
             <div class="controls-bar">
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Search platforms by name..." oninput="handleSearch()">
                 </div>
                 <div class="filter-group">
                     <button class="filter-btn active" onclick="setFilter('all', this)">All Platforms</button>
-                    <button class="filter-btn earn" onclick="setFilter('earn', this)">⚡ Earn Reward</button>
                     <button class="filter-btn" onclick="setFilter('evm', this)">EVM Wallets</button>
                     <button class="filter-btn" onclick="setFilter('multichain', this)">Multi-Chain</button>
                     <button class="filter-btn" onclick="setFilter('exchange', this)">Exchanges (CEX)</button>
@@ -355,13 +335,6 @@
 
     <script>
         const WALLET_PROJECTS = [
-            // ================= EARN REWARD / AIRDROP WALLETS (NEW) =================
-            { name: "Deblock <span class='badge-new'>New</span>", sub: "$32M Funded Airdrop Wallet • Early Access", category: "Earn Reward", score: "⭐ 9.6 / 10", status: "earn", link: "../wallet-projects/deblock.html", logo: "../logos/deblock.png" },
-            { name: "El Dorado <span class='badge-new'>New</span>", sub: "$9M Paradigm Backed Earn Wallet", category: "Earn Reward", score: "⭐ 9.4 / 10", status: "earn", link: "../wallet-projects/eldorado.html", logo: "../logos/eldorado.png" },
-            { name: "Utila <span class='badge-new'>New</span>", sub: "$22M Funded Multi-Chain Institutional Earn", category: "Earn Reward", score: "⭐ 9.6 / 10", status: "earn", link: "../wallet-projects/utila.html", logo: "../logos/utila.png" },
-            { name: "Kontigo <span class='badge-new'>New</span>", sub: "$20M Coinbase Backed Quest Wallet", category: "Earn Reward", score: "⭐ 9.5 / 10", status: "earn", link: "../wallet-projects/kontigo.html", logo: "../logos/kontigo.png" },
-            { name: "Squads <span class='badge-new'>New</span>", sub: "$18M Solana Smart Earn Ecosystem", category: "Earn Reward", score: "⭐ 9.4 / 10", status: "earn", link: "../wallet-projects/squads.html", logo: "../logos/squads.png" },
-
             // ================= 1. EVM Wallets (Tier 1: Daily Airdrops & dApps) =================
             { name: "MetaMask", sub: "Ethereum & All EVM Testnets • Browser & Mobile", category: "EVM Wallets", score: "⭐ 9.8 / 10", status: "evm", link: "../wallet-projects/metamask.html", logo: "../logos/metamask.png" },
             { name: "Rabby Wallet", sub: "Anti-Scam Protection • Pro Airdrop Wallet", category: "EVM Wallets", score: "⭐ 9.7 / 10", status: "evm", link: "../wallet-projects/rabby-wallet.html", logo: "../logos/rabby.png" },
@@ -405,7 +378,6 @@
             let visibleCount = 0;
 
             const filtered = WALLET_PROJECTS.filter(p => {
-                // Remove HTML tags for clean search matching
                 const cleanName = p.name.replace(/<[^>]*>?/gm, '').toLowerCase();
                 const matchesSearch = cleanName.includes(query) || p.sub.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
                 if (!matchesSearch) return false;
@@ -416,16 +388,14 @@
             filtered.forEach(p => {
                 visibleCount++;
                 const isVault = p.status === 'vault';
-                const isEarn = p.status === 'earn';
-                const badgeClass = isVault ? 'badge-vault' : (isEarn ? 'badge-earn' : 'badge-verified');
+                const badgeClass = isVault ? 'badge-vault' : 'badge-verified';
                 const badgeIcon = '✓';
-                const scoreClass = isVault ? 'score-vault' : (isEarn ? 'score-earn' : 'score-verified');
+                const scoreClass = isVault ? 'score-vault' : 'score-verified';
 
                 const rawName = p.name.replace(/<[^>]*>?/gm, '');
                 const initial = rawName.charAt(0).toUpperCase();
                 const bgColor = getAvatarColor(rawName);
 
-                // Smart Avatar Fallback
                 const avatarHtml = `
                     <div class="project-avatar-box">
                         <img src="${p.logo}" alt="${rawName}" onerror="if(this.src.indexOf('tcn-logo.png') === -1){ this.src='../logos/tcn-logo.png'; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
