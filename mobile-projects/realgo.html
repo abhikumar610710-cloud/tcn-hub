@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealGo Architecture & Research | Total Crypto Hub</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #1e293b;
+            --text-muted: #475569;
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+            --container-max-width: 1040px;
+        }
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.95);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding: 0 20px; }
+
+        /* Standard Hub Header */
+        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .logo-text b { color: var(--accent-primary); }
+
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
+        
+        .btn-back-capsule {
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-back-capsule:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        main { flex: 1; padding: 32px 0 60px; }
+
+        /* Top Hero Section */
+        .project-hero { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; box-shadow: var(--card-shadow); margin-bottom: 24px; }
+        .hero-split-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+        
+        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; flex: 1; }
+        .hero-avatar { width: 68px; height: 68px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); flex-shrink: 0; padding: 2px; background: var(--bg-surface); }
+        .hero-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .hero-meta h1 { font-size: 24px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .hero-meta p { color: var(--text-muted); font-size: 13px; font-weight: 600; margin-top: 3px; }
+        .badge-verified { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+
+        /* Hero Right Action Boxes */
+        .hero-right-boxes { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        
+        .action-box-ref {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 140px;
+        }
+        .action-box-label { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .action-box-code-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .action-box-code { font-size: 14px; font-weight: 800; color: var(--text-heading); font-family: monospace; }
+        .btn-copy-code {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--accent-primary);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-copy-code:hover { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+
+        .btn-launch-join {
+            background: var(--accent-primary);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            transition: all 0.2s;
+            height: 100%;
+            min-height: 52px;
+            white-space: nowrap;
+        }
+        .btn-launch-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .stat-box { background: var(--bg-body); border: 1px solid var(--border-color); padding: 14px 16px; border-radius: 10px; }
+        .stat-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+        .stat-value { font-size: 16px; font-weight: 800; color: var(--text-heading); }
+        .stat-value.highlight { color: var(--accent-primary); }
+
+        /* Content Cards */
+        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; box-shadow: var(--card-shadow); margin-bottom: 24px; }
+        .section-title { font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 14px; border-left: 4px solid var(--accent-primary); padding-left: 10px; }
+        .desc-text { font-size: 14px; line-height: 1.7; color: var(--text-body); font-weight: 500; margin-bottom: 14px; }
+        .desc-text b { color: var(--text-heading); font-weight: 800; }
+
+        .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+        .arch-box { background: var(--bg-body); border: 1px solid var(--border-color); padding: 18px; border-radius: 12px; }
+        .arch-title { font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
+        .arch-desc { font-size: 13px; line-height: 1.6; color: var(--text-muted); font-weight: 500; }
+
+        /* Video Section */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: #000;
+            margin-top: 16px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); }
+    </style>
+</head>
+<body data-theme="light">
+    <header>
+        <div class="site-container header-inner">
+            <a href="../index.html" class="logo-box">
+                <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.src='../logos/tcn-logo.png'"></div>
+                <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
+            </a>
+            
+            <div class="header-right">
+                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+                <button onclick="goBackToPrevious()" class="btn-back-capsule">← Back</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="site-container">
+            <!-- Project Hero with Top Action Boxes -->
+            <div class="project-hero">
+                <div class="hero-split-row">
+                    <div class="hero-left">
+                        <div class="hero-avatar">
+                            <img src="../logos/realgo.png" alt="RealGo Logo" onerror="this.src='../logos/tcn-logo.png'">
+                        </div>
+                        <div class="hero-meta">
+                            <h1>RealGo <span class="badge-verified">AR + Web3 Gaming</span></h1>
+                            <p>Location-Based AR, AI & Move-to-Earn Meme Ecosystem</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-right-boxes">
+                        <!-- Referral Code Box -->
+                        <div class="action-box-ref">
+                            <span class="action-box-label">Referral Code</span>
+                            <div class="action-box-code-row">
+                                <span class="action-box-code" id="refCodeText">S351QL62</span>
+                                <button class="btn-copy-code" id="copyBtn" onclick="copyReferralCode()">Copy</button>
+                            </div>
+                        </div>
+
+                        <!-- Direct Join Link -->
+                        <a href="https://www.realgo.game/ref/S351QL62" target="_blank" rel="noopener noreferrer" class="btn-launch-join">
+                            Join RealGo World →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stats Overview Row -->
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Capital Investment</div>
+                        <div class="stat-value highlight">$0.00 (Free-to-Play AR App)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Next Token Unlock</div>
+                        <div class="stat-value">November 23, 2026</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Reward Assets</div>
+                        <div class="stat-value">$RT, Doge, Pepe & Gems</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">TCN Audit Score</div>
+                        <div class="stat-value highlight">9.1 / 10</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Architectural & Protocol Analysis -->
+            <div class="content-card">
+                <h2 class="section-title">Protocol Overview & Dynamic LBS Architecture</h2>
+                <p class="desc-text">
+                    <b>RealGo</b> transforms the physical world into an interactive Augmented Reality (AR) and Location-Based Services (LBS) playground. Combining modern smartphone GPS tracking with on-chain Web3 mechanics, players explore their local surroundings to discover, capture, battle, and upgrade over 120 unique meme-inspired pets including legendary icons like Doge, Pepe, and Shiba.
+                </p>
+                <p class="desc-text">
+                    Through its <b>Dynamic Map Mechanic</b>, rare meme characters and resource nodes spawn at specific geo-coordinates and intervals. Users utilize specialized capture tools (like Elite Orbs) to collect companions, level up their skill sets using Skill Tomes, and construct specialized meme combat squads.
+                </p>
+
+                <div class="arch-grid">
+                    <div class="arch-box">
+                        <div class="arch-title">Dynamic Map & Geo-Spawning</div>
+                        <div class="arch-desc">Real-time GPS triangulation spawns meme creatures and mystery treasure boxes directly across real physical city maps.</div>
+                    </div>
+                    <div class="arch-box">
+                        <div class="arch-title">120+ Meme Pet Squads</div>
+                        <div class="arch-desc">Capture, upgrade, and deploy pets across element types (Volt, Flame, Thunder) with dedicated ATK, DEF, and SPD combat ratings.</div>
+                    </div>
+                    <div class="arch-box">
+                        <div class="arch-title">In-Game Self-Custody Vault</div>
+                        <div class="arch-desc">Built-in secure mobile vault enabling seamless holding, trading, and on-chain withdrawal of $RT and multi-meme tokens.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Whitepaper, Backing & Tokenomics Research -->
+            <div class="content-card">
+                <h2 class="section-title">Whitepaper, Tokenomics & Unlock Schedule</h2>
+                <p class="desc-text">
+                    According to the official <b>RealGo Whitepaper</b> and game center architecture disclosures, the ecosystem runs on a dual-asset circular economy designed to balance play-to-earn rewards with long-term token sinks:
+                </p>
+                <p class="desc-text">
+                    • <b>$RT (Real Token) Core Currency:</b> The primary governance and transaction utility token used across the decentralized in-game marketplace to trade rare meme pets, items, and harvesters.<br>
+                    • <b>Real Memecoin Airdrops:</b> Every successful meme capture and battle victory rewards players with $RT alongside fractions of actual established memecoins (Dogecoin, Pepe Coin, and Shiba Inu).<br>
+                    • <b>Token Unlock & Vesting Cycle:</b> Protocol allocations operate on scheduled distribution windows. The upcoming active unlock date is scheduled for <b>November 23, 2026</b>, where active players can claim their accumulated gameplay allocations.<br>
+                    • <b>Refer-To-Earn Commission:</b> Built-in affiliate infrastructure providing 10% to 20% tier-based rewards for onboarding new active explorers into the ecosystem.
+                </p>
+            </div>
+
+            <!-- Dedicated Video Walkthrough Section -->
+            <div class="content-card">
+                <h2 class="section-title">Dedicated Video Walkthrough (Total Crypto Network)</h2>
+                <p class="desc-text">
+                    Watch our complete gameplay walkthrough from <b>Total Crypto Network</b> covering app installation, GPS map exploration, capturing high-rarity meme pets, and managing your in-game vault.
+                </p>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed?listType=user_uploads&list=TotalCryptoNetwork" 
+                        title="RealGo Complete Web3 Game Guide" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Audit & Security Clearance -->
+            <div class="content-card">
+                <h2 class="section-title">Total Crypto Network Security Clearance</h2>
+                <p class="desc-text">
+                    • <b>Zero Mandatory Capital:</b> RealGo is 100% free-to-play. Never spend real fiat or crypto purchasing in-app gems or high-priced NFT orbs beyond your risk capacity.<br>
+                    • <b>Fair Play Policy:</b> Do not use GPS spoofers, mock locations, or multi-instance emulators. RealGo's anti-cheat framework automatically penalizes and disqualifies bot accounts from token unlocks.<br>
+                    • <b>Withdrawal Hygiene:</b> Connect a secondary Web3 wallet when binding to the RealGo web rewards center.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">&copy; 2026 Total Crypto Network. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/contact.html">Contact Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function goBackToPrevious() {
+            if (document.referrer && (document.referrer.indexOf('airdrops.html') !== -1 || document.referrer.indexOf('mobile-mining.html') !== -1)) {
+                history.back();
+            } else {
+                window.location.href = '../airdrop-pages/airdrops.html';
+            }
+        }
+
+        function copyReferralCode() {
+            const code = document.getElementById('refCodeText').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.innerText = 'Copied!';
+                btn.style.background = 'var(--accent-primary)';
+                btn.style.color = '#ffffff';
+                setTimeout(() => {
+                    btn.innerText = 'Copy';
+                    btn.style.background = 'transparent';
+                    btn.style.color = 'var(--accent-primary)';
+                }, 2000);
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggleBtn = document.getElementById('themeToggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
