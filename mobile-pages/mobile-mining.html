@@ -192,6 +192,20 @@
         .project-name { font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 6px; font-size: 14px; }
         .project-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; font-weight: 600; }
         
+        /* Badges */
+        .badge-new { 
+            background: rgba(16, 185, 129, 0.15); 
+            color: #10b981; 
+            border: 1px solid #10b981; 
+            padding: 2px 7px; 
+            border-radius: 12px; 
+            font-size: 10px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.3px; 
+            display: inline-flex; 
+            align-items: center; 
+        }
         .badge-listed { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #059669; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
         .badge-upcoming { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; background: #d97706; color: white; border-radius: 50%; font-size: 10px; font-weight: 800; }
         
@@ -299,11 +313,13 @@
                     <button class="filter-btn" onclick="setFilter('listed', this)">Token Listed</button>
                     <button class="filter-btn" onclick="setFilter('socialfi', this)">SocialFi & Content</button>
                     <button class="filter-btn" onclick="setFilter('mining', this)">Tap to Mine</button>
+                    <button class="filter-btn" onclick="setFilter('gaming', this)">Gaming & P2E</button>
                     <select class="cat-select" onchange="setSubCategory(this.value)">
                         <option value="All">All Categories</option>
                         <option value="Token Listed">Token Listed</option>
                         <option value="SocialFi">SocialFi & Content</option>
                         <option value="Tap to Mine">Tap to Mine</option>
+                        <option value="Gaming">Gaming & P2E</option>
                     </select>
                 </div>
             </div>
@@ -344,48 +360,61 @@
 
     <script>
         const MOBILE_PROJECTS = [
+            // ================= 0. FEATURED & NEW GAMING APP (#1) =================
+            { 
+                name: "RealGo", 
+                sub: "AR + Web3 Mobile Game • Daily In-App Rewards & Move-to-Earn", 
+                category: "Gaming", 
+                type: "gaming", 
+                isListed: false, 
+                isNew: true, 
+                score: "⭐ 9.1 / 10", 
+                link: "../mobile-projects/realgo.html", 
+                logo: "../logos/realgo.png" 
+            },
+
             // ================= 1. Verified & Token Listed Projects (Green Tick: ✓) =================
-            { name: "DuckChain", sub: "TON EVM L2 • Token Listed ($DUCK) & Arbitrum Orbit", category: "Token Listed", type: "listed", isListed: true, score: "⭐ 9.5 / 10", link: "../projects/duckchain.html", logo: "../logos/duckchain.png" },
-            { name: "KGeN", sub: "Proof-of-Gamer Multi-Chain • Play Store App ($KGEN)", category: "Token Listed", type: "listed", isListed: true, score: "⭐ 9.4 / 10", link: "../projects/kgen.html", logo: "../logos/kgen.png" },
-            { name: "Satoshi App", sub: "Proven Airdrop Engine • Core DAO Ecosystem", category: "Multi-Airdrop Hub", type: "listed", isListed: true, score: "⭐ 9.2 / 10", link: "../mobile-projects/satoshi.html", logo: "../logos/satoshi.png" },
-            { name: "cPen Network", sub: "Decentralized Social Mining • BSC Ecosystem", category: "SocialFi", type: "listed", isListed: true, score: "⭐ 8.2 / 10", link: "../projects/cpen.html", logo: "../logos/cpen.png" },
-            { name: "Pi Network", sub: "Enclosed Mainnet • Peer-to-Peer Consensus", category: "Layer 1", type: "listed", isListed: true, score: "⭐ 8.8 / 10", link: "../mobile-projects/pi.html", logo: "../logos/pi.png" },
-            { name: "Rubi Network", sub: "Digital Commodity • Token Listed on Exchange", category: "Commodity", type: "listed", isListed: true, score: "⭐ 8.5 / 10", link: "../mobile-projects/rubi.html", logo: "../logos/rubi.png" },
-            { name: "Omega Network", sub: "OMN Ecosystem • EVM Smart Contracts", category: "EVM", type: "listed", isListed: true, score: "⭐ 8.5 / 10", link: "../mobile-projects/omega.html", logo: "../logos/omega.png" },
-            { name: "TTcoin Network", sub: "TRC20 / BEP20 Community Token & Wallet", category: "Tron / BSC", type: "listed", isListed: true, score: "⭐ 8.2 / 10", link: "../mobile-projects/ttcoin.html", logo: "../logos/ttcoin.png" },
-            { name: "Miningperia", sub: "Peria Coin (BEP-20) Cloud Interface", category: "BSC Test", type: "listed", isListed: true, score: "⭐ 8.0 / 10", link: "../mobile-projects/miningperia.html", logo: "../logos/miningperia.png" },
-            { name: "Holana Network", sub: "Solana Ecosystem Integration • Rewards", category: "Solana", type: "listed", isListed: true, score: "⭐ 8.0 / 10", link: "../mobile-projects/holana.html", logo: "../logos/holana.png" },
-            { name: "InterLink Network", sub: "Human Layer • Bot-Resistant Protocol", category: "Identity", type: "listed", isListed: true, score: "⭐ 7.9 / 10", link: "../mobile-projects/interlink.html", logo: "../logos/interlink.png" },
+            { name: "DuckChain", sub: "TON EVM L2 • Token Listed ($DUCK) & Arbitrum Orbit", category: "Token Listed", type: "listed", isListed: true, isNew: false, score: "⭐ 9.5 / 10", link: "../projects/duckchain.html", logo: "../logos/duckchain.png" },
+            { name: "KGeN", sub: "Proof-of-Gamer Multi-Chain • Play Store App ($KGEN)", category: "Token Listed", type: "listed", isListed: true, isNew: false, score: "⭐ 9.4 / 10", link: "../projects/kgen.html", logo: "../logos/kgen.png" },
+            { name: "Satoshi App", sub: "Proven Airdrop Engine • Core DAO Ecosystem", category: "Multi-Airdrop Hub", type: "listed", isListed: true, isNew: false, score: "⭐ 9.2 / 10", link: "../mobile-projects/satoshi.html", logo: "../logos/satoshi.png" },
+            { name: "cPen Network", sub: "Decentralized Social Mining • BSC Ecosystem", category: "SocialFi", type: "listed", isListed: true, isNew: false, score: "⭐ 8.2 / 10", link: "../projects/cpen.html", logo: "../logos/cpen.png" },
+            { name: "Pi Network", sub: "Enclosed Mainnet • Peer-to-Peer Consensus", category: "Layer 1", type: "listed", isListed: true, isNew: false, score: "⭐ 8.8 / 10", link: "../mobile-projects/pi.html", logo: "../logos/pi.png" },
+            { name: "Rubi Network", sub: "Digital Commodity • Token Listed on Exchange", category: "Commodity", type: "listed", isListed: true, isNew: false, score: "⭐ 8.5 / 10", link: "../mobile-projects/rubi.html", logo: "../logos/rubi.png" },
+            { name: "Omega Network", sub: "OMN Ecosystem • EVM Smart Contracts", category: "EVM", type: "listed", isListed: true, isNew: false, score: "⭐ 8.5 / 10", link: "../mobile-projects/omega.html", logo: "../logos/omega.png" },
+            { name: "TTcoin Network", sub: "TRC20 / BEP20 Community Token & Wallet", category: "Tron / BSC", type: "listed", isListed: true, isNew: false, score: "⭐ 8.2 / 10", link: "../mobile-projects/ttcoin.html", logo: "../logos/ttcoin.png" },
+            { name: "Miningperia", sub: "Peria Coin (BEP-20) Cloud Interface", category: "BSC Test", type: "listed", isListed: true, isNew: false, score: "⭐ 8.0 / 10", link: "../mobile-projects/miningperia.html", logo: "../logos/miningperia.png" },
+            { name: "Holana Network", sub: "Solana Ecosystem Integration • Rewards", category: "Solana", type: "listed", isListed: true, isNew: false, score: "⭐ 8.0 / 10", link: "../mobile-projects/holana.html", logo: "../logos/holana.png" },
+            { name: "InterLink Network", sub: "Human Layer • Bot-Resistant Protocol", category: "Identity", type: "listed", isListed: true, isNew: false, score: "⭐ 7.9 / 10", link: "../mobile-projects/interlink.html", logo: "../logos/interlink.png" },
 
             // ================= 2. Verified SocialFi & Content Rewards =================
-            { name: "Drops App", sub: "Build Where You Own • Mobile SocialFi & Tipping", category: "Mobile SocialFi", type: "socialfi", isListed: true, score: "⭐ 9.1 / 10", link: "../mobile-projects/drops.html", logo: "../logos/drops.png" },
-            { name: "BULB", sub: "Read & Write-to-Earn • Solana Ecosystem", category: "Write-to-Earn", type: "socialfi", isListed: true, score: "⭐ 9.3 / 10", link: "../mobile-projects/bulb.html", logo: "../logos/bulb.png" },
-            { name: "DSCVR", sub: "Decentralized Social Canvas • Lootboxes & SOL", category: "Social Canvas", type: "socialfi", isListed: true, score: "⭐ 9.2 / 10", link: "../mobile-projects/dscvr.html", logo: "../logos/dscvr.png" },
-            { name: "Warpcast", sub: "Farcaster Client • Degen & Moxie Token Tipping", category: "SocialFi Hub", type: "socialfi", isListed: true, score: "⭐ 9.4 / 10", link: "../mobile-projects/warpcast.html", logo: "../logos/warpcast.png" },
-            { name: "Hive (Ecency)", sub: "Proof-of-Brain Content Blogging • HIVE / HBD", category: "Web3 Blogging", type: "socialfi", isListed: true, score: "⭐ 9.5 / 10", link: "../mobile-projects/hive.html", logo: "../logos/hive.png" },
-            { name: "Publish0x", sub: "Read & Write Crypto Articles • Free Multi-Token Tips", category: "Read & Write", type: "socialfi", isListed: true, score: "⭐ 9.0 / 10", link: "../mobile-projects/publish0x.html", logo: "../logos/publish0x.png" },
-            { name: "Torum", sub: "SocialFi Platform for Crypto Enthusiasts • XTM Token", category: "Crypto Social", type: "socialfi", isListed: true, score: "⭐ 9.0 / 10", link: "../mobile-projects/torum.html", logo: "../logos/torum.png" },
-            { name: "Paragraph", sub: "Web3 Newsletter & Publications • Base On-Chain Tips", category: "Newsletter", type: "socialfi", isListed: true, score: "⭐ 8.9 / 10", link: "../mobile-projects/paragraph.html", logo: "../logos/paragraph.png" },
-            { name: "Mirror", sub: "Decentralized Publishing Protocol • Writing NFTs", category: "Web3 Articles", type: "socialfi", isListed: true, score: "⭐ 8.8 / 10", link: "../mobile-projects/mirror.html", logo: "../logos/mirror.png" },
-            { name: "Minds", sub: "Open-Source Social Network • Daily Engagement Rewards", category: "Open Social", type: "socialfi", isListed: true, score: "⭐ 8.7 / 10", link: "../mobile-projects/minds.html", logo: "../logos/minds.png" },
+            { name: "Drops App", sub: "Build Where You Own • Mobile SocialFi & Tipping", category: "Mobile SocialFi", type: "socialfi", isListed: true, isNew: false, score: "⭐ 9.1 / 10", link: "../mobile-projects/drops.html", logo: "../logos/drops.png" },
+            { name: "BULB", sub: "Read & Write-to-Earn • Solana Ecosystem", category: "Write-to-Earn", type: "socialfi", isListed: true, isNew: false, score: "⭐ 9.3 / 10", link: "../mobile-projects/bulb.html", logo: "../logos/bulb.png" },
+            { name: "DSCVR", sub: "Decentralized Social Canvas • Lootboxes & SOL", category: "Social Canvas", type: "socialfi", isListed: true, isNew: false, score: "⭐ 9.2 / 10", link: "../mobile-projects/dscvr.html", logo: "../logos/dscvr.png" },
+            { name: "Warpcast", sub: "Farcaster Client • Degen & Moxie Token Tipping", category: "SocialFi Hub", type: "socialfi", isListed: true, isNew: false, score: "⭐ 9.4 / 10", link: "../mobile-projects/warpcast.html", logo: "../logos/warpcast.png" },
+            { name: "Hive (Ecency)", sub: "Proof-of-Brain Content Blogging • HIVE / HBD", category: "Web3 Blogging", type: "socialfi", isListed: true, isNew: false, score: "⭐ 9.5 / 10", link: "../mobile-projects/hive.html", logo: "../logos/hive.png" },
+            { name: "Publish0x", sub: "Read & Write Crypto Articles • Free Multi-Token Tips", category: "Read & Write", type: "socialfi", isListed: true, isNew: false, score: "⭐ 9.0 / 10", link: "../mobile-projects/publish0x.html", logo: "../logos/publish0x.png" },
+            { name: "Torum", sub: "SocialFi Platform for Crypto Enthusiasts • XTM Token", category: "Crypto Social", type: "socialfi", isListed: true, isNew: false, score: "⭐ 9.0 / 10", link: "../mobile-projects/torum.html", logo: "../logos/torum.png" },
+            { name: "Paragraph", sub: "Web3 Newsletter & Publications • Base On-Chain Tips", category: "Newsletter", type: "socialfi", isListed: true, isNew: false, score: "⭐ 8.9 / 10", link: "../mobile-projects/paragraph.html", logo: "../logos/paragraph.png" },
+            { name: "Mirror", sub: "Decentralized Publishing Protocol • Writing NFTs", category: "Web3 Articles", type: "socialfi", isListed: true, isNew: false, score: "⭐ 8.8 / 10", link: "../mobile-projects/mirror.html", logo: "../logos/mirror.png" },
+            { name: "Minds", sub: "Open-Source Social Network • Daily Engagement Rewards", category: "Open Social", type: "socialfi", isListed: true, isNew: false, score: "⭐ 8.7 / 10", link: "../mobile-projects/minds.html", logo: "../logos/minds.png" },
 
             // ================= 3. Tap to Mine / Upcoming Projects =================
-            { name: "Bee Network", sub: "Global Web3 Portal • Ecosystem & DApps", category: "Web3 Hub", type: "mining", isListed: false, score: "⭐ 7.8 / 10", link: "../mobile-projects/bee.html", logo: "../logos/bee.png" },
-            { name: "Sidra Chain", sub: "Decentralized Digital Asset • KYC Consensus", category: "Identity & DeFi", type: "mining", isListed: false, score: "⭐ 7.3 / 10", link: "../mobile-projects/sidra.html", logo: "../logos/sidra.png" },
-            { name: "Marina Protocol", sub: "Web3 Onboarding Platform • BNB Chain Integration", category: "Learn-to-Earn", type: "mining", isListed: false, score: "⭐ 7.1 / 10", link: "../mobile-projects/marina.html", logo: "../logos/marina.png" },
-            { name: "Alpha Network", sub: "Digital Asset Mining Protocol", category: "Mobile Mining", type: "mining", isListed: false, score: "⭐ 6.8 / 10", link: "../mobile-projects/alpha.html", logo: "../logos/alpha.png" },
-            { name: "Unich Network", sub: "Social Identity Layer • Pre-TGE Phase", category: "Pre-Market", type: "mining", isListed: false, score: "⭐ 6.7 / 10", link: "../mobile-projects/unich.html", logo: "../logos/unich.png" },
-            { name: "Verro Network", sub: "Built on Solana • AI Micro Tasks", category: "Solana", type: "mining", isListed: false, score: "⭐ 6.5 / 10", link: "../mobile-projects/verro.html", logo: "../logos/verro.png" },
-            { name: "Toleno Network", sub: "Solana Ecosystem • Early Community Points", category: "Solana", type: "mining", isListed: false, score: "⭐ 6.4 / 10", link: "../mobile-projects/toleno.html", logo: "../logos/toleno.png" },
-            { name: "Orex Network", sub: "Fixed 500M ORX • Gaming & Mining Nodes", category: "Web3 Gaming", type: "mining", isListed: false, score: "⭐ 6.2 / 10", link: "../mobile-projects/orex.html", logo: "../logos/orex.png" },
-            { name: "Vespera Network", sub: "Base Chain L2 • Governance Protocol", category: "Base L2", type: "mining", isListed: false, score: "⭐ 6.1 / 10", link: "../mobile-projects/vespera.html", logo: "../logos/vespera.png" },
-            { name: "Hype Network", sub: "Community Engagement & Rewards Engine", category: "Community", type: "mining", isListed: false, score: "⭐ 6.0 / 10", link: "../mobile-projects/hype.html", logo: "../logos/hype.png" },
-            { name: "Mirex Network", sub: "Micro Task Simulation • BSC Liquidity Testing", category: "BSC / DEX", type: "mining", isListed: false, score: "⭐ 5.9 / 10", link: "../mobile-projects/mirex.html", logo: "../logos/mirex.png" },
-            { name: "Avalun Network", sub: "Polygon PoS • Micro Reward Distribution", category: "Polygon", type: "mining", isListed: false, score: "⭐ 5.8 / 10", link: "../mobile-projects/avalun.html", logo: "../logos/avalun.png" },
-            { name: "Starx Network", sub: "Gamified Node Mining Architecture", category: "Mobile Mining", type: "mining", isListed: false, score: "⭐ 5.7 / 10", link: "../mobile-projects/starx.html", logo: "../logos/starx.png" },
-            { name: "Sprout Network", sub: "Mobile Farming • Community Distributed Tasks", category: "Community", type: "mining", isListed: false, score: "⭐ 5.6 / 10", link: "../mobile-projects/sprout.html", logo: "../logos/sprout.png" },
-            { name: "Rabit Network", sub: "Asset Staking & Daily Consensus", category: "Mobile Mining", type: "mining", isListed: false, score: "⭐ 5.5 / 10", link: "../mobile-projects/rabit.html", logo: "../logos/rabit.png" },
-            { name: "Vrox Network", sub: "Early Stage Community Mining", category: "Experimental", type: "mining", isListed: false, score: "⭐ 5.4 / 10", link: "../mobile-projects/vrox.html", logo: "../logos/vrox.png" }
+            { name: "Bee Network", sub: "Global Web3 Portal • Ecosystem & DApps", category: "Web3 Hub", type: "mining", isListed: false, isNew: false, score: "⭐ 7.8 / 10", link: "../mobile-projects/bee.html", logo: "../logos/bee.png" },
+            { name: "Sidra Chain", sub: "Decentralized Digital Asset • KYC Consensus", category: "Identity & DeFi", type: "mining", isListed: false, isNew: false, score: "⭐ 7.3 / 10", link: "../mobile-projects/sidra.html", logo: "../logos/sidra.png" },
+            { name: "Marina Protocol", sub: "Web3 Onboarding Platform • BNB Chain Integration", category: "Learn-to-Earn", type: "mining", isListed: false, isNew: false, score: "⭐ 7.1 / 10", link: "../mobile-projects/marina.html", logo: "../logos/marina.png" },
+            { name: "Alpha Network", sub: "Digital Asset Mining Protocol", category: "Mobile Mining", type: "mining", isListed: false, isNew: false, score: "⭐ 6.8 / 10", link: "../mobile-projects/alpha.html", logo: "../logos/alpha.png" },
+            { name: "Unich Network", sub: "Social Identity Layer • Pre-TGE Phase", category: "Pre-Market", type: "mining", isListed: false, isNew: false, score: "⭐ 6.7 / 10", link: "../mobile-projects/unich.html", logo: "../logos/unich.png" },
+            { name: "Verro Network", sub: "Built on Solana • AI Micro Tasks", category: "Solana", type: "mining", isListed: false, isNew: false, score: "⭐ 6.5 / 10", link: "../mobile-projects/verro.html", logo: "../logos/verro.png" },
+            { name: "Toleno Network", sub: "Solana Ecosystem • Early Community Points", category: "Solana", type: "mining", isListed: false, isNew: false, score: "⭐ 6.4 / 10", link: "../mobile-projects/toleno.html", logo: "../logos/toleno.png" },
+            { name: "Orex Network", sub: "Fixed 500M ORX • Gaming & Mining Nodes", category: "Web3 Gaming", type: "mining", isListed: false, isNew: false, score: "⭐ 6.2 / 10", link: "../mobile-projects/orex.html", logo: "../logos/orex.png" },
+            { name: "Vespera Network", sub: "Base Chain L2 • Governance Protocol", category: "Base L2", type: "mining", isListed: false, isNew: false, score: "⭐ 6.1 / 10", link: "../mobile-projects/vespera.html", logo: "../logos/vespera.png" },
+            { name: "Hype Network", sub: "Community Engagement & Rewards Engine", category: "Community", type: "mining", isListed: false, isNew: false, score: "⭐ 6.0 / 10", link: "../mobile-projects/hype.html", logo: "../logos/hype.png" },
+            { name: "Mirex Network", sub: "Micro Task Simulation • BSC Liquidity Testing", category: "BSC / DEX", type: "mining", isListed: false, isNew: false, score: "⭐ 5.9 / 10", link: "../mobile-projects/mirex.html", logo: "../logos/mirex.png" },
+            { name: "Avalun Network", sub: "Polygon PoS • Micro Reward Distribution", category: "Polygon", type: "mining", isListed: false, isNew: false, score: "⭐ 5.8 / 10", link: "../mobile-projects/avalun.html", logo: "../logos/avalun.png" },
+            { name: "Starx Network", sub: "Gamified Node Mining Architecture", category: "Mobile Mining", type: "mining", isListed: false, isNew: false, score: "⭐ 5.7 / 10", link: "../mobile-projects/starx.html", logo: "../logos/starx.png" },
+            { name: "Sprout Network", sub: "Mobile Farming • Community Distributed Tasks", category: "Community", type: "mining", isListed: false, isNew: false, score: "⭐ 5.6 / 10", link: "../mobile-projects/sprout.html", logo: "../logos/sprout.png" },
+            { name: "Rabit Network", sub: "Asset Staking & Daily Consensus", category: "Mobile Mining", type: "mining", isListed: false, isNew: false, score: "⭐ 5.5 / 10", link: "../mobile-projects/rabit.html", logo: "../logos/rabit.png" },
+            { name: "Vrox Network", sub: "Early Stage Community Mining", category: "Experimental", type: "mining", isListed: false, isNew: false, score: "⭐ 5.4 / 10", link: "../mobile-projects/vrox.html", logo: "../logos/vrox.png" }
         ];
 
         let currentFilter = 'all';
@@ -418,6 +447,8 @@
                     matchesFilter = p.type === 'socialfi';
                 } else if (currentFilter === 'mining') {
                     matchesFilter = p.type === 'mining';
+                } else if (currentFilter === 'gaming') {
+                    matchesFilter = p.type === 'gaming';
                 }
 
                 let matchesSubCat = false;
@@ -429,6 +460,8 @@
                     matchesSubCat = p.type === 'socialfi';
                 } else if (currentSubCategory === 'Tap to Mine') {
                     matchesSubCat = p.type === 'mining';
+                } else if (currentSubCategory === 'Gaming') {
+                    matchesSubCat = p.type === 'gaming';
                 }
 
                 return matchesFilter && matchesSubCat;
@@ -450,13 +483,15 @@
                     </div>
                 `;
 
+                let newBadgeHtml = p.isNew ? `<span class="badge-new">★ NEW</span>` : '';
+
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>
                         <div class="project-cell">
                             ${avatarHtml}
                             <div>
-                                <div class="project-name">${p.name} <span class="${badgeClass}">✓</span></div>
+                                <div class="project-name">${p.name} <span class="${badgeClass}">✓</span> ${newBadgeHtml}</div>
                                 <div class="project-sub">${p.sub}</div>
                             </div>
                         </div>
