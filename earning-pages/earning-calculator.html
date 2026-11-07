@@ -1,182 +1,1107 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earning Calculator | Total Crypto Hub</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-body: #f8fafc;
-            --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --border-color: #e2e8f0;
-            --text-heading: #0f172a;
-            --text-body: #334155;
-            --text-muted: #64748b;
-            --accent-primary: #10b981; /* Emerald color for Calculator */
-            --accent-hover: #059669;
-            --container-max-width: 1240px;
-            --container-padding: 24px;
-        }
-        [data-theme="dark"] {
-            --bg-body: #070a12;
-            --bg-surface: #0b1120;
-            --header-bg: rgba(11, 17, 32, 0.95);
-            --border-color: #1e293b;
-            --text-heading: #f8fafc;
-            --text-body: #cbd5e1;
-            --text-muted: #94a3b8;
-            --accent-primary: #34d399; 
-            --accent-hover: #10b981;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
-        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
-        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earning Calculator | Total Crypto Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0 0 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { display: flex; flex-direction: column; gap: 16px; }
-        .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        
-        /* Community Dropdown Styles */
-        .header-right { display: flex; align-items: center; gap: 12px; }
-        .community-dropdown { position: relative; display: inline-block; }
-        .community-btn { background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-        .community-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .dropdown-content { display: none; position: absolute; right: 0; top: 120%; background-color: var(--bg-surface); min-width: 180px; box-shadow: 0px 8px 24px rgba(0,0,0,0.15); border: 1px solid var(--border-color); border-radius: 12px; z-index: 101; overflow: hidden; }
-        .dropdown-content.show { display: block; animation: fadeIn 0.2s ease-in-out; }
-        .dropdown-content a { color: var(--text-heading); padding: 12px 16px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: rgba(16, 185, 129, 0.08); color: var(--accent-primary); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+<style>
+:root{
+  --green:#00a878;
+  --green-dark:#008d66;
+  --green-light:#e9faf3;
+  --navy:#102b40;
+  --text:#20364b;
+  --muted:#71849a;
+  --border:#e0eaf0;
+  --page:#f3f8fa;
+  --white:#fff;
+  --shadow:0 12px 35px rgba(25,65,82,.06);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--page);
+  color:var(--text);
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
 
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
+/* HEADER */
+.topbar{
+  height:76px;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:25px;
+  padding:0 28px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:225px;
+  text-decoration:none;
+  color:var(--navy);
+}
+.brand-logo{
+  width:45px;height:45px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#00b987,#087d62);
+  border:3px solid #d4f5e7;
+  color:white;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:800;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.brand-logo img{width:100%;height:100%;object-fit:cover}
+.brand-name{font-size:16px;font-weight:800}
+.brand-sub{font-size:10px;color:var(--muted);font-weight:600}
+.brand-sub span{color:var(--green-dark)}
+.header-search{flex:1;max-width:550px}
+.header-search input{
+  width:100%;height:43px;
+  background:#f7fafc;border:1px solid var(--border);
+  border-radius:13px;padding:0 15px;font-size:12px;outline:none;
+}
+.header-actions{margin-left:auto;display:flex;gap:10px}
+.community-btn,.theme-btn{
+  height:41px;border:1px solid var(--border);
+  background:white;border-radius:25px;
+  padding:0 16px;font-size:12px;
+  font-weight:700;color:var(--navy);
+}
+.theme-btn{width:41px;padding:0;font-size:18px}
 
-        .tab-switcher { display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; padding-bottom: 12px; scrollbar-width: none; width: 100%; }
-        .tab-switcher::-webkit-scrollbar { display: none; }
-        .tab-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; font-size: 13px; border-radius: 50px; cursor: pointer; text-decoration: none; flex-shrink: 0; }
-        .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
-        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+/* SIDEBAR */
+.sidebar{
+  width:250px;position:fixed;
+  top:76px;bottom:0;left:0;
+  padding:26px 19px;overflow-y:auto;
+  background:white;border-right:1px solid var(--border);
+  z-index:10;
+}
+.side-label{
+  font-size:9px;letter-spacing:1.5px;
+  color:#8a9bad;font-weight:800;
+  margin:4px 13px 15px;
+}
+.nav-link{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 13px;margin:4px 0;
+  border-radius:13px;text-decoration:none;
+  color:var(--navy);font-size:12px;font-weight:650;
+}
+.nav-link:hover{background:#f0faf6;color:var(--green-dark)}
+.nav-link.active{
+  background:#e8faf2;color:#008b66;
+  border:1px solid #b6ead6;
+}
+.nav-icon{
+  width:25px;height:25px;background:#f3f7fa;
+  display:grid;place-items:center;
+  border-radius:8px;font-size:13px;flex-shrink:0;
+}
+.active .nav-icon{background:var(--green);color:white}
+.community-card{
+  margin-top:42px;padding:19px 13px;
+  text-align:center;border-radius:20px;
+  border:1px solid #bcebd9;
+  background:linear-gradient(145deg,#e1f9ef,white);
+}
+.community-card .gift{font-size:27px}
+.community-card h4{font-size:12px;line-height:1.6;margin:8px 0 13px}
+.community-card a{
+  display:inline-block;background:var(--green);
+  color:white;text-decoration:none;
+  padding:10px 17px;border-radius:25px;
+  font-size:11px;font-weight:700;
+}
+.support-card{
+  margin-top:13px;padding:15px;
+  background:#f7fafc;border:1px solid var(--border);
+  border-radius:15px;font-size:11px;line-height:1.7;
+}
+.support-card a{color:var(--green-dark);font-weight:700}
 
-        main { flex: 1; padding: 64px 0; display: flex; justify-content: center; align-items: center; }
-        
-        .coming-soon-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 20px; padding: 48px 32px; text-align: center; max-width: 500px; width: 100%; box-shadow: 0 12px 32px rgba(0,0,0,0.05); }
-        .coming-soon-icon { width: 80px; height: 80px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 24px; }
-        .coming-soon-icon svg { width: 40px; height: 40px; stroke: var(--accent-primary); fill: none; stroke-width: 2; }
-        .coming-soon-box h2 { font-size: 24px; color: var(--text-heading); font-weight: 800; margin-bottom: 12px; }
-        .coming-soon-box p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
-        .back-btn { background: var(--accent-primary); color: white; padding: 10px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; display: inline-block; transition: background 0.2s; }
-        .back-btn:hover { background: var(--accent-hover); }
+/* MAIN */
+.main{
+  margin-left:250px;padding:27px 32px 50px;
+  min-height:calc(100vh - 76px);
+}
+.breadcrumb{font-size:11px;color:var(--muted);margin:2px 0 17px}
+.breadcrumb span{color:var(--green-dark);font-weight:700}
 
-        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-primary); }
-    </style>
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:25px;align-items:center;
+  min-height:230px;padding:27px 31px;
+  border:1px solid #c1efdf;border-radius:25px;
+  background:
+    radial-gradient(circle at 90% 15%,#c9f8e9 0,transparent 29%),
+    linear-gradient(110deg,#eafff5,#d7f9ee);
+  box-shadow:var(--shadow);
+}
+.eyebrow{
+  display:inline-block;background:#ffffffc9;
+  color:#00966c;padding:7px 11px;
+  border:1px solid #bcebd9;border-radius:30px;
+  font-size:9px;letter-spacing:.7px;font-weight:800;
+}
+.hero h1{
+  font-size:clamp(25px,3vw,35px);
+  letter-spacing:-1.3px;color:#102e40;margin:13px 0 8px;
+}
+.hero p{
+  max-width:570px;font-size:12px;line-height:1.9;
+  color:#45687b;margin:0 0 15px;
+}
+.hero-btn{
+  display:inline-block;background:linear-gradient(100deg,#00ad80,#008e68);
+  color:white;padding:11px 18px;border-radius:25px;
+  text-decoration:none;font-size:11px;font-weight:800;
+}
+
+/* SPONSOR */
+.sponsor-box{
+  min-height:160px;padding:17px;
+  border-radius:19px;border:1px dashed #65c9a6;
+  background:#ffffffd9;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+}
+.sponsor-brand{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.sponsor-logo{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(145deg,#00b987,#087d62);
+  border:2px solid #c8f3e1;color:white;
+  display:grid;place-items:center;font-size:10px;font-weight:800;
+}
+.sponsor-brand strong{display:block;text-align:left;font-size:12px;color:var(--navy)}
+.sponsor-brand small{display:block;text-align:left;font-size:9px;color:var(--green-dark);font-weight:700}
+.ad-tag{
+  background:#e4f9ef;color:#00966c;
+  border-radius:20px;padding:5px 10px;
+  font-size:8px;font-weight:800;letter-spacing:1px;
+}
+.sponsor-box h3{margin:8px 0 4px;font-size:14px;color:#16354a}
+.sponsor-box p{margin:0 0 8px;font-size:10px;color:#6a7f8e;line-height:1.6}
+.sponsor-box a{font-size:10px;color:#008d66;font-weight:800;text-decoration:none}
+
+/* HEADINGS */
+.section-heading{
+  display:flex;align-items:center;gap:10px;margin:26px 0 7px;
+}
+.section-icon{
+  width:32px;height:32px;border-radius:10px;
+  background:#dcf8eb;color:#009b70;
+  display:grid;place-items:center;font-size:16px;
+}
+.section-heading h2{margin:0;color:var(--navy);font-size:17px;letter-spacing:-.4px}
+.section-subtitle{font-size:10px;color:var(--muted);margin:0 0 14px 42px}
+
+/* SUMMARY */
+.summary-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:13px;margin-top:15px;
+}
+.summary-card{
+  background:white;border:1px solid var(--border);
+  border-radius:16px;padding:16px;
+  box-shadow:0 5px 18px #21435c08;
+}
+.summary-top{display:flex;align-items:center;justify-content:space-between}
+.summary-label{font-size:10px;color:var(--muted);font-weight:700}
+.summary-icon{
+  width:30px;height:30px;border-radius:9px;
+  display:grid;place-items:center;background:#e9f8f1;font-size:15px;
+}
+.summary-value{
+  font-size:20px;font-weight:800;
+  color:var(--navy);margin-top:10px;
+  overflow-wrap:anywhere;
+}
+.summary-note{font-size:9px;color:var(--muted);margin-top:5px}
+
+/* CURRENCY */
+.currency-row{
+  display:flex;align-items:center;justify-content:flex-end;
+  gap:9px;margin:18px 0 0;
+}
+.currency-row label{font-size:10px;font-weight:700;color:var(--muted)}
+.currency-row select{
+  border:1px solid var(--border);border-radius:9px;
+  padding:8px 12px;background:white;color:var(--text);
+  font-size:10px;outline:none;
+}
+
+/* TABS */
+.tabs{
+  display:flex;gap:8px;flex-wrap:wrap;
+  padding:13px;background:white;
+  border:1px solid var(--border);
+  border-radius:15px;margin-top:15px;
+}
+.tab-btn{
+  border:1px solid var(--border);
+  background:#f8fbfc;color:#536a7b;
+  border-radius:10px;padding:10px 14px;
+  font-size:10px;font-weight:800;
+}
+.tab-btn.active{
+  background:var(--green);border-color:var(--green);
+  color:white;box-shadow:0 5px 12px #00a87825;
+}
+
+/* CALCULATOR PANEL */
+.calculator-panel{
+  background:white;border:1px solid var(--border);
+  border-radius:19px;padding:22px;
+  margin-top:12px;box-shadow:var(--shadow);
+}
+.calc-panel{display:none}
+.calc-panel.active{display:block}
+.calc-title{
+  display:flex;align-items:center;gap:10px;
+  margin:0 0 6px;color:var(--navy);font-size:15px;
+}
+.calc-description{
+  font-size:10px;color:var(--muted);
+  margin:0 0 20px;line-height:1.7;
+}
+.form-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.form-group label{
+  display:block;font-size:10px;
+  font-weight:800;color:#52697a;margin-bottom:8px;
+}
+.form-group input,.form-group select{
+  width:100%;height:43px;
+  border:1px solid var(--border);
+  border-radius:10px;padding:0 12px;
+  background:#fbfdfe;color:var(--text);
+  outline:none;font-size:11px;
+}
+.form-group input:focus,.form-group select:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px #00a87817;
+}
+.input-help{font-size:9px;color:#91a0ae;margin-top:5px}
+.calc-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.calculate-btn,.reset-btn{
+  border:0;border-radius:10px;padding:12px 19px;
+  font-size:10px;font-weight:800;
+}
+.calculate-btn{background:linear-gradient(100deg,#00ad80,#008e68);color:white}
+.reset-btn{background:#f0f4f7;color:#526879;border:1px solid var(--border)}
+.result-box{
+  display:none;margin-top:20px;
+  border:1px solid #bcebd9;
+  background:linear-gradient(120deg,#f0fff7,#fafffc);
+  border-radius:15px;padding:17px;
+}
+.result-box.show{display:block}
+.result-heading{
+  font-size:12px;font-weight:800;color:#087b5d;margin-bottom:13px;
+}
+.result-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+}
+.result-item{
+  background:white;border:1px solid #e1f1e9;
+  border-radius:11px;padding:12px;
+}
+.result-item span{display:block;font-size:9px;color:var(--muted);margin-bottom:6px}
+.result-item strong{font-size:15px;color:var(--navy);overflow-wrap:anywhere}
+.result-foot{font-size:9px;color:#718b80;margin-top:12px;line-height:1.7}
+
+/* HELP / DISCLAIMER */
+.info-panel{
+  margin-top:17px;padding:19px 21px;
+  background:white;border:1px solid var(--border);
+  border-radius:17px;
+}
+.info-panel h3{margin:0 0 8px;font-size:13px;color:var(--navy)}
+.info-panel p{margin:0;color:var(--muted);font-size:10px;line-height:1.8}
+.warning{
+  display:flex;gap:10px;margin-top:13px;
+  padding:13px 15px;border:1px solid #f2e1b8;
+  background:#fffaf0;border-radius:12px;
+  color:#80652e;font-size:10px;line-height:1.7;
+}
+.footer{
+  margin:25px 0 0;text-align:center;
+  color:#8a9aaa;font-size:9px;line-height:1.8;
+}
+.mobile-menu{
+  display:none;width:39px;height:39px;
+  border:1px solid var(--border);background:white;
+  border-radius:10px;font-size:18px;
+}
+
+/* DARK MODE */
+body.dark{
+  --page:#101d28;--white:#172938;
+  --text:#e5edf3;--navy:#e5edf3;
+  --muted:#9aabba;--border:#2c4151;
+  --shadow:0 12px 30px #00000020;
+  background:var(--page);color:var(--text);
+}
+body.dark .topbar,body.dark .sidebar,
+body.dark .summary-card,body.dark .tabs,
+body.dark .calculator-panel,body.dark .info-panel{
+  background:#172938;
+}
+body.dark .nav-link{color:#dce8ef}
+body.dark .nav-link.active{background:#143e37;color:#6ce0b6;border-color:#286d58}
+body.dark .nav-icon{background:#223b4d}
+body.dark .active .nav-icon{background:var(--green)}
+body.dark .header-search input,
+body.dark .form-group input,body.dark .form-group select,
+body.dark .currency-row select{
+  background:#102331;color:#e5edf3;border-color:var(--border);
+}
+body.dark .community-btn,body.dark .theme-btn,
+body.dark .mobile-menu{background:#172938;color:#e5edf3}
+body.dark .hero{background:linear-gradient(110deg,#143e37,#173c48);border-color:#286d58}
+body.dark .hero h1{color:#e8fff5}
+body.dark .hero p{color:#b4d6ca}
+body.dark .sponsor-box{background:#1c3440;border-color:#3e8b70}
+body.dark .sponsor-box h3,body.dark .sponsor-brand strong{color:#e5edf3}
+body.dark .community-card{background:#173b36;border-color:#286d58}
+body.dark .support-card{background:#1c3444}
+body.dark .summary-card{background:#172938}
+body.dark .summary-icon{background:#244438}
+body.dark .tab-btn{background:#203747;color:#dce8ef;border-color:#31495b}
+body.dark .tab-btn.active{background:var(--green);color:white}
+body.dark .result-box{background:#17372f;border-color:#286d58}
+body.dark .result-item{background:#203747;border-color:#365247}
+body.dark .warning{background:#392f1c;border-color:#63512c;color:#f1d89c}
+body.dark .reset-btn{background:#263b4b;color:#e5edf3;border-color:#3b5263}
+
+@media(max-width:1100px){
+  .summary-grid{grid-template-columns:repeat(2,1fr)}
+  .hero{grid-template-columns:1fr  .8fr}
+}
+@media(max-width:760px){
+  .topbar{height:65px;padding:0 13px;gap:10px}
+  .mobile-menu{display:block}
+  .brand{min-width:0;gap:7px}
+  .brand-logo{width:39px;height:39px}
+  .brand-name{font-size:13px}
+  .brand-sub{font-size:8px}
+  .header-search,.community-btn{display:none}
+  .sidebar{display:none;top:65px;width:260px;box-shadow:10px 15px 25px #102b4020}
+  .sidebar.open{display:block}
+  .main{margin-left:0;padding:19px 14px 35px}
+  .hero{grid-template-columns:1fr;padding:22px 19px;gap:18px}
+  .hero h1{font-size:27px}
+  .sponsor-box{min-height:150px}
+  .summary-grid{grid-template-columns:repeat(2,1fr);gap:9px}
+  .summary-card{padding:13px}
+  .summary-value{font-size:17px}
+  .form-grid{grid-template-columns:1fr}
+  .calculator-panel{padding:17px}
+  .result-grid{grid-template-columns:1fr}
+  .currency-row{justify-content:flex-start}
+}
+@media(max-width:390px){
+  .summary-grid{grid-template-columns:1fr}
+  .tab-btn{flex:1}
+}
+</style>
 </head>
-<body data-theme="light">
-    <header>
-        <div class="site-container header-inner">
-            <div class="header-top-row">
-                <a href="../index.html" class="logo-box">
-                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="TCN Logo" onerror="this.style.display='none';"></div>
-                    <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
-                </a>
-                
-                <div class="header-right">
-                    <div class="community-dropdown">
-                        <button class="community-btn" onclick="toggleCommunityMenu()">👥 Community</button>
-                        <div class="dropdown-content" id="communityMenu">
-                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank">▶️ YouTube</a>
-                            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank">💬 WhatsApp</a>
-                            <a href="https://x.com/TotalCryptoOff" target="_blank">✖️ Twitter (X)</a>
-                            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank">📘 Facebook</a>
-                        </div>
-                    </div>
-                    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                </div>
-            </div>
-            
-            <div class="tab-switcher">
-                <a href="../depin-pages/depin.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> DePIN Projects</a>
-                <a href="../mobile-pages/mobile-mining.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg> Community Projects</a>
-                <a href="../airdrop-pages/airdrops.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg> Airdrops & Campaigns</a>
-                <a href="../wallet-pages/wallets.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> Wallets & Exchanges</a>
-                <a href="../token-pages/token-checker.html" class="tab-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Token Checker</a>
-                <a href="earning-calculator.html" class="tab-btn active"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg> Earning Calculator</a>
-            </div>
+
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+
+  <a class="brand" href="../index.html">
+    <div class="brand-logo">
+      <img src="../assets/tcn-logo.png" alt="TCN"
+           onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+    </div>
+    <div>
+      <div class="brand-name">Total Crypto Hub</div>
+      <div class="brand-sub">by <span>Total Crypto Network</span></div>
+    </div>
+  </a>
+
+  <div class="header-search">
+    <input type="search" placeholder="Search projects, category...">
+  </div>
+
+  <div class="header-actions">
+    <button class="community-btn" onclick="window.location.href='../index.html'">
+      ♧ Community &nbsp;⌄
+    </button>
+    <button class="theme-btn" onclick="toggleTheme()" title="Dark mode">🌙</button>
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="side-label">WORKSPACE</div>
+
+  <a class="nav-link" href="../index.html"><span class="nav-icon">⌂</span>Home</a>
+  <a class="nav-link" href="../depin-pages/depin.html"><span class="nav-icon">✣</span>DePIN Projects</a>
+  <a class="nav-link" href="../mobile-pages/mobile-mining.html"><span class="nav-icon">♧</span>Community Projects</a>
+  <a class="nav-link" href="../airdrop-pages/airdrops.html"><span class="nav-icon">♙</span>Airdrops & Campaigns</a>
+  <a class="nav-link" href="../wallet-pages/wallets.html"><span class="nav-icon">▣</span>Wallets & Exchanges</a>
+  <a class="nav-link" href="../token-pages/token-checker.html"><span class="nav-icon">⌕</span>Token Checker</a>
+  <a class="nav-link active" href="earning-calculator.html"><span class="nav-icon">▦</span>Earning Calculator</a>
+
+  <div class="community-card">
+    <div class="gift">🎁</div>
+    <h4>Join the Community<br>& Earn Together</h4>
+    <a href="../index.html">Join Community →</a>
+  </div>
+
+  <div class="support-card">
+    ♧ &nbsp;Need Help? <a href="../index.html">Contact Support →</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="breadcrumb">Workspace &nbsp;›&nbsp; <span>Earning Calculator</span></div>
+
+  <!-- HERO + SPONSOR -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow">✦ &nbsp; ALL-IN-ONE CRYPTO CALCULATOR</div>
+      <h1>Crypto Earning Calculator</h1>
+      <p>
+        Calculate estimated rewards from Staking, Mining, DePIN,
+        Airdrops and Referrals. Compare your potential earnings
+        with one simple dashboard.
+      </p>
+      <a class="hero-btn" href="#calculators">Start Calculating &nbsp;→</a>
+    </div>
+
+    <div class="sponsor-box">
+      <div class="sponsor-brand">
+        <div class="sponsor-logo">TCN</div>
+        <div>
+          <strong>Total Crypto Hub</strong>
+          <small>by Total Crypto Network</small>
         </div>
-    </header>
+      </div>
+      <div class="ad-tag">ADVERTISEMENT / SPONSORSHIP</div>
+      <h3>Your Brand Can Be Here</h3>
+      <p>Promote your crypto project, product or Web3 service to our community.</p>
+      <a href="#sponsorship">Sponsorship Opportunity →</a>
+    </div>
+  </section>
 
-    <main>
-        <div class="site-container">
-            <div class="coming-soon-box">
-                <div class="coming-soon-icon">
-                    <svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
-                </div>
-                <h2>Earning Calculator Tool</h2>
-                <p>Simulate passive data sharing rewards, device power costs, and projected token payouts with our upcoming advanced calculator. Stay tuned!</p>
-                <a href="../index.html" class="back-btn">Return to Home</a>
-            </div>
+  <!-- COMBINED SUMMARY -->
+  <div class="section-heading">
+    <div class="section-icon">✦</div>
+    <h2>Your Earnings Overview</h2>
+  </div>
+  <p class="section-subtitle">Combined estimates from calculators you have used on this page.</p>
+
+  <section class="summary-grid">
+    <div class="summary-card">
+      <div class="summary-top">
+        <span class="summary-label">Estimated Daily</span>
+        <span class="summary-icon">📅</span>
+      </div>
+      <div class="summary-value" id="totalDaily">$0.00</div>
+      <div class="summary-note">Combined daily net estimate</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-top">
+        <span class="summary-label">Estimated Monthly</span>
+        <span class="summary-icon">🗓️</span>
+      </div>
+      <div class="summary-value" id="totalMonthly">$0.00</div>
+      <div class="summary-note">Daily estimate × 30</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-top">
+        <span class="summary-label">Estimated Yearly</span>
+        <span class="summary-icon">📈</span>
+      </div>
+      <div class="summary-value" id="totalYearly">$0.00</div>
+      <div class="summary-note">Daily estimate × 365</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-top">
+        <span class="summary-label">Calculators Used</span>
+        <span class="summary-icon">🧮</span>
+      </div>
+      <div class="summary-value" id="usedCount">0 / 5</div>
+      <div class="summary-note">Calculators with saved estimates</div>
+    </div>
+  </section>
+
+  <!-- CURRENCY SELECTOR -->
+  <div class="currency-row">
+    <label for="currency">DISPLAY CURRENCY</label>
+    <select id="currency" onchange="updateCurrency()">
+      <option value="USD">USD ($)</option>
+      <option value="INR">INR (₹)</option>
+    </select>
+  </div>
+
+  <!-- CALCULATORS -->
+  <div class="section-heading" id="calculators">
+    <div class="section-icon">▦</div>
+    <h2>Choose Your Calculator</h2>
+  </div>
+  <p class="section-subtitle">Enter your own reward, price and cost assumptions for an estimate.</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('staking',this)">💎 Staking</button>
+    <button class="tab-btn" onclick="openTab('mining',this)">⛏️ Mining</button>
+    <button class="tab-btn" onclick="openTab('depin',this)">🌐 DePIN</button>
+    <button class="tab-btn" onclick="openTab('airdrop',this)">🎁 Airdrop / Farming</button>
+    <button class="tab-btn" onclick="openTab('referral',this)">👥 Referral</button>
+  </div>
+
+  <section class="calculator-panel">
+
+    <!-- STAKING -->
+    <div class="calc-panel active" id="staking">
+      <h3 class="calc-title">💎 Staking Calculator</h3>
+      <p class="calc-description">
+        Estimate staking rewards using your investment, annual percentage rate,
+        compounding frequency and staking duration.
+      </p>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="stakeAmount">Investment Amount</label>
+          <input type="number" id="stakeAmount" min="0" step="any" placeholder="Example: 1000">
         </div>
-    </main>
-
-    <footer>
-        <div class="site-container">
-            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">&copy; 2026 Total Crypto Network. All rights reserved.</div>
-            <div class="footer-links">
-                <a href="../legal-pages/about.html">About Us</a>
-                <a href="../legal-pages/contact.html">Contact Us</a>
-                <a href="../legal-pages/privacy.html">Privacy Policy</a>
-                <a href="../legal-pages/terms.html">Terms & Conditions</a>
-                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
-            </div>
+        <div class="form-group">
+          <label for="stakeApr">Annual Reward Rate (APR %)</label>
+          <input type="number" id="stakeApr" min="0" step="any" placeholder="Example: 8">
         </div>
-    </footer>
+        <div class="form-group">
+          <label for="stakeDays">Staking Duration (Days)</label>
+          <input type="number" id="stakeDays" min="1" step="1" value="365">
+        </div>
+        <div class="form-group">
+          <label for="stakeCompound">Compounding Frequency</label>
+          <select id="stakeCompound">
+            <option value="1">Yearly</option>
+            <option value="12">Monthly</option>
+            <option value="365">Daily</option>
+          </select>
+        </div>
+      </div>
 
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
+      <div class="calc-actions">
+        <button class="calculate-btn" onclick="calculateStaking()">Calculate Staking →</button>
+        <button class="reset-btn" onclick="resetCalc('staking')">Reset</button>
+      </div>
 
-        // Dropdown Function
-        function toggleCommunityMenu() {
-            document.getElementById("communityMenu").classList.toggle("show");
-        }
+      <div class="result-box" id="stakingResult">
+        <div class="result-heading">Your Estimated Staking Result</div>
+        <div class="result-grid">
+          <div class="result-item"><span>Total Reward</span><strong id="stakeReward">-</strong></div>
+          <div class="result-item"><span>Final Balance</span><strong id="stakeFinal">-</strong></div>
+          <div class="result-item"><span>Daily Average Reward</span><strong id="stakeDaily">-</strong></div>
+        </div>
+        <div class="result-foot">Estimate assumes the selected compounding frequency and unchanged APR. Actual staking rewards may vary.</div>
+      </div>
+    </div>
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.community-btn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
+    <!-- MINING -->
+    <div class="calc-panel" id="mining">
+      <h3 class="calc-title">⛏️ Mining Profit Calculator</h3>
+      <p class="calc-description">
+        Enter your estimated daily mined tokens, token price, electricity usage
+        and other costs to calculate estimated mining profit.
+      </p>
 
-        window.onload = function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
-        };
-    </script>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="mineReward">Estimated Tokens Mined Per Day</label>
+          <input type="number" id="mineReward" min="0" step="any" placeholder="Example: 2">
+        </div>
+        <div class="form-group">
+          <label for="minePrice">Token Price</label>
+          <input type="number" id="minePrice" min="0" step="any" placeholder="Example: 5">
+        </div>
+        <div class="form-group">
+          <label for="minePower">Device Power Consumption (Watts)</label>
+          <input type="number" id="minePower" min="0" step="any" placeholder="Example: 500">
+        </div>
+        <div class="form-group">
+          <label for="mineElectric">Electricity Cost Per kWh</label>
+          <input type="number" id="mineElectric" min="0" step="any" placeholder="Example: 0.12">
+        </div>
+        <div class="form-group">
+          <label for="mineOther">Other Daily Costs</label>
+          <input type="number" id="mineOther" min="0" step="any" value="0">
+        </div>
+        <div class="form-group">
+          <label for="mineFee">Mining Pool Fee (%)</label>
+          <input type="number" id="mineFee" min="0" max="100" step="any" value="0">
+        </div>
+      </div>
+
+      <div class="calc-actions">
+        <button class="calculate-btn" onclick="calculateMining()">Calculate Mining →</button>
+        <button class="reset-btn" onclick="resetCalc('mining')">Reset</button>
+      </div>
+
+      <div class="result-box" id="miningResult">
+        <div class="result-heading">Your Estimated Mining Result</div>
+        <div class="result-grid">
+          <div class="result-item"><span>Daily Revenue</span><strong id="mineRevenueResult">-</strong></div>
+          <div class="result-item"><span>Daily Total Costs</span><strong id="mineCostResult">-</strong></div>
+          <div class="result-item"><span>Daily Net Profit</span><strong id="mineProfitResult">-</strong></div>
+        </div>
+        <div class="result-foot">Electricity is calculated using 24 hours of operation per day. The reward amount is your own estimate, not a live mining prediction.</div>
+      </div>
+    </div>
+
+    <!-- DEPIN -->
+    <div class="calc-panel" id="depin">
+      <h3 class="calc-title">🌐 DePIN Earning Calculator</h3>
+      <p class="calc-description">
+        Estimate potential rewards from your DePIN devices using device count,
+        daily reward per device, token price, uptime and monthly costs.
+      </p>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="depinDevices">Number of Devices</label>
+          <input type="number" id="depinDevices" min="0" step="1" placeholder="Example: 3">
+        </div>
+        <div class="form-group">
+          <label for="depinReward">Tokens Per Device Per Day</label>
+          <input type="number" id="depinReward" min="0" step="any" placeholder="Example: 10">
+        </div>
+        <div class="form-group">
+          <label for="depinPrice">Token Price</label>
+          <input type="number" id="depinPrice" min="0" step="any" placeholder="Example: 0.05">
+        </div>
+        <div class="form-group">
+          <label for="depinUptime">Device Uptime (%)</label>
+          <input type="number" id="depinUptime" min="0" max="100" step="any" value="100">
+        </div>
+        <div class="form-group">
+          <label for="depinCost">Monthly Operating Cost</label>
+          <input type="number" id="depinCost" min="0" step="any" value="0">
+        </div>
+      </div>
+
+      <div class="calc-actions">
+        <button class="calculate-btn" onclick="calculateDepin()">Calculate DePIN →</button>
+        <button class="reset-btn" onclick="resetCalc('depin')">Reset</button>
+      </div>
+
+      <div class="result-box" id="depinResult">
+        <div class="result-heading">Your Estimated DePIN Result</div>
+        <div class="result-grid">
+          <div class="result-item"><span>Daily Gross Reward</span><strong id="depinGross">-</strong></div>
+          <div class="result-item"><span>Daily Operating Cost</span><strong id="depinDailyCost">-</strong></div>
+          <div class="result-item"><span>Daily Net Earnings</span><strong id="depinProfit">-</strong></div>
+        </div>
+        <div class="result-foot">Assumes each device earns the entered reward and achieves the specified uptime. Network rules and actual payouts may differ.</div>
+      </div>
+    </div>
+
+    <!-- AIRDROP / FARMING -->
+    <div class="calc-panel" id="airdrop">
+      <h3 class="calc-title">🎁 Airdrop / Farming Calculator</h3>
+      <p class="calc-description">
+        Estimate the value of daily token rewards from farming or an airdrop
+        using your expected tokens, token price and daily expenses.
+      </p>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="airdropTokens">Estimated Tokens Per Day</label>
+          <input type="number" id="airdropTokens" min="0" step="any" placeholder="Example: 100">
+        </div>
+        <div class="form-group">
+          <label for="airdropPrice">Estimated Token Price</label>
+          <input type="number" id="airdropPrice" min="0" step="any" placeholder="Example: 0.02">
+        </div>
+        <div class="form-group">
+          <label for="airdropCost">Daily Fees / Expenses</label>
+          <input type="number" id="airdropCost" min="0" step="any" value="0">
+        </div>
+        <div class="form-group">
+          <label for="airdropDays">Activity Duration (Days)</label>
+          <input type="number" id="airdropDays" min="1" step="1" value="30">
+        </div>
+      </div>
+
+      <div class="calc-actions">
+        <button class="calculate-btn" onclick="calculateAirdrop()">Calculate Rewards →</button>
+        <button class="reset-btn" onclick="resetCalc('airdrop')">Reset</button>
+      </div>
+
+      <div class="result-box" id="airdropResult">
+        <div class="result-heading">Your Estimated Farming Result</div>
+        <div class="result-grid">
+          <div class="result-item"><span>Daily Gross Value</span><strong id="airdropGross">-</strong></div>
+          <div class="result-item"><span>Total Estimated Net Value</span><strong id="airdropTotal">-</strong></div>
+          <div class="result-item"><span>Daily Net Value</span><strong id="airdropDaily">-</strong></div>
+        </div>
+        <div class="result-foot">Airdrop allocations, eligibility, token listing and market prices are not guaranteed. This is an estimate based on your inputs.</div>
+      </div>
+    </div>
+
+    <!-- REFERRAL -->
+    <div class="calc-panel" id="referral">
+      <h3 class="calc-title">👥 Referral Earning Calculator</h3>
+      <p class="calc-description">
+        Estimate referral rewards based on new referrals per month,
+        conversion rate and reward per successful referral.
+      </p>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="referrals">New Referrals Per Month</label>
+          <input type="number" id="referrals" min="0" step="any" placeholder="Example: 50">
+        </div>
+        <div class="form-group">
+          <label for="conversion">Successful Conversion Rate (%)</label>
+          <input type="number" id="conversion" min="0" max="100" step="any" value="100">
+        </div>
+        <div class="form-group">
+          <label for="refReward">Reward Per Successful Referral</label>
+          <input type="number" id="refReward" min="0" step="any" placeholder="Example: 2">
+        </div>
+        <div class="form-group">
+          <label for="refCost">Monthly Referral Expenses</label>
+          <input type="number" id="refCost" min="0" step="any" value="0">
+        </div>
+      </div>
+
+      <div class="calc-actions">
+        <button class="calculate-btn" onclick="calculateReferral()">Calculate Referral →</button>
+        <button class="reset-btn" onclick="resetCalc('referral')">Reset</button>
+      </div>
+
+      <div class="result-box" id="referralResult">
+        <div class="result-heading">Your Estimated Referral Result</div>
+        <div class="result-grid">
+          <div class="result-item"><span>Successful Referrals</span><strong id="refSuccess">-</strong></div>
+          <div class="result-item"><span>Monthly Net Reward</span><strong id="refMonthly">-</strong></div>
+          <div class="result-item"><span>Daily Average</span><strong id="refDaily">-</strong></div>
+        </div>
+        <div class="result-foot">This assumes your referral program pays the entered reward for each successful conversion.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="info-panel">
+    <h3>How to Use All-in-One Earning Calculator</h3>
+    <p>
+      Select a calculator, enter your expected rewards and costs, then click
+      Calculate. Each calculator uses your own assumptions. Once you calculate
+      a section, its estimated daily net result is included in the combined
+      earnings overview above. You can change the currency display at any time.
+    </p>
+  </section>
+
+  <section class="info-panel">
+    <h3>Important Information</h3>
+    <div class="warning">
+      <span>⚠️</span>
+      <span>
+        <strong>Estimates only:</strong> These tools do not fetch live market prices
+        or guarantee actual income. Results depend on the values you enter.
+        Crypto prices, network rewards, mining difficulty, fees and project rules
+        can change. Always do your own research.
+      </span>
+    </div>
+  </section>
+
+  <section class="info-panel" id="sponsorship">
+    <h3>Advertise With Total Crypto Hub</h3>
+    <p>
+      This space is reserved for future sponsored banners and promotional
+      placements. Add a confirmed sponsor's banner image, website link or
+      campaign details here when a sponsorship is arranged.
+    </p>
+  </section>
+
+  <footer class="footer">
+    © 2026 Total Crypto Hub · by Total Crypto Network<br>
+    DYOR — Always research before investing.
+  </footer>
+</main>
+
+<script>
+/* THEME AND MOBILE MENU */
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  document.querySelector('.theme-btn').textContent =
+    document.body.classList.contains('dark') ? '☀️' : '🌙';
+}
+
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+/* TAB SWITCHING */
+function openTab(id,button){
+  document.querySelectorAll('.calc-panel').forEach(panel=>{
+    panel.classList.remove('active');
+  });
+  document.querySelectorAll('.tab-btn').forEach(tab=>{
+    tab.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+  button.classList.add('active');
+}
+
+/* COMMON HELPERS */
+const earnings = {
+  staking: null,
+  mining: null,
+  depin: null,
+  airdrop: null,
+  referral: null
+};
+
+function val(id){
+  return Number(document.getElementById(id).value);
+}
+
+function validNumbers(ids){
+  for(const id of ids){
+    const el = document.getElementById(id);
+    if(el.value.trim() === '' || !Number.isFinite(Number(el.value)) || Number(el.value) < 0){
+      el.focus();
+      alert('Please enter valid non-negative values in all required fields.');
+      return false;
+    }
+  }
+  return true;
+}
+
+function symbol(){
+  return document.getElementById('currency').value === 'INR' ? '₹' : '$';
+}
+
+function money(value){
+  const safe = Number.isFinite(value) ? value : 0;
+  return symbol() + safe.toLocaleString('en-IN',{
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  });
+}
+
+function showResult(id){
+  document.getElementById(id).classList.add('show');
+  updateSummary();
+}
+
+function saveDaily(type,daily){
+  earnings[type] = daily;
+  updateSummary();
+}
+
+function updateSummary(){
+  const all = Object.values(earnings).filter(x=>x !== null);
+  const total = all.reduce((sum,n)=>sum+n,0);
+
+  document.getElementById('totalDaily').textContent = money(total);
+  document.getElementById('totalMonthly').textContent = money(total*30);
+  document.getElementById('totalYearly').textContent = money(total*365);
+  document.getElementById('usedCount').textContent = all.length + ' / 5';
+}
+
+function updateCurrency(){
+  /* Existing calculated numeric results are redrawn in selected currency. */
+  if(earnings.staking !== null) calculateStaking();
+  if(earnings.mining !== null) calculateMining();
+  if(earnings.depin !== null) calculateDepin();
+  if(earnings.airdrop !== null) calculateAirdrop();
+  if(earnings.referral !== null) calculateReferral();
+  updateSummary();
+}
+
+/* STAKING CALCULATOR */
+function calculateStaking(){
+  const ids=['stakeAmount','stakeApr','stakeDays'];
+  if(!validNumbers(ids)) return;
+
+  const principal=val('stakeAmount');
+  const apr=val('stakeApr')/100;
+  const days=val('stakeDays');
+  const frequency=Number(document.getElementById('stakeCompound').value);
+
+  if(days<=0 || frequency<=0){
+    alert('Duration must be greater than zero.');
+    return;
+  }
+
+  const finalBalance=principal*Math.pow(1+apr/frequency,frequency*days/365);
+  const reward=finalBalance-principal;
+  const daily=reward/days;
+
+  document.getElementById('stakeReward').textContent=money(reward);
+  document.getElementById('stakeFinal').textContent=money(finalBalance);
+  document.getElementById('stakeDaily').textContent=money(daily);
+
+  saveDaily('staking',daily);
+  showResult('stakingResult');
+}
+
+/* MINING CALCULATOR */
+function calculateMining(){
+  const ids=['mineReward','minePrice','minePower','mineElectric','mineOther','mineFee'];
+  if(!validNumbers(ids)) return;
+
+  const tokens=val('mineReward');
+  const price=val('minePrice');
+  const watts=val('minePower');
+  const electricity=val('mineElectric');
+  const other=val('mineOther');
+  const poolFee=val('mineFee');
+
+  if(poolFee>100){
+    alert('Mining pool fee cannot exceed 100%.');
+    return;
+  }
+
+  const gross=tokens*price;
+  const poolCost=gross*(poolFee/100);
+  const energyCost=(watts/1000)*24*electricity;
+  const totalCosts=poolCost+energyCost+other;
+  const profit=gross-totalCosts;
+
+  document.getElementById('mineRevenueResult').textContent=money(gross);
+  document.getElementById('mineCostResult').textContent=money(totalCosts);
+  document.getElementById('mineProfitResult').textContent=money(profit);
+
+  saveDaily('mining',profit);
+  showResult('miningResult');
+}
+
+/* DEPIN CALCULATOR */
+function calculateDepin(){
+  const ids=['depinDevices','depinReward','depinPrice','depinUptime','depinCost'];
+  if(!validNumbers(ids)) return;
+
+  const devices=val('depinDevices');
+  const reward=val('depinReward');
+  const price=val('depinPrice');
+  const uptime=val('depinUptime');
+  const monthlyCost=val('depinCost');
+
+  if(uptime>100){
+    alert('Uptime cannot exceed 100%.');
+    return;
+  }
+
+  const gross=devices*reward*price*(uptime/100);
+  const dailyCost=monthlyCost/30;
+  const profit=gross-dailyCost;
+
+  document.getElementById('depinGross').textContent=money(gross);
+  document.getElementById('depinDailyCost').textContent=money(dailyCost);
+  document.getElementById('depinProfit').textContent=money(profit);
+
+  saveDaily('depin',profit);
+  showResult('depinResult');
+}
+
+/* AIRDROP / FARMING CALCULATOR */
+function calculateAirdrop(){
+  const ids=['airdropTokens','airdropPrice','airdropCost','airdropDays'];
+  if(!validNumbers(ids)) return;
+
+  const tokens=val('airdropTokens');
+  const price=val('airdropPrice');
+  const dailyCost=val('airdropCost');
+  const days=val('airdropDays');
+
+  if(days<=0){
+    alert('Activity duration must be greater than zero.');
+    return;
+  }
+
+  const gross=tokens*price;
+  const dailyNet=gross-dailyCost;
+  const totalNet=dailyNet*days;
+
+  document.getElementById('airdropGross').textContent=money(gross);
+  document.getElementById('airdropTotal').textContent=money(totalNet);
+  document.getElementById('airdropDaily').textContent=money(dailyNet);
+
+  saveDaily('airdrop',dailyNet);
+  showResult('airdropResult');
+}
+
+/* REFERRAL CALCULATOR */
+function calculateReferral(){
+  const ids=['referrals','conversion','refReward','refCost'];
+  if(!validNumbers(ids)) return;
+
+  const referrals=val('referrals');
+  const conversion=val('conversion');
+  const reward=val('refReward');
+  const cost=val('refCost');
+
+  if(conversion>100){
+    alert('Conversion rate cannot exceed 100%.');
+    return;
+  }
+
+  const successful=referrals*(conversion/100);
+  const monthlyNet=(successful*reward)-cost;
+  const daily=monthlyNet/30;
+
+  document.getElementById('refSuccess').textContent=successful.toLocaleString('en-IN',{
+    maximumFractionDigits:2
+  });
+  document.getElementById('refMonthly').textContent=money(monthlyNet);
+  document.getElementById('refDaily').textContent=money(daily);
+
+  saveDaily('referral',daily);
+  showResult('referralResult');
+}
+
+/* RESET INDIVIDUAL CALCULATOR */
+function resetCalc(type){
+  const panel=document.getElementById(type);
+  panel.querySelectorAll('input').forEach(input=>{
+    input.value=input.defaultValue;
+  });
+  panel.querySelectorAll('select').forEach(select=>{
+    select.selectedIndex=0;
+  });
+  const result=document.getElementById(type+'Result');
+  result.classList.remove('show');
+  earnings[type]=null;
+  updateSummary();
+}
+
+updateSummary();
+</script>
 </body>
 </html>
