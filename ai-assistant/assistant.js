@@ -1,237 +1,265 @@
 
 /* =========================================
-   TOTAL CRYPTO HUB
-   TCN AI GIRL ASSISTANT
-   Main Controller
+   TOTAL CRYPTO HUB - TCN AI ASSISTANT
+   Compact mascot, idle animation and chat
 ========================================= */
 
 (function () {
   "use strict";
 
-  const scriptElement = document.currentScript;
+  const currentScript = document.currentScript;
+  const scriptURL = currentScript
+    ? currentScript.src
+    : window.location.href;
 
-  if (!scriptElement || !scriptElement.src) {
-    console.error("TCN AI: Assistant script URL not found.");
-    return;
-  }
+  const assistantBase = new URL(".", scriptURL);
+  const htmlURL = new URL("assistant.html", assistantBase).href;
+  const cssURL = new URL("assistant.css", assistantBase).href;
 
-  const assistantBase = new URL(".", scriptElement.src);
+  let idleTimer;
+  let assistantReady = false;
 
-  const HTML_URL = new URL("assistant.html", assistantBase);
-  const CSS_URL = new URL("assistant.css", assistantBase);
-
-  const IDLE_TIME = 5000;
-
-  let idleTimer = null;
-  let assistantRoot = null;
-  let robot = null;
-  let chatWindow = null;
-  let greeting = null;
-  let messages = null;
-  let chatInput = null;
-  let chatForm = null;
-
-  let isChatOpen = false;
-  let isLoading = false;
-
-  /* =========================================
-     LOAD CSS
-  ========================================= */
-
-  function loadAssistantCSS() {
-    const existingCSS = document.querySelector(
-      'link[data-tcn-ai-css="true"]'
-    );
-
-    if (existingCSS) return;
+  function loadCSS() {
+    if (document.querySelector('[data-tcn-assistant-css]')) return;
 
     const link = document.createElement("link");
-
     link.rel = "stylesheet";
-    link.href = CSS_URL.href;
-    link.dataset.tcnAiCss = "true";
-
+    link.href = cssURL;
+    link.dataset.tcnAssistantCss = "true";
     document.head.appendChild(link);
   }
 
-  /* =========================================
-     LOAD ASSISTANT HTML
-  ========================================= */
-
-  async function loadAssistantHTML() {
-    if (document.getElementById("tcn-ai-assistant")) {
-      initializeAssistant();
-      return;
-    }
-
-    try {
-      const response = await fetch(HTML_URL.href, {
-        cache: "no-cache"
-      });
-
-      if (!response.ok) {
-        throw new Error("Assistant HTML could not be loaded.");
-      }
-
-      const html = await response.text();
-
-      const temporaryContainer = document.createElement("div");
-      temporaryContainer.innerHTML = html;
-
-      const assistantElement = temporaryContainer.querySelector(
-        "#tcn-ai-assistant"
-      );
-
-      if (!assistantElement) {
-        throw new Error("TCN AI assistant root was not found.");
-      }
-
-      document.body.appendChild(assistantElement);
-
-      initializeAssistant();
-
-    } catch (error) {
-      console.error("TCN AI loading error:", error);
-    }
-  }
-
-  /* =========================================
-     SET IMAGE PATHS
-  ========================================= */
-
-  function loadCharacterImages() {
-    const imageElements = assistantRoot.querySelectorAll(
-      "[data-tcn-image]"
-    );
-
-    imageElements.forEach(function (image) {
-      const imagePath = image.dataset.tcnImage;
-
-      if (!imagePath) return;
-
-      image.src = new URL(imagePath, assistantBase).href;
-
-      image.addEventListener("error", function () {
-        console.warn(
-          "TCN AI image not found:",
-          image.src
-        );
-      });
+  function loadImages(root) {
+    root.querySelectorAll("[data-tcn-image]").forEach((img) => {
+      const imagePath = img.getAttribute("data-tcn-image");
+      img.src = new URL(imagePath, assistantBase).href;
     });
   }
 
-  /* =========================================
-     INITIALIZE ELEMENTS
-  ========================================= */
+  function addMessage(container, message, sender) {
+    const bubble = document.createElement("div");
 
-  function initializeAssistant() {
-    assistantRoot = document.getElementById(
-      "tcn-ai-assistant"
-    );
+    bubble.style.cssText = `
+      max-width: 88%;
+      width: fit-content;
+      padding: 9px 12px;
+      margin: 7px 0;
+      border-radius: 12px;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+      ${sender === "user"
+        ? "margin-left:auto;background:#d9ffe7;color:#064b29;"
+        : "margin-right:auto;background:#e9f2ec;color:#17251f;"}
+    `;
 
-    if (!assistantRoot || assistantRoot.dataset.initialized === "true") {
-      return;
-    }
-
-    assistantRoot.dataset.initialized = "true";
-
-    robot = assistantRoot.querySelector("#tcnAiRobot");
-    chatWindow = assistantRoot.querySelector("#tcnAiWindow");
-    greeting = assistantRoot.querySelector("#tcnAiGreeting");
-    messages = assistantRoot.querySelector("#tcnAiMessages");
-    chatInput = assistantRoot.querySelector("#tcnAiInput");
-    chatForm = assistantRoot.querySelector("#tcnAiForm");
-
-    if (
-      !robot ||
-      !chatWindow ||
-      !messages ||
-      !chatInput ||
-      !chatForm
-    ) {
-      console.error("TCN AI: Required elements are missing.");
-      return;
-    }
-
-    loadCharacterImages();
-    setupCharacter();
-    setupActivityDetection();
-    setupChat();
-    setupSuggestions();
-
-    setStanding();
-
-    resetIdleTimer();
-
-    console.log("TCN AI Assistant initialized.");
+    bubble.textContent = message;
+    container.appendChild(bubble);
+    container.scrollTop = container.scrollHeight;
   }
 
-  /* =========================================
-     CHARACTER STATES
-  ========================================= */
+  function findSiteLink(words) {
+    const links = Array.from(
+      document.querySelectorAll("a[href]")
+    );
 
-  function setStanding() {
+    return links.find((link) => {
+      const text = (
+        link.innerText + " " +
+        link.getAttribute("href")
+      ).toLowerCase();
+
+      return words.some((word) => text.includes(word));
+    });
+  }
+
+  function answerTCN(question) {
+    const q = question.toLowerCase();
+
+    const topics = [
+      {
+        words: ["depin"],
+        response: "DePIN यानी Decentralized Physical Infrastructure Networks. TCN वेबसाइट पर DePIN से जुड़ा सेक्शन देखने के लिए नीचे लिंक देखें।",
+        search: ["depin"]
+      },
+      {
+        words: ["airdrop", "air drop", "एयरड्रॉप"],
+        response: "TCN में Airdrops से जुड़ी जानकारी और अपडेट देखने के लिए वेबसाइट का संबंधित सेक्शन खोलें।",
+        search: ["airdrop"]
+      },
+      {
+        words: ["wallet", "wallets", "वॉलेट"],
+        response: "TCN के Wallets सेक्शन में उपलब्ध जानकारी देखने के लिए नीचे लिंक देखें।",
+        search: ["wallet"]
+      },
+      {
+        words: ["earning calculator", "calculator", "earning", "कमाई"],
+        response: "TCN Earning Calculator से जुड़ा पेज देखने के लिए नीचे लिंक देखें।",
+        search: ["calculator", "earning"]
+      },
+      {
+        words: ["community", "telegram", "discord", "समुदाय"],
+        response: "TCN Community से जुड़ने के लिए वेबसाइट पर उपलब्ध Community लिंक देखें।",
+        search: ["community", "telegram", "discord"]
+      },
+      {
+        words: ["token checker", "token check", "token"],
+        response: "TCN Token Checker से जुड़ी जानकारी देखने के लिए नीचे लिंक देखें।",
+        search: ["token-checker", "token checker"]
+      },
+      {
+        words: ["service", "services", "सेवा"],
+        response: "Total Crypto Hub की सेवाओं की जानकारी के लिए वेबसाइट का Services सेक्शन देखें।",
+        search: ["service"]
+      },
+      {
+        words: ["about", "total crypto hub", "what is tcn", "tcn kya", "टीसीएन"],
+        response: "TCN यानी Total Crypto Network और Total Crypto Hub से जुड़ी जानकारी के लिए वेबसाइट के About सेक्शन को देखें।",
+        search: ["about"]
+      }
+    ];
+
+    const matched = topics.find((topic) =>
+      topic.words.some((word) => q.includes(word))
+    );
+
+    if (!matched) {
+      return {
+        message:
+          "मैं केवल TCN और Total Crypto Hub से जुड़े सवालों में मदद कर सकती हूँ। आप DePIN, Airdrops, Wallets, Community या TCN Services के बारे में पूछ सकते हैं।",
+        link: null
+      };
+    }
+
+    const link = findSiteLink(matched.search);
+
+    return {
+      message: matched.response,
+      link: link || null
+    };
+  }
+
+  function sendQuestion(question, root) {
+    const messages = root.querySelector("#tcnAiMessages");
+    const input = root.querySelector("#tcnAiInput");
+
+    const cleanQuestion = question.trim();
+    if (!cleanQuestion) return;
+
+    addMessage(messages, cleanQuestion, "user");
+
+    const result = answerTCN(cleanQuestion);
+
+    addMessage(messages, result.message, "assistant");
+
+    if (result.link) {
+      const linkButton = document.createElement("a");
+      linkButton.href = result.link.href;
+      linkButton.textContent = "Open TCN Section →";
+      linkButton.style.cssText = `
+        display:inline-block;
+        margin:5px 0 10px;
+        padding:8px 12px;
+        border-radius:18px;
+        background:#078d43;
+        color:white;
+        text-decoration:none;
+        font-size:12px;
+      `;
+
+      messages.appendChild(linkButton);
+    }
+
+    messages.scrollTop = messages.scrollHeight;
+
+    if (input) input.value = "";
+  }
+
+  function setStanding(root) {
+    const robot = root.querySelector("#tcnAiRobot");
     if (!robot) return;
 
     robot.classList.remove("is-sitting");
     robot.classList.add("is-standing");
   }
 
-  function setSitting() {
-    if (!robot || isChatOpen) return;
+  function setSitting(root) {
+    const robot = root.querySelector("#tcnAiRobot");
+    const windowPanel = root.querySelector("#tcnAiWindow");
+
+    if (!robot || (windowPanel && windowPanel.classList.contains("is-open"))) {
+      return;
+    }
 
     robot.classList.remove("is-standing");
     robot.classList.add("is-sitting");
   }
 
-  function resetIdleTimer() {
-    if (!robot) return;
-
-    setStanding();
-
+  function resetIdleTimer(root) {
+    setStanding(root);
     clearTimeout(idleTimer);
 
-    idleTimer = setTimeout(function () {
-      if (!isChatOpen) {
-        setSitting();
-      }
-    }, IDLE_TIME);
+    idleTimer = setTimeout(() => {
+      setSitting(root);
+    }, 5000);
   }
 
-  /* =========================================
-     HAPPY CLICK REACTION
-  ========================================= */
+  function initializeAssistant(root) {
+    if (assistantReady || root.dataset.initialized === "true") return;
 
-  function happyReaction() {
-    if (!robot) return;
+    const robot = root.querySelector("#tcnAiRobot");
+    const panel = root.querySelector("#tcnAiWindow");
+    const closeButton = root.querySelector("#tcnAiClose");
+    const form = root.querySelector("#tcnAiForm");
+    const input = root.querySelector("#tcnAiInput");
 
-    robot.classList.remove("is-happy");
+    if (!robot || !panel || !closeButton || !form || !input) {
+      console.error("TCN AI Assistant: Required elements missing.");
+      return;
+    }
 
-    void robot.offsetWidth;
+    assistantReady = true;
+    root.dataset.initialized = "true";
 
-    robot.classList.add("is-happy");
+    loadImages(root);
 
-    setTimeout(function () {
-      robot.classList.remove("is-happy");
-    }, 700);
-  }
+    function openChat() {
+      panel.classList.add("is-open");
+      panel.setAttribute("aria-hidden", "false");
+      robot.setAttribute("aria-expanded", "true");
+      setStanding(root);
+      clearTimeout(idleTimer);
 
-  /* =========================================
-     CHARACTER CLICK
-  ========================================= */
+      input.focus();
+    }
 
-  function setupCharacter() {
-    robot.addEventListener("click", function () {
-      happyReaction();
-      openChat();
+    function closeChat() {
+      panel.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+      robot.setAttribute("aria-expanded", "false");
+
+      resetIdleTimer(root);
+    }
+
+    robot.addEventListener("click", openChat);
+    closeButton.addEventListener("click", closeChat);
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      sendQuestion(input.value, root);
     });
-  }
 
-  /* =========================================
-     ACTIVITY DETECTION
-  ========================================= */
+    root.querySelectorAll("[data-question]").forEach((button) => {
+      button.addEventListener("click", function () {
+        sendQuestion(button.dataset.question, root);
+      });
+    });
 
-  function setupActivityDetection() {
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && panel.classList.contains("is-open")) {
+        closeChat();
+      }
+    });
+
     const activityEvents = [
       "pointermove",
       "pointerdown",
@@ -241,271 +269,55 @@
       "wheel"
     ];
 
-    activityEvents.forEach(function (eventName) {
-      window.addEventListener(
+    activityEvents.forEach((eventName) => {
+      document.addEventListener(
         eventName,
-        function () {
-          if (!isChatOpen) {
-            resetIdleTimer();
-          }
-        },
-        {
-          passive: true
-        }
+        () => resetIdleTimer(root),
+        { passive: true }
       );
     });
+
+    resetIdleTimer(root);
   }
-
-  /* =========================================
-     OPEN CHAT
-  ========================================= */
-
-  function openChat() {
-    if (!chatWindow) return;
-
-    isChatOpen = true;
-
-    clearTimeout(idleTimer);
-
-    setStanding();
-
-    chatWindow.classList.add("is-open");
-    chatWindow.setAttribute("aria-hidden", "false");
-
-    robot.setAttribute("aria-expanded", "true");
-
-    if (greeting) {
-      greeting.classList.add("is-hidden");
-    }
-
-    happyReaction();
-
-    setTimeout(function () {
-      chatInput.focus();
-    }, 250);
-  }
-
-  /* =========================================
-     CLOSE CHAT
-  ========================================= */
-
-  function closeChat() {
-    if (!chatWindow) return;
-
-    isChatOpen = false;
-
-    chatWindow.classList.remove("is-open");
-    chatWindow.setAttribute("aria-hidden", "true");
-
-    robot.setAttribute("aria-expanded", "false");
-
-    resetIdleTimer();
-  }
-
-  /* =========================================
-     CHAT EVENTS
-  ========================================= */
-
-  function setupChat() {
-    const closeButton = assistantRoot.querySelector(
-      "#tcnAiClose"
-    );
-
-    if (closeButton) {
-      closeButton.addEventListener("click", closeChat);
-    }
-
-    chatForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const question = chatInput.value.trim();
-
-      if (!question || isLoading) return;
-
-      chatInput.value = "";
-
-      sendMessage(question);
-    });
-
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && isChatOpen) {
-        closeChat();
-      }
-    });
-  }
-
-  /* =========================================
-     DISPLAY MESSAGES
-  ========================================= */
-
-  function addMessage(text, sender) {
-    const message = document.createElement("div");
-
-    message.className =
-      "tcn-ai-message " + sender;
-
-    message.textContent = text;
-
-    messages.appendChild(message);
-
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  /* =========================================
-     TCN KNOWLEDGE RESPONSES
-     Offline starter knowledge
-  ========================================= */
-
-  function getTCNResponse(question) {
-    const q = question.toLowerCase();
-
-    if (
-      q.includes("hello") ||
-      q.includes("hi") ||
-      q.includes("hey") ||
-      q.includes("नमस्ते") ||
-      q.includes("हेलो")
-    ) {
-      return "Hello! 👋 Welcome to Total Crypto Hub. मैं TCN और हमारे Web3 ecosystem के बारे में आपकी मदद कर सकती हूँ। 😊";
-    }
-
-    if (
-      q.includes("what is tcn") ||
-      q.includes("total crypto network") ||
-      q.includes("टीसीएन")
-    ) {
-      return "TCN का पूरा नाम Total Crypto Network है। यह हमारा Web3 ecosystem और community-focused network है।";
-    }
-
-    if (
-      q.includes("total crypto hub") ||
-      q.includes("crypto hub") ||
-      q.includes("हब")
-    ) {
-      return "Total Crypto Hub हमारा platform है जहाँ आप DePIN Projects, Community Projects, Airdrops, Wallets, Exchanges और Web3 Tools से जुड़ी जानकारी देख सकते हैं।";
-    }
-
-    if (
-      q.includes("depin") ||
-      q.includes("de-pin")
-    ) {
-      return "Total Crypto Hub के DePIN section में आप Decentralized Physical Infrastructure Network से जुड़े projects की जानकारी explore कर सकते हैं।";
-    }
-
-    if (
-      q.includes("airdrop") ||
-      q.includes("airdrops")
-    ) {
-      return "आप Total Crypto Hub के Airdrops & Campaigns section में उपलब्ध campaigns और airdrop-related जानकारी देख सकते हैं।";
-    }
-
-    if (
-      q.includes("wallet") ||
-      q.includes("exchange")
-    ) {
-      return "हमारे Wallets & Exchanges section में crypto wallets और exchanges से जुड़ी जानकारी उपलब्ध है।";
-    }
-
-    if (
-      q.includes("token checker") ||
-      q.includes("token")
-    ) {
-      return "Token Checker हमारे Web3 Tools का हिस्सा है। इसका उपयोग token से जुड़ी उपलब्ध जानकारी देखने के लिए किया जा सकता है।";
-    }
-
-    if (
-      q.includes("earning calculator") ||
-      q.includes("calculator") ||
-      q.includes("earning")
-    ) {
-      return "Earning Calculator Total Crypto Hub का एक Web3 tool है, जिसकी मदद से आप earning estimates calculate कर सकते हैं।";
-    }
-
-    if (
-      q.includes("community") ||
-      q.includes("join")
-    ) {
-      return "Total Crypto Hub में Community Projects और community-related जानकारी explore कर सकते हैं। हमारी community से जुड़ने के लिए वेबसाइट के Community section को देखें।";
-    }
-
-    if (
-      q.includes("service") ||
-      q.includes("feature") ||
-      q.includes("website")
-    ) {
-      return "Total Crypto Hub में DePIN Projects, Community Projects, Airdrops & Campaigns, Wallets & Exchanges, Token Checker और Earning Calculator जैसे sections हैं।";
-    }
-
-    if (
-      q.includes("thank") ||
-      q.includes("धन्यवाद")
-    ) {
-      return "You're most welcome! ❤️ Total Crypto Hub पर आपका स्वागत है।";
-    }
-
-    return "मैं आपकी TCN AI Assistant हूँ। 😊 मैं केवल Total Crypto Hub, Total Crypto Network, हमारे projects, services और website features से जुड़े सवालों में मदद कर सकती हूँ। कृपया अपना सवाल थोड़ा स्पष्ट पूछें।";
-  }
-
-  /* =========================================
-     SEND MESSAGE
-  ========================================= */
-
-  function sendMessage(question) {
-    if (isLoading) return;
-
-    isLoading = true;
-
-    addMessage(question, "user");
-
-    const reply = getTCNResponse(question);
-
-    setTimeout(function () {
-      addMessage(reply, "bot");
-
-      isLoading = false;
-
-      chatInput.focus();
-    }, 450);
-  }
-
-  /* =========================================
-     QUICK SUGGESTIONS
-  ========================================= */
-
-  function setupSuggestions() {
-    const suggestionButtons = assistantRoot.querySelectorAll(
-      "[data-question]"
-    );
-
-    suggestionButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        const question = button.dataset.question;
-
-        if (question && !isLoading) {
-          sendMessage(question);
-        }
-      });
-    });
-  }
-
-  /* =========================================
-     START ASSISTANT
-  ========================================= */
 
   function startAssistant() {
-    loadAssistantCSS();
+    loadCSS();
 
-    if (document.readyState === "loading") {
-      document.addEventListener(
-        "DOMContentLoaded",
-        loadAssistantHTML,
-        { once: true }
-      );
-    } else {
-      loadAssistantHTML();
+    const existingRoot = document.querySelector("#tcn-ai-assistant");
+
+    if (existingRoot) {
+      initializeAssistant(existingRoot);
+      return;
     }
+
+    fetch(htmlURL)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Could not load assistant.html");
+        }
+        return response.text();
+      })
+      .then((html) => {
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = html;
+
+        const root = wrapper.querySelector("#tcn-ai-assistant");
+
+        if (!root) {
+          throw new Error("Assistant root not found.");
+        }
+
+        document.body.appendChild(root);
+        initializeAssistant(root);
+      })
+      .catch((error) => {
+        console.error("TCN AI Assistant error:", error);
+      });
   }
 
-  startAssistant();
-
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startAssistant);
+  } else {
+    startAssistant();
+  }
 })();
