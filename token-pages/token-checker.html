@@ -1,769 +1,849 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token & Project Checker | Total Crypto Hub</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-body: #f8fafc;
-            --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --border-color: #e2e8f0;
-            --text-heading: #0f172a;
-            --text-body: #1e293b;
-            --text-muted: #475569;
-            --accent-primary: #059669; 
-            --accent-hover: #047857;
-            --row-hover: #f1f5f9;
-            --ring-border: rgba(5, 150, 105, 0.25);
-            --ring-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
-            --container-max-width: 1240px;
-            --container-padding: 24px;
-        }
-        [data-theme="dark"] {
-            --bg-body: #070a12;
-            --bg-surface: #0b1120;
-            --header-bg: rgba(11, 17, 32, 0.95);
-            --border-color: #1e293b;
-            --text-heading: #f8fafc;
-            --text-body: #e2e8f0;
-            --text-muted: #94a3b8;
-            --accent-primary: #10b981; 
-            --accent-hover: #34d399;
-            --row-hover: #131c31;
-            --ring-border: rgba(16, 185, 129, 0.35);
-            --ring-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
-        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
-        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Checker | Total Crypto Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #00a878;
+      --green-dark: #008d66;
+      --green-light: #e9faf3;
+      --navy: #102b40;
+      --text: #20364b;
+      --muted: #71849a;
+      --border: #e0eaf0;
+      --page: #f3f8fa;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(25, 65, 82, .06);
+    }
 
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0 0 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { display: flex; flex-direction: column; gap: 16px; }
-        .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); flex-shrink: 0; padding: 1px; }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .logo-text h1 { font-size: 18px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
-        
-        .header-right { display: flex; align-items: center; gap: 12px; }
-        .community-dropdown { position: relative; display: inline-block; }
-        .community-btn { background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-        .community-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .dropdown-content { display: none; position: absolute; right: 0; top: 120%; background-color: var(--bg-surface); min-width: 180px; box-shadow: 0px 8px 24px rgba(0,0,0,0.15); border: 1px solid var(--border-color); border-radius: 12px; z-index: 101; overflow: hidden; }
-        .dropdown-content.show { display: block; animation: fadeIn 0.2s ease-in-out; }
-        .dropdown-content a { color: var(--text-heading); padding: 12px 16px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: rgba(16, 185, 129, 0.08); color: var(--accent-primary); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--page);
+      color: var(--text);
+    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
 
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
+    /* TOP HEADER */
+    .topbar {
+      height: 76px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 225px;
+      text-decoration: none;
+      color: var(--navy);
+    }
+    .brand-logo {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #00b987, #087d62);
+      border: 3px solid #d4f5e7;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 3px 10px #00a87835;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .brand-logo img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    .brand-name {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+    .brand-sub {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .brand-sub span { color: var(--green-dark); }
 
-        .tab-switcher { display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; padding-bottom: 12px; scrollbar-width: none; width: 100%; }
-        .tab-switcher::-webkit-scrollbar { display: none; }
-        .tab-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; font-size: 13px; border-radius: 50px; cursor: pointer; text-decoration: none; flex-shrink: 0; }
-        .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
-        .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+    .header-search {
+      flex: 1;
+      max-width: 560px;
+      position: relative;
+    }
+    .header-search input {
+      width: 100%;
+      height: 43px;
+      background: #f7fafc;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 0 16px;
+      outline: none;
+      font-size: 12px;
+    }
+    .header-search input:focus,
+    .token-input:focus,
+    select:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px #00a87817;
+    }
+    .header-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .community-btn, .theme-btn {
+      height: 41px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 25px;
+      padding: 0 17px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .theme-btn { width: 41px; padding: 0; font-size: 18px; }
 
-        main { flex: 1; padding: 24px 0 60px; }
+    /* SIDEBAR */
+    .sidebar {
+      width: 250px;
+      position: fixed;
+      top: 76px;
+      bottom: 0;
+      left: 0;
+      padding: 26px 19px;
+      overflow-y: auto;
+      background: white;
+      border-right: 1px solid var(--border);
+      z-index: 10;
+    }
+    .side-label {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: #8a9bad;
+      font-weight: 800;
+      margin: 4px 13px 15px;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 13px;
+      margin: 4px 0;
+      border-radius: 13px;
+      text-decoration: none;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 650;
+      transition: .2s;
+    }
+    .nav-link:hover { background: #f0faf6; color: var(--green-dark); }
+    .nav-link.active {
+      background: #e8faf2;
+      color: #008b66;
+      border: 1px solid #b6ead6;
+    }
+    .nav-icon {
+      width: 25px;
+      height: 25px;
+      background: #f3f7fa;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .active .nav-icon { background: var(--green); color: white; }
 
-        /* ================= SPONSORED BANNER (COINGECKO STYLE) ================= */
-        .sponsored-banner-box {
-            width: 100%;
-            max-width: 728px;
-            min-height: 90px;
-            margin: 0 auto 32px auto;
-            border: 1px dashed var(--border-color);
-            background: var(--bg-surface);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 4px;
-            position: relative;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
-        }
-        .ad-tag {
-            position: absolute;
-            top: 6px;
-            right: 8px;
-            font-size: 9.5px;
-            font-weight: 800;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        .banner-placeholder-text {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-heading);
-        }
-        .banner-subtext {
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-        .banner-subtext a {
-            color: var(--accent-primary);
-            text-decoration: none;
-            font-weight: 700;
-        }
+    .community-card {
+      margin-top: 44px;
+      padding: 19px 13px;
+      text-align: center;
+      border-radius: 20px;
+      border: 1px solid #bcebd9;
+      background: linear-gradient(145deg, #e1f9ef, white);
+    }
+    .community-card .gift { font-size: 27px; }
+    .community-card h4 { font-size: 12px; line-height: 1.6; margin: 8px 0 13px; }
+    .community-card a {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      padding: 10px 17px;
+      border-radius: 25px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .support-card {
+      margin-top: 13px;
+      padding: 15px;
+      background: #f7fafc;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+    .support-card a { color: var(--green-dark); font-weight: 700; }
 
-        /* ================= PURE SEARCH SECTION ================= */
-        .search-hero {
-            max-width: 760px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .search-hero h2 {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--text-heading);
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-        .search-hero p {
-            font-size: 14.5px;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-            line-height: 1.6;
-        }
+    /* MAIN CONTENT */
+    .main {
+      margin-left: 250px;
+      padding: 27px 32px 55px;
+      min-height: calc(100vh - 76px);
+    }
+    .breadcrumb {
+      font-size: 11px;
+      color: var(--muted);
+      margin: 2px 0 17px;
+    }
+    .breadcrumb span { color: var(--green-dark); font-weight: 700; }
 
-        .search-bar-wrapper {
-            position: relative;
-            width: 100%;
-            margin-bottom: 16px;
-        }
-        .search-input-box {
-            width: 100%;
-            padding: 18px 24px 18px 52px;
-            border-radius: 50px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-surface);
-            color: var(--text-heading);
-            font-size: 16px;
-            font-weight: 600;
-            outline: none;
-            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.06);
-            transition: all 0.25s ease;
-        }
-        .search-input-box:focus {
-            border-color: var(--accent-primary);
-            box-shadow: 0 12px 35px -5px rgba(16, 185, 129, 0.2);
-        }
-        .search-icon-inside {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            stroke: var(--text-muted);
-            fill: none;
-            stroke-width: 2.2;
-            pointer-events: none;
-        }
-        .btn-clear-search {
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 800;
-        }
+    /* HERO + SPONSORSHIP */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 24px;
+      align-items: center;
+      min-height: 245px;
+      padding: 29px 33px;
+      border: 1px solid #c1efdf;
+      border-radius: 25px;
+      background:
+        radial-gradient(circle at 90% 15%, #c9f8e9 0, transparent 29%),
+        linear-gradient(110deg, #eafff5, #d7f9ee);
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffffc9;
+      color: #00966c;
+      padding: 7px 11px;
+      border: 1px solid #bcebd9;
+      border-radius: 30px;
+      font-size: 9px;
+      letter-spacing: .7px;
+      font-weight: 800;
+    }
+    .hero h1 {
+      font-size: clamp(25px, 3vw, 36px);
+      letter-spacing: -1.4px;
+      color: #102e40;
+      margin: 14px 0 9px;
+    }
+    .hero p {
+      max-width: 580px;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #45687b;
+      margin: 0 0 17px;
+    }
+    .hero-btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 25px;
+      background: linear-gradient(100deg, #00ad80, #008e68);
+      color: white;
+      padding: 12px 19px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 7px 14px #008e6825;
+    }
 
-        /* Quick Suggestion Pills */
-        .quick-tags {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 32px;
-        }
-        .tag-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-        .tag-btn {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-heading);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .tag-btn:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            transform: translateY(-1px);
-        }
+    /* ADVERTISEMENT SPACE */
+    .sponsor-box {
+      min-height: 166px;
+      padding: 17px;
+      border-radius: 19px;
+      border: 1px dashed #65c9a6;
+      background: #ffffffd9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .sponsor-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin-bottom: 10px;
+    }
+    .sponsor-logo {
+      height: 37px;
+      width: 37px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #00b987, #087d62);
+      color: white;
+      border: 2px solid #c8f3e1;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .sponsor-brand strong {
+      display: block;
+      color: var(--navy);
+      text-align: left;
+      font-size: 12px;
+    }
+    .sponsor-brand small {
+      display: block;
+      color: var(--green-dark);
+      text-align: left;
+      font-size: 9px;
+      font-weight: 700;
+      margin-top: 3px;
+    }
+    .ad-tag {
+      color: #00966c;
+      background: #e4f9ef;
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .sponsor-box h3 {
+      margin: 8px 0 4px;
+      color: #16354a;
+      font-size: 15px;
+    }
+    .sponsor-box p {
+      margin: 0 0 9px;
+      font-size: 10px;
+      line-height: 1.5;
+      color: #6a7f8e;
+    }
+    .sponsor-link {
+      color: #008d66;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 800;
+    }
 
-        /* ================= DYNAMIC RESULT CARD ================= */
-        .result-container {
-            width: 100%;
-            display: none;
-            text-align: left;
-            animation: slideUp 0.3s ease;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    /* CHECKER FORM */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 27px 0 14px;
+    }
+    .section-icon {
+      height: 32px;
+      width: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: #dcf8eb;
+      color: #009b70;
+      font-size: 16px;
+    }
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 17px;
+      letter-spacing: -.4px;
+    }
+    .section-subtitle {
+      font-size: 10px;
+      color: var(--muted);
+      margin: -7px 0 14px 42px;
+    }
+    .checker-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 23px;
+      box-shadow: var(--shadow);
+    }
+    .form-label {
+      display: block;
+      font-size: 11px;
+      color: #445d70;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 220px auto;
+      align-items: end;
+      gap: 13px;
+    }
+    .token-input, .network-select {
+      height: 47px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #fbfdfe;
+      padding: 0 13px;
+      width: 100%;
+      outline: none;
+      color: var(--text);
+      font-size: 11px;
+    }
+    .check-btn {
+      height: 47px;
+      padding: 0 23px;
+      border: 0;
+      border-radius: 11px;
+      background: linear-gradient(100deg, #00ad80, #008e68);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: 0 6px 14px #008e6823;
+    }
+    .check-btn:hover { filter: brightness(.96); transform: translateY(-1px); }
+    .form-hint {
+      margin: 12px 0 0;
+      color: #8798a8;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+    .message {
+      display: none;
+      margin-top: 15px;
+      border-radius: 11px;
+      padding: 12px 14px;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .message.show { display: block; }
+    .message.info { color: #76591b; background: #fff8e7; border: 1px solid #f5e1ae; }
+    .message.error { color: #a33b3b; background: #fff0f0; border: 1px solid #f2caca; }
 
-        .result-card {
-            background: var(--bg-surface);
-            border: 1.5px solid var(--border-color);
-            border-radius: 20px;
-            padding: 28px;
-            box-shadow: 0 12px 40px -10px rgba(0,0,0,0.08);
-            border-top: 5px solid var(--accent-primary);
-        }
-        .result-card.scam-warning {
-            border-top-color: #d97706;
-        }
-        .result-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .result-title-box {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .result-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--accent-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: 800;
-            border: 1.5px solid var(--ring-border);
-        }
-        .result-title-box h3 {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-heading);
-            line-height: 1.2;
-        }
-        .result-title-box span {
-            font-size: 13px;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-        .badge-status {
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 800;
-        }
-        .badge-live { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); }
-        .badge-mining { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+    /* FEATURE CARDS */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+      margin-top: 16px;
+    }
+    .feature-card {
+      padding: 17px 14px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 16px;
+      min-height: 112px;
+      box-shadow: 0 5px 18px #21435c08;
+    }
+    .feature-icon {
+      height: 34px;
+      width: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: #e9f8f1;
+      color: #009a70;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+    .feature-card h3 {
+      margin: 0 0 5px;
+      color: var(--navy);
+      font-size: 11px;
+    }
+    .feature-card p {
+      margin: 0;
+      font-size: 9px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
 
-        /* Contract Box */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        .info-tile {
-            background: var(--bg-body);
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        .info-tile-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
-        .info-tile-value { font-size: 13.5px; font-weight: 800; color: var(--text-heading); }
+    /* INFORMATION PANEL */
+    .info-panel {
+      margin-top: 18px;
+      padding: 19px 21px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+    }
+    .info-panel h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: var(--navy);
+    }
+    .info-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 13px 15px;
+      border: 1px solid #f2e1b8;
+      background: #fffaf0;
+      border-radius: 12px;
+      color: #80652e;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+    .footer {
+      margin: 25px 0 0;
+      text-align: center;
+      color: #8a9aaa;
+      font-size: 9px;
+      line-height: 1.8;
+    }
 
-        .ca-box {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .ca-text {
-            font-family: monospace;
-            font-size: 13px;
-            color: var(--text-heading);
-            word-break: break-all;
-        }
-        .btn-copy {
-            background: var(--accent-primary);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
-        }
+    /* DARK MODE */
+    body.dark {
+      --page: #101d28;
+      --white: #172938;
+      --text: #e5edf3;
+      --navy: #e5edf3;
+      --muted: #9aabba;
+      --border: #2c4151;
+      --shadow: 0 12px 30px #00000020;
+      background: var(--page);
+      color: var(--text);
+    }
+    body.dark .topbar,
+    body.dark .sidebar,
+    body.dark .checker-card,
+    body.dark .feature-card,
+    body.dark .info-panel {
+      background: #172938;
+    }
+    body.dark .nav-link { color: #dce8ef; }
+    body.dark .nav-link.active { background: #143e37; color: #6ce0b6; border-color: #286d58; }
+    body.dark .nav-icon { background: #223b4d; }
+    body.dark .active .nav-icon { background: var(--green); }
+    body.dark .header-search input,
+    body.dark .token-input,
+    body.dark .network-select {
+      background: #102331;
+      color: #e5edf3;
+    }
+    body.dark .community-btn,
+    body.dark .theme-btn { background: #172938; color: #e5edf3; }
+    body.dark .hero { background: linear-gradient(110deg, #143e37, #173c48); border-color: #286d58; }
+    body.dark .hero h1 { color: #e8fff5; }
+    body.dark .hero p { color: #b4d6ca; }
+    body.dark .sponsor-box { background: #1c3440; border-color: #3e8b70; }
+    body.dark .sponsor-brand strong,
+    body.dark .sponsor-box h3,
+    body.dark .section-heading h2,
+    body.dark .feature-card h3,
+    body.dark .info-panel h3 { color: #e5edf3; }
+    body.dark .community-card { background: #173b36; border-color: #286d58; }
+    body.dark .support-card { background: #1c3444; }
+    body.dark .warning { background: #392f1c; border-color: #63512c; color: #f1d89c; }
 
-        /* Scam Alert Banner */
-        .alert-banner {
-            background: rgba(217, 119, 6, 0.08);
-            border: 1px solid rgba(217, 119, 6, 0.3);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .alert-banner.green-alert {
-            background: rgba(16, 185, 129, 0.08);
-            border-color: rgba(16, 185, 129, 0.3);
-        }
-        .alert-icon { font-size: 20px; flex-shrink: 0; }
-        .alert-text { font-size: 13px; line-height: 1.6; color: var(--text-heading); font-weight: 600; }
-
-        /* Action Buttons */
-        .action-row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .btn-action {
-            flex: 1;
-            min-width: 180px;
-            padding: 12px 18px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            text-align: center;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-        .btn-primary-action { background: var(--accent-primary); color: white; }
-        .btn-primary-action:hover { background: var(--accent-hover); }
-        .btn-secondary-action { background: var(--bg-body); color: var(--text-heading); border: 1px solid var(--border-color); }
-        .btn-secondary-action:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-
-        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-primary); }
-    </style>
+    /* MOBILE */
+    .mobile-menu {
+      display: none;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 10px;
+      width: 39px;
+      height: 39px;
+      font-size: 18px;
+    }
+    @media (max-width: 1050px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-grid { grid-template-columns: 1fr 190px; }
+      .check-btn { grid-column: 1 / -1; }
+    }
+    @media (max-width: 760px) {
+      .topbar { height: 65px; padding: 0 13px; gap: 10px; }
+      .mobile-menu { display: block; }
+      .brand { min-width: 0; gap: 7px; }
+      .brand-logo { width: 39px; height: 39px; }
+      .brand-name { font-size: 13px; }
+      .brand-sub { font-size: 8px; }
+      .header-search { display: none; }
+      .community-btn { display: none; }
+      .sidebar {
+        display: none;
+        top: 65px;
+        width: 260px;
+        box-shadow: 10px 15px 25px #102b4020;
+      }
+      .sidebar.open { display: block; }
+      .main { margin-left: 0; padding: 19px 14px 35px; }
+      .hero { grid-template-columns: 1fr; padding: 22px 19px; gap: 18px; }
+      .hero h1 { font-size: 27px; }
+      .sponsor-box { min-height: 155px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .check-btn { grid-column: auto; width: 100%; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+      .feature-card { padding: 13px 11px; }
+      .checker-card { padding: 17px; }
+    }
+    @media (max-width: 390px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body data-theme="light">
-    <header>
-        <div class="site-container header-inner">
-            <div class="header-top-row">
-                <a href="../index.html" class="logo-box">
-                    <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';"></div>
-                    <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
-                </a>
-                
-                <div class="header-right">
-                    <div class="community-dropdown">
-                        <button class="community-btn" onclick="toggleCommunityMenu()">👥 Community</button>
-                        <div class="dropdown-content" id="communityMenu">
-                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank">▶️ YouTube</a>
-                            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank">💬 WhatsApp</a>
-                            <a href="https://x.com/TotalCryptoOff" target="_blank">✖️ Twitter (X)</a>
-                            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank">📘 Facebook</a>
-                        </div>
-                    </div>
-                    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                </div>
-            </div>
-            
-            <div class="tab-switcher">
-                <a href="../depin-pages/depin.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> DePIN Projects</a>
-                <a href="../mobile-pages/mobile-mining.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg> Community Projects</a>
-                <a href="../airdrop-pages/airdrops.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg> Airdrops & Campaigns</a>
-                <a href="../wallet-pages/wallets.html" class="tab-btn"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> Wallets & Exchanges</a>
-                <a href="token-checker.html" class="tab-btn active"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Token Checker</a>
-                <a href="../earning-pages/earning-calculator.html" class="tab-btn"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg> Earning Calculator</a>
-            </div>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="topbar">
+    <button class="mobile-menu" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
+
+    <a class="brand" href="../index.html">
+      <div class="brand-logo">
+        <!-- Apne asli logo ka path yahan set karein, agar alag hai -->
+        <img src="../assets/tcn-logo.png" alt="TCN"
+             onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+      </div>
+      <div>
+        <div class="brand-name">Total Crypto Hub</div>
+        <div class="brand-sub">by <span>Total Crypto Network</span></div>
+      </div>
+    </a>
+
+    <div class="header-search">
+      <input type="search" placeholder="Search projects, category...">
+    </div>
+
+    <div class="header-actions">
+      <button class="community-btn" onclick="window.location.href='../index.html'">
+        ♧ Community &nbsp;⌄
+      </button>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="side-label">WORKSPACE</div>
+
+    <a class="nav-link" href="../index.html"><span class="nav-icon">⌂</span>Home</a>
+    <a class="nav-link" href="../depin-pages/depin.html"><span class="nav-icon">✣</span>DePIN Projects</a>
+    <a class="nav-link" href="../mobile-pages/mobile-mining.html"><span class="nav-icon">♧</span>Community Projects</a>
+    <a class="nav-link" href="../airdrop-pages/airdrops.html"><span class="nav-icon">♙</span>Airdrops & Campaigns</a>
+    <a class="nav-link" href="../wallet-pages/wallets.html"><span class="nav-icon">▣</span>Wallets & Exchanges</a>
+    <a class="nav-link active" href="token-checker.html"><span class="nav-icon">⌕</span>Token Checker</a>
+    <a class="nav-link" href="../earning-pages/earning-calculator.html"><span class="nav-icon">▦</span>Earning Calculator</a>
+
+    <div class="community-card">
+      <div class="gift">🎁</div>
+      <h4>Join the Community<br>& Earn Together</h4>
+      <a href="../index.html">Join Community →</a>
+    </div>
+
+    <div class="support-card">
+      ♧ &nbsp;Need Help? <a href="../index.html">Contact Support →</a>
+    </div>
+  </aside>
+
+  <!-- MAIN PAGE -->
+  <main class="main">
+    <div class="breadcrumb">Workspace &nbsp;›&nbsp; <span>Token Checker</span></div>
+
+    <!-- HERO AND SPONSOR BANNER -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">✦ &nbsp; TOKEN RESEARCH & SECURITY TOOL</div>
+        <h1>Token Checker</h1>
+        <p>
+          Explore token details before you interact with a project.
+          Check contract information, security indicators, liquidity and holders
+          from one simple dashboard.
+        </p>
+        <a class="hero-btn" href="#token-search">Check a Token &nbsp;→</a>
+      </div>
+
+      <!-- SPONSORSHIP / ADVERTISEMENT PLACEHOLDER -->
+      <div class="sponsor-box">
+        <div class="sponsor-brand">
+          <div class="sponsor-logo">TCN</div>
+          <div>
+            <strong>Total Crypto Hub</strong>
+            <small>by Total Crypto Network</small>
+          </div>
         </div>
-    </header>
+        <div class="ad-tag">ADVERTISEMENT / SPONSORSHIP</div>
+        <h3>Your Brand Can Be Here</h3>
+        <p>Promote your crypto project, product or Web3 service to our community.</p>
+        <a class="sponsor-link" href="#sponsorship">Sponsorship Opportunity →</a>
+      </div>
+    </section>
 
-    <main>
-        <div class="site-container">
-            <!-- SPONSORED BANNER -->
-            <div class="sponsored-banner-box">
-                <span class="ad-tag">Sponsored</span>
-                <div class="banner-placeholder-text">⚡ Total Crypto Network • Official Partner Banner Slot</div>
-                <div class="banner-subtext">Want to reach thousands of active Web3 traders & node runners? <a href="https://t.me/" target="_blank">Book this spot ↗</a></div>
-            </div>
+    <!-- TOKEN SEARCH -->
+    <div class="section-heading" id="token-search">
+      <div class="section-icon">⌕</div>
+      <h2>Check Your Token</h2>
+    </div>
+    <p class="section-subtitle">Enter a contract address and choose its blockchain network.</p>
 
-            <!-- SEARCH HERO -->
-            <div class="search-hero">
-                <h2>Instant Token & Project Checker</h2>
-                <p>Verify official contract addresses, detect fake honeypots, and confirm live listing status for DePIN & mobile mining networks.</p>
-
-                <!-- PURE SEARCH BOX -->
-                <div class="search-bar-wrapper">
-                    <svg class="search-icon-inside" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                    <input type="text" id="searchInput" class="search-input-box" placeholder="Type project name (e.g. Grass, Pi, Nodle) or paste 0x address..." oninput="handleSearch()">
-                    <button id="btnClear" class="btn-clear-search" onclick="clearSearch()">✕</button>
-                </div>
-
-                <!-- QUICK TAGS -->
-                <div class="quick-tags">
-                    <span class="tag-label">Popular Searches:</span>
-                    <button class="tag-btn" onclick="quickSearch('Grass')">🌱 Grass</button>
-                    <button class="tag-btn" onclick="quickSearch('Pi Network')">🥧 Pi Network</button>
-                    <button class="tag-btn" onclick="quickSearch('Nodle')">📡 Nodle</button>
-                    <button class="tag-btn" onclick="quickSearch('Bondex')">💼 Bondex</button>
-                    <button class="tag-btn" onclick="quickSearch('Sidra')">🕌 Sidra Chain</button>
-                    <button class="tag-btn" onclick="quickSearch('Helium')">🎈 Helium</button>
-                </div>
-
-                <!-- DYNAMIC RESULT CARD -->
-                <div id="resultContainer" class="result-container">
-                    <div id="resultCard" class="result-card">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
+    <section class="checker-card">
+      <div class="form-grid">
+        <div>
+          <label class="form-label" for="tokenAddress">TOKEN CONTRACT ADDRESS</label>
+          <input
+            class="token-input"
+            type="text"
+            id="tokenAddress"
+            placeholder="Paste token contract address here..."
+            autocomplete="off"
+          >
         </div>
-    </main>
 
-    <footer>
-        <div class="site-container">
-            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">&copy; 2026 Total Crypto Network. All rights reserved.</div>
-            <div class="footer-links">
-                <a href="../legal-pages/about.html">About Us</a>
-                <a href="../legal-pages/contact.html">Contact Us</a>
-                <a href="../legal-pages/privacy.html">Privacy Policy</a>
-                <a href="../legal-pages/terms.html">Terms & Conditions</a>
-                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
-            </div>
+        <div>
+          <label class="form-label" for="network">SELECT NETWORK</label>
+          <select class="network-select" id="network">
+            <option value="ethereum">Ethereum</option>
+            <option value="bsc">BNB Smart Chain</option>
+            <option value="polygon">Polygon</option>
+            <option value="base">Base</option>
+            <option value="arbitrum">Arbitrum</option>
+            <option value="solana">Solana</option>
+          </select>
         </div>
+
+        <button class="check-btn" onclick="checkToken()">🔍 Check Token</button>
+      </div>
+
+      <p class="form-hint">
+        💡 Make sure you select the correct blockchain network before checking the address.
+      </p>
+
+      <div class="message" id="resultMessage" role="status"></div>
+    </section>
+
+    <!-- WHAT WILL BE CHECKED -->
+    <div class="section-heading">
+      <div class="section-icon">✦</div>
+      <h2>What Can You Check?</h2>
+    </div>
+    <p class="section-subtitle">Important token information in one place.</p>
+
+    <section class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Security Check</h3>
+        <p>Review available risk indicators and suspicious contract signals.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💧</div>
+        <h3>Liquidity Details</h3>
+        <p>View available liquidity information and liquidity-related signals.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Token Holders</h3>
+        <p>Review holder distribution and concentration when data is available.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Contract Details</h3>
+        <p>Review contract verification, ownership and other contract information.</p>
+      </div>
+    </section>
+
+    <!-- DISCLAIMER -->
+    <section class="info-panel">
+      <h3>How to Use Token Checker</h3>
+      <p>
+        Select the blockchain, paste the token contract address and start the check.
+        Once a data provider is connected, this area can show token information,
+        contract signals, liquidity details and holder data.
+      </p>
+
+      <div class="warning">
+        <span>⚠️</span>
+        <span>
+          <strong>Important:</strong> A token check cannot guarantee that a project
+          is safe or profitable. Always do your own research. Security indicators
+          may be incomplete or change over time.
+        </span>
+      </div>
+    </section>
+
+    <!-- SPONSORSHIP INFORMATION -->
+    <section class="info-panel" id="sponsorship">
+      <h3>Advertise With Total Crypto Hub</h3>
+      <p>
+        This space is reserved for future sponsored banners and promotional
+        placements. You can add a sponsor's banner image, website link or campaign
+        details here when a sponsorship is confirmed.
+      </p>
+    </section>
+
+    <footer class="footer">
+      © 2026 Total Crypto Hub · by Total Crypto Network<br>
+      DYOR — Always research before investing.
     </footer>
+  </main>
 
-    <script>
-        // ================= VERIFIED DATABASE (DePIN & MINING NETWORKS) =================
-        const PROJECT_DATABASE = [
-            {
-                name: "Grass Network",
-                ticker: "GRASS",
-                icon: "🌱",
-                chain: "Solana",
-                status: "live",
-                statusText: "🟢 Token Live & Listed",
-                ca: "Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
-                website: "https://www.getgrass.io/",
-                dexLink: "https://dexscreener.com/solana/Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
-                auditLink: "https://rugcheck.xyz/tokens/Grass7B4RdKf5h2smvyqzqTX2ndUSdf2JGvgEGZZ6Yo4",
-                alertType: "green",
-                alert: "Official Solana Mint verified. Grass केवल Solana ब्लॉकचेन पर है। BSC (PancakeSwap) या Ethereum पर बिकने वाले Grass टोकन 100% स्कैम/हनीपॉट हैं।"
-            },
-            {
-                name: "Pi Network",
-                ticker: "PI",
-                icon: "🥧",
-                chain: "Enclosed Mainnet",
-                status: "mining",
-                statusText: "🟡 Mining Phase / Enclosed Mainnet",
-                ca: "No Public Contract (Native Chain)",
-                website: "https://minepi.com/",
-                dexLink: "",
-                auditLink: "https://minepi.com/blockexplorer/",
-                alertType: "warning",
-                alert: "🚨 HIGH RISK ALERT: Pi Network का कोई भी पब्लिक टोकन Uniswap या PancakeSwap पर लिस्ट नहीं है! DEX पर दिखने वाले सभी 'Pi' टोकन नकली हनीपॉट हैं। कभी भी अपना वॉलेट कनेक्ट न करें।"
-            },
-            {
-                name: "Nodle Network",
-                ticker: "NODL",
-                icon: "📡",
-                chain: "zkSync Era / Polkadot",
-                status: "live",
-                statusText: "🟢 Token Live & Listed",
-                ca: "0xbd4372e44c3260a2e79601d81f13b584988e0b23",
-                website: "https://www.nodle.com/",
-                dexLink: "https://dexscreener.com/zksync/0xbd4372e44c3260a2e79601d81f13b584988e0b23",
-                auditLink: "https://explorer.zksync.io/address/0xbd4372e44c3260a2e79601d81f13b584988e0b23",
-                alertType: "green",
-                alert: "Official zkSync Era Contract verified. Nodle का माइग्रेशन zkSync L2 पर सफलतापूर्वक हो चुका है और टोकन शीर्ष एक्सचेंजों पर ट्रेड हो रहा है।"
-            },
-            {
-                name: "Bondex",
-                ticker: "BDXN",
-                icon: "💼",
-                chain: "BNB Chain (BEP-20)",
-                status: "live",
-                statusText: "🟢 Token Live & Listed",
-                ca: "0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
-                website: "https://bondex.app/",
-                dexLink: "https://dexscreener.com/bsc/0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
-                auditLink: "https://honeypot.is/?address=0xd1C7fD2A0c98f8A9772322384aF5F9803Af04e31",
-                alertType: "green",
-                alert: "Official BNB Chain Contract verified. BDXN टोकन लिस्टेड है। हमेशा आधिकारिक कॉन्ट्रैक्ट एड्रेस से ही स्वैप करें।"
-            },
-            {
-                name: "Sidra Chain",
-                ticker: "SDA",
-                icon: "🕌",
-                chain: "Sidra Ledger (Mining)",
-                status: "mining",
-                statusText: "🟡 Mining Phase / Testnet",
-                ca: "Off-Chain / Internal Ledger",
-                website: "https://sidra.info/",
-                dexLink: "",
-                auditLink: "",
-                alertType: "warning",
-                alert: "🚨 WARNING: Sidra Chain का कोई भी पब्लिक DEX कॉन्ट्रैक्ट नहीं है। केवल ऑफिशियल Sidra ऐप और पोर्टल पर KYC व माइनिंग पूरी करें। बाहरी लिंक्स से बचें।"
-            },
-            {
-                name: "Helium",
-                ticker: "HNT / MOBILE",
-                icon: "🎈",
-                chain: "Solana",
-                status: "live",
-                statusText: "🟢 Token Live & Listed",
-                ca: "hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux",
-                website: "https://www.helium.com/",
-                dexLink: "https://dexscreener.com/solana/hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux",
-                auditLink: "https://solscan.io/token/hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux",
-                alertType: "green",
-                alert: "Helium इकोसिस्टम पूरी तरह Solana ब्लॉकचेन पर माइग्रेट हो चुका है। HNT, MOBILE और IOT टोकन्स वेरिफाइड हैं।"
-            }
-        ];
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const button = document.querySelector('.theme-btn');
+      button.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
 
-        function handleSearch() {
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
-            const btnClear = document.getElementById('btnClear');
-            const resultBox = document.getElementById('resultContainer');
-            const resultCard = document.getElementById('resultCard');
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
 
-            if (!query) {
-                btnClear.style.display = 'none';
-                resultBox.style.display = 'none';
-                return;
-            }
+    function checkToken() {
+      const address = document.getElementById('tokenAddress').value.trim();
+      const network = document.getElementById('network').value;
+      const message = document.getElementById('resultMessage');
 
-            btnClear.style.display = 'flex';
+      message.className = 'message show';
 
-            // Check if user entered an unknown 0x contract address
-            if (query.startsWith("0x") && query.length >= 20) {
-                renderUnknownContract(query);
-                resultBox.style.display = 'block';
-                return;
-            }
+      if (!address) {
+        message.classList.add('error');
+        message.textContent = 'Please enter a token contract address first.';
+        return;
+      }
 
-            // Find in Local Verified Database
-            const matched = PROJECT_DATABASE.find(p => 
-                p.name.toLowerCase().includes(query) || 
-                p.ticker.toLowerCase() === query ||
-                p.ca.toLowerCase() === query
-            );
+      let valid = false;
 
-            if (matched) {
-                renderMatchedProject(matched);
-                resultBox.style.display = 'block';
-            } else {
-                renderNotFound(query);
-                resultBox.style.display = 'block';
-            }
-        }
+      if (network === 'solana') {
+        valid = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(address);
+      } else {
+        valid = /^0x[a-fA-F0-9]{40}$/.test(address);
+      }
 
-        function renderMatchedProject(p) {
-            const isLive = p.status === 'live';
-            const card = document.getElementById('resultCard');
-            card.className = isLive ? 'result-card' : 'result-card scam-warning';
+      if (!valid) {
+        message.classList.add('error');
+        message.textContent = 'The address format does not look valid for the selected network. Please check the address and network.';
+        return;
+      }
 
-            let buttonsHtml = '';
-            if (isLive) {
-                buttonsHtml = `
-                    <a href="${p.dexLink}" target="_blank" class="btn-action btn-primary-action">📊 Live Dex Chart</a>
-                    <a href="${p.auditLink}" target="_blank" class="btn-action btn-secondary-action">🛡️ Audit on RugCheck / Explorer</a>
-                    <a href="${p.website}" target="_blank" class="btn-action btn-secondary-action">🌐 Official Website</a>
-                `;
-            } else {
-                buttonsHtml = `
-                    <a href="${p.website}" target="_blank" class="btn-action btn-primary-action">🌐 Official Project Website</a>
-                `;
-            }
-
-            card.innerHTML = `
-                <div class="result-header">
-                    <div class="result-title-box">
-                        <div class="result-avatar">${p.icon}</div>
-                        <div>
-                            <h3>${p.name} (${p.ticker})</h3>
-                            <span>Verified Ecosystem: <b>${p.chain}</b></span>
-                        </div>
-                    </div>
-                    <span class="badge-status ${isLive ? 'badge-live' : 'badge-mining'}">${p.statusText}</span>
-                </div>
-
-                <div class="info-grid">
-                    <div class="info-tile">
-                        <div class="info-tile-label">Blockchain Ecosystem</div>
-                        <div class="info-tile-value">${p.chain}</div>
-                    </div>
-                    <div class="info-tile">
-                        <div class="info-tile-label">Listing Reality</div>
-                        <div class="info-tile-value">${isLive ? 'Traded on DEX / CEX' : 'No Public DEX Trading'}</div>
-                    </div>
-                </div>
-
-                <div class="ca-box">
-                    <div>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px;">Official Contract Address (CA)</div>
-                        <div class="ca-text" id="caToCopy">${p.ca}</div>
-                    </div>
-                    ${p.ca.startsWith("0x") || p.ca.length > 25 ? `<button class="btn-copy" onclick="copyCA('${p.ca}', this)">📋 Copy CA</button>` : ''}
-                </div>
-
-                <div class="alert-banner ${p.alertType === 'green' ? 'green-alert' : ''}">
-                    <div class="alert-icon">${p.alertType === 'green' ? '🛡️' : '🚨'}</div>
-                    <div class="alert-text">${p.alert}</div>
-                </div>
-
-                <div class="action-row">
-                    ${buttonsHtml}
-                </div>
-            `;
-        }
-
-        function renderUnknownContract(ca) {
-            const card = document.getElementById('resultCard');
-            card.className = 'result-card';
-            card.innerHTML = `
-                <div class="result-header">
-                    <div class="result-title-box">
-                        <div class="result-avatar">🔍</div>
-                        <div>
-                            <h3>Custom Smart Contract Audit</h3>
-                            <span>Raw Contract Address Detected</span>
-                        </div>
-                    </div>
-                    <span class="badge-status badge-mining">Live Diagnostics</span>
-                </div>
-
-                <div class="ca-box">
-                    <div>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px;">Target Contract Address</div>
-                        <div class="ca-text">${ca}</div>
-                    </div>
-                    <button class="btn-copy" onclick="copyCA('${ca}', this)">📋 Copy</button>
-                </div>
-
-                <div class="alert-banner">
-                    <div class="alert-icon">⚡</div>
-                    <div class="alert-text">This contract is not yet in our pre-verified DePIN directory. Run instant diagnostics below to check for honeypots, sales taxes, and liquidity lock status.</div>
-                </div>
-
-                <div class="action-row">
-                    <a href="https://honeypot.is/?address=${ca}" target="_blank" class="btn-action btn-primary-action">🛡️ Check on Honeypot.is</a>
-                    <a href="https://dexscreener.com/search?q=${ca}" target="_blank" class="btn-action btn-secondary-action">📊 DexScreener Live Pool</a>
-                    <a href="https://gopluslabs.io/token-security/56/${ca}" target="_blank" class="btn-action btn-secondary-action">🔍 GoPlus Security Audit</a>
-                </div>
-            `;
-        }
-
-        function renderNotFound(q) {
-            const card = document.getElementById('resultCard');
-            card.className = 'result-card scam-warning';
-            card.innerHTML = `
-                <div style="text-align: center; padding: 20px 10px;">
-                    <div style="font-size: 40px; margin-bottom: 12px;">⚠️</div>
-                    <h3 style="font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px;">No Verified Project Found for "${q}"</h3>
-                    <p style="font-size: 13px; color: var(--text-muted); max-width: 480px; margin: 0 auto 20px auto; line-height: 1.6;">
-                        If someone is selling you a token named "${q}" on Telegram or WhatsApp, it might be a newly created honeypot clone. Always paste the raw 0x contract address above to audit it.
-                    </p>
-                    <a href="https://dexscreener.com/search?q=${encodeURIComponent(q)}" target="_blank" class="btn-action btn-primary-action" style="display: inline-flex; width: auto;">🔍 Search on DexScreener</a>
-                </div>
-            `;
-        }
-
-        function quickSearch(name) {
-            document.getElementById('searchInput').value = name;
-            handleSearch();
-        }
-
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('btnClear').style.display = 'none';
-            document.getElementById('resultContainer').style.display = 'none';
-        }
-
-        function copyCA(text, btn) {
-            navigator.clipboard.writeText(text).then(() => {
-                const old = btn.innerText;
-                btn.innerText = "✓ Copied!";
-                setTimeout(() => { btn.innerText = old; }, 1800);
-            });
-        }
-
-        function toggleTheme() {
-            const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        function toggleCommunityMenu() {
-            document.getElementById("communityMenu").classList.toggle("show");
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.community-btn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-
-        window.onload = function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
-        };
-    </script>
+      message.classList.add('info');
+      message.textContent =
+        'Address format looks valid. Live token analysis is not connected yet. A security data API must be connected before real token results can be displayed.';
+    }
+  </script>
 </body>
 </html>
