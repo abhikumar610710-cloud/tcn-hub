@@ -61,18 +61,33 @@
     button, input { font: inherit; }
     .app-shell { min-height: 100vh; }
 
-    /* Left navigation */
+    /* Independently scrollable sidebar */
     .sidebar {
       position: fixed;
       z-index: 120;
       inset: 0 auto 0 0;
       width: var(--sidebar-width);
+      height: 100vh;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
       padding: 20px 16px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
       background: var(--surface);
       border-right: 1px solid var(--border);
       box-shadow: 8px 0 28px rgba(21, 48, 84, .025);
+    }
+
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 10px;
     }
 
     .brand {
@@ -81,6 +96,7 @@
       gap: 11px;
       padding: 0 10px 24px;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .brand-mark {
@@ -136,6 +152,7 @@
     .side-nav {
       display: grid;
       gap: 6px;
+      flex-shrink: 0;
     }
 
     .side-link {
@@ -172,7 +189,6 @@
       border-color: #23654e;
     }
 
-    /* Updated colorful sidebar icons */
     .nav-icon {
       width: 34px;
       height: 34px;
@@ -195,86 +211,31 @@
       stroke-linejoin: round;
     }
 
-    .side-link:hover .nav-icon {
-      transform: scale(1.08);
-    }
+    .side-link:hover .nav-icon { transform: scale(1.08); }
 
-    .nav-home {
-      color: #079B69;
-      background: #D9F8E9;
-    }
+    .nav-home { color: #079B69; background: #D9F8E9; }
+    .nav-depin { color: #1687FF; background: #DFEEFF; }
+    .nav-community { color: #8B5CF6; background: #EEE5FF; }
+    .nav-airdrop { color: #F07819; background: #FFF0D9; }
+    .nav-wallet { color: #9333EA; background: #F1E3FF; }
+    .nav-checker { color: #0D9488; background: #D9F7F0; }
+    .nav-calculator { color: #2563EB; background: #E2EAFF; }
 
-    .nav-depin {
-      color: #1687FF;
-      background: #DFEEFF;
-    }
-
-    .nav-community {
-      color: #8B5CF6;
-      background: #EEE5FF;
-    }
-
-    .nav-airdrop {
-      color: #F07819;
-      background: #FFF0D9;
-    }
-
-    .nav-wallet {
-      color: #9333EA;
-      background: #F1E3FF;
-    }
-
-    .nav-checker {
-      color: #0D9488;
-      background: #D9F7F0;
-    }
-
-    .nav-calculator {
-      color: #2563EB;
-      background: #E2EAFF;
-    }
-
-    [data-theme="dark"] .nav-home {
-      color: #54E3A7;
-      background: #164735;
-    }
-
-    [data-theme="dark"] .nav-depin {
-      color: #70B7FF;
-      background: #183B61;
-    }
-
-    [data-theme="dark"] .nav-community {
-      color: #C1A4FF;
-      background: #38265E;
-    }
-
-    [data-theme="dark"] .nav-airdrop {
-      color: #FFB36D;
-      background: #59391F;
-    }
-
-    [data-theme="dark"] .nav-wallet {
-      color: #D1A2FF;
-      background: #43265F;
-    }
-
-    [data-theme="dark"] .nav-checker {
-      color: #65DED1;
-      background: #164A46;
-    }
-
-    [data-theme="dark"] .nav-calculator {
-      color: #8EB5FF;
-      background: #203C70;
-    }
+    [data-theme="dark"] .nav-home { color: #54E3A7; background: #164735; }
+    [data-theme="dark"] .nav-depin { color: #70B7FF; background: #183B61; }
+    [data-theme="dark"] .nav-community { color: #C1A4FF; background: #38265E; }
+    [data-theme="dark"] .nav-airdrop { color: #FFB36D; background: #59391F; }
+    [data-theme="dark"] .nav-wallet { color: #D1A2FF; background: #43265F; }
+    [data-theme="dark"] .nav-checker { color: #65DED1; background: #164A46; }
+    [data-theme="dark"] .nav-calculator { color: #8EB5FF; background: #203C70; }
 
     .sidebar-spacer {
-      flex: 1;
+      flex: 0 0 18px;
       min-height: 18px;
     }
 
     .side-promo {
+      flex-shrink: 0;
       margin: 16px 7px 13px;
       padding: 19px 14px;
       text-align: center;
@@ -291,10 +252,7 @@
       border-color: #255c49;
     }
 
-    .promo-gift {
-      font-size: 33px;
-      margin-bottom: 8px;
-    }
+    .promo-gift { font-size: 33px; margin-bottom: 8px; }
 
     .side-promo h3 {
       margin: 0 0 7px;
@@ -327,6 +285,7 @@
     }
 
     .support-card {
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -364,7 +323,9 @@
     }
 
     .sidebar-note {
+      flex-shrink: 0;
       margin: 14px 8px 0;
+      padding-bottom: 3px;
       color: var(--muted);
       font-size: 9px;
       text-align: center;
@@ -401,10 +362,7 @@
       cursor: pointer;
     }
 
-    .search-wrap {
-      position: relative;
-      width: min(540px, 52vw);
-    }
+    .search-wrap { position: relative; width: min(540px, 52vw); }
 
     .search-wrap input {
       width: 100%;
@@ -437,7 +395,6 @@
     }
 
     .topbar-spacer { flex: 1; }
-
     .community-dropdown { position: relative; }
 
     .community-btn, .icon-btn {
@@ -558,11 +515,7 @@
       background: rgba(24, 211, 151, .20);
     }
 
-    .hero-copy {
-      position: relative;
-      z-index: 2;
-      max-width: 650px;
-    }
+    .hero-copy { position: relative; z-index: 2; max-width: 650px; }
 
     .hero-kicker {
       display: inline-flex;
@@ -690,11 +643,7 @@
       font-size: 18px;
     }
 
-    .hero-float.one {
-      top: 8px;
-      right: 14%;
-      transform: rotate(8deg);
-    }
+    .hero-float.one { top: 8px; right: 14%; transform: rotate(8deg); }
 
     .hero-float.two {
       bottom: 5px;
@@ -724,10 +673,7 @@
       box-shadow: 0 3px 10px rgba(20,45,75,.025);
     }
 
-    .hero-stat b {
-      color: var(--green);
-      font-size: 13px;
-    }
+    .hero-stat b { color: var(--green); font-size: 13px; }
 
     .section-heading {
       display: flex;
@@ -825,35 +771,12 @@
       outline-offset: 3px;
     }
 
-    .dash-card--depin {
-      --card-accent: #1687ff;
-      --card-soft: rgba(22,135,255,.11);
-    }
-
-    .dash-card--community {
-      --card-accent: #08a878;
-      --card-soft: rgba(16,185,129,.12);
-    }
-
-    .dash-card--airdrops {
-      --card-accent: #f97316;
-      --card-soft: rgba(249,115,22,.12);
-    }
-
-    .dash-card--wallets {
-      --card-accent: #9333ea;
-      --card-soft: rgba(147,51,234,.11);
-    }
-
-    .dash-card--checker {
-      --card-accent: #0d9488;
-      --card-soft: rgba(13,148,136,.11);
-    }
-
-    .dash-card--calculator {
-      --card-accent: #2563eb;
-      --card-soft: rgba(37,99,235,.11);
-    }
+    .dash-card--depin { --card-accent: #1687ff; --card-soft: rgba(22,135,255,.11); }
+    .dash-card--community { --card-accent: #08a878; --card-soft: rgba(16,185,129,.12); }
+    .dash-card--airdrops { --card-accent: #f97316; --card-soft: rgba(249,115,22,.12); }
+    .dash-card--wallets { --card-accent: #9333ea; --card-soft: rgba(147,51,234,.11); }
+    .dash-card--checker { --card-accent: #0d9488; --card-soft: rgba(13,148,136,.11); }
+    .dash-card--calculator { --card-accent: #2563eb; --card-soft: rgba(37,99,235,.11); }
 
     .card-topline {
       display: flex;
@@ -927,6 +850,28 @@
     }
 
     .dash-card[hidden] { display: none !important; }
+
+    /* Dedicated Web3 Tools section */
+    .web3-tools-section { margin-top: 28px; }
+
+    .web3-tools-section .section-heading { margin-top: 0; }
+
+    .web3-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .web3-tools-grid .dash-card {
+      min-height: 150px;
+    }
+
+    .web3-tools-intro {
+      margin: 0 0 13px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.6;
+    }
 
     .empty-search {
       display: none;
@@ -1020,10 +965,7 @@
         flex: 0 0 38px;
       }
 
-      .search-wrap {
-        width: auto;
-        flex: 1;
-      }
+      .search-wrap { width: auto; flex: 1; }
 
       .search-wrap input {
         height: 39px;
@@ -1083,7 +1025,7 @@
       }
 
       .section-heading h2 { font-size: 15px; }
-      .dashboard-grid { gap: 10px; }
+      .dashboard-grid, .web3-tools-grid { gap: 10px; }
 
       .dash-card {
         min-height: 156px;
@@ -1099,12 +1041,14 @@
         height: 40px;
         border-radius: 13px;
       }
+
+      .web3-tools-section { margin-top: 24px; }
     }
 
     @media (max-width: 430px) {
       .topbar { gap: 7px; }
       .community-dropdown { display: none; }
-      .dashboard-grid { grid-template-columns: 1fr; }
+      .dashboard-grid, .web3-tools-grid { grid-template-columns: 1fr; }
       .dash-card { min-height: 0; }
       .hero-copy h2 { font-size: 25px; }
       .hero-kicker { font-size: 8px; }
@@ -1141,7 +1085,6 @@
 
       <nav class="side-nav">
 
-        <!-- 1. Home -->
         <a href="index.html" class="side-link active" aria-current="page">
           <span class="nav-icon nav-home">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1153,7 +1096,6 @@
           Home
         </a>
 
-        <!-- 2. DePIN Projects -->
         <a href="depin-pages/depin.html" class="side-link">
           <span class="nav-icon nav-depin">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1163,7 +1105,6 @@
           DePIN Projects
         </a>
 
-        <!-- 3. Community Projects -->
         <a href="mobile-pages/mobile-mining.html" class="side-link">
           <span class="nav-icon nav-community">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1176,7 +1117,6 @@
           Community Projects
         </a>
 
-        <!-- 4. Airdrops & Campaigns -->
         <a href="airdrop-pages/airdrops.html" class="side-link">
           <span class="nav-icon nav-airdrop">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1190,7 +1130,6 @@
           Airdrops & Campaigns
         </a>
 
-        <!-- 5. Wallets & Exchanges -->
         <a href="wallet-pages/wallets.html" class="side-link">
           <span class="nav-icon nav-wallet">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1204,7 +1143,6 @@
           Wallets & Exchanges
         </a>
 
-        <!-- 6. Token Checker -->
         <a href="token-pages/token-checker.html" class="side-link">
           <span class="nav-icon nav-checker">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1215,7 +1153,6 @@
           Token Checker
         </a>
 
-        <!-- 7. Earning Calculator -->
         <a href="earning-pages/earning-calculator.html" class="side-link">
           <span class="nav-icon nav-calculator">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1268,7 +1205,7 @@
         <span class="topbar-spacer"></span>
 
         <div class="community-dropdown">
-          <button class="community-btn" type="button" onclick="toggleCommunityMenu()">👥 Community</button>
+          <button class="community-btn" type="button" onclick="toggleCommunityMenu()" aria-expanded="false">👥 Community</button>
 
           <div class="dropdown-content" id="communityMenu">
             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
@@ -1364,6 +1301,7 @@
           <span class="hero-stat"><b>⚡</b> Web3 Tools</span>
         </div>
 
+        <!-- Explore the Hub -->
         <section aria-labelledby="exploreHeading">
           <div class="section-heading">
             <div>
@@ -1464,11 +1402,59 @@
             </a>
 
           </div>
+        </section>
 
-          <div class="empty-search" id="emptySearch" role="status">
-            No matching section found. Try another keyword.
+        <!-- Dedicated Web3 Tools -->
+        <section class="web3-tools-section" aria-labelledby="web3ToolsHeading">
+          <div class="section-heading">
+            <div>
+              <h2 id="web3ToolsHeading">⚡ Web3 Tools</h2>
+              <p>Useful tools to research tokens and estimate potential earnings.</p>
+            </div>
+          </div>
+
+          <p class="web3-tools-intro">
+            Access the Total Crypto Hub tools directly from this section.
+          </p>
+
+          <div class="web3-tools-grid">
+
+            <a href="token-pages/token-checker.html" class="dash-card dash-card--checker" data-search="web3 tools token checker smart contract safety token research">
+              <div class="card-topline">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
+                    <path d="m9 12 2 2 4-4"/>
+                  </svg>
+                </div>
+                <span class="card-tag">Token Research</span>
+              </div>
+              <h3>Token Checker</h3>
+              <p>Check token contract information, liquidity details and available blockchain safety data.</p>
+              <span class="card-action">Open Token Checker <span>→</span></span>
+            </a>
+
+            <a href="earning-pages/earning-calculator.html" class="dash-card dash-card--calculator" data-search="web3 tools earning calculator rewards income electricity power cost">
+              <div class="card-topline">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="4" y="2" width="16" height="20" rx="2"/>
+                    <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/>
+                  </svg>
+                </div>
+                <span class="card-tag">Earnings Estimate</span>
+              </div>
+              <h3>Earning Calculator</h3>
+              <p>Estimate potential rewards, device electricity costs and possible token earnings.</p>
+              <span class="card-action">Open Earning Calculator <span>→</span></span>
+            </a>
+
           </div>
         </section>
+
+        <div class="empty-search" id="emptySearch" role="status">
+          No matching section found. Try another keyword.
+        </div>
 
         <p class="hero-disclaimer">
           <strong>Disclaimer:</strong> Total Crypto Hub operates as an educational directory and research portal. We do not provide financial advice or guarantee the performance, security or profits of third-party protocols. Always perform your own independent research before participating.
@@ -1542,6 +1528,8 @@
       const search = document.getElementById('globalSearch');
       const cards = Array.from(document.querySelectorAll('.dash-card'));
       const emptyMessage = document.getElementById('emptySearch');
+      const exploreSection = document.querySelector('section[aria-labelledby="exploreHeading"]');
+      const web3Section = document.querySelector('.web3-tools-section');
 
       search.addEventListener('input', function () {
         const query = this.value.trim().toLowerCase();
@@ -1557,6 +1545,17 @@
 
           if (match) visible++;
         });
+
+        /* Hide section headings when their cards do not match. */
+        if (exploreSection) {
+          const hasExploreCards = exploreSection.querySelectorAll('.dash-card:not([hidden])').length > 0;
+          exploreSection.hidden = Boolean(query) && !hasExploreCards;
+        }
+
+        if (web3Section) {
+          const hasWeb3Cards = web3Section.querySelectorAll('.dash-card:not([hidden])').length > 0;
+          web3Section.hidden = Boolean(query) && !hasWeb3Cards;
+        }
 
         emptyMessage.style.display = visible ? 'none' : 'block';
       });
@@ -1593,5 +1592,10 @@
       });
     });
   </script>
+
+  <!-- Total Crypto Hub AI Assistant -->
+  <script src="ai-assistant/assistant.js" defer></script>
+  <script src="ai-assistant/robot-animation.js" defer></script>
+
 </body>
 </html>
