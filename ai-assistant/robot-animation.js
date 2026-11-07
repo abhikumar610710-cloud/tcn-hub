@@ -1,240 +1,87 @@
 
 /* =========================================
    TOTAL CRYPTO HUB
-   EXPRESSIVE 3D ROBOT ANIMATIONS
+   TCN AI GIRL - CHARACTER ANIMATIONS
 ========================================= */
 
-(() => {
+(function () {
   "use strict";
 
-  const robotSelector = "#tcnAiRobot";
-  let robot = null;
-  let animationStarted = false;
-  let idleTimer = null;
-  let reactionTimer = null;
-  let eyeElements = [];
-  let originalEyePositions = [];
-
-  function findRobot() {
-    robot = document.querySelector(robotSelector);
-
-    if (!robot) return false;
-
-    eyeElements = Array.from(
-      robot.querySelectorAll(".tcn-robot-eye")
-    );
-
-    if (!eyeElements.length) return false;
-
-    originalEyePositions = eyeElements.map((eye) => ({
-      cx: Number(eye.getAttribute("cx")) || 0,
-      cy: Number(eye.getAttribute("cy")) || 0
-    }));
-
-    return true;
-  }
-
-  function setReaction(type, duration = 1100) {
-    if (!robot) return;
-
-    robot.dataset.reaction = type;
-
-    clearTimeout(reactionTimer);
-
-    reactionTimer = setTimeout(() => {
-      if (robot) {
-        robot.dataset.reaction = "normal";
-      }
-    }, duration);
-  }
-
-  function resetEyes() {
-    if (!robot || !eyeElements.length) return;
-
-    eyeElements.forEach((eye, index) => {
-      const original = originalEyePositions[index];
-
-      eye.setAttribute("cx", original.cx);
-      eye.setAttribute("cy", original.cy);
-    });
-  }
-
-  function moveEyes(pointerX, pointerY) {
-    if (!robot || !eyeElements.length) return;
-
-    const rect = robot.getBoundingClientRect();
-
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const directionX = Math.max(
-      -1,
-      Math.min(1, (pointerX - centerX) / 180)
-    );
-
-    const directionY = Math.max(
-      -1,
-      Math.min(1, (pointerY - centerY) / 180)
-    );
-
-    eyeElements.forEach((eye, index) => {
-      const original = originalEyePositions[index];
-
-      eye.setAttribute(
-        "cx",
-        original.cx + directionX * 2.5
-      );
-
-      eye.setAttribute(
-        "cy",
-        original.cy + directionY * 1.5
-      );
-    });
-  }
-
-  function startIdleExpressions() {
-    clearInterval(idleTimer);
-
-    const expressions = [
-      "happy",
-      "normal",
-      "happy",
-      "normal"
-    ];
-
-    let index = 0;
-
-    idleTimer = setInterval(() => {
-      if (!robot) return;
-
-      const chat = document.getElementById("tcnAiWindow");
-
-      if (chat && chat.classList.contains("active")) {
-        return;
-      }
-
-      setReaction(expressions[index], 1300);
-
-      index = (index + 1) % expressions.length;
-    }, 4500);
-  }
-
-  function handleRobotClick() {
-    if (!robot) return;
-
-    setReaction("happy", 1400);
-
-    robot.classList.remove("tcn-robot-clicked");
-
-    void robot.offsetWidth;
-
-    robot.classList.add("tcn-robot-clicked");
-
-    setTimeout(() => {
-      if (robot) {
-        robot.classList.remove("tcn-robot-clicked");
-      }
-    }, 900);
-  }
-
-  function handleChatState() {
-    const chat = document.getElementById("tcnAiWindow");
-
-    if (!chat) return;
-
-    const observer = new MutationObserver(() => {
-      if (chat.classList.contains("active")) {
-        setReaction("happy", 1600);
-      } else {
-        setReaction("normal", 700);
-      }
-    });
-
-    observer.observe(chat, {
-      attributes: true,
-      attributeFilter: ["class"]
-    });
-  }
+  let observer = null;
 
   function addAnimationStyles() {
-    if (document.getElementById("tcnRobotAnimationStyles")) {
+    if (document.getElementById("tcn-ai-animation-styles")) {
       return;
     }
 
     const style = document.createElement("style");
-
-    style.id = "tcnRobotAnimationStyles";
+    style.id = "tcn-ai-animation-styles";
 
     style.textContent = `
-      #tcnAiRobot {
+      /* Standing: gentle natural movement */
+      #tcn-ai-assistant
+      .tcn-ai-character.is-standing
+      .tcn-ai-girl-standing {
+        animation: tcnGirlStanding 2.8s ease-in-out infinite;
         transform-origin: center bottom;
-        transition: transform 0.25s ease;
       }
 
-      #tcnAiRobot[data-reaction="happy"] {
-        filter: brightness(1.08);
+      /* Sitting: soft breathing movement */
+      #tcn-ai-assistant
+      .tcn-ai-character.is-sitting
+      .tcn-ai-girl-sitting {
+        animation: tcnGirlSitting 3.5s ease-in-out infinite;
+        transform-origin: center bottom;
       }
 
-      #tcnAiRobot[data-reaction="thinking"] {
-        filter: brightness(0.95);
+      /* Happy reaction when clicked */
+      #tcn-ai-assistant
+      .tcn-ai-character.is-happy
+      .tcn-ai-girl {
+        animation: tcnGirlHappy 0.65s ease-in-out;
       }
 
-      #tcnAiRobot[data-reaction="normal"] {
-        filter: none;
-      }
-
-      #tcnAiRobot.tcn-robot-clicked {
-        animation: tcnRobotClickBounce 0.75s ease;
-      }
-
-      #tcnAiRobot.tcn-robot-clicked .tcn-robot-arm {
-        animation: tcnRobotWave 0.55s ease-in-out 2;
-        transform-box: fill-box;
-        transform-origin: center;
-      }
-
-      #tcnAiRobot[data-reaction="happy"] .tcn-robot-smile {
-        transform-box: fill-box;
-        transform-origin: center;
-        transform: scale(1.15);
-      }
-
-      #tcnAiRobot[data-reaction="thinking"] .tcn-robot-eye {
-        opacity: 0.8;
-      }
-
-      @keyframes tcnRobotClickBounce {
+      @keyframes tcnGirlStanding {
         0%, 100% {
-          transform: translateY(0) scale(1);
+          transform: translateX(-50%) translateY(0) rotate(0deg);
         }
-        35% {
-          transform: translateY(-13px) scale(1.05);
-        }
-        65% {
-          transform: translateY(0) scale(0.97);
-        }
-      }
 
-      @keyframes tcnRobotWave {
-        0%, 100% {
-          rotate: 0deg;
-        }
-        25% {
-          rotate: -22deg;
-        }
         50% {
-          rotate: 16deg;
+          transform: translateX(-50%) translateY(-3px) rotate(1deg);
         }
-        75% {
-          rotate: -15deg;
+      }
+
+      @keyframes tcnGirlSitting {
+        0%, 100% {
+          transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        50% {
+          transform: translateX(-50%) translateY(-2px) scale(1.01);
+        }
+      }
+
+      @keyframes tcnGirlHappy {
+        0% {
+          transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        35% {
+          transform: translateX(-50%) translateY(-5px) scale(1.05) rotate(-2deg);
+        }
+
+        70% {
+          transform: translateX(-50%) translateY(-3px) scale(1.04) rotate(2deg);
+        }
+
+        100% {
+          transform: translateX(-50%) translateY(0) scale(1);
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        #tcnAiRobot,
-        #tcnAiRobot * {
-          animation-duration: 0.01ms !important;
-          transition-duration: 0.01ms !important;
+        #tcn-ai-assistant .tcn-ai-girl {
+          animation: none !important;
         }
       }
     `;
@@ -242,37 +89,44 @@
     document.head.appendChild(style);
   }
 
-  function initializeRobotAnimations() {
-    if (animationStarted) return;
+  function initializeCharacter() {
+    const assistant = document.getElementById("tcn-ai-assistant");
 
-    if (!findRobot()) return;
+    if (!assistant) {
+      return false;
+    }
 
-    animationStarted = true;
+    if (assistant.dataset.animationInitialized === "true") {
+      return true;
+    }
+
+    const character = assistant.querySelector("#tcnAiRobot");
+
+    if (!character) {
+      return false;
+    }
 
     addAnimationStyles();
 
-    robot.addEventListener("click", handleRobotClick);
+    assistant.dataset.animationInitialized = "true";
+    character.classList.add("tcn-ai-animation-ready");
 
-    document.addEventListener("pointermove", (event) => {
-      if (event.pointerType === "touch") return;
-
-      moveEyes(event.clientX, event.clientY);
-    }, { passive: true });
-
-    robot.addEventListener("pointerleave", resetEyes);
-
-    handleChatState();
-    startIdleExpressions();
-
-    setReaction("happy", 1500);
+    return true;
   }
 
-  function watchForRobot() {
-    if (initializeRobotAnimations()) return;
+  function watchForAssistant() {
+    if (initializeCharacter()) {
+      return;
+    }
 
-    const observer = new MutationObserver(() => {
-      if (initializeRobotAnimations()) {
+    if (observer) {
+      return;
+    }
+
+    observer = new MutationObserver(function () {
+      if (initializeCharacter()) {
         observer.disconnect();
+        observer = null;
       }
     });
 
@@ -282,11 +136,16 @@
     });
   }
 
+  function start() {
+    watchForAssistant();
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", watchForRobot, {
+    document.addEventListener("DOMContentLoaded", start, {
       once: true
     });
   } else {
-    watchForRobot();
+    start();
   }
+
 })();
