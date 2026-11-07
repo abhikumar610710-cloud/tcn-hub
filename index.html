@@ -67,28 +67,120 @@
         .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
         .tab-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
 
-        main { flex: 1; padding: 48px 0 64px; }
-        .hero-banner { text-align: center; max-width: 840px; margin: 0 auto 48px; }
-        .brand-badge { display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.25); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.6px; }
-        .hero-banner h2 { font-size: 34px; font-weight: 800; color: var(--text-heading); margin-bottom: 14px; letter-spacing: -0.5px; }
-        .hero-banner p.hero-desc { font-size: 15px; color: var(--text-body); line-height: 1.7; margin-bottom: 14px; }
-        .hero-banner p.hero-disclaimer { font-size: 12px; color: var(--text-muted); line-height: 1.6; max-width: 760px; margin: 0 auto; }
+        /* Sponsorship banner: an available placement, not a live paid advertisement. */
+        .sponsor-strip {
+            position: relative; overflow: hidden; color: #f8fafc;
+            background: radial-gradient(circle at 12% 50%, rgba(16,185,129,.28), transparent 24%),
+                        radial-gradient(circle at 90% 0%, rgba(59,130,246,.25), transparent 25%),
+                        linear-gradient(110deg, #071526 0%, #0c2034 52%, #071526 100%);
+            border-bottom: 1px solid rgba(16,185,129,.28);
+        }
+        .sponsor-strip::after {
+            content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .2;
+            background: repeating-linear-gradient(125deg, transparent 0 34px, rgba(255,255,255,.08) 35px 36px, transparent 37px 70px);
+        }
+        .sponsor-inner { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 22px; position: relative; z-index: 1; padding-top: 9px; padding-bottom: 9px; }
+        .sponsor-copy { display: flex; align-items: center; gap: 15px; min-width: 0; }
+        .sponsor-mark { width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 13px; font-size: 23px; background: linear-gradient(135deg, rgba(16,185,129,.28), rgba(59,130,246,.22)); border: 1px solid rgba(255,255,255,.18); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+        .sponsor-copy-text { min-width: 0; }
+        .sponsor-kicker { display: inline-flex; color: #86efac; font-size: 9px; line-height: 1; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .sponsor-copy h2 { color: #fff; font-size: 16px; line-height: 1.25; font-weight: 800; }
+        .sponsor-copy p { color: #cbd5e1; font-size: 11px; line-height: 1.45; margin-top: 3px; }
+        .sponsor-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: 0 0 auto; padding: 10px 16px; border-radius: 999px; color: #052e22; background: linear-gradient(135deg, #a7f3d0, #34d399); font-size: 11px; font-weight: 800; text-decoration: none; box-shadow: 0 6px 18px rgba(16,185,129,.2); transition: transform .2s ease, box-shadow .2s ease; }
+        .sponsor-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(16,185,129,.3); }
 
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px; }
-        .dash-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
-        .dash-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.06); border-color: var(--accent-primary); }
-        .card-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-        .card-icon svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.2; }
-        .dash-card h3 { font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 8px; }
-        .dash-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; flex: 1; }
-        .card-action { font-size: 12px; font-weight: 800; color: var(--accent-primary); display: flex; align-items: center; gap: 6px; }
+        main { flex: 1; padding: 46px 0 64px; }
+        .hero-banner { text-align: center; max-width: 900px; margin: 0 auto 34px; }
+        .brand-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 15px; border-radius: 999px; font-size: 10px; font-weight: 800; background: rgba(16,185,129,.11); color: var(--accent-primary); border: 1px solid rgba(16,185,129,.24); margin-bottom: 17px; text-transform: uppercase; letter-spacing: .8px; }
+        .brand-badge::before, .brand-badge::after { content: ""; width: 17px; height: 1px; background: currentColor; opacity: .55; }
+        .hero-banner h2 { font-size: clamp(28px, 3.3vw, 42px); line-height: 1.15; font-weight: 800; color: var(--text-heading); margin-bottom: 14px; letter-spacing: -1.2px; }
+        .hero-banner h2 span { color: var(--accent-primary); }
+        .hero-banner p.hero-desc { max-width: 850px; margin: 0 auto 14px; font-size: 15px; color: var(--text-body); line-height: 1.75; }
+        .hero-banner p.hero-disclaimer { font-size: 11px; color: var(--text-muted); line-height: 1.65; max-width: 790px; margin: 0 auto; }
+        .hero-stats { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 9px; margin: 22px auto 0; }
+        .hero-stat { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; color: var(--text-heading); background: rgba(16,185,129,.09); border: 1px solid rgba(16,185,129,.13); font-size: 11px; font-weight: 800; }
+        .hero-stat span { color: var(--accent-primary); font-size: 15px; }
 
+        .dashboard-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 0 0 42px; }
+        .dash-card {
+            --card-accent: #1687ff; --card-soft: rgba(22,135,255,.10);
+            isolation: isolate; min-height: 225px; padding: 23px; border-radius: 20px; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; text-decoration: none; color: inherit;
+            background: linear-gradient(145deg, var(--card-soft) 0%, var(--bg-surface) 66%);
+            border: 1px solid var(--border-color); box-shadow: 0 8px 24px rgba(15,23,42,.035);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+        }
+        .dash-card::before { content: ""; position: absolute; z-index: -1; width: 170px; height: 170px; right: -66px; bottom: -78px; border-radius: 50%; background: var(--card-soft); filter: blur(2px); transition: transform .25s ease; }
+        .dash-card::after { content: ""; position: absolute; z-index: -1; width: 85px; height: 85px; right: 22px; top: 18px; border-radius: 50%; border: 1px solid var(--card-soft); opacity: .8; }
+        .dash-card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(15,23,42,.10); border-color: var(--card-accent); }
+        .dash-card:hover::before { transform: scale(1.15); }
+        .dash-card:focus-visible, .sponsor-cta:focus-visible, .tab-btn:focus-visible { outline: 3px solid var(--accent-primary); outline-offset: 3px; }
+        .dash-card--depin { --card-accent: #1687ff; --card-soft: rgba(22,135,255,.10); }
+        .dash-card--community { --card-accent: #08a878; --card-soft: rgba(16,185,129,.11); }
+        .dash-card--airdrops { --card-accent: #f97316; --card-soft: rgba(249,115,22,.11); }
+        .dash-card--wallets { --card-accent: #9333ea; --card-soft: rgba(147,51,234,.10); }
+        .dash-card--checker { --card-accent: #0d9488; --card-soft: rgba(13,148,136,.10); }
+        .dash-card--calculator { --card-accent: #2563eb; --card-soft: rgba(37,99,235,.10); }
+        .card-topline { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+        .card-icon { width: 58px; height: 58px; flex: 0 0 auto; border-radius: 18px; background: var(--card-soft); border: 1px solid var(--card-soft); display: flex; align-items: center; justify-content: center; box-shadow: 0 7px 18px rgba(15,23,42,.04); }
+        .card-icon svg { width: 27px; height: 27px; stroke: var(--card-accent); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+        .card-tag { display: inline-flex; align-items: center; max-width: 58%; padding: 6px 10px; border-radius: 999px; color: var(--card-accent); background: var(--card-soft); font-size: 9px; font-weight: 800; text-align: center; line-height: 1.2; }
+        .dash-card h3 { font-size: 17px; line-height: 1.3; font-weight: 800; color: var(--text-heading); margin-bottom: 8px; }
+        .dash-card p { font-size: 12.5px; color: var(--text-muted); line-height: 1.65; margin-bottom: 19px; flex: 1; max-width: 95%; }
+        .card-action { width: fit-content; font-size: 11px; font-weight: 800; color: var(--card-accent); display: inline-flex; align-items: center; gap: 7px; transition: gap .2s ease; }
+        .dash-card:hover .card-action { gap: 11px; }
+        [data-theme="dark"] .dash-card { box-shadow: 0 10px 28px rgba(0,0,0,.16); }
+        [data-theme="dark"] .dash-card:hover { box-shadow: 0 18px 38px rgba(0,0,0,.30); }
+
+        @media (max-width: 900px) {
+            .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            main { padding-top: 36px; }
+        }
+        @media (max-width: 620px) {
+            :root { --container-padding: 16px; }
+            .sponsor-inner { align-items: flex-start; gap: 12px; }
+            .sponsor-mark { width: 36px; height: 36px; border-radius: 11px; font-size: 19px; }
+            .sponsor-copy h2 { font-size: 13px; }
+            .sponsor-copy p { font-size: 10px; }
+            .sponsor-cta { padding: 9px 11px; font-size: 10px; white-space: nowrap; }
+            .header-inner { gap: 12px; }
+            .logo-icon { width: 38px; height: 38px; }
+            .logo-text h1 { font-size: 16px; }
+            .community-btn { padding: 7px 10px; font-size: 11px; }
+            .tab-switcher { gap: 7px; }
+            .tab-btn { padding: 8px 12px; font-size: 11px; }
+            main { padding: 32px 0 44px; }
+            .hero-banner { margin-bottom: 26px; }
+            .hero-banner h2 { letter-spacing: -.7px; }
+            .hero-banner p.hero-desc { font-size: 13px; }
+            .hero-stat { padding: 8px 10px; font-size: 10px; }
+            .dashboard-grid { grid-template-columns: 1fr; gap: 13px; }
+            .dash-card { min-height: 0; padding: 20px; }
+            .card-topline { margin-bottom: 14px; }
+            .dash-card p { max-width: 100%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
         footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-primary); }
     </style>
 </head>
 <body data-theme="light">
+    <aside class="sponsor-strip" aria-label="Sponsorship opportunity">
+        <div class="site-container sponsor-inner">
+            <div class="sponsor-copy">
+                <div class="sponsor-mark" aria-hidden="true">🤝</div>
+                <div class="sponsor-copy-text">
+                    <span class="sponsor-kicker">Sponsor placement · Advertisement space</span>
+                    <h2>Promote Your Web3 Project on Total Crypto Hub</h2>
+                    <p>Reach a focused crypto community with a clearly labelled banner placement.</p>
+                </div>
+            </div>
+            <a class="sponsor-cta" href="legal-pages/contact.html" aria-label="Contact us about sponsorship">Become a Sponsor <span aria-hidden="true">→</span></a>
+        </div>
+    </aside>
     <header>
         <div class="site-container header-inner">
             <div class="header-top-row">
@@ -102,10 +194,10 @@
                     <div class="community-dropdown">
                         <button class="community-btn" onclick="toggleCommunityMenu()">👥 Community</button>
                         <div class="dropdown-content" id="communityMenu">
-                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank">▶️ YouTube</a>
-                            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank">💬 WhatsApp</a>
-                            <a href="https://x.com/TotalCryptoOff" target="_blank">✖️ Twitter (X)</a>
-                            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank">📘 Facebook</a>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+                            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+                            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
+                            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
                         </div>
                     </div>
                     <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
@@ -128,7 +220,7 @@
         <div class="site-container">
             <div class="hero-banner">
                 <span class="brand-badge">Official Hub • Total Crypto Network</span>
-                <h2>Explore the Total Crypto Ecosystem</h2>
+                <h2>Explore the <span>Total Crypto</span> Ecosystem</h2>
                 <p class="hero-desc">
                     <!-- Updated Hero Description -->
                     Stop wasting time navigating scattered social media groups and third-party links. <b>Total Crypto Hub</b> is an all-in-one directory designed to streamline your Web3 journey—bringing verified DePIN nodes, community projects, testnet airdrops, and crypto utility tools into one unified platform.
@@ -136,47 +228,53 @@
                 <p class="hero-disclaimer">
                     <i><b>Disclaimer:</b> Total Crypto Hub operates strictly as an educational directory and research portal. We do not provide financial advice or guarantee the performance, security, or profits of any third-party protocols. Always perform your own independent due diligence.</i>
                 </p>
+                <div class="hero-stats" aria-label="Total Crypto Hub highlights">
+                    <span class="hero-stat"><span aria-hidden="true">◈</span> 57+ DePIN Projects</span>
+                    <span class="hero-stat"><span aria-hidden="true">♧</span> Community Resources</span>
+                    <span class="hero-stat"><span aria-hidden="true">✓</span> Research-led Directory</span>
+                    <span class="hero-stat"><span aria-hidden="true">⚡</span> Web3 Tools</span>
+                </div>
             </div>
 
             <div class="dashboard-grid">
-                <a href="depin-pages/depin.html" class="dash-card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <a href="depin-pages/depin.html" class="dash-card dash-card--depin">
+                    <div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span class="card-tag">57+ Projects</span></div>
                     <h3>DePIN Projects Hub</h3>
-                    <p>Track 45+ verified background nodes, bandwidth sharing apps, and AI compute protocols.</p>
+                    <p>Explore 57+ listed DePIN projects, background nodes, bandwidth-sharing apps, and AI compute protocols.</p>
                     <span class="card-action">Explore DePIN Nodes &rarr;</span>
                 </a>
 
                 <!-- Updated Card Section -->
-                <a href="mobile-pages/mobile-mining.html" class="dash-card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
+                <a href="mobile-pages/mobile-mining.html" class="dash-card dash-card--community">
+                    <div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div><span class="card-tag">Growing Community</span></div>
                     <h3>Community Projects</h3>
                     <p>Verified mobile apps for token distribution, consensus rewards, and lightweight smartphone mining.</p>
                     <span class="card-action">View Projects &rarr;</span>
                 </a>
 
-                <a href="airdrop-pages/airdrops.html" class="dash-card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></div>
+                <a href="airdrop-pages/airdrops.html" class="dash-card dash-card--airdrops">
+                    <div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></div><span class="card-tag">Campaign Updates</span></div>
                     <h3>Airdrops & Campaigns</h3>
                     <p>Hand-picked incentive testnets, early network participation tasks, and verified zero-cost drops.</p>
                     <span class="card-action">Explore Airdrops &rarr;</span>
                 </a>
 
-                <a href="wallet-pages/wallets.html" class="dash-card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></div>
+                <a href="wallet-pages/wallets.html" class="dash-card dash-card--wallets">
+                    <div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></div><span class="card-tag">Wallet Resources</span></div>
                     <h3>Wallets & Top Exchanges</h3>
                     <p>Recommended self-custodial wallets and high-liquidity partner exchanges for your rewards.</p>
                     <span class="card-action">Open Wallets &rarr;</span>
                 </a>
 
-                <a href="token-pages/token-checker.html" class="dash-card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+                <a href="token-pages/token-checker.html" class="dash-card dash-card--checker">
+                    <div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div><span class="card-tag">Check Safety</span></div>
                     <h3>Token Checker</h3>
                     <p>Verify smart contract safety, liquidity pools, and network details across multiple blockchains.</p>
                     <span class="card-action">Launch Checker &rarr;</span>
                 </a>
 
-                <a href="earning-pages/earning-calculator.html" class="dash-card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></div>
+                <a href="earning-pages/earning-calculator.html" class="dash-card dash-card--calculator">
+                    <div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></div><span class="card-tag">Plan Your Earnings</span></div>
                     <h3>Earning Calculator</h3>
                     <p>Simulate passive data sharing rewards, device power costs, and projected token payouts.</p>
                     <span class="card-action">Calculate Rewards &rarr;</span>
@@ -199,18 +297,16 @@
     </footer>
 
     <script>
+        function applyTheme(theme) {
+            const safeTheme = theme === 'dark' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', safeTheme);
+            document.getElementById('themeToggle').innerText = safeTheme === 'light' ? '🌙' : '☀️';
+            try { localStorage.setItem('theme', safeTheme); } catch (error) { /* Theme still works for this visit. */ }
+        }
+
         function toggleTheme() {
-            const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
+            const currentTheme = document.body.getAttribute('data-theme') || 'light';
+            applyTheme(currentTheme === 'light' ? 'dark' : 'light');
         }
 
         // New Dropdown Function
@@ -231,11 +327,11 @@
             }
         }
 
-        window.onload = function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
-        };
+        window.addEventListener('DOMContentLoaded', function() {
+            let savedTheme = 'light';
+            try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (error) { /* Use light theme when storage is unavailable. */ }
+            applyTheme(savedTheme);
+        });
     </script>
 </body>
 </html>
