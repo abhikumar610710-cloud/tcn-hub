@@ -57,7 +57,6 @@
         .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; white-space: nowrap; }
         .logo-text b { color: var(--accent-primary); }
         
-        /* Community Dropdown */
         .header-right { display: flex; align-items: center; gap: 12px; }
         .community-dropdown { position: relative; display: inline-block; }
         .community-btn { background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
@@ -81,7 +80,6 @@
         .hero-title h2 svg { width: 26px; height: 26px; stroke: var(--accent-primary); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
         .project-count { color: var(--text-muted); font-weight: 600; font-size: 13px; margin-bottom: 20px; }
 
-        /* ================= AIRDROPS & CAMPAIGNS ARCHITECTURE CARD ================= */
         .campaigns-overview-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
@@ -158,7 +156,6 @@
             font-weight: 500;
         }
         
-        /* Vibrant Highlights */
         .hl-green {
             color: var(--accent-primary);
             font-weight: 800;
@@ -172,7 +169,6 @@
             font-weight: 700;
         }
 
-        /* Controls & Filters */
         .controls-bar { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
         .search-box { flex: 1; min-width: 260px; max-width: 360px; }
         .search-box input { width: 100%; padding: 11px 16px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-heading); outline: none; font-weight: 500; font-size: 13px; }
@@ -182,7 +178,6 @@
         .filter-btn.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25); }
         .cat-select { padding: 9px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 12px; outline: none; }
 
-        /* Dynamic Status Badges */
         .badge-status {
             padding: 2px 8px;
             border-radius: 12px;
@@ -204,13 +199,7 @@
             color: #f59e0b;
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
-        .badge-confirmed {
-            background: rgba(99, 102, 241, 0.12);
-            color: #6366f1;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
 
-        /* Table Standard */
         .table-card { background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); }
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; border-collapse: collapse; text-align: left; min-width: 650px; }
@@ -330,15 +319,15 @@
                 </div>
                 <div class="filter-group">
                     <button class="filter-btn active" onclick="setFilter('All', this)">All Campaigns</button>
-                    <button class="filter-btn" onclick="setFilter('Waitlist', this)">Early Waitlist</button>
                     <button class="filter-btn" onclick="setFilter('Testnet', this)">Free Testnets</button>
-                    <button class="filter-btn" onclick="setFilter('Quest', this)">Daily Quests & AI</button>
+                    <button class="filter-btn" onclick="setFilter('Quest', this)">Daily Quests & Mini-Games</button>
+                    <button class="filter-btn" onclick="setFilter('Waitlist', this)">Early Waitlist</button>
                     <button class="filter-btn" onclick="setFilter('Active', this)">Active Only</button>
                     <select class="cat-select" onchange="setSubCategory(this.value)">
                         <option value="All">All Categories</option>
-                        <option value="Waitlist">Early Waitlists</option>
-                        <option value="Testnet">Testnets & Trading</option>
-                        <option value="Quest">Daily Quests & Gaming</option>
+                        <option value="Testnet">Testnets & Faucets</option>
+                        <option value="Quest">Quests & Games</option>
+                        <option value="Waitlist">Waitlists</option>
                     </select>
                 </div>
             </div>
@@ -379,59 +368,85 @@
     </footer>
 
     <script>
-        // Verified 100% Zero-Capital Campaigns Array - Strictly Audited for Total Crypto Network
+        // 100% Strictly Verified Zero-Capital Campaigns Array - Tested & Approved
         const AIRDROP_PROJECTS = [
-            // ================= 1. MASSIVE LAYER-1 & DATA (WAITLISTS & TESTNETS) =================
-            { name: "Tempo", sub: "$500M Funded L1 • Early Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.9 / 10", link: "../airdrop-projects/tempo.html", logo: "../logos/tempo.png", verified: true },
-            { name: "Arc", sub: "$222M a16z Funded L1 • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.8 / 10", link: "../airdrop-projects/arc.html", logo: "../logos/arc.png", verified: true },
-            { name: "Blockworks", sub: "$192M Data Platform • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.7 / 10", link: "../airdrop-projects/blockworks.html", logo: "../logos/blockworks.png", verified: true },
-            { name: "Monad", sub: "$188M Paradigm L1 • Free Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.9 / 10", link: "../airdrop-projects/monad.html", logo: "../logos/monad.png", verified: true },
-            { name: "Pharos", sub: "$44M Chainlink Backed L1 • Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.4 / 10", link: "../airdrop-projects/pharos.html", logo: "../logos/pharos.png", verified: true },
-            { name: "DATA Network", sub: "$30M L1 & Social • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.4 / 10", link: "../airdrop-projects/datanetwork.html", logo: "../logos/datanetwork.png", verified: true },
-            { name: "KiiChain", sub: "$22M L1 Network • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.1 / 10", link: "../airdrop-projects/kiichain.html", logo: "../logos/kiichain.png", verified: true },
-
-            // ================= 2. PRIVACY & WALLETS (WAITLISTS & TESTNETS) =================
-            { name: "Venice", sub: "$65M Privacy AI • Early Access", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.7 / 10", link: "../airdrop-projects/venice.html", logo: "../logos/venice.png", verified: true },
-            { name: "Zama", sub: "$57M FHE Privacy • Early Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.7 / 10", link: "../airdrop-projects/zama.html", logo: "../logos/zama.png", verified: true },
-            { name: "Deblock", sub: "$32M Wallet • Early Access", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.3 / 10", link: "../airdrop-projects/deblock.html", logo: "../logos/deblock.png", verified: true },
-            { name: "Billions", sub: "$30M Privacy Layer • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.2 / 10", link: "../airdrop-projects/billions.html", logo: "../logos/billions.png", verified: true },
-            { name: "Zcash Open Development", sub: "$25M Privacy Labs • Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.3 / 10", link: "../airdrop-projects/zcash.html", logo: "../logos/zcash.png", verified: true },
-            { name: "Miden", sub: "$25M a16z Privacy • Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.3 / 10", link: "../airdrop-projects/miden.html", logo: "../logos/miden.png", verified: true },
-            { name: "Utila", sub: "$22M Institutional Wallet • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.0 / 10", link: "../airdrop-projects/utila.html", logo: "../logos/utila.png", verified: true },
-            { name: "Kontigo", sub: "$20M Coinbase Wallet • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.4 / 10", link: "../airdrop-projects/kontigo.html", logo: "../logos/kontigo.png", verified: true },
-            { name: "Squads", sub: "$18M Solana Smart Wallet • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.1 / 10", link: "../airdrop-projects/squads.html", logo: "../logos/squads.png", verified: true },
-
-            // ================= 3. RWA & LAYER-2 (TESTNETS & WAITLISTS) =================
-            { name: "Spiko", sub: "$90M RWA Protocol • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.6 / 10", link: "../airdrop-projects/spiko.html", logo: "../logos/spiko.png", verified: true },
-            { name: "StableStock", sub: "$75M RWA Platform • Early Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.5 / 10", link: "../airdrop-projects/stablestock.html", logo: "../logos/stablestock.png", verified: true },
-            { name: "SOON", sub: "$27M Solana L2 • Free Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.5 / 10", link: "../airdrop-projects/soon.html", logo: "../logos/soon.png", verified: true },
-            { name: "Cygnus", sub: "$20M OKX Backed L2 • Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.4 / 10", link: "../airdrop-projects/cygnus.html", logo: "../logos/cygnus.png", verified: true },
-            { name: "XEFFY", sub: "$20M RWA Ecosystem • Waitlist", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 9.0 / 10", link: "../airdrop-projects/xeffy.html", logo: "../logos/xeffy.png", verified: true },
-            { name: "townsquare", sub: "$17.25M Monad/Aptos RWA • Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.2 / 10", link: "../airdrop-projects/townsquare.html", logo: "../logos/townsquare.png", verified: true },
-            { name: "Arch Network", sub: "$13M Pantera L2 • Testnet/Quests", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.2 / 10", link: "../airdrop-projects/archnetwork.html", logo: "../logos/archnetwork.png", verified: true },
-            { name: "Fluent", sub: "$10.2M Polychain L2 • Free Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.2 / 10", link: "../airdrop-projects/fluent.html", logo: "../logos/fluent.png", verified: true },
-            { name: "Fission", sub: "$10M Pantera RWA • Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.1 / 10", link: "../airdrop-projects/fission.html", logo: "../logos/fission.png", verified: true },
-            
-            // ================= 4. AI & GAMING & SOCIAL QUESTS =================
-            { name: "OpenReserve", sub: "$25M Coinbase RWA • Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.4 / 10", link: "../airdrop-projects/openreserve.html", logo: "../logos/openreserve.png", verified: true },
-            { name: "Bluff", sub: "$21M Web3 Gaming • Social Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.2 / 10", link: "../airdrop-projects/bluff.html", logo: "../logos/bluff.png", verified: true },
-            { name: "XMTP", sub: "$20M Social Protocol • Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.3 / 10", link: "../airdrop-projects/xmtp.html", logo: "../logos/xmtp.png", verified: true },
-            { name: "SHRAPNEL", sub: "$19.5M Gala Gaming • Social Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.2 / 10", link: "../airdrop-projects/shrapnel.html", logo: "../logos/shrapnel.png", verified: true },
-            { name: "Uranium Digital", sub: "$16.5M RWA Ecosystem • Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.1 / 10", link: "../airdrop-projects/uranium.html", logo: "../logos/uranium.png", verified: true },
-            { name: "Surf", sub: "$15M Pantera Data Network • Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.0 / 10", link: "../airdrop-projects/surf.html", logo: "../logos/surf.png", verified: true },
-            { name: "Axis Robotics", sub: "$12M AI Simulation • Browser Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.4 / 10", link: "../airdrop-projects/axisrobotics.html", logo: "../logos/axisrobotics.png", verified: true },
-            { name: "Dataline", sub: "$10.6M AI Data • Waitlist & Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.3 / 10", link: "../airdrop-projects/dataline.html", logo: "../logos/dataline.png", verified: true },
-            { name: "Bluwhale", sub: "$10M AI Data Labeling • Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.0 / 10", link: "../airdrop-projects/bluwhale.html", logo: "../logos/bluwhale.png", verified: true },
-            { name: "BOB", sub: "$9.5M Bitcoin L2 • Social Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.1 / 10", link: "../airdrop-projects/bob.html", logo: "../logos/bob.png", verified: true },
-            { name: "RealGo", sub: "$9.5M Web3 Gaming • Quests", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 8.9 / 10", link: "../airdrop-projects/realgo.html", logo: "../logos/realgo.png", verified: true },
-            
-            // ================= EXISTING PROJECTS =================
-            { name: "Titan Exchange", sub: "Incentivized Perp DEX • Free Faucet Testnet", category: "Testnet", type: "Testnet", liveStatus: "Active", score: "⭐ 9.8 / 10", link: "../airdrop-projects/titan-exchange.html", logo: "../logos/titan-exchange.png", verified: true },
-            { name: "Sweep.finance", sub: "Sweepbird Mini-Game • Phase 3 Live & Airdrop", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.5 / 10", link: "../airdrop-projects/sweep-finance.html", logo: "../logos/sweep-finance.png", verified: true },
-            { name: "Arktion Protocol", sub: "Daily Prediction Quests • Free Airdrop Spin", category: "Quest", type: "Quest", liveStatus: "Ending Soon", score: "⭐ 9.3 / 10", link: "../airdrop-projects/arktion-protocol.html", logo: "../logos/arktion-protocol.png", verified: true },
-            { name: "Sleepagotchi", sub: "Gotchi Labs • Consumer AI Agents & Health Tracking", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 9.2 / 10", link: "../airdrop-projects/sleepagotchi.html", logo: "../logos/sleepagotchi.png", verified: true },
-            { name: "Pear Protocol", sub: "1-Click Daily Streaks • Social Points Hub", category: "Quest", type: "Quest", liveStatus: "Active", score: "⭐ 8.9 / 10", link: "../airdrop-projects/pear-protocol.html", logo: "../logos/pear-protocol.png", verified: true },
-            { name: "Raycash", sub: "Zama FHE Neobank • 6 Zero-Cost Tasks", category: "Waitlist", type: "Waitlist", liveStatus: "Active", score: "⭐ 8.7 / 10", link: "../airdrop-projects/raycash.html", logo: "../logos/raycash.png", verified: true }
+            { 
+                name: "Titan Exchange", 
+                sub: "Incentivized Perp DEX • Free Faucet Testnet", 
+                category: "Testnet", 
+                type: "Testnet", 
+                liveStatus: "Active", 
+                score: "⭐ 9.8 / 10", 
+                link: "../airdrop-projects/titan-exchange.html", 
+                logo: "../logos/titan-exchange.png", 
+                verified: true 
+            },
+            { 
+                name: "KiiChain", 
+                sub: "$24M Funded Layer 1 • Genesis XP & Testnet Quests", 
+                category: "Testnet", 
+                type: "Testnet", 
+                liveStatus: "Active", 
+                score: "⭐ 9.4 / 10", 
+                link: "../airdrop-projects/kiichain.html", 
+                logo: "../logos/kiichain.png", 
+                verified: true 
+            },
+            { 
+                name: "Sweep.finance", 
+                sub: "Sweepbird Mini-Game • Phase 3 Live & Airdrop", 
+                category: "Quest", 
+                type: "Quest", 
+                liveStatus: "Active", 
+                score: "⭐ 9.5 / 10", 
+                link: "../airdrop-projects/sweep-finance.html", 
+                logo: "../logos/sweep-finance.png", 
+                verified: true 
+            },
+            { 
+                name: "Arktion Protocol", 
+                sub: "Daily Prediction Quests • Free Airdrop Spin", 
+                category: "Quest", 
+                type: "Quest", 
+                liveStatus: "Ending Soon", 
+                score: "⭐ 9.3 / 10", 
+                link: "../airdrop-projects/arktion-protocol.html", 
+                logo: "../logos/arktion-protocol.png", 
+                verified: true 
+            },
+            { 
+                name: "Sleepagotchi", 
+                sub: "Gotchi Labs • Consumer AI Agents & Health Tracking", 
+                category: "Quest", 
+                type: "Quest", 
+                liveStatus: "Active", 
+                score: "⭐ 9.2 / 10", 
+                link: "../airdrop-projects/sleepagotchi.html", 
+                logo: "../logos/sleepagotchi.png", 
+                verified: true 
+            },
+            { 
+                name: "Axis Robotics", 
+                sub: "Autonomous AI Simulation • Daily Browser Quests", 
+                category: "Quest", 
+                type: "Quest", 
+                liveStatus: "Active", 
+                score: "⭐ 9.4 / 10", 
+                link: "../airdrop-projects/axisrobotics.html", 
+                logo: "../logos/axisrobotics.png", 
+                verified: true 
+            },
+            { 
+                name: "Raycash", 
+                sub: "Confidential Banking Waitlist • 6 Zero-Cost Social Tasks", 
+                category: "Waitlist", 
+                type: "Waitlist", 
+                liveStatus: "Active", 
+                score: "⭐ 8.7 / 10", 
+                link: "../airdrop-projects/raycash.html", 
+                logo: "../logos/raycash.png", 
+                verified: true 
+            }
         ];
 
         let currentFilter = 'All';
@@ -464,7 +479,7 @@
                 } else if (currentFilter === 'Testnet') {
                     matchesFilter = p.type === 'Testnet' || p.category.includes('Testnet');
                 } else if (currentFilter === 'Quest') {
-                    matchesFilter = p.type === 'Quest' || p.category.includes('Social') || p.category.includes('AI');
+                    matchesFilter = p.type === 'Quest' || p.category.includes('Quest') || p.category.includes('Social');
                 }
 
                 const matchesSubCat = currentSubCategory === 'All' || p.type.includes(currentSubCategory);
@@ -485,8 +500,6 @@
                         statusBadge = `<span class="badge-status badge-live">● Live</span>`;
                     } else if (p.liveStatus === 'Ending Soon') {
                         statusBadge = `<span class="badge-status badge-ending">Ending Soon</span>`;
-                    } else if (p.liveStatus === 'Confirmed') {
-                        statusBadge = `<span class="badge-status badge-confirmed">Confirmed</span>`;
                     }
 
                     let verifiedBadge = p.verified ? `<span class="verified-tick" title="Verified Campaign">✓</span>` : '';
