@@ -189,6 +189,11 @@
             align-items: center;
             gap: 4px;
         }
+        .badge-new {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid #10b981;
+        }
         .badge-live {
             background: rgba(16, 185, 129, 0.12);
             color: #10b981;
@@ -368,14 +373,27 @@
     </footer>
 
     <script>
-        // 100% Strictly Verified Zero-Capital Campaigns Array - Tested & Approved
+        // 100% Strictly Verified Zero-Capital Campaigns Array - RealGo Added at #1
         const AIRDROP_PROJECTS = [
+            { 
+                name: "RealGo", 
+                sub: "AR Web3 Gaming • Next $RT Unlock: Nov 23, 2026", 
+                category: "Quest", 
+                type: "Quest", 
+                liveStatus: "Ending Soon", 
+                isNew: true,
+                score: "⭐ 9.1 / 10", 
+                link: "../airdrop-projects/realgo.html", 
+                logo: "../logos/realgo.png", 
+                verified: true 
+            },
             { 
                 name: "Titan Exchange", 
                 sub: "Incentivized Perp DEX • Free Faucet Testnet", 
                 category: "Testnet", 
                 type: "Testnet", 
                 liveStatus: "Active", 
+                isNew: false,
                 score: "⭐ 9.8 / 10", 
                 link: "../airdrop-projects/titan-exchange.html", 
                 logo: "../logos/titan-exchange.png", 
@@ -387,6 +405,7 @@
                 category: "Testnet", 
                 type: "Testnet", 
                 liveStatus: "Active", 
+                isNew: false,
                 score: "⭐ 9.4 / 10", 
                 link: "../airdrop-projects/kiichain.html", 
                 logo: "../logos/kiichain.png", 
@@ -398,6 +417,7 @@
                 category: "Quest", 
                 type: "Quest", 
                 liveStatus: "Active", 
+                isNew: false,
                 score: "⭐ 9.5 / 10", 
                 link: "../airdrop-projects/sweep-finance.html", 
                 logo: "../logos/sweep-finance.png", 
@@ -409,6 +429,7 @@
                 category: "Quest", 
                 type: "Quest", 
                 liveStatus: "Ending Soon", 
+                isNew: false,
                 score: "⭐ 9.3 / 10", 
                 link: "../airdrop-projects/arktion-protocol.html", 
                 logo: "../logos/arktion-protocol.png", 
@@ -420,6 +441,7 @@
                 category: "Quest", 
                 type: "Quest", 
                 liveStatus: "Active", 
+                isNew: false,
                 score: "⭐ 9.2 / 10", 
                 link: "../airdrop-projects/sleepagotchi.html", 
                 logo: "../logos/sleepagotchi.png", 
@@ -431,6 +453,7 @@
                 category: "Quest", 
                 type: "Quest", 
                 liveStatus: "Active", 
+                isNew: false,
                 score: "⭐ 9.4 / 10", 
                 link: "../airdrop-projects/axisrobotics.html", 
                 logo: "../logos/axisrobotics.png", 
@@ -442,6 +465,7 @@
                 category: "Waitlist", 
                 type: "Waitlist", 
                 liveStatus: "Active", 
+                isNew: false,
                 score: "⭐ 8.7 / 10", 
                 link: "../airdrop-projects/raycash.html", 
                 logo: "../logos/raycash.png", 
@@ -496,10 +520,13 @@
                     </div>`;
 
                     let statusBadge = '';
+                    if (p.isNew) {
+                        statusBadge += `<span class="badge-status badge-new">★ NEW</span> `;
+                    }
                     if (p.liveStatus === 'Active') {
-                        statusBadge = `<span class="badge-status badge-live">● Live</span>`;
+                        statusBadge += `<span class="badge-status badge-live">● Live</span>`;
                     } else if (p.liveStatus === 'Ending Soon') {
-                        statusBadge = `<span class="badge-status badge-ending">Ending Soon</span>`;
+                        statusBadge += `<span class="badge-status badge-ending">Ending Soon</span>`;
                     }
 
                     let verifiedBadge = p.verified ? `<span class="verified-tick" title="Verified Campaign">✓</span>` : '';
