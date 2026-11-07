@@ -1,208 +1,137 @@
 
 <div id="tcn-ai-assistant">
 
-  <!-- Floating Robot Assistant -->
-  <button
-    id="tcnAiRobot"
-    class="tcn-ai-robot"
-    type="button"
-    aria-label="Open AI Assistant"
-    title="Talk to Total Crypto Hub Assistant"
-  >
-    <span class="tcn-robot-glow"></span>
+  <!-- AI Girl Character -->
+  <div class="tcn-ai-character-area">
 
-    <svg
-      class="tcn-robot-svg"
-      viewBox="0 0 180 210"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="Friendly robot assistant"
+    <button
+      type="button"
+      id="tcnAiRobot"
+      class="tcn-ai-character is-standing"
+      aria-label="Open TCN AI Assistant"
+      aria-expanded="false"
     >
-      <defs>
-        <linearGradient id="robotShell" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="55%" stop-color="#e9f5ff"/>
-          <stop offset="100%" stop-color="#a9c8e9"/>
-        </linearGradient>
+      <img
+        class="tcn-ai-girl tcn-ai-girl-standing"
+        data-tcn-image="assets/ai-girl-standing.png"
+        alt="TCN AI Assistant standing and smiling"
+      />
 
-        <linearGradient id="robotFace" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#142b50"/>
-          <stop offset="100%" stop-color="#020817"/>
-        </linearGradient>
+      <img
+        class="tcn-ai-girl tcn-ai-girl-sitting"
+        data-tcn-image="assets/ai-girl-sitting.png"
+        alt="TCN AI Assistant sitting and smiling"
+      />
 
-        <linearGradient id="robotBlue" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#8ffaff"/>
-          <stop offset="100%" stop-color="#00aaff"/>
-        </linearGradient>
+      <span class="tcn-ai-character-glow"></span>
+    </button>
 
-        <filter id="robotGlow">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
-          <feMerge>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
+    <div class="tcn-ai-greeting" id="tcnAiGreeting">
+      Hello! 👋<br />
+      How can I help you today?
+    </div>
 
-      <!-- Antenna -->
-      <g class="tcn-robot-antenna">
-        <path d="M90 25 L90 9" stroke="#c9e5ff" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="90" cy="7" r="6" fill="#7af4ff" filter="url(#robotGlow)"/>
-      </g>
+    <div class="tcn-ai-status">
+      <span class="tcn-ai-status-dot"></span>
+      TCN AI Assistant
+    </div>
 
-      <!-- Arms -->
-      <g class="tcn-robot-arms">
-        <g class="tcn-robot-arm-left">
-          <path d="M43 116 Q23 112 20 133 L24 151"
-            fill="none" stroke="url(#robotShell)" stroke-width="15" stroke-linecap="round"/>
-          <circle cx="24" cy="153" r="10" fill="#dcecff"/>
-          <circle cx="24" cy="153" r="5" fill="#8cb7e8"/>
-        </g>
+  </div>
 
-        <g class="tcn-robot-arm-right">
-          <path d="M137 116 Q157 112 160 133 L156 151"
-            fill="none" stroke="url(#robotShell)" stroke-width="15" stroke-linecap="round"/>
-          <circle cx="156" cy="153" r="10" fill="#dcecff"/>
-          <circle cx="156" cy="153" r="5" fill="#8cb7e8"/>
-        </g>
-      </g>
-
-      <!-- Legs -->
-      <g class="tcn-robot-legs">
-        <g class="tcn-robot-leg-left">
-          <path d="M70 166 L66 184" stroke="#dcecff" stroke-width="15" stroke-linecap="round"/>
-          <ellipse cx="65" cy="190" rx="15" ry="9" fill="url(#robotShell)"/>
-          <path d="M53 191 Q65 196 77 191" stroke="#5bcfff" stroke-width="2" fill="none"/>
-        </g>
-
-        <g class="tcn-robot-leg-right">
-          <path d="M110 166 L114 184" stroke="#dcecff" stroke-width="15" stroke-linecap="round"/>
-          <ellipse cx="115" cy="190" rx="15" ry="9" fill="url(#robotShell)"/>
-          <path d="M103 191 Q115 196 127 191" stroke="#5bcfff" stroke-width="2" fill="none"/>
-        </g>
-      </g>
-
-      <!-- Body -->
-      <g class="tcn-robot-body">
-        <path d="M48 105 Q48 88 65 86 L115 86 Q132 88 132 105 L128 157 Q126 171 112 173 L68 173 Q54 171 52 157 Z"
-          fill="url(#robotShell)" stroke="#b7d6f5" stroke-width="2"/>
-
-        <path d="M65 119 Q90 108 115 119"
-          fill="none" stroke="#ffffff" stroke-width="3" opacity=".8"/>
-
-        <rect x="77" y="139" width="26" height="5" rx="2.5"
-          fill="url(#robotBlue)" filter="url(#robotGlow)"/>
-
-        <circle cx="90" cy="153" r="3" fill="#6beeff"/>
-      </g>
-
-      <!-- Head -->
-      <g class="tcn-robot-head">
-        <path d="M27 48 Q29 22 58 20 L122 20 Q151 22 153 48 L149 93 Q146 111 128 116 L52 116 Q34 111 31 93 Z"
-          fill="url(#robotShell)" stroke="#b9d9f6" stroke-width="2"/>
-
-        <!-- Face screen -->
-        <path d="M39 48 Q40 33 57 32 L123 32 Q140 33 141 48 L138 86 Q136 99 123 101 L57 101 Q44 99 42 86 Z"
-          fill="url(#robotFace)" stroke="#8deeff" stroke-width="2"/>
-
-        <!-- Eyes -->
-        <g class="tcn-robot-eyes" filter="url(#robotGlow)">
-          <ellipse class="tcn-robot-eye tcn-robot-eye-left"
-            cx="68" cy="64" rx="7" ry="11" fill="#5af4ff"/>
-          <ellipse class="tcn-robot-eye tcn-robot-eye-right"
-            cx="112" cy="64" rx="7" ry="11" fill="#5af4ff"/>
-        </g>
-
-        <!-- Smile -->
-        <path class="tcn-robot-smile"
-          d="M75 81 Q90 94 105 81"
-          fill="none" stroke="#65f5ff"
-          stroke-width="4" stroke-linecap="round"
-          filter="url(#robotGlow)"/>
-
-        <!-- Face shine -->
-        <path d="M49 42 Q57 35 67 37"
-          stroke="#ffffff" stroke-width="2"
-          opacity=".6" fill="none" stroke-linecap="round"/>
-      </g>
-    </svg>
-
-    <span class="tcn-robot-status"></span>
-  </button>
-
-  <!-- Chat Window -->
+  <!-- Chat Popup -->
   <section
-    id="tcnAiWindow"
     class="tcn-ai-window"
-    aria-label="Total Crypto Hub AI Assistant"
+    id="tcnAiWindow"
+    aria-label="TCN AI Assistant Chat"
     aria-hidden="true"
   >
+
     <header class="tcn-ai-header">
+
       <div class="tcn-ai-header-avatar">
-        <span class="tcn-ai-avatar-dot"></span>
+        <img
+          data-tcn-image="assets/ai-girl-standing.png"
+          alt="TCN AI"
+        />
       </div>
 
       <div class="tcn-ai-header-info">
-        <strong>Total Crypto Hub Assistant</strong>
-        <span class="tcn-ai-online">
-          <span></span> Online Assistant
+        <strong>TCN AI Assistant</strong>
+        <span>
+          <i class="tcn-ai-status-dot"></i>
+          Online
         </span>
       </div>
 
       <button
+        type="button"
         id="tcnAiClose"
         class="tcn-ai-close"
-        type="button"
-        aria-label="Close assistant"
+        aria-label="Close chat"
       >×</button>
+
     </header>
 
-    <div id="tcnAiMessages" class="tcn-ai-messages">
-      <div class="tcn-ai-message tcn-ai-bot-message">
-        <div class="tcn-ai-message-avatar">🤖</div>
-        <div class="tcn-ai-message-content">
-          नमस्ते! 👋 मैं Total Crypto Hub का छोटा AI Assistant हूँ।
-          <br><br>
-          बताइए, आज मैं आपकी क्या मदद कर सकता हूँ?
-        </div>
-      </div>
-
-      <div class="tcn-ai-suggestions">
-        <button type="button" data-question="What is DePIN?">
-          What is DePIN?
-        </button>
-
-        <button type="button" data-question="Tell me about crypto airdrops">
-          Crypto Airdrops
-        </button>
-
-        <button type="button" data-question="How can I check a token?">
-          Token Checker
-        </button>
-
-        <button type="button" data-question="How can I use earning calculator?">
-          Earning Calculator
-        </button>
-      </div>
+    <div class="tcn-ai-welcome">
+      <strong>Hello! 👋</strong>
+      <p>
+        I'm your TCN AI Assistant!
+        I can help you with Total Crypto Hub
+        and Total Crypto Network related information. 🚀
+      </p>
     </div>
 
-    <form id="tcnAiForm" class="tcn-ai-form">
+    <div
+      class="tcn-ai-messages"
+      id="tcnAiMessages"
+      aria-live="polite"
+    ></div>
+
+    <div class="tcn-ai-suggestions">
+
+      <button type="button" data-question="What is TCN?">
+        What is TCN?
+      </button>
+
+      <button type="button" data-question="Tell me about Total Crypto Hub.">
+        About Total Crypto Hub
+      </button>
+
+      <button type="button" data-question="Tell me about DePIN projects.">
+        DePIN Projects
+      </button>
+
+      <button type="button" data-question="Tell me about TCN community.">
+        TCN Community
+      </button>
+
+      <button type="button" data-question="What services does TCN provide?">
+        TCN Services
+      </button>
+
+    </div>
+
+    <form class="tcn-ai-form" id="tcnAiForm">
+
       <input
-        id="tcnAiInput"
         type="text"
-        placeholder="Ask me anything..."
+        id="tcnAiInput"
+        placeholder="Type your message..."
         autocomplete="off"
+        maxlength="500"
         aria-label="Type your message"
       />
 
       <button type="submit" aria-label="Send message">
         ➤
       </button>
+
     </form>
 
-    <footer class="tcn-ai-footer">
-      Powered by Total Crypto Hub
-    </footer>
+    <div class="tcn-ai-footer">
+      Powered by Total Crypto Network
+    </div>
+
   </section>
 
 </div>
