@@ -45,7 +45,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -60,13 +59,9 @@
 
     a { color: inherit; }
     button, input { font: inherit; }
-
     .app-shell { min-height: 100vh; }
 
-    /* ==========================================
-       PREMIUM LEFT SIDEBAR
-    ========================================== */
-
+    /* Left navigation */
     .sidebar {
       position: fixed;
       z-index: 120;
@@ -74,35 +69,18 @@
       width: var(--sidebar-width);
       display: flex;
       flex-direction: column;
-      padding: 19px 15px 16px;
+      padding: 20px 16px 18px;
       background: var(--surface);
       border-right: 1px solid var(--border);
       box-shadow: 8px 0 28px rgba(21, 48, 84, .025);
-
-      /* Sidebar scroll prevents bottom content from being cut off */
-      overflow-y: auto;
-      overflow-x: hidden;
-      overscroll-behavior: contain;
-      scrollbar-width: thin;
-      scrollbar-color: #c7d8d5 transparent;
-    }
-
-    .sidebar::-webkit-scrollbar { width: 5px; }
-
-    .sidebar::-webkit-scrollbar-track { background: transparent; }
-
-    .sidebar::-webkit-scrollbar-thumb {
-      background: #c7d8d5;
-      border-radius: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 11px;
-      padding: 0 9px 19px;
+      padding: 0 10px 24px;
       text-decoration: none;
-      flex-shrink: 0;
     }
 
     .brand-mark {
@@ -147,70 +125,54 @@
     .brand-subtitle b { color: var(--green); }
 
     .side-label {
-      padding: 10px 10px 11px;
+      padding: 10px 13px 8px;
       color: #9aa8bc;
       font-size: 9px;
       font-weight: 800;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
     }
 
-    /* Seven individual premium tap cards */
     .side-nav {
       display: grid;
-      gap: 8px;
+      gap: 6px;
     }
 
     .side-link {
       display: flex;
       align-items: center;
-      gap: 11px;
-      min-height: 49px;
-      padding: 7px 10px;
+      gap: 12px;
+      min-height: 46px;
+      padding: 10px 12px;
       color: var(--body);
       text-decoration: none;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      font-size: 11px;
-      font-weight: 750;
-      box-shadow: 0 3px 9px rgba(20, 45, 75, .025);
-      transition: background .18s, color .18s, border-color .18s,
-                  transform .18s, box-shadow .18s;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: background .18s, color .18s, border-color .18s, transform .18s;
     }
 
     .side-link:hover {
-      background: var(--green-soft);
-      border-color: rgba(8, 168, 107, .35);
-      color: var(--green-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 7px 15px rgba(8, 168, 107, .08);
+      background: var(--surface-soft);
+      border-color: var(--border);
+      transform: translateX(2px);
     }
 
     .side-link.active {
       color: #087b4b;
-      background: linear-gradient(110deg, #ddfff0, #f2fff8);
-      border-color: #9ee9c7;
-      box-shadow: 0 6px 15px rgba(8, 168, 107, .12);
-    }
-
-    [data-theme="dark"] .side-link {
-      background: #142238;
-      border-color: #24344b;
-    }
-
-    [data-theme="dark"] .side-link:hover {
-      color: #65e6b1;
-      background: #153a32;
-      border-color: #286d56;
+      background: linear-gradient(100deg, #e2fff1, #f4fff9);
+      border-color: #b8f2d7;
+      box-shadow: 0 5px 13px rgba(8, 168, 107, .11);
     }
 
     [data-theme="dark"] .side-link.active {
       color: #65e6b1;
-      background: linear-gradient(110deg, #12382f, #16372f);
-      border-color: #286d56;
+      background: #12382f;
+      border-color: #23654e;
     }
 
+    /* Updated colorful sidebar icons */
     .nav-icon {
       width: 34px;
       height: 34px;
@@ -218,68 +180,110 @@
       display: grid;
       place-items: center;
       border-radius: 11px;
-      color: var(--body);
-      background: var(--surface);
-      border: 1px solid var(--border);
       font-size: 16px;
-      transition: .18s;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .nav-icon svg {
+      width: 19px;
+      height: 19px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .side-link:hover .nav-icon {
-      color: var(--green-dark);
-      background: #ffffff;
-      border-color: rgba(8, 168, 107, .2);
+      transform: scale(1.08);
     }
 
-    .side-link.active .nav-icon {
-      background: #c9f9df;
-      border-color: #c9f9df;
-      color: #078653;
+    .nav-home {
+      color: #079B69;
+      background: #D9F8E9;
     }
 
-    [data-theme="dark"] .nav-icon {
-      background: #1b2b40;
-      border-color: #2c4058;
+    .nav-depin {
+      color: #1687FF;
+      background: #DFEEFF;
     }
 
-    [data-theme="dark"] .side-link.active .nav-icon {
-      background: #1a5945;
-      border-color: #1a5945;
-      color: #8cf0c2;
+    .nav-community {
+      color: #8B5CF6;
+      background: #EEE5FF;
     }
 
-    .nav-arrow {
-      margin-left: auto;
-      color: #a1b2c1;
-      font-size: 19px;
-      line-height: 1;
-      font-weight: 500;
-      transition: .18s;
+    .nav-airdrop {
+      color: #F07819;
+      background: #FFF0D9;
     }
 
-    .side-link:hover .nav-arrow,
-    .side-link.active .nav-arrow {
-      color: var(--green-dark);
-      transform: translateX(2px);
+    .nav-wallet {
+      color: #9333EA;
+      background: #F1E3FF;
+    }
+
+    .nav-checker {
+      color: #0D9488;
+      background: #D9F7F0;
+    }
+
+    .nav-calculator {
+      color: #2563EB;
+      background: #E2EAFF;
+    }
+
+    [data-theme="dark"] .nav-home {
+      color: #54E3A7;
+      background: #164735;
+    }
+
+    [data-theme="dark"] .nav-depin {
+      color: #70B7FF;
+      background: #183B61;
+    }
+
+    [data-theme="dark"] .nav-community {
+      color: #C1A4FF;
+      background: #38265E;
+    }
+
+    [data-theme="dark"] .nav-airdrop {
+      color: #FFB36D;
+      background: #59391F;
+    }
+
+    [data-theme="dark"] .nav-wallet {
+      color: #D1A2FF;
+      background: #43265F;
+    }
+
+    [data-theme="dark"] .nav-checker {
+      color: #65DED1;
+      background: #164A46;
+    }
+
+    [data-theme="dark"] .nav-calculator {
+      color: #8EB5FF;
+      background: #203C70;
     }
 
     .sidebar-spacer {
-      flex: 0 0 13px;
-      min-height: 13px;
+      flex: 1;
+      min-height: 18px;
     }
 
-    /* COMMUNITY PROMO */
     .side-promo {
-      margin: 7px 3px 12px;
-      padding: 17px 12px;
+      margin: 16px 7px 13px;
+      padding: 19px 14px;
       text-align: center;
-      flex-shrink: 0;
-      border-radius: 19px;
+      border-radius: 22px;
       background:
         radial-gradient(circle at 90% 10%, rgba(92, 238, 176, .24), transparent 34%),
         linear-gradient(145deg, #e7fff4, #fff 72%);
       border: 1px solid #c7f5df;
-      box-shadow: 0 8px 20px rgba(8, 168, 107, .09);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .10);
     }
 
     [data-theme="dark"] .side-promo {
@@ -288,23 +292,23 @@
     }
 
     .promo-gift {
-      font-size: 31px;
-      margin-bottom: 7px;
+      font-size: 33px;
+      margin-bottom: 8px;
     }
 
     .side-promo h3 {
       margin: 0 0 7px;
       color: var(--heading);
-      font-size: 12px;
+      font-size: 13px;
       line-height: 1.45;
       font-weight: 800;
     }
 
     .side-promo p {
-      margin: 0 0 11px;
+      margin: 0 0 12px;
       color: var(--muted);
-      font-size: 9px;
-      line-height: 1.55;
+      font-size: 10px;
+      line-height: 1.5;
     }
 
     .promo-btn {
@@ -312,80 +316,61 @@
       justify-content: center;
       align-items: center;
       gap: 7px;
-      padding: 9px 16px;
+      padding: 10px 17px;
       border-radius: 999px;
       color: white;
       background: linear-gradient(135deg, #08a86b, #06c77a);
       text-decoration: none;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
       box-shadow: 0 6px 14px rgba(8, 168, 107, .2);
-      transition: transform .18s, box-shadow .18s;
     }
 
-    .promo-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 17px rgba(8, 168, 107, .27);
-    }
-
-    /* SUPPORT */
     .support-card {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 0 3px;
-      padding: 11px;
-      border-radius: 15px;
+      margin: 0 7px;
+      padding: 13px;
+      border-radius: 17px;
       text-decoration: none;
       border: 1px solid var(--border);
       background: var(--surface-soft);
-      flex-shrink: 0;
-      transition: border-color .18s, transform .18s;
-    }
-
-    .support-card:hover {
-      border-color: var(--green);
-      transform: translateY(-1px);
     }
 
     .support-icon {
-      width: 34px;
-      height: 34px;
-      flex: 0 0 34px;
+      width: 36px;
+      height: 36px;
       display: grid;
       place-items: center;
       border-radius: 50%;
       color: #078653;
       background: var(--green-soft);
-      font-size: 16px;
+      font-size: 17px;
     }
 
     .support-card strong {
       display: block;
       color: var(--heading);
-      font-size: 10px;
+      font-size: 11px;
     }
 
     .support-card span:last-child {
       display: block;
       margin-top: 4px;
       color: var(--green);
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 800;
     }
 
     .sidebar-note {
-      margin: 12px 8px 0;
+      margin: 14px 8px 0;
       color: var(--muted);
-      font-size: 8px;
+      font-size: 9px;
       text-align: center;
-      flex-shrink: 0;
     }
 
-    /* ==========================================
-       MAIN COLUMN + TOP BAR
-    ========================================== */
-
+    /* Main column + top bar */
     .main-column {
       min-height: 100vh;
       margin-left: var(--sidebar-width);
@@ -535,10 +520,6 @@
       padding: 22px 28px 34px;
     }
 
-    /* ==========================================
-       ORIGINAL HERO DESIGN - KEPT IN PLACE
-    ========================================== */
-
     .hero-panel {
       min-height: 206px;
       display: grid;
@@ -614,7 +595,6 @@
     }
 
     [data-theme="dark"] .hero-copy h2 { color: #f0fff9; }
-
     .hero-copy h2 span { color: #069b65; }
 
     .hero-copy p {
@@ -744,182 +724,10 @@
       box-shadow: 0 3px 10px rgba(20,45,75,.025);
     }
 
-    .hero-stat b { color: var(--green); font-size: 13px; }
-
-    /* ==========================================
-       SPONSORSHIP BANNER
-       Positioned below Hero Stats and above Explore
-       Banner creative target: 970 x 90 px
-    ========================================== */
-
-    .sponsor-banner {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      min-height: 90px;
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 18px;
-      margin: 0 0 21px;
-      padding: 10px 20px;
-      border: 1px solid #bcebd9;
-      border-radius: 15px;
-      background:
-        radial-gradient(circle at 95% 0%, rgba(22, 211, 151, .15), transparent 28%),
-        linear-gradient(100deg, #ffffff, #effff7 58%, #dffff1);
-      box-shadow: 0 6px 19px rgba(8, 168, 107, .05);
+    .hero-stat b {
+      color: var(--green);
+      font-size: 13px;
     }
-
-    .sponsor-banner::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      width: 150px;
-      height: 150px;
-      right: 18%;
-      top: -115px;
-      border-radius: 50%;
-      background: rgba(8, 168, 107, .07);
-    }
-
-    .sponsor-brand-lockup {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      min-width: 198px;
-      padding-right: 16px;
-      border-right: 1px solid #cfeee0;
-    }
-
-    .sponsor-brand-mark {
-      width: 39px;
-      height: 39px;
-      flex: 0 0 39px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border: 2px solid #bdebd6;
-      border-radius: 50%;
-      color: #fff;
-      background: linear-gradient(145deg, #08bd85, #078653);
-      box-shadow: 0 5px 13px rgba(8, 168, 107, .16);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .sponsor-brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .sponsor-brand-lockup strong {
-      display: block;
-      color: #102b40;
-      font-size: 11px;
-      line-height: 1.4;
-      font-weight: 800;
-    }
-
-    .sponsor-brand-lockup small {
-      display: block;
-      margin-top: 3px;
-      color: #078d62;
-      font-size: 8px;
-      font-weight: 700;
-    }
-
-    .sponsor-copy { min-width: 0; }
-
-    .sponsor-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-      color: #078653;
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .sponsor-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #08b77c;
-      box-shadow: 0 0 0 4px rgba(8, 168, 107, .10);
-    }
-
-    .sponsor-copy h2 {
-      margin: 0 0 3px;
-      color: #102b40;
-      font-size: 14px;
-      line-height: 1.3;
-      font-weight: 800;
-      letter-spacing: -.3px;
-    }
-
-    .sponsor-copy p {
-      margin: 0;
-      color: #627b87;
-      font-size: 9px;
-      line-height: 1.5;
-    }
-
-    .sponsor-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      min-height: 36px;
-      padding: 0 14px;
-      border: 0;
-      border-radius: 999px;
-      white-space: nowrap;
-      color: #fff;
-      background: linear-gradient(135deg, #07975d, #06bf79);
-      box-shadow: 0 6px 15px rgba(8, 168, 107, .17);
-      text-decoration: none;
-      font-size: 9px;
-      font-weight: 800;
-      transition: transform .18s, box-shadow .18s;
-    }
-
-    .sponsor-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 9px 18px rgba(8, 168, 107, .25);
-    }
-
-    [data-theme="dark"] .sponsor-banner {
-      border-color: #285f4d;
-      background:
-        radial-gradient(circle at 95% 0%, rgba(22, 211, 151, .13), transparent 28%),
-        linear-gradient(100deg, #142638, #123b32);
-    }
-
-    [data-theme="dark"] .sponsor-brand-lockup {
-      border-right-color: #315448;
-    }
-
-    [data-theme="dark"] .sponsor-brand-lockup strong,
-    [data-theme="dark"] .sponsor-copy h2 {
-      color: #f0fff9;
-    }
-
-    [data-theme="dark"] .sponsor-brand-lockup small,
-    [data-theme="dark"] .sponsor-label {
-      color: #75e8b9;
-    }
-
-    [data-theme="dark"] .sponsor-copy p {
-      color: #b2cfc5;
-    }
-
-    /* ==========================================
-       ORIGINAL PROJECT CARDS
-    ========================================== */
 
     .section-heading {
       display: flex;
@@ -1012,8 +820,7 @@
     .dash-card:focus-visible,
     .primary-cta:focus-visible,
     .secondary-cta:focus-visible,
-    .side-link:focus-visible,
-    .sponsor-cta:focus-visible {
+    .side-link:focus-visible {
       outline: 3px solid var(--green);
       outline-offset: 3px;
     }
@@ -1171,41 +978,13 @@
     }
 
     .footer-links a:hover { color: var(--green); }
-
     .mobile-overlay { display: none; }
-
-    /* ==========================================
-       RESPONSIVE DESIGN
-    ========================================== */
 
     @media (max-width: 1120px) {
       :root { --sidebar-width: 230px; }
-
-      main {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .topbar {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .dashboard-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .sponsor-banner {
-        gap: 13px;
-        padding: 10px 14px;
-      }
-
-      .sponsor-brand-lockup {
-        min-width: 180px;
-        padding-right: 11px;
-      }
-
-      .sponsor-copy h2 { font-size: 13px; }
+      main { padding-left: 20px; padding-right: 20px; }
+      .topbar { padding-left: 20px; padding-right: 20px; }
+      .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 760px) {
@@ -1227,7 +1006,6 @@
       }
 
       body.menu-open .mobile-overlay { display: block; }
-
       .main-column { margin-left: 0; }
 
       .topbar {
@@ -1270,40 +1048,6 @@
 
       main { padding: 16px 14px 26px; }
 
-      /* Compact ad layout on mobile */
-      .sponsor-banner {
-        grid-template-columns: auto minmax(0, 1fr);
-        gap: 10px 12px;
-        padding: 13px;
-        min-height: 0;
-        border-radius: 15px;
-      }
-
-      .sponsor-brand-lockup {
-        min-width: 0;
-        padding-right: 0;
-        border-right: 0;
-        grid-column: 1 / -1;
-      }
-
-      .sponsor-brand-mark {
-        width: 36px;
-        height: 36px;
-        flex-basis: 36px;
-      }
-
-      .sponsor-copy h2 { font-size: 13px; }
-
-      .sponsor-copy p { font-size: 9px; }
-
-      .sponsor-cta {
-        min-height: 35px;
-        padding: 0 12px;
-        font-size: 9px;
-        grid-column: 1 / -1;
-        width: fit-content;
-      }
-
       .hero-panel {
         min-height: 0;
         grid-template-columns: 1fr;
@@ -1320,11 +1064,7 @@
       }
 
       .server-stack { width: 170px; }
-
-      .orbit {
-        width: 260px;
-        height: 112px;
-      }
+      .orbit { width: 260px; height: 112px; }
 
       .hero-float {
         width: 32px;
@@ -1343,7 +1083,6 @@
       }
 
       .section-heading h2 { font-size: 15px; }
-
       .dashboard-grid { gap: 10px; }
 
       .dash-card {
@@ -1364,40 +1103,12 @@
 
     @media (max-width: 430px) {
       .topbar { gap: 7px; }
-
       .community-dropdown { display: none; }
-
       .dashboard-grid { grid-template-columns: 1fr; }
-
       .dash-card { min-height: 0; }
-
       .hero-copy h2 { font-size: 25px; }
-
       .hero-kicker { font-size: 8px; }
-
       .hero-actions { margin-top: 13px; }
-    }
-
-    /* Compact sidebar spacing on shorter desktop screens */
-    @media (max-height: 760px) and (min-width: 761px) {
-      .sidebar { padding-top: 12px; }
-      .brand { padding-bottom: 12px; }
-      .side-nav { gap: 6px; }
-      .side-link { min-height: 44px; }
-      .nav-icon {
-        width: 30px;
-        height: 30px;
-        flex-basis: 30px;
-      }
-      .side-promo {
-        margin-top: 5px;
-        padding: 12px 10px;
-      }
-      .promo-gift {
-        font-size: 26px;
-        margin-bottom: 4px;
-      }
-      .side-promo p { margin-bottom: 8px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1413,66 +1124,109 @@
 <body data-theme="light">
   <div class="app-shell">
 
-    <!-- PREMIUM SIDEBAR -->
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
 
       <a href="index.html" class="brand">
         <span class="brand-mark">
-          <img src="logos/tcn-logo.png"
-               alt="Total Crypto Network logo"
-               onerror="this.style.display='none'; this.parentElement.textContent='TCN';">
+          <img src="logos/tcn-logo.png" alt="Total Crypto Network logo"
+          onerror="this.style.display='none'; this.parentElement.textContent='TCN';">
         </span>
-
         <span>
           <span class="brand-title">Total Crypto Hub</span>
           <span class="brand-subtitle">by <b>Total Crypto Network</b></span>
         </span>
       </a>
 
-      <div class="side-label">Quick Access</div>
+      <div class="side-label">Workspace</div>
 
       <nav class="side-nav">
 
+        <!-- 1. Home -->
         <a href="index.html" class="side-link active" aria-current="page">
-          <span class="nav-icon">⌂</span>
-          <span>Home</span>
-          <span class="nav-arrow" aria-hidden="true">›</span>
+          <span class="nav-icon nav-home">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m3 10 9-7 9 7"/>
+              <path d="M5 9v11h14V9"/>
+              <path d="M9 20v-7h6v7"/>
+            </svg>
+          </span>
+          Home
         </a>
 
+        <!-- 2. DePIN Projects -->
         <a href="depin-pages/depin.html" class="side-link">
-          <span class="nav-icon">⚡</span>
-          <span>DePIN Projects</span>
-          <span class="nav-arrow" aria-hidden="true">›</span>
+          <span class="nav-icon nav-depin">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13 2 4 13h7l-1 9 10-13h-7z"/>
+            </svg>
+          </span>
+          DePIN Projects
         </a>
 
+        <!-- 3. Community Projects -->
         <a href="mobile-pages/mobile-mining.html" class="side-link">
-          <span class="nav-icon">♧</span>
-          <span>Community Projects</span>
-          <span class="nav-arrow" aria-hidden="true">›</span>
+          <span class="nav-icon nav-community">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
+          Community Projects
         </a>
 
+        <!-- 4. Airdrops & Campaigns -->
         <a href="airdrop-pages/airdrops.html" class="side-link">
-          <span class="nav-icon">🎁</span>
-          <span>Airdrops & Campaigns</span>
-          <span class="nav-arrow" aria-hidden="true">›</span>
+          <span class="nav-icon nav-airdrop">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="8" width="18" height="13" rx="2"/>
+              <path d="M12 8v13"/>
+              <path d="M3 12h18"/>
+              <path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/>
+              <path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/>
+            </svg>
+          </span>
+          Airdrops & Campaigns
         </a>
 
+        <!-- 5. Wallets & Exchanges -->
         <a href="wallet-pages/wallets.html" class="side-link">
-          <span class="nav-icon">▣</span>
-          <span>Wallets & Exchanges</span>
-          <span class="nav-arrow" aria-hidden="true">›</span>
+          <span class="nav-icon nav-wallet">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="15" rx="2"/>
+              <path d="M3 9h18"/>
+              <path d="M16 14h.01"/>
+              <path d="M3 5V4a2 2 0 0 1 2-2h13"/>
+              <path d="M16 12h5v5h-5a2.5 2.5 0 0 1 0-5Z"/>
+            </svg>
+          </span>
+          Wallets & Exchanges
         </a>
 
+        <!-- 6. Token Checker -->
         <a href="token-pages/token-checker.html" class="side-link">
-          <span class="nav-icon">⌕</span>
-          <span>Token Checker</span>
-          <span class="nav-arrow" aria-hidden="true">›</span>
+          <span class="nav-icon nav-checker">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </span>
+          Token Checker
         </a>
 
+        <!-- 7. Earning Calculator -->
         <a href="earning-pages/earning-calculator.html" class="side-link">
-          <span class="nav-icon">▦</span>
-          <span>Earning Calculator</span>
-          <span class="nav-arrow" aria-hidden="true">›</span>
+          <span class="nav-icon nav-calculator">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="2" width="16" height="20" rx="2"/>
+              <path d="M8 6h8"/>
+              <path d="M8 11h.01M12 11h.01M16 11h.01"/>
+              <path d="M8 15h.01M12 15h.01M16 15h.01"/>
+              <path d="M8 19h.01M12 19h.01M16 19h.01"/>
+            </svg>
+          </span>
+          Earning Calculator
         </a>
 
       </nav>
@@ -1483,11 +1237,7 @@
         <div class="promo-gift" aria-hidden="true">🎁</div>
         <h3>Join the Community<br>& Earn Together</h3>
         <p>Follow project updates, guides and community announcements.</p>
-
-        <a class="promo-btn"
-           href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43"
-           target="_blank"
-           rel="noopener noreferrer">
+        <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">
           Join Now <span aria-hidden="true">→</span>
         </a>
       </section>
@@ -1501,39 +1251,24 @@
       </a>
 
       <p class="sidebar-note">A research-led Web3 directory</p>
-
     </aside>
 
     <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
 
     <div class="main-column">
 
-      <!-- TOP BAR -->
       <header class="topbar">
-
-        <button class="mobile-menu-btn"
-                id="mobileMenuBtn"
-                type="button"
-                aria-label="Open navigation"
-                aria-expanded="false">☰</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
 
         <label class="search-wrap" aria-label="Search Total Crypto Hub sections">
-          <input id="globalSearch"
-                 type="search"
-                 placeholder="Search projects, categories or tools..."
-                 autocomplete="off">
+          <input id="globalSearch" type="search" placeholder="Search projects, categories or tools..." autocomplete="off">
           <span class="search-icon" aria-hidden="true">⌕</span>
         </label>
 
         <span class="topbar-spacer"></span>
 
         <div class="community-dropdown">
-          <button class="community-btn"
-                  type="button"
-                  onclick="toggleCommunityMenu()"
-                  aria-expanded="false">
-            👥 Community
-          </button>
+          <button class="community-btn" type="button" onclick="toggleCommunityMenu()">👥 Community</button>
 
           <div class="dropdown-content" id="communityMenu">
             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
@@ -1543,34 +1278,25 @@
           </div>
         </div>
 
-        <button class="icon-btn"
-                id="themeToggle"
-                type="button"
-                onclick="toggleTheme()"
-                aria-label="Toggle dark mode">🌙</button>
-
+        <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
       </header>
 
       <main>
 
-        <!-- ORIGINAL HERO BANNER -->
         <section class="hero-panel" aria-labelledby="heroTitle">
-
           <div class="hero-copy">
             <span class="hero-kicker">✦ Official Hub · Total Crypto Network</span>
 
             <h2 id="heroTitle">Explore the <span>Total Crypto</span> Ecosystem</h2>
 
             <p>
-              Discover DePIN infrastructure, community projects, airdrop campaigns
-              and essential Web3 tools—all organized in one easy-to-use hub.
+              Discover DePIN infrastructure, community projects, airdrop campaigns and essential Web3 tools—all organized in one easy-to-use hub.
             </p>
 
             <div class="hero-actions">
               <a class="primary-cta" href="depin-pages/depin.html">
                 Explore DePIN Projects <span aria-hidden="true">→</span>
               </a>
-
               <a class="secondary-cta" href="mobile-pages/mobile-mining.html">
                 Discover Community Projects ↗
               </a>
@@ -1582,21 +1308,16 @@
             <span class="hero-float one">✦</span>
             <span class="hero-float two">◇</span>
 
-            <svg class="server-stack"
-                 viewBox="0 0 260 180"
-                 xmlns="http://www.w3.org/2000/svg">
-
+            <svg class="server-stack" viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="serverA" x1="0" y1="0" x2="1" y2="1">
                   <stop stop-color="#53f4bc"/>
                   <stop offset="1" stop-color="#05a985"/>
                 </linearGradient>
-
                 <linearGradient id="serverB" x1="0" y1="0" x2="1" y2="1">
                   <stop stop-color="#20d9bd"/>
                   <stop offset="1" stop-color="#087caa"/>
                 </linearGradient>
-
                 <linearGradient id="serverC" x1="0" y1="0" x2="1" y2="1">
                   <stop stop-color="#d8fff0"/>
                   <stop offset="1" stop-color="#75e9c2"/>
@@ -1618,32 +1339,24 @@
               <path d="m108 38 22 11v22l-22-11z" fill="#11bfa0"/>
               <path d="m130 49 22-11v22l-22 11z" fill="#078ca9"/>
               <path d="m118 38 12-6 12 6-12 6z" fill="#fff" opacity=".9"/>
-
               <g fill="#d9fff0">
                 <circle cx="91" cy="92" r="3"/>
                 <circle cx="104" cy="98" r="3"/>
                 <circle cx="156" cy="91" r="3"/>
                 <circle cx="169" cy="85" r="3"/>
               </g>
-
               <g stroke="#eafff7" stroke-width="2" opacity=".9">
-                <path d="M130 15V4"/>
-                <path d="M104 25 94 15"/>
-                <path d="M156 25l10-10"/>
+                <path d="M130 15V4M104 25 94 15M156 25l10-10"/>
               </g>
-
               <g fill="#fff">
                 <circle cx="130" cy="4" r="3"/>
                 <circle cx="94" cy="15" r="3"/>
                 <circle cx="166" cy="15" r="3"/>
               </g>
-
             </svg>
           </div>
-
         </section>
 
-        <!-- ORIGINAL WEB3 STATS -->
         <div class="hero-stats" aria-label="Total Crypto Hub highlights">
           <span class="hero-stat"><b>◈</b> 57+ DePIN Projects</span>
           <span class="hero-stat"><b>♧</b> Community Resources</span>
@@ -1651,67 +1364,18 @@
           <span class="hero-stat"><b>⚡</b> Web3 Tools</span>
         </div>
 
-        <!-- SPONSORSHIP BANNER: EXACTLY BELOW HERO STATS -->
-        <section class="sponsor-banner" aria-label="Sponsorship opportunity">
-
-          <div class="sponsor-brand-lockup">
-
-            <div class="sponsor-brand-mark">
-              <img src="logos/tcn-logo.png"
-                   alt="TCN Logo"
-                   onerror="this.style.display='none'; this.parentElement.textContent='TCN';">
-            </div>
-
-            <div>
-              <strong>Total Crypto Hub</strong>
-              <small>by Total Crypto Network</small>
-            </div>
-
-          </div>
-
-          <div class="sponsor-copy">
-
-            <div class="sponsor-label">
-              <span class="sponsor-dot"></span>
-              SPONSORED / ADVERTISEMENT
-            </div>
-
-            <h2>Your Web3 Project Deserves the Spotlight</h2>
-
-            <p>
-              Promote your crypto project, product or Web3 service
-              to the Total Crypto Hub community.
-            </p>
-
-          </div>
-
-          <a class="sponsor-cta" href="legal-pages/contact.html">
-            Advertise With Us <span aria-hidden="true">→</span>
-          </a>
-
-        </section>
-
-        <!-- ORIGINAL SIX PROJECT CARDS -->
         <section aria-labelledby="exploreHeading">
-
           <div class="section-heading">
             <div>
               <h2 id="exploreHeading">Explore the Hub</h2>
               <p>Everything you need for your Web3 journey, in one place.</p>
             </div>
-
-            <a class="section-link" href="depin-pages/depin.html">
-              Browse projects ↗
-            </a>
+            <a class="section-link" href="depin-pages/depin.html">Browse projects ↗</a>
           </div>
 
           <div class="dashboard-grid" id="dashboardGrid">
 
-            <!-- DEPIn -->
-            <a href="depin-pages/depin.html"
-               class="dash-card dash-card--depin"
-               data-search="depin projects nodes bandwidth storage compute infrastructure">
-
+            <a href="depin-pages/depin.html" class="dash-card dash-card--depin" data-search="depin projects nodes bandwidth storage compute infrastructure">
               <div class="card-topline">
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
@@ -1720,18 +1384,12 @@
                 </div>
                 <span class="card-tag">57+ Projects</span>
               </div>
-
               <h3>DePIN Projects Hub</h3>
               <p>Explore listed DePIN projects, background nodes, bandwidth-sharing apps and AI compute protocols.</p>
               <span class="card-action">Explore DePIN Nodes <span>→</span></span>
-
             </a>
 
-            <!-- COMMUNITY -->
-            <a href="mobile-pages/mobile-mining.html"
-               class="dash-card dash-card--community"
-               data-search="community projects mobile apps token distribution consensus rewards smartphone mining">
-
+            <a href="mobile-pages/mobile-mining.html" class="dash-card dash-card--community" data-search="community projects mobile apps token distribution consensus rewards smartphone mining">
               <div class="card-topline">
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
@@ -1741,18 +1399,12 @@
                 </div>
                 <span class="card-tag">Growing Community</span>
               </div>
-
               <h3>Community Projects</h3>
               <p>Discover mobile apps for token distribution, consensus rewards and lightweight smartphone participation.</p>
               <span class="card-action">View Projects <span>→</span></span>
-
             </a>
 
-            <!-- AIRDROPS -->
-            <a href="airdrop-pages/airdrops.html"
-               class="dash-card dash-card--airdrops"
-               data-search="airdrops campaigns testnet incentives early network participation zero cost drops">
-
+            <a href="airdrop-pages/airdrops.html" class="dash-card dash-card--airdrops" data-search="airdrops campaigns testnet incentives early network participation zero cost drops">
               <div class="card-topline">
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
@@ -1762,18 +1414,12 @@
                 </div>
                 <span class="card-tag">Campaign Updates</span>
               </div>
-
               <h3>Airdrops & Campaigns</h3>
               <p>Find incentive testnets, early network participation tasks and curated campaign updates.</p>
               <span class="card-action">Explore Airdrops <span>→</span></span>
-
             </a>
 
-            <!-- WALLETS -->
-            <a href="wallet-pages/wallets.html"
-               class="dash-card dash-card--wallets"
-               data-search="wallets exchanges self custodial crypto trading liquidity partner">
-
+            <a href="wallet-pages/wallets.html" class="dash-card dash-card--wallets" data-search="wallets exchanges self custodial crypto trading liquidity partner">
               <div class="card-topline">
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
@@ -1782,18 +1428,12 @@
                 </div>
                 <span class="card-tag">Wallet Resources</span>
               </div>
-
               <h3>Wallets & Top Exchanges</h3>
               <p>Explore self-custodial wallets and exchange resources for managing your digital assets.</p>
               <span class="card-action">Open Wallets <span>→</span></span>
-
             </a>
 
-            <!-- TOKEN CHECKER -->
-            <a href="token-pages/token-checker.html"
-               class="dash-card dash-card--checker"
-               data-search="token checker contract safety liquidity pools blockchain security">
-
+            <a href="token-pages/token-checker.html" class="dash-card dash-card--checker" data-search="token checker contract safety liquidity pools blockchain security">
               <div class="card-topline">
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
@@ -1803,32 +1443,24 @@
                 </div>
                 <span class="card-tag">Check Safety</span>
               </div>
-
               <h3>Token Checker</h3>
               <p>Review smart-contract information, liquidity details and network data across supported chains.</p>
               <span class="card-action">Launch Checker <span>→</span></span>
-
             </a>
 
-            <!-- EARNING CALCULATOR -->
-            <a href="earning-pages/earning-calculator.html"
-               class="dash-card dash-card--calculator"
-               data-search="earning calculator rewards passive income device power costs token payouts">
-
+            <a href="earning-pages/earning-calculator.html" class="dash-card dash-card--calculator" data-search="earning calculator rewards passive income device power costs token payouts">
               <div class="card-topline">
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
                     <rect x="4" y="2" width="16" height="20" rx="2"/>
-                    <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01"/>
+                    <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/>
                   </svg>
                 </div>
                 <span class="card-tag">Plan Your Earnings</span>
               </div>
-
               <h3>Earning Calculator</h3>
               <p>Estimate data-sharing rewards, device power costs and potential token payouts.</p>
               <span class="card-action">Calculate Rewards <span>→</span></span>
-
             </a>
 
           </div>
@@ -1836,24 +1468,14 @@
           <div class="empty-search" id="emptySearch" role="status">
             No matching section found. Try another keyword.
           </div>
-
         </section>
 
-        <!-- DISCLAIMER -->
         <p class="hero-disclaimer">
-          <strong>Disclaimer:</strong>
-          Total Crypto Hub operates as an educational directory and research portal.
-          We do not provide financial advice or guarantee the performance, security
-          or profits of third-party protocols. Always perform your own independent
-          research before participating.
+          <strong>Disclaimer:</strong> Total Crypto Hub operates as an educational directory and research portal. We do not provide financial advice or guarantee the performance, security or profits of third-party protocols. Always perform your own independent research before participating.
         </p>
 
-        <!-- FOOTER -->
         <footer>
-          <div class="footer-copy">
-            &copy; 2026 Total Crypto Network. All rights reserved.
-          </div>
-
+          <div class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</div>
           <div class="footer-links">
             <a href="legal-pages/about.html">About Us</a>
             <a href="legal-pages/contact.html">Contact Us</a>
@@ -1868,17 +1490,14 @@
   </div>
 
   <script>
-    /* THEME */
     function applyTheme(theme) {
       const safeTheme = theme === 'dark' ? 'dark' : 'light';
-
       document.body.setAttribute('data-theme', safeTheme);
 
       const toggle = document.getElementById('themeToggle');
 
       if (toggle) {
         toggle.textContent = safeTheme === 'light' ? '🌙' : '☀️';
-
         toggle.setAttribute(
           'aria-label',
           safeTheme === 'light' ? 'Enable dark mode' : 'Enable light mode'
@@ -1893,33 +1512,23 @@
     }
 
     function toggleTheme() {
-      const currentTheme =
-        document.body.getAttribute('data-theme') || 'light';
-
+      const currentTheme = document.body.getAttribute('data-theme') || 'light';
       applyTheme(currentTheme === 'light' ? 'dark' : 'light');
     }
 
-    /* COMMUNITY DROPDOWN */
     function toggleCommunityMenu() {
       const menu = document.getElementById('communityMenu');
       const button = document.querySelector('.community-btn');
-
       const isOpen = menu.classList.toggle('show');
-
       button.setAttribute('aria-expanded', String(isOpen));
     }
 
-    /* MOBILE SIDEBAR */
     function closeMobileMenu() {
       document.body.classList.remove('menu-open');
-
-      document.getElementById('mobileMenuBtn')
-        .setAttribute('aria-expanded', 'false');
+      document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
     }
 
     window.addEventListener('DOMContentLoaded', function () {
-
-      /* Restore saved theme */
       let savedTheme = 'light';
 
       try {
@@ -1930,7 +1539,6 @@
 
       applyTheme(savedTheme);
 
-      /* GLOBAL SEARCH */
       const search = document.getElementById('globalSearch');
       const cards = Array.from(document.querySelectorAll('.dash-card'));
       const emptyMessage = document.getElementById('emptySearch');
@@ -1940,11 +1548,11 @@
         let visible = 0;
 
         cards.forEach(card => {
-          const searchable =
-            (card.innerText + ' ' + (card.dataset.search || '')).toLowerCase();
+          const searchable = (
+            card.innerText + ' ' + (card.dataset.search || '')
+          ).toLowerCase();
 
           const match = !query || searchable.includes(query);
-
           card.hidden = !match;
 
           if (match) visible++;
@@ -1953,51 +1561,37 @@
         emptyMessage.style.display = visible ? 'none' : 'block';
       });
 
-      /* MOBILE MENU BUTTON */
       const menuButton = document.getElementById('mobileMenuBtn');
 
       menuButton.addEventListener('click', function () {
         const isOpen = document.body.classList.toggle('menu-open');
-
         this.setAttribute('aria-expanded', String(isOpen));
       });
 
-      /* CLICK OUTSIDE SIDEBAR */
-      document.getElementById('mobileOverlay')
-        .addEventListener('click', closeMobileMenu);
+      document.getElementById('mobileOverlay').addEventListener('click', closeMobileMenu);
 
-      /* CLOSE SIDEBAR AFTER NAVIGATION */
       document.querySelectorAll('.side-link').forEach(link => {
         link.addEventListener('click', closeMobileMenu);
       });
 
-      /* COMMUNITY DROPDOWN */
       document.addEventListener('click', function (event) {
         const dropdown = document.querySelector('.community-dropdown');
         const menu = document.getElementById('communityMenu');
 
         if (!dropdown.contains(event.target)) {
           menu.classList.remove('show');
-
-          document.querySelector('.community-btn')
-            .setAttribute('aria-expanded', 'false');
+          document.querySelector('.community-btn').setAttribute('aria-expanded', 'false');
         }
       });
 
-      /* ESCAPE KEY */
       document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
           document.getElementById('communityMenu').classList.remove('show');
-
-          document.querySelector('.community-btn')
-            .setAttribute('aria-expanded', 'false');
-
+          document.querySelector('.community-btn').setAttribute('aria-expanded', 'false');
           closeMobileMenu();
         }
       });
-
     });
   </script>
-
 </body>
 </html>
