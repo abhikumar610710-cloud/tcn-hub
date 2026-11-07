@@ -1,212 +1,235 @@
 
+/* =========================================
+   TOTAL CRYPTO HUB - AI ASSISTANT
+   Chat, interactions and robot reactions
+========================================= */
+
 (() => {
   "use strict";
 
-  const script = document.currentScript;
-  if (!script) return;
+  const SCRIPT = document.currentScript;
+  const SCRIPT_URL = SCRIPT ? SCRIPT.src : window.location.href;
+  const BASE_URL = new URL(".", SCRIPT_URL);
 
-  const baseURL = new URL(".", script.src);
-  const htmlURL = new URL("assistant.html", baseURL);
-  const cssURL = new URL("assistant.css", baseURL);
+  const HTML_URL = new URL("assistant.html", BASE_URL);
+  const CSS_URL = new URL("assistant.css", BASE_URL);
 
-  // CSS को पेज में लोड करें
-  if (!document.querySelector('[data-tcn-ai-css]')) {
+  function loadStyles() {
+    if (document.querySelector('[data-tcn-assistant-css]')) return;
+
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = cssURL.href;
-    link.dataset.tcnAiCss = "true";
+    link.href = CSS_URL.href;
+    link.dataset.tcnAssistantCss = "true";
     document.head.appendChild(link);
   }
 
-  // Assistant HTML लोड करें
-  fetch(htmlURL.href)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Assistant HTML could not be loaded.");
-      }
-      return response.text();
-    })
-    .then((html) => {
-      if (document.getElementById("tcn-ai-assistant")) return;
-
-      document.body.insertAdjacentHTML("beforeend", html);
-      initializeAssistant();
-    })
-    .catch((error) => {
-      console.error("TCN Assistant:", error);
-    });
-
-  function initializeAssistant() {
-    const robot = document.getElementById("tcnAiRobot");
-    const windowBox = document.getElementById("tcnAiWindow");
-    const closeButton = document.getElementById("tcnAiClose");
-    const form = document.getElementById("tcnAiForm");
-    const input = document.getElementById("tcnAiInput");
+  function addMessage(text, sender) {
     const messages = document.getElementById("tcnAiMessages");
-    const suggestions = document.querySelector(".tcn-ai-suggestions");
+    if (!messages) return;
 
-    if (!robot || !windowBox || !form || !input || !messages) return;
+    const wrapper = document.createElement("div");
+    wrapper.className = sender === "user"
+      ? "tcn-ai-message tcn-ai-user-message"
+      : "tcn-ai-message tcn-ai-bot-message";
 
-    // Chat window खोलना और बंद करना
-    function openAssistant() {
-      windowBox.classList.add("is-open");
-      robot.classList.add("is-active");
-      windowBox.setAttribute("aria-hidden", "false");
-      input.focus();
+    if (sender !== "user") {
+      const avatar = document.createElement("div");
+      avatar.className = "tcn-ai-message-avatar";
+      avatar.textContent = "🤖";
+      wrapper.appendChild(avatar);
     }
 
-    function closeAssistant() {
-      windowBox.classList.remove("is-open");
-      robot.classList.remove("is-active");
-      windowBox.setAttribute("aria-hidden", "true");
+    const content = document.createElement("div");
+    content.className = "tcn-ai-message-content";
+
+    // Use textContent to prevent HTML injection.
+    content.textContent = text;
+
+    wrapper.appendChild(content);
+    messages.appendChild(wrapper);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function getAnswer(question) {
+    const q = question.toLowerCase();
+
+    if (q.includes("hello") || q.includes("hi") || q.includes("नमस्ते")) {
+      return "नमस्ते! 👋 Total Crypto Hub में आपका स्वागत है। मैं आपकी क्या मदद कर सकता हूँ?";
     }
 
-    robot.addEventListener("click", openAssistant);
-
-    if (closeButton) {
-      closeButton.addEventListener("click", closeAssistant);
+    if (q.includes("depin")) {
+      return "DePIN का पूरा नाम Decentralized Physical Infrastructure Networks है। इसमें लोग अपनी physical infrastructure जैसे wireless networks, storage और computing power को blockchain आधारित नेटवर्क से जोड़ते हैं।";
     }
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeAssistant();
+    if (q.includes("airdrop")) {
+      return "Crypto Airdrop में किसी प्रोजेक्ट के टोकन मुफ्त में मिल सकते हैं। हमेशा official website और verified social accounts जाँचें। कभी भी अपनी seed phrase या private key साझा न करें।";
+    }
+
+    if (q.includes("token") || q.includes("checker")) {
+      return "Token Checker से किसी टोकन की जानकारी और उपलब्ध सुरक्षा संकेतों की जाँच कर सकते हैं। केवल checker के परिणाम पर भरोसा करके निवेश न करें।";
+    }
+
+    if (q.includes("earning") || q.includes("calculator")) {
+      return "Earning Calculator में अपनी investment, अनुमानित reward और समय डालकर संभावित earning का हिसाब लगा सकते हैं। यह केवल अनुमान है, guaranteed profit नहीं।";
+    }
+
+    if (q.includes("wallet")) {
+      return "Crypto wallet आपकी digital assets को manage करने में मदद करता है। Wallet चुनते समय security, official source और seed phrase की सुरक्षा का ध्यान रखें।";
+    }
+
+    if (q.includes("bitcoin")) {
+      return "Bitcoin एक decentralized digital currency है। इसकी कीमत में काफी उतार-चढ़ाव हो सकता है, इसलिए निवेश से पहले खुद research करें।";
+    }
+
+    if (q.includes("contact") || q.includes("support") || q.includes("help")) {
+      return "आप Total Crypto Hub के Contact पेज के माध्यम से टीम से संपर्क कर सकते हैं। कृपया किसी के साथ अपनी private key या OTP साझा न करें।";
+    }
+
+    return "अच्छा सवाल है! 😊 मैं अभी बेसिक offline assistant हूँ। इस सवाल का जवाब मेरे पास उपलब्ध नहीं है। आप Total Crypto Hub के संबंधित सेक्शन में जानकारी देख सकते हैं।";
+  }
+
+  function setRobotReaction(type) {
+    const robot = document.getElementById("tcnAiRobot");
+    if (!robot) return;
+
+    robot.dataset.reaction = type;
+
+    clearTimeout(robot._reactionTimer);
+
+    robot._reactionTimer = setTimeout(() => {
+      robot.dataset.reaction = "normal";
+    }, 1200);
+  }
+
+  function openChat() {
+    const windowEl = document.getElementById("tcnAiWindow");
+    if (!windowEl) return;
+
+    windowEl.classList.add("active");
+    windowEl.setAttribute("aria-hidden", "false");
+
+    setRobotReaction("happy");
+
+    const input = document.getElementById("tcnAiInput");
+    if (input) {
+      setTimeout(() => input.focus(), 200);
+    }
+  }
+
+  function closeChat() {
+    const windowEl = document.getElementById("tcnAiWindow");
+    if (!windowEl) return;
+
+    windowEl.classList.remove("active");
+    windowEl.setAttribute("aria-hidden", "true");
+
+    setRobotReaction("normal");
+  }
+
+  function handleSend(question) {
+    const cleanQuestion = question.trim();
+    if (!cleanQuestion) return;
+
+    addMessage(cleanQuestion, "user");
+    setRobotReaction("thinking");
+
+    const input = document.getElementById("tcnAiInput");
+    if (input) input.value = "";
+
+    // Offline response. A secure backend can be connected later.
+    setTimeout(() => {
+      addMessage(getAnswer(cleanQuestion), "bot");
+      setRobotReaction("happy");
+    }, 650);
+  }
+
+  function setupAssistant() {
+    loadStyles();
+
+    const robot = document.getElementById("tcnAiRobot");
+    const form = document.getElementById("tcnAiForm");
+
+    if (!robot || !form) return;
+
+    robot.addEventListener("click", () => {
+      const windowEl = document.getElementById("tcnAiWindow");
+
+      if (windowEl && windowEl.classList.contains("active")) {
+        closeChat();
+      } else {
+        openChat();
+      }
     });
 
-    // Chat में message दिखाना
-    function addMessage(message, sender) {
-      const bubble = document.createElement("div");
-      bubble.className = `tcn-ai-message tcn-ai-message-${sender}`;
-      bubble.textContent = message;
-      messages.appendChild(bubble);
-      messages.scrollTop = messages.scrollHeight;
-    }
-
-    // फिलहाल शुरुआती offline जवाब
-    // असली AI जवाब के लिए सुरक्षित backend/API जोड़ना होगा।
-    function getReply(question) {
-      const q = question.toLowerCase();
-
-      if (q.includes("depin")) {
-        return "DePIN का मतलब Decentralized Physical Infrastructure Networks है। इसमें लोग अपने hardware और resources के जरिए decentralized networks को support कर सकते हैं। Total Crypto Hub के DePIN Projects सेक्शन में आप संबंधित projects देख सकते हैं।";
-      }
-
-      if (q.includes("airdrop") || q.includes("campaign")) {
-        return "Airdrops और Campaigns में crypto projects users को tasks, participation या community activities के बदले rewards दे सकते हैं। किसी भी campaign में भाग लेने से पहले उसकी official website और eligibility जरूर जाँचें।";
-      }
-
-      if (q.includes("wallet") || q.includes("exchange")) {
-        return "Crypto wallet का इस्तेमाल digital assets को manage करने के लिए किया जाता है। Exchange पर आप crypto assets खरीद या बेच सकते हैं। हमेशा official links और security details verify करें।";
-      }
-
-      if (q.includes("token") || q.includes("checker")) {
-        return "Token Checker का उपयोग किसी token की जानकारी जाँचने के लिए किया जा सकता है। सही blockchain network और contract address verify करना जरूरी है।";
-      }
-
-      if (q.includes("earning") || q.includes("calculator")) {
-        return "Earning Calculator अनुमानित earnings समझने में मदद कर सकता है। ध्यान रखें कि वास्तविक कमाई network rewards, token price और अन्य परिस्थितियों पर निर्भर करती है।";
-      }
-
-      if (q.includes("hello") || q.includes("hi") || q.includes("नमस्ते")) {
-        return "नमस्ते! 😊 Total Crypto Hub में आपका स्वागत है। बताइए, मैं आपकी किस प्रकार सहायता कर सकता हूँ?";
-      }
-
-      return "आपका सवाल मिल गया! 😊 अभी मेरा शुरुआती चैट मोड चालू है। असली AI से जवाब दिलाने के लिए हमें सुरक्षित backend/API जोड़ना होगा। फिलहाल आप DePIN, Airdrops, Wallets या Token Checker के बारे में पूछ सकते हैं।";
-    }
-
-    // User का message भेजना
-    function sendMessage(message) {
-      const question = message.trim();
-      if (!question) return;
-
-      addMessage(question, "user");
-      input.value = "";
-
-      window.setTimeout(() => {
-        addMessage(getReply(question), "bot");
-      }, 500);
+    const closeButton = document.getElementById("tcnAiClose");
+    if (closeButton) {
+      closeButton.addEventListener("click", closeChat);
     }
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      sendMessage(input.value);
+
+      const input = document.getElementById("tcnAiInput");
+      if (input) handleSend(input.value);
     });
 
-    // Suggested questions पर क्लिक
-    if (suggestions) {
-      suggestions.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-question]");
-        if (!button) return;
+    const suggestions = document.querySelectorAll(
+      "#tcnAiMessages [data-question]"
+    );
 
-        openAssistant();
-        sendMessage(button.dataset.question);
+    suggestions.forEach((button) => {
+      button.addEventListener("click", () => {
+        handleSend(button.dataset.question || "");
       });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeChat();
+    });
+
+    setRobotReaction("happy");
+  }
+
+  async function initializeAssistant() {
+    if (document.getElementById("tcn-ai-assistant")) {
+      setupAssistant();
+      return;
     }
 
-    // Robot को drag करके स्क्रीन पर दूसरी जगह रखना
-    let dragging = false;
-    let moved = false;
-    let startX = 0;
-    let startY = 0;
-    let initialLeft = 0;
-    let initialTop = 0;
+    try {
+      loadStyles();
 
-    robot.addEventListener("pointerdown", (event) => {
-      if (event.button !== 0) return;
+      const response = await fetch(HTML_URL.href);
 
-      dragging = true;
-      moved = false;
-
-      const rect = robot.getBoundingClientRect();
-      startX = event.clientX;
-      startY = event.clientY;
-      initialLeft = rect.left;
-      initialTop = rect.top;
-
-      robot.style.right = "auto";
-      robot.style.bottom = "auto";
-      robot.style.left = `${rect.left}px`;
-      robot.style.top = `${rect.top}px`;
-
-      robot.setPointerCapture(event.pointerId);
-    });
-
-    robot.addEventListener("pointermove", (event) => {
-      if (!dragging) return;
-
-      const dx = event.clientX - startX;
-      const dy = event.clientY - startY;
-
-      if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
-        moved = true;
+      if (!response.ok) {
+        throw new Error("Assistant HTML could not be loaded.");
       }
 
-      if (!moved) return;
+      const html = await response.text();
 
-      const maxLeft = window.innerWidth - robot.offsetWidth;
-      const maxTop = window.innerHeight - robot.offsetHeight;
+      const container = document.createElement("div");
+      container.innerHTML = html;
 
-      const left = Math.max(0, Math.min(maxLeft, initialLeft + dx));
-      const top = Math.max(0, Math.min(maxTop, initialTop + dy));
+      const assistant = container.querySelector("#tcn-ai-assistant");
 
-      robot.style.left = `${left}px`;
-      robot.style.top = `${top}px`;
-    });
-
-    robot.addEventListener("pointerup", () => {
-      dragging = false;
-
-      if (moved) {
-        robot.dataset.dragged = "true";
-        window.setTimeout(() => {
-          delete robot.dataset.dragged;
-        }, 250);
+      if (!assistant) {
+        throw new Error("Assistant root element was not found.");
       }
-    });
 
-    robot.addEventListener("click", (event) => {
-      if (robot.dataset.dragged === "true") {
-        event.stopImmediatePropagation();
-        event.preventDefault();
-      }
-    }, true);
+      document.body.appendChild(assistant);
+      setupAssistant();
+
+    } catch (error) {
+      console.error("Total Crypto Hub Assistant:", error);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeAssistant, {
+      once: true
+    });
+  } else {
+    initializeAssistant();
   }
 })();
