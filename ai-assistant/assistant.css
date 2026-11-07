@@ -1,7 +1,7 @@
 
 /* =====================================
    TOTAL CRYPTO HUB - AI ASSISTANT
-   Compact character and chat interface
+   Larger draggable mascot
 ===================================== */
 
 #tcn-ai-assistant {
@@ -9,43 +9,48 @@
   --tcn-dark: #071b16;
   --tcn-panel: #ffffff;
   --tcn-text: #17251f;
-
   font-family: Arial, sans-serif;
   position: relative;
   z-index: 99999;
 }
 
-/* Small floating character */
+/* Floating character position */
 
 #tcn-ai-assistant .tcn-ai-character-area {
   position: fixed;
   right: 18px;
   bottom: 16px;
   z-index: 99998;
-  width: 76px;
-  height: 88px;
+  width: 152px;
+  height: 176px;
+  touch-action: none;
 }
 
 #tcn-ai-assistant .tcn-ai-character {
   position: relative;
   display: block;
-  width: 76px;
-  height: 88px;
+  width: 152px;
+  height: 176px;
   padding: 0;
   margin: 0;
   border: 0;
   outline: none;
   background: transparent;
   box-shadow: none;
-  cursor: pointer;
+  cursor: grab;
   overflow: visible;
+  touch-action: none;
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+#tcn-ai-assistant .tcn-ai-character:active {
+  cursor: grabbing;
 }
 
 #tcn-ai-assistant .tcn-ai-character:hover {
   background: transparent;
   box-shadow: none;
-  transform: translateY(-3px);
 }
 
 #tcn-ai-assistant .tcn-ai-girl {
@@ -59,6 +64,8 @@
   border: 0;
   background: transparent;
   pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 #tcn-ai-assistant .tcn-ai-character.is-standing
@@ -71,7 +78,7 @@
   display: block;
 }
 
-/* Hide all welcome and greeting text */
+/* Hide welcome and greeting text */
 
 #tcn-ai-assistant #tcnAiGreeting,
 #tcn-ai-assistant .tcn-ai-greeting,
@@ -82,14 +89,13 @@
 
 /* Chat window */
 
-#tcn-ai-assistant .tcn-ai-window,
 #tcn-ai-assistant #tcnAiWindow {
   position: fixed;
   right: 18px;
-  bottom: 116px;
+  bottom: 200px;
   width: 340px;
   max-width: calc(100vw - 28px);
-  max-height: min(520px, calc(100vh - 145px));
+  max-height: min(520px, calc(100vh - 225px));
   display: none;
   flex-direction: column;
   overflow: hidden;
@@ -100,8 +106,6 @@
   box-shadow: 0 8px 35px rgba(0, 0, 0, 0.28);
   z-index: 99999;
 }
-
-/* Open chat when JavaScript changes its state */
 
 #tcn-ai-assistant #tcnAiWindow.is-open,
 #tcn-ai-assistant #tcnAiWindow.open,
@@ -167,7 +171,7 @@
   cursor: pointer;
 }
 
-/* Messages area */
+/* Messages */
 
 #tcn-ai-assistant .tcn-ai-messages {
   min-height: 110px;
@@ -183,7 +187,7 @@
   display: none;
 }
 
-/* Suggestion buttons */
+/* Suggestions */
 
 #tcn-ai-assistant .tcn-ai-suggestions {
   display: flex;
@@ -207,7 +211,7 @@
   background: #d5ffe5;
 }
 
-/* Message input */
+/* Input */
 
 #tcn-ai-assistant .tcn-ai-form {
   display: flex;
@@ -251,25 +255,25 @@
   font-size: 10px;
 }
 
-/* Mobile layout */
+/* Mobile */
 
 @media (max-width: 480px) {
   #tcn-ai-assistant .tcn-ai-character-area {
     right: 10px;
     bottom: 10px;
-    width: 62px;
-    height: 72px;
+    width: 124px;
+    height: 144px;
   }
 
   #tcn-ai-assistant .tcn-ai-character {
-    width: 62px;
-    height: 72px;
+    width: 124px;
+    height: 144px;
   }
 
   #tcn-ai-assistant #tcnAiWindow {
     right: 10px;
-    bottom: 92px;
+    bottom: 164px;
     width: calc(100vw - 20px);
-    max-height: calc(100vh - 115px);
+    max-height: calc(100vh - 185px);
   }
 }
