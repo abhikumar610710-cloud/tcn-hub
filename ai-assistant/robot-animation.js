@@ -1,71 +1,292 @@
 
+/* =========================================
+   TOTAL CRYPTO HUB
+   EXPRESSIVE 3D ROBOT ANIMATIONS
+========================================= */
+
 (() => {
   "use strict";
 
-  function startRobotAnimation() {
-    const robot = document.getElementById("tcnAiRobot");
+  const robotSelector = "#tcnAiRobot";
+  let robot = null;
+  let animationStarted = false;
+  let idleTimer = null;
+  let reactionTimer = null;
+  let eyeElements = [];
+  let originalEyePositions = [];
 
-    if (!robot || robot.dataset.animationReady === "true") return;
+  function findRobot() {
+    robot = document.querySelector(robotSelector);
 
-    robot.dataset.animationReady = "true";
+    if (!robot) return false;
 
-    const eyes = robot.querySelectorAll(".tcn-robot-eye");
+    eyeElements = Array.from(
+      robot.querySelectorAll(".tcn-robot-eye")
+    );
 
-    // आँखों को mouse की दिशा में देखने देना
-    document.addEventListener("mousemove", (event) => {
-      const rect = robot.getBoundingClientRect();
+    if (!eyeElements.length) return false;
 
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
+    originalEyePositions = eyeElements.map((eye) => ({
+      cx: Number(eye.getAttribute("cx")) || 0,
+      cy: Number(eye.getAttribute("cy")) || 0
+    }));
 
-      const angleX = (event.clientX - centerX) / window.innerWidth;
-      const angleY = (event.clientY - centerY) / window.innerHeight;
+    return true;
+  }
 
-      const moveX = Math.max(-2, Math.min(2, angleX * 5));
-      const moveY = Math.max(-2, Math.min(2, angleY * 5));
+  function setReaction(type, duration = 1100) {
+    if (!robot) return;
 
-      eyes.forEach((eye) => {
-        eye.style.setProperty("--look-x", `${moveX}px`);
-        eye.style.setProperty("--look-y", `${moveY}px`);
-      });
-    });
+    robot.dataset.reaction = type;
 
-    // Robot के छोटे-छोटे reactions
-    const reactions = ["is-happy", "is-curious"];
+    clearTimeout(reactionTimer);
 
-    function react() {
-      const reaction = reactions[
-        Math.floor(Math.random() * reactions.length)
-      ];
+    reactionTimer = setTimeout(() => {
+      if (robot) {
+        robot.dataset.reaction = "normal";
+      }
+    }, duration);
+  }
 
-      robot.classList.add(reaction);
+  function resetEyes() {
+    if (!robot || !eyeElements.length) return;
 
-      window.setTimeout(() => {
-        robot.classList.remove(reaction);
-      }, 1200);
-    }
+    eyeElements.forEach((eye, index) => {
+      const original = originalEyePositions[index];
 
-    // समय-समय पर friendly reaction
-    window.setInterval(() => {
-      if (!document.hidden) react();
-    }, 9000);
-
-    // पेज पर वापस आने पर robot react करे
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) react();
+      eye.setAttribute("cx", original.cx);
+      eye.setAttribute("cy", original.cy);
     });
   }
 
-  // Assistant HTML लोड होने के बाद animation शुरू करें
-  const waitForRobot = window.setInterval(() => {
-    if (document.getElementById("tcnAiRobot")) {
-      window.clearInterval(waitForRobot);
-      startRobotAnimation();
-    }
-  }, 300);
+  function moveEyes(pointerX, pointerY) {
+    if (!robot || !eyeElements.length) return;
 
-  // अधिकतम 20 सेकंड तक प्रतीक्षा
-  window.setTimeout(() => {
-    window.clearInterval(waitForRobot);
-  }, 20000);
+    const rect = robot.getBoundingClientRect();
+
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const directionX = Math.max(
+      -1,
+      Math.min(1, (pointerX - centerX) / 180)
+    );
+
+    const directionY = Math.max(
+      -1,
+      Math.min(1, (pointerY - centerY) / 180)
+    );
+
+    eyeElements.forEach((eye, index) => {
+      const original = originalEyePositions[index];
+
+      eye.setAttribute(
+        "cx",
+        original.cx + directionX * 2.5
+      );
+
+      eye.setAttribute(
+        "cy",
+        original.cy + directionY * 1.5
+      );
+    });
+  }
+
+  function startIdleExpressions() {
+    clearInterval(idleTimer);
+
+    const expressions = [
+      "happy",
+      "normal",
+      "happy",
+      "normal"
+    ];
+
+    let index = 0;
+
+    idleTimer = setInterval(() => {
+      if (!robot) return;
+
+      const chat = document.getElementById("tcnAiWindow");
+
+      if (chat && chat.classList.contains("active")) {
+        return;
+      }
+
+      setReaction(expressions[index], 1300);
+
+      index = (index + 1) % expressions.length;
+    }, 4500);
+  }
+
+  function handleRobotClick() {
+    if (!robot) return;
+
+    setReaction("happy", 1400);
+
+    robot.classList.remove("tcn-robot-clicked");
+
+    void robot.offsetWidth;
+
+    robot.classList.add("tcn-robot-clicked");
+
+    setTimeout(() => {
+      if (robot) {
+        robot.classList.remove("tcn-robot-clicked");
+      }
+    }, 900);
+  }
+
+  function handleChatState() {
+    const chat = document.getElementById("tcnAiWindow");
+
+    if (!chat) return;
+
+    const observer = new MutationObserver(() => {
+      if (chat.classList.contains("active")) {
+        setReaction("happy", 1600);
+      } else {
+        setReaction("normal", 700);
+      }
+    });
+
+    observer.observe(chat, {
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+  }
+
+  function addAnimationStyles() {
+    if (document.getElementById("tcnRobotAnimationStyles")) {
+      return;
+    }
+
+    const style = document.createElement("style");
+
+    style.id = "tcnRobotAnimationStyles";
+
+    style.textContent = `
+      #tcnAiRobot {
+        transform-origin: center bottom;
+        transition: transform 0.25s ease;
+      }
+
+      #tcnAiRobot[data-reaction="happy"] {
+        filter: brightness(1.08);
+      }
+
+      #tcnAiRobot[data-reaction="thinking"] {
+        filter: brightness(0.95);
+      }
+
+      #tcnAiRobot[data-reaction="normal"] {
+        filter: none;
+      }
+
+      #tcnAiRobot.tcn-robot-clicked {
+        animation: tcnRobotClickBounce 0.75s ease;
+      }
+
+      #tcnAiRobot.tcn-robot-clicked .tcn-robot-arm {
+        animation: tcnRobotWave 0.55s ease-in-out 2;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      #tcnAiRobot[data-reaction="happy"] .tcn-robot-smile {
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: scale(1.15);
+      }
+
+      #tcnAiRobot[data-reaction="thinking"] .tcn-robot-eye {
+        opacity: 0.8;
+      }
+
+      @keyframes tcnRobotClickBounce {
+        0%, 100% {
+          transform: translateY(0) scale(1);
+        }
+        35% {
+          transform: translateY(-13px) scale(1.05);
+        }
+        65% {
+          transform: translateY(0) scale(0.97);
+        }
+      }
+
+      @keyframes tcnRobotWave {
+        0%, 100% {
+          rotate: 0deg;
+        }
+        25% {
+          rotate: -22deg;
+        }
+        50% {
+          rotate: 16deg;
+        }
+        75% {
+          rotate: -15deg;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #tcnAiRobot,
+        #tcnAiRobot * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function initializeRobotAnimations() {
+    if (animationStarted) return;
+
+    if (!findRobot()) return;
+
+    animationStarted = true;
+
+    addAnimationStyles();
+
+    robot.addEventListener("click", handleRobotClick);
+
+    document.addEventListener("pointermove", (event) => {
+      if (event.pointerType === "touch") return;
+
+      moveEyes(event.clientX, event.clientY);
+    }, { passive: true });
+
+    robot.addEventListener("pointerleave", resetEyes);
+
+    handleChatState();
+    startIdleExpressions();
+
+    setReaction("happy", 1500);
+  }
+
+  function watchForRobot() {
+    if (initializeRobotAnimations()) return;
+
+    const observer = new MutationObserver(() => {
+      if (initializeRobotAnimations()) {
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", watchForRobot, {
+      once: true
+    });
+  } else {
+    watchForRobot();
+  }
 })();
