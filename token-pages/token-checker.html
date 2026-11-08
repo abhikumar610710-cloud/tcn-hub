@@ -1,695 +1,788 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Search DeFi protocols, DePIN projects, community campaigns and crypto tokens across trusted data sources on Total Crypto Hub.">
-<meta name="keywords" content="Crypto Project Finder, DeFi, DePIN, Token Search, CoinGecko, DEX Screener, DeFiLlama">
-<link rel="icon" type="image/x-icon" href="../favicon.ico"><title>Smart Crypto Finder | Total Crypto Hub</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover DeFi protocols, DePIN projects, community projects, airdrop campaigns and crypto tokens with Smart Token Finder by Total Crypto Hub.">
+  <meta name="keywords" content="Smart Token Finder, Crypto Project Finder, DeFi, DePIN, Token Search, DEX Screener, DefiLlama">
+  <title>Smart Token Finder | Total Crypto Hub</title>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f4f8fc;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --line: #e5edf5;
+      --ink: #101b3d;
+      --body: #263858;
+      --muted: #71809b;
+      --green: #08a86b;
+      --green-dark: #078653;
+      --green-soft: #e8fbf3;
+      --shadow: 0 12px 34px rgba(27,54,93,.07);
+      --sidebar-width: 258px;
+      --sponsor-height: 58px;
+    }
+    html[data-theme="dark"], body[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #080f1c;
+      --surface: #101b2c;
+      --surface-soft: #142238;
+      --line: #24344b;
+      --ink: #f2f7ff;
+      --body: #d4e0f0;
+      --muted: #91a3bc;
+      --green: #20c889;
+      --green-dark: #16a873;
+      --green-soft: #123b32;
+      --shadow: 0 14px 34px rgba(0,0,0,.22);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background: var(--page);
+      color: var(--body);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
 
-:root{color-scheme:light;--page:#f4f8fc;--surface:#fff;--surface2:#f8fbff;--line:#e5edf5;--ink:#101b3d;--body:#263858;--muted:#71809b;--green:#08a86b;--green2:#078653;--soft:#e8fbf3;--shadow:0 12px 34px rgba(27,54,93,.07);--sidebar-width:258px;--sponsor-height:58px}
+    /* Sponsor strip */
+    .sponsor-strip {
+      position: sticky;
+      top: 0;
+      z-index: 140;
+      min-height: var(--sponsor-height);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #f4fff9;
+      background: radial-gradient(circle at 8% 50%,rgba(16,185,129,.24),transparent 17%), radial-gradient(circle at 92% 50%,rgba(16,185,129,.22),transparent 18%), linear-gradient(100deg,#041d1b,#061a24 48%,#031d1b);
+      border-bottom: 1px solid rgba(52,211,153,.28);
+      box-shadow: 0 5px 18px rgba(2,20,29,.16);
+    }
+    .sponsor-inner { width: 100%; max-width: 1700px; min-height: var(--sponsor-height); margin: auto; padding: 7px 28px; display: flex; align-items: center; justify-content: center; gap: 18px; }
+    .sponsor-coin { width: 38px; height: 38px; flex: 0 0 38px; display: grid; place-items: center; border: 2px solid rgba(255,255,255,.65); border-radius: 50%; color: #fff8d7; background: linear-gradient(145deg,#ffca45,#bd6b09); font-size: 23px; font-weight: 800; }
+    .sponsor-copy { min-width: 0; display: flex; align-items: center; justify-content: center; gap: 13px; white-space: nowrap; }
+    .sponsor-eyebrow { padding: 4px 8px; border: 1px solid rgba(110,231,183,.35); border-radius: 999px; color: #a7f3d0; background: rgba(16,185,129,.12); font-size: 8px; font-weight: 800; letter-spacing: .8px; }
+    .sponsor-copy strong { color: #fff; font-size: clamp(13px,1.35vw,19px); font-weight: 800; }
+    .sponsor-copy em { color: #4ade9b; font-style: normal; }
+    .sponsor-divider { width: 1px; height: 23px; background: rgba(226,255,242,.35); }
+    .sponsor-tagline { color: #d0e6df; font-size: 10px; font-weight: 600; }
+    .sponsor-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 17px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; color: #05291d; background: linear-gradient(135deg,#a7f3b5,#35e89a); text-decoration: none; font-size: 10px; font-weight: 800; white-space: nowrap; }
 
-[data-theme=dark]{color-scheme:dark;--page:#080f1c;--surface:#101b2c;--surface2:#142238;--line:#24344b;--ink:#f2f7ff;--body:#d4e0f0;--muted:#91a3bc;--green:#20c889;--green2:#16a873;--soft:#123b32;--shadow:0 14px 34px rgba(0,0,0,.22)}
+    /* Sidebar */
+    .sidebar { position: fixed; z-index: 120; inset: var(--sponsor-height) auto 0 0; width: var(--sidebar-width); height: calc(100dvh - var(--sponsor-height)); display: flex; flex-direction: column; padding: 20px 16px 18px; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--line); box-shadow: 8px 0 28px rgba(21,48,84,.025); }
+    .brand { display: flex; align-items: center; gap: 11px; padding: 0 10px 24px; text-decoration: none; flex-shrink: 0; }
+    .brand-mark { width: 46px; height: 46px; flex: 0 0 46px; display: grid; place-items: center; overflow: hidden; border-radius: 50%; background: var(--surface); border: 2px solid var(--green); box-shadow: 0 4px 13px rgba(8,168,107,.18); color: var(--green-dark); font-size: 11px; font-weight: 800; }
+    .brand-mark img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .brand-title { color: var(--ink); font-size: 17px; line-height: 1.2; font-weight: 800; letter-spacing: -.45px; }
+    .brand-subtitle { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; font-weight: 600; }
+    .brand-subtitle b { color: var(--green); }
+    .side-label { padding: 10px 13px 8px; color: #9aa8bc; font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+    .side-nav { display: grid; gap: 6px; flex-shrink: 0; }
+    .side-link { min-height: 46px; display: flex; align-items: center; gap: 12px; padding: 10px 12px; color: var(--body); text-decoration: none; border: 1px solid transparent; border-radius: 15px; font-size: 12px; font-weight: 700; transition: .18s; }
+    .side-link:hover { background: var(--surface-soft); border-color: var(--line); transform: translateX(2px); }
+    .side-link.active { color: #087b4b; background: linear-gradient(100deg,#e2fff1,#f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8,168,107,.11); }
+    html[data-theme="dark"] .side-link.active, body[data-theme="dark"] .side-link.active { color: #65e6b1; background: #12382f; border-color: #23654e; }
+    .nav-icon { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; border-radius: 11px; font-size: 16px; }
+    .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-home { color: #079b69; background: #d9f8e9; }
+    .nav-depin { color: #1687ff; background: #dfeeff; }
+    .nav-community { color: #8b5cf6; background: #eee5ff; }
+    .nav-airdrop { color: #f07819; background: #fff0d9; }
+    .nav-wallet { color: #9333ea; background: #f1e3ff; }
+    .nav-checker { color: #0d9488; background: #d9f7f0; }
+    .nav-calculator { color: #2563eb; background: #e2eaff; }
+    html[data-theme="dark"] .nav-home, body[data-theme="dark"] .nav-home { color: #54e3a7; background: #164735; }
+    html[data-theme="dark"] .nav-depin, body[data-theme="dark"] .nav-depin { color: #70b7ff; background: #183b61; }
+    html[data-theme="dark"] .nav-community, body[data-theme="dark"] .nav-community { color: #c1a4ff; background: #38265e; }
+    html[data-theme="dark"] .nav-airdrop, body[data-theme="dark"] .nav-airdrop { color: #ffb36d; background: #59391f; }
+    html[data-theme="dark"] .nav-wallet, body[data-theme="dark"] .nav-wallet { color: #d1a2ff; background: #43265f; }
+    html[data-theme="dark"] .nav-checker, body[data-theme="dark"] .nav-checker { color: #65ded1; background: #164a46; }
+    html[data-theme="dark"] .nav-calculator, body[data-theme="dark"] .nav-calculator { color: #8eb5ff; background: #203c70; }
+    .sidebar-spacer { flex: 0 0 18px; min-height: 18px; }
+    .side-promo { flex-shrink: 0; margin: 16px 7px 13px; padding: 19px 14px; text-align: center; border-radius: 22px; background: radial-gradient(circle at 90% 10%,rgba(92,238,176,.24),transparent 34%), linear-gradient(145deg,#e7fff4,#fff 72%); border: 1px solid #c7f5df; box-shadow: 0 8px 20px rgba(8,168,107,.1); }
+    html[data-theme="dark"] .side-promo, body[data-theme="dark"] .side-promo { background: linear-gradient(145deg,#123b32,#142238); border-color: #255c49; }
+    .promo-gift { font-size: 33px; margin-bottom: 8px; }
+    .side-promo h3 { margin: 0 0 7px; color: var(--ink); font-size: 13px; line-height: 1.45; }
+    .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .promo-btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 17px; border-radius: 999px; color: #fff; background: linear-gradient(135deg,#08a86b,#06c77a); text-decoration: none; font-size: 11px; font-weight: 800; }
+    .support-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; margin: 0 7px; padding: 13px; border: 1px solid var(--line); border-radius: 17px; background: var(--surface-soft); text-decoration: none; }
+    .support-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: #078653; background: var(--green-soft); font-size: 17px; }
+    .support-card strong { display: block; color: var(--ink); font-size: 11px; }
+    .support-card .support-action { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { flex-shrink: 0; margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--page);color:var(--body);font-family:'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit}
+    /* Main header and content */
+    .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
+    .topbar { position: sticky; top: var(--sponsor-height); z-index: 100; min-height: 74px; display: flex; align-items: center; gap: 18px; padding: 12px 30px; background: var(--surface); border-bottom: 1px solid var(--line); }
+    .mobile-menu-btn { display: none; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: var(--surface); cursor: pointer; }
+    .search-wrap { position: relative; width: min(540px,52vw); }
+    .search-wrap input { width: 100%; height: 42px; padding: 0 44px 0 16px; border: 1px solid var(--line); border-radius: 999px; outline: none; color: var(--ink); background: var(--surface-soft); font-size: 11px; font-weight: 600; }
+    .search-wrap input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(8,168,107,.1); }
+    .search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 17px; pointer-events: none; }
+    .topbar-spacer { flex: 1; }
+    .community-dropdown { position: relative; }
+    .community-btn, .icon-btn { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--line); color: var(--ink); background: var(--surface); cursor: pointer; font-weight: 800; box-shadow: 0 3px 9px rgba(20,45,75,.035); }
+    .community-btn { padding: 0 15px; border-radius: 999px; font-size: 11px; }
+    .icon-btn { width: 38px; border-radius: 50%; font-size: 17px; }
+    .dropdown-content { display: none; position: absolute; z-index: 150; top: calc(100% + 10px); right: 0; min-width: 190px; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: 0 14px 32px rgba(0,0,0,.14); }
+    .dropdown-content.show { display: block; }
+    .dropdown-content a { display: flex; gap: 9px; padding: 12px 15px; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
+    .mobile-overlay { display: none; }
+    main { max-width: 1500px; margin: auto; padding: 25px 30px 40px; }
+    .breadcrumb { margin: 2px 0 17px; color: var(--muted); font-size: 10px; }
+    .breadcrumb strong { color: var(--green); }
 
-.sponsor-strip{position:sticky;top:0;z-index:140;min-height:var(--sponsor-height);display:flex;align-items:center;overflow:hidden;color:#f4fff9;background:radial-gradient(circle at 8% 50%,rgba(16,185,129,.24),transparent 17%),radial-gradient(circle at 92% 50%,rgba(16,185,129,.22),transparent 18%),linear-gradient(100deg,#041d1b,#061a24 48%,#031d1b);border-bottom:1px solid rgba(52,211,153,.28);box-shadow:0 5px 18px rgba(2,20,29,.16)}
+    /* Hero */
+    .hero { position: relative; overflow: hidden; border-radius: 25px; color: #fff; background: radial-gradient(circle at 80% 20%,rgba(48,226,158,.25),transparent 30%), linear-gradient(120deg,#092c35 0%,#0b4c48 55%,#087b5a 100%); box-shadow: 0 18px 38px rgba(3,72,59,.16); }
+    .hero::after { content: ""; position: absolute; width: 350px; height: 350px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; right: -100px; top: -170px; box-shadow: 0 0 0 35px rgba(255,255,255,.025),0 0 0 75px rgba(255,255,255,.02); pointer-events: none; }
+    .finder-hero { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(270px,.8fr); gap: 24px; align-items: center; min-height: 270px; padding: 34px 38px; }
+    .hero-copy { position: relative; z-index: 2; max-width: 700px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 13px; padding: 7px 11px; border: 1px solid rgba(167,243,208,.35); border-radius: 999px; color: #b7f7d7; background: rgba(16,185,129,.14); font-size: 9px; font-weight: 800; letter-spacing: 1px; }
+    .hero h1 { margin: 0 0 12px; color: #fff; font-size: clamp(28px,3.4vw,43px); line-height: 1.12; letter-spacing: -1.5px; }
+    .hero p { max-width: 620px; margin: 0; color: #d5eee7; font-size: 12px; line-height: 1.8; }
+    .hero-points { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+    .hero-points span { padding: 7px 10px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; color: #e6fff5; background: rgba(255,255,255,.08); font-size: 9px; font-weight: 700; }
+    .ad-card { position: relative; z-index: 2; min-height: 175px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 20px; border: 1px dashed rgba(167,243,208,.65); border-radius: 20px; background: rgba(2,26,31,.36); backdrop-filter: blur(8px); }
+    .ad-label { padding: 5px 9px; border-radius: 999px; color: #a7f3d0; background: rgba(167,243,208,.14); font-size: 8px; font-weight: 800; letter-spacing: 1px; }
+    .ad-card h3 { margin: 13px 0 7px; color: #fff; font-size: 18px; }
+    .ad-card p { margin: 0 0 14px; color: #d0e6df; font-size: 10px; line-height: 1.6; }
+    .ad-card a { color: #9cf2c8; font-size: 10px; font-weight: 800; text-decoration: none; }
 
-.sponsor-inner{width:100%;max-width:1700px;min-height:var(--sponsor-height);margin:auto;padding:7px 28px;display:flex;align-items:center;justify-content:center;gap:18px}
-.sponsor-coin{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.65);border-radius:50%;color:#fff8d7;background:linear-gradient(145deg,#ffca45,#bd6b09);font-size:23px;font-weight:800}
-.sponsor-copy{display:flex;align-items:center;justify-content:center;gap:13px;min-width:0;white-space:nowrap}
-.sponsor-eyebrow{padding:4px 8px;border:1px solid rgba(110,231,183,.35);border-radius:999px;color:#a7f3d0;background:rgba(16,185,129,.12);font-size:8px;font-weight:800;letter-spacing:.8px}
-.sponsor-copy strong{color:#fff;font-size:clamp(13px,1.35vw,19px);font-weight:800}
-.sponsor-copy em{color:#4ade9b;font-style:normal}
-.sponsor-divider{width:1px;height:23px;background:rgba(226,255,242,.35)}
-.sponsor-tagline{color:#d0e6df;font-size:10px;font-weight:600}
-.sponsor-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 17px;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#05291d;background:linear-gradient(135deg,#a7f3b5,#35e89a);text-decoration:none;font-size:10px;font-weight:800;white-space:nowrap}
+    /* Sections, categories and search */
+    .section-heading { display: flex; align-items: center; gap: 10px; margin: 29px 2px 8px; }
+    .section-icon { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; border-radius: 11px; color: var(--green); background: var(--green-soft); font-size: 17px; }
+    .section-heading h2 { margin: 0; color: var(--ink); font-size: 18px; font-weight: 800; letter-spacing: -.4px; }
+    .section-subtitle { margin: 0 0 15px 46px; color: var(--muted); font-size: 10px; font-weight: 600; line-height: 1.6; }
+    .tool-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 12px; }
+    .tool-card { min-height: 142px; padding: 17px 15px; text-align: left; border: 1px solid var(--line); border-radius: 18px; color: var(--body); background: var(--surface); box-shadow: 0 7px 22px rgba(27,54,93,.035); cursor: pointer; transition: .2s; }
+    .tool-card:hover, .tool-card.active { transform: translateY(-3px); border-color: rgba(8,168,107,.55); box-shadow: 0 12px 25px rgba(8,168,107,.1); }
+    .tool-card.active { background: linear-gradient(145deg,var(--surface),var(--green-soft)); }
+    .tool-emoji { width: 39px; height: 39px; display: grid; place-items: center; margin-bottom: 12px; border-radius: 13px; background: var(--surface-soft); font-size: 20px; }
+    .tool-card strong { display: block; margin-bottom: 6px; color: var(--ink); font-size: 11px; }
+    .tool-card p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.6; }
+    .priority { display: inline-block; margin-top: 9px; color: var(--green); font-size: 8px; font-weight: 800; letter-spacing: .5px; }
+    .search-panel { padding: 22px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: var(--shadow); }
+    .search-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .search-title strong { color: var(--ink); font-size: 14px; }
+    .search-title span { color: var(--muted); font-size: 9px; }
+    .finder-form { display: grid; grid-template-columns: minmax(0,1fr) 190px auto; gap: 11px; }
+    .finder-input, .category-select { width: 100%; min-width: 0; height: 51px; padding: 0 16px; border: 1px solid var(--line); border-radius: 13px; outline: none; color: var(--ink); background: var(--surface-soft); font: 600 12px "Plus Jakarta Sans",sans-serif; }
+    .finder-input:focus, .category-select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(8,168,107,.1); }
+    .find-btn { height: 51px; padding: 0 24px; border: 0; border-radius: 13px; color: #fff; background: linear-gradient(110deg,#00ad80,#008e68); font: 800 11px "Plus Jakarta Sans",sans-serif; cursor: pointer; box-shadow: 0 7px 15px rgba(0,142,104,.16); white-space: nowrap; }
+    .find-btn:hover { filter: brightness(1.04); }
+    .find-btn:disabled { opacity: .65; cursor: wait; }
+    .search-hint { margin: 12px 0 0; color: var(--muted); font-size: 9px; line-height: 1.7; }
+    .source-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .source-chip { padding: 6px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface-soft); font-size: 8px; font-weight: 800; }
+    .status { display: none; margin-top: 16px; padding: 12px 14px; border: 1px solid transparent; border-radius: 12px; font-size: 10px; line-height: 1.6; }
+    .status.show { display: block; }
+    .status.info { color: #76591b; background: #fff8e7; border-color: #f5e1ae; }
+    .status.error { color: #a33b3b; background: #fff0f0; border-color: #f2caca; }
+    .status.success { color: #087b4b; background: #e8fbf3; border-color: #b8f2d7; }
+    html[data-theme="dark"] .status.info, body[data-theme="dark"] .status.info { color: #f1d89c; background: #392f1c; border-color: #63512c; }
+    html[data-theme="dark"] .status.error, body[data-theme="dark"] .status.error { color: #ffaaa5; background: #462525; border-color: #713737; }
+    html[data-theme="dark"] .status.success, body[data-theme="dark"] .status.success { color: #7ce5b5; background: #133a2d; border-color: #23654e; }
 
-.sidebar{position:fixed;z-index:120;inset:var(--sponsor-height) auto 0 0;width:var(--sidebar-width);height:calc(100dvh - var(--sponsor-height));display:flex;flex-direction:column;padding:20px 16px 18px;overflow-y:auto;background:var(--surface);border-right:1px solid var(--line);box-shadow:8px 0 28px rgba(21,48,84,.025)}
-.brand{display:flex;align-items:center;gap:11px;padding:0 10px 24px;text-decoration:none;flex-shrink:0}
-.brand-mark{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;overflow:hidden;border-radius:50%;background:var(--surface);border:2px solid var(--green);box-shadow:0 4px 13px rgba(8,168,107,.18);color:var(--green2);font-weight:800;font-size:11px}
-.brand-mark img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.brand-title{color:var(--ink);font-size:17px;line-height:1.2;font-weight:800;letter-spacing:-.45px}
-.brand-subtitle{display:block;margin-top:3px;color:var(--muted);font-size:10px;font-weight:600}
-.brand-subtitle b{color:var(--green)}
-.side-label{padding:10px 13px 8px;color:#9aa8bc;font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
-.side-nav{display:grid;gap:6px;flex-shrink:0}
-.side-link{display:flex;align-items:center;gap:12px;min-height:46px;padding:10px 12px;color:var(--body);text-decoration:none;border:1px solid transparent;border-radius:15px;font-size:12px;font-weight:700;transition:.18s}
-.side-link:hover{background:var(--surface2);border-color:var(--line);transform:translateX(2px)}
-.side-link.active{color:#087b4b;background:linear-gradient(100deg,#e2fff1,#f4fff9);border-color:#b8f2d7;box-shadow:0 5px 13px rgba(8,168,107,.11)}
-[data-theme=dark] .side-link.active{color:#65e6b1;background:#12382f;border-color:#23654e}
-.nav-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:11px;font-size:16px}
-.nav-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.nav-home{color:#079b69;background:#d9f8e9}
-.nav-depin{color:#1687ff;background:#dfeeFF}
-.nav-community{color:#8b5cf6;background:#eee5ff}
-.nav-airdrop{color:#f07819;background:#fff0d9}
-.nav-wallet{color:#9333ea;background:#f1e3ff}
-.nav-checker{color:#0d9488;background:#d9f7f0}
-.nav-calculator{color:#2563eb;background:#e2eaff}
-[data-theme=dark] .nav-home{color:#54e3a7;background:#164735}
-[data-theme=dark] .nav-depin{color:#70b7ff;background:#183b61}
-[data-theme=dark] .nav-community{color:#c1a4ff;background:#38265e}
-[data-theme=dark] .nav-airdrop{color:#ffb36d;background:#59391f}
-[data-theme=dark] .nav-wallet{color:#d1a2ff;background:#43265f}
-[data-theme=dark] .nav-checker{color:#65ded1;background:#164a46}
-[data-theme=dark] .nav-calculator{color:#8eb5ff;background:#203c70}
-.sidebar-spacer{flex:0 0 18px;min-height:18px}
-.side-promo{flex-shrink:0;margin:16px 7px 13px;padding:19px 14px;text-align:center;border-radius:22px;background:radial-gradient(circle at 90% 10%,rgba(92,238,176,.24),transparent 34%),linear-gradient(145deg,#e7fff4,#fff 72%);border:1px solid #c7f5df;box-shadow:0 8px 20px rgba(8,168,107,.1)}
-[data-theme=dark] .side-promo{background:linear-gradient(145deg,#123b32,#142238);border-color:#255c49}
-.promo-gift{font-size:33px;margin-bottom:8px}
-.side-promo h3{margin:0 0 7px;color:var(--ink);font-size:13px;line-height:1.45}
-.side-promo p{margin:0 0 12px;color:var(--muted);font-size:10px;line-height:1.5}
-.promo-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 17px;border-radius:999px;color:white;background:linear-gradient(135deg,#08a86b,#06c77a);text-decoration:none;font-size:11px;font-weight:800}
-  .finder-button{height:51px;padding:0 21px;border:0;border-radius:13px;color:#fff;background:linear-gradient(135deg,#08a86b,#06bd78);font:800 11px 'Plus Jakarta Sans',sans-serif;cursor:pointer;box-shadow:0 7px 16px rgba(8,168,107,.2);white-space:nowrap}
-.finder-button:hover{filter:brightness(1.04);transform:translateY(-1px)}
-.finder-button:disabled{opacity:.6;cursor:wait;transform:none}
-.search-hints{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.search-hints span{padding:6px 9px;border-radius:999px;background:var(--surface2);color:var(--muted);font-size:9px}
-.status{display:none;margin-top:13px;padding:11px 13px;border-radius:12px;font-size:10px;line-height:1.6}
-.status.show{display:block}
-.status.info{color:#2563a6;background:#eaf4ff}
-.status.success{color:#087b4b;background:#e5fbf0}
-.status.error{color:#b42318;background:#fff0ef}
-[data-theme=dark] .status.info{color:#9ccaff;background:#172c47}
-[data-theme=dark] .status.success{color:#7ce5b5;background:#133a2d}
-[data-theme=dark] .status.error{color:#ffaaa5;background:#462525}
+    /* Results */
+    .results-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 25px 2px 12px; }
+    .results-head h2 { margin: 0; color: var(--ink); font-size: 16px; }
+    .results-head small { color: var(--muted); font-size: 9px; }
+    .results-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; }
+    .result-card { min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: 0 7px 22px rgba(27,54,93,.035); }
+    .result-top { display: flex; align-items: center; gap: 11px; }
+    .coin-avatar { width: 43px; height: 43px; flex: 0 0 43px; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; color: var(--green); background: var(--surface-soft); font-size: 16px; font-weight: 800; }
+    .coin-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .result-name { min-width: 0; flex: 1; }
+    .result-name h3 { overflow: hidden; margin: 0; color: var(--ink); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+    .result-name p { margin: 4px 0 0; color: var(--muted); font-size: 9px; }
+    .result-badge { padding: 5px 8px; border-radius: 999px; color: #087b4b; background: var(--green-soft); font-size: 8px; font-weight: 800; white-space: nowrap; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; margin: 16px 0 13px; }
+    .metric { min-width: 0; padding: 9px; border-radius: 11px; background: var(--surface-soft); }
+    .metric span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 8px; }
+    .metric strong { display: block; overflow-wrap: anywhere; color: var(--ink); font-size: 10px; }
+    .result-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 13px; }
+    .result-meta span { padding: 5px 7px; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); font-size: 8px; overflow-wrap: anywhere; }
+    .result-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .result-links a { padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--green-dark); text-decoration: none; font-size: 9px; font-weight: 800; }
+    .result-links a:hover { background: var(--green-soft); border-color: #b8f2d7; }
+    .no-link { color: var(--muted); font-size: 9px; }
+    .empty-state { grid-column: 1 / -1; padding: 28px 20px; text-align: center; border: 1px dashed var(--line); border-radius: 17px; background: var(--surface); }
+    .empty-icon { font-size: 28px; }
+    .empty-state h3 { margin: 9px 0 6px; color: var(--ink); font-size: 14px; }
+    .empty-state p { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: 10px; line-height: 1.8; }
+    .empty-state a { color: var(--green); font-weight: 800; }
 
-.results-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 2px 12px}
-.results-head h2{margin:0;color:var(--ink);font-size:17px}
-.results-count{padding:6px 10px;border-radius:999px;background:var(--soft);color:var(--green);font-size:9px;font-weight:800}
-.results-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.result-card{min-width:0;padding:17px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 7px 20px rgba(27,54,93,.035)}
-.result-top{display:flex;align-items:center;gap:11px}
-.coin-avatar{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;overflow:hidden;border-radius:14px;background:var(--surface2);color:var(--green);font-size:20px;font-weight:800}
-.coin-avatar img{width:100%;height:100%;object-fit:cover}
-.result-name{min-width:0;flex:1}
-.result-name h3{margin:0;color:var(--ink);font-size:13px;overflow-wrap:anywhere}
-.result-name p{margin:4px 0 0;color:var(--muted);font-size:9px}
-.result-badge{padding:6px 8px;border:1px solid var(--line);border-radius:999px;color:var(--green);font-size:7px;font-weight:800;white-space:nowrap}
-.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0 12px}
-.metric{min-width:0;padding:10px;border-radius:11px;background:var(--surface2)}
-.metric span{display:block;color:var(--muted);font-size:7px;font-weight:800;letter-spacing:.5px}
-.metric strong{display:block;margin-top:5px;color:var(--ink);font-size:10px;overflow-wrap:anywhere}
-.result-meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
-.result-meta span{padding:6px 8px;border-radius:8px;background:var(--surface2);color:var(--muted);font-size:8px;overflow-wrap:anywhere}
-.result-links{display:flex;flex-wrap:wrap;gap:7px}
-.result-links a{display:inline-flex;align-items:center;padding:7px 10px;border:1px solid var(--line);border-radius:9px;color:var(--green);text-decoration:none;font-size:8px;font-weight:800}
-.result-links a:hover{background:var(--soft)}
-.empty-state{grid-column:1/-1;padding:32px 20px;text-align:center;border:1px dashed var(--line);border-radius:18px;background:var(--surface)}
-.empty-icon{font-size:28px;margin-bottom:9px}
-.empty-state h3{margin:0 0 8px;color:var(--ink);font-size:14px}
-.empty-state p{max-width:620px;margin:0 auto;color:var(--muted);font-size:10px;line-height:1.8}
-.empty-state a{color:var(--green);font-weight:800}
+    /* Information and footer */
+    .feature-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+    .feature-card { display: flex; align-items: flex-start; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .feature-icon { width: 39px; height: 39px; flex: 0 0 39px; display: grid; place-items: center; border-radius: 12px; background: var(--green-soft); font-size: 18px; }
+    .feature-card h3 { margin: 2px 0 6px; color: var(--ink); font-size: 11px; }
+    .feature-card p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.65; }
+    .info-panel { margin-top: 17px; padding: 19px 21px; border: 1px solid var(--line); border-radius: 17px; background: var(--surface); }
+    .info-panel h3 { margin: 0 0 8px; color: var(--ink); font-size: 13px; font-weight: 800; }
+    .info-panel p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.8; }
+    .warning { display: flex; align-items: flex-start; gap: 10px; margin-top: 13px; padding: 13px 15px; border: 1px solid #f2e1b8; border-radius: 12px; color: #80652e; background: #fffaf0; font-size: 10px; line-height: 1.7; }
+    html[data-theme="dark"] .warning, body[data-theme="dark"] .warning { color: #f1d89c; background: #392f1c; border-color: #63512c; }
+    .sponsor-bottom { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 17px; padding: 20px; border: 1px solid rgba(8,168,107,.22); border-radius: 17px; background: linear-gradient(110deg,var(--green-soft),var(--surface)); }
+    .sponsor-bottom h3 { margin: 0 0 5px; color: var(--ink); font-size: 13px; }
+    .sponsor-bottom p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.6; }
+    .sponsor-bottom a { flex: 0 0 auto; padding: 10px 14px; border-radius: 999px; color: #fff; background: var(--green); text-decoration: none; font-size: 9px; font-weight: 800; }
+    .site-footer { margin-top: 28px; padding: 22px 12px; border-top: 1px solid var(--line); color: var(--muted); text-align: center; font-size: 10px; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 9px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; }
+    .footer-links a:hover { color: var(--green); }
 
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
-.info-card{padding:17px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
-.info-card .info-emoji{font-size:20px}
-.info-card h3{margin:10px 0 6px;color:var(--ink);font-size:12px}
-.info-card p{margin:0;color:var(--muted);font-size:9px;line-height:1.7}
-.info-panel{margin-top:25px;padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--surface2)}
-.info-panel h3{margin:0 0 8px;color:var(--ink);font-size:13px}
-.info-panel p{margin:0;color:var(--muted);font-size:10px;line-height:1.8}
-.sponsor-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:25px;padding:20px 23px;border:1px solid rgba(8,168,107,.2);border-radius:18px;background:linear-gradient(110deg,var(--soft),var(--surface))}
-.sponsor-bottom h3{margin:0 0 6px;color:var(--ink);font-size:14px}
-.sponsor-bottom p{margin:0;color:var(--muted);font-size:9px;line-height:1.6}
-.sponsor-bottom a{flex-shrink:0;padding:11px 15px;border-radius:999px;color:#fff;background:var(--green);text-decoration:none;font-size:9px;font-weight:800}
-.site-footer{display:flex;justify-content:space-between;gap:12px;padding:23px 2px 5px;color:var(--muted);font-size:9px}
-.footer-links{display:flex;flex-wrap:wrap;gap:14px}
-.footer-links a{text-decoration:none}
-.footer-links a:hover{color:var(--green)}
-
-@media(max-width:1180px){
-:root{--sidebar-width:230px}
-main{padding-left:22px;padding-right:22px}
-.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-.finder-form{grid-template-columns:minmax(0,1fr) 165px auto}
-}
-
-@media(max-width:900px){
-.sponsor-tagline,.sponsor-divider{display:none}
-.sponsor-copy{gap:9px}
-.sponsor-copy strong{font-size:13px}
-.finder-hero{grid-template-columns:1fr;min-height:0}
-.ad-card{min-height:145px}
-}
-
-@media(max-width:760px){
-:root{--sidebar-width:258px;--sponsor-height:52px}
-.sponsor-inner{justify-content:space-between;padding:6px 12px;gap:8px}
-.sponsor-coin{width:30px;height:30px;flex-basis:30px;font-size:17px}
-.sponsor-copy{justify-content:flex-start;flex:1;white-space:normal}
-.sponsor-eyebrow{display:none}
-.sponsor-copy strong{font-size:11px}
-.sponsor-cta{padding:8px 10px;font-size:8px}
-.sidebar{transform:translateX(-105%);transition:transform .25s ease;top:var(--sponsor-height);height:calc(100dvh - var(--sponsor-height))}
-body.menu-open .sidebar{transform:translateX(0)}
-.mobile-overlay{display:block;position:fixed;z-index:110;inset:var(--sponsor-height) 0 0;background:rgba(4,15,28,.52);opacity:0;visibility:hidden;transition:.2s}
-body.menu-open .mobile-overlay{opacity:1;visibility:visible}
-.main-column{margin-left:0}
-.topbar{min-height:64px;padding:10px 13px;gap:9px}
-.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 38px}
-.search-wrap{width:auto;flex:1}
-.search-wrap input{height:39px;font-size:10px}
-.community-btn{padding:0 10px;font-size:9px}
-.icon-btn{width:35px;min-height:35px}
-main{padding:20px 13px 28px}
-.finder-hero{padding:26px 21px;border-radius:20px}
-.hero h1{font-size:29px}
-.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.tool-card{min-height:130px;padding:13px}
-.search-panel{padding:15px}
-.finder-form{grid-template-columns:1fr 1fr}
-.finder-input{grid-column:1/-1}
-.finder-button{grid-column:1/-1}
-.results-grid{grid-template-columns:1fr}
-.info-grid{grid-template-columns:1fr}
-.sponsor-bottom{align-items:flex-start;flex-direction:column}
-.site-footer{flex-direction:column}
-}
-
-@media(max-width:430px){
-.sponsor-copy strong{font-size:10px}
-.sponsor-cta{padding:8px 9px;font-size:8px}
-.topbar{gap:6px}
-.community-btn{font-size:8px;padding:0 8px}
-.icon-btn{width:32px;min-height:32px}
-.tool-card{min-height:126px}
-.search-title{align-items:flex-start;flex-direction:column}
-.metric{padding:8px 6px}
-}
-
-@media(prefers-reduced-motion:reduce){
-*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
-}
-</style>
-.support-card{flex-shrink:0;display:flex;align-items:center;gap:10px;margin:0 7px;padding:13px;border-radius:17px;text-decoration:none;border:1px solid var(--line);background:var(--surface2)}
-.support-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;color:#078653;background:var(--soft);font-size:17px}
-.support-card strong{display:block;color:var(--ink);font-size:11px}
-.support-card span:last-child{display:block;margin-top:4px;color:var(--green);font-size:10px;font-weight:800}
-.sidebar-note{flex-shrink:0;margin:14px 8px 0;padding-bottom:3px;color:var(--muted);font-size:9px;text-align:center}
-
-.main-column{min-height:100vh;margin-left:var(--sidebar-width)}
-.topbar{position:sticky;top:var(--sponsor-height);z-index:100;min-height:74px;display:flex;align-items:center;gap:18px;padding:12px 30px;background:color-mix(in srgb,var(--surface) 94%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
-.mobile-menu-btn{display:none;width:38px;height:38px;border:1px solid var(--line);border-radius:12px;color:var(--ink);background:var(--surface);cursor:pointer}
-.search-wrap{position:relative;width:min(540px,52vw)}
-.search-wrap input{width:100%;height:42px;padding:0 44px 0 16px;border:1px solid var(--line);border-radius:999px;outline:none;color:var(--ink);background:var(--surface2);font-size:11px;font-weight:600}
-.search-wrap input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(8,168,107,.1)}
-.search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:17px;pointer-events:none}
-.topbar-spacer{flex:1}
-.community-dropdown{position:relative}
-.community-btn,.icon-btn{min-height:38px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer;font-weight:800;box-shadow:0 3px 9px rgba(20,45,75,.035)}
-.community-btn{padding:0 15px;border-radius:999px;font-size:11px}
-.icon-btn{width:38px;border-radius:50%;font-size:17px}
-.dropdown-content{display:none;position:absolute;z-index:150;top:calc(100% + 10px);right:0;min-width:190px;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:0 14px 32px rgba(0,0,0,.14)}
-.dropdown-content.show{display:block}
-.dropdown-content a{display:flex;gap:9px;padding:12px 15px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:11px;font-weight:700}
-.dropdown-content a:hover{color:var(--green);background:var(--soft)}
-.mobile-overlay{display:none}
-
-main{max-width:1500px;margin:auto;padding:25px 30px 40px}
-.breadcrumb{font-size:10px;color:var(--muted);margin:2px 0 17px}
-.breadcrumb strong{color:var(--green)}
-.hero{position:relative;overflow:hidden;border-radius:25px;color:#fff;background:radial-gradient(circle at 80% 20%,rgba(48,226,158,.25),transparent 30%),linear-gradient(120deg,#092c35 0%,#0b4c48 55%,#087b5a 100%);box-shadow:0 18px 38px rgba(3,72,59,.16)}
-.hero:after{content:"";position:absolute;width:350px;height:350px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-100px;top:-170px;box-shadow:0 0 0 35px rgba(255,255,255,.025),0 0 0 75px rgba(255,255,255,.02)}
-.finder-hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr);gap:24px;align-items:center;min-height:270px;padding:34px 38px}
-.hero-copy{position:relative;z-index:2;max-width:700px}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;margin-bottom:13px;padding:7px 11px;border:1px solid rgba(167,243,208,.35);border-radius:999px;color:#b7f7d7;background:rgba(16,185,129,.14);font-size:9px;font-weight:800;letter-spacing:1px}
-.hero h1{margin:0 0 12px;color:#fff;font-size:clamp(28px,3.4vw,43px);line-height:1.12;letter-spacing:-1.5px}
-.hero p{max-width:620px;margin:0;color:#d5eee7;font-size:12px;line-height:1.8}
-.hero-points{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
-.hero-points span{padding:7px 10px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);color:#e6fff5;font-size:9px;font-weight:700}
-.ad-card{position:relative;z-index:2;min-height:175px;padding:20px;border:1px dashed rgba(167,243,208,.65);border-radius:20px;background:rgba(2,26,31,.36);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
-.ad-label{padding:5px 9px;border-radius:999px;background:rgba(167,243,208,.14);color:#a7f3d0;font-size:8px;font-weight:800;letter-spacing:1px}
-.ad-card h3{margin:13px 0 7px;color:#fff;font-size:18px}
-.ad-card p{margin:0 0 14px;color:#d0e6df;font-size:10px;line-height:1.6}
-.ad-card a{color:#9cf2c8;font-size:10px;font-weight:800;text-decoration:none}
-.section-heading{display:flex;align-items:center;gap:10px;margin:29px 2px 8px}
-.section-icon{height:34px;width:34px;flex:0 0 34px;border-radius:11px;display:grid;place-items:center;background:var(--soft);color:var(--green);font-size:17px}
-.section-heading h2{margin:0;color:var(--ink);font-size:18px;letter-spacing:-.4px;font-weight:800}
-.section-subtitle{font-size:10px;color:var(--muted);margin:0 0 15px 46px;font-weight:600;line-height:1.6}
-
-.tool-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.tool-card{min-height:142px;padding:17px 15px;text-align:left;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 7px 22px rgba(27,54,93,.035);cursor:pointer;transition:.2s;color:var(--body)}
-.tool-card:hover,.tool-card.active{transform:translateY(-3px);border-color:rgba(8,168,107,.55);box-shadow:0 12px 25px rgba(8,168,107,.1)}
-.tool-card.active{background:linear-gradient(145deg,var(--surface),var(--soft))}
-.tool-emoji{width:39px;height:39px;display:grid;place-items:center;margin-bottom:12px;border-radius:13px;background:var(--surface2);font-size:20px}
-.tool-card strong{display:block;color:var(--ink);font-size:11px;margin-bottom:6px}
-.tool-card p{margin:0;color:var(--muted);font-size:9px;line-height:1.6}
-.priority{display:inline-block;margin-top:9px;color:var(--green);font-size:8px;font-weight:800;letter-spacing:.5px}
-
-.search-panel{padding:22px;border:1px solid var(--line);border-radius:22px;background:var(--surface);box-shadow:var(--shadow)}
-.search-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-.search-title strong{color:var(--ink);font-size:14px}
-.search-title span{color:var(--muted);font-size:9px}
-.finder-form{display:grid;grid-template-columns:minmax(0,1fr) 190px auto;gap:11px}
-.finder-input,.category-select{width:100%;height:51px;padding:0 16px;border:1px solid var(--line);border-radius:13px;outline:none;background:var(--surface2);color:var(--ink);font:600 12px 'Plus Jakarta Sans',sans-serif}
-.finder-input:focus,.category-select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(8,168,107,.1)}
-  .find-btn{height:51px;padding:0 24px;border:0;border-radius:13px;background:linear-gradient(110deg,#00ad80,#008e68);color:white;font:800 11px 'Plus Jakarta Sans',sans-serif;cursor:pointer;box-shadow:0 7px 15px rgba(0,142,104,.16)}
-.find-btn:disabled{opacity:.65;cursor:wait}
-.search-hint{margin:12px 0 0;color:var(--muted);font-size:9px;line-height:1.7}
-.source-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
-.source-chip{padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--surface2);font-size:8px;font-weight:800}
-.status{display:none;margin-top:16px;padding:12px 14px;border-radius:12px;font-size:10px;line-height:1.6}
-.status.show{display:block}
-.status.info{color:#76591b;background:#fff8e7;border:1px solid #f5e1ae}
-.status.error{color:#a33b3b;background:#fff0f0;border:1px solid #f2caca}
-.status.success{color:#087b4b;background:#e8fbf3;border:1px solid #b8f2d7}
-
-.results-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 2px 12px}
-.results-head h2{margin:0;color:var(--ink);font-size:16px}
-.results-head small{color:var(--muted);font-size:9px}
-.results-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.result-card{min-width:0;padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 7px 22px rgba(27,54,93,.035)}
-.result-top{display:flex;align-items:center;gap:11px}
-.coin-avatar{width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--surface2);color:var(--green);font-size:16px;font-weight:800}
-.coin-avatar img{width:100%;height:100%;object-fit:cover}
-.result-name{min-width:0;flex:1}
-.result-name h3{margin:0;color:var(--ink);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.result-name p{margin:4px 0 0;color:var(--muted);font-size:9px}
-.result-badge{padding:5px 8px;border-radius:999px;color:#087b4b;background:var(--soft);font-size:8px;font-weight:800;white-space:nowrap}
-.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0 13px}
-.metric{padding:9px;border-radius:11px;background:var(--surface2)}
-.metric span{display:block;color:var(--muted);font-size:8px;margin-bottom:5px}
-.metric strong{display:block;color:var(--ink);font-size:10px;overflow-wrap:anywhere}
-.result-meta{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}
-.result-meta span{padding:5px 7px;border:1px solid var(--line);border-radius:7px;color:var(--muted);font-size:8px}
-.result-links{display:flex;gap:8px;flex-wrap:wrap}
-.result-links a{padding:8px 10px;border:1px solid var(--line);border-radius:9px;color:var(--green2);text-decoration:none;font-size:9px;font-weight:800}
-.result-links a:hover{background:var(--soft);border-color:#b8f2d7}
-.empty-state{padding:28px 20px;text-align:center;border:1px dashed var(--line);border-radius:17px;background:var(--surface)}
-.empty-state .empty-icon{font-size:28px}
-.empty-state h3{margin:9px 0 6px;color:var(--ink);font-size:14px}
-.empty-state p{max-width:560px;margin:0 auto;color:var(--muted);font-size:10px;line-height:1.8}
-.empty-state a{color:var(--green);font-weight:800}
-.feature-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.feature-card{display:flex;align-items:flex-start;gap:12px;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
-.feature-icon{width:39px;height:39px;flex:0 0 39px;display:grid;place-items:center;border-radius:12px;background:var(--soft);font-size:18px}
-.feature-card h3{margin:2px 0 6px;color:var(--ink);font-size:11px}
-.feature-card p{margin:0;color:var(--muted);font-size:9px;line-height:1.65}
-.info-panel{margin-top:17px;padding:19px 21px;background:var(--surface);border:1px solid var(--line);border-radius:17px}
-.info-panel h3{margin:0 0 8px;font-size:13px;color:var(--ink);font-weight:800}
-.info-panel p{margin:0;color:var(--muted);font-size:10px;line-height:1.8}
-.warning{display:flex;align-items:flex-start;gap:10px;margin-top:13px;padding:13px 15px;border:1px solid #f2e1b8;background:#fffaf0;border-radius:12px;color:#80652e;font-size:10px;line-height:1.7}
-[data-theme=dark] .warning{background:#392f1c;border-color:#63512c;color:#f1d89c}
-.sponsor-bottom{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:17px;padding:20px;border:1px solid rgba(8,168,107,.22);border-radius:17px;background:linear-gradient(110deg,var(--soft),var(--surface))}
-.sponsor-bottom h3{margin:0 0 5px;color:var(--ink);font-size:13px}
-.sponsor-bottom p{margin:0;color:var(--muted);font-size:9px;line-height:1.6}
-.sponsor-bottom a{flex:0 0 auto;padding:10px 14px;border-radius:999px;background:var(--green);color:#fff;text-decoration:none;font-size:9px;font-weight:800}
-footer.site-footer{padding:22px 12px;margin-top:28px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:10px}
-.footer-links{margin-top:9px;display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
-.footer-links a{color:var(--muted);text-decoration:none;font-weight:600}
-.footer-links a:hover{color:var(--green)}
-
-@media(max-width:1180px){:root{--sidebar-width:230px}
-main{padding-left:22px;padding-right:22px}
-.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-
-@media(max-width:900px){.sponsor-tagline,.sponsor-divider{display:none}
-.sponsor-copy{gap:9px}
-.sponsor-copy strong{font-size:13px}
-.sponsor-inner{gap:12px}
-.finder-form{grid-template-columns:minmax(0,1fr) 170px}
-.find-btn{grid-column:1/-1}
-}
-
-@media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:52px}
-.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}
-.sponsor-coin,.sponsor-eyebrow,.sponsor-divider,.sponsor-tagline{display:none}
-.sponsor-copy{flex:1;justify-content:flex-start}
-.sponsor-copy strong{font-size:11px}
-.sponsor-cta{padding:9px 11px;font-size:9px}
-.sidebar{transform:translateX(-105%);transition:transform .25s ease;box-shadow:12px 0 35px rgba(0,0,0,.13)}
-body.menu-open .sidebar{transform:translateX(0)}
-.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}
-body.menu-open .mobile-overlay{display:block}
-.main-column{margin-left:0}
-.topbar{min-height:66px;gap:10px;padding:10px 14px}
-.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 38px}
-.search-wrap{width:auto;flex:1}
-.search-wrap input{height:39px;font-size:10px;padding-left:13px}
-.community-btn{width:38px;padding:0;overflow:hidden;font-size:0}
-.community-btn:before{content:'👥';font-size:15px}
-.topbar .icon-btn{width:36px;min-height:36px;flex:0 0 36px}
-main{padding:18px 13px 32px}
-.finder-hero{grid-template-columns:1fr;gap:18px;padding:23px 20px}
-.ad-card{min-height:145px}
-.hero h1{font-size:29px}
-.hero p{font-size:10px}
-.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.tool-card{min-height:125px;padding:13px}
-.tool-card strong{font-size:10px}
-.tool-card p{font-size:8px}
-.search-panel{padding:16px}
-.finder-form{grid-template-columns:1fr}
-.find-btn{grid-column:auto;width:100%}
-.results-grid{grid-template-columns:1fr}
-.feature-grid{gap:9px}
-.feature-card{padding:12px;gap:8px}
-.feature-icon{width:34px;height:34px;flex-basis:34px;font-size:16px}
-.feature-card h3{font-size:10px}
-.feature-card p{font-size:8px}
-.sponsor-bottom{align-items:flex-start;flex-direction:column}
-}
-
-@media(max-width:430px){.sponsor-copy strong{font-size:10px}
-.sponsor-cta{padding:8px 9px;font-size:8px}
-.topbar{gap:7px}
-.community-dropdown{display:none}
-.tool-card{min-height:130px}
-.metric-grid{gap:5px}
-.metric{padding:7px}
-.metric strong{font-size:9px}
-.result-card{padding:14px}
-.footer-links{gap:10px}
-}
-
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
-}
-
-
-</style>
+    @media (max-width: 1180px) {
+      :root { --sidebar-width: 230px; }
+      main { padding-right: 22px; padding-left: 22px; }
+      .tool-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .feature-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width: 900px) {
+      .sponsor-tagline, .sponsor-divider { display: none; }
+      .sponsor-copy { gap: 9px; }
+      .sponsor-copy strong { font-size: 13px; }
+      .sponsor-inner { gap: 12px; }
+      .finder-hero { grid-template-columns: 1fr; min-height: 0; }
+      .ad-card { min-height: 145px; }
+      .finder-form { grid-template-columns: minmax(0,1fr) 170px; }
+      .find-btn { grid-column: 1 / -1; }
+    }
+    @media (max-width: 760px) {
+      :root { --sidebar-width: 258px; --sponsor-height: 52px; }
+      .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
+      .sponsor-coin, .sponsor-eyebrow, .sponsor-divider, .sponsor-tagline { display: none; }
+      .sponsor-copy { flex: 1; justify-content: flex-start; white-space: normal; }
+      .sponsor-copy strong { font-size: 11px; }
+      .sponsor-cta { padding: 9px 11px; font-size: 9px; }
+      .sidebar { transform: translateX(-105%); transition: transform .25s ease; box-shadow: 12px 0 35px rgba(0,0,0,.13); }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; display: none; background: rgba(4,14,27,.48); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; }
+      .topbar { min-height: 66px; gap: 10px; padding: 10px 14px; }
+      .mobile-menu-btn { display: inline-grid; flex: 0 0 38px; place-items: center; }
+      .search-wrap { width: auto; flex: 1; }
+      .search-wrap input { height: 39px; padding-left: 13px; font-size: 10px; }
+      .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
+      .community-btn::before { content: "👥"; font-size: 15px; }
+      .topbar .icon-btn { width: 36px; min-height: 36px; flex: 0 0 36px; }
+      main { padding: 18px 13px 32px; }
+      .finder-hero { gap: 18px; padding: 23px 20px; }
+      .hero h1 { font-size: 29px; }
+      .hero p { font-size: 10px; }
+      .tool-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+      .tool-card { min-height: 125px; padding: 13px; }
+      .tool-card strong { font-size: 10px; }
+      .tool-card p { font-size: 8px; }
+      .search-panel { padding: 16px; }
+      .finder-form { grid-template-columns: 1fr; }
+      .find-btn { width: 100%; grid-column: auto; }
+      .results-grid { grid-template-columns: 1fr; }
+      .feature-grid { gap: 9px; }
+      .feature-card { gap: 8px; padding: 12px; }
+      .feature-icon { width: 34px; height: 34px; flex-basis: 34px; font-size: 16px; }
+      .feature-card h3 { font-size: 10px; }
+      .feature-card p { font-size: 8px; }
+      .sponsor-bottom { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 430px) {
+      .sponsor-copy strong { font-size: 10px; }
+      .sponsor-cta { padding: 8px 9px; font-size: 8px; }
+      .topbar { gap: 7px; }
+      .community-dropdown { display: none; }
+      .tool-card { min-height: 130px; }
+      .metric-grid { gap: 5px; }
+      .metric { padding: 7px; }
+      .metric strong { font-size: 9px; }
+      .result-card { padding: 14px; }
+      .footer-links { gap: 10px; }
+      .search-title { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
 </head>
 <body data-theme="light">
-<section class="sponsor-strip" aria-label="Sponsorship opportunity">
-<div class="sponsor-inner">
-<span class="sponsor-coin" aria-hidden="true">₿</span>
-<div class="sponsor-copy">
-<span class="sponsor-eyebrow">SPONSORSHIP OPPORTUNITY</span>
-<strong>Promote Your Project on <em>Total Crypto Hub</em>
-</strong>
-<span class="sponsor-divider">
-</span>
-<span class="sponsor-tagline">Reach an Engaged Web3 Community</span>
-</div>
-<a class="sponsor-cta" href="../legal-pages/contact.html?subject=Token%20Finder%20Sponsorship">Become a Sponsor →</a>
-<span class="sponsor-coin" aria-hidden="true">◆</span>
-</div>
-</section>
-<div class="app-shell">
-<aside class="sidebar" id="sidebar" aria-label="Main navigation">
-<a href="../index.html" class="brand">
-<span class="brand-mark">
-<img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
-</span>
-<span>
-<span class="brand-title">Total Crypto Hub</span>
-<span class="brand-subtitle">by <b>Total Crypto Network</b>
-</span>
-</span>
-</a>
-<div class="side-label">Workspace</div>
-<nav class="side-nav">
-<a href="../index.html" class="side-link">
-<span class="nav-icon nav-home">
-<svg viewBox="0 0 24 24">
-<path d="m3 10 9-7 9 7"/>
-<path d="M5 9v11h14V9"/>
-<path d="M9 20v-7h6v7"/>
-</svg>
-</span>Home</a>
-<a href="../depin-pages/depin.html" class="side-link">
-<span class="nav-icon nav-depin">
-<svg viewBox="0 0 24 24">
-<path d="M13 2 4 13h7l-1 9 10-13h-7z"/>
-</svg>
-</span>DePIN Projects</a>
-<a href="../mobile-pages/mobile-mining.html" class="side-link">
-<span class="nav-icon nav-community">
-<svg viewBox="0 0 24 24">
-<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-<circle cx="9" cy="7" r="4"/>
-<path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-</svg>
-</span>Community Projects</a>
-<a href="../airdrop-pages/airdrops.html" class="side-link">
-<span class="nav-icon nav-airdrop">
-<svg viewBox="0 0 24 24">
-<rect x="3" y="8" width="18" height="13" rx="2"/>
-<path d="M12 8v13M3 12h18"/>
-</svg>
-</span>Airdrops & Campaigns</a>
-<a href="../wallet-pages/wallets.html" class="side-link">
-<span class="nav-icon nav-wallet">
-<svg viewBox="0 0 24 24">
-<rect x="3" y="5" width="18" height="15" rx="2"/>
-<path d="M3 9h18M16 14h.01"/>
-</svg>
-</span>Wallets & Exchanges</a>
-<a href="token-checker.html" class="side-link active" aria-current="page">
-<span class="nav-icon nav-checker">
-<svg viewBox="0 0 24 24">
-<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
-<path d="m9 12 2 2 4-4"/>
-</svg>
-</span>Smart Token Finder</a>
-<a href="../earning-pages/earning-calculator.html" class="side-link">
-<span class="nav-icon nav-calculator">
-<svg viewBox="0 0 24 24">
-<rect x="4" y="2" width="16" height="20" rx="2"/>
-<path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/>
-</svg>
-</span>Earning Calculator</a>
-</nav>
-<div class="sidebar-spacer">
-</div>
-<section class="side-promo">
-<div class="promo-gift">🎁</div>
-<h3>Join the Community<br>&amp; Earn Together</h3>
-<p>Follow project updates, guides and community announcements.</p>
-<a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
-</section>
-<a class="support-card" href="../legal-pages/contact.html">
-<span class="support-icon">♧</span>
-<span>
-<strong>Need Help?</strong>
-<span>Contact Support →</span>
-</span>
-</a>
-<p class="sidebar-note">A research-led Web3 directory</p>
-</aside>
-<div class="mobile-overlay" id="mobileOverlay">
-</div>
-<div class="main-column">
-<header class="topbar">
-<button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
-<label class="search-wrap" aria-label="Search Total Crypto Hub">
-<input id="siteSearch" type="search" placeholder="Search Total Crypto Hub..." autocomplete="off">
-<span class="search-icon">⌕</span>
-</label>
-<span class="topbar-spacer">
-</span>
-<div class="community-dropdown">
-<button class="community-btn" type="button" onclick="toggleCommunityMenu()" aria-expanded="false">👥 Community</button>
-<div class="dropdown-content" id="communityMenu">
-<a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
-<a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-<a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
-<a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-</div>
-</div>
-<button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
-</header>
-<main>
-<div class="breadcrumb">Workspace &nbsp;›&nbsp; <strong>Smart Token Finder</strong>
-</div>
-<section class="hero finder-hero">
-<div class="hero-copy">
-<span class="eyebrow">✦ SMART CRYPTO DISCOVERY · MULTI-SOURCE SEARCH</span>
-<h1>One Search.<br>Discover the Web3 World.</h1>
-<p>Explore DeFi protocols, DePIN networks, community projects, airdrop campaigns and listed tokens from one simple search. Start with a project name, token name, symbol or contract address.</p>
-<div class="hero-points">
-<span>✓ DeFi-first discovery</span>
-<span>✓ Multi-source data</span>
-<span>✓ Official links when available</span>
-</div>
-</div>
-<aside class="ad-card" aria-label="Sponsored placement">
-<span class="ad-label">ADVERTISEMENT · SPONSORED</span>
-<h3>Your Web3 Brand Here</h3>
-<p>Put your project in front of users exploring crypto tools, tokens and DeFi opportunities.</p>
-<a href="../legal-pages/contact.html?subject=Smart%20Finder%20Sponsorship">Explore sponsorship options →</a>
-</aside>
-</section>
-<div class="section-heading">
-<div class="section-icon">✦</div>
-<h2>Explore Tools & Categories</h2>
-</div>
-<p class="section-subtitle">Choose a discovery area, or search everything at once. DeFi results receive priority.</p>
-<section class="tool-grid" aria-label="Project categories">
-<button class="tool-card active" data-category="all">
-<span class="tool-emoji">🌐</span>
-<strong>All Projects</strong>
-<p>Search across tokens, protocols and Web3 categories.</p>
-<span class="priority">FULL DISCOVERY</span>
-</button>
-<button class="tool-card" data-category="defi">
-<span class="tool-emoji">🏦</span>
-<strong>DeFi Scanner</strong>
-<p>Protocols, TVL, tokens, DEX pairs and liquidity signals.</p>
-<span class="priority">★ MAIN FOCUS</span>
-</button>
-<button class="tool-card" data-category="depin">
-<span class="tool-emoji">📡</span>
-<strong>DePIN Explorer</strong>
-<p>Discover decentralized physical infrastructure projects.</p>
-</button>
-<button class="tool-card" data-category="community">
-<span class="tool-emoji">👥</span>
-<strong>Community Projects</strong>
-<p>Find community-led networks and emerging ecosystems.</p>
-</button>
-<button class="tool-card" data-category="airdrop">
-<span class="tool-emoji">🎁</span>
-<strong>Airdrop Finder</strong>
-<p>Search campaigns and projects that may not have a token yet.</p>
-</button>
-</section>
-<div class="section-heading" id="finder">
-<div class="section-icon">⌕</div>
-<h2>Search Any Crypto Project</h2>
-</div>
-<p class="section-subtitle">Enter a name like Grass, Aave or Uniswap—or paste a token contract address.</p>
-<section class="search-panel">
-<div class="search-title">
-<strong>What are you looking for?</strong>
-<span>One search across connected sources</span>
-</div>
-<form class="finder-form" id="finderForm">
-<input class="finder-input" id="projectQuery" type="search" placeholder="Search token, symbol, protocol or project name..." autocomplete="off" required>
-<select class="category-select" id="categorySelect" aria-label="Choose project category">
-<option value="all">All categories</option>
-<option value="defi">DeFi first</option>
-<option value="depin">DePIN</option>
-<option value="community">Community</option>
-<option value="airdrop">Airdrops & campaigns</option>
-</select>
-<button class="find-btn" id="findBtn" type="submit">🔍 Search Projects</button>
-</form>
-<p class="search-hint">Tip: token symbols can be shared by different projects. Always verify the blockchain, contract address and source before interacting.</p>
-<div class="source-row">
-<span class="source-chip">CoinGecko · optional API key</span>
-<span class="source-chip">DEX Screener · live DEX pairs</span>
-<span class="source-chip">DefiLlama · DeFi protocols & TVL</span>
-</div>
-<div class="status" id="searchStatus" role="status" aria-live="polite">
-</div>
-</section>
-<section id="resultsSection" aria-live="polite">
-<div class="results-head">
-<h2 id="resultsTitle">Discover Projects</h2>
-<small id="resultsCount">Search results will appear here</small>
-</div>
-<div id="resultsGrid">
-<div class="empty-state">
-<div class="empty-icon">🔎</div>
-<h3>Your next Web3 discovery starts here</h3>
-<p>Search a project name, token symbol or contract address. We’ll check connected sources and show available market data or protocol information.</p>
-</div>
-</div>
-</section>
-<div class="section-heading">
-<div class="section-icon">✧</div>
-<h2>What You Can Explore</h2>
-</div>
-<p class="section-subtitle">A quick guide to the information this finder is designed to bring together.</p>
-<section class="feature-grid">
-<article class="feature-card">
-<span class="feature-icon">📊</span>
-<div>
-<h3>Market Data</h3>
-<p>Token price, market cap, 24-hour volume and available DEX liquidity.</p>
-</div>
-</article>
-<article class="feature-card">
-<span class="feature-icon">🏛️</span>
-<div>
-<h3>DeFi Protocols</h3>
-<p>Protocol category, supported chains and TVL where available.</p>
-</div>
-</article>
-<article class="feature-card">
-<span class="feature-icon">🔗</span>
-<div>
-<h3>Project Links</h3>
-<p>Official website and social links only when returned by a trusted source.</p>
-</div>
-</article>
-<article class="feature-card">
-<span class="feature-icon">🧭</span>
-<div>
-<h3>Multi-Source View</h3>
-<p>Compare listings from different data providers and identify the source.</p>
-</div>
-</article>
-</section>
-<section class="info-panel">
-<h3>How Smart Token Finder Works</h3>
-<p>Enter a project name, token symbol or contract address. The finder checks DEX Screener and the DeFiLlama protocol directory. CoinGecko search becomes active after its Demo API key is configured in the script. Results are combined and duplicates are reduced where possible. Projects without a tradable token may still appear as protocol profiles when a connected directory contains them.</p>
-<div class="warning">
-<span>⚠️</span>
-<span>
-<strong>Important:</strong> A listing or market-data result is not a safety audit or investment recommendation. DEX data can include unverified tokens, ticker symbols are not unique, and a project may have no token. Check chain and full contract address independently. Never connect a wallet or sign a transaction just because a project appears here.</span>
-</div>
-</section>
-<section class="sponsor-bottom" id="sponsorship">
-<div>
-<h3>Want to sponsor this discovery tool?</h3>
-<p>Promote your Web3 project, product or service in a clearly labelled sponsored placement. Sponsorships are subject to review and confirmation.</p>
-</div>
-<a href="../legal-pages/contact.html?subject=Smart%20Finder%20Sponsorship">Contact for Sponsorship →</a>
-</section>
-<footer class="site-footer">
-<div>© 2026 Total Crypto Network. All rights reserved.</div>
-<div class="footer-links">
-<a href="../legal-pages/about.html">About Us</a>
-<a href="../legal-pages/contact.html">Contact Us</a>
-<a href="../legal-pages/privacy.html">Privacy Policy</a>
-<a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
-<a href="../legal-pages/disclaimer.html">Disclaimer</a>
-</div>
-<p>DYOR — Always research before investing.</p>
-</footer>
-</main>
-</div>
-</div>
-<script>
-const API={dex:'https://api.dexscreener.com/latest/dex/search?q=',llama:'https://api.llama.fi/protocols',cg:'https://api.coingecko.com/api/v3/search?query='};
-// Optional: add your CoinGecko Demo API key here for CoinGecko search. For a public production site, proxy this request through your backend instead of publishing the key.
-const COINGECKO_DEMO_API_KEY='';
-function toggleTheme(){const next=document.body.dataset.theme==='light'?'dark':'light';document.body.dataset.theme=next;document.documentElement.dataset.theme=next;document.getElementById('themeToggle').textContent=next==='light'?'🌙':'☀️';try{localStorage.setItem('theme',next)}catch(e){}}
-function toggleCommunityMenu(){const menu=document.getElementById('communityMenu'),btn=document.querySelector('.community-btn');const open=menu.classList.toggle('show');btn.setAttribute('aria-expanded',String(open))}
-function closeMobileMenu(){document.body.classList.remove('menu-open');const b=document.getElementById('mobileMenuBtn');if(b)b.setAttribute('aria-expanded','false')}
-function escapeHTML(value=''){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function fmtMoney(value){const n=Number(value);if(!Number.isFinite(n))return '—';if(n>=1e9)return '$'+(n/1e9).toFixed(2)+'B';if(n>=1e6)return '$'+(n/1e6).toFixed(2)+'M';if(n>=1e3)return '$'+(n/1e3).toFixed(2)+'K';if(n>=1)return '$'+n.toFixed(3);if(n>0)return '$'+n.toPrecision(3);return '—'}
-function fmtPrice(value){const n=Number(value);if(!Number.isFinite(n))return '—';if(n>=1)return '$'+n.toLocaleString('en-US',{maximumFractionDigits:4});return '$'+n.toPrecision(4)}
-function status(text,type='info'){const el=document.getElementById('searchStatus');el.textContent=text;el.className='status show '+type}
-function hideStatus(){const el=document.getElementById('searchStatus');el.className='status';el.textContent=''}
-function normalize(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'')}
-function isAddress(q){return /^0x[a-fA-F0-9]{40}$/.test(q)||/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(q)}
-function chainName(id){const map={ethereum:'Ethereum',solana:'Solana',bsc:'BNB Chain',base:'Base',polygon:'Polygon',arbitrum:'Arbitrum',optimism:'Optimism',avalanche:'Avalanche',sui:'Sui',ton:'TON',fantom:'Fantom'};return map[String(id||'').toLowerCase()]||String(id||'Unknown chain')}
-function safeURL(value){try{const u=new URL(value);return ['https:','http:'].includes(u.protocol)?u.href:null}catch(e){return null}}
-function resultCard(item){const logo=safeURL(item.image||'');const links=(item.links||[]).filter(x=>x&&safeURL(x.url)).slice(0,4);const linkHTML=links.map(x=>`<a href="${escapeHTML(safeURL(x.url))}" target="_blank" rel="noopener noreferrer">${escapeHTML(x.label)} ↗</a>`).join('');return `<article class="result-card"><div class="result-top"><div class="coin-avatar">${logo?`<img src="${escapeHTML(logo)}" alt="" loading="lazy" onerror="this.remove();this.parentElement.textContent='◈'">`:'◈'}</div><div class="result-name"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.symbol||item.category||'Project')} · ${escapeHTML(item.source||'Source unavailable')}</p></div><span class="result-badge">${escapeHTML(item.badge||'DISCOVERED')}</span></div><div class="metric-grid"><div class="metric"><span>PRICE</span><strong>${escapeHTML(item.price||'—')}</strong></div><div class="metric"><span>MARKET CAP</span><strong>${escapeHTML(item.marketCap||'—')}</strong></div><div class="metric"><span>LIQUIDITY / TVL</span><strong>${escapeHTML(item.liquidity||item.tvl||'—')}</strong></div></div><div class="result-meta">${item.chain?`<span>⛓ ${escapeHTML(item.chain)}</span>`:''}${item.category?`<span>${escapeHTML(item.category)}</span>`:''}${item.address?`<span title="${escapeHTML(item.address)}">Contract: ${escapeHTML(item.address.slice(0,7)+'…'+item.address.slice(-5))}</span>`:''}${item.volume?`<span>24h Vol: ${escapeHTML(item.volume)}</span>`:''}</div><div class="result-links">${linkHTML||'<span style="font-size:9px;color:var(--muted)">No verified official links returned by these sources.</span>'}${item.chart?`<a href="${escapeHTML(item.chart)}" target="_blank" rel="noopener noreferrer">View DEX chart ↗</a>`:''}${item.cgUrl?`<a href="${escapeHTML(item.cgUrl)}" target="_blank" rel="noopener noreferrer">CoinGecko ↗</a>`:''}</div></article>`}
-function showResults(items,query){const grid=document.getElementById('resultsGrid'),title=document.getElementById('resultsTitle'),count=document.getElementById('resultsCount');title.textContent=`Results for “${query}”`;count.textContent=items.length?`${items.length} result${items.length===1?'':'s'} found`:'No matching records';if(!items.length){grid.innerHTML=`<div class="empty-state"><div class="empty-icon">🧭</div><h3>No matching token or protocol found in connected sources</h3><p>This does not always mean the project is fake or does not exist. It may be a new community project, an airdrop campaign, an unlisted token, or a project not indexed by these providers. We will not invent an official website or social account. Try another spelling or search the project's official channels independently.</p><p style="margin-top:12px"><a href="https://www.coingecko.com/" target="_blank" rel="noopener noreferrer">CoinGecko</a> · <a href="https://dexscreener.com/" target="_blank" rel="noopener noreferrer">DEX Screener</a> · <a href="https://defillama.com/" target="_blank" rel="noopener noreferrer">DefiLlama</a></p></div>`;return}grid.className='results-grid';grid.innerHTML=items.map(resultCard).join('')}
-async function fetchJSON(url,timeout=11000,extraHeaders={}){const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeout);try{const r=await fetch(url,{signal:controller.signal,headers:{accept:'application/json',...extraHeaders}});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(timer)}}
-async function searchDex(query){const data=await fetchJSON(API.dex+encodeURIComponent(query));return (data.pairs||[]).map(p=>{const base=p.baseToken||{},quote=p.quoteToken||{},match=normalize(base.name+' '+base.symbol+' '+base.address).includes(normalize(query))?base:quote;const token=match&&match.address?match:base;const links=[];if(p.info&&p.info.websites) p.info.websites.forEach(x=>links.push({label:'Website',url:x.url}));if(p.info&&p.info.socials)p.info.socials.forEach(x=>links.push({label:x.type||'Social',url:x.url}));return {key:'dex:'+p.chainId+':'+token.address,name:token.name||'Unknown token',symbol:token.symbol||'',source:'DEX Screener',badge:'DEX MARKET',price:fmtPrice(p.priceUsd),marketCap:fmtMoney(p.marketCap||p.fdv),liquidity:fmtMoney(p.liquidity&&p.liquidity.usd),volume:fmtMoney(p.volume&&p.volume.h24),chain:chainName(p.chainId),address:token.address,category:'DEX token',links,chart:safeURL(p.url),rank:Number(p.liquidity&&p.liquidity.usd)||0}})}
-async function searchLlama(query){const data=await fetchJSON(API.llama);const q=normalize(query);return data.filter(p=>normalize(p.name).includes(q)||normalize(p.symbol).includes(q)).slice(0,12).map(p=>({key:'llama:'+p.id,name:p.name,symbol:p.symbol||'',source:'DefiLlama',badge:'PROTOCOL PROFILE',price:'No token price',marketCap:'—',tvl:fmtMoney(p.tvl),chain:(p.chains||[]).slice(0,3).join(', ')||'—',category:p.category||'DeFi',links:p.url?[{label:'Project website',url:p.url}]:[],rank:Number(p.tvl)||0}))}
-async function searchCoinGecko(query){if(!COINGECKO_DEMO_API_KEY)return [];const data=await fetchJSON(API.cg+encodeURIComponent(query),9000,{'x-cg-demo-api-key':COINGECKO_DEMO_API_KEY});return (data.coins||[]).slice(0,10).map(c=>({key:'cg:'+c.id,name:c.name,symbol:(c.symbol||'').toUpperCase(),source:'CoinGecko',badge:'COINGECKO LISTED',price:'—',marketCap:c.market_cap_rank?'Rank #'+c.market_cap_rank:'—',liquidity:'—',chain:'See listing details',category:'Listed token',image:c.large||c.thumb,links:[],cgUrl:'https://www.coingecko.com/en/coins/'+encodeURIComponent(c.id),rank:c.market_cap_rank?1000000-c.market_cap_rank:0}))}
-function categoryFilter(items,category){if(category==='all')return items;if(category==='defi')return items.filter(x=>x.source==='DefiLlama'||/defi|lending|dex|yield|liquid staking|derivatives|bridge/i.test(x.category||''));/* Other category buttons are search intents, not verified classifications. Keep matching results instead of hiding them when a provider has no category label. */return items}
-async function runSearch(raw,category){const query=raw.trim();if(!query)return;const btn=document.getElementById('findBtn');btn.disabled=true;btn.textContent='Searching…';hideStatus();document.getElementById('resultsGrid').innerHTML='<div class="empty-state"><div class="empty-icon">⏳</div><h3>Searching connected sources…</h3><p>Checking token markets and protocol directories. This may take a few seconds.</p></div>';document.getElementById('resultsGrid').className='';document.getElementById('resultsTitle').textContent='Searching…';document.getElementById('resultsCount').textContent='Please wait';
-try{const tasks=[searchDex(query).catch(()=>[]),searchLlama(query).catch(()=>[])];if(!isAddress(query)&&COINGECKO_DEMO_API_KEY)tasks.push(searchCoinGecko(query).catch(()=>[]));const groups=await Promise.all(tasks);let items=groups.flat();const seen=new Set();items=items.filter(x=>{const k=x.key||normalize(x.name+x.symbol);if(seen.has(k))return false;seen.add(k);return true});items=categoryFilter(items,category);items.sort((a,b)=>{const aDeFi=a.source==='DefiLlama'||/defi/i.test(a.category||'')?1:0,bDeFi=b.source==='DefiLlama'||/defi/i.test(b.category||'')?1:0;if(category==='all'&&aDeFi!==bDeFi)return bDeFi-aDeFi;return (b.rank||0)-(a.rank||0)});showResults(items.slice(0,24),query);if(items.length)status(`Search complete. Results are attributed to their data sources. A project profile does not confirm that its token is tradable or safe.`, 'success');else status('No result was returned by the connected sources for this search. Try the full project name, token symbol or contract address.','info');}catch(e){showResults([],query);status('The search providers could not be reached right now. Please try again in a moment.','error')}finally{btn.disabled=false;btn.textContent='🔍 Search Projects'}}
-document.getElementById('finderForm').addEventListener('submit',e=>{e.preventDefault();runSearch(document.getElementById('projectQuery').value,document.getElementById('categorySelect').value)});
-document.querySelectorAll('.tool-card').forEach(card=>card.addEventListener('click',()=>{document.querySelectorAll('.tool-card').forEach(c=>c.classList.remove('active'));card.classList.add('active');const category=card.dataset.category;document.getElementById('categorySelect').value=category;document.getElementById('projectQuery').focus()}));
-document.getElementById('siteSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){document.getElementById('projectQuery').value=e.target.value;document.getElementById('finder').scrollIntoView({behavior:'smooth'});runSearch(e.target.value,document.getElementById('categorySelect').value)}});
-document.addEventListener('click',e=>{if(!e.target.closest('.community-dropdown')){const m=document.getElementById('communityMenu'),b=document.querySelector('.community-btn');if(m)m.classList.remove('show');if(b)b.setAttribute('aria-expanded','false')}});
-window.addEventListener('DOMContentLoaded',()=>{let saved='light';try{saved=localStorage.getItem('theme')||'light'}catch(e){}document.body.dataset.theme=saved;document.documentElement.dataset.theme=saved;document.getElementById('themeToggle').textContent=saved==='light'?'🌙':'☀️';const mb=document.getElementById('mobileMenuBtn'),ov=document.getElementById('mobileOverlay');mb.addEventListener('click',function(){const open=document.body.classList.toggle('menu-open');this.setAttribute('aria-expanded',String(open))});ov.addEventListener('click',closeMobileMenu);document.querySelectorAll('.side-link').forEach(a=>a.addEventListener('click',closeMobileMenu));document.addEventListener('keydown',e=>{if(e.key==='Escape'){const m=document.getElementById('communityMenu'),b=document.querySelector('.community-btn');if(m)m.classList.remove('show');if(b)b.setAttribute('aria-expanded','false');closeMobileMenu()}})});
-</script>
-<script src="../ai-assistant/assistant.js" defer></script><script src="../ai-assistant/robot-animation.js" defer></script>
-</body></html>
+  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
+    <div class="sponsor-inner">
+      <span class="sponsor-coin" aria-hidden="true">₿</span>
+      <div class="sponsor-copy">
+        <span class="sponsor-eyebrow">SPONSORSHIP OPPORTUNITY</span>
+        <strong>Promote Your Project on <em>Total Crypto Hub</em></strong>
+        <span class="sponsor-divider" aria-hidden="true"></span>
+        <span class="sponsor-tagline">Reach an Engaged Web3 Community</span>
+      </div>
+      <a class="sponsor-cta" href="../legal-pages/contact.html?subject=Token%20Finder%20Sponsorship">Become a Sponsor →</a>
+      <span class="sponsor-coin" aria-hidden="true">◆</span>
+    </div>
+  </section>
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark">
+        <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+      </span>
+      <span>
+        <span class="brand-title">Total Crypto Hub</span>
+        <span class="brand-subtitle">by <b>Total Crypto Network</b></span>
+      </span>
+    </a>
+    <div class="side-label">Workspace</div>
+    <nav class="side-nav">
+      <a href="../index.html" class="side-link"><span class="nav-icon nav-home"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home</a>
+      <a href="../depin-pages/depin.html" class="side-link"><span class="nav-icon nav-depin"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects</a>
+      <a href="../mobile-pages/mobile-mining.html" class="side-link"><span class="nav-icon nav-community"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects</a>
+      <a href="../airdrop-pages/airdrops.html" class="side-link"><span class="nav-icon nav-airdrop"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/></svg></span>Airdrops &amp; Campaigns</a>
+      <a href="../wallet-pages/wallets.html" class="side-link"><span class="nav-icon nav-wallet"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01"/></svg></span>Wallets &amp; Exchanges</a>
+      <a href="token-checker.html" class="side-link active" aria-current="page"><span class="nav-icon nav-checker"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder</a>
+      <a href="../earning-pages/earning-calculator.html" class="side-link"><span class="nav-icon nav-calculator"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg></span>Earning Calculator</a>
+    </nav>
+    <div class="sidebar-spacer"></div>
+    <section class="side-promo">
+      <div class="promo-gift">🎁</div>
+      <h3>Join the Community<br>&amp; Earn Together</h3>
+      <p>Follow project updates, guides and community announcements.</p>
+      <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
+    </section>
+    <a class="support-card" href="../legal-pages/contact.html">
+      <span class="support-icon">♧</span>
+      <span><strong>Need Help?</strong><span class="support-action">Contact Support →</span></span>
+    </a>
+    <p class="sidebar-note">A research-led Web3 directory</p>
+  </aside>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <div class="main-column">
+    <header class="topbar">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <label class="search-wrap" aria-label="Search Total Crypto Hub">
+        <input id="siteSearch" type="search" placeholder="Search Total Crypto Hub..." autocomplete="off">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+      </label>
+      <span class="topbar-spacer"></span>
+      <div class="community-dropdown">
+        <button class="community-btn" id="communityBtn" type="button" aria-expanded="false">👥 Community</button>
+        <div class="dropdown-content" id="communityMenu">
+          <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+          <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+          <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
+          <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+        </div>
+      </div>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <main>
+      <div class="breadcrumb">Workspace &nbsp;›&nbsp; <strong>Smart Token Finder</strong></div>
+      <section class="hero finder-hero">
+        <div class="hero-copy">
+          <span class="eyebrow">✦ SMART CRYPTO DISCOVERY · MULTI-SOURCE SEARCH</span>
+          <h1>One Search.<br>Discover the Web3 World.</h1>
+          <p>Explore DeFi protocols, DePIN networks, community projects, airdrop campaigns and listed tokens from one simple search. Start with a project name, token name, symbol or contract address.</p>
+          <div class="hero-points"><span>✓ DeFi-first discovery</span><span>✓ Multi-source data</span><span>✓ Official links when available</span></div>
+        </div>
+        <aside class="ad-card" aria-label="Sponsored placement">
+          <span class="ad-label">ADVERTISEMENT · SPONSORED</span>
+          <h3>Your Web3 Brand Here</h3>
+          <p>Put your project in front of users exploring crypto tools, tokens and DeFi opportunities.</p>
+          <a href="../legal-pages/contact.html?subject=Smart%20Finder%20Sponsorship">Explore sponsorship options →</a>
+        </aside>
+      </section>
+
+      <div class="section-heading"><div class="section-icon">✦</div><h2>Explore Tools &amp; Categories</h2></div>
+      <p class="section-subtitle">Choose a discovery area, or search everything at once. DeFi results receive priority.</p>
+      <section class="tool-grid" aria-label="Project categories">
+        <button class="tool-card active" type="button" data-category="all"><span class="tool-emoji">🌐</span><strong>All Projects</strong><p>Search across tokens, protocols and Web3 categories.</p><span class="priority">FULL DISCOVERY</span></button>
+        <button class="tool-card" type="button" data-category="defi"><span class="tool-emoji">🏦</span><strong>DeFi Scanner</strong><p>Protocols, TVL, tokens, DEX pairs and liquidity signals.</p><span class="priority">★ MAIN FOCUS</span></button>
+        <button class="tool-card" type="button" data-category="depin"><span class="tool-emoji">📡</span><strong>DePIN Explorer</strong><p>Search for decentralized physical infrastructure projects.</p></button>
+        <button class="tool-card" type="button" data-category="community"><span class="tool-emoji">👥</span><strong>Community Projects</strong><p>Search for community-led networks and emerging ecosystems.</p></button>
+        <button class="tool-card" type="button" data-category="airdrop"><span class="tool-emoji">🎁</span><strong>Airdrop Finder</strong><p>Search campaigns and projects that may not have a token yet.</p></button>
+      </section>
+
+      <div class="section-heading" id="finder"><div class="section-icon">⌕</div><h2>Search Any Crypto Project</h2></div>
+      <p class="section-subtitle">Enter a project name like Grass, Aave or Uniswap—or paste a token contract address.</p>
+      <section class="search-panel">
+        <div class="search-title"><strong>What are you looking for?</strong><span>One search across connected sources</span></div>
+        <form class="finder-form" id="finderForm">
+          <input class="finder-input" id="projectQuery" type="search" placeholder="Search token, symbol, protocol or project name..." autocomplete="off" required>
+          <select class="category-select" id="categorySelect" aria-label="Choose project category">
+            <option value="all">All categories</option>
+            <option value="defi">DeFi first</option>
+            <option value="depin">DePIN</option>
+            <option value="community">Community</option>
+            <option value="airdrop">Airdrops &amp; campaigns</option>
+          </select>
+          <button class="find-btn" id="findBtn" type="submit">🔍 Search Projects</button>
+        </form>
+        <p class="search-hint">Tip: token symbols can be shared by different projects. Always verify the blockchain, full contract address and source before interacting.</p>
+        <div class="source-row"><span class="source-chip">DEX Screener · token pairs</span><span class="source-chip">DefiLlama · protocols &amp; TVL</span><span class="source-chip">CoinGecko · optional API key</span></div>
+        <div class="status" id="searchStatus" role="status" aria-live="polite"></div>
+      </section>
+
+      <section id="resultsSection" aria-live="polite">
+        <div class="results-head"><h2 id="resultsTitle">Discover Projects</h2><small id="resultsCount">Search results will appear here</small></div>
+        <div class="results-grid" id="resultsGrid">
+          <div class="empty-state"><div class="empty-icon">🔎</div><h3>Your next Web3 discovery starts here</h3><p>Search a project name, token symbol or contract address. We’ll check connected sources and show available market data or protocol information.</p></div>
+        </div>
+      </section>
+
+      <div class="section-heading"><div class="section-icon">✧</div><h2>What You Can Explore</h2></div>
+      <p class="section-subtitle">A quick guide to the information this finder is designed to bring together.</p>
+      <section class="feature-grid">
+        <article class="feature-card"><span class="feature-icon">📊</span><div><h3>Market Data</h3><p>Token price, market cap, 24-hour volume and available DEX liquidity.</p></div></article>
+        <article class="feature-card"><span class="feature-icon">🏛️</span><div><h3>DeFi Protocols</h3><p>Protocol category, supported chains and TVL where available.</p></div></article>
+        <article class="feature-card"><span class="feature-icon">🔗</span><div><h3>Project Links</h3><p>Project website and social links only when returned by a data source.</p></div></article>
+        <article class="feature-card"><span class="feature-icon">🧭</span><div><h3>Multi-Source View</h3><p>Compare listings from different data providers and identify the source.</p></div></article>
+      </section>
+
+      <section class="info-panel">
+        <h3>How Smart Token Finder Works</h3>
+        <p>Enter a project name, token symbol or contract address. The finder checks DEX Screener and the DeFiLlama protocol directory. CoinGecko search is optional and becomes active only after its Demo API key is configured. The DePIN, Community and Airdrop buttons help organize your search intent; the current market-data sources do not reliably classify every project into those categories.</p>
+        <div class="warning"><span>⚠️</span><span><strong>Important:</strong> A listing or market-data result is not a safety audit or investment recommendation. DEX data can include unverified tokens, ticker symbols are not unique, and a project may have no token. Verify the chain and full contract address independently. Never connect a wallet or sign a transaction just because a project appears here.</span></div>
+      </section>
+      <section class="sponsor-bottom" id="sponsorship">
+        <div><h3>Want to sponsor this discovery tool?</h3><p>Promote your Web3 project, product or service in a clearly labelled sponsored placement. Sponsorships are subject to review and confirmation.</p></div>
+        <a href="../legal-pages/contact.html?subject=Smart%20Finder%20Sponsorship">Contact for Sponsorship →</a>
+      </section>
+      <footer class="site-footer">
+        <div>© 2026 Total Crypto Network. All rights reserved.</div>
+        <div class="footer-links"><a href="../legal-pages/about.html">About Us</a><a href="../legal-pages/contact.html">Contact Us</a><a href="../legal-pages/privacy.html">Privacy Policy</a><a href="../legal-pages/terms.html">Terms &amp; Conditions</a><a href="../legal-pages/disclaimer.html">Disclaimer</a></div>
+        <p>DYOR — Always research before investing.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    "use strict";
+
+    const API = {
+      dex: "https://api.dexscreener.com/latest/dex/search?q=",
+      llama: "https://api.llama.fi/protocols",
+      coingecko: "https://api.coingecko.com/api/v3/search?query="
+    };
+    // Optional only. For a public production site, use a backend proxy instead of exposing an API key in browser code.
+    const COINGECKO_DEMO_API_KEY = "";
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+    function setTheme(theme) {
+      const chosen = theme === "dark" ? "dark" : "light";
+      document.documentElement.dataset.theme = chosen;
+      document.body.dataset.theme = chosen;
+      const toggle = $("#themeToggle");
+      if (toggle) toggle.textContent = chosen === "light" ? "🌙" : "☀️";
+      try { localStorage.setItem("tcn-theme", chosen); } catch (_) { /* storage may be unavailable */ }
+    }
+    function toggleTheme() {
+      setTheme(document.body.dataset.theme === "light" ? "dark" : "light");
+    }
+    function toggleCommunityMenu(force) {
+      const menu = $("#communityMenu");
+      const button = $("#communityBtn");
+      if (!menu || !button) return;
+      const isOpen = typeof force === "boolean" ? force : !menu.classList.contains("show");
+      menu.classList.toggle("show", isOpen);
+      button.setAttribute("aria-expanded", String(isOpen));
+    }
+    function closeMobileMenu() {
+      document.body.classList.remove("menu-open");
+      const button = $("#mobileMenuBtn");
+      if (button) button.setAttribute("aria-expanded", "false");
+    }
+    function escapeHTML(value = "") {
+      return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+    }
+    function normalize(value) {
+      return String(value || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    }
+    function isAddress(query) {
+      return /^0x[a-fA-F0-9]{40}$/.test(query) || /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(query);
+    }
+    function safeURL(value) {
+      try {
+        const url = new URL(value);
+        return url.protocol === "https:" || url.protocol === "http:" ? url.href : null;
+      } catch (_) { return null; }
+    }
+    function fmtMoney(value) {
+      const number = Number(value);
+      if (!Number.isFinite(number) || number <= 0) return "—";
+      if (number >= 1e9) return "$" + (number / 1e9).toFixed(2) + "B";
+      if (number >= 1e6) return "$" + (number / 1e6).toFixed(2) + "M";
+      if (number >= 1e3) return "$" + (number / 1e3).toFixed(2) + "K";
+      return "$" + number.toFixed(2);
+    }
+    function fmtPrice(value) {
+      const number = Number(value);
+      if (!Number.isFinite(number) || number <= 0) return "—";
+      if (number >= 1) return "$" + number.toLocaleString("en-US", { maximumFractionDigits: 4 });
+      return "$" + number.toPrecision(4);
+    }
+    function chainName(id) {
+      const names = { ethereum: "Ethereum", solana: "Solana", bsc: "BNB Chain", base: "Base", polygon: "Polygon", arbitrum: "Arbitrum", optimism: "Optimism", avalanche: "Avalanche", sui: "Sui", ton: "TON", fantom: "Fantom" };
+      const key = String(id || "").toLowerCase();
+      return names[key] || String(id || "Unknown chain");
+    }
+    function showStatus(message, type = "info") {
+      const element = $("#searchStatus");
+      element.textContent = message;
+      element.className = "status show " + type;
+    }
+    function hideStatus() {
+      const element = $("#searchStatus");
+      element.textContent = "";
+      element.className = "status";
+    }
+    async function fetchJSON(url, timeout = 12000, headers = {}) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeout);
+      try {
+        const response = await fetch(url, { signal: controller.signal, headers: { accept: "application/json", ...headers } });
+        if (!response.ok) throw new Error("Request failed: " + response.status);
+        return await response.json();
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    async function searchDex(query) {
+      const data = await fetchJSON(API.dex + encodeURIComponent(query));
+      const pairs = Array.isArray(data.pairs) ? data.pairs : [];
+      return pairs.map(pair => {
+        const base = pair.baseToken || {};
+        const quote = pair.quoteToken || {};
+        const q = normalize(query);
+        const baseText = normalize(base.name + " " + base.symbol + " " + base.address);
+        const quoteText = normalize(quote.name + " " + quote.symbol + " " + quote.address);
+        const token = (baseText.includes(q) || !quoteText.includes(q)) ? base : quote;
+        const links = [];
+        if (Array.isArray(pair.info?.websites)) pair.info.websites.forEach(site => links.push({ label: "Website", url: site.url }));
+        if (Array.isArray(pair.info?.socials)) pair.info.socials.forEach(social => links.push({ label: social.type || "Social", url: social.url }));
+        return {
+          key: "dex:" + String(pair.chainId || "") + ":" + String(token.address || ""),
+          name: token.name || "Unknown token",
+          symbol: token.symbol || "",
+          source: "DEX Screener",
+          badge: "DEX MARKET",
+          price: fmtPrice(pair.priceUsd),
+          marketCap: fmtMoney(pair.marketCap || pair.fdv),
+          liquidity: fmtMoney(pair.liquidity?.usd),
+          volume: fmtMoney(pair.volume?.h24),
+          chain: chainName(pair.chainId),
+          address: token.address || "",
+          category: "DEX token",
+          links,
+          chart: safeURL(pair.url),
+          rank: Number(pair.liquidity?.usd) || 0
+        };
+      }).filter(item => item.name);
+    }
+    async function searchLlama(query) {
+      const data = await fetchJSON(API.llama, 15000);
+      const q = normalize(query);
+      if (!q) return [];
+      return (Array.isArray(data) ? data : []).filter(protocol => {
+        return normalize(protocol.name).includes(q) || normalize(protocol.symbol).includes(q);
+      }).slice(0, 15).map(protocol => ({
+        key: "llama:" + String(protocol.id || protocol.name),
+        name: protocol.name || "Unknown protocol",
+        symbol: protocol.symbol || "",
+        source: "DefiLlama",
+        badge: "PROTOCOL PROFILE",
+        price: "No token price",
+        marketCap: "—",
+        liquidity: "—",
+        tvl: fmtMoney(protocol.tvl),
+        chain: Array.isArray(protocol.chains) ? protocol.chains.slice(0, 3).join(", ") : "—",
+        category: protocol.category || "DeFi protocol",
+        links: protocol.url ? [{ label: "Project website", url: protocol.url }] : [],
+        rank: Number(protocol.tvl) || 0
+      }));
+    }
+    async function searchCoinGecko(query) {
+      if (!COINGECKO_DEMO_API_KEY) return [];
+      const data = await fetchJSON(API.coingecko + encodeURIComponent(query), 10000, { "x-cg-demo-api-key": COINGECKO_DEMO_API_KEY });
+      return (data.coins || []).slice(0, 10).map(coin => ({
+        key: "cg:" + coin.id,
+        name: coin.name,
+        symbol: String(coin.symbol || "").toUpperCase(),
+        source: "CoinGecko",
+        badge: "COINGECKO LISTED",
+        price: "—",
+        marketCap: coin.market_cap_rank ? "Rank #" + coin.market_cap_rank : "—",
+        liquidity: "—",
+        chain: "See listing details",
+        category: "Listed token",
+        image: coin.large || coin.thumb,
+        links: [],
+        cgUrl: "https://www.coingecko.com/en/coins/" + encodeURIComponent(coin.id),
+        rank: coin.market_cap_rank ? 1000000 - coin.market_cap_rank : 0
+      }));
+    }
+    function categoryFilter(items, category) {
+      if (category === "defi") return items.filter(item => item.source === "DefiLlama" || /defi|lending|dex|yield|liquid staking|derivatives|bridge/i.test(item.category || ""));
+      // Current public sources do not provide reliable DePIN/community/airdrop classifications.
+      // For those tabs we keep the search matches and clearly label the source/category returned.
+      return items;
+    }
+    function resultCard(item) {
+      const image = safeURL(item.image || "");
+      const validLinks = (item.links || []).filter(link => link && safeURL(link.url)).slice(0, 4);
+      const linksHTML = validLinks.map(link => `<a href="${escapeHTML(safeURL(link.url))}" target="_blank" rel="noopener noreferrer">${escapeHTML(link.label || "Open link")} ↗</a>`).join("");
+      const chartHTML = item.chart ? `<a href="${escapeHTML(item.chart)}" target="_blank" rel="noopener noreferrer">View DEX chart ↗</a>` : "";
+      const cgHTML = item.cgUrl ? `<a href="${escapeHTML(item.cgUrl)}" target="_blank" rel="noopener noreferrer">CoinGecko ↗</a>` : "";
+      const contract = item.address ? `<span title="${escapeHTML(item.address)}">Contract: ${escapeHTML(item.address.slice(0, 7) + "…" + item.address.slice(-5))}</span>` : "";
+      return `<article class="result-card">
+        <div class="result-top">
+          <div class="coin-avatar">${image ? `<img src="${escapeHTML(image)}" alt="" loading="lazy" onerror="this.remove();this.parentElement.textContent='◈'">` : "◈"}</div>
+          <div class="result-name"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.symbol || item.category || "Project")} · ${escapeHTML(item.source || "Source unavailable")}</p></div>
+          <span class="result-badge">${escapeHTML(item.badge || "DISCOVERED")}</span>
+        </div>
+        <div class="metric-grid">
+          <div class="metric"><span>PRICE</span><strong>${escapeHTML(item.price || "—")}</strong></div>
+          <div class="metric"><span>MARKET CAP / RANK</span><strong>${escapeHTML(item.marketCap || "—")}</strong></div>
+          <div class="metric"><span>LIQUIDITY / TVL</span><strong>${escapeHTML(item.liquidity || item.tvl || "—")}</strong></div>
+        </div>
+        <div class="result-meta">${item.chain ? `<span>⛓ ${escapeHTML(item.chain)}</span>` : ""}${item.category ? `<span>${escapeHTML(item.category)}</span>` : ""}${contract}${item.volume ? `<span>24h Vol: ${escapeHTML(item.volume)}</span>` : ""}</div>
+        <div class="result-links">${linksHTML || `<span class="no-link">No project website/social link was supplied by this result source.</span>`}${chartHTML}${cgHTML}</div>
+      </article>`;
+    }
+    function showResults(items, query) {
+      const grid = $("#resultsGrid");
+      $("#resultsTitle").textContent = `Results for “${query}”`;
+      $("#resultsCount").textContent = items.length ? `${items.length} result${items.length === 1 ? "" : "s"} found` : "No matching records";
+      grid.className = "results-grid";
+      if (!items.length) {
+        grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🧭</div><h3>No matching token or protocol found in connected sources</h3><p>This does not necessarily mean the project is fake or does not exist. It may be a new community project, an airdrop campaign, an unlisted token, or a project not indexed by these providers. We will not invent an official website or social account. Try another spelling or search the project's official channels independently.</p><p style="margin-top:12px"><a href="https://www.coingecko.com/" target="_blank" rel="noopener noreferrer">CoinGecko</a> · <a href="https://dexscreener.com/" target="_blank" rel="noopener noreferrer">DEX Screener</a> · <a href="https://defillama.com/" target="_blank" rel="noopener noreferrer">DefiLlama</a></p></div>`;
+        return;
+      }
+      grid.innerHTML = items.map(resultCard).join("");
+    }
+    async function runSearch(rawQuery, category) {
+      const query = String(rawQuery || "").trim();
+      if (!query) return;
+      const button = $("#findBtn");
+      button.disabled = true;
+      button.textContent = "Searching…";
+      hideStatus();
+      $("#resultsGrid").className = "results-grid";
+      $("#resultsGrid").innerHTML = `<div class="empty-state"><div class="empty-icon">⏳</div><h3>Searching connected sources…</h3><p>Checking token markets and protocol directories. Please wait a moment.</p></div>`;
+      $("#resultsTitle").textContent = "Searching…";
+      $("#resultsCount").textContent = "Please wait";
+      try {
+        const tasks = [
+          searchDex(query).then(data => ({ source: "DEX Screener", data, failed: false })).catch(error => ({ source: "DEX Screener", data: [], failed: true, error })),
+          searchLlama(query).then(data => ({ source: "DefiLlama", data, failed: false })).catch(error => ({ source: "DefiLlama", data: [], failed: true, error }))
+        ];
+        if (!isAddress(query) && COINGECKO_DEMO_API_KEY) {
+          tasks.push(searchCoinGecko(query).then(data => ({ source: "CoinGecko", data, failed: false })).catch(error => ({ source: "CoinGecko", data: [], failed: true, error })));
+        }
+        const responses = await Promise.all(tasks);
+        let items = responses.flatMap(response => response.data);
+        const seen = new Set();
+        items = items.filter(item => {
+          const key = item.key || normalize(item.name + item.symbol);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+        items = categoryFilter(items, category);
+        items.sort((a, b) => {
+          const aDeFi = a.source === "DefiLlama" || /defi/i.test(a.category || "") ? 1 : 0;
+          const bDeFi = b.source === "DefiLlama" || /defi/i.test(b.category || "") ? 1 : 0;
+          if (category === "all" && aDeFi !== bDeFi) return bDeFi - aDeFi;
+          return (b.rank || 0) - (a.rank || 0);
+        });
+        showResults(items.slice(0, 24), query);
+        const successfulSources = responses.filter(response => !response.failed).map(response => response.source);
+        const failedSources = responses.filter(response => response.failed).map(response => response.source);
+        if (items.length) {
+          let message = `Search complete. Results came from: ${successfulSources.join(", ") || "available providers"}. A project profile does not confirm that its token is tradable or safe.`;
+          if (failedSources.length) message += ` Some sources could not respond: ${failedSources.join(", ")}.`;
+          showStatus(message, "success");
+        } else if (failedSources.length === responses.length) {
+          showStatus("The connected search providers could not be reached. Please try again later. If this continues, check your internet connection or provider availability.", "error");
+        } else {
+          let message = "No result was returned by the connected sources. Try the full project name, token symbol or contract address.";
+          if (failedSources.length) message += ` These sources did not respond: ${failedSources.join(", ")}.`;
+          showStatus(message, "info");
+        }
+      } catch (error) {
+        showResults([], query);
+        showStatus("Something went wrong while searching. Please refresh the page and try again.", "error");
+      } finally {
+        button.disabled = false;
+        button.textContent = "🔍 Search Projects";
+      }
+    }
+
+    function selectCategory(category) {
+      $("#categorySelect").value = category;
+      $$(".tool-card").forEach(card => card.classList.toggle("active", card.dataset.category === category));
+    }
+    function initPage() {
+      let savedTheme = "light";
+      try { savedTheme = localStorage.getItem("tcn-theme") || "light"; } catch (_) { /* ignore */ }
+      setTheme(savedTheme);
+
+      $("#themeToggle").addEventListener("click", toggleTheme);
+      $("#communityBtn").addEventListener("click", () => toggleCommunityMenu());
+      document.addEventListener("click", event => {
+        if (!event.target.closest(".community-dropdown")) toggleCommunityMenu(false);
+      });
+
+      $("#mobileMenuBtn").addEventListener("click", function () {
+        const isOpen = document.body.classList.toggle("menu-open");
+        this.setAttribute("aria-expanded", String(isOpen));
+      });
+      $("#mobileOverlay").addEventListener("click", closeMobileMenu);
+      $$(".side-link").forEach(link => link.addEventListener("click", closeMobileMenu));
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+          toggleCommunityMenu(false);
+          closeMobileMenu();
+        }
+      });
+
+      $("#finderForm").addEventListener("submit", event => {
+        event.preventDefault();
+        runSearch($("#projectQuery").value, $("#categorySelect").value);
+      });
+      $$(".tool-card").forEach(card => card.addEventListener("click", () => {
+        selectCategory(card.dataset.category);
+        $("#projectQuery").focus();
+        $("#finder").scrollIntoView({ behavior: "smooth", block: "start" });
+      }));
+      $("#categorySelect").addEventListener("change", event => selectCategory(event.target.value));
+      $("#siteSearch").addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          const query = event.currentTarget.value.trim();
+          if (!query) return;
+          $("#projectQuery").value = query;
+          $("#finder").scrollIntoView({ behavior: "smooth", block: "start" });
+          runSearch(query, $("#categorySelect").value);
+        }
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initPage);
+    else initPage();
+  </script>
+  <script src="../ai-assistant/assistant.js" defer></script>
+  <script src="../ai-assistant/robot-animation.js" defer></script>
+</body>
+</html>
