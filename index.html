@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,14 +60,154 @@
     button, input { font: inherit; }
     .app-shell { min-height: 100vh; }
 
+
+    /* Full-width sponsor strip: a contact CTA, not a live ad integration */
+    :root { --sponsor-height: 58px; }
+
+    .sponsor-strip {
+      position: sticky;
+      top: 0;
+      z-index: 140;
+      min-height: var(--sponsor-height);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #f4fff9;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(16, 185, 129, .24), transparent 17%),
+        radial-gradient(circle at 92% 50%, rgba(16, 185, 129, .22), transparent 18%),
+        linear-gradient(100deg, #041d1b 0%, #061a24 48%, #031d1b 100%);
+      border-bottom: 1px solid rgba(52, 211, 153, .28);
+      box-shadow: 0 5px 18px rgba(2, 20, 29, .16);
+    }
+
+    .sponsor-strip::before,
+    .sponsor-strip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .28;
+      background-image: repeating-linear-gradient(130deg, transparent 0 24px, rgba(16, 185, 129, .25) 25px 27px, transparent 28px 48px);
+      mask-image: linear-gradient(90deg, #000, transparent 24%, transparent 76%, #000);
+    }
+
+    .sponsor-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1700px;
+      min-height: var(--sponsor-height);
+      margin: 0 auto;
+      padding: 7px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .sponsor-coin {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255,255,255,.65);
+      border-radius: 50%;
+      color: #fff8d7;
+      background: linear-gradient(145deg, #ffca45, #bd6b09);
+      box-shadow: 0 4px 15px rgba(245, 158, 11, .28), inset 0 1px 2px rgba(255,255,255,.55);
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .sponsor-coin--eth {
+      color: #eef4ff;
+      background: linear-gradient(145deg, #8aa7ff, #4658bc);
+      font-size: 21px;
+    }
+
+    .sponsor-copy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .sponsor-eyebrow {
+      padding: 4px 8px;
+      border: 1px solid rgba(110, 231, 183, .35);
+      border-radius: 999px;
+      color: #a7f3d0;
+      background: rgba(16, 185, 129, .12);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .8px;
+    }
+
+    .sponsor-copy strong {
+      color: #fff;
+      font-size: clamp(13px, 1.35vw, 19px);
+      font-weight: 800;
+      letter-spacing: -.35px;
+    }
+
+    .sponsor-copy em {
+      color: #4ade9b;
+      font-style: normal;
+    }
+
+    .sponsor-divider {
+      width: 1px;
+      height: 23px;
+      flex: 0 0 1px;
+      background: rgba(226, 255, 242, .35);
+    }
+
+    .sponsor-tagline {
+      color: #d0e6df;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .sponsor-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex: 0 0 auto;
+      padding: 10px 17px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      color: #05291d;
+      background: linear-gradient(135deg, #a7f3b5, #35e89a);
+      box-shadow: 0 5px 15px rgba(16, 185, 129, .2);
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 800;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .sponsor-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 19px rgba(16, 185, 129, .3);
+    }
+
+    .sponsor-cta:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
     /* Independently scrollable sidebar */
     .sidebar {
       position: fixed;
       z-index: 120;
-      inset: 0 auto 0 0;
+      inset: var(--sponsor-height) auto 0 0;
       width: var(--sidebar-width);
-      height: 100vh;
-      height: 100dvh;
+      height: calc(100vh - var(--sponsor-height));
+      height: calc(100dvh - var(--sponsor-height));
       display: flex;
       flex-direction: column;
       padding: 20px 16px 18px;
@@ -339,7 +478,7 @@
 
     .topbar {
       position: sticky;
-      top: 0;
+      top: var(--sponsor-height);
       z-index: 100;
       min-height: 74px;
       display: flex;
@@ -478,7 +617,7 @@
     }
 
     .hero-panel {
-      min-height: 206px;
+      min-height: 250px;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
       align-items: center;
@@ -595,10 +734,20 @@
 
     .hero-art {
       position: relative;
-      min-height: 150px;
+      min-height: 205px;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .hero-globe {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: min(100%, 420px);
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 15px 17px rgba(0, 112, 105, .17));
     }
 
     .orbit {
@@ -655,15 +804,15 @@
     .hero-stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin: 15px 0 22px;
+      gap: 7px;
+      margin: 14px 0 0;
     }
 
     .hero-stat {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 8px 12px;
+      padding: 8px 10px;
       border: 1px solid rgba(8,168,107,.13);
       border-radius: 999px;
       color: var(--heading);
@@ -726,7 +875,8 @@
       text-decoration: none;
       background: linear-gradient(145deg, var(--card-soft) 0%, var(--surface) 72%);
       border: 1px solid var(--border);
-      box-shadow: 0 7px 20px rgba(15,23,42,.035);
+      border-top: 3px solid var(--card-accent);
+      box-shadow: 0 7px 20px rgba(15,23,42,.045);
       transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
 
@@ -771,6 +921,11 @@
       outline-offset: 3px;
     }
 
+
+    [data-theme="dark"] .dash-card {
+      background: linear-gradient(145deg, color-mix(in srgb, var(--card-accent) 18%, var(--surface)), var(--surface) 76%);
+    }
+
     .dash-card--depin { --card-accent: #1687ff; --card-soft: rgba(22,135,255,.11); }
     .dash-card--community { --card-accent: #08a878; --card-soft: rgba(16,185,129,.12); }
     .dash-card--airdrops { --card-accent: #f97316; --card-soft: rgba(249,115,22,.12); }
@@ -790,8 +945,8 @@
       width: 45px;
       height: 45px;
       flex: 0 0 auto;
-      border-radius: 15px;
-      background: var(--card-soft);
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--card-soft), var(--surface));
       border: 1px solid var(--card-soft);
       display: grid;
       place-items: center;
@@ -850,28 +1005,6 @@
     }
 
     .dash-card[hidden] { display: none !important; }
-
-    /* Dedicated Web3 Tools section */
-    .web3-tools-section { margin-top: 28px; }
-
-    .web3-tools-section .section-heading { margin-top: 0; }
-
-    .web3-tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 13px;
-    }
-
-    .web3-tools-grid .dash-card {
-      min-height: 150px;
-    }
-
-    .web3-tools-intro {
-      margin: 0 0 13px;
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.6;
-    }
 
     .empty-search {
       display: none;
@@ -932,8 +1065,22 @@
       .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
+    @media (max-width: 900px) {
+      .sponsor-tagline, .sponsor-divider { display: none; }
+      .sponsor-copy { gap: 9px; }
+      .sponsor-copy strong { font-size: 13px; }
+      .sponsor-inner { gap: 12px; }
+    }
+
     @media (max-width: 760px) {
-      :root { --sidebar-width: 258px; }
+      :root { --sidebar-width: 258px; --sponsor-height: 52px; }
+
+      .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
+      .sponsor-coin { width: 30px; height: 30px; flex-basis: 30px; font-size: 18px; }
+      .sponsor-coin--eth, .sponsor-eyebrow, .sponsor-divider, .sponsor-tagline { display: none; }
+      .sponsor-copy { flex: 1; justify-content: flex-start; gap: 0; }
+      .sponsor-copy strong { font-size: 11px; }
+      .sponsor-cta { padding: 9px 11px; font-size: 9px; }
 
       .sidebar {
         transform: translateX(-105%);
@@ -945,7 +1092,7 @@
 
       .mobile-overlay {
         position: fixed;
-        inset: 0;
+        inset: var(--sponsor-height) 0 0;
         z-index: 110;
         background: rgba(4,14,27,.42);
       }
@@ -1001,12 +1148,11 @@
       .hero-copy p { font-size: 11px; }
 
       .hero-art {
-        min-height: 115px;
-        margin-top: 3px;
+        min-height: 165px;
+        margin-top: 5px;
       }
 
-      .server-stack { width: 170px; }
-      .orbit { width: 260px; height: 112px; }
+      .hero-globe { width: min(100%, 350px); }
 
       .hero-float {
         width: 32px;
@@ -1016,7 +1162,7 @@
 
       .hero-stats {
         gap: 6px;
-        margin: 11px 0 18px;
+        margin: 11px 0 0;
       }
 
       .hero-stat {
@@ -1025,7 +1171,7 @@
       }
 
       .section-heading h2 { font-size: 15px; }
-      .dashboard-grid, .web3-tools-grid { gap: 10px; }
+      .dashboard-grid { gap: 10px; }
 
       .dash-card {
         min-height: 156px;
@@ -1042,13 +1188,15 @@
         border-radius: 13px;
       }
 
-      .web3-tools-section { margin-top: 24px; }
     }
 
     @media (max-width: 430px) {
+      .sponsor-coin { display: none; }
+      .sponsor-copy strong { font-size: 10px; }
+      .sponsor-cta { padding: 8px 9px; font-size: 8px; }
       .topbar { gap: 7px; }
       .community-dropdown { display: none; }
-      .dashboard-grid, .web3-tools-grid { grid-template-columns: 1fr; }
+      .dashboard-grid { grid-template-columns: 1fr; }
       .dash-card { min-height: 0; }
       .hero-copy h2 { font-size: 25px; }
       .hero-kicker { font-size: 8px; }
@@ -1066,6 +1214,24 @@
 </head>
 
 <body data-theme="light">
+
+  <!-- Sponsorship opportunity banner (placeholder CTA; no ad network is connected) -->
+  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
+    <div class="sponsor-inner">
+      <span class="sponsor-coin sponsor-coin--btc" aria-hidden="true">₿</span>
+      <div class="sponsor-copy">
+        <span class="sponsor-eyebrow">SPONSORSHIP OPPORTUNITY</span>
+        <strong>Sponsor with Us on <em>Total Crypto Hub</em></strong>
+        <span class="sponsor-divider" aria-hidden="true"></span>
+        <span class="sponsor-tagline">Grow Your Brand in the Crypto Community</span>
+      </div>
+      <a class="sponsor-cta" href="legal-pages/contact.html">
+        Become a Sponsor <span aria-hidden="true">→</span>
+      </a>
+      <span class="sponsor-coin sponsor-coin--eth" aria-hidden="true">◆</span>
+    </div>
+  </section>
+
   <div class="app-shell">
 
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
@@ -1230,6 +1396,13 @@
               Discover DePIN infrastructure, community projects, airdrop campaigns and essential Web3 tools—all organized in one easy-to-use hub.
             </p>
 
+            <div class="hero-stats" aria-label="Total Crypto Hub highlights">
+              <span class="hero-stat"><b>◈</b> 57+ DePIN Projects</span>
+              <span class="hero-stat"><b>♧</b> Trusted Community</span>
+              <span class="hero-stat"><b>✓</b> Verified Resources</span>
+              <span class="hero-stat"><b>⚡</b> Earn &amp; Grow</span>
+            </div>
+
             <div class="hero-actions">
               <a class="primary-cta" href="depin-pages/depin.html">
                 Explore DePIN Projects <span aria-hidden="true">→</span>
@@ -1241,65 +1414,92 @@
           </div>
 
           <div class="hero-art" aria-hidden="true">
-            <div class="orbit"></div>
-            <span class="hero-float one">✦</span>
-            <span class="hero-float two">◇</span>
-
-            <svg class="server-stack" viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
+            <svg class="hero-globe" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a connected crypto globe and decentralized network">
               <defs>
-                <linearGradient id="serverA" x1="0" y1="0" x2="1" y2="1">
-                  <stop stop-color="#53f4bc"/>
-                  <stop offset="1" stop-color="#05a985"/>
+                <radialGradient id="globeFill" cx="32%" cy="24%" r="78%">
+                  <stop offset="0" stop-color="#b7ffe6"/>
+                  <stop offset=".38" stop-color="#20d9a0"/>
+                  <stop offset="1" stop-color="#087e80"/>
+                </radialGradient>
+                <linearGradient id="landFill" x1="0" y1="0" x2="1" y2="1">
+                  <stop stop-color="#c0ffe0"/>
+                  <stop offset="1" stop-color="#13a879"/>
                 </linearGradient>
-                <linearGradient id="serverB" x1="0" y1="0" x2="1" y2="1">
-                  <stop stop-color="#20d9bd"/>
-                  <stop offset="1" stop-color="#087caa"/>
+                <linearGradient id="coinGold" x1="0" y1="0" x2="1" y2="1">
+                  <stop stop-color="#ffe68a"/>
+                  <stop offset=".55" stop-color="#f7a91a"/>
+                  <stop offset="1" stop-color="#b96a08"/>
                 </linearGradient>
-                <linearGradient id="serverC" x1="0" y1="0" x2="1" y2="1">
-                  <stop stop-color="#d8fff0"/>
-                  <stop offset="1" stop-color="#75e9c2"/>
+                <linearGradient id="coinPurple" x1="0" y1="0" x2="1" y2="1">
+                  <stop stop-color="#d7c5ff"/>
+                  <stop offset="1" stop-color="#6355cf"/>
                 </linearGradient>
+                <clipPath id="globeClip"><circle cx="244" cy="137" r="91"/></clipPath>
               </defs>
 
-              <ellipse cx="132" cy="155" rx="105" ry="13" fill="#0b9b83" opacity=".13"/>
-              <path d="M39 111 130 68l91 43-91 44z" fill="#087f9c" opacity=".18"/>
-              <path d="m42 105 88-42 87 42-87 43z" fill="url(#serverB)"/>
-              <path d="m42 105 88 43v19l-88-43z" fill="#087e9d"/>
-              <path d="m130 148 87-43v19l-87 43z" fill="#056a8b"/>
-              <path d="m52 79 78-37 77 37-77 37z" fill="url(#serverA)"/>
-              <path d="m52 79 78 37v18L52 97z" fill="#0a9b91"/>
-              <path d="m130 116 77-37v18l-77 37z" fill="#087f9a"/>
-              <path d="m69 52 61-29 61 29-61 30z" fill="#25e7ad"/>
-              <path d="m69 52 61 30v15L69 67z" fill="#08a991"/>
-              <path d="m130 82 61-30v15l-61 30z" fill="#087f9b"/>
-              <path d="m108 38 22-22 22 22-22 21z" fill="url(#serverC)" stroke="#fff" stroke-width="2"/>
-              <path d="m108 38 22 11v22l-22-11z" fill="#11bfa0"/>
-              <path d="m130 49 22-11v22l-22 11z" fill="#078ca9"/>
-              <path d="m118 38 12-6 12 6-12 6z" fill="#fff" opacity=".9"/>
-              <g fill="#d9fff0">
-                <circle cx="91" cy="92" r="3"/>
-                <circle cx="104" cy="98" r="3"/>
-                <circle cx="156" cy="91" r="3"/>
-                <circle cx="169" cy="85" r="3"/>
+              <ellipse cx="245" cy="258" rx="155" ry="18" fill="#0b9b83" opacity=".12"/>
+              <g fill="none" stroke="#10a982" opacity=".55">
+                <ellipse cx="245" cy="137" rx="156" ry="62" transform="rotate(-17 245 137)" stroke-width="2" stroke-dasharray="5 7"/>
+                <ellipse cx="245" cy="137" rx="119" ry="49" transform="rotate(32 245 137)" stroke-width="1.4" opacity=".6"/>
+                <path d="M96 125 Q245 -3 391 128" stroke-width="1.2" stroke-dasharray="3 7"/>
               </g>
-              <g stroke="#eafff7" stroke-width="2" opacity=".9">
-                <path d="M130 15V4M104 25 94 15M156 25l10-10"/>
+
+              <circle cx="244" cy="137" r="93" fill="url(#globeFill)" stroke="#8cf3ce" stroke-width="3"/>
+              <g clip-path="url(#globeClip)">
+                <path d="M178 77 195 65 211 71 216 86 205 96 209 110 193 119 183 108 169 111 160 96Z" fill="url(#landFill)"/>
+                <path d="m219 128 19-9 19 9 8 17-10 13-1 20-13 20-12-5-8-24-14-13 5-16Z" fill="url(#landFill)"/>
+                <path d="m269 79 17-7 22 5 12 12-7 14-18 6-7 16-19-4-9-16-15-7Z" fill="url(#landFill)"/>
+                <path d="m309 145 22-9 19 9 7 17-14 16-22-1-15-13Z" fill="url(#landFill)"/>
+                <g fill="none" stroke="#d5fff0" stroke-width="1.2" opacity=".58">
+                  <ellipse cx="244" cy="137" rx="38" ry="91"/>
+                  <ellipse cx="244" cy="137" rx="70" ry="91"/>
+                  <ellipse cx="244" cy="137" rx="91" ry="34"/>
+                  <ellipse cx="244" cy="137" rx="91" ry="63"/>
+                  <path d="M153 137h182"/>
+                </g>
               </g>
-              <g fill="#fff">
-                <circle cx="130" cy="4" r="3"/>
-                <circle cx="94" cy="15" r="3"/>
-                <circle cx="166" cy="15" r="3"/>
+              <circle cx="244" cy="137" r="93" fill="none" stroke="#baffdf" stroke-width="2"/>
+
+              <!-- Small decentralized server stack -->
+              <g transform="translate(31 166)">
+                <ellipse cx="58" cy="79" rx="57" ry="10" fill="#087f78" opacity=".16"/>
+                <path d="m8 47 49-24 51 24-51 25Z" fill="#18d7b0"/>
+                <path d="m8 47 49 25v15L8 62Z" fill="#078e98"/>
+                <path d="m57 72 51-25v15L57 87Z" fill="#08768c"/>
+                <path d="m8 27 49-24 51 24-51 25Z" fill="#50edbd"/>
+                <path d="m8 27 49 25v15L8 42Z" fill="#0caa9b"/>
+                <path d="m57 52 51-25v15L57 67Z" fill="#087f99"/>
+                <g fill="#d8fff1"><circle cx="26" cy="34" r="2.5"/><circle cx="39" cy="40" r="2.5"/><circle cx="83" cy="34" r="2.5"/></g>
+                <path d="m57 0 14-12 14 12-14 13Z" fill="#c5ffea" stroke="#fff" stroke-width="1.5"/>
+              </g>
+
+              <!-- Bitcoin token -->
+              <g transform="translate(354 71)">
+                <circle r="31" fill="#fff" opacity=".36"/>
+                <circle r="25" fill="url(#coinGold)" stroke="#fff0b8" stroke-width="2"/>
+                <circle r="20" fill="none" stroke="#fff3c7" opacity=".7"/>
+                <text x="0" y="9" fill="#fff" font-size="29" text-anchor="middle" font-family="Arial" font-weight="700">₿</text>
+              </g>
+
+              <!-- Ethereum-style token -->
+              <g transform="translate(361 220)">
+                <circle r="27" fill="#fff" opacity=".34"/>
+                <circle r="22" fill="url(#coinPurple)" stroke="#eee7ff" stroke-width="2"/>
+                <path d="m0-14 10 15-10 6-10-6Z" fill="#fff" opacity=".95"/>
+                <path d="m0 11 10-7-10 13-10-13Z" fill="#d6cdff"/>
+              </g>
+
+              <g fill="#14bf8e">
+                <circle cx="109" cy="91" r="5"/>
+                <circle cx="391" cy="153" r="5" fill="#1687ff"/>
+                <circle cx="313" cy="30" r="4" fill="#fff"/>
+              </g>
+              <g stroke="#ddfff2" stroke-width="2" stroke-linecap="round">
+                <path d="m313 22 0 16M305 30h16"/>
               </g>
             </svg>
           </div>
         </section>
-
-        <div class="hero-stats" aria-label="Total Crypto Hub highlights">
-          <span class="hero-stat"><b>◈</b> 57+ DePIN Projects</span>
-          <span class="hero-stat"><b>♧</b> Community Resources</span>
-          <span class="hero-stat"><b>✓</b> Research-led Directory</span>
-          <span class="hero-stat"><b>⚡</b> Web3 Tools</span>
-        </div>
 
         <!-- Explore the Hub -->
         <section aria-labelledby="exploreHeading">
@@ -1404,54 +1604,6 @@
           </div>
         </section>
 
-        <!-- Dedicated Web3 Tools -->
-        <section class="web3-tools-section" aria-labelledby="web3ToolsHeading">
-          <div class="section-heading">
-            <div>
-              <h2 id="web3ToolsHeading">⚡ Web3 Tools</h2>
-              <p>Useful tools to research tokens and estimate potential earnings.</p>
-            </div>
-          </div>
-
-          <p class="web3-tools-intro">
-            Access the Total Crypto Hub tools directly from this section.
-          </p>
-
-          <div class="web3-tools-grid">
-
-            <a href="token-pages/token-checker.html" class="dash-card dash-card--checker" data-search="web3 tools token checker smart contract safety token research">
-              <div class="card-topline">
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
-                    <path d="m9 12 2 2 4-4"/>
-                  </svg>
-                </div>
-                <span class="card-tag">Token Research</span>
-              </div>
-              <h3>Token Checker</h3>
-              <p>Check token contract information, liquidity details and available blockchain safety data.</p>
-              <span class="card-action">Open Token Checker <span>→</span></span>
-            </a>
-
-            <a href="earning-pages/earning-calculator.html" class="dash-card dash-card--calculator" data-search="web3 tools earning calculator rewards income electricity power cost">
-              <div class="card-topline">
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="4" y="2" width="16" height="20" rx="2"/>
-                    <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/>
-                  </svg>
-                </div>
-                <span class="card-tag">Earnings Estimate</span>
-              </div>
-              <h3>Earning Calculator</h3>
-              <p>Estimate potential rewards, device electricity costs and possible token earnings.</p>
-              <span class="card-action">Open Earning Calculator <span>→</span></span>
-            </a>
-
-          </div>
-        </section>
-
         <div class="empty-search" id="emptySearch" role="status">
           No matching section found. Try another keyword.
         </div>
@@ -1529,7 +1681,6 @@
       const cards = Array.from(document.querySelectorAll('.dash-card'));
       const emptyMessage = document.getElementById('emptySearch');
       const exploreSection = document.querySelector('section[aria-labelledby="exploreHeading"]');
-      const web3Section = document.querySelector('.web3-tools-section');
 
       search.addEventListener('input', function () {
         const query = this.value.trim().toLowerCase();
@@ -1550,11 +1701,6 @@
         if (exploreSection) {
           const hasExploreCards = exploreSection.querySelectorAll('.dash-card:not([hidden])').length > 0;
           exploreSection.hidden = Boolean(query) && !hasExploreCards;
-        }
-
-        if (web3Section) {
-          const hasWeb3Cards = web3Section.querySelectorAll('.dash-card:not([hidden])').length > 0;
-          web3Section.hidden = Boolean(query) && !hasWeb3Cards;
         }
 
         emptyMessage.style.display = visible ? 'none' : 'block';
