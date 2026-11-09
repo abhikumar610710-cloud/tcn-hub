@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#effcf7">
+  <meta name="description" content="Delta Exchange India guide by Total Crypto Hub. Explore Spot, crypto Futures and Options, INR settlement, security, KYC and official live market tickers.">
+  <meta name="robots" content="index,follow">
+  <title>Delta Exchange Guide | Total Crypto Hub</title>
+  <style>
+
+    :root{--green:#0a9e68;--green-dark:#087d56;--mint:#e0f8eb;--mint-2:#c0efd7}
+    :root{
+      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
+      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;
+      --line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;
+      --purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b;
+    }
+    body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--mint-2:#205b4d;--shadow:0 12px 30px rgba(0,0,0,.2)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .sponsor{min-height:56px;padding:10px 20px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
+    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:20px;color:#fff;box-shadow:0 3px 12px #0004}
+    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
+    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
+    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
+    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(4vw,22px);position:sticky;top:0;z-index:20}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
+    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
+    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
+    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
+    .wrap{width:min(1180px,calc(100% - 36px));margin:28px auto 60px}
+    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:36px 40px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:20px}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
+    .hero h1 span{color:#00a875}
+    .hero p{max-width:620px;color:#315a63;margin:0 0 17px;font-size:15px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
+    .actions{display:flex;flex-wrap:wrap;gap:10px}
+    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
+    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
+    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
+    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
+    .wallet-orb{width:220px;height:220px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff,#c9fff0 55%,#71ddbd);box-shadow:0 18px 35px #2c9c8050;border:1px solid #8be5c7}
+    .wallet-orb img{width:82%;height:82%;object-fit:contain;filter:drop-shadow(0 12px 10px #174d3c35)}
+
+    .live-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0;padding:15px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 18px #183b5b08}
+    .stat-chip{text-align:center;padding:8px;border-right:1px solid var(--line)}.stat-chip:last-child{border-right:0}
+    .stat-chip strong{display:block;color:var(--green-dark);font-size:25px;line-height:1.2}.stat-chip span{display:block;color:var(--muted);font-size:11px;font-weight:750;margin-top:4px}
+    .source-note{font-size:11px;color:var(--muted);margin:9px 2px 0;line-height:1.55}
+    .market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.market-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 5px 18px #183b5b08}.market-card .symbol{font-size:11px;font-weight:850;color:var(--muted);letter-spacing:.04em}.market-card strong{display:block;font-size:24px;line-height:1.25;margin:7px 0;color:var(--text);font-variant-numeric:tabular-nums}.market-card .change{font-size:12px;font-weight:850}.market-card .change.up{color:#009b6c}.market-card .change.down{color:#d64d4d}.market-card .change.neutral{color:var(--muted)}.market-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.refresh-btn:disabled{opacity:.6;cursor:wait}.refresh-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 13px;border-radius:24px;font-size:11px;font-weight:800;cursor:pointer}.kucoin-mark{font-size:106px;color:#f0b90b;text-shadow:0 9px 20px #c58b1238;line-height:1}.network-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.network-pill{background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:7px 11px;font-size:11px;font-weight:750;color:var(--text)}
+    .live-label{display:inline-flex;align-items:center;gap:7px;color:var(--green-dark);font-size:11px;font-weight:850}.live-dot{width:8px;height:8px;border-radius:50%;background:#00b77b;box-shadow:0 0 0 4px #00b77b20}
+    .float-coin{position:absolute;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:25px;font-weight:900;box-shadow:0 6px 15px #174d3c30}
+    .eth{top:18px;left:4%;background:#e7e2ff;color:#7155d9}.btc{right:2%;top:50px;background:#fff0cc;color:#e99a12}
+    .quicknav{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
+    .quicknav a{white-space:nowrap;padding:10px 15px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
+    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
+    .section{margin-top:24px}
+    .section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
+    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
+    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:16px}
+    .panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 5px 18px #183b5b06}
+    .panel p{color:var(--muted);margin:0}
+    .fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
+    .fact-icon{font-size:30px}
+    .fact h3{margin:0 0 5px;font-size:16px}
+    .fact p{font-size:13px}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+    .feature{text-align:center;padding:22px 14px;transition:.2s}
+    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .feature .emoji{font-size:30px;display:block;margin-bottom:8px}
+    .feature h3{font-size:15px;margin:0 0 5px}
+    .feature p{font-size:12px;color:var(--muted);margin:0}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .step{padding:17px 13px;position:relative}
+    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}
+    .step p{font-size:11px;color:var(--muted);margin:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .mini-list{border-radius:14px;padding:13px;background:#e8fbf3;color:#14553f}
+    .mini-list.bad{background:#fff0ef;color:#873d3d}
+    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
+    .mini-list h3{font-size:13px;margin:0 0 9px}
+    .mini-list ul,.security-list{list-style:none;padding:0;margin:0}
+    .mini-list li{font-size:12px;margin:7px 0}
+    .security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
+    .security-list b{color:var(--text)}
+    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:13px;align-items:stretch}
+    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
+    .video-thumb:before{content:"◆";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}
+    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
+    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
+    .video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
+    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}
+    body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .faq-item{padding:0;overflow:hidden}
+    .faq-q{width:100%;padding:14px 16px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
+    .faq-a{display:none;padding:0 16px 15px;color:var(--muted);font-size:12px}
+    .faq-item.open .faq-a{display:block}
+    .cta{margin-top:26px;border-radius:20px;padding:24px 28px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
+    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}
+    .cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
+    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}
+    footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+    @media(max-width:850px){.market-grid{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.wallet-orb{width:175px;height:175px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.market-grid{grid-template-columns:1fr}.market-card{padding:13px}.market-card strong{font-size:22px}.sponsor{gap:7px;padding:9px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 13px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 11px;font-size:11px}.wrap{width:calc(100% - 22px);margin:14px auto 35px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:35px}.hero p{font-size:13px}.hero-art{min-height:160px}.wallet-orb{width:150px;height:150px}.section-heading{font-size:19px}.features{gap:8px}.feature{padding:16px 9px}.steps{gap:8px}.step{padding:13px 10px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}}
+  
+    .kucoin-mark{width:118px;height:118px;border-radius:28px;background:#111;color:#f4c400;display:grid;place-items:center;font-size:88px;font-weight:950;line-height:1;box-shadow:0 14px 30px #1113;transform:rotate(0deg)}
+    .snapshot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+    .reserve-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+    .reserve-card strong{display:block;font-size:22px;color:var(--green-dark);font-variant-numeric:tabular-nums}
+    .reserve-card span{font-size:11px;color:var(--muted);font-weight:750}
+    .notice-panel{background:linear-gradient(120deg,#fff5da,#fff);border-color:#f2dfa9}
+    body.dark .notice-panel{background:linear-gradient(120deg,#46391d,#1b2634);border-color:#6c5730}
+    @media(max-width:850px){.snapshot-grid{grid-template-columns:repeat(2,1fr)}}
+
+  
+
+    .coindcx-mark{width:118px;height:118px;border-radius:30px;background:linear-gradient(145deg,#062b22,#0b8e5e);display:grid;place-items:center;color:#fff;font-size:42px;font-weight:950;letter-spacing:-.09em;box-shadow:0 14px 30px #067a4b35;border:7px solid #b9f5d4}
+    .market-card .pair-tag{display:inline-block;padding:4px 8px;margin-top:7px;border:1px solid var(--line);border-radius:20px;background:var(--surface-2);font-size:10px;font-weight:800;color:var(--muted)}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+    .trust-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+    .trust-item strong{display:block;font-size:14px;color:var(--green-dark)}.trust-item span{display:block;font-size:10px;color:var(--muted);font-weight:750;margin-top:3px}
+    .api-note{padding:13px 15px;background:var(--surface-2);border:1px solid var(--line);border-radius:13px}
+    @media(max-width:850px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+  
+    .coinswitch-mark{width:118px;height:118px;border-radius:30px;background:linear-gradient(145deg,#171b33,#3845a3);display:grid;place-items:center;color:#fff;font-size:31px;font-weight:950;letter-spacing:-.07em;box-shadow:0 14px 30px #3845a335;border:7px solid #d8dcff}
+    .market-card .pair-tag{display:inline-block;padding:4px 8px;margin-top:7px;border:1px solid var(--line);border-radius:20px;background:var(--surface-2);font-size:10px;font-weight:800;color:var(--muted)}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+    .trust-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+    .trust-item strong{display:block;font-size:14px;color:var(--green-dark)}.trust-item span{display:block;font-size:10px;color:var(--muted);font-weight:750;margin-top:3px}
+    .api-note{padding:13px 15px;background:var(--surface-2);border:1px solid var(--line);border-radius:13px}
+    @media(max-width:850px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+
+  
+
+    .delta-mark{width:124px;height:124px;border-radius:30px;background:linear-gradient(145deg,#111e35,#1f4973);display:grid;place-items:center;color:#45d3ce;font-size:92px;font-weight:900;line-height:1;box-shadow:0 14px 30px #193b6035;border:7px solid #d4f7f4;text-shadow:0 5px 16px #45d3ce55}
+    .pair-tag{display:inline-block;margin-top:8px;padding:4px 8px;border-radius:20px;background:var(--surface-2);border:1px solid var(--line);font-size:10px;color:var(--muted);font-weight:750}
+    .notice-panel{background:linear-gradient(120deg,#fff7e6,var(--surface));border-color:#f4dfb0}
+    body.dark .notice-panel{background:linear-gradient(120deg,#41331c,#1b2634);border-color:#65502c}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+    .trust-item{border:1px solid var(--line);background:var(--surface-2);border-radius:13px;padding:13px;text-align:center}
+    .trust-item strong{display:block;font-size:16px;color:var(--green-dark)}.trust-item span{display:block;font-size:10px;color:var(--muted);margin-top:4px}
+    .source-note a{color:var(--green-dark);font-weight:750;text-decoration:underline;text-underline-offset:2px}
+    @media(max-width:850px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+  <div class="sponsor">
+    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
+    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
+    <small>Grow Your Brand in the Crypto Community</small>
+    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Total Crypto Hub home">
+      <span class="brand-mark">TCN</span>
+      <span>Total Crypto Hub<small>by Total Crypto Network</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="back-btn" href="exchanges.html">← Back to Exchanges</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="overview">
+      <div>
+        <span class="eyebrow">✦ Exchange Guide · Total Crypto Hub</span>
+        <h1>Delta <span>Exchange</span></h1>
+        <p>Explore Delta Exchange India — a platform for crypto Spot markets, Bitcoin and Ether Futures &amp; Options, and selected real-world-asset products. Learn the features, market data, account requirements and risks before using the platform.</p>
+        <div class="pills">
+          <span class="pill">🇮🇳 India Platform</span><span class="pill">📊 Spot Markets</span>
+          <span class="pill">⚡ Crypto Futures &amp; Options</span><span class="pill">🛡️ FIU-IND Reporting Entity</span>
+        </div>
+        <div class="actions">
+          <a class="primary" href="https://www.delta.exchange/" target="_blank" rel="noopener noreferrer">Visit Official Delta Exchange ↗</a>
+          <a class="secondary" href="https://www.delta.exchange/en/contracts" target="_blank" rel="noopener noreferrer">View Contract Specifications ↗</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Delta Exchange brand mark">
+        <span class="float-coin eth">₹</span><span class="float-coin btc">₿</span>
+        <div class="wallet-orb"><span class="delta-mark" aria-hidden="true">Δ</span></div>
+      </div>
+    </section>
+
+    <nav class="quicknav" aria-label="Page sections">
+      <a class="active" href="#overview">⌂ Overview</a><a href="#live-info">● Live Market</a><a href="#features">⭐ Features</a><a href="#how-to">▣ How to Start</a>
+      <a href="#products">📈 Products</a><a href="#security">🛡 Security</a><a href="#faq">ⓘ FAQ</a>
+    </nav>
+
+    <section id="live-info" aria-label="Delta Exchange live spot market prices">
+      <div class="market-controls">
+        <div>
+          <div class="live-label"><span class="live-dot"></span> Delta Exchange India public market tickers</div>
+          <p class="source-note" style="margin-top:3px">BTC, ETH, SOL and XRP Spot markets · Checks the official public ticker API approximately every 60 seconds</p>
+        </div>
+        <button class="refresh-btn" id="refreshMarketPrices" type="button">↻ Refresh prices</button>
+      </div>
+      <div class="market-grid">
+        <article class="market-card"><span class="symbol">BITCOIN · BTC</span><strong id="price-BTC">Loading…</strong><span class="change neutral" id="change-BTC">Waiting for Delta ticker</span><span class="pair-tag" id="pair-BTC">Spot market</span></article>
+        <article class="market-card"><span class="symbol">ETHEREUM · ETH</span><strong id="price-ETH">Loading…</strong><span class="change neutral" id="change-ETH">Waiting for Delta ticker</span><span class="pair-tag" id="pair-ETH">Spot market</span></article>
+        <article class="market-card"><span class="symbol">SOLANA · SOL</span><strong id="price-SOL">Loading…</strong><span class="change neutral" id="change-SOL">Waiting for Delta ticker</span><span class="pair-tag" id="pair-SOL">Spot market</span></article>
+        <article class="market-card"><span class="symbol">XRP · XRP</span><strong id="price-XRP">Loading…</strong><span class="change neutral" id="change-XRP">Waiting for Delta ticker</span><span class="pair-tag" id="pair-XRP">Spot market</span></article>
+      </div>
+      <p class="source-note" id="marketUpdatedAt" aria-live="polite">Connecting to Delta Exchange India public API…</p>
+      <p class="source-note">These cards request public Spot market tickers from Delta Exchange India. Each card displays the returned trading pair and its reported last-trade/close price; the pair suffix indicates the quote unit. Values are not guaranteed execution prices. The order book, spread, fees and available quantity may change before an order is placed.</p>
+      <div class="live-strip">
+        <div class="stat-chip"><strong>Delta API</strong><span>Official public ticker source</span></div>
+        <div class="stat-chip"><strong>~60 sec</strong><span>Automatic refresh interval</span></div>
+        <div class="stat-chip"><strong>Spot</strong><span>Non-leveraged market reference</span></div>
+      </div>
+      <p class="source-note">The documented <code>GET /v2/tickers</code> endpoint is public and does not require an API key. This page does not connect to an account or place trades. API access can be affected by network, browser CORS settings, rate limits or platform changes. For production deployment, use a secure server-side proxy if browser requests are blocked. <a href="https://docs.delta.exchange/" target="_blank" rel="noopener noreferrer">Official API documentation ↗</a></p>
+      <div class="actions" style="margin-top:12px">
+        <a class="secondary" href="https://www.delta.exchange/" target="_blank" rel="noopener noreferrer">Official Platform ↗</a>
+        <a class="secondary" href="https://www.delta.exchange/support" target="_blank" rel="noopener noreferrer">Help &amp; Support ↗</a>
+        <a class="secondary" href="https://docs.delta.exchange/" target="_blank" rel="noopener noreferrer">API Documentation ↗</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="intro-grid">
+        <article class="panel">
+          <h2 class="section-heading"><span class="num">1</span> What is Delta Exchange?</h2>
+          <p>Delta Exchange India is a digital-asset trading platform operated by Excelium Technologies Private Limited. Its India platform offers Spot trading in BTC, ETH, SOL and XRP, along with crypto derivatives such as Futures and Options on Bitcoin and Ether. The official platform also lists selected real-world-asset products and trading tools.</p>
+          <p style="margin-top:12px">Spot trading means buying or selling the supported asset directly without using derivatives leverage. Futures and Options are different products: they involve contract terms, margin, expiry or funding mechanics, and can create rapid losses. Read the instrument specifications and fee schedule before trading.</p>
+          <p class="source-note"><a href="https://www.delta.exchange/" target="_blank" rel="noopener noreferrer">Delta Exchange India ↗</a> · <a href="https://www.delta.exchange/support/solutions?articleId=80001194208" target="_blank" rel="noopener noreferrer">Spot market availability ↗</a></p>
+        </article>
+        <aside class="panel fact">
+          <div class="fact-icon">💡</div><div><h3>Beginner Note</h3><p>Start by learning Spot orders, spreads, order types and fees. Do not confuse INR margin/settlement with the contract's displayed quotation unit. Derivatives and leverage are complex; understand liquidation, funding, expiry and settlement before considering them.</p></div>
+        </aside>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 5px;font-size:15px">Platform profile</h3>
+        <div class="trust-grid">
+          <div class="trust-item"><strong>Spot</strong><span>BTC · ETH · SOL · XRP</span></div>
+          <div class="trust-item"><strong>Crypto F&amp;O</strong><span>BTC and ETH products</span></div>
+          <div class="trust-item"><strong>INR</strong><span>India margin / settlement details vary by contract</span></div>
+          <div class="trust-item"><strong>FIU-IND</strong><span>Company-reported registration</span></div>
+        </div>
+        <p class="source-note">Delta Exchange's help centre states that Excelium Technologies Private Limited is an FIU-IND registered reporting entity (registration number VA00041101). FIU registration is not a guarantee of returns, deposit insurance or a regulator endorsement of trading risk. <a href="https://www.delta.exchange/support/solutions?articleId=80001177929" target="_blank" rel="noopener noreferrer">Official regulatory information ↗</a></p>
+      </div>
+      <div class="panel notice-panel" style="margin-top:14px">
+        <h3 style="margin:0 0 5px;font-size:15px">India KYC and access requirements</h3>
+        <p style="font-size:12px;color:var(--muted);margin:0">Delta Exchange's help centre says users must complete the minimum KYC for their country and that the service is not for users under 18. Its India KYC guide lists legal name, date of birth, verified phone number, PAN and Aadhaar as required details. Requirements and product eligibility can change; check the current official KYC screen and policy before applying.</p>
+        <p class="source-note"><a href="https://www.delta.exchange/support/solutions?articleId=80001140132" target="_blank" rel="noopener noreferrer">Official KYC guidelines ↗</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <h2 class="section-heading"><span class="num">2</span> Key Features</h2>
+      <div class="features">
+        <article class="feature"><span class="emoji">🪙</span><h3>Spot Trading</h3><p>Buy and sell currently supported BTC, ETH, SOL and XRP spot markets without derivatives leverage.</p></article>
+        <article class="feature"><span class="emoji">📈</span><h3>Futures &amp; Perpetuals</h3><p>Explore crypto derivative contracts; review margin, funding and liquidation rules carefully.</p></article>
+        <article class="feature"><span class="emoji">🧭</span><h3>Options</h3><p>BTC and ETH call and put options are described in Delta's India product guides.</p></article>
+        <article class="feature"><span class="emoji">🧰</span><h3>Trading Tools</h3><p>Official menus include APIs, TradingView automation, strategy tools, analytics and demo trading.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <h2 class="section-heading"><span class="num">3</span> Products and Tools to Explore</h2>
+      <div class="panel">
+        <p>Delta Exchange's current India website and help centre describe the following product areas. Availability, asset coverage, contract specifications and regional eligibility can change. Always verify the exact instrument on the official platform.</p>
+        <div class="network-pills">
+          <span class="network-pill">BTC Spot</span><span class="network-pill">ETH Spot</span><span class="network-pill">SOL Spot</span><span class="network-pill">XRP Spot</span>
+          <span class="network-pill">BTC Futures / Perpetuals</span><span class="network-pill">ETH Futures / Perpetuals</span><span class="network-pill">BTC Call / Put Options</span><span class="network-pill">ETH Call / Put Options</span>
+          <span class="network-pill">Tokenized RWA Products</span><span class="network-pill">Trading Bot</span><span class="network-pill">Algo Marketplace</span><span class="network-pill">Trading APIs</span><span class="network-pill">Strategy Builder</span><span class="network-pill">Demo Trading</span><span class="network-pill">Market Analytics</span>
+        </div>
+        <p class="source-note"><a href="https://www.delta.exchange/" target="_blank" rel="noopener noreferrer">Official product menu ↗</a> · <a href="https://www.delta.exchange/en/contracts" target="_blank" rel="noopener noreferrer">Contract specifications ↗</a> · <a href="https://guides.delta.exchange/delta-exchange-india-user-guide" target="_blank" rel="noopener noreferrer">India user guide ↗</a></p>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 5px;font-size:15px">Contract quotation vs settlement currency</h3>
+        <p style="font-size:12px;color:var(--muted);margin:0">For example, Delta's BTCUSD contract specification lists price quotation in USD per BTC while margin and effective settlement currency are INR. This is why a displayed contract price should not automatically be labelled as an INR amount. Check each product's contract specification for quote currency, lot size, margin, fees and funding details.</p>
+        <p class="source-note"><a href="https://www.delta.exchange/en/contracts" target="_blank" rel="noopener noreferrer">Read official contract specifications ↗</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="how-to">
+      <h2 class="section-heading"><span class="num">4</span> How to Get Started</h2>
+      <div class="panel" style="margin-bottom:12px"><p>These are general educational steps. Exact screens and requirements may change. Do not deposit or trade until you understand the platform's terms, fees and risks.</p></div>
+      <div class="steps">
+        <article class="step"><div class="circle">1</div><h3>Open Official Website</h3><p>Enter delta.exchange directly in your browser and verify the domain.</p></article>
+        <article class="step"><div class="circle">2</div><h3>Review Eligibility</h3><p>Check country rules, age requirements, account terms and supported services.</p></article>
+        <article class="step"><div class="circle">3</div><h3>Complete KYC</h3><p>Follow the current official identity-verification process.</p></article>
+        <article class="step"><div class="circle">4</div><h3>Learn the Product</h3><p>Understand Spot, contract units, fees, margin and settlement before placing orders.</p></article>
+        <article class="step"><div class="circle">5</div><h3>Secure Your Account</h3><p>Use a unique password and available security controls; protect API credentials.</p></article>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 5px;font-size:15px">Official mobile apps</h3>
+        <p style="font-size:12px;color:var(--muted);margin:0">Delta Exchange's help centre provides official app-store links. Use those links rather than third-party APK download sites.</p>
+        <div class="actions" style="margin-top:12px">
+          <a class="secondary" href="https://play.google.com/store/apps/details?id=com.deltaexchangeindia" target="_blank" rel="noopener noreferrer">Android App ↗</a>
+          <a class="secondary" href="https://apps.apple.com/in/app/delta-exchange-crypto-options/id6478332344" target="_blank" rel="noopener noreferrer">iOS App ↗</a>
+          <a class="secondary" href="https://www.delta.exchange/support/solutions?articleId=80001132517" target="_blank" rel="noopener noreferrer">Official App Instructions ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section two-col">
+      <article id="pros-cons">
+        <h2 class="section-heading"><span class="num">5</span> Things to Consider</h2>
+        <div class="good-bad">
+          <div class="mini-list"><h3>✓ Platform Areas</h3><ul><li>✓ Spot markets without derivatives leverage</li><li>✓ Crypto Futures and Options</li><li>✓ Public market-data API</li><li>✓ Demo and automation tools</li></ul></div>
+          <div class="mini-list bad"><h3>✕ Risks to Understand</h3><ul><li>✕ Derivatives can cause rapid losses</li><li>✕ Leverage increases liquidation risk</li><li>✕ Fees and funding affect results</li><li>✕ Products and eligibility may change</li></ul></div>
+        </div>
+      </article>
+      <article id="security">
+        <h2 class="section-heading"><span class="num">6</span> Security &amp; API Safety</h2>
+        <div class="panel">
+          <ul class="security-list">
+            <li><span>🛡️</span><span><b>Use the official domain.</b> Check the address carefully and avoid lookalike sites, unsolicited links and fake support profiles.</span></li>
+            <li><span>🔐</span><span><b>Protect login credentials.</b> Use a unique password and enable the security methods currently offered in your account.</span></li>
+            <li><span>🔑</span><span><b>Keep API secrets private.</b> Never paste API keys or secrets into public HTML, GitHub, client-side JavaScript, chats or screenshots.</span></li>
+            <li><span>✋</span><span><b>Review every order.</b> Confirm contract symbol, quantity, direction, order type, margin, fees and liquidation implications.</span></li>
+          </ul>
+          <p class="source-note">Delta's API docs say public market ticker endpoints do not require authentication, while account-related and order-placement endpoints require API key/secret authentication. Private credentials must never be embedded in front-end code. <a href="https://docs.delta.exchange/" target="_blank" rel="noopener noreferrer">API authentication and security documentation ↗</a></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="learning">
+      <h2 class="section-heading"><span class="num">7</span> Official Learning &amp; Help</h2>
+      <div class="video-layout">
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>Delta Exchange India User Guide</h3><p>Read official guides for Spot, Futures, Options, orders and account basics.</p>
+          <a href="https://guides.delta.exchange/delta-exchange-india-user-guide" target="_blank" rel="noopener noreferrer">Read Official User Guide ↗</a>
+        </article>
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>API &amp; Market Data Guide</h3><p>Learn the documented public ticker interface and the authentication boundaries.</p>
+          <a href="https://docs.delta.exchange/" target="_blank" rel="noopener noreferrer">Open API Documentation ↗</a>
+        </article>
+        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Fees, KYC &amp; Support</h3><p>Check current fees, KYC, deposit and withdrawal rules in the official Help Center before using the platform.</p><a href="https://www.delta.exchange/support" target="_blank" rel="noopener noreferrer">Delta Help Center ↗</a></aside>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <h2 class="section-heading"><span class="num">8</span> Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">What is Delta Exchange India? <span>＋</span></button><div class="faq-a">It is a digital-asset trading platform operated by Excelium Technologies Private Limited. The India site offers Spot markets and crypto derivatives, along with other listed trading products. Check the official site for current availability.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Which coins are available in Spot trading? <span>＋</span></button><div class="faq-a">Delta Exchange's Spot help article currently lists Bitcoin (BTC), Ethereum (ETH), Solana (SOL) and Ripple (XRP). Confirm supported pairs and availability on the live platform.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Are the market prices on this page exact order quotes? <span>＋</span></button><div class="faq-a">They are values returned by Delta's public Spot ticker API at the time of the most recent successful refresh. They are not guaranteed execution prices. The order book, spread and available quantity can change.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does Delta Exchange India have FIU registration? <span>＋</span></button><div class="faq-a">Delta's official Help Center states that its operator, Excelium Technologies Private Limited, is an FIU-IND registered reporting entity (VA00041101). Registration is not a guarantee against trading or custody risks.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Do public API prices need an API key? <span>＋</span></button><div class="faq-a">The documented public market ticker endpoint does not require an API key. Account data and order-placement endpoints require authentication. Never publish private API credentials in website source code.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Are Futures and Options risk-free? <span>＋</span></button><div class="faq-a">No. Derivatives involve contract-specific margin, expiry or funding rules. Leverage can magnify losses and may lead to liquidation. Understand the contract before trading.</div></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div><h2>Explore Delta Exchange Carefully</h2><p>Read the official product details, understand the risks and verify the latest fees and eligibility.</p></div>
+      <a class="primary" href="https://www.delta.exchange/" target="_blank" rel="noopener noreferrer">Visit Delta Exchange ↗</a>
+    </section>
+
+    <p class="disclaimer">Educational information only. Total Crypto Hub is an independent information directory and is not affiliated with Delta Exchange. Market cards request public Delta Exchange India Spot tickers; prices may be delayed, unavailable or different from actual order execution. Product, KYC, fee, regulatory and security information is based on official Delta materials and may change. FIU-IND reporting-entity registration is not an endorsement, deposit insurance or a guarantee of safety. Crypto assets are volatile; Futures, Options and leverage can cause substantial losses. This page does not accept logins, connect to exchange accounts, store API credentials or place trades. Always read the official terms and applicable laws before using any service.</p>
+  </main>
+  <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
+
+  <script>
+    const themeButton = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('tch-theme');
+    if (savedTheme === 'dark') document.body.classList.add('dark');
+    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const dark = document.body.classList.contains('dark');
+      themeButton.textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('tch-theme', dark ? 'dark' : 'light');
+    });
+
+    const marketApi = 'https://api.india.delta.exchange/v2/tickers?contract_types=spot&underlying_asset_symbols=BTC%2CETH%2CSOL%2CXRP';
+    const marketAssets = [
+      {symbol:'BTC', name:'Bitcoin'},
+      {symbol:'ETH', name:'Ethereum'},
+      {symbol:'SOL', name:'Solana'},
+      {symbol:'XRP', name:'XRP'}
+    ];
+    const numberFormat = new Intl.NumberFormat('en-IN', {maximumFractionDigits: 6});
+
+    function setMarketMessage(message) {
+      marketAssets.forEach(asset => {
+        const price = document.getElementById('price-' + asset.symbol);
+        const change = document.getElementById('change-' + asset.symbol);
+        price.textContent = 'Unavailable';
+        change.textContent = message;
+        change.className = 'change neutral';
+      });
+    }
+
+    function renderTicker(asset, ticker) {
+      const priceEl = document.getElementById('price-' + asset.symbol);
+      const changeEl = document.getElementById('change-' + asset.symbol);
+      const pairEl = document.getElementById('pair-' + asset.symbol);
+      const rawPrice = ticker.close ?? ticker.mark_price ?? ticker.spot_price;
+      const price = Number(rawPrice);
+      if (!Number.isFinite(price)) {
+        priceEl.textContent = 'Unavailable';
+        changeEl.textContent = 'Price field not returned';
+        changeEl.className = 'change neutral';
+        return;
+      }
+      priceEl.textContent = numberFormat.format(price);
+      const pair = ticker.symbol || (asset.symbol + ' Spot');
+      pairEl.textContent = pair + ' · Delta Spot';
+      const change = Number(ticker.ltp_change_24h);
+      if (Number.isFinite(change)) {
+        const sign = change > 0 ? '+' : '';
+        changeEl.textContent = sign + change.toFixed(2) + '% (24h)';
+        changeEl.className = 'change ' + (change > 0 ? 'up' : change < 0 ? 'down' : 'neutral');
+      } else {
+        changeEl.textContent = '24h change not available';
+        changeEl.className = 'change neutral';
+      }
+    }
+
+    async function refreshMarketPrices() {
+      const button = document.getElementById('refreshMarketPrices');
+      const updatedAt = document.getElementById('marketUpdatedAt');
+      button.disabled = true;
+      button.textContent = '↻ Updating…';
+      try {
+        const response = await fetch(marketApi, {headers:{'Accept':'application/json'}, cache:'no-store'});
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const payload = await response.json();
+        if (payload.success === false || !Array.isArray(payload.result)) throw new Error('Unexpected API response');
+        let found = 0;
+        marketAssets.forEach(asset => {
+          const matches = payload.result.filter(item => {
+            const symbol = String(item.symbol || '').toUpperCase();
+            const type = String(item.contract_type || 'spot').toLowerCase();
+            return symbol.startsWith(asset.symbol) && type === 'spot';
+          });
+          const ticker = matches.find(item => /INR$/.test(String(item.symbol || '').toUpperCase())) || matches[0];
+          if (ticker) {
+            renderTicker(asset, ticker);
+            found++;
+          } else {
+            document.getElementById('price-' + asset.symbol).textContent = 'Not listed';
+            document.getElementById('change-' + asset.symbol).textContent = 'No Spot ticker returned';
+            document.getElementById('change-' + asset.symbol).className = 'change neutral';
+          }
+        });
+        const time = new Date().toLocaleString('en-IN', {dateStyle:'medium', timeStyle:'medium'});
+        updatedAt.textContent = found ? 'Last successful update: ' + time + ' · ' + found + ' of 4 assets returned.' : 'API responded, but no matching Spot tickers were returned. Check the official market screen.';
+      } catch (error) {
+        setMarketMessage('Live ticker unavailable');
+        updatedAt.textContent = 'Could not load Delta public market data (' + error.message + '). Your browser/network may block the request; check the official Delta trading screen for current prices.';
+      } finally {
+        button.disabled = false;
+        button.textContent = '↻ Refresh prices';
+      }
+    }
+    document.getElementById('refreshMarketPrices').addEventListener('click', refreshMarketPrices);
+    refreshMarketPrices();
+    setInterval(refreshMarketPrices, 60000);
+
+    document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      item.classList.toggle('open');
+      const expanded = item.classList.contains('open');
+      button.setAttribute('aria-expanded', expanded);
+      button.querySelector('span').textContent = expanded ? '−' : '＋';
+    }));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navLinks = document.querySelectorAll('.quicknav a');
+    navLinks.forEach(link => link.addEventListener('click', () => {
+      navLinks.forEach(item => item.classList.remove('active'));
+      link.classList.add('active');
+    }));
+  </script>
+</body>
+</html>
