@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#effcf7">
+  <meta name="description" content="Bybit exchange guide by Total Crypto Hub. Explore Spot markets, derivatives, copy trading, Earn, live market prices, account setup and security.">
+  <meta name="robots" content="index,follow">
+  <title>Bybit Exchange Guide | Total Crypto Hub</title>
+  <style>
+    :root{
+      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
+      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;
+      --line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;
+      --purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b;
+    }
+    body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--mint-2:#205b4d;--shadow:0 12px 30px rgba(0,0,0,.2)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .sponsor{min-height:56px;padding:10px 20px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
+    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:20px;color:#fff;box-shadow:0 3px 12px #0004}
+    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
+    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
+    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
+    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(4vw,22px);position:sticky;top:0;z-index:20}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
+    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
+    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
+    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
+    .wrap{width:min(1180px,calc(100% - 36px));margin:28px auto 60px}
+    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:36px 40px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:20px}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
+    .hero h1 span{color:#00a875}
+    .hero p{max-width:620px;color:#315a63;margin:0 0 17px;font-size:15px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
+    .actions{display:flex;flex-wrap:wrap;gap:10px}
+    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
+    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
+    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
+    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
+    .wallet-orb{width:220px;height:220px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff,#c9fff0 55%,#71ddbd);box-shadow:0 18px 35px #2c9c8050;border:1px solid #8be5c7}
+    .wallet-orb img{width:82%;height:82%;object-fit:contain;filter:drop-shadow(0 12px 10px #174d3c35)}
+
+    .live-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0;padding:15px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 18px #183b5b08}
+    .stat-chip{text-align:center;padding:8px;border-right:1px solid var(--line)}.stat-chip:last-child{border-right:0}
+    .stat-chip strong{display:block;color:var(--green-dark);font-size:25px;line-height:1.2}.stat-chip span{display:block;color:var(--muted);font-size:11px;font-weight:750;margin-top:4px}
+    .source-note{font-size:11px;color:var(--muted);margin:9px 2px 0;line-height:1.55}
+    .market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.market-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 5px 18px #183b5b08}.market-card .symbol{font-size:11px;font-weight:850;color:var(--muted);letter-spacing:.04em}.market-card strong{display:block;font-size:24px;line-height:1.25;margin:7px 0;color:var(--text);font-variant-numeric:tabular-nums}.market-card .change{font-size:12px;font-weight:850}.market-card .change.up{color:#009b6c}.market-card .change.down{color:#d64d4d}.market-card .change.neutral{color:var(--muted)}.market-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.refresh-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 13px;border-radius:24px;font-size:11px;font-weight:800;cursor:pointer}.bybit-mark{font-size:106px;color:#f0b90b;text-shadow:0 9px 20px #c58b1238;line-height:1}.network-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.network-pill{background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:7px 11px;font-size:11px;font-weight:750;color:var(--text)}
+    .live-label{display:inline-flex;align-items:center;gap:7px;color:var(--green-dark);font-size:11px;font-weight:850}.live-dot{width:8px;height:8px;border-radius:50%;background:#00b77b;box-shadow:0 0 0 4px #00b77b20}
+    .float-coin{position:absolute;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:25px;font-weight:900;box-shadow:0 6px 15px #174d3c30}
+    .eth{top:18px;left:4%;background:#e7e2ff;color:#7155d9}.btc{right:2%;top:50px;background:#fff0cc;color:#e99a12}
+    .quicknav{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
+    .quicknav a{white-space:nowrap;padding:10px 15px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
+    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
+    .section{margin-top:24px}
+    .section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
+    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
+    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:16px}
+    .panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 5px 18px #183b5b06}
+    .panel p{color:var(--muted);margin:0}
+    .fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
+    .fact-icon{font-size:30px}
+    .fact h3{margin:0 0 5px;font-size:16px}
+    .fact p{font-size:13px}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+    .feature{text-align:center;padding:22px 14px;transition:.2s}
+    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .feature .emoji{font-size:30px;display:block;margin-bottom:8px}
+    .feature h3{font-size:15px;margin:0 0 5px}
+    .feature p{font-size:12px;color:var(--muted);margin:0}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .step{padding:17px 13px;position:relative}
+    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}
+    .step p{font-size:11px;color:var(--muted);margin:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .mini-list{border-radius:14px;padding:13px;background:#e8fbf3;color:#14553f}
+    .mini-list.bad{background:#fff0ef;color:#873d3d}
+    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
+    .mini-list h3{font-size:13px;margin:0 0 9px}
+    .mini-list ul,.security-list{list-style:none;padding:0;margin:0}
+    .mini-list li{font-size:12px;margin:7px 0}
+    .security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
+    .security-list b{color:var(--text)}
+    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:13px;align-items:stretch}
+    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
+    .video-thumb:before{content:"◆";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}
+    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
+    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
+    .video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
+    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}
+    body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .faq-item{padding:0;overflow:hidden}
+    .faq-q{width:100%;padding:14px 16px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
+    .faq-a{display:none;padding:0 16px 15px;color:var(--muted);font-size:12px}
+    .faq-item.open .faq-a{display:block}
+    .cta{margin-top:26px;border-radius:20px;padding:24px 28px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
+    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}
+    .cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
+    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}
+    footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+    @media(max-width:850px){.market-grid{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.wallet-orb{width:175px;height:175px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.market-grid{grid-template-columns:1fr}.market-card{padding:13px}.market-card strong{font-size:22px}.sponsor{gap:7px;padding:9px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 13px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 11px;font-size:11px}.wrap{width:calc(100% - 22px);margin:14px auto 35px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:35px}.hero p{font-size:13px}.hero-art{min-height:160px}.wallet-orb{width:150px;height:150px}.section-heading{font-size:19px}.features{gap:8px}.feature{padding:16px 9px}.steps{gap:8px}.step{padding:13px 10px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}}
+  </style>
+</head>
+<body>
+  <div class="sponsor">
+    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
+    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
+    <small>Grow Your Brand in the Crypto Community</small>
+    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Total Crypto Hub home">
+      <span class="brand-mark">TCN</span>
+      <span>Total Crypto Hub<small>by Total Crypto Network</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="back-btn" href="wallets.html">← Back to Wallets</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="overview">
+      <div>
+        <span class="eyebrow">✦ Centralized Exchange Guide · Total Crypto Hub</span>
+        <h1>Bybit <span>Exchange</span></h1>
+        <p>Explore Bybit’s digital-asset trading platform. Learn about Spot markets, derivatives, Copy Trading, Bybit Earn, account setup and essential security practices. Product availability depends on your region and account eligibility.</p>
+        <div class="pills">
+          <span class="pill">📊 Spot Markets</span><span class="pill">⚡ Derivatives</span>
+          <span class="pill">👥 Copy Trading</span><span class="pill">🛡️ Bybit Protect</span>
+        </div>
+        <div class="actions">
+          <a class="primary" href="https://www.bybit.com/en" target="_blank" rel="noopener noreferrer">Visit Official Bybit ↗</a>
+          <a class="secondary" href="https://www.bybit.com/en/download" target="_blank" rel="noopener noreferrer">Official App Download ↗</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Bybit logo illustration">
+        <span class="float-coin eth">◆</span><span class="float-coin btc">₿</span>
+        <div class="wallet-orb"><span class="bybit-mark" aria-hidden="true">◈</span></div>
+      </div>
+    </section>
+
+    <nav class="quicknav" aria-label="Page sections">
+      <a class="active" href="#overview">⌂ Overview</a><a href="#live-info">● Live Markets</a><a href="#features">⭐ Features</a><a href="#how-to">▣ How to Use</a>
+      <a href="#security">🛡 Security</a><a href="#videos">▶ Learning</a><a href="#faq">ⓘ FAQ</a>
+    </nav>
+
+    <section id="live-info" aria-label="Live Bybit market data">
+      <div class="market-controls">
+        <div>
+          <div class="live-label"><span class="live-dot"></span> Live public market feed</div>
+          <p class="source-note" style="margin-top:3px">BTC, ETH and XRP spot pairs against USDT · Auto-refreshes about every 30 seconds</p>
+        </div>
+        <button class="refresh-btn" id="refreshMarketPrices" type="button">↻ Refresh prices</button>
+      </div>
+      <div class="market-grid">
+        <article class="market-card"><span class="symbol">BTC / USDT</span><strong id="price-BTCUSDT">Loading…</strong><span class="change neutral" id="change-BTCUSDT">Fetching 24h change</span></article>
+        <article class="market-card"><span class="symbol">ETH / USDT</span><strong id="price-ETHUSDT">Loading…</strong><span class="change neutral" id="change-ETHUSDT">Fetching 24h change</span></article>
+        <article class="market-card"><span class="symbol">XRP / USDT</span><strong id="price-XRPUSDT">Loading…</strong><span class="change neutral" id="change-XRPUSDT">Fetching 24h change</span></article>
+      </div>
+      <p class="source-note" id="marketUpdatedAt" aria-live="polite">Connecting to Bybit public market-data API…</p>
+      <p class="source-note">These are indicative public Spot ticker quotes in USDT, not guaranteed tick-by-tick prices or a buy/sell recommendation. USDT is a crypto asset and is not identical to a bank-held US dollar. Prices can move between refreshes. If the API is unavailable, open the official Bybit Markets page.</p>
+      <div class="live-strip">
+        <div class="stat-chip"><strong>Public</strong><span>Market-data endpoint</span></div>
+        <div class="stat-chip"><strong>~30 sec</strong><span>Page refresh interval</span></div>
+        <div class="stat-chip"><strong>No key</strong><span>Public ticker data does not need a private API key</span></div>
+      </div>
+      <p class="source-note">The market cards use Bybit's public V5 Get Tickers endpoint for Spot symbols. The endpoint returns the latest ticker snapshot, including last price and 24-hour price change; it is separate from any account or trading connection. <a href="https://www.bybit.com/en/markets" target="_blank" rel="noopener noreferrer">Bybit Markets ↗</a> · <a href="https://bybit-exchange.github.io/docs/v5/market/tickers" target="_blank" rel="noopener noreferrer">Official ticker API documentation ↗</a></p>
+      <div class="actions" style="margin-top:12px">
+        <a class="secondary" href="https://www.bybit.com/en/download" target="_blank" rel="noopener noreferrer">Official App ↗</a>
+        <a class="secondary" href="https://www.bybit.com/en/fee" target="_blank" rel="noopener noreferrer">Fees &amp; Rates ↗</a>
+        <a class="secondary" href="https://www.bybit.com/en/help-center/" target="_blank" rel="noopener noreferrer">Help Center ↗</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="intro-grid">
+        <article class="panel">
+          <h2 class="section-heading"><span class="num">1</span> What is Bybit?</h2>
+          <p>Bybit is a centralized cryptocurrency exchange (CEX) that offers digital-asset trading and related services. Its product categories include Spot trading, derivatives, options, Copy Trading, trading bots, Earn products and P2P services. Bybit also describes a Unified Trading Account (UTA) that can provide access to supported trading products through a unified account structure.</p>
+          <p style="margin-top:12px">An exchange account is different from a self-custody wallet. Assets held in an exchange account are subject to the platform's custody, account and withdrawal arrangements. Review the terms, supported networks, fees and risks before depositing or trading.</p>
+        </article>
+        <aside class="panel fact">
+          <div class="fact-icon">💡</div><div><h3>Beginner Note</h3><p>Start by understanding Spot orders, fees and account security. Derivatives, margin and options can magnify losses and are not beginner shortcuts. Availability and verification requirements depend on your country and account.</p></div>
+        </aside>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 5px;font-size:15px">Main services to explore</h3>
+        <p style="font-size:12px;color:var(--muted);margin:0">Check Bybit's official product pages and your account's country-specific notices for current eligibility, fees and restrictions.</p>
+        <div class="network-pills"><span class="network-pill">Spot Trading</span><span class="network-pill">Unified Trading Account</span><span class="network-pill">Derivatives</span><span class="network-pill">Options</span><span class="network-pill">P2P</span><span class="network-pill">Copy Trading</span><span class="network-pill">Trading Bots</span><span class="network-pill">Bybit Earn</span><span class="network-pill">Bybit Pay</span><span class="network-pill">Bybit Wallet</span></div>
+        <p class="source-note"><a href="https://www.bybit.com/en/help-center/" target="_blank" rel="noopener noreferrer">Browse official Bybit product and help categories ↗</a> · <a href="https://www.bybit.com/en/learn/" target="_blank" rel="noopener noreferrer">Bybit Learn ↗</a></p>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <h3 style="margin:0 0 5px;font-size:15px">Note for users in India</h3>
+        <p style="font-size:12px;color:var(--muted)">Bybit announced on 8 September 2025 that it had restored full app access for users in India after its FIU-IND registration. This is a dated company announcement, not a guarantee that every product, payment method or account feature is available now. Check the current Bybit country notice and follow applicable Indian tax and legal requirements before using the service.</p>
+        <p class="source-note"><a href="https://www.bybit.com/press/post/bybit-resumes-full-access-for-indian-users-reinforces-commitment-to-compliance-and-crypto-inclusion-blt7042bbc940598172" target="_blank" rel="noopener noreferrer">Bybit's India announcement · 8 September 2025 ↗</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <h2 class="section-heading"><span class="num">2</span> Key Features</h2>
+      <div class="features">
+        <article class="feature"><span class="emoji">📈</span><h3>Spot Trading</h3><p>Buy or sell supported crypto pairs using available order types. Review the order book, quote and fee before placing an order.</p></article>
+        <article class="feature"><span class="emoji">⚖️</span><h3>Derivatives &amp; Options</h3><p>Explore eligible contracts only after learning margin, funding, expiry and liquidation risks. Access may vary by region.</p></article>
+        <article class="feature"><span class="emoji">👥</span><h3>Copy Trading</h3><p>Eligible users may follow selected traders. Past performance does not predict future results; losses are possible.</p></article>
+        <article class="feature"><span class="emoji">🌱</span><h3>Bybit Earn</h3><p>Review eligible savings and on-chain products, rates, lock-up terms and asset risks before subscribing.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="how-to">
+      <h2 class="section-heading"><span class="num">3</span> How to Get Started with Bybit</h2>
+      <div class="panel" style="margin-bottom:12px"><p>These are general educational steps. Registration, identity verification, payment methods and product access can change by country and account status. Follow the latest instructions shown on Bybit's official website.</p></div>
+      <div class="steps">
+        <article class="step"><div class="circle">1</div><h3>Open Official Website</h3><p>Type bybit.com yourself and carefully verify the domain.</p></article>
+        <article class="step"><div class="circle">2</div><h3>Check Your Region</h3><p>Read the country notice and confirm the services available to you.</p></article>
+        <article class="step"><div class="circle">3</div><h3>Register &amp; Verify</h3><p>Create your own account and complete identity checks when required.</p></article>
+        <article class="step"><div class="circle">4</div><h3>Enable Protection</h3><p>Set up 2FA or a passkey, anti-phishing code and withdrawal safeguards.</p></article>
+        <article class="step"><div class="circle">5</div><h3>Learn Before Trading</h3><p>Understand fees and risks. Avoid leverage until you fully understand liquidation.</p></article>
+      </div>
+      <p class="source-note">Official registration instructions: <a href="https://www.bybit.com/en/help-center/article/How-to-register-an-account" target="_blank" rel="noopener noreferrer">How to Register an Account ↗</a> · <a href="https://www.bybit.com/en/download" target="_blank" rel="noopener noreferrer">Official app download ↗</a></p>
+    </section>
+
+    <section class="section two-col">
+      <article id="pros-cons">
+        <h2 class="section-heading"><span class="num">4</span> Pros &amp; Things to Consider</h2>
+        <div class="good-bad">
+          <div class="mini-list"><h3>✓ Potential Advantages</h3><ul><li>✓ Multiple trading product categories</li><li>✓ Spot markets and market data</li><li>✓ Unified Trading Account features</li><li>✓ Learning and help resources</li></ul></div>
+          <div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✕ Exchange custody and platform risk</li><li>✕ Fees, spreads and funding costs</li><li>✕ Product access differs by region</li><li>✕ Leverage can cause rapid losses</li></ul></div>
+        </div>
+      </article>
+      <article id="security">
+        <h2 class="section-heading"><span class="num">5</span> Account Security Tips</h2>
+        <div class="panel">
+          <ul class="security-list">
+            <li><span>🛡️</span><span><b>Use Bybit Protect.</b> Review the security recommendations shown for your account and enable available protection levels.</span></li>
+            <li><span>🔐</span><span><b>Enable 2FA or a passkey.</b> Secure your email and device as well as your Bybit account.</span></li>
+            <li><span>📩</span><span><b>Set an anti-phishing code.</b> Check the code in genuine messages and verify links before signing in.</span></li>
+            <li><span>📍</span><span><b>Review withdrawal safeguards.</b> Use available address-book, withdrawal-lock or location-based protections where appropriate.</span></li>
+            <li><span>✋</span><span><b>Never share codes or secrets.</b> Do not disclose passwords, OTPs, 2FA codes, API secrets or remote-access permissions to anyone.</span></li>
+          </ul>
+          <p class="source-note">Based on Bybit's current security guidance and Bybit Protect help page. Features shown may depend on account and region; security controls cannot remove every risk. <a href="https://www.bybit.com/en/help-center/article/Introduction-to-Bybit-Protect" target="_blank" rel="noopener noreferrer">Bybit Protect ↗</a> · <a href="https://www.bybit.com/en/help-center/article/How-to-Enhance-Your-Account-Security" target="_blank" rel="noopener noreferrer">Account security guide ↗</a> · <a href="https://www.bybit.com/en/help-center/article/How-to-Set-Up-and-Manage-Passkey-on-Bybit" target="_blank" rel="noopener noreferrer">Passkey guide ↗</a></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="videos">
+      <h2 class="section-heading"><span class="num">6</span> Video Tutorials &amp; Learning</h2>
+      <div class="video-layout">
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>Bybit Beginner Guide</h3><p>Find walkthroughs for registration, verification, account navigation and first steps.</p>
+          <a href="https://www.youtube.com/results?search_query=Bybit+official+beginner+guide" target="_blank" rel="noopener noreferrer">Find Beginner Videos ↗</a>
+        </article>
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>Spot Trading Basics</h3><p>Learn order types, trading pairs, order books and how to review an order before confirming.</p>
+          <a href="https://www.bybit.com/en/learn/" target="_blank" rel="noopener noreferrer">Explore Bybit Learn ↗</a>
+        </article>
+        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Official Help Center</h3><p>Use Bybit's help resources for account and product questions. Never share passwords, OTPs or 2FA codes with anyone claiming to be support.</p><a href="https://www.bybit.com/en/help-center/" target="_blank" rel="noopener noreferrer">Bybit Support ↗</a></aside>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <h2 class="section-heading"><span class="num">7</span> Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is Bybit a wallet or an exchange? <span>＋</span></button><div class="faq-a">This page covers Bybit Exchange, a centralized exchange. The separate Bybit Wallet product has different custody and access characteristics. Always check which product you are using.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does Bybit require identity verification? <span>＋</span></button><div class="faq-a">Verification requirements depend on the service, account and jurisdiction. Bybit may direct users to a regional site or show a restricted-country notice during registration.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">What is a Unified Trading Account? <span>＋</span></button><div class="faq-a">Bybit's Unified Trading Account is designed to provide access to supported Spot, margin, perpetual, futures and options products within a unified account structure. Collateral and margin rules apply, and access varies.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Are Bybit fees always the same? <span>＋</span></button><div class="faq-a">No. Fees can depend on product, maker/taker role, VIP level, trading volume and region. Funding, spreads or other costs may also apply. Check the current official fee schedule before trading.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is Copy Trading guaranteed to make profit? <span>＋</span></button><div class="faq-a">No. Copy Trading can lose money, and a trader's past results do not guarantee future performance. Review strategy, risk settings, fees and drawdowns before deciding.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Are BTC, ETH and XRP prices live? <span>＋</span></button><div class="faq-a">The cards request public Bybit Spot ticker snapshots and refresh about every 30 seconds. They are not a guaranteed tick-by-tick feed. Check Bybit Markets for the live trading screen.</div></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div><h2>Ready to Explore Bybit?</h2><p>Read the official guidance, check regional availability, understand fees and risks, and secure your account before using exchange services.</p></div>
+      <a class="primary" href="https://www.bybit.com/en" target="_blank" rel="noopener noreferrer">Visit Bybit ↗</a>
+    </section>
+
+    <p class="disclaimer">Educational information only. Total Crypto Hub is an independent information directory and is not affiliated with Bybit. The BTC, ETH and XRP cards request public Bybit Spot ticker snapshots and refresh about every 30 seconds; the feed may be delayed, blocked or unavailable. Market quotes are shown in USDT and are not investment advice. Product availability, fees, payment methods, verification rules and legal requirements vary by region and can change. The India reference is a dated Bybit company announcement, not legal or tax advice. Verify current details on Bybit's official website and follow applicable local laws. Crypto assets are volatile and involve risk.</p>
+  </main>
+  <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
+
+  <script>
+    const themeButton = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('tch-theme');
+    if (savedTheme === 'dark') document.body.classList.add('dark');
+    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const dark = document.body.classList.contains('dark');
+      themeButton.textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('tch-theme', dark ? 'dark' : 'light');
+    });
+
+    document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      item.classList.toggle('open');
+      button.setAttribute('aria-expanded', item.classList.contains('open'));
+      button.querySelector('span').textContent = item.classList.contains('open') ? '−' : '＋';
+    }));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navLinks = document.querySelectorAll('.quicknav a');
+    navLinks.forEach(link => link.addEventListener('click', () => {
+      navLinks.forEach(item => item.classList.remove('active'));
+      link.classList.add('active');
+    }));
+
+    const marketSymbols = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT'];
+    const marketUpdatedAt = document.getElementById('marketUpdatedAt');
+    const formatPrice = value => {
+      const number = Number(value);
+      if (!Number.isFinite(number)) throw new Error('Invalid market price');
+      const digits = number >= 1000 ? 2 : number >= 1 ? 4 : 6;
+      return number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: digits }) + ' USDT';
+    };
+    async function loadTicker(symbol) {
+      const endpoint = 'https://api.bybit.com/v5/market/tickers?category=spot&symbol=' + encodeURIComponent(symbol);
+      const response = await fetch(endpoint, { cache: 'no-store' });
+      if (!response.ok) throw new Error('Market data request failed (' + response.status + ')');
+      const payload = await response.json();
+      if (!payload || payload.retCode !== 0 || !payload.result || !Array.isArray(payload.result.list) || !payload.result.list[0]) {
+        throw new Error(payload && payload.retMsg ? payload.retMsg : 'No ticker data returned');
+      }
+      const data = payload.result.list[0];
+      if (!data.lastPrice) throw new Error('Ticker did not include a last price');
+      document.getElementById('price-' + symbol).textContent = formatPrice(data.lastPrice);
+      const change = Number(data.price24hPcnt) * 100;
+      const changeEl = document.getElementById('change-' + symbol);
+      changeEl.textContent = (change > 0 ? '+' : '') + change.toFixed(2) + '% · 24h';
+      changeEl.className = 'change ' + (change > 0 ? 'up' : change < 0 ? 'down' : 'neutral');
+      return Number(payload.time || Date.now());
+    }
+    let marketRequestRunning = false;
+    async function refreshMarkets() {
+      if (marketRequestRunning) return;
+      marketRequestRunning = true;
+      marketUpdatedAt.textContent = 'Refreshing public Bybit Spot market data…';
+      try {
+        const times = await Promise.all(marketSymbols.map(loadTicker));
+        const latest = Math.max(...times);
+        marketUpdatedAt.textContent = 'Last successful update: ' + new Date(latest).toLocaleString() + ' · Source: Bybit public V5 market-data API';
+      } catch (error) {
+        marketUpdatedAt.textContent = 'Live market data is temporarily unavailable. Open Bybit Markets or try Refresh prices again.';
+        marketSymbols.forEach(symbol => {
+          const priceEl = document.getElementById('price-' + symbol);
+          if (priceEl.textContent === 'Loading…') priceEl.textContent = 'Unavailable';
+        });
+        console.warn('Bybit market data:', error);
+      } finally {
+        marketRequestRunning = false;
+      }
+    }
+    document.getElementById('refreshMarketPrices').addEventListener('click', refreshMarkets);
+    refreshMarkets();
+    setInterval(() => { if (!document.hidden) refreshMarkets(); }, 30000);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshMarkets(); });
+  </script>
+</body>
+</html>
