@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#effcf7">
+  <meta name="description" content="Learn about Rabby Wallet, its EVM network support, transaction previews, setup steps and security practices with Total Crypto Hub.">
+  <title>Rabby Wallet Guide | Total Crypto Hub</title>
+  <style>
+    :root{
+      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
+      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;
+      --line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;
+      --purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b;
+    }
+    body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--mint-2:#205b4d;--shadow:0 12px 30px rgba(0,0,0,.2)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .sponsor{min-height:56px;padding:10px 20px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
+    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:20px;color:#fff;box-shadow:0 3px 12px #0004}
+    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
+    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
+    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
+    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(4vw,22px);position:sticky;top:0;z-index:20}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
+    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
+    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
+    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
+    .wrap{width:min(1180px,calc(100% - 36px));margin:28px auto 60px}
+    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:36px 40px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:20px}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
+    .hero h1 span{color:#00a875}
+    .hero p{max-width:620px;color:#315a63;margin:0 0 17px;font-size:15px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
+    .actions{display:flex;flex-wrap:wrap;gap:10px}
+    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
+    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
+    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
+    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
+    .rabbit-orb{width:220px;height:220px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff,#c9fff0 55%,#71ddbd);box-shadow:0 18px 35px #2c9c8050;border:1px solid #8be5c7;position:relative}
+    .rabbit-face{font-size:112px;line-height:1;filter:drop-shadow(0 12px 10px #174d3c35);transform:translateY(5px)}
+    .rabbit-label{position:absolute;bottom:26px;background:#fff;color:#0a7258;border:1px solid #b8f0dc;border-radius:30px;padding:5px 12px;font-size:10px;font-weight:900;letter-spacing:.08em}
+    .float-coin{position:absolute;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:25px;font-weight:900;box-shadow:0 6px 15px #174d3c30}
+    .eth{top:18px;left:4%;background:#e7e2ff;color:#7155d9}.evm{right:2%;top:50px;background:#fff0cc;color:#e99a12}
+    .quicknav{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
+    .quicknav a{white-space:nowrap;padding:10px 15px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
+    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
+    .section{margin-top:24px}
+    .section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
+    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
+    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:16px}
+    .panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 5px 18px #183b5b06}
+    .panel p{color:var(--muted);margin:0}
+    .fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
+    .fact-icon{font-size:30px}
+    .fact h3{margin:0 0 5px;font-size:16px}
+    .fact p{font-size:13px}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+    .feature{text-align:center;padding:22px 14px;transition:.2s}
+    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .feature .emoji{font-size:30px;display:block;margin-bottom:8px}
+    .feature h3{font-size:15px;margin:0 0 5px}
+    .feature p{font-size:12px;color:var(--muted);margin:0}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .step{padding:17px 13px;position:relative}
+    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}
+    .step p{font-size:11px;color:var(--muted);margin:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .mini-list{border-radius:14px;padding:13px;background:#e8fbf3;color:#14553f}
+    .mini-list.bad{background:#fff0ef;color:#873d3d}
+    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
+    .mini-list h3{font-size:13px;margin:0 0 9px}
+    .mini-list ul,.security-list{list-style:none;padding:0;margin:0}
+    .mini-list li{font-size:12px;margin:7px 0}
+    .security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
+    .security-list b{color:var(--text)}
+    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:13px;align-items:stretch}
+    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#275d55 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
+    .video-thumb:before{content:"🐰";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}
+    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
+    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
+    .video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
+    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}
+    body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .faq-item{padding:0;overflow:hidden}
+    .faq-q{width:100%;padding:14px 16px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
+    .faq-a{display:none;padding:0 16px 15px;color:var(--muted);font-size:12px}
+    .faq-item.open .faq-a{display:block}
+    .cta{margin-top:26px;border-radius:20px;padding:24px 28px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
+    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}
+    .cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
+    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}
+    .source-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+    .source-links a{color:var(--green-dark);font-weight:750;text-decoration:underline}
+    footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.rabbit-orb{width:175px;height:175px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.sponsor{gap:7px;padding:9px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 13px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 11px;font-size:11px}.wrap{width:calc(100% - 22px);margin:14px auto 35px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:35px}.hero p{font-size:13px}.hero-art{min-height:160px}.rabbit-orb{width:150px;height:150px}.rabbit-face{font-size:80px}.section-heading{font-size:19px}.features{gap:8px}.feature{padding:16px 9px}.steps{gap:8px}.step{padding:13px 10px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}}
+  </style>
+</head>
+<body>
+  <div class="sponsor">
+    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
+    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
+    <small>Grow Your Brand in the Crypto Community</small>
+    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Total Crypto Hub home">
+      <span class="brand-mark">TCN</span>
+      <span>Total Crypto Hub<small>by Total Crypto Network</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="back-btn" href="wallets.html">← Back to Wallets</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="overview">
+      <div>
+        <span class="eyebrow">✦ Web3 Wallet Guide · Total Crypto Hub</span>
+        <h1>Rabby <span>Wallet</span></h1>
+        <p>Your go-to wallet for Ethereum and EVM — explore a self-custody wallet built for a smoother multi-network Web3 and DeFi experience.</p>
+        <div class="pills">
+          <span class="pill">✓ Self-Custody</span><span class="pill">🌐 EVM Networks</span>
+          <span class="pill">🔎 Transaction Preview</span><span class="pill">🛡️ Risk Alerts</span>
+        </div>
+        <div class="actions">
+          <a class="primary" href="https://rabby.io/" target="_blank" rel="noopener noreferrer">Join Now / Get Started ↗</a>
+          <a class="secondary" href="https://rabby.io/" target="_blank" rel="noopener noreferrer">Official Website & Download ↗</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Rabby Wallet rabbit illustration">
+        <span class="float-coin eth">◆</span><span class="float-coin evm">⛓</span>
+        <div class="rabbit-orb">
+          <span class="rabbit-face" role="img" aria-label="Rabbit">🐰</span>
+          <span class="rabbit-label">RABBY WALLET</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="quicknav" aria-label="Page sections">
+      <a class="active" href="#overview">⌂ Overview</a><a href="#features">⭐ Features</a><a href="#how-to">▣ How to Use</a>
+      <a href="#security">🛡 Security</a><a href="#videos">▶ Videos</a><a href="#faq">ⓘ FAQ</a>
+    </nav>
+
+    <section class="section">
+      <div class="intro-grid">
+        <article class="panel">
+          <h2 class="section-heading"><span class="num">1</span> What is Rabby Wallet?</h2>
+          <p>Rabby Wallet is a self-custody crypto wallet designed for Ethereum and EVM-compatible networks. It is available across supported browsers and devices and helps users manage wallet accounts, connect to decentralized applications (DApps), and review blockchain transactions.</p>
+          <p style="margin-top:12px">One of Rabby's distinctive features is its transaction preview: before you approve a supported transaction, the wallet can show an estimated view of asset and balance changes and display potential risk warnings. This is useful information, but it is not a guarantee that a transaction or website is safe.</p>
+        </article>
+        <aside class="panel fact">
+          <div class="fact-icon">💡</div><div><h3>Quick Fact</h3><p>Rabby focuses on Ethereum and EVM-compatible networks. Network availability can change, so check Rabby's official supported-network information before using a specific chain or DApp.</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <h2 class="section-heading"><span class="num">2</span> Key Features</h2>
+      <div class="features">
+        <article class="feature"><span class="emoji">🌐</span><h3>EVM Network Support</h3><p>Use one wallet interface across a broad range of supported EVM networks.</p></article>
+        <article class="feature"><span class="emoji">🔄</span><h3>Network Detection</h3><p>Rabby can detect the network a connected DApp needs and help switch to it.</p></article>
+        <article class="feature"><span class="emoji">🔍</span><h3>Transaction Preview</h3><p>Review expected token movements and balance changes before signing.</p></article>
+        <article class="feature"><span class="emoji">⚠️</span><h3>Risk Warnings</h3><p>Potential-risk alerts can help you pause and inspect a request before approval.</p></article>
+        <article class="feature"><span class="emoji">🧩</span><h3>DApp Connectivity</h3><p>Connect to supported decentralized apps and review their connection requests.</p></article>
+        <article class="feature"><span class="emoji">🖼️</span><h3>Digital Collectibles</h3><p>View and manage supported NFT assets from compatible networks.</p></article>
+        <article class="feature"><span class="emoji">🔐</span><h3>Hardware Wallets</h3><p>Connect supported hardware wallets for an additional signing workflow.</p></article>
+        <article class="feature"><span class="emoji">📱</span><h3>Multiple Platforms</h3><p>Check official availability for browser, mobile and desktop devices.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="how-to">
+      <h2 class="section-heading"><span class="num">3</span> How to Create a Rabby Wallet?</h2>
+      <div class="panel" style="margin-bottom:12px"><p>Use the official Rabby website to choose your browser or device. Labels and screens may change as the product is updated.</p></div>
+      <div class="steps">
+        <article class="step"><div class="circle">1</div><h3>Visit Official Website</h3><p>Type rabby.io directly into your browser's address bar.</p></article>
+        <article class="step"><div class="circle">2</div><h3>Choose Your Platform</h3><p>Select a supported browser extension, mobile app or desktop option.</p></article>
+        <article class="step"><div class="circle">3</div><h3>Create or Import</h3><p>Follow the wallet setup flow to create a new wallet or import one you own.</p></article>
+        <article class="step"><div class="circle">4</div><h3>Back Up Recovery</h3><p>Write down your recovery phrase and store it offline in a private, secure place.</p></article>
+        <article class="step"><div class="circle">5</div><h3>Connect Carefully</h3><p>Open trusted DApps, review connection prompts and inspect each transaction.</p></article>
+      </div>
+    </section>
+
+    <section class="section two-col">
+      <article id="pros-cons">
+        <h2 class="section-heading"><span class="num">4</span> Pros & Things to Consider</h2>
+        <div class="good-bad">
+          <div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ Designed for Ethereum and EVM use</li><li>✓ Transaction previews before signing</li><li>✓ Broad supported network selection</li><li>✓ Browser and mobile availability</li></ul></div>
+          <div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✕ Not every blockchain is EVM-compatible</li><li>✕ Network fees may apply</li><li>✕ Recovery phrase safety is your responsibility</li><li>✕ A warning-free preview is not a safety guarantee</li></ul></div>
+        </div>
+      </article>
+      <article id="security">
+        <h2 class="section-heading"><span class="num">5</span> Security Tips</h2>
+        <div class="panel">
+          <ul class="security-list">
+            <li><span>🛡️</span><span><b>Protect your recovery phrase.</b> Never share it with anyone, including people claiming to be wallet support.</span></li>
+            <li><span>🔎</span><span><b>Check the official URL.</b> Use rabby.io and verify extension publishers before installing.</span></li>
+            <li><span>📋</span><span><b>Read the transaction preview.</b> Check assets leaving and arriving, approvals, network and destination.</span></li>
+            <li><span>⚠️</span><span><b>Do not rely only on automated warnings.</b> Simulations and scanners can miss risks or show incomplete information.</span></li>
+            <li><span>🔐</span><span><b>Review permissions regularly.</b> Disconnect unused DApps and review token approvals where the wallet or relevant network provides that option.</span></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="videos">
+      <h2 class="section-heading"><span class="num">6</span> Video Tutorials</h2>
+      <div class="video-layout">
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>Rabby Wallet Beginner Guide</h3><p>Explore beginner videos for installation, wallet creation and basic setup.</p>
+          <a href="https://www.youtube.com/results?search_query=Rabby+Wallet+beginner+guide" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+        </article>
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>Transaction Preview & DApps</h3><p>Learn how to connect to DApps and inspect transaction details before signing.</p>
+          <a href="https://www.youtube.com/results?search_query=Rabby+Wallet+transaction+simulation+tutorial" target="_blank" rel="noopener noreferrer">Explore Tutorials ↗</a>
+        </article>
+        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Pro Tip</h3><p>Prefer tutorials published by Rabby's official channels or trusted educators. Never enter your recovery phrase into a video description, form or chat.</p><a href="https://support.rabby.io/" target="_blank" rel="noopener noreferrer">Rabby Help Center ↗</a></aside>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <h2 class="section-heading"><span class="num">7</span> Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">What is Rabby Wallet mainly used for? <span>＋</span></button><div class="faq-a">Rabby is designed for Ethereum and EVM-compatible networks. It helps users manage wallet accounts and interact with supported DApps and DeFi services.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is Rabby Wallet free to download? <span>＋</span></button><div class="faq-a">The wallet software can be downloaded from official channels. Blockchain transactions may still require network gas fees, and optional services may have their own fees.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does Rabby support multiple chains? <span>＋</span></button><div class="faq-a">Yes, Rabby is built for a broad range of EVM-compatible networks. Check the official site or wallet network list for current support.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">What does transaction simulation do? <span>＋</span></button><div class="faq-a">It provides an estimated preview of what a supported transaction may do, such as asset or balance changes, before you sign. It cannot guarantee that a transaction is safe or will execute exactly as previewed.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can I use Rabby on mobile? <span>＋</span></button><div class="faq-a">Rabby lists mobile apps as well as browser and desktop options. Use the official website to reach the current iOS or Android download destination.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can support recover my secret phrase? <span>＋</span></button><div class="faq-a">Do not expect support staff to recover or request your Secret Recovery Phrase. Anyone asking you to reveal it is a major red flag.</div></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div><h2>Ready to Explore EVM Web3 with Rabby?</h2><p>Start with the official download page, learn the basics and review every transaction before signing.</p></div>
+      <a class="primary" href="https://rabby.io/" target="_blank" rel="noopener noreferrer">Visit Rabby Wallet ↗</a>
+    </section>
+
+    <p class="disclaimer">Educational content only. Total Crypto Hub is an independent information directory and is not affiliated with Rabby Wallet. Product features and supported networks may change. Always verify details and downloads on the official Rabby website. Cryptocurrency use involves risk.
+      <span class="source-links"><a href="https://rabby.io/" target="_blank" rel="noopener noreferrer">Official Website</a><a href="https://chromewebstore.google.com/detail/rabby-wallet/acmacodkjbdgmoleebolmdjonilkdbch" target="_blank" rel="noopener noreferrer">Chrome Web Store</a><a href="https://github.com/RabbyHub/Rabby" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+    </p>
+  </main>
+  <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
+
+  <script>
+    const themeButton = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('tch-theme');
+    if (savedTheme === 'dark') document.body.classList.add('dark');
+    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const dark = document.body.classList.contains('dark');
+      themeButton.textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('tch-theme', dark ? 'dark' : 'light');
+    });
+    document.querySelectorAll('.faq-q').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        item.classList.toggle('open');
+        button.setAttribute('aria-expanded', item.classList.contains('open'));
+        button.querySelector('span').textContent = item.classList.contains('open') ? '−' : '＋';
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navLinks = document.querySelectorAll('.quicknav a');
+    navLinks.forEach(link => link.addEventListener('click', () => {
+      navLinks.forEach(item => item.classList.remove('active'));
+      link.classList.add('active');
+    }));
+  </script>
+</body>
+</html>
