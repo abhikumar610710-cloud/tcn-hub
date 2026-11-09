@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#effcf7">
+  <meta name="description" content="Learn about Phantom Wallet, supported blockchain networks, setup, features and security with Total Crypto Hub.">
+  <title>Phantom Wallet Guide | Total Crypto Hub</title>
+  <style>
+    :root{
+      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
+      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--line:#dce7f1;
+      --shadow:0 12px 30px rgba(17,55,83,.08);
+    }
+    body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--shadow:0 12px 30px rgba(0,0,0,.2)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}button{font:inherit}
+    .sponsor{min-height:56px;padding:10px 20px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
+    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:20px;color:#fff;box-shadow:0 3px 12px #0004}
+    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
+    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
+    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
+    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(4vw,22px);position:sticky;top:0;z-index:20}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
+    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
+    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
+    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
+    .wrap{width:min(1180px,calc(100% - 36px));margin:28px auto 60px}
+    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:36px 40px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:20px}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
+    .hero h1 span{color:#00a875}.hero p{max-width:630px;color:#315a63;margin:0 0 17px;font-size:15px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
+    .actions{display:flex;flex-wrap:wrap;gap:10px}
+    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
+    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
+    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
+    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
+    .ghost-orb{width:220px;height:220px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff,#c9fff0 55%,#71ddbd);box-shadow:0 18px 35px #2c9c8050;border:1px solid #8be5c7;position:relative}
+    .ghost-mark{width:138px;height:138px;border-radius:42% 42% 35% 35%;background:linear-gradient(145deg,#fff,#d8e2ff);color:#6d5cff;display:grid;place-items:center;font-size:94px;line-height:1;filter:drop-shadow(0 10px 12px #25215b35)}
+    .ghost-label{position:absolute;bottom:25px;background:#fff;color:#6255d9;border:1px solid #d6d0ff;border-radius:30px;padding:5px 12px;font-size:10px;font-weight:900;letter-spacing:.07em}
+    .float-coin{position:absolute;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:25px;font-weight:900;box-shadow:0 6px 15px #174d3c30}
+    .sol{top:18px;left:4%;background:#ede8ff;color:#7055db}.btc{right:2%;top:50px;background:#fff0cc;color:#e99a12}
+    .quicknav{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
+    .quicknav a{white-space:nowrap;padding:10px 15px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
+    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
+    .section{margin-top:24px}.section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
+    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
+    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:16px}
+    .panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 5px 18px #183b5b06}
+    .panel p{color:var(--muted);margin:0}.fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
+    .fact-icon{font-size:30px}.fact h3{margin:0 0 5px;font-size:16px}.fact p{font-size:13px}
+    .notice{border:1px solid #f3d38b;background:#fff8e8;color:#704d0b;border-radius:16px;padding:16px 18px;margin-top:18px}
+    .notice strong{display:block;margin-bottom:4px}.notice p{font-size:13px;margin:0}body.dark .notice{background:#3c321d;color:#f8df9f;border-color:#78602b}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.feature{text-align:center;padding:22px 14px;transition:.2s}
+    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.feature .emoji{font-size:30px;display:block;margin-bottom:8px}
+    .feature h3{font-size:15px;margin:0 0 5px}.feature p{font-size:12px;color:var(--muted);margin:0}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.step{padding:17px 13px;position:relative}
+    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}.step p{font-size:11px;color:var(--muted);margin:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.good-bad{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .mini-list{border-radius:14px;padding:13px;background:#e8fbf3;color:#14553f}.mini-list.bad{background:#fff0ef;color:#873d3d}
+    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
+    .mini-list h3{font-size:13px;margin:0 0 9px}.mini-list ul,.security-list{list-style:none;padding:0;margin:0}
+    .mini-list li{font-size:12px;margin:7px 0}.security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
+    .security-list b{color:var(--text)}
+    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:13px;align-items:stretch}
+    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#33276b 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
+    .video-thumb:before{content:"👻";font-size:75px;position:absolute;opacity:.2;left:12px;bottom:-15px}
+    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
+    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}.video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
+    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.faq-item{padding:0;overflow:hidden}
+    .faq-q{width:100%;padding:14px 16px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
+    .faq-a{display:none;padding:0 16px 15px;color:var(--muted);font-size:12px}.faq-item.open .faq-a{display:block}
+    .cta{margin-top:26px;border-radius:20px;padding:24px 28px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
+    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}.cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
+    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}.source-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+    .source-links a{color:var(--green-dark);font-weight:750;text-decoration:underline}footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.ghost-orb{width:175px;height:175px}.ghost-mark{width:110px;height:110px;font-size:75px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.sponsor{gap:7px;padding:9px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 13px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 11px;font-size:11px}.wrap{width:calc(100% - 22px);margin:14px auto 35px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:35px}.hero p{font-size:13px}.hero-art{min-height:160px}.ghost-orb{width:150px;height:150px}.ghost-mark{width:85px;height:85px;font-size:58px}.section-heading{font-size:19px}.features{gap:8px}.feature{padding:16px 9px}.steps{gap:8px}.step{padding:13px 10px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}}
+  </style>
+</head>
+<body>
+  <div class="sponsor">
+    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
+    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
+    <small>Grow Your Brand in the Crypto Community</small>
+    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Total Crypto Hub home">
+      <span class="brand-mark">TCN</span>
+      <span>Total Crypto Hub<small>by Total Crypto Network</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="back-btn" href="wallets.html">← Back to Wallets</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="overview">
+      <div>
+        <span class="eyebrow">✦ Web3 Wallet Guide · Total Crypto Hub</span>
+        <h1>Phantom <span>Wallet</span></h1>
+        <p>Your multi-chain gateway to Web3 — manage supported Solana, Ethereum, Bitcoin and other blockchain assets, discover apps and review transactions from one self-custody wallet.</p>
+        <div class="pills">
+          <span class="pill">✓ Self-Custody</span><span class="pill">🌐 Multi-Chain</span>
+          <span class="pill">🖼️ NFTs & Collectibles</span><span class="pill">🛡️ Security Alerts</span>
+        </div>
+        <div class="actions">
+          <a class="primary" href="https://phantom.com/download" target="_blank" rel="noopener noreferrer">Join Now / Get Started ↗</a>
+          <a class="secondary" href="https://phantom.com/download" target="_blank" rel="noopener noreferrer">Official Download ↗</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Phantom Wallet illustration">
+        <span class="float-coin sol">◎</span><span class="float-coin btc">₿</span>
+        <div class="ghost-orb">
+          <div class="ghost-mark" role="img" aria-label="Phantom ghost">👻</div>
+          <span class="ghost-label">PHANTOM WALLET</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="quicknav" aria-label="Page sections">
+      <a class="active" href="#overview">⌂ Overview</a><a href="#features">⭐ Features</a><a href="#how-to">▣ How to Use</a>
+      <a href="#networks">🌐 Networks</a><a href="#security">🛡 Security</a><a href="#videos">▶ Videos</a><a href="#faq">ⓘ FAQ</a>
+    </nav>
+
+    <section class="section">
+      <div class="intro-grid">
+        <article class="panel">
+          <h2 class="section-heading"><span class="num">1</span> What is Phantom Wallet?</h2>
+          <p>Phantom is a self-custody crypto wallet that helps people manage supported digital assets and connect to decentralized applications (DApps). It began with a strong Solana focus and has expanded to support several additional networks, including Ethereum, Bitcoin and selected EVM chains.</p>
+          <p style="margin-top:12px">Phantom is available as a mobile app and browser extension. You can create a wallet using a Secret Recovery Phrase or, where offered, sign in with a Google or Apple account. In either case, protect your recovery credentials: Phantom cannot access your funds or restore a wallet if you lose the required credentials.</p>
+        </article>
+        <aside class="panel fact">
+          <div class="fact-icon">💡</div><div><h3>Quick Fact</h3><p>Phantom can show assets across enabled networks in one wallet experience. Network balances remain separate, and you need the correct network's native token to pay its transaction fees.</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <h2 class="section-heading"><span class="num">2</span> Key Features</h2>
+      <div class="features">
+        <article class="feature"><span class="emoji">🌐</span><h3>Multi-Chain Wallet</h3><p>Manage supported Solana, Ethereum, Bitcoin and selected EVM-network assets.</p></article>
+        <article class="feature"><span class="emoji">🔄</span><h3>Cross-Network View</h3><p>See assets across enabled networks without manually switching the wallet each time.</p></article>
+        <article class="feature"><span class="emoji">🖼️</span><h3>NFTs & Collectibles</h3><p>View and manage supported digital collectibles across compatible networks.</p></article>
+        <article class="feature"><span class="emoji">🔎</span><h3>Transaction Insights</h3><p>Review transaction information and available security warnings before signing.</p></article>
+        <article class="feature"><span class="emoji">🧩</span><h3>DApp Connectivity</h3><p>Connect to supported decentralized apps and review connection permissions.</p></article>
+        <article class="feature"><span class="emoji">💱</span><h3>Swap & Trade</h3><p>Use available swap and trading features for supported assets and networks.</p></article>
+        <article class="feature"><span class="emoji">📈</span><h3>Staking Options</h3><p>Access supported staking features, subject to network and product availability.</p></article>
+        <article class="feature"><span class="emoji">🔐</span><h3>Hardware Wallet</h3><p>Connect a supported Ledger device to manage accounts and sign supported transactions.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="networks">
+      <h2 class="section-heading"><span class="num">3</span> Supported Networks</h2>
+      <div class="panel" style="margin-bottom:12px"><p>Phantom's official supported-network guide lists the following networks at the time this page was prepared. The list can change; confirm support in the wallet before receiving or sending assets.</p></div>
+      <div class="pills">
+        <span class="pill">Solana</span><span class="pill">Ethereum</span><span class="pill">Bitcoin</span>
+        <span class="pill">Base</span><span class="pill">Polygon</span><span class="pill">BNB Chain</span>
+        <span class="pill">Robinhood Chain</span><span class="pill">Arc</span><span class="pill">HyperEVM</span>
+      </div>
+      <div class="notice">
+        <strong>⚠️ Check the network before transferring</strong>
+        <p>Phantom's current help guide lists Arbitrum, Optimism, Avalanche, Unichain and Linea as unsupported. Do not send tokens on an unsupported network to a Phantom address. Also remember that assets and gas balances are separate on each network.</p>
+      </div>
+    </section>
+
+    <section class="section" id="how-to">
+      <h2 class="section-heading"><span class="num">4</span> How to Create a Phantom Wallet?</h2>
+      <div class="panel" style="margin-bottom:12px"><p>Download Phantom only through phantom.com/download. The setup screens may differ slightly between mobile and browser extension.</p></div>
+      <div class="steps">
+        <article class="step"><div class="circle">1</div><h3>Visit Official Website</h3><p>Type phantom.com/download directly into your browser.</p></article>
+        <article class="step"><div class="circle">2</div><h3>Choose Your Device</h3><p>Select Chrome, iOS or Android from the official download page.</p></article>
+        <article class="step"><div class="circle">3</div><h3>Create or Import</h3><p>Choose a new wallet or import a wallet you already control.</p></article>
+        <article class="step"><div class="circle">4</div><h3>Back Up Recovery</h3><p>Save your Secret Recovery Phrase offline, or secure your sign-in recovery method.</p></article>
+        <article class="step"><div class="circle">5</div><h3>Enable Networks</h3><p>Review Active Networks, then connect to trusted apps and inspect requests.</p></article>
+      </div>
+    </section>
+
+    <section class="section two-col">
+      <article id="pros-cons">
+        <h2 class="section-heading"><span class="num">5</span> Pros & Things to Consider</h2>
+        <div class="good-bad">
+          <div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ Supports several major networks</li><li>✓ Mobile and browser access</li><li>✓ Wallet and collectible management</li><li>✓ DApp and staking features</li></ul></div>
+          <div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✕ Not every blockchain is supported</li><li>✕ Unsupported-network transfers can be lost</li><li>✕ Recovery credentials are your responsibility</li><li>✕ Network fees and product availability vary</li></ul></div>
+        </div>
+      </article>
+      <article id="security">
+        <h2 class="section-heading"><span class="num">6</span> Security Tips</h2>
+        <div class="panel">
+          <ul class="security-list">
+            <li><span>🛡️</span><span><b>Never share your Secret Recovery Phrase.</b> Phantom will not ask you to send it to support or enter it on a website.</span></li>
+            <li><span>🔎</span><span><b>Verify the download source.</b> Use phantom.com/download and check the publisher before installing an extension.</span></li>
+            <li><span>✋</span><span><b>Review every signature.</b> Check transaction details, token approvals and connected websites before approving.</span></li>
+            <li><span>⚠️</span><span><b>Ignore unsolicited support messages.</b> Phantom says support will not contact you first or ask for sensitive wallet information.</span></li>
+            <li><span>🌐</span><span><b>Confirm the network.</b> A similar-looking address does not mean two chains are interchangeable.</span></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="videos">
+      <h2 class="section-heading"><span class="num">7</span> Video Tutorials</h2>
+      <div class="video-layout">
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>Phantom Wallet Beginner Guide</h3><p>Find beginner tutorials for installing Phantom and creating your first wallet.</p>
+          <a href="https://www.youtube.com/results?search_query=Phantom+Wallet+official+beginner+guide" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+        </article>
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>How to Use Phantom</h3><p>Learn how to receive, send, swap and connect to supported DApps.</p>
+          <a href="https://www.youtube.com/results?search_query=Phantom+Wallet+how+to+use+official+tutorial" target="_blank" rel="noopener noreferrer">Explore Tutorials ↗</a>
+        </article>
+        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Pro Tip</h3><p>Use Phantom's official guides for current setup instructions. Never follow a tutorial that asks you to reveal your recovery phrase or send assets to a stranger.</p><a href="https://help.phantom.com/" target="_blank" rel="noopener noreferrer">Phantom Help Center ↗</a></aside>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <h2 class="section-heading"><span class="num">8</span> Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is Phantom Wallet free to download? <span>＋</span></button><div class="faq-a">Phantom can be downloaded for free from its official website. Blockchain transactions, swaps and third-party services may still involve fees.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does Phantom support only Solana? <span>＋</span></button><div class="faq-a">No. Phantom currently supports Solana, Ethereum, Bitcoin and selected EVM networks. Check the current supported-network list because support can change.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can I use Phantom on mobile and desktop? <span>＋</span></button><div class="faq-a">Phantom offers iOS and Android apps and a Chrome browser extension. It may work in other Chromium browsers, but Phantom lists Chrome, iOS and Android as its fully supported platforms.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can I create a wallet without a recovery phrase? <span>＋</span></button><div class="faq-a">Phantom offers Google or Apple sign-in as an onboarding option in supported versions. A recovery phrase remains an important backup, and you should follow Phantom's current backup guidance.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is Phantom safe? <span>＋</span></button><div class="faq-a">Phantom includes security features, but no wallet can eliminate all risks. Protect your recovery credentials, verify sites and carefully review transactions.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can Phantom support recover my funds? <span>＋</span></button><div class="faq-a">Phantom is self-custodial and cannot access your funds or restore a wallet if you lose the credentials needed to recover it.</div></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div><h2>Ready to Explore Web3 with Phantom?</h2><p>Download from the official source, check supported networks and protect your wallet credentials.</p></div>
+      <a class="primary" href="https://phantom.com/download" target="_blank" rel="noopener noreferrer">Visit Phantom ↗</a>
+    </section>
+
+    <p class="disclaimer">Educational content only. Total Crypto Hub is an independent information directory and is not affiliated with Phantom. Supported networks and product features may change. Always verify details and downloads on Phantom's official website. Cryptocurrency use involves risk.
+      <span class="source-links"><a href="https://phantom.com/download" target="_blank" rel="noopener noreferrer">Official Download</a><a href="https://help.phantom.com/articles/41372840389651" target="_blank" rel="noopener noreferrer">Supported Networks</a><a href="https://help.phantom.com/articles/36482144712083" target="_blank" rel="noopener noreferrer">Get Started Guide</a><a href="https://help.phantom.com/" target="_blank" rel="noopener noreferrer">Help Center</a></span>
+    </p>
+  </main>
+  <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
+
+  <script>
+    const themeButton = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('tch-theme');
+    if (savedTheme === 'dark') document.body.classList.add('dark');
+    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const dark = document.body.classList.contains('dark');
+      themeButton.textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('tch-theme', dark ? 'dark' : 'light');
+    });
+    document.querySelectorAll('.faq-q').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        item.classList.toggle('open');
+        button.setAttribute('aria-expanded', item.classList.contains('open'));
+        button.querySelector('span').textContent = item.classList.contains('open') ? '−' : '＋';
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navLinks = document.querySelectorAll('.quicknav a');
+    navLinks.forEach(link => link.addEventListener('click', () => {
+      navLinks.forEach(item => item.classList.remove('active'));
+      link.classList.add('active');
+    }));
+  </script>
+</body>
+</html>
