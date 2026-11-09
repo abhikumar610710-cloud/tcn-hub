@@ -1,460 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MetaMask Wallet Guide | Total Crypto Hub</title>
-<meta name="description" content="A detailed, easy-to-read MetaMask educational guide covering self-custody, setup, networks, dApps, security, fees, hardware wallets and troubleshooting.">
-<link rel="icon" type="image/x-icon" href="../favicon.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script>
-(() => { try { document.documentElement.dataset.theme = localStorage.getItem('theme') || 'light'; } catch(e) { document.documentElement.dataset.theme = 'light'; } })();
-</script>
-<style>
-:root{
- --bg:#f3f7fb;--surface:#ffffff;--surface2:#f7fafc;--border:#e0eaf0;
- --heading:#10284a;--body:#304b64;--muted:#71859a;
- --green:#079e6b;--green-dark:#07845b;--green-soft:#e4faf1;--green-line:#bcefd9;
- --mint:#e0fbf0;--mint2:#c9f7e7;--blue:#287ee2;--blue-soft:#edf5ff;
- --orange:#f28b25;--orange-soft:#fff3e4;--red:#d9535c;--red-soft:#fff0f1;
- --shadow:0 7px 24px rgba(15,45,75,.055);--sidebar:248px
-}
-[data-theme="dark"]{
- --bg:#091522;--surface:#102131;--surface2:#142a3c;--border:#264154;
- --heading:#f1f7fc;--body:#c7d7e4;--muted:#93aabd;
- --green:#20c58a;--green-dark:#11a978;--green-soft:#123e32;--green-line:#286b53;
- --mint:#10372f;--mint2:#174a3c;--blue:#75b5fa;--blue-soft:#172f49;
- --orange:#ffad55;--orange-soft:#402c1b;--red:#ff858d;--red-soft:#3c2228;
- --shadow:0 7px 24px rgba(0,0,0,.18)
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:"Plus Jakarta Sans",sans-serif}
-html{scroll-behavior:smooth;scroll-padding-top:110px}
-body{background:var(--bg);color:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-button{font:inherit}
-.sponsor-strip{height:58px;background:linear-gradient(105deg,#063d32,#042c2b 60%,#07503c);color:#fff;display:flex;align-items:center;justify-content:center;gap:13px;padding:0 18px;overflow:hidden}
-.sponsor-coin{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#ffe08a,#eaa321);color:#8b5100;font-size:21px;box-shadow:0 0 0 3px rgba(255,255,255,.12);flex:none}
-.sponsor-label{font-size:9px;font-weight:800;letter-spacing:.6px;color:#a8f1d2;border:1px solid rgba(105,239,183,.45);padding:5px 8px;border-radius:20px;white-space:nowrap}
-.sponsor-title{font-size:16px;font-weight:800;white-space:nowrap}
-.sponsor-title span{color:#39d99c}
-.sponsor-sub{font-size:9px;color:#c1d8d1;white-space:nowrap}
-.sponsor-cta{background:#45e7a6;color:#063f30;text-decoration:none;font-size:10px;font-weight:800;padding:10px 16px;border-radius:30px;white-space:nowrap}
-.sponsor-cta:hover{background:#76f5bf}
-.app-shell{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:calc(100vh - 58px)}
-.sidebar{background:var(--surface);border-right:1px solid var(--border);padding:18px 14px 20px;display:flex;flex-direction:column;gap:18px}
-.brand{display:flex;align-items:center;gap:10px;padding:2px 10px 12px;text-decoration:none}
-.brand-logo{width:44px;height:44px;flex:none;overflow:hidden;border-radius:50%;border:1.5px solid var(--green);background:var(--green-soft);display:grid;place-items:center;color:var(--green-dark);font-size:10px;font-weight:800}
-.brand-logo img{width:100%;height:100%;object-fit:cover}
-.brand strong{display:block;color:var(--heading);font-size:15px;font-weight:800;line-height:1.2}
-.brand small{display:block;color:var(--muted);font-size:9px;margin-top:4px}
-.workspace-label{padding:0 14px;color:#8a9bad;font-size:9px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase}
-.nav-list{display:grid;gap:5px}
-.nav-link{display:flex;align-items:center;gap:11px;min-height:43px;padding:8px 11px;border-radius:13px;text-decoration:none;color:var(--heading);font-size:11px;font-weight:700;border:1px solid transparent;transition:.18s}
-.nav-link:hover{background:var(--surface2);border-color:var(--border)}
-.nav-link.active{background:#e8fbf2;border-color:#b8f1d8;color:#087d57;box-shadow:0 5px 12px rgba(7,158,107,.08)}
-[data-theme="dark"] .nav-link.active{background:#123e32;border-color:#286b53;color:#77e9bd}
-.nav-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;font-size:15px;flex:none;background:var(--blue-soft);color:var(--blue)}
-.nav-link:nth-child(3) .nav-icon{background:#f1eaff;color:#8e59d8}
-.nav-link:nth-child(4) .nav-icon{background:#fff2e4;color:#ed922e}
-.nav-link:nth-child(5) .nav-icon{background:#f3e9ff;color:#9058d8}
-.nav-link:nth-child(6) .nav-icon{background:#ddf8f0;color:#079e79}
-.nav-link:nth-child(7) .nav-icon{background:#eaf1ff;color:#3f79df}
-.community-card{margin-top:auto;background:linear-gradient(145deg,#e7fff4,#c9f6e4);border:1px solid #b8efd8;border-radius:17px;padding:15px 13px;text-align:center;color:#0a5b43}
-[data-theme="dark"] .community-card{background:linear-gradient(145deg,#123f33,#174b3c);border-color:#286b53;color:#d9f8eb}
-.community-gift{font-size:28px;line-height:1.2;margin-bottom:7px}
-.community-card strong{display:block;font-size:12px;line-height:1.4}
-.community-card p{font-size:9px;color:var(--muted);margin:5px 0 10px}
-.community-card a{display:inline-block;background:var(--green);color:#fff;text-decoration:none;border-radius:99px;padding:8px 17px;font-size:10px;font-weight:800}
-.main-area{min-width:0;display:flex;flex-direction:column}
-.topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:14px;padding:0 28px}
-.guide-search{height:40px;max-width:560px;flex:1;border:1px solid var(--border);background:var(--surface2);border-radius:30px;display:flex;align-items:center;gap:9px;padding:0 15px;color:var(--muted);font-size:10px}
-.top-actions{display:flex;align-items:center;gap:9px}
-.top-pill{background:var(--surface);border:1px solid var(--border);color:var(--heading);text-decoration:none;border-radius:99px;padding:9px 13px;font-size:10px;font-weight:800;white-space:nowrap}
-.theme-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:15px}
-.content-wrap{padding:23px 26px 44px;max-width:1600px;width:100%;margin:0 auto}
-.breadcrumb{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:30px;padding:6px 11px;color:var(--green-dark);font-size:9px;font-weight:800;margin-bottom:13px}
-.hero{position:relative;overflow:hidden;min-height:260px;border-radius:22px;padding:26px 30px;background:linear-gradient(105deg,#e4fff3 0%,#d7fbed 52%,#baf3df 100%);border:1px solid #c2f1dc;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(240px,.6fr);gap:20px;align-items:center;box-shadow:0 10px 28px rgba(8,147,98,.07)}
-[data-theme="dark"] .hero{background:radial-gradient(circle at 85% 22%,#246b50 0,transparent 37%),linear-gradient(105deg,#10392e,#154839 60%,#173b46);border-color:#286b53}
-.hero:before{content:"";position:absolute;right:-95px;top:-200px;width:420px;height:420px;border-radius:50%;background:rgba(49,214,151,.12)}
-.hero:after{content:"";position:absolute;right:1%;bottom:-150px;width:480px;height:230px;border-radius:50%;border:1px solid rgba(7,158,107,.16);box-shadow:0 0 0 25px rgba(7,158,107,.035),0 0 0 55px rgba(7,158,107,.025)}
-.hero-copy,.hero-actions{position:relative;z-index:1}
-.hero-title-row{display:flex;align-items:center;gap:16px}
-.fox-mark{width:78px;height:78px;display:grid;place-items:center;border-radius:19px;background:#fff;border:1px solid #f2d8bb;box-shadow:0 8px 18px rgba(150,90,20,.1);font-size:43px;flex:none}
-.kicker{font-size:9px;text-transform:uppercase;letter-spacing:1.25px;font-weight:800;color:var(--green-dark)}
-h1{font-size:clamp(31px,3.4vw,43px);line-height:1.1;letter-spacing:-1.2px;color:#102b4b;font-weight:800}
-[data-theme="dark"] h1{color:#f4fbf7}
-.hero-sub{font-size:14px;color:#165e49;font-weight:800;margin:8px 0 6px}
-[data-theme="dark"] .hero-sub{color:#b5f1d9}
-.hero-desc{max-width:760px;color:#365f68;font-size:11.5px;line-height:1.75}
-[data-theme="dark"] .hero-desc{color:#d0e8de}
-.hero-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
-.hero-tag{background:rgba(255,255,255,.75);border:1px solid rgba(7,158,107,.14);color:#285c67;padding:6px 9px;border-radius:30px;font-size:9px;font-weight:800}
-[data-theme="dark"] .hero-tag{background:rgba(255,255,255,.08);color:#dff8ed;border-color:#286b53}
-.hero-actions{display:grid;gap:10px;max-width:245px;width:100%;justify-self:end}
-.join-btn,.resource-btn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border-radius:12px;padding:13px 14px;font-size:11px;font-weight:800;transition:.2s}
-.join-btn{background:linear-gradient(135deg,#0aa871,#07865c);color:white;box-shadow:0 7px 18px rgba(7,158,107,.2)}
-.join-btn:hover{background:#087650;transform:translateY(-1px)}
-.resource-btn{background:rgba(255,255,255,.8);border:1px solid rgba(7,158,107,.3);color:#155b45}
-[data-theme="dark"] .resource-btn{background:rgba(255,255,255,.08);color:#e3f7ed;border-color:#33745b}
-.action-note{text-align:center;color:#557c7c;font-size:9px}
-[data-theme="dark"] .action-note{color:#b6d8c9}
-.hero-mascot{position:absolute;right:12%;bottom:-30px;font-size:145px;opacity:.055;transform:rotate(-12deg);pointer-events:none}
-.tabs{display:flex;gap:7px;overflow-x:auto;padding:18px 2px 15px;scrollbar-width:thin}
-.tabs a{white-space:nowrap;text-decoration:none;padding:8px 12px;border-radius:30px;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:800}
-.tabs a:first-child,.tabs a:hover{background:var(--green);border-color:var(--green);color:white}
-.page-grid{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:15px;align-items:start}
-.article{min-width:0}
-.section-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:14px;box-shadow:var(--shadow)}
-.section-heading{display:flex;align-items:center;gap:10px;margin-bottom:11px}
-.section-number{width:32px;height:32px;display:grid;place-items:center;flex:none;background:var(--green);border-radius:10px;color:#fff;font-size:13px;font-weight:800}
-.section-heading h2{font-size:16px;line-height:1.35;color:var(--heading);font-weight:800}
-.section-card h3{font-size:12px;color:var(--heading);margin:15px 0 6px}
-.copy{font-size:11.5px;line-height:1.82;color:var(--body);margin-bottom:9px}
-.copy strong{color:var(--heading)}
-.cards2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
-.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
-.info-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:13px}
-.info-card h3{font-size:11.5px;margin:0 0 5px}
-.info-card p{font-size:10.5px;line-height:1.7;color:var(--muted)}
-.info-icon{font-size:18px;margin-bottom:4px}
-.notice{padding:12px 14px;margin-top:12px;border-left:4px solid var(--green);border-radius:0 10px 10px 0;background:var(--green-soft)}
-.notice.warning{border-left-color:var(--red);background:var(--red-soft)}
-.notice.orange{border-left-color:var(--orange);background:var(--orange-soft)}
-.notice strong{display:block;font-size:11px;color:var(--heading);margin-bottom:3px}
-.notice p{font-size:10.5px;line-height:1.7;color:var(--body)}
-.steps{display:grid;gap:10px;margin-top:11px}
-.step{display:grid;grid-template-columns:28px 1fr;gap:9px;align-items:start}
-.step-num{width:26px;height:26px;display:grid;place-items:center;background:var(--green-soft);color:var(--green-dark);border-radius:50%;font-size:10px;font-weight:800}
-.step h3{margin:0 0 2px;font-size:11.5px}
-.step p{font-size:10.5px;line-height:1.7;color:var(--muted)}
-.network-pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.network-pills span{background:var(--surface2);border:1px solid var(--border);border-radius:30px;padding:6px 9px;font-size:9.5px;color:var(--heading);font-weight:800}
-.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;margin-top:10px}
-table{width:100%;min-width:480px;border-collapse:collapse;font-size:10.5px}
-th,td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
-th{background:var(--surface2);color:var(--heading);font-size:10px}
-td{color:var(--body)}
-tr:last-child td{border-bottom:0}
-.faq-list{display:grid;gap:7px;margin-top:10px}
-details{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:10px 12px}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:10px;font-size:10.5px;font-weight:800;color:var(--heading)}
-summary::-webkit-details-marker{display:none}
-summary:after{content:"＋";font-size:15px;color:var(--green)}
-details[open] summary:after{content:"−"}
-details p{font-size:10.5px;color:var(--muted);line-height:1.7;margin-top:7px}
-.side-col{position:sticky;top:88px;display:grid;gap:11px}
-.side-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
-.side-card h3{font-size:11.5px;color:var(--heading);margin-bottom:8px}
-.side-links{display:grid;gap:3px}
-.side-links a{padding:6px 7px;border-radius:8px;color:var(--muted);font-size:9.5px;font-weight:700;text-decoration:none}
-.side-links a:hover{background:var(--green-soft);color:var(--green-dark)}
-.side-cta{background:linear-gradient(145deg,#e7fff4,#caf5e3);border-color:#bcefd9}
-[data-theme="dark"] .side-cta{background:linear-gradient(145deg,#123f32,#174939);border-color:#286b53}
-.side-cta p{font-size:10px;color:var(--muted);margin-bottom:9px}
-.side-cta a{display:block;text-align:center;text-decoration:none;padding:9px;border-radius:9px;background:var(--green);color:#fff;font-size:10px;font-weight:800}
-.source-links{display:grid;gap:7px}
-.source-links a{color:var(--green-dark);text-decoration:none;font-size:9.5px;font-weight:800}
-.source-links small{display:block;color:var(--muted);font-size:8.5px;font-weight:500}
-.disclaimer{margin-top:12px;padding:12px 13px;border:1px dashed var(--border);border-radius:10px;color:var(--muted);font-size:9.5px;line-height:1.7}
-footer{background:var(--surface);border-top:1px solid var(--border);padding:20px 0;text-align:center;color:var(--muted);font-size:9.5px}
-.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:13px;margin-top:7px}
-.footer-links a{color:var(--muted);text-decoration:none}
-@media(max-width:1100px){:root{--sidebar:220px}.content-wrap{padding:19px 18px 36px}.page-grid{grid-template-columns:minmax(0,1fr) 220px}}
-@media(max-width:900px){.page-grid{grid-template-columns:1fr}.side-col{position:static;grid-template-columns:repeat(2,minmax(0,1fr));order:-1}.side-card:last-child{grid-column:1/-1}.hero{grid-template-columns:1fr 210px}}
-@media(max-width:720px){:root{--sidebar:0px}.sponsor-sub,.sponsor-label{display:none}.sponsor-title{font-size:12px}.sponsor-cta{padding:8px 10px;font-size:9px}.app-shell{display:block}.sidebar{display:none}.topbar{height:59px;padding:0 12px}.guide-search{font-size:9px;height:35px}.top-pill{display:none}.content-wrap{padding:14px 12px 30px}.hero{grid-template-columns:1fr;padding:20px 17px;min-height:auto}.hero-actions{max-width:none;grid-template-columns:1fr 1fr}.action-note{grid-column:1/-1}.fox-mark{width:58px;height:58px;font-size:31px;border-radius:15px}.hero h1{font-size:30px}.hero-sub{font-size:12px}.hero-desc{font-size:10.5px}.section-card{padding:16px 13px}.section-heading h2{font-size:14px}.cards2,.cards3{grid-template-columns:1fr}.side-col{display:block}.side-card{margin-bottom:10px}.side-card:first-child,.side-card:last-child{display:none}.tabs{padding-top:13px}.network-pills span{font-size:9px}}
-@media(max-width:420px){.sponsor-coin{width:27px;height:27px;font-size:17px}.sponsor-title{font-size:10px}.sponsor-cta{font-size:8px}.brand small{display:none}.theme-btn{width:34px;height:34px}.hero-actions{grid-template-columns:1fr}.action-note{grid-column:auto}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#effcf7">
+  <meta name="description" content="A beginner-friendly MetaMask wallet guide by Total Crypto Hub. Learn features, setup, usage and wallet security.">
+  <title>MetaMask Wallet Guide | Total Crypto Hub</title>
+  <style>
+    :root{
+      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
+      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;
+      --line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;
+      --purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b;
+    }
+    body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--mint-2:#205b4d;--shadow:0 12px 30px rgba(0,0,0,.2)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .sponsor{min-height:56px;padding:10px 20px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
+    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:20px;color:#fff;box-shadow:0 3px 12px #0004}
+    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
+    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
+    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
+    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(4vw,22px);position:sticky;top:0;z-index:20}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
+    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
+    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
+    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
+    .wrap{width:min(1180px,calc(100% - 36px));margin:28px auto 60px}
+    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:36px 40px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:20px}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
+    .hero h1 span{color:#00a875}
+    .hero p{max-width:620px;color:#315a63;margin:0 0 17px;font-size:15px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
+    .actions{display:flex;flex-wrap:wrap;gap:10px}
+    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
+    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
+    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
+    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
+    .fox-orb{width:220px;height:220px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff,#c9fff0 55%,#71ddbd);box-shadow:0 18px 35px #2c9c8050;border:1px solid #8be5c7}
+    .fox-orb img{width:82%;height:82%;object-fit:contain;filter:drop-shadow(0 12px 10px #174d3c35)}
+    .float-coin{position:absolute;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:25px;font-weight:900;box-shadow:0 6px 15px #174d3c30}
+    .eth{top:18px;left:4%;background:#e7e2ff;color:#7155d9}.btc{right:2%;top:50px;background:#fff0cc;color:#e99a12}
+    .quicknav{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
+    .quicknav a{white-space:nowrap;padding:10px 15px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
+    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
+    .section{margin-top:24px}
+    .section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
+    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
+    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:16px}
+    .panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 5px 18px #183b5b06}
+    .panel p{color:var(--muted);margin:0}
+    .fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
+    .fact-icon{font-size:30px}
+    .fact h3{margin:0 0 5px;font-size:16px}
+    .fact p{font-size:13px}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+    .feature{text-align:center;padding:22px 14px;transition:.2s}
+    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .feature .emoji{font-size:30px;display:block;margin-bottom:8px}
+    .feature h3{font-size:15px;margin:0 0 5px}
+    .feature p{font-size:12px;color:var(--muted);margin:0}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .step{padding:17px 13px;position:relative}
+    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}
+    .step p{font-size:11px;color:var(--muted);margin:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .mini-list{border-radius:14px;padding:13px;background:#e8fbf3;color:#14553f}
+    .mini-list.bad{background:#fff0ef;color:#873d3d}
+    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
+    .mini-list h3{font-size:13px;margin:0 0 9px}
+    .mini-list ul,.security-list{list-style:none;padding:0;margin:0}
+    .mini-list li{font-size:12px;margin:7px 0}
+    .security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
+    .security-list b{color:var(--text)}
+    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:13px;align-items:stretch}
+    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
+    .video-thumb:before{content:"🦊";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}
+    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
+    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
+    .video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
+    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}
+    body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .faq-item{padding:0;overflow:hidden}
+    .faq-q{width:100%;padding:14px 16px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
+    .faq-a{display:none;padding:0 16px 15px;color:var(--muted);font-size:12px}
+    .faq-item.open .faq-a{display:block}
+    .cta{margin-top:26px;border-radius:20px;padding:24px 28px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
+    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}
+    .cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
+    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}
+    footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.fox-orb{width:175px;height:175px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.sponsor{gap:7px;padding:9px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 13px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 11px;font-size:11px}.wrap{width:calc(100% - 22px);margin:14px auto 35px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:35px}.hero p{font-size:13px}.hero-art{min-height:160px}.fox-orb{width:150px;height:150px}.section-heading{font-size:19px}.features{gap:8px}.feature{padding:16px 9px}.steps{gap:8px}.step{padding:13px 10px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}}
+  </style>
 </head>
 <body>
-
-<!-- Sponsorship strip styled to match the Total Crypto Hub home page -->
-<div class="sponsor-strip">
- <span class="sponsor-coin">₿</span>
- <span class="sponsor-label">SPONSORSHIP OPPORTUNITY</span>
- <div class="sponsor-title">Sponsor with Us on <span>Total Crypto Hub</span></div>
- <span class="sponsor-sub">Grow Your Brand in the Crypto Community</span>
- <a class="sponsor-cta" href="../pages/contact.html">Become a Sponsor&nbsp; →</a>
-</div>
-
-<div class="app-shell">
- <aside class="sidebar">
-  <a class="brand" href="../index.html" translate="no">
-   <span class="brand-logo"><img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span style="display:none">TCN</span></span>
-   <span><strong>Total Crypto Hub</strong><small>by Total Crypto Network</small></span>
-  </a>
-  <div class="workspace-label">Workspace</div>
-  <nav class="nav-list">
-   <a class="nav-link" href="../index.html"><span class="nav-icon">⌂</span>Home</a>
-   <a class="nav-link" href="../depin-pages/depin.html"><span class="nav-icon">ϟ</span>DePIN Projects</a>
-   <a class="nav-link" href="../index.html"><span class="nav-icon">♧</span>Community Projects</a>
-   <a class="nav-link" href="../airdrop-pages/airdrops.html"><span class="nav-icon">🎁</span>Airdrops &amp; Campaigns</a>
-   <a class="nav-link active" href="../wallet-pages/wallets.html"><span class="nav-icon">▣</span>Wallets &amp; Exchanges</a>
-   <a class="nav-link" href="../token-pages/token-checker.html"><span class="nav-icon">♢</span>Token Checker</a>
-   <a class="nav-link" href="../earning-pages/earning-calculator.html"><span class="nav-icon">▦</span>Earning Calculator</a>
-  </nav>
-  <div class="community-card">
-   <div class="community-gift">🎁</div>
-   <strong>Join the Community<br>&amp; Earn Together</strong>
-   <p>Explore guides, tools and Web3 learning resources.</p>
-   <a href="../index.html">Explore Hub →</a>
-  </div>
- </aside>
-
- <div class="main-area">
-  <div class="topbar">
-   <div class="guide-search">⌕ &nbsp; MetaMask Learning Guide · Wallet Setup · Security · Networks</div>
-   <div class="top-actions">
-    <a class="top-pill" href="../wallet-pages/wallets.html">▣ Wallets &amp; Exchanges</a>
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
-   </div>
+  <div class="sponsor">
+    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
+    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
+    <small>Grow Your Brand in the Crypto Community</small>
+    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
   </div>
 
-  <main class="content-wrap">
-   <div class="breadcrumb">⌂ &nbsp; Wallets &amp; Exchanges &nbsp; › &nbsp; MetaMask</div>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Total Crypto Hub home">
+      <span class="brand-mark">TCN</span>
+      <span>Total Crypto Hub<small>by Total Crypto Network</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="back-btn" href="wallets.html">← Back to Wallets</a>
+    </div>
+  </header>
 
-   <section class="hero">
-    <div class="hero-copy">
-     <div class="hero-title-row">
-      <div class="fox-mark" aria-label="MetaMask fox symbol">🦊</div>
+  <main class="wrap">
+    <section class="hero" id="overview">
       <div>
-       <div class="kicker">Self-custody wallet · Web3 access</div>
-       <h1>MetaMask</h1>
+        <span class="eyebrow">✦ Web3 Wallet Guide · Total Crypto Hub</span>
+        <h1>MetaMask <span>Wallet</span></h1>
+        <p>Your gateway to Web3 — explore a self-custody wallet for managing supported crypto assets and connecting to decentralized applications.</p>
+        <div class="pills">
+          <span class="pill">✓ Self-Custody</span><span class="pill">🌐 Multi-Network</span>
+          <span class="pill">⚡ DApp Ready</span><span class="pill">🛡️ Security Tools</span>
+        </div>
+        <div class="actions">
+          <a class="primary" href="https://metamask.io/" target="_blank" rel="noopener noreferrer">Join Now / Get Started ↗</a>
+          <a class="secondary" href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer">Official Download ↗</a>
+        </div>
       </div>
-     </div>
-     <p class="hero-sub">Your wallet. Your keys. Your gateway to Web3.</p>
-     <p class="hero-desc">MetaMask is a self-custodial wallet for managing supported crypto accounts and connecting to decentralized applications (dApps). Available as a browser extension and mobile app, it gives you a convenient way to use supported blockchain networks while keeping control of your wallet credentials.</p>
-     <div class="hero-tags">
-      <span class="hero-tag">🦊 Self-custody</span><span class="hero-tag">🌐 Multi-network</span><span class="hero-tag">🔗 dApp access</span><span class="hero-tag">📱 Browser &amp; Mobile</span>
-     </div>
-    </div>
-    <div class="hero-actions">
-     <a class="join-btn" href="https://metamask.com/download" target="_blank" rel="noopener noreferrer">🦊 Get MetaMask ↗</a>
-     <a class="resource-btn" href="https://support.metamask.io/" target="_blank" rel="noopener noreferrer">📖 Official Help Center ↗</a>
-     <p class="action-note">Use the official download page and verify the publisher before installing.</p>
-    </div>
-    <div class="hero-mascot">🦊</div>
-   </section>
-
-   <nav class="tabs" aria-label="MetaMask guide sections">
-    <a href="#overview">Overview</a><a href="#features">Features</a><a href="#networks">Supported Networks</a><a href="#setup">Setup Guide</a><a href="#security">Security</a><a href="#dapps">dApps</a><a href="#fees">Fees &amp; Swaps</a><a href="#hardware">Hardware Wallets</a><a href="#faq">FAQs</a><a href="#resources">Resources</a>
-   </nav>
-
-   <div class="page-grid">
-    <article class="article">
-     <section class="section-card" id="overview">
-      <div class="section-heading"><span class="section-number">1</span><h2>What is MetaMask? — Understand Self-Custody</h2></div>
-      <p class="copy"><strong>MetaMask</strong> is a self-custodial crypto wallet interface. It helps you manage blockchain accounts, view supported assets, prepare transactions and connect to decentralized applications. It is available as a browser extension and as a mobile app for supported devices.</p>
-      <p class="copy">Your assets are recorded on their respective blockchains. MetaMask provides an interface for viewing accounts and signing blockchain actions with your wallet keys. It is not a bank account, and it cannot reverse a transaction once it has been confirmed on a blockchain.</p>
-      <p class="copy"><strong>Self-custody</strong> means you control the Secret Recovery Phrase (SRP) and private keys that give access to your accounts. The SRP is the master backup for the wallet and its derived accounts. An individual private key controls a particular account.</p>
-      <div class="notice warning"><strong>Read this before adding funds</strong><p>If you lose your SRP and also lose access to the wallet on your device, MetaMask Support cannot retrieve the phrase for you. Anyone who gets your SRP or private key can potentially control the associated accounts and transfer assets.</p></div>
-     </section>
-
-     <section class="section-card" id="features">
-      <div class="section-heading"><span class="section-number">2</span><h2>Main Features — What Can You Do?</h2></div>
-      <div class="cards2">
-       <div class="info-card"><div class="info-icon">💼</div><h3>Manage crypto accounts</h3><p>Create or import accounts, view supported tokens and NFTs, check balances and manage accounts across supported networks.</p></div>
-       <div class="info-card"><div class="info-icon">🔗</div><h3>Connect to dApps</h3><p>Connect to decentralized exchanges, DeFi protocols, NFT platforms, blockchain games and other Web3 apps. Review every connection request.</p></div>
-       <div class="info-card"><div class="info-icon">🔄</div><h3>Swap and bridge</h3><p>Compare supported token swap and cross-chain routes. Check the quote, provider details, fees and minimum received before confirming.</p></div>
-       <div class="info-card"><div class="info-icon">📊</div><h3>Portfolio overview</h3><p>MetaMask Portfolio can display supported assets across accounts and networks. Asset visibility depends on the chain and token.</p></div>
-       <div class="info-card"><div class="info-icon">🖼️</div><h3>NFT and digital assets</h3><p>View or interact with supported NFTs and digital assets. Display and transfer support differs by network and asset type.</p></div>
-       <div class="info-card"><div class="info-icon">🧊</div><h3>Hardware wallet support</h3><p>Connect compatible hardware wallets to add a separate physical confirmation step when signing transactions.</p></div>
+      <div class="hero-art" aria-label="MetaMask wallet illustration">
+        <span class="float-coin eth">◆</span><span class="float-coin btc">₿</span>
+        <div class="fox-orb">
+          <img src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" alt="MetaMask fox logo" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;font-size:100px&quot;>🦊</span>')">
+        </div>
       </div>
-      <div class="notice"><strong>Feature availability may differ</strong><p>Not every feature is available on every network, token, device or in every country. Always rely on the options and transaction quote shown in your current MetaMask app.</p></div>
-     </section>
+    </section>
 
-     <section class="section-card" id="networks">
-      <div class="section-heading"><span class="section-number">3</span><h2>Supported Networks — Explore the Multi-chain Ecosystem</h2></div>
-      <p class="copy">MetaMask’s current network guide includes support for networks such as Ethereum, Bitcoin, Linea, Base, Solana, Tron, Polygon, BNB Chain, Arbitrum, Monad, Robinhood Chain, Optimism (OP), Sei, Avalanche, zkSync Era, MegaETH, HyperEVM, Arc and Tempo. Individual capabilities can differ between networks.</p>
-      <div class="network-pills"><span>Ethereum</span><span>Bitcoin</span><span>Solana</span><span>Tron</span><span>Linea</span><span>Base</span><span>Polygon</span><span>BNB Chain</span><span>Arbitrum</span><span>Optimism</span><span>Sei</span><span>Avalanche</span><span>zkSync Era</span><span>Monad</span><span>More networks</span></div>
-      <h3>How to add a supported network</h3>
+    <nav class="quicknav" aria-label="Page sections">
+      <a class="active" href="#overview">⌂ Overview</a><a href="#features">⭐ Features</a><a href="#how-to">▣ How to Use</a>
+      <a href="#security">🛡 Security</a><a href="#videos">▶ Videos</a><a href="#faq">ⓘ FAQ</a>
+    </nav>
+
+    <section class="section">
+      <div class="intro-grid">
+        <article class="panel">
+          <h2 class="section-heading"><span class="num">1</span> What is MetaMask?</h2>
+          <p>MetaMask is a self-custody cryptocurrency wallet that helps people manage supported digital assets and connect to decentralized applications (DApps). It is available as a browser extension and mobile app. With MetaMask, users can interact with supported blockchain networks, review transactions and manage their wallet accounts.</p>
+          <p style="margin-top:12px">A self-custody wallet means you are responsible for protecting your Secret Recovery Phrase and approving transactions. MetaMask does not make every blockchain application safe, so always verify websites, network details and transaction requests before proceeding.</p>
+        </article>
+        <aside class="panel fact">
+          <div class="fact-icon">💡</div><div><h3>Quick Fact</h3><p>MetaMask is a wallet interface, not a bank account. Your assets are recorded on the relevant blockchain, while your wallet helps you manage access and sign transactions.</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <h2 class="section-heading"><span class="num">2</span> Key Features</h2>
+      <div class="features">
+        <article class="feature"><span class="emoji">🛡️</span><h3>Self-Custody</h3><p>You control your wallet credentials. Keep your recovery phrase private and secure.</p></article>
+        <article class="feature"><span class="emoji">🌐</span><h3>Network Support</h3><p>Connect to Ethereum and other networks supported by MetaMask.</p></article>
+        <article class="feature"><span class="emoji">🔁</span><h3>Swap & Transfer</h3><p>Manage supported tokens and use available swap and transfer features.</p></article>
+        <article class="feature"><span class="emoji">🧩</span><h3>DApp Connect</h3><p>Connect to decentralized applications and review connection requests.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="how-to">
+      <h2 class="section-heading"><span class="num">3</span> How to Create a MetaMask Wallet?</h2>
+      <div class="panel" style="margin-bottom:12px"><p>Follow these general steps. Screens and options may change as the official app is updated.</p></div>
       <div class="steps">
-       <div class="step"><span class="step-num">1</span><div><h3>Open the network selector</h3><p>In the extension, open the network dropdown from the Tokens view. In mobile, open the network dropdown at the top of the Tokens screen.</p></div></div>
-       <div class="step"><span class="step-num">2</span><div><h3>Choose Manage Networks</h3><p>Check the additional or popular networks list and search for the chain by name or chain ID.</p></div></div>
-       <div class="step"><span class="step-num">3</span><div><h3>Add the network</h3><p>Select the network and review its details before adding it. Prefer networks already listed by MetaMask.</p></div></div>
+        <article class="step"><div class="circle">1</div><h3>Visit Official Website</h3><p>Type metamask.io directly into your browser.</p></article>
+        <article class="step"><div class="circle">2</div><h3>Install MetaMask</h3><p>Choose the official browser extension or mobile app.</p></article>
+        <article class="step"><div class="circle">3</div><h3>Create a Wallet</h3><p>Follow the in-app setup instructions and create a strong password.</p></article>
+        <article class="step"><div class="circle">4</div><h3>Back Up Safely</h3><p>Store your Secret Recovery Phrase offline in a secure place.</p></article>
+        <article class="step"><div class="circle">5</div><h3>Start Carefully</h3><p>Learn to receive, send and connect only to trusted DApps.</p></article>
       </div>
-      <div class="notice warning"><strong>Be careful with custom RPC settings</strong><p>Do not copy RPC URLs or chain details from random comments, messages or unknown websites. Verify network details from the network’s own official documentation.</p></div>
-      <p class="copy">A token symbol can exist on multiple networks. Before sending or receiving, confirm the exact network, token contract, destination address and supported route. Two tokens with the same name are not automatically interchangeable.</p>
-     </section>
+    </section>
 
-     <section class="section-card" id="setup">
-      <div class="section-heading"><span class="section-number">4</span><h2>Complete Setup Guide — Browser Extension and Mobile</h2></div>
-      <h3>Desktop browser setup</h3>
-      <div class="steps">
-       <div class="step"><span class="step-num">1</span><div><h3>Open the official download page</h3><p>Type metamask.com/download yourself or use the Get MetaMask button above. Check the domain carefully.</p></div></div>
-       <div class="step"><span class="step-num">2</span><div><h3>Choose your browser</h3><p>Follow the official link to the browser extension store. Avoid third-party download mirrors or files sent by strangers.</p></div></div>
-       <div class="step"><span class="step-num">3</span><div><h3>Create a new wallet or restore one</h3><p>Follow the setup prompts. If restoring, enter the SRP only inside the genuine MetaMask app or extension you installed yourself.</p></div></div>
-       <div class="step"><span class="step-num">4</span><div><h3>Back up your SRP offline</h3><p>Write all words in the correct order and store the backup privately. Avoid screenshots, email, chat or shared cloud files.</p></div></div>
-       <div class="step"><span class="step-num">5</span><div><h3>Set strong device protection</h3><p>Use a unique password, screen lock and current operating-system updates. Secure your email account as well.</p></div></div>
+    <section class="section two-col">
+      <article id="pros-cons">
+        <h2 class="section-heading"><span class="num">4</span> Pros & Cons</h2>
+        <div class="good-bad">
+          <div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ Browser and mobile access</li><li>✓ Self-custody wallet model</li><li>✓ DApp connectivity</li><li>✓ Supports multiple networks</li></ul></div>
+          <div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✕ You must protect recovery details</li><li>✕ Phishing sites can imitate wallets</li><li>✕ Transactions may be irreversible</li><li>✕ Network fees may apply</li></ul></div>
+        </div>
+      </article>
+      <article id="security">
+        <h2 class="section-heading"><span class="num">5</span> Security Tips</h2>
+        <div class="panel">
+          <ul class="security-list">
+            <li><span>🛡️</span><span><b>Protect your Secret Recovery Phrase.</b> Never share it with anyone, including people claiming to be support.</span></li>
+            <li><span>🔎</span><span><b>Check website addresses.</b> Use the official domain and beware of sponsored search results and lookalikes.</span></li>
+            <li><span>✋</span><span><b>Review every transaction.</b> Understand what you are signing before approving.</span></li>
+            <li><span>🔐</span><span><b>Secure your device.</b> Use a screen lock, updates and trusted security practices.</span></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="videos">
+      <h2 class="section-heading"><span class="num">6</span> Video Tutorials</h2>
+      <div class="video-layout">
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>MetaMask Beginner Guide</h3><p>Find video walkthroughs for wallet setup and the basics.</p>
+          <a href="https://www.youtube.com/results?search_query=MetaMask+official+beginner+wallet+guide" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+        </article>
+        <article class="video-card">
+          <div class="video-thumb"><span class="play">▶</span></div>
+          <h3>How to Use MetaMask</h3><p>Learn about receiving, sending and connecting to DApps.</p>
+          <a href="https://www.youtube.com/results?search_query=MetaMask+how+to+use+wallet+official" target="_blank" rel="noopener noreferrer">Explore Tutorials ↗</a>
+        </article>
+        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Pro Tip</h3><p>Prefer official MetaMask learning resources and verify the publisher before following a tutorial. Never reveal your recovery phrase in a video, form or chat.</p><a href="https://support.metamask.io/" target="_blank" rel="noopener noreferrer">MetaMask Support ↗</a></aside>
       </div>
-      <h3>Mobile setup</h3>
-      <div class="steps">
-       <div class="step"><span class="step-num">1</span><div><h3>Use the official app-store link</h3><p>Start at metamask.com/download and follow its link to the iOS App Store or Google Play listing.</p></div></div>
-       <div class="step"><span class="step-num">2</span><div><h3>Create or import your wallet</h3><p>Follow the in-app instructions. Never enter your SRP into a website or a message from someone claiming to be support.</p></div></div>
-       <div class="step"><span class="step-num">3</span><div><h3>Secure your phone</h3><p>Use a strong passcode and available biometric protection. Keep both the app and operating system updated.</p></div></div>
+    </section>
+
+    <section class="section" id="faq">
+      <h2 class="section-heading"><span class="num">7</span> Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is MetaMask free to use? <span>＋</span></button><div class="faq-a">Creating a wallet is generally free. Network gas fees and fees for optional services or transactions may apply.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is MetaMask safe? <span>＋</span></button><div class="faq-a">MetaMask provides wallet security features, but safety also depends on your device, recovery phrase handling and the sites or transactions you approve.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can I use MetaMask on mobile? <span>＋</span></button><div class="faq-a">MetaMask offers an official mobile app. Download it only from links provided by the official MetaMask website or verified app stores.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">What if I lose my Secret Recovery Phrase? <span>＋</span></button><div class="faq-a">If you lose access to your wallet and do not have the required recovery information, access may not be recoverable. Back it up securely before you need it.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does MetaMask store my crypto? <span>＋</span></button><div class="faq-a">Your assets exist on the relevant blockchain. MetaMask provides an interface and keys that let you interact with them.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can MetaMask support recover my phrase? <span>＋</span></button><div class="faq-a">No legitimate support agent should ask for your Secret Recovery Phrase. Anyone asking for it is a major red flag.</div></div>
       </div>
-      <div class="notice"><strong>Beginner tip</strong><p>Before moving a large amount, learn how to copy an address, check a network and review a transaction. Consider a small test transfer first, while accounting for the extra network fee.</p></div>
-     </section>
+    </section>
 
-     <section class="section-card" id="security">
-      <div class="section-heading"><span class="section-number">5</span><h2>Security Center — Protect Your Secret Recovery Phrase</h2></div>
-      <p class="copy">The <strong>Secret Recovery Phrase (SRP)</strong> is the master backup from which the wallet’s accounts are derived. Anyone with the SRP can generally restore the wallet and control the associated accounts. MetaMask Support says it will never ask for your SRP or private keys.</p>
-      <div class="cards2">
-       <div class="info-card"><div class="info-icon">✍️</div><h3>Write it down accurately</h3><p>Record every word in the correct order and keep the backup in a private, secure place.</p></div>
-       <div class="info-card"><div class="info-icon">🚫</div><h3>Never share it</h3><p>Do not provide it to a person, website, support form, chat, email or remote-help session.</p></div>
-       <div class="info-card"><div class="info-icon">☁️</div><h3>Avoid online copies</h3><p>Avoid screenshots, cloud notes and email drafts that could be exposed if an account or device is compromised.</p></div>
-       <div class="info-card"><div class="info-icon">🔍</div><h3>Check every transaction</h3><p>Read the network, recipient, token, amount and approval details. Reject actions you do not understand.</p></div>
-       <div class="info-card"><div class="info-icon">🧹</div><h3>Review token approvals</h3><p>Some dApps request permission to spend tokens. Review allowances and revoke permissions you no longer need.</p></div>
-       <div class="info-card"><div class="info-icon">🧊</div><h3>Consider a hardware wallet</h3><p>A compatible hardware wallet keeps signing keys on a separate device and requires physical confirmation.</p></div>
-      </div>
-      <div class="notice warning"><strong>MetaMask will not ask for your recovery phrase</strong><p>If someone claims to be MetaMask Support and asks for your SRP, private key or wallet password, treat it as a scam. MetaMask also cannot retrieve a lost SRP for you.</p></div>
-     </section>
+    <section class="cta">
+      <div><h2>Ready to Explore Web3 with MetaMask?</h2><p>Start with the official resources, learn the basics and always protect your wallet credentials.</p></div>
+      <a class="primary" href="https://metamask.io/" target="_blank" rel="noopener noreferrer">Visit MetaMask ↗</a>
+    </section>
 
-     <section class="section-card" id="dapps">
-      <div class="section-heading"><span class="section-number">6</span><h2>Connect to dApps — Understand Permissions and Approvals</h2></div>
-      <p class="copy">A decentralized application (dApp) may ask to connect to MetaMask. A basic connection can let the dApp see the selected public wallet address and request actions. Connecting is different from signing a message, approving a token allowance or sending a transaction.</p>
-      <div class="steps">
-       <div class="step"><span class="step-num">1</span><div><h3>Verify the dApp website</h3><p>Use the genuine project URL. Beware of look-alike domains, search ads and links in unsolicited messages.</p></div></div>
-       <div class="step"><span class="step-num">2</span><div><h3>Review the connection request</h3><p>Check which account and network the dApp wants to access. Connect only the account you intend to use.</p></div></div>
-       <div class="step"><span class="step-num">3</span><div><h3>Read transaction and signature prompts</h3><p>Do not approve unfamiliar messages, contract interactions or token-spending permissions.</p></div></div>
-       <div class="step"><span class="step-num">4</span><div><h3>Manage connected sites</h3><p>Use MetaMask Permissions to review connected dApps and remove access that you no longer want.</p></div></div>
-       <div class="step"><span class="step-num">5</span><div><h3>Revoke token approvals separately</h3><p>Disconnecting a dApp does not automatically revoke token allowances already granted on-chain.</p></div></div>
-      </div>
-      <div class="notice orange"><strong>Disconnect is not revoke</strong><p>Disconnecting removes the dApp connection. Revoking removes a previously granted token-spending allowance. These are different actions, and a revoke transaction may require a network fee.</p></div>
-     </section>
-
-     <section class="section-card" id="fees">
-      <div class="section-heading"><span class="section-number">7</span><h2>Gas Fees, Swaps, Bridges and Transaction Costs</h2></div>
-      <p class="copy">Many blockchain actions require a <strong>network fee (gas)</strong> to be processed. This fee is paid to the network, not simply to MetaMask. It changes with network activity and transaction complexity. Different blockchains have different fee models.</p>
-      <div class="cards2">
-       <div class="info-card"><div class="info-icon">⛽</div><h3>Network fee / Gas</h3><p>Required for many on-chain actions such as sending tokens, swaps, approvals and smart-contract interactions.</p></div>
-       <div class="info-card"><div class="info-icon">🔄</div><h3>MetaMask service fee</h3><p>MetaMask’s published standard fee for covered swap products is 0.875%, subject to eligible promotions and programme conditions.</p></div>
-       <div class="info-card"><div class="info-icon">🌉</div><h3>Bridge provider fees</h3><p>Cross-chain routes may include provider costs and network fees on the source and destination chains.</p></div>
-       <div class="info-card"><div class="info-icon">📉</div><h3>Slippage and price impact</h3><p>Liquidity and price movement can change the final output. Review the quote and minimum received before confirming.</p></div>
-      </div>
-      <h3>Before confirming a transaction</h3>
-      <div class="table-wrap"><table><thead><tr><th>Check</th><th>Why it matters</th></tr></thead><tbody>
-       <tr><td>Network</td><td>Confirm the source and destination use the intended chain.</td></tr>
-       <tr><td>Token identity</td><td>Verify the asset and token contract; fake tokens can copy names and logos.</td></tr>
-       <tr><td>Recipient address</td><td>Compare the full address carefully. A wrong address can lead to irreversible loss.</td></tr>
-       <tr><td>Gas / network fee</td><td>Check the fee and the token used to pay it on that network.</td></tr>
-       <tr><td>Quote and slippage</td><td>Review the expected output, price impact and minimum received.</td></tr>
-       <tr><td>Token approvals</td><td>Understand whether a dApp can spend tokens and what allowance you are granting.</td></tr>
-      </tbody></table></div>
-      <div class="notice"><strong>Fee note</strong><p>The 0.875% figure is MetaMask’s published standard fee for covered swaps at the time this guide was checked. Gas, bridge-provider fees and price impact are separate. The live quote in your wallet is the final figure to review.</p></div>
-     </section>
-
-     <section class="section-card" id="hardware">
-      <div class="section-heading"><span class="section-number">8</span><h2>Hardware Wallets — An Extra Security Layer</h2></div>
-      <p class="copy">MetaMask documents integrations with hardware wallets such as Ledger, Trezor, Lattice and selected air-gapped devices. Compatibility and connection steps can differ between browser extension and mobile app.</p>
-      <div class="cards2">
-       <div class="info-card"><div class="info-icon">🔐</div><h3>Separate key protection</h3><p>When properly configured, the hardware wallet signs transactions without exposing its private key to the browser.</p></div>
-       <div class="info-card"><div class="info-icon">👆</div><h3>Physical confirmation</h3><p>Review the destination and transaction details on the hardware device before approving.</p></div>
-       <div class="info-card"><div class="info-icon">🔗</div><h3>dApp access</h3><p>You can use MetaMask as an interface to connect supported hardware-wallet accounts to compatible dApps.</p></div>
-       <div class="info-card"><div class="info-icon">⚠️</div><h3>Still use caution</h3><p>A hardware wallet cannot prevent every scam. You can still approve a malicious transaction or reveal a recovery phrase.</p></div>
-      </div>
-     </section>
-
-     <section class="section-card" id="proscons">
-      <div class="section-heading"><span class="section-number">9</span><h2>Advantages, Limitations and Who It May Suit</h2></div>
-      <div class="cards2">
-       <div class="info-card"><div class="info-icon">✅</div><h3>Potential advantages</h3><p>Self-custody, browser and mobile access, dApp connectivity, support for multiple networks, token and NFT management, swaps and hardware-wallet integrations.</p></div>
-       <div class="info-card"><div class="info-icon">⚠️</div><h3>Limitations and risks</h3><p>You are responsible for recovery credentials; phishing and malicious dApps remain risks; network fees vary; and confirmed transactions are generally irreversible.</p></div>
-      </div>
-      <h3>Who may find MetaMask useful?</h3>
-      <p class="copy">MetaMask may suit users who want to manage supported crypto assets and interact with Web3 applications. Beginners should first learn wallet backups, network selection, transaction fees, token approvals and address verification. Start with low-risk practice before moving significant funds.</p>
-     </section>
-
-     <section class="section-card" id="troubleshooting">
-      <div class="section-heading"><span class="section-number">10</span><h2>Common Problems and Practical Fixes</h2></div>
-      <div class="table-wrap"><table><thead><tr><th>Problem</th><th>What to check</th></tr></thead><tbody>
-       <tr><td>Wrong network selected</td><td>Switch to the intended network and confirm the receiving wallet supports it before transferring.</td></tr>
-       <tr><td>Token not visible</td><td>Check the selected network and verify the token contract using a trusted source before adding a custom token.</td></tr>
-       <tr><td>dApp will not connect</td><td>Review connected-site permissions, selected account and network. Close duplicate wallet pop-ups and refresh the dApp.</td></tr>
-       <tr><td>Transaction is pending</td><td>Check its transaction hash on the correct block explorer. Do not repeatedly resend without understanding the pending transaction.</td></tr>
-       <tr><td>Swap failed</td><td>Review the failure reason, gas, liquidity and slippage. A failed transaction may still consume network fees.</td></tr>
-       <tr><td>Extension missing</td><td>Check your browser extension manager. Reinstall only through MetaMask’s official download page.</td></tr>
-       <tr><td>Forgot app password</td><td>The SRP may restore the wallet in a genuine fresh installation. The password and SRP are not interchangeable.</td></tr>
-      </tbody></table></div>
-     </section>
-
-     <section class="section-card" id="faq">
-      <div class="section-heading"><span class="section-number">11</span><h2>Frequently Asked Questions</h2></div>
-      <div class="faq-list">
-       <details><summary>Is MetaMask a bank or centralized exchange?</summary><p>No. MetaMask is a self-custodial wallet interface. It lets you manage wallet keys and interact with blockchains; it is not a bank account.</p></details>
-       <details><summary>Can MetaMask recover my Secret Recovery Phrase?</summary><p>No. MetaMask cannot retrieve a lost SRP. If you still have access to your wallet, follow official instructions to back it up securely.</p></details>
-       <details><summary>Is MetaMask free to use?</summary><p>Downloading the wallet is free, but blockchain transactions generally require network fees. Swaps and other in-wallet services may also have service or provider fees.</p></details>
-       <details><summary>Does connecting to a dApp give it my crypto?</summary><p>A basic connection can expose your public address and let a dApp request actions. Moving tokens generally requires a transaction or a previously granted token allowance.</p></details>
-       <details><summary>Which networks does MetaMask support?</summary><p>The current network guide lists Ethereum, Bitcoin, Solana, Tron, Linea, Base, Polygon, BNB Chain, Arbitrum, Monad, Robinhood Chain, OP, Sei, Avalanche and more. Features vary by network.</p></details>
-       <details><summary>Can I use MetaMask on Android and iPhone?</summary><p>Yes. MetaMask provides mobile apps. Use the official download page to reach the correct app-store listing and verify the publisher before installing.</p></details>
-       <details><summary>What is the difference between disconnecting and revoking?</summary><p>Disconnecting removes the dApp’s wallet connection. Revoking removes an on-chain token allowance. Disconnecting alone does not revoke previous approvals.</p></details>
-       <details><summary>Does MetaMask support Ledger and Trezor?</summary><p>MetaMask documents hardware-wallet integrations including Ledger and Trezor. Exact device compatibility differs between Extension and Mobile.</p></details>
-       <details><summary>Are MetaMask transactions reversible?</summary><p>Most confirmed blockchain transactions cannot be reversed by MetaMask. Verify the network, destination address, token and transaction details before signing.</p></details>
-      </div>
-     </section>
-
-     <section class="section-card" id="resources">
-      <div class="section-heading"><span class="section-number">12</span><h2>Official Resources and Further Learning</h2></div>
-      <div class="cards2">
-       <div class="info-card"><h3>🌐 Official Download</h3><p>Choose the genuine browser extension or mobile app.</p><p><a href="https://metamask.com/download" target="_blank" rel="noopener" style="color:var(--green-dark);font-weight:800;text-decoration:none">Download MetaMask ↗</a></p></div>
-       <div class="info-card"><h3>📖 Help Center</h3><p>Official setup, account and troubleshooting articles.</p><p><a href="https://support.metamask.io/" target="_blank" rel="noopener" style="color:var(--green-dark);font-weight:800;text-decoration:none">Open Help Center ↗</a></p></div>
-       <div class="info-card"><h3>🔐 Security Guide</h3><p>Protect your recovery phrase and private keys.</p><p><a href="https://support.metamask.io/stay-safe/safety-in-web3/basic-safety-and-security-tips-for-metamask/" target="_blank" rel="noopener" style="color:var(--green-dark);font-weight:800;text-decoration:none">Read Security Guide ↗</a></p></div>
-       <div class="info-card"><h3>🌐 Supported Networks</h3><p>See the latest network list and how to add chains.</p><p><a href="https://support.metamask.io/configure/networks/how-to-add-a-custom-network-rpc" target="_blank" rel="noopener" style="color:var(--green-dark);font-weight:800;text-decoration:none">Network Guide ↗</a></p></div>
-       <div class="info-card"><h3>🔗 dApp Permissions</h3><p>Review connected dApps and account access.</p><p><a href="https://support.metamask.io/more-web3/dapps/manage-dapp-permissions" target="_blank" rel="noopener" style="color:var(--green-dark);font-weight:800;text-decoration:none">Permission Guide ↗</a></p></div>
-       <div class="info-card"><h3>⛽ Gas and Fees</h3><p>Understand network fees and gas costs.</p><p><a href="https://support.metamask.io/more-web3/learn/user-guide-gas" target="_blank" rel="noopener" style="color:var(--green-dark);font-weight:800;text-decoration:none">Gas Fee Guide ↗</a></p></div>
-       <div class="info-card"><h3>🔄 Swap Fees</h3><p>Read current MetaMask swap fee details.</p><p><a href="https://support.metamask.io/trade/metamask-fees/" target="_blank" rel="noopener" style="color:var(--green-dark);font-weight:800;text-decoration:none">Swap Fee Guide ↗</a></p></div>
-       <div class="info-card"><h3>🧊 Hardware Wallets</h3><p>Check compatible devices and connection instructions.</p><p><a href="https://support.metamask.io/more-web3/wallets/hardware-wallet-hub/" target="_blank" rel="noopener" style="color:var(--green-dark);font-weight:800;text-decoration:none">Hardware Guide ↗</a></p></div>
-      </div>
-      <div class="notice"><strong>Editorial update</strong><p>This guide was reviewed on November 9, 2026 using public MetaMask documentation. Network availability, fees, supported services and app features can change; check the official resources and the live transaction quote before acting.</p></div>
-     </section>
-
-     <div class="disclaimer"><strong>Educational Disclaimer:</strong> Total Crypto Hub is an independent educational portal and is not affiliated with or endorsed by MetaMask unless explicitly stated. This page is not financial, investment, tax or legal advice. Crypto assets and blockchain interactions involve risk. Verify websites, addresses, networks, token contracts, permissions and fees independently. Never share your Secret Recovery Phrase, private keys or wallet password.</div>
-    </article>
-
-    <aside class="side-col">
-     <div class="side-card">
-      <h3>📚 On this page</h3>
-      <nav class="side-links">
-       <a href="#overview">01 · Wallet Overview</a><a href="#features">02 · Main Features</a><a href="#networks">03 · Supported Networks</a><a href="#setup">04 · Setup Guide</a><a href="#security">05 · Security &amp; SRP</a><a href="#dapps">06 · dApps &amp; Permissions</a><a href="#fees">07 · Fees &amp; Swaps</a><a href="#hardware">08 · Hardware Wallets</a><a href="#proscons">09 · Advantages &amp; Risks</a><a href="#troubleshooting">10 · Troubleshooting</a><a href="#faq">11 · FAQs</a><a href="#resources">12 · Official Resources</a>
-      </nav>
-     </div>
-     <div class="side-card side-cta">
-      <h3>Get MetaMask</h3><p>Use the official download page to select your browser or mobile platform.</p><a href="https://metamask.com/download" target="_blank" rel="noopener">🦊 Get MetaMask ↗</a>
-     </div>
-     <div class="side-card">
-      <h3>🛡️ Safety Shortcuts</h3>
-      <div class="source-links">
-       <a href="https://support.metamask.io/stay-safe/safety-in-web3/basic-safety-and-security-tips-for-metamask/" target="_blank" rel="noopener">Protect your SRP<small>Never share recovery details</small></a>
-       <a href="https://support.metamask.io/more-web3/dapps/manage-dapp-permissions" target="_blank" rel="noopener">Manage dApp permissions<small>Review connected sites and accounts</small></a>
-       <a href="https://support.metamask.io/more-web3/learn/how-to-revoke-smart-contract-allowances-token-approvals" target="_blank" rel="noopener">Revoke token approvals<small>Separate from disconnecting a dApp</small></a>
-      </div>
-     </div>
-    </aside>
-   </div>
+    <p class="disclaimer">Educational content only. Total Crypto Hub is an independent information directory and is not MetaMask. Always verify product details, supported networks, fees and download links on the official MetaMask website. Cryptocurrency use involves risk.</p>
   </main>
+  <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
 
-  <footer>
-   <div class="container">© <span id="year">2026</span> Total Crypto Network. All rights reserved.
-    <div class="footer-links"><a href="../pages/about.html">About Us</a><a href="../pages/contact.html">Contact Us</a><a href="../pages/privacy.html">Privacy Policy</a><a href="../pages/terms.html">Terms &amp; Conditions</a><a href="../pages/disclaimer.html">Disclaimer</a></div>
-   </div>
-  </footer>
- </div>
-</div>
-
-<script>
-function toggleTheme(){
- const current=document.documentElement.dataset.theme||'light';
- const next=current==='dark'?'light':'dark';
- document.documentElement.dataset.theme=next;
- try{localStorage.setItem('theme',next)}catch(e){}
- const b=document.getElementById('themeBtn');if(b)b.textContent=next==='dark'?'☀️':'🌙';
-}
-window.addEventListener('DOMContentLoaded',()=>{
- const t=document.documentElement.dataset.theme||'light';
- const b=document.getElementById('themeBtn');if(b)b.textContent=t==='dark'?'☀️':'🌙';
- const y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();
-});
-</script>
+  <script>
+    const themeButton = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('tch-theme');
+    if (savedTheme === 'dark') document.body.classList.add('dark');
+    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const dark = document.body.classList.contains('dark');
+      themeButton.textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('tch-theme', dark ? 'dark' : 'light');
+    });
+    document.querySelectorAll('.faq-q').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        item.classList.toggle('open');
+        button.setAttribute('aria-expanded', item.classList.contains('open'));
+        button.querySelector('span').textContent = item.classList.contains('open') ? '−' : '＋';
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navLinks = document.querySelectorAll('.quicknav a');
+    navLinks.forEach(link => link.addEventListener('click', () => {
+      navLinks.forEach(item => item.classList.remove('active'));
+      link.classList.add('active');
+    }));
+  </script>
 </body>
 </html>
