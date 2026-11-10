@@ -110,6 +110,7 @@
             border: 1px solid var(--accent-primary);
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
             white-space: nowrap;
+            cursor: pointer;
         }
         .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
 
@@ -407,7 +408,8 @@
                 
                 <div class="header-actions">
                     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <a href="../depin-pages/depin.html" class="back-to-hub-btn">← Back to DePIN</a>
+                    <!-- Fixed history.back() to return exactly to previous scroll/filter position -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to DePIN</button>
                 </div>
             </header>
 
@@ -700,6 +702,15 @@
             navigator.clipboard.writeText(code).then(() => {
                 alert("Invite code copied: " + code);
             });
+        }
+
+        /* 🚀 Smart Back Function */
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '../depin-pages/depin.html';
+            }
         }
 
         /* Stable Theme Toggle Function */
