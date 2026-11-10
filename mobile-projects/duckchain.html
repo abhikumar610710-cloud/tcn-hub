@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DuckChain Complete Architecture, TON EVM L2 & Reward Claim Guide | Total Crypto Hub</title>
+    <title>DuckChain Architecture, TON EVM L2 & Reward Claim Guide | Total Crypto Hub</title>
     <meta name="description" content="Technical audit of DuckChain: The first TON-based EVM Layer-2, Arbitrum Orbit framework, Egg Season rewards, on-chain verification, and wallet claim guide.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Instant Anti-Flash Theme Script -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
@@ -19,508 +20,679 @@
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-bg: rgba(255, 255, 255, 0.92);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
+            
             --accent-primary: #059669; 
             --accent-hover: #047857;
-            --card-subtle: #f1f5f9;
+            --accent-duck: #f59e0b; 
+            --accent-duck-light: #fbbf24; 
+            --accent-light: rgba(245, 158, 11, 0.12);
+            --accent-subtle: rgba(5, 150, 105, 0.08);
+            
+            --card-subtle: #f8fafc;
+            --hero-bg: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
+            --hero-border: #fde68a;
             --container-max-width: 1240px;
             --container-padding: 24px;
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 30px -5px rgba(245, 158, 11, 0.08);
+            --shadow-hover: 0 14px 35px -5px rgba(245, 158, 11, 0.16);
         }
+
         [data-theme="dark"] {
             --bg-body: #070a12;
             --bg-surface: #0b1120;
-            --header-bg: rgba(11, 17, 32, 0.95);
+            --header-bg: rgba(11, 17, 32, 0.92);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
+            
             --accent-primary: #10b981; 
             --accent-hover: #34d399;
+            --accent-duck: #fbbf24; 
+            --accent-duck-light: #fbbf24;
+            --accent-light: rgba(251, 191, 36, 0.2);
+            --accent-subtle: rgba(16, 185, 129, 0.12);
+            
             --card-subtle: #131c31;
+            --hero-bg: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%);
+            --hero-border: rgba(245, 158, 11, 0.35);
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.4);
+            --shadow-hover: 0 14px 35px -5px rgba(245, 158, 11, 0.25);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+        html { scroll-behavior: smooth; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
-        /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg-surface); padding: 1px; }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); }
-
-        .btn-hub-glow { 
+        /* Master Header Styles */
+        .site-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .header-logo { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--accent-primary); box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); flex-shrink: 0; }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .header-title-box { display: flex; flex-direction: column; }
+        .header-title { font-size: 18px; font-weight: 800; color: var(--text-heading); line-height: 1.2; letter-spacing: -0.3px; }
+        .header-subtitle { font-size: 11px; font-weight: 600; color: var(--text-muted); }
+        
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+        .theme-toggle { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--text-heading); flex-shrink: 0; }
+        .theme-toggle:hover { background: var(--accent-subtle); border-color: var(--accent-primary); }
+        
+        .back-to-hub-btn { 
             background: var(--accent-primary); 
-            color: white; 
+            color: #ffffff; 
             text-decoration: none; 
-            padding: 8px 18px; 
+            padding: 9px 20px; 
             border-radius: 50px; 
+            font-size: 12.5px; 
             font-weight: 700; 
-            font-size: 12px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
             border: 1px solid var(--accent-primary);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            white-space: nowrap;
             cursor: pointer;
         }
-        .btn-hub-glow:hover { 
-            background: var(--accent-hover); 
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
-            transform: translateY(-1px);
-        }
+        .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
 
-        .theme-btn { 
-            background: var(--card-subtle); 
-            border: 1px solid var(--border-color); 
-            color: var(--text-heading); 
-            cursor: pointer; 
-            padding: 7px 12px; 
-            border-radius: 50px; 
-            font-size: 14px;
-        }
-
+        /* Main Section Padding */
         main { flex: 1; padding: 24px 0 60px; }
 
-        /* Sleek & Compact Hero Card */
+        /* Hero Action Card */
         .project-hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 14px; 
-            padding: 18px 24px; 
+            background: var(--hero-bg); 
+            border: 1.5px solid var(--hero-border); 
+            border-radius: 24px; 
+            padding: 30px 34px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             flex-wrap: wrap; 
-            gap: 16px; 
-            margin-bottom: 22px; 
-            box-shadow: 0 2px 14px -2px rgba(0,0,0,0.03); 
+            gap: 24px; 
+            margin-bottom: 24px; 
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
         }
-        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.1), transparent 60%);
+            pointer-events: none;
+        }
+        .hero-left { display: flex; align-items: center; gap: 20px; position: relative; z-index: 2; }
+        
         .project-big-logo { 
-            width: 56px; 
-            height: 56px; 
-            border-radius: 14px; 
+            width: 74px; 
+            height: 74px; 
+            border-radius: 20px; 
             overflow: hidden; 
-            border: 1.5px solid var(--border-color); 
-            padding: 3px; 
-            background: var(--card-subtle); 
+            border: 2px solid var(--accent-duck); 
+            padding: 5px; 
+            background: var(--bg-surface); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             flex-shrink: 0; 
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
         }
-        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-        .project-titles h2 { font-size: 21px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
-        .verified-badge { background: var(--accent-primary); color: white; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; }
-        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 3px; font-weight: 500; }
-        
-        .hero-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
-        .tag-pill { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
-        .tag-live { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); }
-        .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
 
-        .hero-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 5px 6px 5px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
-        .invite-label { font-size: 9px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
-        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 14px; }
-        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .project-titles h2 { font-size: 24px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-duck); color: white; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3); }
+        
+        .ton-badge { background: #0098ea; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
+        .orbit-badge { background: #8b5cf6; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
+
+        .project-titles p { color: var(--text-muted); font-size: 14px; margin-top: 5px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; position: relative; z-index: 2; }
+        
+        .invite-box { 
+            background: var(--bg-surface); 
+            border: 1.5px solid var(--border-color); 
+            padding: 8px 8px 8px 16px; 
+            border-radius: 14px; 
+            display: flex; 
+            align-items: center; 
+            gap: 16px; 
+            box-shadow: var(--shadow-sm);
+        }
+        .invite-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-duck); font-size: 16px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            padding: 9px 14px; 
+            border-radius: 10px; 
+            font-size: 12px; 
+            font-weight: 700; 
+            cursor: pointer; 
+        }
+        .btn-copy:hover { border-color: var(--accent-duck); color: var(--accent-duck); background: rgba(245, 158, 11, 0.08); }
 
         .btn-join { 
-            background: var(--accent-primary); 
+            background: #f59e0b; 
             color: white; 
             text-decoration: none; 
-            padding: 10px 22px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 13px; 
+            padding: 13px 26px; 
+            border-radius: 14px; 
+            font-weight: 800; 
+            font-size: 13.5px; 
             display: inline-flex; 
             align-items: center; 
             gap: 8px; 
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
-            transition: all 0.2s; 
+            box-shadow: 0 6px 18px rgba(245, 158, 11, 0.32); 
         }
-        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn-join:hover { background: #d97706; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(217, 119, 6, 0.45); }
+        [data-theme="dark"] .btn-join { background: #fbbf24; color: #0f172a; box-shadow: 0 6px 18px rgba(251, 191, 36, 0.3); }
+        [data-theme="dark"] .btn-join:hover { background: #fde68a; }
 
-        /* 1240px Content Card */
+        /* 📍 Sticky Quick Jump Navigation Bar - Optimized */
+        .quick-jump-container {
+            position: sticky;
+            top: 72px;
+            z-index: 90;
+            background: var(--header-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin-bottom: 26px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-pills {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        .nav-pills::-webkit-scrollbar { display: none; }
+        .nav-pill-btn {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .nav-pill-btn:hover, .nav-pill-btn.active {
+            background: #f59e0b;
+            color: white;
+            border-color: #f59e0b;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+            transform: translateY(-1px);
+        }
+        [data-theme="dark"] .nav-pill-btn:hover, [data-theme="dark"] .nav-pill-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            box-shadow: 0 4px 14px rgba(251, 191, 36, 0.25);
+        }
+
+        /* Full Article Container Card */
         .content-card { 
             background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 36px 40px; 
-            margin-bottom: 28px; 
-            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 24px; 
+            padding: 42px; 
+            margin-bottom: 32px; 
+            box-shadow: var(--shadow-sm);
         }
-        .article-section { margin-bottom: 36px; }
+        .article-section { margin-bottom: 48px; scroll-margin-top: 145px; }
         .article-section:last-child { margin-bottom: 0; }
         
-        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
         .section-number { 
-            width: 30px; 
-            height: 30px; 
-            border-radius: 8px; 
-            background: var(--accent-primary); 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 10px; 
+            background: #f59e0b; 
             color: white; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-weight: 800; 
-            font-size: 13.5px; 
+            font-size: 14px; 
             flex-shrink: 0; 
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
         }
-        .section-header h3 { font-size: 18.5px; color: var(--text-heading); font-weight: 800; }
+        [data-theme="dark"] .section-number { background: #fbbf24; color: #0f172a; box-shadow: 0 4px 12px rgba(251, 191, 36, 0.25); }
+        .section-header h3 { font-size: 21px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
 
-        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
+        .article-text { font-size: 15px; line-height: 1.85; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
         .article-text strong { color: var(--text-heading); font-weight: 700; }
 
-        /* Linear Flow Boxes */
-        .linear-flow { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
-        .flow-step {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-primary);
-            border-radius: 8px;
-            padding: 16px 20px;
+        /* 2x2 Feature Cards */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; }
+        .feature-box { 
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-left: 5px solid #f59e0b;
+            border-radius: 16px; 
+            padding: 24px; 
         }
-        .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
-        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+        [data-theme="dark"] .feature-box { border-left-color: #fbbf24; }
+        .feature-box:hover {
+            border-color: var(--accent-duck);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .feature-box h4 { font-size: 15.5px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; }
+        .feature-box p { font-size: 13.5px; color: var(--text-muted); line-height: 1.68; }
 
-        /* Contract Grid */
-        .contract-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 12px;
-            margin: 16px 0;
-        }
-        .contract-box {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 14px 16px;
-        }
-        .contract-box h5 { font-size: 13.5px; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
-        .contract-box code { font-size: 11px; color: var(--accent-primary); word-break: break-all; background: var(--card-subtle); padding: 3px 6px; border-radius: 4px; display: block; margin-top: 4px; }
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--card-subtle); border-radius: 16px; overflow: hidden; border: 1.5px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 16px 22px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14.5px; }
+        .stats-table th { background: var(--bg-surface); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-        /* Verification Box */
-        .tokenomics-verify-box {
-            background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
-        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
-        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .btn-audit {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            color: var(--text-heading);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 12.5px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
-        }
-        .btn-audit:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        /* Alert Box */
+        /* Alert Warning Box */
         .alert-box { 
-            background: rgba(245, 158, 11, 0.08); 
-            border-left: 4px solid #f59e0b; 
-            padding: 18px 22px; 
-            border-radius: 0 8px 8px 0; 
-            margin: 20px 0; 
+            background: rgba(245, 158, 11, 0.06); 
+            border: 1.5px solid rgba(245, 158, 11, 0.3);
+            border-left: 5px solid #f59e0b; 
+            padding: 24px 28px; 
+            border-radius: 16px; 
+            margin: 24px 0; 
         }
-        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
-        .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
+        .alert-box h5 { color: #d97706; font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
+        .alert-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
         .alert-box p:last-child { margin-bottom: 0; }
 
-        /* Video Showcase */
-        .video-box-clean {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px;
-            margin-top: 14px;
-            max-width: 580px;
+        /* Rule Box Style */
+        .rule-box {
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-left: 5px solid #f59e0b;
+            border-radius: 16px; 
+            padding: 24px 28px; 
+            margin: 24px 0;
         }
-        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .mock-youtube-player { 
-            background: #000; 
-            border-radius: 8px; 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
+        [data-theme="dark"] .rule-box { border-left-color: #fbbf24; }
+        .rule-box h5 { color: var(--text-heading); font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
+        .rule-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
+        .rule-box p:last-child { margin-bottom: 0; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
+        .video-box { 
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 18px; 
+            padding: 20px; 
+        }
+        .video-box:hover { 
+            border-color: #ff0000; 
+            box-shadow: 0 10px 25px -5px rgba(255, 0, 0, 0.18); 
+            transform: translateY(-3px); 
+        }
+        .video-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        
+        .mock-youtube-player { background: #000; border-radius: 14px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.12); }
+        
+        .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 44px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255,0,0,0.4); }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* FAQ Accordion Section */
+        .faq-list { display: flex; flex-direction: column; gap: 14px; margin-top: 22px; }
+        .faq-item { 
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 14px; 
             overflow: hidden; 
-            cursor: pointer; 
-            display: block; 
-            text-decoration: none; 
         }
-        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
-        .yt-play-btn { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 60px; 
-            height: 42px; 
-            background-color: #ff0000; 
-            border-radius: 10px; 
-            transition: transform 0.2s ease; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+        .faq-item:hover { border-color: var(--accent-duck); box-shadow: var(--shadow-sm); }
+        .faq-question { padding: 18px 22px; font-size: 15px; font-weight: 700; color: var(--text-heading); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .faq-answer { padding: 0 22px 18px 22px; font-size: 14px; color: var(--text-muted); line-height: 1.7; display: none; }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent-duck); }
+        .faq-icon { font-size: 20px; font-weight: 800; transition: transform 0.2s; color: var(--text-muted); }
 
-        /* Disclosure */
-        .disclosure-box {
-            background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px 22px;
-            font-size: 13px;
-            line-height: 1.65;
-            color: var(--text-muted);
-            margin-top: 30px;
-        }
-        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
+        /* Important Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14px; }
 
-        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-primary); }
+        /* Footer */
+        footer { padding: 30px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
+        .footer-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-duck); text-decoration: underline; }
 
         @media (max-width: 768px) {
             :root { --container-padding: 16px; }
-            .content-card { padding: 22px 18px; }
-            .project-hero-card { flex-direction: column; align-items: flex-start; }
-            .hero-right { width: 100%; justify-content: space-between; }
-            .btn-join { flex: 1; justify-content: center; }
-            .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
-            .verify-buttons { width: 100%; }
-            .btn-audit { width: 100%; justify-content: center; }
-            .section-header h3 { font-size: 17.5px; }
+            .content-card { padding: 24px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; padding: 22px; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .section-header h3 { font-size: 18px; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .quick-jump-container { top: 62px; padding: 8px 10px; }
+            .nav-pill-btn { padding: 7px 10px; font-size: 11px; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+            .invite-box { flex: 1; justify-content: space-between; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="site-container header-inner">
-            <a href="../index.html" class="logo-box" translate="no">
-                <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
-                </div>
-                <div class="logo-text">
-                    <h1>Total Crypto Hub</h1>
-                    <span>by <b>Total Crypto Network</b></span>
-                </div>
-            </a>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
-                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to Community</button>
-            </div>
-        </div>
-    </header>
-
     <!-- Main Content Area -->
     <main>
         <div class="site-container">
+
+            <!-- Master Header with History Back Button -->
+            <header class="site-header">
+                <a href="../index.html" class="header-brand">
+                    <div class="header-logo">
+                        <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
+                    </div>
+                    <div class="header-title-box">
+                        <div class="header-title">Total Crypto Hub</div>
+                        <div class="header-subtitle">by Total Crypto Network</div>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
+                    <!-- Fixed history.back() to return exactly to previous scroll/filter position -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community Projects</button>
+                </div>
+            </header>
 
             <!-- Hero Action Card -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
-                        <img src="../logos/duckchain.png" alt="DuckChain Logo" onerror="this.parentNode.innerHTML='DC';">
+                        <img src="../logos/duckchain.png" alt="DuckChain Logo" onerror="this.src='../logos/tcn-logo.png';">
                     </div>
                     <div class="project-titles">
-                        <h2 translate="no">DuckChain <span class="verified-badge">✓</span></h2>
-                        <p>First TON-based Consumer EVM Layer 2 Powered by Arbitrum Orbit</p>
-                        <div class="hero-tags">
-                            <span class="tag-pill tag-live">🟢 Token Listed ($DUCK)</span>
-                            <span class="tag-pill tag-subtle">Arbitrum Orbit L2</span>
-                            <span class="tag-pill tag-subtle">TON EVM Bridge</span>
-                        </div>
+                        <h2 class="notranslate" translate="no">DuckChain <span class="verified-badge">✓</span> <span class="ton-badge">TON EVM L2</span> <span class="orbit-badge">Arbitrum Orbit</span></h2>
+                        <p>The First TON-Based Consumer EVM Layer 2 Powered by Arbitrum Orbit</p>
                     </div>
                 </div>
 
                 <div class="hero-right">
                     <div class="invite-box">
                         <div>
-                            <div class="invite-label">Invite Code</div>
+                            <div class="invite-label">Official Invite Code</div>
                             <div class="invite-code notranslate" id="inviteCode" translate="no">CwxEwsfY</div>
                         </div>
                         <button class="btn-copy" onclick="copyCode()">Copy</button>
                     </div>
-                    <a href="https://t.me/DuckChain_bot/quack?startapp=CwxEwsfY" target="_blank" class="btn-join">🦆 Launch Bot & Claim ↗</a>
+                    
+                    <a href="https://t.me/DuckChain_bot/quack?startapp=CwxEwsfY" target="_blank" class="btn-join">🦆 Launch DuckChain Bot</a>
                 </div>
             </div>
 
-            <!-- Full-Length Content Card -->
+            <!-- 📍 Sticky Quick Jump Navigation Bar - Optimized -->
+            <div class="quick-jump-container">
+                <div class="nav-pills">
+                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is DuckChain</a>
+                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. Arbitrum Orbit L2</a>
+                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. Egg Season Mechanics</a>
+                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. Tokenomics ($DUCK)</a>
+                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. Reward Wallet Claim</a>
+                    <a href="#section-6" class="nav-pill-btn" id="pill-sec-6">6. Pro Tips</a>
+                    <a href="#section-7" class="nav-pill-btn" id="pill-sec-7">7. Video Guides</a>
+                    <a href="#section-8" class="nav-pill-btn" id="pill-sec-8">8. FAQs</a>
+                </div>
+            </div>
+
+            <!-- Full Article Content Card -->
             <div class="content-card">
 
                 <!-- Point 1: What is DuckChain -->
-                <div class="article-section">
+                <div class="article-section" id="section-1">
                     <div class="section-header">
                         <div class="section-number">1</div>
-                        <h3>What is DuckChain? (The First TON-Based EVM Layer 2)</h3>
+                        <h3>What is DuckChain? (TON EVM Layer-2)</h3>
                     </div>
                     <p class="article-text">
-                        <strong>DuckChain</strong> is an innovative consumer Layer-2 blockchain protocol built directly to connect the <strong>TON (Telegram Open Network)</strong> ecosystem with the global <strong>Ethereum Virtual Machine (EVM)</strong> landscape. Built leveraging <strong>Arbitrum Orbit</strong> execution scaling, DuckChain allows Telegram's massive user base of over 900 million users to seamlessly interact with EVM-compatible decentralized finance (DeFi), gaming dApps, and non-fungible digital assets without switching networks or managing multiple complex wallets.
+                        <strong>DuckChain</strong> is an innovative consumer Layer-2 blockchain protocol built directly to connect the <strong>TON (Telegram Open Network)</strong> ecosystem with the global <strong>Ethereum Virtual Machine (EVM)</strong> landscape.
                     </p>
                     <p class="article-text">
-                        The project bridges the liquidity gap between Ethereum, Arbitrum, and Telegram by introducing an account abstraction layer where Telegram Stars, TON, and USDT function natively as gas mechanisms. Backed by key industry leaders and top-tier Web3 ventures, DuckChain establishes a consumer-first blockchain gateway that turns simple Telegram interactions into verified on-chain assets.
+                        By allowing Telegram's massive user base of over 900 million users to interact with EVM-compatible decentralized finance (DeFi), gaming dApps, and non-fungible digital assets without switching networks, DuckChain bridges the liquidity gap between Ethereum, Arbitrum, and Telegram.
                     </p>
                 </div>
 
-                <!-- Point 2: Architecture & Egg Season Mechanism -->
-                <div class="article-section">
+                <!-- Point 2: Arbitrum Orbit L2 Architecture -->
+                <div class="article-section" id="section-2">
                     <div class="section-header">
                         <div class="section-number">2</div>
-                        <h3>Ecosystem Mechanics: The "Egg Season" & Quests Architecture</h3>
+                        <h3>Arbitrum Orbit L2 & Gas Abstraction</h3>
                     </div>
                     <p class="article-text">
-                        DuckChain conducted its viral distribution campaign via a Telegram Mini-App centered around gamified on-chain execution:
+                        DuckChain is built leveraging the robust <strong>Arbitrum Orbit</strong> execution scaling framework, providing lightning-fast throughput and high security:
                     </p>
-                    <div class="linear-flow">
-                        <div class="flow-step">
-                            <h4>🥚 1. The Egg Hatching Cycle</h4>
-                            <p>Users gathered daily eggs and tapped into decentralized on-chain checkpoints. Users upgraded egg tiers by utilizing daily activity streaks, expanding point farming velocity with zero financial risk.</p>
-                        </div>
-                        <div class="flow-step">
-                            <h4>⭐ 2. Telegram Stars & Gas Abstraction</h4>
-                            <p>DuckChain introduced native micro-settlements allowing users to deploy testnet transactions and mint verified achievements using Telegram Stars and fractional gas subsidies.</p>
-                        </div>
-                        <div class="flow-step">
-                            <h4>🎯 3. Cross-Chain Partner Quests</h4>
-                            <p>Ecosystem partners, decentralized exchanges, and gaming protocols integrated interactive tasks allowing community miners to unlock tier multipliers ahead of the Token Generation Event (TGE).</p>
-                        </div>
-                        <div class="flow-step">
-                            <h4>💼 4. EVM Wallet Binding Engine</h4>
-                            <p>Users seamlessly map their Telegram identity with verified EVM addresses (OKX Wallet, MetaMask, Bitget) to guarantee non-custodial custody of all accrued assets.</p>
-                        </div>
-                    </div>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Scaling Framework</th>
+                                <td>Arbitrum Orbit customized Layer-2 rollup technology ensuring secure batch settlements.</td>
+                            </tr>
+                            <tr>
+                                <th>Gas Abstraction</th>
+                                <td>Account abstraction allows Telegram Stars, TON, and USDT to function natively as gas mechanisms.</td>
+                            </tr>
+                            <tr>
+                                <th>Cross-Chain Liquidity</th>
+                                <td>Seamlessly connects Ethereum mainnet liquidity directly into Telegram mini-app experiences.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <!-- Point 3: Supply, Tokenomics & Audits -->
-                <div class="article-section">
+                <!-- Point 3: Egg Season Mechanics -->
+                <div class="article-section" id="section-3">
                     <div class="section-header">
                         <div class="section-number">3</div>
-                        <h3>Tokenomics, On-Chain Settlements & Listed Exchanges</h3>
+                        <h3>The "Egg Season" Campaign & Farming</h3>
                     </div>
                     <p class="article-text">
-                        DuckChain's core asset <strong>$DUCK</strong> functions as the foundational governance, staking, and gas utility currency across its Arbitrum-anchored Layer 2:
+                        DuckChain conducted its viral distribution campaign via an engaging Telegram Mini-App centered around gamified on-chain execution:
                     </p>
-                    <p class="article-text">
-                        • <strong>Community Distribution:</strong> A dominant share of token allocations is dedicated directly to early testnet node operators, Egg Season participants, and Telegram community contributors.<br>
-                        • <strong>Listed Exchanges:</strong> $DUCK is actively listed and tradable across major global centralized exchanges including <strong>OKX, Gate.io, KuCoin, and Bitget</strong>.<br>
-                        • <strong>Arbitrum Orbit Settlement:</strong> All Layer 2 batch proofs settle with cryptographic validity down to Arbitrum and Ethereum mainnets, guaranteeing tamper-proof security and low transaction costs.
-                    </p>
-
-                    <div class="contract-grid">
-                        <div class="contract-box">
-                            <h5>DuckChain Network Identifier <span>🟡</span></h5>
-                            <code>Arbitrum Orbit Custom Chain / TON EVM L2</code>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🥚 Egg Hatching Cycle</h4>
+                            <p>Users gathered daily eggs and tapped into decentralized on-chain checkpoints to increase point farming velocity.</p>
                         </div>
-                        <div class="contract-box">
-                            <h5>Listed Asset Symbol <span>🟢</span></h5>
-                            <code>$DUCK (Tradable on CEX / DEX)</code>
+                        <div class="feature-box">
+                            <h4>⭐ Telegram Stars</h4>
+                            <p>Micro-settlements enabled users to deploy testnet transactions using Telegram Stars and fractional gas subsidies.</p>
                         </div>
-                    </div>
-
-                    <!-- Verification Box -->
-                    <div class="tokenomics-verify-box">
-                        <div class="verify-text-area">
-                            <h5>Official DuckChain Documentation & App Portal</h5>
-                            <p>Verify ecosystem milestones, mainnet bridges, and official announcements:</p>
+                        <div class="feature-box">
+                            <h4>🎯 Partner Quests</h4>
+                            <p>Ecosystem partners and gaming protocols integrated interactive tasks to unlock tier multipliers.</p>
                         </div>
-                        <div class="verify-buttons">
-                            <a href="https://duckchain.io/" target="_blank" class="btn-audit">🌐 Official Website ↗</a>
-                            <a href="https://t.me/DuckChain_bot/quack?startapp=CwxEwsfY" target="_blank" class="btn-audit">🦆 Open Telegram App ↗</a>
+                        <div class="feature-box">
+                            <h4>💼 EVM Wallet Binding</h4>
+                            <p>Seamlessly mapped Telegram identities with verified EVM addresses (OKX Wallet, MetaMask) for secure custody.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Point 4: Egg Season Notice & Reward Wallet Step -->
-                <div class="article-section">
+                <!-- Point 4: Tokenomics & $DUCK -->
+                <div class="article-section" id="section-4">
                     <div class="section-header">
                         <div class="section-number">4</div>
-                        <h3>Critical Action: "Egg Season Has Ended" & Setting Reward Wallet</h3>
+                        <h3>Tokenomics & The $DUCK Asset</h3>
                     </div>
                     <p class="article-text">
-                        If you receive the system notification <strong>"Egg Season has ended. Make sure to set your reward wallet to receive the reward you earned from the event"</strong>, follow these mandatory instructions to secure your payout:
+                        The core asset <strong>$DUCK</strong> functions as the foundational governance, staking, and gas utility currency across the L2:
                     </p>
-                    
-                    <div class="alert-box">
-                        <h5>⚠️ Mandatory Reward Wallet Instructions:</h5>
-                        <p><strong>1. Snapshot Finalized:</strong> The egg-hatching and farming phase is officially concluded. No new points can be mined; current balances are locked for token conversion.</p>
-                        <p><strong>2. Bind Non-Custodial Wallet:</strong> Open the DuckChain Mini-App, navigate to the <em>Airdrop / Wallet</em> tab, and connect your <strong>OKX Wallet</strong> or <strong>MetaMask (EVM address)</strong>.</p>
-                        <p><strong>3. Centralized Exchange (CEX) Deposit Option:</strong> If you prefer direct exchange delivery without paying on-chain gas, select your exchange (OKX/Gate/Bitget) and paste your $DUCK deposit address and Memo/UID accurately.</p>
-                        <p><strong>4. Strict Deadline:</strong> Failure to bind an address before the distribution cutoff will result in rewards being routed to the unallocated community pool.</p>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>🪙 $DUCK Utility</h4>
+                            <p>Primary governance and gas token powering network transactions and validator staking incentives.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🪂 Community Allocation</h4>
+                            <p>A dominant share of token supply is dedicated directly to early testnet node operators and Egg Season participants.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>📈 CEX Listings</h4>
+                            <p>$DUCK is actively listed and tradable across major global centralized exchanges including OKX, Gate.io, KuCoin, and Bitget.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🛡️ Cryptographic Proofs</h4>
+                            <p>All L2 batch proofs settle securely down to Arbitrum and Ethereum mainnets with full validity.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Point 5: Compliance & Security Hygiene -->
-                <div class="article-section">
+                <!-- Point 5: Reward Wallet Claim Instructions -->
+                <div class="article-section" id="section-5">
                     <div class="section-header">
                         <div class="section-number">5</div>
-                        <h3>Account Compliance & Security Best Practices</h3>
+                        <h3>Critical Action: Setting Your Reward Wallet</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Anti-Sybil Architecture:</strong> DuckChain actively filters multi-account bots and cloud emulator scripts through behavioral Telegram identity verification. Only genuine organic accounts pass the final token distribution audits.
+                        When you receive the notification <strong>"Egg Season has ended. Make sure to set your reward wallet to receive the reward"</strong>, follow these steps:
                     </p>
-                    <p class="article-text">
-                        <strong>Passphrase Protection:</strong> Never provide your private keys or seed phrase to any Telegram user, bot, or moderator. Official reward claims will only occur inside the verified mini-app interface.
-                    </p>
+                    <div class="alert-box">
+                        <h5>⚠️ Mandatory Reward Wallet Instructions:</h5>
+                        <p>1. <strong>Snapshot Finalized:</strong> The egg-hatching and farming phase has officially concluded. Point balances are locked for conversion.</p>
+                        <p>2. <strong>Bind Non-Custodial Wallet:</strong> Open the DuckChain Mini-App, navigate to the <em>Airdrop / Wallet</em> tab, and connect your <strong>OKX Wallet</strong> or <strong>MetaMask (EVM address)</strong>.</p>
+                        <p>3. <strong>CEX Deposit Option:</strong> If you prefer direct exchange delivery without on-chain gas, select your exchange (OKX/Gate/Bitget) and paste your $DUCK deposit address and Memo/UID accurately.</p>
+                    </div>
                 </div>
 
-                <!-- Point 6: Dedicated Video Walkthrough -->
-                <div class="article-section">
+                <!-- Point 6: Total Crypto Network Pro Tips -->
+                <div class="article-section" id="section-6">
                     <div class="section-header">
                         <div class="section-number">6</div>
-                        <h3>Dedicated Video Setup & Claim Guide</h3>
+                        <h3>Total Crypto Network Pro Tips: Sybil Protection</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete video guide produced by <strong>Total Crypto Network</strong> demonstrating how to bind your reward wallet and withdraw $DUCK to exchanges:
+                        To guarantee your reward eligibility and protect your account from security risks, observe these best practices:
                     </p>
-                    
-                    <div class="video-box-clean">
-                        <h4>▶️ DuckChain Wallet Binding, Claim & CEX Deposit Walkthrough</h4>
-                        <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
-                            <div class="yt-play-btn"></div>
-                        </a>
+                    <div class="rule-box">
+                        <h5>💡 Anti-Sybil & Security Hygiene:</h5>
+                        <p>DuckChain actively filters multi-account bots and cloud emulator scripts through behavioral Telegram identity verification. Only genuine organic accounts pass final token audits. Never share your private keys or seed phrases with any third party or unverified bot.</p>
                     </div>
                 </div>
 
-                <!-- Disclosure -->
+                <!-- Point 7: Video Guides -->
+                <div class="article-section" id="section-7">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Complete Step-by-Step Setup Guides</h3>
+                    </div>
+                    <p class="article-text">
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for wallet binding and exchange deposits:
+                    </p>
+                    
+                    <div class="video-grid-2">
+                        <!-- Video Box 1 -->
+                        <div class="video-box">
+                            <h4>🦆 DuckChain Wallet Binding Guide</h4>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
+                        </div>
+
+                        <!-- Video Box 2 -->
+                        <div class="video-box">
+                            <h4>💰 Claiming & Withdrawing $DUCK to CEX</h4>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
+                                <div class="yt-play-btn"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 8: FAQs -->
+                <div class="article-section" id="section-8">
+                    <div class="section-header">
+                        <div class="section-number">8</div>
+                        <h3>Frequently Asked Questions</h3>
+                    </div>
+                    
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                What is DuckChain?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                DuckChain is the first TON-based consumer EVM Layer-2 protocol powered by Arbitrum Orbit scaling.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                Is the $DUCK token listed on exchanges?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Yes, $DUCK is actively listed and tradable across major centralized exchanges including OKX, Gate.io, KuCoin, and Bitget.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                How do I claim my Egg Season rewards?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Open the DuckChain Telegram Mini-App, navigate to the wallet section, and bind your EVM wallet or CEX deposit address before the distribution deadline.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                What is the official invite code?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                You can use the official invitation code <strong class="notranslate" translate="no">CwxEwsfY</strong> when launching the bot.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Disclosure Box -->
                 <div class="disclosure-box">
-                    <strong>Important Protocol Disclosure</strong>
-                    Total Crypto Hub provides independent educational information and technical guides only. DuckChain is an autonomous EVM Layer-2 protocol connected to the TON ecosystem. Token trading, airdrop eligibility, and on-chain conversions depend entirely on official protocol smart contracts and exchange conditions.
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational and technical guides only. DuckChain is an autonomous EVM Layer-2 protocol. Token trading, airdrop eligibility, and on-chain conversions depend entirely on official protocol smart contracts and exchange conditions.
                 </div>
 
             </div>
@@ -531,7 +703,7 @@
     <footer>
         <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; <span translate="no">2026 Total Crypto Network</span>. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../legal-pages/about.html">About Us</a>
@@ -543,14 +715,16 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
         function copyCode() {
             const code = document.getElementById('inviteCode').innerText;
             navigator.clipboard.writeText(code).then(() => {
-                alert("Invite code copied: " + code);
+                alert("Invite Code copied: " + code);
             });
         }
 
+        /* 🚀 Smart Back Function */
         function goBack() {
             if (document.referrer && document.referrer !== window.location.href) {
                 window.history.back();
@@ -559,6 +733,7 @@
             }
         }
 
+        /* Stable Theme Toggle Function */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -569,6 +744,33 @@
             const btn = document.getElementById('themeBtn');
             if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
         }
+
+        /* FAQ Accordion Function */
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('open');
+        }
+
+        /* Automatic ScrollSpy Navigation Highlighting */
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.article-section');
+            const navPills = document.querySelectorAll('.nav-pill-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 180)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+        navPills.forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.getAttribute('href') === '#' + current) {
+                    pill.classList.add('active');
+                }
+            });
+        });
 
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
