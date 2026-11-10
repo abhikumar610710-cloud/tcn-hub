@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Instant Anti-Flash Theme Script -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
@@ -19,340 +20,407 @@
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-bg: rgba(255, 255, 255, 0.92);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
+            
             --accent-primary: #059669; 
             --accent-hover: #047857;
-            --card-subtle: #f1f5f9;
+            --accent-sidra: #059669; 
+            --accent-sidra-light: #10b981; 
+            --accent-light: rgba(16, 185, 129, 0.12);
+            --accent-subtle: rgba(5, 150, 105, 0.08);
+            
+            --card-subtle: #f8fafc;
+            --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
+            --hero-border: #a7f3d0;
             --container-max-width: 1240px;
             --container-padding: 24px;
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 30px -5px rgba(16, 185, 129, 0.08);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.16);
         }
+
         [data-theme="dark"] {
             --bg-body: #070a12;
             --bg-surface: #0b1120;
-            --header-bg: rgba(11, 17, 32, 0.95);
+            --header-bg: rgba(11, 17, 32, 0.92);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
+            
             --accent-primary: #10b981; 
             --accent-hover: #34d399;
+            --accent-sidra: #10b981; 
+            --accent-sidra-light: #34d399;
+            --accent-light: rgba(16, 185, 129, 0.2);
+            --accent-subtle: rgba(16, 185, 129, 0.12);
+            
             --card-subtle: #131c31;
+            --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%);
+            --hero-border: rgba(16, 185, 129, 0.35);
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.4);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.25);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+        html { scroll-behavior: smooth; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
-        /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg-surface); padding: 1px; }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); }
-
-        .btn-hub-glow { 
+        /* Master Header Styles */
+        .site-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .header-logo { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--accent-primary); box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); flex-shrink: 0; }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .header-title-box { display: flex; flex-direction: column; }
+        .header-title { font-size: 18px; font-weight: 800; color: var(--text-heading); line-height: 1.2; letter-spacing: -0.3px; }
+        .header-subtitle { font-size: 11px; font-weight: 600; color: var(--text-muted); }
+        
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+        .theme-toggle { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--text-heading); flex-shrink: 0; }
+        .theme-toggle:hover { background: var(--accent-subtle); border-color: var(--accent-primary); }
+        
+        .back-to-hub-btn { 
             background: var(--accent-primary); 
-            color: white; 
+            color: #ffffff; 
             text-decoration: none; 
-            padding: 8px 18px; 
+            padding: 9px 20px; 
             border-radius: 50px; 
+            font-size: 12.5px; 
             font-weight: 700; 
-            font-size: 12px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
             border: 1px solid var(--accent-primary);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            white-space: nowrap;
             cursor: pointer;
         }
-        .btn-hub-glow:hover { 
-            background: var(--accent-hover); 
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
-            transform: translateY(-1px);
-        }
+        .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
 
-        .theme-btn { 
-            background: var(--card-subtle); 
-            border: 1px solid var(--border-color); 
-            color: var(--text-heading); 
-            cursor: pointer; 
-            padding: 7px 12px; 
-            border-radius: 50px; 
-            font-size: 14px;
-        }
-
+        /* Main Section Padding */
         main { flex: 1; padding: 24px 0 60px; }
 
-        /* Compact Hero Action Card */
+        /* Hero Action Card */
         .project-hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 14px; 
-            padding: 18px 24px; 
+            background: var(--hero-bg); 
+            border: 1.5px solid var(--hero-border); 
+            border-radius: 24px; 
+            padding: 26px 32px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             flex-wrap: wrap; 
-            gap: 16px; 
-            margin-bottom: 22px; 
-            box-shadow: 0 2px 14px -2px rgba(0,0,0,0.03); 
+            gap: 20px; 
+            margin-bottom: 24px; 
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
         }
-        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 60%);
+            pointer-events: none;
+        }
+        .hero-left { display: flex; align-items: center; gap: 18px; position: relative; z-index: 2; }
+        
         .project-big-logo { 
-            width: 56px; 
-            height: 56px; 
-            border-radius: 14px; 
+            width: 68px; 
+            height: 68px; 
+            border-radius: 18px; 
             overflow: hidden; 
-            border: 1.5px solid var(--border-color); 
-            padding: 3px; 
-            background: var(--card-subtle); 
+            border: 2px solid var(--accent-sidra-light); 
+            padding: 4px; 
+            background: var(--bg-surface); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             flex-shrink: 0; 
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
         }
-        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-        .project-titles h2 { font-size: 21px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
-        .verified-badge { background: #d97706; color: white; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; }
-        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 3px; font-weight: 500; }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+
+        .project-titles h2 { font-size: 23px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .verified-badge { background: #d97706; color: white; width: 19px; height: 19px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); }
         
-        .hero-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
-        .tag-pill { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
-        .tag-upcoming { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+        .hero-tags { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+        .tag-pill { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag-upcoming { background: rgba(217, 119, 6, 0.15); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.35); }
         .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
+
+        .project-titles p { color: var(--text-muted); font-size: 13.5px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; position: relative; z-index: 2; }
 
         .btn-join { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 10px 22px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 13px; 
+            padding: 12px 24px; 
+            border-radius: 14px; 
+            font-weight: 800; 
+            font-size: 13.5px; 
             display: inline-flex; 
             align-items: center; 
             gap: 8px; 
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
-            transition: all 0.2s; 
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.32); 
         }
-        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45); }
 
-        /* 1240px Content Card */
+        /* 📍 Sticky Quick Jump Navigation Bar - Optimized */
+        .quick-jump-container {
+            position: sticky;
+            top: 72px;
+            z-index: 90;
+            background: var(--header-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin-bottom: 26px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-pills {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        .nav-pills::-webkit-scrollbar { display: none; }
+        .nav-pill-btn {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .nav-pill-btn:hover, .nav-pill-btn.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* Full Article Container Card */
         .content-card { 
             background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 36px 40px; 
-            margin-bottom: 28px; 
-            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 24px; 
+            padding: 42px; 
+            margin-bottom: 32px; 
+            box-shadow: var(--shadow-sm);
         }
-        .article-section { margin-bottom: 36px; }
+        .article-section { margin-bottom: 48px; scroll-margin-top: 145px; }
         .article-section:last-child { margin-bottom: 0; }
         
-        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
         .section-number { 
-            width: 30px; 
-            height: 30px; 
-            border-radius: 8px; 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 10px; 
             background: var(--accent-primary); 
             color: white; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-weight: 800; 
-            font-size: 13.5px; 
+            font-size: 14px; 
             flex-shrink: 0; 
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
         }
-        .section-header h3 { font-size: 18.5px; color: var(--text-heading); font-weight: 800; }
+        .section-header h3 { font-size: 21px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
 
-        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
+        .article-text { font-size: 15px; line-height: 1.85; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
         .article-text strong { color: var(--text-heading); font-weight: 700; }
 
         /* Linear Flow Boxes */
-        .linear-flow { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .linear-flow { display: flex; flex-direction: column; gap: 14px; margin: 20px 0; }
         .flow-step {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-primary);
-            border-radius: 8px;
-            padding: 16px 20px;
+            background: var(--card-subtle);
+            border: 1.5px solid var(--border-color);
+            border-left: 5px solid var(--accent-primary);
+            border-radius: 14px;
+            padding: 20px 24px;
         }
-        .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
-        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+        .flow-step h4 { font-size: 15.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 8px; }
+        .flow-step p { font-size: 14px; color: var(--text-body); line-height: 1.7; margin: 0; }
 
         /* Live Explorer Metrics Grid */
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin: 16px 0;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
         }
         .metric-card {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 16px 18px;
+            background: var(--card-subtle);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px;
         }
         .metric-card span { font-size: 11.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
-        .metric-card h4 { font-size: 18px; font-weight: 800; color: var(--accent-primary); margin-top: 4px; line-height: 1.2; }
+        .metric-card h4 { font-size: 20px; font-weight: 800; color: var(--accent-primary); margin-top: 6px; line-height: 1.2; }
 
         /* Section 3 Verification Box */
         .tokenomics-verify-box {
             background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-top: 20px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-top: 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
         }
-        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
-        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
-        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .verify-text-area h5 { font-size: 15px; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; }
+        .verify-text-area p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+        .verify-buttons { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .btn-audit {
             background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             color: var(--text-heading);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 12.5px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s;
         }
         .btn-audit:hover {
             border-color: var(--accent-primary);
             color: var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: rgba(16, 185, 129, 0.08);
+            transform: translateY(-1px);
         }
 
-        /* Alert Box */
+        /* Alert Warning Box */
         .alert-box { 
-            background: rgba(245, 158, 11, 0.08); 
-            border-left: 4px solid #f59e0b; 
-            padding: 18px 22px; 
-            border-radius: 0 8px 8px 0; 
-            margin: 20px 0; 
+            background: rgba(245, 158, 11, 0.06); 
+            border: 1.5px solid rgba(245, 158, 11, 0.3);
+            border-left: 5px solid #f59e0b; 
+            padding: 24px 28px; 
+            border-radius: 16px; 
+            margin: 24px 0; 
         }
-        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
-        .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
+        .alert-box h5 { color: #d97706; font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
+        .alert-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
         .alert-box p:last-child { margin-bottom: 0; }
 
         /* Video Showcase */
         .video-box-clean {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px;
-            margin-top: 14px;
-            max-width: 580px;
-        }
-        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .mock-youtube-player { 
-            background: #000; 
-            border-radius: 8px; 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            cursor: pointer; 
-            display: block; 
-            text-decoration: none; 
-        }
-        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
-        .yt-play-btn { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 60px; 
-            height: 42px; 
-            background-color: #ff0000; 
-            border-radius: 10px; 
-            transition: transform 0.2s ease; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
-
-        /* Disclosure */
-        .disclosure-box {
             background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px 22px;
-            font-size: 13px;
-            line-height: 1.65;
-            color: var(--text-muted);
-            margin-top: 30px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 18px;
+            padding: 22px;
+            margin-top: 20px;
+            max-width: 620px;
         }
-        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
+        .video-box-clean:hover { border-color: #ff0000; box-shadow: 0 10px 25px -5px rgba(255, 0, 0, 0.18); }
+        .video-box-clean h4 { font-size: 15px; color: var(--text-heading); font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        
+        .mock-youtube-player { background: #000; border-radius: 14px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.12); }
+        
+        .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 44px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255,0,0,0.4); }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* Important Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14px; }
 
         /* Footer */
-        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-primary); }
+        footer { padding: 30px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
+        .footer-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-sidra-light); text-decoration: underline; }
 
         @media (max-width: 768px) {
             :root { --container-padding: 16px; }
-            .content-card { padding: 22px 18px; }
-            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .content-card { padding: 24px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; padding: 22px; }
+            .hero-right { width: 100%; flex-direction: column; align-items: stretch; }
             .btn-join { width: 100%; justify-content: center; }
+            .section-header h3 { font-size: 18px; }
             .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
             .verify-buttons { width: 100%; }
             .btn-audit { width: 100%; justify-content: center; }
-            .section-header h3 { font-size: 17.5px; }
+            .quick-jump-container { top: 62px; padding: 8px 10px; }
+            .nav-pill-btn { padding: 7px 12px; font-size: 11px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="site-container header-inner">
-            <a href="../index.html" class="logo-box" translate="no">
-                <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
-                </div>
-                <div class="logo-text">
-                    <h1>Total Crypto Hub</h1>
-                    <span>by <b>Total Crypto Network</b></span>
-                </div>
-            </a>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
-                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to Community</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Area (1240px Canvas) -->
+    <!-- Main Content Area -->
     <main>
         <div class="site-container">
+
+            <!-- Master Header with Smart Back Button -->
+            <header class="site-header">
+                <a href="../index.html" class="header-brand">
+                    <div class="header-logo">
+                        <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
+                    </div>
+                    <div class="header-title-box">
+                        <div class="header-title">Total Crypto Hub</div>
+                        <div class="header-subtitle">by Total Crypto Network</div>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
+                    <!-- Position-Preserving Smart Back Navigation Button -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community</button>
+                </div>
+            </header>
 
             <!-- Compact Hero Action Card with Direct Portal Route -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
-                        <img src="../logos/sidra.png" alt="Sidra Chain Logo" onerror="this.parentNode.innerHTML='⚡';">
+                        <img src="../logos/sidra.png" alt="Sidra Chain Logo" onerror="this.src='../logos/tcn-logo.png';">
                     </div>
                     <div class="project-titles">
-                        <h2 translate="no">Sidra Chain (SDA) <span class="verified-badge">✓</span></h2>
+                        <h2 class="notranslate" translate="no">Sidra Chain (SDA) <span class="verified-badge">✓</span></h2>
                         <p>Verified-Human Financial Network, Self-Hosted EVM Blockchain & SidraSwap</p>
                         <div class="hero-tags">
                             <span class="tag-pill tag-upcoming">🟡 Self-Hosted EVM Chain</span>
@@ -367,40 +435,52 @@
                 </div>
             </div>
 
+            <!-- 📍 Sticky Quick Jump Navigation Bar - Optimized -->
+            <div class="quick-jump-container">
+                <div class="nav-pills">
+                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is Sidra Chain</a>
+                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. Protocol Mechanics</a>
+                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. Ledger Audit</a>
+                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. KYCPort Protocol</a>
+                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. Account Security</a>
+                    <a href="#section-6" class="nav-pill-btn" id="pill-sec-6">6. Video Guide</a>
+                </div>
+            </div>
+
             <!-- Full-Length 1240px Content Card -->
             <div class="content-card">
 
                 <!-- Point 1: What is Sidra Chain -->
-                <div class="article-section">
+                <div class="article-section" id="section-1">
                     <div class="section-header">
                         <div class="section-number">1</div>
                         <h3>What is Sidra Chain? (Origins, EVM Framework & Human Network)</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Sidra Chain</strong> is a sovereign, self-hosted decentralized Layer-1 financial infrastructure designed under the fundamental mission of <strong>"One verified human. One account."</strong> Engineered to eliminate automated sybil attacks, bot-driven liquidity extraction, and fake account manipulation, Sidra deploys an identity-bound consensus model where daily minting participation is tied strictly to verified individual human beings[cite: 48, 49].
+                        <strong>Sidra Chain</strong> is a sovereign, self-hosted decentralized Layer-1 financial infrastructure designed under the fundamental mission of <strong>"One verified human. One account."</strong> Engineered to eliminate automated sybil attacks, bot-driven liquidity extraction, and fake account manipulation, Sidra deploys an identity-bound consensus model where daily minting participation is tied strictly to verified individual human beings.
                     </p>
                     <p class="article-text">
-                        Unlike experimental mobile airdrops that run on closed mock servers, Sidra operates a fully functional <strong>self-hosted EVM blockchain</strong>[cite: 48, 49]. Its core consensus ledger utilizes double-entry cryptographic accounting, maintaining high throughput, low gas transaction finality, and complete interoperability with EVM smart contracts, decentralized finance protocols, and asset tokenization frameworks[cite: 44, 49].
+                        Unlike experimental mobile airdrops that run on closed mock servers, Sidra operates a fully functional <strong>self-hosted EVM blockchain</strong>. Its core consensus ledger utilizes double-entry cryptographic accounting, maintaining high throughput, low gas transaction finality, and complete interoperability with EVM smart contracts, decentralized finance protocols, and asset tokenization frameworks.
                     </p>
                 </div>
 
                 <!-- Point 2: Mining Mechanics & ERC-4337 Smart Accounts -->
-                <div class="article-section">
+                <div class="article-section" id="section-2">
                     <div class="section-header">
                         <div class="section-number">2</div>
                         <h3>Protocol Mechanics: Daily Rewards & Account Abstraction (ERC-4337)</h3>
                     </div>
                     <p class="article-text">
-                        Sidra Chain removes the friction of standard Web3 wallets by implementing next-generation smart contract architecture[cite: 48, 49]:
+                        Sidra Chain removes the friction of standard Web3 wallets by implementing next-generation smart contract architecture:
                     </p>
                     <div class="linear-flow">
                         <div class="flow-step">
                             <h4>⚡ 1. Daily Human Ledger Claim</h4>
-                            <p>Participants access their account once daily to claim authenticated reward allocations. Because ledger balances reflect genuine double-entry on-chain state, balances are recorded permanently on the self-hosted network[cite: 48, 49].</p>
+                            <p>Participants access their account once daily to claim authenticated reward allocations. Because ledger balances reflect genuine double-entry on-chain state, balances are recorded permanently on the self-hosted network.</p>
                         </div>
                         <div class="flow-step">
                             <h4>🔑 2. ERC-4337 Smart-Account Wallet (No Seed Phrases)</h4>
-                            <p>Sidra eliminates complex 12-word seed phrases through Account Abstraction[cite: 48, 49]. Accounts feature social recovery through trusted guardians, biometric authentication, and protocol-level gasless execution[cite: 49].</p>
+                            <p>Sidra eliminates complex 12-word seed phrases through Account Abstraction. Accounts feature social recovery through trusted guardians, biometric authentication, and protocol-level gasless execution.</p>
                         </div>
                         <div class="flow-step">
                             <h4>💱 3. SidraSwap Decentralized Exchange (DEX)</h4>
@@ -408,19 +488,19 @@
                         </div>
                         <div class="flow-step">
                             <h4>🏛️ 4. Tokenized Real-World Assets (L3 Layer)</h4>
-                            <p>Sidra's Layer-3 infrastructure supports compliant issuance of permissioned real-world assets (RWA), digital banking instruments, and logistics tokens[cite: 46, 49].</p>
+                            <p>Sidra's Layer-3 infrastructure supports compliant issuance of permissioned real-world assets (RWA), digital banking instruments, and logistics tokens.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 3: Live On-Chain Metrics & Ledger Verification -->
-                <div class="article-section">
+                <div class="article-section" id="section-3">
                     <div class="section-header">
                         <div class="section-number">3</div>
                         <h3>Live On-Chain Ledger Audit & Network Performance</h3>
                     </div>
                     <p class="article-text">
-                        Sidra Chain's performance is publicly verifiable in real-time through its dedicated Blockscout-powered block explorer[cite: 44, 45]:
+                        Sidra Chain's performance is publicly verifiable in real-time through its dedicated Blockscout-powered block explorer:
                     </p>
 
                     <div class="metrics-grid">
@@ -430,76 +510,76 @@
                         </div>
                         <div class="metric-card">
                             <span>Average Block Time</span>
-                            <h4>2.0s Fast Finality</h4>[cite: 44]
+                            <h4>2.0s Fast Finality</h4>
                         </div>
                         <div class="metric-card">
                             <span>Total Ledger Transactions</span>
-                            <h4>44,444,812+ Txns</h4>[cite: 44]
+                            <h4>44,444,812+ Txns</h4>
                         </div>
                         <div class="metric-card">
                             <span>Registered Wallet Addresses</span>
-                            <h4>2,456,724+ Nodes</h4>[cite: 44]
+                            <h4>2,456,724+ Nodes</h4>
                         </div>
                     </div>
 
-                    <p class="article-text">
-                        • <strong>Native Gas Asset:</strong> <strong>SDA (Sidra Asset)</strong> settles all smart contract interactions and DEX pool swaps[cite: 44, 46].<br>
-                        • <strong>Network Gas Fee:</strong> Ultra-low transaction fees (~0.00004 to 0.0001 SDA per transfer)[cite: 44, 45].<br>
-                        • <strong>SidraSwap TVL:</strong> Over <strong>3.81 Million SDA</strong> locked in liquidity pools across verified ecosystem assets[cite: 46].
+                    <p class="article-text" style="margin-top: 20px;">
+                        • <strong>Native Gas Asset:</strong> <strong>SDA (Sidra Asset)</strong> settles all smart contract interactions and DEX pool swaps.<br>
+                        • <strong>Network Gas Fee:</strong> Ultra-low transaction fees (~0.00004 to 0.0001 SDA per transfer).<br>
+                        • <strong>SidraSwap TVL:</strong> Over <strong>3.81 Million SDA</strong> locked in liquidity pools across verified ecosystem assets.
                     </p>
 
                     <!-- Section 3 Verification Box -->
                     <div class="tokenomics-verify-box">
                         <div class="verify-text-area">
                             <h5>Official Protocol Audits & Documentation</h5>
-                            <p>Verify blockchain transactions, live blocks, DEX liquidity pools, and smart contracts directly[cite: 44, 46]:</p>
+                            <p>Verify blockchain transactions, live blocks, DEX liquidity pools, and smart contracts directly:</p>
                         </div>
                         <div class="verify-buttons">
-                            <a href="https://ledger.sidrachain.com/" target="_blank" class="btn-audit">🔍 Live Sidra Ledger Explorer ↗</a>[cite: 44]
-                            <a href="https://dex.sidrachain.com/#/explore/tokens" target="_blank" class="btn-audit">💱 SidraSwap DEX Explorer ↗</a>[cite: 46]
+                            <a href="https://ledger.sidrachain.com/" target="_blank" class="btn-audit">🔍 Live Sidra Ledger Explorer ↗</a>
+                            <a href="https://dex.sidrachain.com/#/explore/tokens" target="_blank" class="btn-audit">💱 SidraSwap DEX Explorer ↗</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 4: Verification & Anti-Sybil Standards -->
-                <div class="article-section">
+                <div class="article-section" id="section-4">
                     <div class="section-header">
                         <div class="section-number">4</div>
                         <h3>Proof of Personhood: Two-Step KYCPort Verification</h3>
                     </div>
                     <p class="article-text">
-                        To enforce strict anti-sybil standards and guarantee that one person commands exactly one node[cite: 48, 49]:
+                        To enforce strict anti-sybil standards and guarantee that one person commands exactly one node:
                     </p>
                     
                     <div class="alert-box">
                         <h5>🛡️ KYCPort Compliance Protocol:</h5>
                         <p><strong>1. Document Validation:</strong> Participants verify identity via <strong>KYCPort</strong> (<code>kycport.com</code>) using government-issued National ID cards or Passports.</p>
-                        <p><strong>2. Passive Liveness Biometric Check:</strong> A browser/app interactive 3D face liveness scan proves real human existence, systematically eradicating bot farms and multiple automated accounts[cite: 49, 50, 51].</p>
+                        <p><strong>2. Passive Liveness Biometric Check:</strong> A browser/app interactive 3D face liveness scan proves real human existence, systematically eradicating bot farms and multiple automated accounts.</p>
                     </div>
                 </div>
 
                 <!-- Point 5: Smart Account Safety -->
-                <div class="article-section">
+                <div class="article-section" id="section-5">
                     <div class="section-header">
                         <div class="section-number">5</div>
                         <h3>Smart Account Security & Social Recovery Hygiene</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Guardian Configuration:</strong> Because Sidra accounts utilize Account Abstraction (ERC-4337), ensure you configure verified guardian emails or backup signers within your account settings[cite: 49]. This enables seamless social recovery without fear of losing physical seed phrases[cite: 48, 49].
+                        <strong>Guardian Configuration:</strong> Because Sidra accounts utilize Account Abstraction (ERC-4337), ensure you configure verified guardian emails or backup signers within your account settings. This enables seamless social recovery without fear of losing physical seed phrases.
                     </p>
                     <p class="article-text">
-                        <strong>Zero Upfront Investment:</strong> Participating in Sidra Chain ledger distribution requires zero upfront capital, zero mining equipment purchases, and zero paid subscription packages[cite: 48].
+                        <strong>Zero Upfront Investment:</strong> Participating in Sidra Chain ledger distribution requires zero upfront capital, zero mining equipment purchases, and zero paid subscription packages.
                     </p>
                 </div>
 
                 <!-- Point 6: Dedicated Video Walkthrough -->
-                <div class="article-section">
+                <div class="article-section" id="section-6">
                     <div class="section-header">
                         <div class="section-number">6</div>
                         <h3>Dedicated Video Setup & KYC Walkthrough</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete video guide produced by <strong>Total Crypto Network</strong> covering registration, KYCPort verification steps, smart-account security, and SidraSwap DEX navigation:
+                        Watch our complete video guide produced by <strong class="notranslate" translate="no">Total Crypto Network</strong> covering registration, KYCPort verification steps, smart-account security, and SidraSwap DEX navigation:
                     </p>
                     
                     <div class="video-box-clean">
@@ -513,7 +593,7 @@
                 <!-- Disclosure -->
                 <div class="disclosure-box">
                     <strong>Important Protocol Disclosure</strong>
-                    Total Crypto Hub provides independent educational information and technical directories only. Sidra Chain is an autonomous self-hosted EVM blockchain[cite: 45, 48]. Community ledger distributions represent early network participation. No upfront capital investment is required to participate[cite: 48].
+                    Total Crypto Hub provides independent educational information and technical directories only. Sidra Chain is an autonomous self-hosted EVM blockchain. Community ledger distributions represent early network participation. No upfront capital investment is required to participate.
                 </div>
 
             </div>
@@ -524,7 +604,7 @@
     <footer>
         <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; <span translate="no">2026 Total Crypto Network</span>. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../legal-pages/about.html">About Us</a>
@@ -536,15 +616,18 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
+        /* 🚀 Position-Preserving Smart Back Navigation */
         function goBack() {
-            if (document.referrer && document.referrer !== window.location.href) {
+            if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
                 window.history.back();
             } else {
-                window.location.href = '../mobile-pages/mobile-mining.html';
+                window.location.href = '../mobile-pages/mobile-mining.html#sidra';
             }
         }
 
+        /* Stable Theme Toggle Function */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -555,6 +638,27 @@
             const btn = document.getElementById('themeBtn');
             if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
         }
+
+        /* Automatic ScrollSpy Navigation Highlighting */
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.article-section');
+            const navPills = document.querySelectorAll('.nav-pill-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 180)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navPills.forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.getAttribute('href') === '#' + current) {
+                    pill.classList.add('active');
+                }
+            });
+        });
 
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
