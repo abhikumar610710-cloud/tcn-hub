@@ -432,7 +432,7 @@
                 
                 <div class="header-actions">
                     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <!-- Fixed history.back() to return exactly to previous scroll/filter position -->
+                    <!-- Corrected goBack() fallback to mobile-mining.html -->
                     <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community Projects</button>
                 </div>
             </header>
@@ -724,12 +724,12 @@
             });
         }
 
-        /* 🚀 Smart Back Function with Corrected Path for mobile-projects */
+        /* 🚀 Smart Back Function with Corrected Path for mobile-projects to mobile-mining.html */
         function goBack() {
-            if (document.referrer && document.referrer !== window.location.href) {
+            if (document.referrer && document.referrer.includes('mobile-mining.html')) {
                 window.history.back();
             } else {
-                window.location.href = '../index.html';
+                window.location.href = '../mobile-pages/mobile-mining.html';
             }
         }
 
