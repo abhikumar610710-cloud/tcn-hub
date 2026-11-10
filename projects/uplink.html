@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uplink Architecture, DeWi Marketplace & $ULX Token Review | Total Crypto Hub</title>
-    <meta name="description" content="Complete deep-dive into Uplink. Learn how this Avalanche-based DeWi marketplace offloads cellular traffic to decentralized Wi-Fi and rewards users with $ULX.">
+    <title>Functor Network Architecture, Compute Layer & Node Setup Review | Total Crypto Hub</title>
+    <meta name="description" content="Complete deep-dive into Functor Network. Learn how to earn rewards by running decentralized compute and orchestration nodes on the Functor DePIN ecosystem.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -28,19 +28,19 @@
             
             --accent-primary: #059669; 
             --accent-hover: #047857;
-            --accent-uplink: #2563eb;
-            --accent-light: rgba(37, 99, 235, 0.12);
+            --accent-functor: #10b981;
+            --accent-light: rgba(16, 185, 129, 0.12);
             --accent-subtle: rgba(5, 150, 105, 0.08);
             
             --card-subtle: #f8fafc;
-            --hero-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
-            --hero-border: #bfdbfe;
+            --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
+            --hero-border: #a7f3d0;
             --container-max-width: 1240px;
             --container-padding: 24px;
 
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
-            --shadow-md: 0 10px 30px -5px rgba(37, 99, 235, 0.08);
-            --shadow-hover: 0 14px 35px -5px rgba(37, 99, 235, 0.16);
+            --shadow-md: 0 10px 30px -5px rgba(16, 185, 129, 0.08);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.16);
         }
 
         [data-theme="dark"] {
@@ -54,17 +54,17 @@
             
             --accent-primary: #10b981; 
             --accent-hover: #34d399;
-            --accent-uplink: #3b82f6;
-            --accent-light: rgba(59, 130, 246, 0.2);
+            --accent-functor: #34d399;
+            --accent-light: rgba(52, 211, 153, 0.2);
             --accent-subtle: rgba(16, 185, 129, 0.12);
             
             --card-subtle: #131c31;
-            --hero-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%);
-            --hero-border: rgba(37, 99, 235, 0.35);
+            --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%);
+            --hero-border: rgba(16, 185, 129, 0.35);
 
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
             --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.4);
-            --shadow-hover: 0 14px 35px -5px rgba(37, 99, 235, 0.25);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
@@ -139,7 +139,7 @@
             content: '';
             position: absolute;
             top: 0; right: 0; bottom: 0; left: 0;
-            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 60%);
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 60%);
             pointer-events: none;
         }
         .hero-left { display: flex; align-items: center; gap: 20px; position: relative; z-index: 2; }
@@ -149,29 +149,53 @@
             height: 74px; 
             border-radius: 20px; 
             overflow: hidden; 
-            border: 2px solid var(--accent-uplink); 
+            border: 2px solid var(--accent-functor); 
             padding: 5px; 
             background: var(--bg-surface); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             flex-shrink: 0; 
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
         }
         .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
 
         .project-titles h2 { font-size: 24px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .verified-badge { background: var(--accent-uplink); color: white; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3); }
+        .verified-badge { background: var(--accent-functor); color: white; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
         
-        .dewi-badge { background: #3b82f6; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
-        .avax-badge { background: #ef4444; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
+        .compute-badge { background: #059669; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
+        .depin-badge { background: #3b82f6; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
 
         .project-titles p { color: var(--text-muted); font-size: 14px; margin-top: 5px; font-weight: 500; }
 
         .hero-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; position: relative; z-index: 2; }
         
+        .invite-box { 
+            background: var(--bg-surface); 
+            border: 1.5px solid var(--border-color); 
+            padding: 8px 8px 8px 16px; 
+            border-radius: 14px; 
+            display: flex; 
+            align-items: center; 
+            gap: 16px; 
+            box-shadow: var(--shadow-sm);
+        }
+        .invite-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-functor); font-size: 16px; letter-spacing: 0.5px; line-height: 1; }
+        .btn-copy { 
+            background: var(--card-subtle); 
+            border: 1px solid var(--border-color); 
+            color: var(--text-heading); 
+            padding: 9px 14px; 
+            border-radius: 10px; 
+            font-size: 12px; 
+            font-weight: 700; 
+            cursor: pointer; 
+        }
+        .btn-copy:hover { border-color: var(--accent-functor); color: var(--accent-functor); background: rgba(16, 185, 129, 0.08); }
+
         .btn-join { 
-            background: var(--accent-uplink); 
+            background: var(--accent-functor); 
             color: white; 
             text-decoration: none; 
             padding: 13px 26px; 
@@ -181,9 +205,9 @@
             display: inline-flex; 
             align-items: center; 
             gap: 8px; 
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.32); 
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.32); 
         }
-        .btn-join:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(29, 78, 216, 0.45); }
+        .btn-join:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45); }
 
         /* 📍 Sticky Quick Jump Navigation Bar - Optimized */
         .quick-jump-container {
@@ -225,10 +249,10 @@
             flex-shrink: 0;
         }
         .nav-pill-btn:hover, .nav-pill-btn.active {
-            background: var(--accent-uplink);
+            background: var(--accent-functor);
             color: white;
-            border-color: var(--accent-uplink);
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            border-color: var(--accent-functor);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
             transform: translateY(-1px);
         }
 
@@ -249,7 +273,7 @@
             width: 34px; 
             height: 34px; 
             border-radius: 10px; 
-            background: var(--accent-uplink); 
+            background: var(--accent-functor); 
             color: white; 
             display: flex; 
             align-items: center; 
@@ -257,7 +281,7 @@
             font-weight: 800; 
             font-size: 14px; 
             flex-shrink: 0; 
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
         }
         .section-header h3 { font-size: 21px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
 
@@ -269,12 +293,12 @@
         .feature-box { 
             background: var(--card-subtle); 
             border: 1.5px solid var(--border-color); 
-            border-left: 5px solid var(--accent-uplink);
+            border-left: 5px solid var(--accent-functor);
             border-radius: 16px; 
             padding: 24px; 
         }
         .feature-box:hover {
-            border-color: var(--accent-uplink);
+            border-color: var(--accent-functor);
             box-shadow: var(--shadow-hover);
             transform: translateY(-3px);
         }
@@ -305,7 +329,7 @@
         .rule-box {
             background: var(--card-subtle); 
             border: 1.5px solid var(--border-color); 
-            border-left: 5px solid var(--accent-uplink);
+            border-left: 5px solid var(--accent-functor);
             border-radius: 16px; 
             padding: 24px 28px; 
             margin: 24px 0;
@@ -343,11 +367,11 @@
             border-radius: 14px; 
             overflow: hidden; 
         }
-        .faq-item:hover { border-color: var(--accent-uplink); box-shadow: var(--shadow-sm); }
+        .faq-item:hover { border-color: var(--accent-functor); box-shadow: var(--shadow-sm); }
         .faq-question { padding: 18px 22px; font-size: 15px; font-weight: 700; color: var(--text-heading); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
         .faq-answer { padding: 0 22px 18px 22px; font-size: 14px; color: var(--text-muted); line-height: 1.7; display: none; }
         .faq-item.open .faq-answer { display: block; }
-        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent-uplink); }
+        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent-functor); }
         .faq-icon { font-size: 20px; font-weight: 800; transition: transform 0.2s; color: var(--text-muted); }
 
         /* Important Disclosure Box */
@@ -358,7 +382,7 @@
         footer { padding: 30px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
         .footer-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
         .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-uplink); text-decoration: underline; }
+        .footer-links a:hover { color: var(--accent-functor); text-decoration: underline; }
 
         @media (max-width: 768px) {
             :root { --container-padding: 16px; }
@@ -403,27 +427,35 @@
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
-                        <img src="../logos/Uplink.png" alt="Uplink Logo" onerror="this.src='../logos/uplink.png'; this.onerror=function(){this.parentNode.innerHTML='U';};">
+                        <img src="../logos/Functor Network.png" alt="Functor Network Logo" onerror="this.src='../logos/functor.png'; this.onerror=function(){this.parentNode.innerHTML='F';};">
                     </div>
                     <div class="project-titles">
-                        <h2 class="notranslate" translate="no">Uplink <span class="verified-badge">✓</span> <span class="dewi-badge">DeWi Market</span> <span class="avax-badge">Avalanche L1</span></h2>
-                        <p>The Neutral Exchange for Global Wi-Fi Offload</p>
+                        <h2 class="notranslate" translate="no">Functor Network <span class="verified-badge">✓</span> <span class="compute-badge">Compute Layer</span> <span class="depin-badge">DePIN</span></h2>
+                        <p>The Decentralized Compute & Orchestration Layer for Web3 Infrastructure</p>
                     </div>
                 </div>
 
                 <div class="hero-right">
-                    <a href="https://uplink.xyz/" target="_blank" class="btn-join">🌐 Explore Uplink Portal</a>
+                    <div class="invite-box">
+                        <div>
+                            <div class="invite-label">Official Invite Code</div>
+                            <div class="invite-code notranslate" id="inviteCode" translate="no">FUNCTOR99</div>
+                        </div>
+                        <button class="btn-copy" onclick="copyCode()">Copy</button>
+                    </div>
+                    
+                    <a href="https://functor.network" target="_blank" class="btn-join">⚡ Join Functor Node</a>
                 </div>
             </div>
 
             <!-- 📍 Sticky Quick Jump Navigation Bar - Optimized -->
             <div class="quick-jump-container">
                 <div class="nav-pills">
-                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is Uplink</a>
-                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. Enterprise & Funding</a>
-                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. Supply vs Demand</a>
-                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. Tokenomics & $ULX</a>
-                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. Active Earning</a>
+                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is Functor</a>
+                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. Architecture & Backing</a>
+                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. Orchestration Mesh</a>
+                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. Active Earning Nodes</a>
+                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. AI Utility</a>
                     <a href="#section-6" class="nav-pill-btn" id="pill-sec-6">6. Pro Tips</a>
                     <a href="#section-7" class="nav-pill-btn" id="pill-sec-7">7. Video Guides</a>
                     <a href="#section-8" class="nav-pill-btn" id="pill-sec-8">8. FAQs</a>
@@ -433,110 +465,117 @@
             <!-- Full Article Content Card -->
             <div class="content-card">
 
-                <!-- Point 1: What is Uplink -->
+                <!-- Point 1: What is Functor Network -->
                 <div class="article-section" id="section-1">
                     <div class="section-header">
                         <div class="section-number">1</div>
-                        <h3>What is Uplink? (The DeWi Clearinghouse)</h3>
+                        <h3>What is Functor Network? (Decentralized Compute)</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Uplink</strong> is a massive Decentralized Wireless (DeWi) ecosystem designed to democratize global internet access. Built as a dedicated Layer 1 sub-network (subnet) on the <strong>Avalanche blockchain</strong>, it serves as the ultimate neutral clearinghouse and marketplace for the Wi-Fi industry.
+                        <strong>Functor Network</strong> is an advanced Decentralized Physical Infrastructure Network (DePIN) engineered to serve as a decentralized compute and task orchestration layer. In modern Web3 and Artificial Intelligence, computational bottlenecks and centralized server dependencies restrict how efficiently applications scale.
                     </p>
                     <p class="article-text">
-                        Historically, if a major telecom company wanted to use third-party Wi-Fi routers to offload heavy 4G/5G traffic, they had to spend months negotiating closed, "bilateral agreements" with specific venue owners. Uplink completely replaces this legacy model. By leveraging OpenRoaming and blockchain smart contracts, it creates a multi-sided marketplace where demand (telecoms) automatically matches with supply (user-operated routers) in real-time, executing settlements dynamically.
+                        Functor solves this challenge by building a distributed orchestration mesh. It connects idle consumer computing power, edge devices, and server nodes into a unified, secure execution grid. This allows developers to run high-performance AI workloads, smart contract computations, and distributed data processing tasks without relying on centralized cloud providers like AWS or Google Cloud.
                     </p>
                 </div>
 
-                <!-- Point 2: Enterprise Tech & Funding -->
+                <!-- Point 2: Enterprise Architecture & Backing -->
                 <div class="article-section" id="section-2">
                     <div class="section-header">
                         <div class="section-number">2</div>
-                        <h3>Tier-1 Enterprise Partners & Funding</h3>
+                        <h3>Enterprise Architecture & Ecosystem Backing</h3>
                     </div>
                     <p class="article-text">
-                        The sheer scale of building a global telecommunications clearinghouse requires massive institutional backing and legacy corporate partnerships:
+                        Building a high-throughput decentralized compute layer requires robust cryptographic verification and institutional support:
                     </p>
                     <table class="stats-table">
                         <tbody>
                             <tr>
-                                <th>Total Capital Raised</th>
-                                <td><strong>$10 Million USD</strong> secured in a highly competitive Series A funding round.</td>
+                                <th>Core Network Focus</th>
+                                <td>Specializes in decentralized task routing, verifiable computation proofs, and low-latency execution for AI and Web3 applications.</td>
                             </tr>
                             <tr>
-                                <th>Lead Venture Capitalists</th>
-                                <td>Led prominently by <strong>Framework Ventures</strong>, with participation from Blockchange Ventures, Outlier Ventures, and NxGen.</td>
+                                <th>Decentralized Security</th>
+                                <td>Utilizes cryptographically secure task validation to ensure that node operators execute compute instructions accurately without tampering.</td>
                             </tr>
                             <tr>
-                                <th>Enterprise Collaborators</th>
-                                <td>Uplink has secured strategic integrations with global legacy giants including <strong>Ericsson, Deutsche Telekom (T-Mobile), E.ON</strong>, and the Wireless Broadband Alliance (WBA).</td>
+                                <th>Ecosystem Integration</th>
+                                <td>Designed to interoperate seamlessly across multiple layer-1 and layer-2 blockchains, acting as a universal compute backend.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Point 3: Supply vs Demand Economics -->
+                <!-- Point 3: The Technology & Task Orchestration -->
                 <div class="article-section" id="section-3">
                     <div class="section-header">
                         <div class="section-number">3</div>
-                        <h3>The Settlement Rail: Supply vs. Demand</h3>
+                        <h3>The Technology: Distributed Orchestration Mesh</h3>
                     </div>
                     <p class="article-text">
-                        Uplink operates as the neutral settlement rail connecting two distinct sides of the telecom industry:
+                        At its core, Functor relies on advanced workload balancing and cryptographic task verification:
                     </p>
                     <div class="feature-grid-2x2">
                         <div class="feature-box">
-                            <h4>📡 The Supply Side (You)</h4>
-                            <p>Venue operators, managed Wi-Fi providers, or individuals can transform idle Wi-Fi infrastructure into a monetized asset with near-zero operational overhead. You provide the actual internet connection.</p>
+                            <h4>⚙️ Dynamic Task Routing</h4>
+                            <p>The protocol automatically intelligently routes computational jobs to the most optimized node based on latency, hardware capacity, and geographic proximity.</p>
                         </div>
                         <div class="feature-box">
-                            <h4>🏢 The Demand Side (Telcos)</h4>
-                            <p>Mobile Network Operators (MNOs) and eSIM providers purchase access to your Wi-Fi to reduce their cellular CAPEX. They offload their indoor traffic to your verified network without building new 5G small cells.</p>
+                            <h4>🛡️ Verifiable Computation</h4>
+                            <p>Every computation executed on a node is cryptographically verified, ensuring network integrity and preventing malicious node behavior.</p>
                         </div>
                         <div class="feature-box">
-                            <h4>⚡ 3-Step Automation</h4>
-                            <p>The entire marketplace workflow is automated into three steps: <strong>Connect, Discover, Settle</strong>. It takes networks from manual integration to live, paying traffic in days instead of months.</p>
+                            <h4>⚡ Low-Latency Grid</h4>
+                            <p>By leveraging decentralized edge nodes, Functor minimizes execution latency compared to traditional centralized data centers.</p>
                         </div>
                         <div class="feature-box">
-                            <h4>🤖 Automated Reconciliation</h4>
-                            <p>Every session is metered and settled automatically via blockchain smart contracts. Automated RADIUS accounting reconciliation completely eliminates manual spreadsheet disputes.</p>
+                            <h4>🔒 Secure Sandboxing</h4>
+                            <p>All node operations run inside isolated secure environments, ensuring complete privacy and zero access to personal host data.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Point 4: Tokenomics & $ULX Utility -->
+                <!-- Point 4: Active Earning & Node Operation -->
                 <div class="article-section" id="section-4">
                     <div class="section-header">
                         <div class="section-number">4</div>
-                        <h3>Tokenomics & The $ULX Ecosystem Token</h3>
+                        <h3>Active Earning: Running Compute & Validation Nodes</h3>
                     </div>
                     <p class="article-text">
-                        The entire marketplace clearinghouse is powered and secured by the native ecosystem token:
+                        Node operators form the lifeblood of the Functor ecosystem. Participating allows everyday users to monetize idle hardware:
                     </p>
                     <div class="feature-grid-2x2">
                         <div class="feature-box">
-                            <h4>🪙 The $ULX Token</h4>
-                            <p>The native token has a maximum hard cap of <strong>1 Billion $ULX</strong> tokens. The official TGE (Token Generation Event) rolls out in tandem with the full Avalanche L1 mainnet deployment.</p>
+                            <h4>💻 Lightweight Node Client</h4>
+                            <p>Operators can easily set up and run compute client applications across desktop and server environments with minimal technical friction.</p>
                         </div>
                         <div class="feature-box">
-                            <h4>💰 Core Utilities</h4>
-                            <p>The token is strictly utilized for minting hardware, processing network transactions, node staking, and acting as the primary medium of exchange (Network Credits) for telecoms to consume global bandwidth.</p>
+                            <h4>📊 Resource Allocation</h4>
+                            <p>Configure dedicated CPU, memory, and bandwidth thresholds to ensure your primary device performance remains unaffected while earning.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💎 Ecosystem Rewards</h4>
+                            <p>Accumulate network reward points and governance credits proportional to your node's uptime, reliability, and task completion volume.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🤝 Referral Multipliers</h4>
+                            <p>Invite fellow node operators to the network using your referral code to boost your overall tier standing and reward output.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Point 5: Active Earning & Hardware Agnosticism -->
+                <!-- Point 5: Real-World Utility -->
                 <div class="article-section" id="section-5">
                     <div class="section-header">
                         <div class="section-number">5</div>
-                        <h3>Active Earning: The "No Hardware" Advantage</h3>
+                        <h3>Real-World Utility: Powering Next-Gen AI</h3>
                     </div>
                     <p class="article-text">
-                        Unlike traditional DePIN projects that force you to buy expensive, proprietary mining rigs, Uplink utilizes a hardware-agnostic architecture:
+                        Functor Network directly addresses the massive compute shortage currently facing the artificial intelligence industry:
                     </p>
                     <div class="alert-box">
-                        <h5>🛡️ Earning as a Provider:</h5>
-                        <p><strong>1. Existing Infrastructure:</strong> Uplink supports standard consumer-grade Wi-Fi routers, 5G setups, and LoRaWAN equipment. You do not need complex custom hardware. Uplink handles the Passpoint profile configuration natively via software.</p>
-                        <p style="margin-top:6px;"><strong>2. Points & Rewards:</strong> Users act as "Providers" and accumulate points via the dashboard by sharing real internet connections, confirming router locations through the mobile app, and validating broader network activities.</p>
+                        <h5>🧠 Decentralized AI Training & Inference:</h5>
+                        <p>As AI models grow larger, centralized cloud computing costs skyrocket. Functor aggregates global consumer and enterprise hardware to provide affordable, permissionless compute power for training machine learning models and executing real-time AI inference requests.</p>
                     </div>
                 </div>
 
@@ -544,14 +583,14 @@
                 <div class="article-section" id="section-6">
                     <div class="section-header">
                         <div class="section-number">6</div>
-                        <h3>Total Crypto Network Pro Tips: Early Adoption</h3>
+                        <h3>Total Crypto Network Pro Tips: Maximizing Uptime</h3>
                     </div>
                     <p class="article-text">
-                        While the portal prepares for its mainnet transition, early positioning is critical:
+                        To get the absolute best performance and reward yield from your Functor node operations, keep these expert tips in mind:
                     </p>
                     <div class="rule-box">
-                        <h5>💡 Maximizing Pre-Mainnet Points:</h5>
-                        <p>The upcoming $ULX airdrop eligibility is heavily driven by a Points-based campaign. Ensure you have registered your account, linked your compatible router for pre-registration, and actively participated in any localized regional "Surge" connectivity events to maximize your multiplier before the TGE snapshot.</p>
+                        <h5>💡 Hardware & Network Stability:</h5>
+                        <p>Consistent uptime is the primary factor in node scoring. Ensure your machine is connected to stable broadband internet (preferably wired Ethernet) and configure your operating system power settings to prevent the device from entering sleep mode during active operation.</p>
                     </div>
                 </div>
 
@@ -562,13 +601,13 @@
                         <h3>Complete Step-by-Step Setup Guides</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for linking your existing consumer Wi-Fi router to the Uplink testnet marketplace:
+                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for setting up your Functor node:
                     </p>
                     
                     <div class="video-grid-2">
                         <!-- Video Box 1 -->
                         <div class="video-box">
-                            <h4>📡 Linking Your Wi-Fi Router to Uplink</h4>
+                            <h4>⚡ Functor Network Node Setup Guide</h4>
                             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
                                 <div class="yt-play-btn"></div>
                             </a>
@@ -576,7 +615,7 @@
 
                         <!-- Video Box 2 -->
                         <div class="video-box">
-                            <h4>💰 Maximizing Points for the $ULX Airdrop</h4>
+                            <h4>📊 Optimizing Uptime & Node Rewards</h4>
                             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
                                 <div class="yt-play-btn"></div>
                             </a>
@@ -594,51 +633,51 @@
                     <div class="faq-list">
                         <div class="faq-item">
                             <div class="faq-question" onclick="toggleFaq(this)">
-                                What is Uplink and how does it work?
+                                What is Functor Network and what does it do?
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                Uplink is an Avalanche-based DeWi marketplace that serves as a neutral clearinghouse, allowing telecom operators to offload cellular traffic onto decentralized Wi-Fi networks automatically.
+                                Functor Network is a decentralized compute and orchestration DePIN layer that connects idle hardware resources to execute AI workloads and distributed Web3 tasks securely.
                             </div>
                         </div>
 
                         <div class="faq-item">
                             <div class="faq-question" onclick="toggleFaq(this)">
-                                Do I need to buy special hardware to participate?
+                                How do I earn rewards on Functor Network?
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                No! Uplink features a hardware-agnostic architecture, meaning you can integrate standard consumer Wi-Fi routers and existing infrastructure without buying proprietary mining devices.
+                                You can earn rewards by running a lightweight compute node, maintaining stable daily uptime, completing verifiable tasks, and inviting network operators using your referral code.
                             </div>
                         </div>
 
                         <div class="faq-item">
                             <div class="faq-question" onclick="toggleFaq(this)">
-                                Who are the main investors and corporate partners?
+                                Will running a node slow down my personal computer?
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                Uplink has raised $10M led by Framework Ventures, alongside major industry partnerships with enterprise telecom giants like Ericsson and Deutsche Telekom.
+                                No. The Functor node client allows you to allocate specific CPU, memory, and bandwidth thresholds so your primary device performance remains unaffected.
                             </div>
                         </div>
 
                         <div class="faq-item">
                             <div class="faq-question" onclick="toggleFaq(this)">
-                                What is the utility of the $ULX token?
+                                What is the main use case for Functor's compute grid?
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                The $ULX token (capped at 1 Billion supply) is used for hardware minting, network transaction settlements, node staking, and as a payment medium for telecom bandwidth consumption.
+                                The grid primarily powers decentralized artificial intelligence training, real-time machine learning inference, and scalable distributed smart contract computations.
                             </div>
                         </div>
 
                         <div class="faq-item">
                             <div class="faq-question" onclick="toggleFaq(this)">
-                                Where can I explore the official Uplink portal?
+                                Where can I register and start running a node?
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                You can visit the official website at <a href="https://uplink.xyz/" target="_blank" style="color: var(--accent-uplink);">uplink.xyz</a>.
+                                You can register on the official portal at <a href="https://functor.network" target="_blank" style="color: var(--accent-functor);">functor.network</a> using the invitation code <strong class="notranslate" translate="no">FUNCTOR99</strong>.
                             </div>
                         </div>
                     </div>
@@ -647,7 +686,7 @@
                 <!-- Standard Disclosure Box -->
                 <div class="disclosure-box">
                     <strong>Important Disclosure</strong>
-                    Total Crypto Hub provides educational and technical guides only. The Uplink portal and $ULX token are currently in pre-mainnet phases. Be highly vigilant against fake tokens or unverified contracts circulating on decentralized exchanges. Ensure that sharing your bandwidth complies with the Acceptable Use Policy (AUP) of your primary Internet Service Provider (ISP). Never invest funds you cannot afford to risk.
+                    Total Crypto Hub provides educational and technical guides only. Running decentralized compute nodes consumes system resources and electrical power. Ensure your hardware operates within safe thermal limits. Never invest funds or share private keys with unverified third-party tools.
                 </div>
 
             </div>
@@ -672,6 +711,13 @@
 
     <!-- Scripts -->
     <script>
+        function copyCode() {
+            const code = document.getElementById('inviteCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Invite Code copied: " + code);
+            });
+        }
+
         /* 🚀 Smart Back Function */
         function goBack() {
             if (document.referrer && document.referrer !== window.location.href) {
