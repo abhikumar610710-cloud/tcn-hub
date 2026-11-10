@@ -407,7 +407,7 @@
     <main>
         <div class="site-container">
 
-            <!-- Master Header with History Back Button -->
+            <!-- Master Header with Smart Back Button -->
             <header class="site-header">
                 <a href="../index.html" class="header-brand">
                     <div class="header-logo">
@@ -421,8 +421,8 @@
                 
                 <div class="header-actions">
                     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <!-- Fixed history.back() to return exactly to previous scroll/filter position -->
-                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community Projects</button>
+                    <!-- Button text updated to 'Back to Community' -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community</button>
                 </div>
             </header>
 
@@ -721,12 +721,12 @@
             });
         }
 
-        /* 🚀 Smart Back Function */
+        /* 🚀 Smart Back Function to Mobile Mining */
         function goBack() {
-            if (document.referrer && document.referrer !== window.location.href) {
+            if (document.referrer && document.referrer.includes('mobile-mining.html')) {
                 window.history.back();
             } else {
-                window.location.href = '../airdrop-pages/airdrops.html';
+                window.location.href = '../mobile-pages/mobile-mining.html';
             }
         }
 
