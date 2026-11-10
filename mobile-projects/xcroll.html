@@ -410,9 +410,9 @@
     <main>
         <div class="site-container">
 
-            <!-- Master Header with Correct Relative Paths -->
+            <!-- Master Header with Correct Relative Paths for mobile-projects -->
             <header class="site-header">
-                <!-- चूंकि xcroll.html फाइल mobile-projects फोल्डर में है, इसलिए ../index.html सही है -->
+                <!-- tcn-hub/mobile-projects/xcroll.html से रूट index.html पर जाने के लिए पाथ -->
                 <a href="../index.html" class="header-brand">
                     <div class="header-logo">
                         <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
@@ -425,7 +425,7 @@
                 
                 <div class="header-actions">
                     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <!-- Back Button: अब यह सही जगह डायरेक्ट रीडायरेक्ट करेगा -->
+                    <!-- Back Button -->
                     <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community</button>
                 </div>
             </header>
@@ -723,7 +723,6 @@
                 &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
-                <!-- फुटर लिंक्स में भी फोल्डर पाथ ठीक कर दिया गया है -->
                 <a href="../legal-pages/about.html">About Us</a>
                 <a href="../legal-pages/contact.html">Contact Us</a>
                 <a href="../legal-pages/privacy.html">Privacy Policy</a>
@@ -742,14 +741,10 @@
             });
         }
 
-        /* 🚀 Position-Preserving Smart Back Navigation */
+        /* 🚀 Position-Preserving Smart Back Navigation for mobile-projects */
         function goBack() {
-            // चूंकि यह फाइल mobile-projects फोल्डर में है, कम्युनिटी पेज का सही पाथ mobile-mining.html होगा
-            if (document.referrer && document.referrer.includes('mobile-mining.html')) {
-                window.history.back();
-            } else {
-                window.location.href = '../mobile-pages/mobile-mining.html#xcroll';
-            }
+            // चूंकि यह फाइल mobile-projects में है, कम्युनिटी पेज mobile-pages/mobile-mining.html पर है
+            window.location.href = '../mobile-pages/mobile-mining.html#xcroll';
         }
 
         /* Stable Theme Toggle Function */
