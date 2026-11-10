@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Instant Anti-Flash Theme Script -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
@@ -19,341 +20,408 @@
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-bg: rgba(255, 255, 255, 0.92);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
+            
             --accent-primary: #059669; 
             --accent-hover: #047857;
-            --card-subtle: #f1f5f9;
+            --accent-marina: #059669; 
+            --accent-marina-light: #10b981; 
+            --accent-light: rgba(16, 185, 129, 0.12);
+            --accent-subtle: rgba(5, 150, 105, 0.08);
+            
+            --card-subtle: #f8fafc;
+            --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
+            --hero-border: #a7f3d0;
             --container-max-width: 1240px;
             --container-padding: 24px;
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 30px -5px rgba(16, 185, 129, 0.08);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.16);
         }
+
         [data-theme="dark"] {
             --bg-body: #070a12;
             --bg-surface: #0b1120;
-            --header-bg: rgba(11, 17, 32, 0.95);
+            --header-bg: rgba(11, 17, 32, 0.92);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
+            
             --accent-primary: #10b981; 
             --accent-hover: #34d399;
+            --accent-marina: #10b981; 
+            --accent-marina-light: #34d399;
+            --accent-light: rgba(16, 185, 129, 0.2);
+            --accent-subtle: rgba(16, 185, 129, 0.12);
+            
             --card-subtle: #131c31;
+            --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%);
+            --hero-border: rgba(16, 185, 129, 0.35);
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.4);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.25);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+        html { scroll-behavior: smooth; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
-        /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg-surface); padding: 1px; }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); }
-
-        .btn-hub-glow { 
+        /* Master Header Styles */
+        .site-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .header-logo { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--accent-primary); box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); flex-shrink: 0; }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .header-title-box { display: flex; flex-direction: column; }
+        .header-title { font-size: 18px; font-weight: 800; color: var(--text-heading); line-height: 1.2; letter-spacing: -0.3px; }
+        .header-subtitle { font-size: 11px; font-weight: 600; color: var(--text-muted); }
+        
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+        .theme-toggle { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--text-heading); flex-shrink: 0; }
+        .theme-toggle:hover { background: var(--accent-subtle); border-color: var(--accent-primary); }
+        
+        .back-to-hub-btn { 
             background: var(--accent-primary); 
-            color: white; 
+            color: #ffffff; 
             text-decoration: none; 
-            padding: 8px 18px; 
+            padding: 9px 20px; 
             border-radius: 50px; 
+            font-size: 12.5px; 
             font-weight: 700; 
-            font-size: 12px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
             border: 1px solid var(--accent-primary);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            white-space: nowrap;
             cursor: pointer;
         }
-        .btn-hub-glow:hover { 
-            background: var(--accent-hover); 
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
-            transform: translateY(-1px);
-        }
+        .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
 
-        .theme-btn { 
-            background: var(--card-subtle); 
-            border: 1px solid var(--border-color); 
-            color: var(--text-heading); 
-            cursor: pointer; 
-            padding: 7px 12px; 
-            border-radius: 50px; 
-            font-size: 14px;
-        }
-
+        /* Main Section Padding */
         main { flex: 1; padding: 24px 0 60px; }
 
-        /* Compact Hero Action Card */
+        /* Hero Action Card */
         .project-hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 14px; 
-            padding: 18px 24px; 
+            background: var(--hero-bg); 
+            border: 1.5px solid var(--hero-border); 
+            border-radius: 24px; 
+            padding: 26px 32px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             flex-wrap: wrap; 
-            gap: 16px; 
-            margin-bottom: 22px; 
-            box-shadow: 0 2px 14px -2px rgba(0,0,0,0.03); 
+            gap: 20px; 
+            margin-bottom: 24px; 
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
         }
-        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 60%);
+            pointer-events: none;
+        }
+        .hero-left { display: flex; align-items: center; gap: 18px; position: relative; z-index: 2; }
+        
         .project-big-logo { 
-            width: 56px; 
-            height: 56px; 
-            border-radius: 14px; 
+            width: 68px; 
+            height: 68px; 
+            border-radius: 18px; 
             overflow: hidden; 
-            border: 1.5px solid var(--border-color); 
-            padding: 3px; 
-            background: var(--card-subtle); 
+            border: 2px solid var(--accent-marina-light); 
+            padding: 4px; 
+            background: var(--bg-surface); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             flex-shrink: 0; 
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
         }
-        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-        .project-titles h2 { font-size: 21px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
-        .verified-badge { background: #d97706; color: white; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; }
-        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 3px; font-weight: 500; }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+
+        .project-titles h2 { font-size: 23px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .verified-badge { background: #d97706; color: white; width: 19px; height: 19px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); }
         
-        .hero-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
-        .tag-pill { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
-        .tag-upcoming { background: rgba(217, 119, 6, 0.12); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
-        .tag-live { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .hero-tags { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+        .tag-pill { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag-live { background: rgba(16, 185, 129, 0.15); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.35); }
+        .tag-upcoming { background: rgba(217, 119, 6, 0.15); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.35); }
         .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
+
+        .project-titles p { color: var(--text-muted); font-size: 13.5px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; position: relative; z-index: 2; }
 
         .btn-join { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 10px 22px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 13px; 
+            padding: 12px 24px; 
+            border-radius: 14px; 
+            font-weight: 800; 
+            font-size: 13.5px; 
             display: inline-flex; 
             align-items: center; 
             gap: 8px; 
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
-            transition: all 0.2s; 
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.32); 
         }
-        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45); }
 
-        /* 1240px Content Card */
+        /* 📍 Sticky Quick Jump Navigation Bar - Optimized */
+        .quick-jump-container {
+            position: sticky;
+            top: 72px;
+            z-index: 90;
+            background: var(--header-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin-bottom: 26px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-pills {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        .nav-pills::-webkit-scrollbar { display: none; }
+        .nav-pill-btn {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .nav-pill-btn:hover, .nav-pill-btn.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* Full Article Container Card */
         .content-card { 
             background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 36px 40px; 
-            margin-bottom: 28px; 
-            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 24px; 
+            padding: 42px; 
+            margin-bottom: 32px; 
+            box-shadow: var(--shadow-sm);
         }
-        .article-section { margin-bottom: 36px; }
+        .article-section { margin-bottom: 48px; scroll-margin-top: 145px; }
         .article-section:last-child { margin-bottom: 0; }
         
-        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
         .section-number { 
-            width: 30px; 
-            height: 30px; 
-            border-radius: 8px; 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 10px; 
             background: var(--accent-primary); 
             color: white; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-weight: 800; 
-            font-size: 13.5px; 
+            font-size: 14px; 
             flex-shrink: 0; 
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
         }
-        .section-header h3 { font-size: 18.5px; color: var(--text-heading); font-weight: 800; }
+        .section-header h3 { font-size: 21px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
 
-        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
+        .article-text { font-size: 15px; line-height: 1.85; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
         .article-text strong { color: var(--text-heading); font-weight: 700; }
 
         /* Linear Flow Boxes */
-        .linear-flow { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .linear-flow { display: flex; flex-direction: column; gap: 14px; margin: 20px 0; }
         .flow-step {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-primary);
-            border-radius: 8px;
-            padding: 16px 20px;
+            background: var(--card-subtle);
+            border: 1.5px solid var(--border-color);
+            border-left: 5px solid var(--accent-primary);
+            border-radius: 14px;
+            padding: 20px 24px;
         }
-        .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
-        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+        .flow-step h4 { font-size: 15.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 8px; }
+        .flow-step p { font-size: 14px; color: var(--text-body); line-height: 1.7; margin: 0; }
 
         /* Leagues Tier Display */
         .leagues-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 12px;
-            margin: 16px 0;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
         }
         .league-box {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 14px 16px;
+            background: var(--card-subtle);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px;
         }
-        .league-box h5 { font-size: 13.5px; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
-        .league-box p { font-size: 12px; color: var(--text-muted); margin: 0; }
+        .league-box h5 { font-size: 14.5px; font-weight: 700; color: var(--text-heading); margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+        .league-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
         /* Section 3 Verification Box */
         .tokenomics-verify-box {
             background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-top: 20px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-top: 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
         }
-        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
-        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
-        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .verify-text-area h5 { font-size: 15px; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; }
+        .verify-text-area p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+        .verify-buttons { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .btn-audit {
             background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             color: var(--text-heading);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 12.5px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s;
         }
         .btn-audit:hover {
             border-color: var(--accent-primary);
             color: var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: rgba(16, 185, 129, 0.08);
+            transform: translateY(-1px);
         }
 
-        /* Alert Box */
+        /* Alert Warning Box */
         .alert-box { 
-            background: rgba(245, 158, 11, 0.08); 
-            border-left: 4px solid #f59e0b; 
-            padding: 18px 22px; 
-            border-radius: 0 8px 8px 0; 
-            margin: 20px 0; 
+            background: rgba(245, 158, 11, 0.06); 
+            border: 1.5px solid rgba(245, 158, 11, 0.3);
+            border-left: 5px solid #f59e0b; 
+            padding: 24px 28px; 
+            border-radius: 16px; 
+            margin: 24px 0; 
         }
-        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
-        .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
+        .alert-box h5 { color: #d97706; font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
+        .alert-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
         .alert-box p:last-child { margin-bottom: 0; }
 
         /* Video Showcase */
         .video-box-clean {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px;
-            margin-top: 14px;
-            max-width: 580px;
-        }
-        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .mock-youtube-player { 
-            background: #000; 
-            border-radius: 8px; 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            cursor: pointer; 
-            display: block; 
-            text-decoration: none; 
-        }
-        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
-        .yt-play-btn { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 60px; 
-            height: 42px; 
-            background-color: #ff0000; 
-            border-radius: 10px; 
-            transition: transform 0.2s ease; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
-
-        /* Disclosure */
-        .disclosure-box {
             background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px 22px;
-            font-size: 13px;
-            line-height: 1.65;
-            color: var(--text-muted);
-            margin-top: 30px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 18px;
+            padding: 22px;
+            margin-top: 20px;
+            max-width: 620px;
         }
-        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
+        .video-box-clean:hover { border-color: #ff0000; box-shadow: 0 10px 25px -5px rgba(255, 0, 0, 0.18); }
+        .video-box-clean h4 { font-size: 15px; color: var(--text-heading); font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        
+        .mock-youtube-player { background: #000; border-radius: 14px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.12); }
+        
+        .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 44px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255,0,0,0.4); }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* Important Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14px; }
 
         /* Footer */
-        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-primary); }
+        footer { padding: 30px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
+        .footer-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-marina-light); text-decoration: underline; }
 
         @media (max-width: 768px) {
             :root { --container-padding: 16px; }
-            .content-card { padding: 22px 18px; }
-            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .content-card { padding: 24px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; padding: 22px; }
+            .hero-right { width: 100%; flex-direction: column; align-items: stretch; }
             .btn-join { width: 100%; justify-content: center; }
+            .section-header h3 { font-size: 18px; }
             .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
             .verify-buttons { width: 100%; }
             .btn-audit { width: 100%; justify-content: center; }
-            .section-header h3 { font-size: 17.5px; }
+            .quick-jump-container { top: 62px; padding: 8px 10px; }
+            .nav-pill-btn { padding: 7px 12px; font-size: 11px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="site-container header-inner">
-            <a href="../index.html" class="logo-box" translate="no">
-                <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
-                </div>
-                <div class="logo-text">
-                    <h1>Total Crypto Hub</h1>
-                    <span>by <b>Total Crypto Network</b></span>
-                </div>
-            </a>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
-                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to Community</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Area (1240px Canvas) -->
+    <!-- Main Content Area -->
     <main>
         <div class="site-container">
+
+            <!-- Master Header with Smart Back Button -->
+            <header class="site-header">
+                <a href="../index.html" class="header-brand">
+                    <div class="header-logo">
+                        <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
+                    </div>
+                    <div class="header-title-box">
+                        <div class="header-title">Total Crypto Hub</div>
+                        <div class="header-subtitle">by Total Crypto Network</div>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
+                    <!-- Position-Preserving Smart Back Navigation Button -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community</button>
+                </div>
+            </header>
 
             <!-- Compact Hero Action Card with Direct Route -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
-                        <img src="../logos/marina.png" alt="Marina Protocol Logo" onerror="this.parentNode.innerHTML='🌊';">
+                        <img src="../logos/marina.png" alt="Marina Protocol Logo" onerror="this.src='../logos/tcn-logo.png';">
                     </div>
                     <div class="project-titles">
-                        <h2 translate="no">Marina Protocol ($BAY / $SURF) <span class="verified-badge">✓</span></h2>
+                        <h2 class="notranslate" translate="no">Marina Protocol ($BAY / $SURF) <span class="verified-badge">✓</span></h2>
                         <p>Global Web 3.0 Onboarding Platform, Learn & Earn Architecture & DEX Trading</p>
                         <div class="hero-tags">
                             <span class="tag-pill tag-live">🟢 $BAY Traded on DEX / CoinGecko</span>
@@ -368,25 +436,37 @@
                 </div>
             </div>
 
+            <!-- 📍 Sticky Quick Jump Navigation Bar - Optimized -->
+            <div class="quick-jump-container">
+                <div class="nav-pills">
+                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is Marina</a>
+                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. Dual-Asset Economy</a>
+                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. Market Valuation</a>
+                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. League Hierarchy</a>
+                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. Wallet Hygiene</a>
+                    <a href="#section-6" class="nav-pill-btn" id="pill-sec-6">6. Video Guide</a>
+                </div>
+            </div>
+
             <!-- Full-Length 1240px Content Card -->
             <div class="content-card">
 
                 <!-- Point 1: What is Marina Protocol -->
-                <div class="article-section">
+                <div class="article-section" id="section-1">
                     <div class="section-header">
                         <div class="section-number">1</div>
                         <h3>What is Marina Protocol? (Origins, Web 3.0 Onboarding & Surfers)</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Marina Protocol</strong> is a decentralized Web 3.0 onboarding and educational tutorial platform engineered to lower the entry barriers for non-crypto natives[cite: 41, 42]. Operating under the theme <em>"Dive, Surf & Grab Points,"</em> the network organizes global participants (known as <strong>Surfers</strong>) into an interactive learning hub that rewards daily platform participation with digital assets.
+                        <strong>Marina Protocol</strong> is a decentralized Web 3.0 onboarding and educational tutorial platform engineered to lower the entry barriers for non-crypto natives. Operating under the theme <em>"Dive, Surf & Grab Points,"</em> the network organizes global participants (known as <strong>Surfers</strong>) into an interactive learning hub that rewards daily platform participation with digital assets.
                     </p>
                     <p class="article-text">
-                        Rather than relying purely on speculative testnet promises, Marina Protocol features an established financial footprint centered around its primary governance and ecosystem asset—<strong>Bay Token ($BAY)</strong>. The protocol integrates interactive educational content, micro-quizzes, and decentralized task simulations to turn complex Web3 concepts into accessible daily mobile rewards[cite: 41, 42].
+                        Rather than relying purely on speculative testnet promises, Marina Protocol features an established financial footprint centered around its primary governance and ecosystem asset—<strong>Bay Token ($BAY)</strong>. The protocol integrates interactive educational content, micro-quizzes, and decentralized task simulations to turn complex Web3 concepts into accessible daily mobile rewards.
                     </p>
                 </div>
 
                 <!-- Point 2: Dual Asset Economy & Mining Architecture -->
-                <div class="article-section">
+                <div class="article-section" id="section-2">
                     <div class="section-header">
                         <div class="section-number">2</div>
                         <h3>Mining Architecture: 24-Hour Cycle, Dual Assets ($pSURF & $pBAY) & Boosts</h3>
@@ -397,61 +477,61 @@
                     <div class="linear-flow">
                         <div class="flow-step">
                             <h4>⚡ 1. Daily 24-Hour Tap Epoch</h4>
-                            <p>Surfers initialize a 24-hour mining interval with a single tap to collect <strong>$pSURF</strong> points[cite: 41, 42, 44]. Cloud validation processes session progress automatically, causing zero battery drain or device overheating.</p>
+                            <p>Surfers initialize a 24-hour mining interval with a single tap to collect <strong>$pSURF</strong> points. Cloud validation processes session progress automatically, causing zero battery drain or device overheating.</p>
                         </div>
                         <div class="flow-step">
                             <h4>🚀 2. 2x Claim Boost & Daily Tickets</h4>
-                            <p>Users can optimize daily yields by activating optional <strong>2x Claim boosts</strong> and collecting daily tickets to access reward lotteries and premium task tiers[cite: 41, 42, 44].</p>
+                            <p>Users can optimize daily yields by activating optional <strong>2x Claim boosts</strong> and collecting daily tickets to access reward lotteries and premium task tiers.</p>
                         </div>
                         <div class="flow-step">
                             <h4>🏄 3. Surfboard Tiers & Progressive Leagues</h4>
-                            <p>Protocol engagement is gamified through Surfboard counts (surpassing 1.6M+ community surfboards towards the 5M+ target), advancing participants across progressive tiers: <strong>Bronze (1%), Silver (9%), Gold (20%), Platinum (20%), and VIP (50%)</strong> to multiply point accrual velocity[cite: 46, 47].</p>
+                            <p>Protocol engagement is gamified through Surfboard counts (surpassing 1.6M+ community surfboards towards the 5M+ target), advancing participants across progressive tiers: <strong>Bronze (1%), Silver (9%), Gold (20%), Platinum (20%), and VIP (50%)</strong> to multiply point accrual velocity.</p>
                         </div>
                         <div class="flow-step">
                             <h4>🎟️ 4. On-Chain Raffles & Marble Rewards</h4>
-                            <p>Active surfers deploy accumulated tickets into daily community raffles offering prizes in major assets including <strong>USDT and XRP</strong>, alongside daily Marble draws delivering up to 3,000P reward bonuses[cite: 44, 45, 48].</p>
+                            <p>Active surfers deploy accumulated tickets into daily community raffles offering prizes in major assets including <strong>USDT and XRP</strong>, alongside daily Marble draws delivering up to 3,000P reward bonuses.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 3: Live CoinGecko Market Valuation & Tokenomics -->
-                <div class="article-section">
+                <div class="article-section" id="section-3">
                     <div class="section-header">
                         <div class="section-number">3</div>
                         <h3>Market Valuation ($BAY), Supply Metrics & On-Chain Audit</h3>
                     </div>
                     <p class="article-text">
-                        Unlike early stage pre-market concepts, Marina Protocol's native token <strong>$BAY</strong> is actively tracked and traded across cryptocurrency indexers[cite: 43]:
+                        Unlike early stage pre-market concepts, Marina Protocol's native token <strong>$BAY</strong> is actively tracked and traded across cryptocurrency indexers:
                     </p>
                     <p class="article-text">
-                        • <strong>Market Tracker:</strong> Live on <strong>CoinGecko</strong> (CoinGecko Rank: #1448)[cite: 43].<br>
-                        • <strong>Trading Asset:</strong> <strong>Marina Protocol ($BAY)</strong> actively trading with verified 24H volume[cite: 43].<br>
-                        • <strong>Market Capitalization:</strong> Approximately <strong>$7.56 Million Market Cap</strong> (Fully Diluted Valuation: ~$37.80M)[cite: 43].<br>
-                        • <strong>DEX & Derivatives Integration:</strong> Listed on perpetual DEX markets (such as Aster Perpetual Contracts) backed by direct reward incentives[cite: 43].<br>
-                        • <strong>Points Conversion Pipeline:</strong> In-app mined $pSURF and $pBAY balances serve as the verifiable baseline for token claims and ecosystem liquidity payouts[cite: 41, 44].
+                        • <strong>Market Tracker:</strong> Live on <strong>CoinGecko</strong> (CoinGecko Rank: #1448).<br>
+                        • <strong>Trading Asset:</strong> <strong>Marina Protocol ($BAY)</strong> actively trading with verified 24H volume.<br>
+                        • <strong>Market Capitalization:</strong> Approximately <strong>$7.56 Million Market Cap</strong> (Fully Diluted Valuation: ~$37.80M).<br>
+                        • <strong>DEX & Derivatives Integration:</strong> Listed on perpetual DEX markets (such as Aster Perpetual Contracts) backed by direct reward incentives.<br>
+                        • <strong>Points Conversion Pipeline:</strong> In-app mined $pSURF and $pBAY balances serve as the verifiable baseline for token claims and ecosystem liquidity payouts.
                     </p>
 
                     <!-- Section 3 Verification Box -->
                     <div class="tokenomics-verify-box">
                         <div class="verify-text-area">
                             <h5>Official Protocol Audits & Documentation</h5>
-                            <p>Track live $BAY market capitalization, trading pairs, and read official documentation[cite: 41, 43]:</p>
+                            <p>Track live $BAY market capitalization, trading pairs, and read official documentation:</p>
                         </div>
                         <div class="verify-buttons">
-                            <a href="https://marina-protocol.com/" target="_blank" class="btn-audit">📄 Read Official Whitepaper ↗</a>[cite: 41]
-                            <a href="https://www.coingecko.com/en/coins/marina-protocol" target="_blank" class="btn-audit">🔍 Live CoinGecko Market Tracker ↗</a>[cite: 43]
+                            <a href="https://marina-protocol.com/" target="_blank" class="btn-audit">📄 Read Official Whitepaper ↗</a>
+                            <a href="https://www.coingecko.com/en/coins/marina-protocol" target="_blank" class="btn-audit">🔍 Live CoinGecko Market Tracker ↗</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 4: League Hierarchy & Anti-Sybil Standards -->
-                <div class="article-section">
+                <div class="article-section" id="section-4">
                     <div class="section-header">
                         <div class="section-number">4</div>
                         <h3>Surfboard League Architecture: Transparent Tier Progression</h3>
                     </div>
                     <p class="article-text">
-                        To encourage genuine educational participation and prevent automated script abuse[cite: 41, 42]:
+                        To encourage genuine educational participation and prevent automated script abuse:
                     </p>
 
                     <div class="leagues-grid">
@@ -461,43 +541,43 @@
                         </div>
                         <div class="league-box">
                             <h5>Silver & Gold Leagues <span>🥇</span></h5>
-                            <p>6 - 13 Surfboards (Up to 20% Pool Boosts)[cite: 46]</p>
+                            <p>6 - 13 Surfboards (Up to 20% Pool Boosts)</p>
                         </div>
                         <div class="league-box">
                             <h5>Platinum & VIP Tiers <span>🚀</span></h5>
-                            <p>14 - 15+ Surfboards (Dominant 50% Reward Share)[cite: 46]</p>
+                            <p>14 - 15+ Surfboards (Dominant 50% Reward Share)</p>
                         </div>
                     </div>
                     
                     <div class="alert-box">
                         <h5>🛡️ Anti-Sybil Proof-of-Engagement Protocol:</h5>
-                        <p><strong>1. Dynamic Quiz & Task Verification:</strong> Marina Protocol integrates daily knowledge checks and interactive tasks that require manual human responses, systematically identifying and disqualifying bot networks[cite: 41, 42, 48].</p>
+                        <p><strong>1. Dynamic Quiz & Task Verification:</strong> Marina Protocol integrates daily knowledge checks and interactive tasks that require manual human responses, systematically identifying and disqualifying bot networks.</p>
                         <p><strong>2. Hardware Enclave Authentication:</strong> Accounts are bound to verified individual mobile hardware profiles to prevent clone emulators from participating in token claims.</p>
                     </div>
                 </div>
 
                 <!-- Point 5: Non-Custodial Wallet Hygiene & Security -->
-                <div class="article-section">
+                <div class="article-section" id="section-5">
                     <div class="section-header">
                         <div class="section-number">5</div>
                         <h3>Integrated Web3 Wallet & Self-Custody Security</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Non-Custodial Account Controls:</strong> The Marina Protocol application features a built-in decentralized Web3 wallet module[cite: 44, 46]. Ensure your backup credentials and private keys are documented offline. Protocol developers will never ask for your private passwords or wallet secret phrases.
+                        <strong>Non-Custodial Account Controls:</strong> The Marina Protocol application features a built-in decentralized Web3 wallet module. Ensure your backup credentials and private keys are documented offline. Protocol developers will never ask for your private passwords or wallet secret phrases.
                     </p>
                     <p class="article-text">
-                        <strong>Zero Upfront Investment:</strong> Mining $pSURF and interacting with daily Web3 learning modules requires zero capital investment, zero paid miner purchases, and zero upfront fees[cite: 41, 42].
+                        <strong>Zero Upfront Investment:</strong> Mining $pSURF and interacting with daily Web3 learning modules requires zero capital investment, zero paid miner purchases, and zero upfront fees.
                     </p>
                 </div>
 
                 <!-- Point 6: Dedicated Video Walkthrough -->
-                <div class="article-section">
+                <div class="article-section" id="section-6">
                     <div class="section-header">
                         <div class="section-number">6</div>
                         <h3>Dedicated Video Setup & Mining Guide</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete video guide produced by <strong>Total Crypto Network</strong> covering app installation, 24-hour tap sessions, 2x Claim boost activation, and Surfboard league progression:
+                        Watch our complete video guide produced by <strong class="notranslate" translate="no">Total Crypto Network</strong> covering app installation, 24-hour tap sessions, 2x Claim boost activation, and Surfboard league progression:
                     </p>
                     
                     <div class="video-box-clean">
@@ -511,7 +591,7 @@
                 <!-- Disclosure -->
                 <div class="disclosure-box">
                     <strong>Important Protocol Disclosure</strong>
-                    Total Crypto Hub provides independent educational information and technical directories only. Marina Protocol is an autonomous Web3 onboarding platform[cite: 41]. Community points accumulation and daily claims represent early network learning and participation[cite: 41, 42]. No upfront capital investment is required to participate[cite: 41, 42].
+                    Total Crypto Hub provides independent educational information and technical directories only. Marina Protocol is an autonomous Web3 onboarding platform. Community points accumulation and daily claims represent early network learning and participation. No upfront capital investment is required to participate.
                 </div>
 
             </div>
@@ -522,7 +602,7 @@
     <footer>
         <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; <span translate="no">2026 Total Crypto Network</span>. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../legal-pages/about.html">About Us</a>
@@ -534,15 +614,18 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
+        /* 🚀 Position-Preserving Smart Back Navigation */
         function goBack() {
-            if (document.referrer && document.referrer !== window.location.href) {
+            if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
                 window.history.back();
             } else {
-                window.location.href = '../mobile-pages/mobile-mining.html';
+                window.location.href = '../mobile-pages/mobile-mining.html#marina';
             }
         }
 
+        /* Stable Theme Toggle Function */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -553,6 +636,27 @@
             const btn = document.getElementById('themeBtn');
             if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
         }
+
+        /* Automatic ScrollSpy Navigation Highlighting */
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.article-section');
+            const navPills = document.querySelectorAll('.nav-pill-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 180)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navPills.forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.getAttribute('href') === '#' + current) {
+                    pill.classList.add('active');
+                }
+            });
+        });
 
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
