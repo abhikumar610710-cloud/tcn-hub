@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q Lounge Wallet & MQP to $MQX Swap Guide | Total Crypto Hub</title>
+    <meta name="description" content="Complete guide to Q Lounge by DJ Maxrex. Learn how to earn MQP points via daily check-ins, unlock membership tiers, and swap points to $MQX tokens.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Instant Anti-Flash Theme Script -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.92);
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            
+            --accent-primary: #059669; 
+            --accent-hover: #047857;
+            --accent-qlounge: #2563eb; 
+            --accent-qlounge-light: #60a5fa; 
+            --accent-light: rgba(37, 99, 235, 0.12);
+            --accent-subtle: rgba(5, 150, 105, 0.08);
+            
+            --card-subtle: #f8fafc;
+            --hero-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
+            --hero-border: #bfdbfe;
+            --container-max-width: 1380px;
+            --container-padding: 28px;
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 30px -5px rgba(37, 99, 235, 0.12);
+            --shadow-hover: 0 14px 35px -5px rgba(5, 150, 105, 0.16);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #070a12;
+            --bg-surface: #0b1120;
+            --header-bg: rgba(11, 17, 32, 0.92);
+            --border-color: #1e293b;
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            
+            --accent-primary: #10b981; 
+            --accent-hover: #34d399;
+            --accent-qlounge: #3b82f6; 
+            --accent-qlounge-light: #93c5fd;
+            --accent-light: rgba(59, 130, 246, 0.18);
+            --accent-subtle: rgba(16, 185, 129, 0.12);
+            
+            --card-subtle: #131c31;
+            --hero-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%);
+            --hero-border: rgba(59, 130, 246, 0.35);
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.4);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.25);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+
+        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+
+        /* Master Header Styles */
+        .site-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 16px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .header-logo { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--accent-primary); box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); flex-shrink: 0; }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .header-title-box { display: flex; flex-direction: column; }
+        .header-title { font-size: 18px; font-weight: 800; color: var(--text-heading); line-height: 1.2; letter-spacing: -0.3px; }
+        .header-subtitle { font-size: 11px; font-weight: 600; color: var(--text-muted); }
+        
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+        .theme-toggle { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--text-heading); flex-shrink: 0; }
+        .theme-toggle:hover { background: var(--accent-subtle); border-color: var(--accent-primary); }
+        
+        .back-to-hub-btn { 
+            background: var(--accent-primary); 
+            color: #ffffff; 
+            text-decoration: none; 
+            padding: 9px 20px; 
+            border-radius: 50px; 
+            font-size: 12.5px; 
+            font-weight: 700; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
+
+        main { flex: 1; padding: 28px 0 60px; }
+
+        /* Hero Action Card */
+        .project-hero-card { 
+            background: var(--hero-bg); 
+            border: 1.5px solid var(--hero-border); 
+            border-radius: 24px; 
+            padding: 32px 38px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 24px; 
+            margin-bottom: 24px; 
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+        .project-hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 60%);
+            pointer-events: none;
+        }
+        .hero-left { display: flex; align-items: center; gap: 20px; position: relative; z-index: 2; }
+        
+        .project-big-logo { 
+            width: 74px; 
+            height: 74px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            border: 2px solid var(--accent-qlounge); 
+            padding: 5px; 
+            background: #ffffff; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0; 
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+        }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+
+        .project-titles h2 { font-size: 24px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-primary); color: white; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
+        
+        .new-badge { background: #ef4444; color: white; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; animation: pulse 2s infinite; }
+        .app-badge { background: #2563eb; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
+        .token-badge { background: #7c3aed; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+
+        .project-titles p { color: var(--text-muted); font-size: 14px; margin-top: 5px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; position: relative; z-index: 2; }
+        
+        .btn-join { 
+            background: var(--accent-primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 13px 26px; 
+            border-radius: 14px; 
+            font-weight: 800; 
+            font-size: 13.5px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.32); 
+        }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45); }
+
+        /* Sticky Quick Jump Navigation Bar */
+        .quick-jump-container {
+            position: sticky;
+            top: 74px;
+            z-index: 90;
+            background: var(--header-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 18px;
+            margin-bottom: 28px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-pills {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 2px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) transparent;
+        }
+        .nav-pills::-webkit-scrollbar { height: 4px; }
+        .nav-pills::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        
+        .nav-pill-btn {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .nav-pill-btn:hover, .nav-pill-btn.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* Full Article Container Card */
+        .content-card { 
+            background: var(--bg-surface); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 24px; 
+            padding: 48px; 
+            margin-bottom: 32px; 
+            box-shadow: var(--shadow-sm);
+        }
+        .article-section { margin-bottom: 52px; scroll-margin-top: 155px; }
+        .article-section:last-child { margin-bottom: 0; }
+        
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+        .section-number { 
+            width: 36px; 
+            height: 36px; 
+            border-radius: 10px; 
+            background: var(--accent-primary); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            font-size: 14.5px; 
+            flex-shrink: 0; 
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+        .section-header h3 { font-size: 22px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
+
+        .article-text { font-size: 15.5px; line-height: 1.85; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
+        .article-text strong { color: var(--text-heading); font-weight: 700; }
+
+        /* 3-Step Process Grid */
+        .steps-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 26px 0; }
+        .step-box { 
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-top: 5px solid var(--accent-qlounge);
+            border-radius: 18px; 
+            padding: 26px; 
+            position: relative;
+        }
+        .step-box:hover {
+            border-color: var(--accent-qlounge);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .step-badge-num { font-size: 32px; font-weight: 800; color: var(--accent-qlounge); margin-bottom: 10px; line-height: 1; }
+        .step-box h4 { font-size: 17px; color: var(--text-heading); margin-bottom: 10px; font-weight: 800; }
+        .step-box p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+        /* 2x2 Feature Cards */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 24px 0; }
+        .feature-box { 
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-left: 5px solid var(--accent-primary);
+            border-radius: 16px; 
+            padding: 26px; 
+        }
+        .feature-box:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .feature-box h4 { font-size: 16px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; }
+        .feature-box p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+        /* Real-Time Stats Table */
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--card-subtle); border-radius: 16px; overflow: hidden; border: 1.5px solid var(--border-color); }
+        .stats-table th, .stats-table td { padding: 16px 24px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 15px; }
+        .stats-table th { background: var(--bg-surface); color: var(--text-heading); font-weight: 700; width: 35%; }
+        .stats-table td { color: var(--text-body); }
+        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+        /* 2-Column Video Showcase */
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 24px; }
+        .video-box { 
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 18px; 
+            padding: 22px; 
+        }
+        .video-box:hover { 
+            border-color: #ff0000; 
+            box-shadow: 0 10px 25px -5px rgba(255, 0, 0, 0.18); 
+            transform: translateY(-3px); 
+        }
+        .video-box h4 { font-size: 15px; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        
+        .mock-youtube-player { background: #000; border-radius: 14px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.12); }
+        
+        .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 44px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255,0,0,0.4); }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* FAQ Accordion Section */
+        .faq-list { display: flex; flex-direction: column; gap: 14px; margin-top: 22px; }
+        .faq-item { 
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 14px; 
+            overflow: hidden; 
+        }
+        .faq-item:hover { border-color: var(--accent-primary); box-shadow: var(--shadow-sm); }
+        .faq-question { padding: 18px 24px; font-size: 15.5px; font-weight: 700; color: var(--text-heading); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .faq-answer { padding: 0 24px 18px 24px; font-size: 14.5px; color: var(--text-muted); line-height: 1.7; display: none; }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent-primary); }
+        .faq-icon { font-size: 20px; font-weight: 800; transition: transform 0.2s; color: var(--text-muted); }
+
+        /* Important Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 22px 26px; font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14.5px; }
+
+        /* Footer */
+        footer { padding: 32px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
+        .footer-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13.5px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-primary); text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            :root { --container-padding: 16px; }
+            .content-card { padding: 26px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; padding: 22px; }
+            .hero-right { width: 100%; justify-content: flex-start; }
+            .section-header h3 { font-size: 19px; }
+            .steps-grid-3 { grid-template-columns: 1fr; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .video-grid-2 { grid-template-columns: 1fr; }
+            .quick-jump-container { top: 62px; padding: 10px 12px; }
+            .nav-pill-btn { padding: 7px 12px; font-size: 11.5px; }
+            .stats-table th, .stats-table td { padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="site-container">
+
+            <!-- Master Header -->
+            <header class="site-header">
+                <a href="../index.html" class="header-brand">
+                    <div class="header-logo">
+                        <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
+                    </div>
+                    <div class="header-title-box">
+                        <div class="header-title">Total Crypto Hub</div>
+                        <div class="header-subtitle">by Total Crypto Network</div>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
+                    <!-- Smart Browser History Back Button -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Previous Page</button>
+                </div>
+            </header>
+
+            <!-- Hero Action Card -->
+            <div class="project-hero-card">
+                <div class="hero-left">
+                    <div class="project-big-logo">
+                        <img src="../logos/qlounge.png" alt="Q Lounge Logo" onerror="this.src='../logos/tcn-logo.png';">
+                    </div>
+                    <div class="project-titles">
+                        <h2 class="notranslate" translate="no">Q Lounge <span class="new-badge">SWAP EXPECTED DEC</span> <span class="verified-badge">✓</span> <span class="app-badge">Korean Web3 Wallet</span> <span class="token-badge">$MQX & MQP</span></h2>
+                        <p>Learn & Earn Ecosystem · Daily Check-In Points to $MQX Swap</p>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <!-- Embedded Referral Link -->
+                    <a href="https://affiliate.dj-maxrex.com/i/751718968100" target="_blank" class="btn-join">🌐 Join Q Lounge (Referral Code: 751718968100)</a>
+                </div>
+            </div>
+
+            <!-- Quick Jump Navigation (1 to 8 Fixed, Non-Cutting) -->
+            <div class="quick-jump-container">
+                <div class="nav-pills">
+                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is Q Lounge</a>
+                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. CEO Swap Announcement</a>
+                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. How to Earn MQP</a>
+                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. MQP vs $MQX Tokenomics</a>
+                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. Membership Tiers & XP</a>
+                    <a href="#section-6" class="nav-pill-btn" id="pill-sec-6">6. Wallet Security</a>
+                    <a href="#section-7" class="nav-pill-btn" id="pill-sec-7">7. Video Tutorials</a>
+                    <a href="#section-8" class="nav-pill-btn" id="pill-sec-8">8. FAQs</a>
+                </div>
+            </div>
+
+            <!-- Full Article Content Card -->
+            <div class="content-card">
+
+                <!-- Section 1 -->
+                <div class="article-section" id="section-1">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h3>What is Q Lounge? (Korean Web3 Wallet & Community)</h3>
+                    </div>
+                    <p class="article-text">
+                        <strong>Q Lounge</strong> (developed by <em>DJ Maxrex</em>) is a premier South Korean Web3 mobile wallet and membership community platform. Designed to make blockchain adoption effortless, Q Lounge combines non-custodial asset storage with interactive "Learn-and-Earn" rewards.
+                    </p>
+                    <p class="article-text">
+                        Users collect <strong>MQP (Maxrex Q Points)</strong> daily by checking into the app, answering community trivia questions, and reading Web3 educational stories. These points build user reputation and qualify accounts for token conversions into <strong>$MQX Coin</strong>.
+                    </p>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="article-section" id="section-2">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h3>CEO Announcement: MQP to $MQX Swap</h3>
+                    </div>
+                    <p class="article-text">
+                        According to official announcements from the DJ Maxrex leadership team, an upcoming <strong>MQP → $MQX Token Swap</strong> is expected to launch in early December.
+                    </p>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr>
+                                <th>Developer Ecosystem</th>
+                                <td>DJ Maxrex (Korean Crypto Project)</td>
+                            </tr>
+                            <tr>
+                                <th>Play Store Downloads</th>
+                                <td><strong>10,000+ Active Installs</strong> (Live on Android & iOS)</td>
+                            </tr>
+                            <tr>
+                                <th>Welcome Bonus</th>
+                                <td><strong>100 MQP Instant Bonus</strong> on registration</td>
+                            </tr>
+                            <tr>
+                                <th>Target Swap Window</th>
+                                <td><strong>Early December</strong> (MQP Points swap for $MQX Tokens)</td>
+                            </tr>
+                            <tr>
+                                <th>Official Referral Code</th>
+                                <td><code class="notranslate" translate="no">751718968100</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="article-section" id="section-3">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h3>How to Earn Daily MQP Points (3-Step Guide)</h3>
+                    </div>
+                    <div class="steps-grid-3">
+                        <div class="step-box">
+                            <div class="step-badge-num">01</div>
+                            <h4>DAILY CHECK-IN</h4>
+                            <p>Open the app daily to claim <strong>+20 MQP</strong> and <strong>+2 XP</strong>. Maintain consecutive streaks for bonus reward multipliers.</p>
+                        </div>
+                        <div class="step-box">
+                            <div class="step-badge-num">02</div>
+                            <h4>CHECK-IN QUESTION</h4>
+                            <p>Answer the simple daily community question to earn up to <strong>+100 MQP bonus points</strong> instantly.</p>
+                        </div>
+                        <div class="step-box">
+                            <div class="step-badge-num">03</div>
+                            <h4>READ STORIES</h4>
+                            <p>Browse community news articles and MAIQ stories to collect <strong>+5 MQP</strong> and <strong>+10 XP</strong> per post read.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="article-section" id="section-4">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h3>MQP Points vs. $MQX Tokenomics</h3>
+                    </div>
+                    <div class="feature-grid-2x2">
+                        <div class="feature-box">
+                            <h4>💎 MQP (Maxrex Q Points)</h4>
+                            <p>Off-chain loyalty points earned through daily check-ins, tasks, and community engagement. Used to determine $MQX swap tier ratios.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🪙 $MQX Coin</h4>
+                            <p>The core utility and governance token of the DJ Maxrex ecosystem. Swap $MQX on DEX/CEX platforms post-mainnet listing.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🎁 Instant Welcome Bonus</h4>
+                            <p>New accounts signing up with referral code <strong>751718968100</strong> instantly unlock 100 MQP locked balance.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>⚡ XP Multiplier System</h4>
+                            <p>XP gains level up your membership status, unlocking higher daily MQP earning caps and bonus point accrual rates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="article-section" id="section-5">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h3>Membership Levels & Tier Progression</h3>
+                    </div>
+                    <p class="article-text">
+                        Q Lounge features a structured membership tier system:
+                    </p>
+                    <p class="article-text">
+                        - <strong>Lv1. STARTER:</strong> Default entry tier for all registered users (Base MQP accrual rate x1).<br>
+                        - <strong>Lv2. LEARNER (99 XP required):</strong> Unlocked by reading posts and completing check-in streaks, increasing daily points cap.<br>
+                        - <strong>Higher Tiers (PRO & MASTER):</strong> Unlocks maximum $MQX swap priority and reduced withdrawal fees.
+                    </p>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="article-section" id="section-6">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h3>Wallet Features & Security Setup</h3>
+                    </div>
+                    <p class="article-text">
+                        - <strong>Non-Custodial Recovery Phrase:</strong> Users hold their own Secret Recovery Phrase under Settings > Security.<br>
+                        - <strong>Biometric & Password Protection:</strong> App transactions require PIN or password verification.<br>
+                        - <strong>Cloud Backup Options:</strong> Backup wallet keys securely to prevent losing earned MQP and $MQX assets.
+                    </p>
+                </div>
+
+                <!-- Section 7 -->
+                <div class="article-section" id="section-7">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h3>Video Tutorials & Registration Guide</h3>
+                    </div>
+                    <div class="video-grid-2">
+                        <div class="video-box">
+                            <h4>🌐 How to Join Q Lounge & Claim 100 MQP</h4>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player"><div class="yt-play-btn"></div></a>
+                        </div>
+                        <div class="video-box">
+                            <h4>⚡ MQP to $MQX Swap Process Explained</h4>
+                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player"><div class="yt-play-btn"></div></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 8 -->
+                <div class="article-section" id="section-8">
+                    <div class="section-header">
+                        <div class="section-number">8</div>
+                        <h3>Frequently Asked Questions</h3>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">What is Q Lounge? <span class="faq-icon">+</span></div>
+                            <div class="faq-answer">Q Lounge is a Korean Web3 mobile wallet by DJ Maxrex where users earn MQP points via daily tasks and swap them into $MQX tokens.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">When is the MQP to $MQX Swap expected? <span class="faq-icon">+</span></div>
+                            <div class="faq-answer">According to official updates, the MQP to $MQX token swap is expected in early December.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">What referral code should I use? <span class="faq-icon">+</span></div>
+                            <div class="faq-answer">Use referral code 751718968100 during signup to claim your welcome bonus MQP points.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="disclosure-box">
+                    <strong>Important Disclosure</strong>
+                    Total Crypto Hub provides educational guides and technical reviews. Token swaps, wallet rewards, and exchange listings are managed directly by project developers. Always conduct your own research (DYOR).
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="site-container">
+            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="../legal-pages/about.html">About Us</a>
+                <a href="../legal-pages/contact.html">Contact Us</a>
+                <a href="../legal-pages/privacy.html">Privacy Policy</a>
+                <a href="../legal-pages/terms.html">Terms & Conditions</a>
+                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        /* Smart History Back Navigation */
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '../airdrop-pages/airdrops.html';
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        function toggleFaq(element) {
+            element.parentElement.classList.toggle('open');
+        }
+
+        /* ScrollSpy Highlighting */
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.article-section');
+            const navPills = document.querySelectorAll('.nav-pill-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 180)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navPills.forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.getAttribute('href') === '#' + current) {
+                    pill.classList.add('active');
+                }
+            });
+        });
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.innerText = savedTheme === 'light' ? '🌙' : '☀️';
+        };
+    </script>
+</body>
+</html>
