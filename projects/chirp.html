@@ -29,8 +29,8 @@
             --accent-primary: #059669; 
             --accent-hover: #047857;
             --accent-chirp: #ff4500;
-            --accent-light: #e8fbf3;
-            --accent-subtle: rgba(5, 150, 105, 0.08);
+            --accent-light: #fff4f0;
+            --accent-subtle: rgba(255, 69, 0, 0.08);
             
             --card-subtle: #f8fafc;
             --hero-bg: linear-gradient(135deg, #fff4f0 0%, #fffaf9 40%, #ffffff 100%);
@@ -135,6 +135,13 @@
             position: relative;
             overflow: hidden;
         }
+        .project-hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at top right, rgba(255, 69, 0, 0.08), transparent 60%);
+            pointer-events: none;
+        }
         .hero-left { display: flex; align-items: center; gap: 20px; position: relative; z-index: 2; }
         
         .project-big-logo { 
@@ -178,6 +185,53 @@
         }
         .btn-join:hover { background: #e63e00; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255, 69, 0, 0.4); }
 
+        /* 📍 Sticky Quick Jump Navigation Bar - Optimized */
+        .quick-jump-container {
+            position: sticky;
+            top: 72px;
+            z-index: 90;
+            background: var(--header-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin-bottom: 26px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-pills {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        .nav-pills::-webkit-scrollbar { display: none; }
+        .nav-pill-btn {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .nav-pill-btn:hover, .nav-pill-btn.active {
+            background: var(--accent-chirp);
+            color: white;
+            border-color: var(--accent-chirp);
+            box-shadow: 0 4px 14px rgba(255, 69, 0, 0.3);
+            transform: translateY(-1px);
+        }
+
         /* Full Article Container Card */
         .content-card { 
             background: var(--bg-surface); 
@@ -187,7 +241,7 @@
             margin-bottom: 32px; 
             box-shadow: var(--shadow-sm);
         }
-        .article-section { margin-bottom: 48px; }
+        .article-section { margin-bottom: 48px; scroll-margin-top: 145px; }
         .article-section:last-child { margin-bottom: 0; }
         
         .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
@@ -281,6 +335,21 @@
         .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 44px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255,0,0,0.4); }
         .yt-play-btn::before { content: ""; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
 
+        /* FAQ Accordion Section */
+        .faq-list { display: flex; flex-direction: column; gap: 14px; margin-top: 22px; }
+        .faq-item { 
+            background: var(--card-subtle); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 14px; 
+            overflow: hidden; 
+        }
+        .faq-item:hover { border-color: var(--accent-chirp); box-shadow: var(--shadow-sm); }
+        .faq-question { padding: 18px 22px; font-size: 15px; font-weight: 700; color: var(--text-heading); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .faq-answer { padding: 0 22px 18px 22px; font-size: 14px; color: var(--text-muted); line-height: 1.7; display: none; }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent-chirp); }
+        .faq-icon { font-size: 20px; font-weight: 800; transition: transform 0.2s; color: var(--text-muted); }
+
         /* Important Disclosure Box */
         .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
         .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14px; }
@@ -299,6 +368,8 @@
             .section-header h3 { font-size: 18px; }
             .feature-grid-2x2 { grid-template-columns: 1fr; }
             .video-grid-2 { grid-template-columns: 1fr; }
+            .quick-jump-container { top: 62px; padding: 8px 10px; }
+            .nav-pill-btn { padding: 7px 10px; font-size: 11px; }
             .stats-table th, .stats-table td { padding: 12px 14px; }
         }
     </style>
@@ -345,11 +416,25 @@
                 </div>
             </div>
 
+            <!-- 📍 Sticky Quick Jump Navigation Bar - Optimized -->
+            <div class="quick-jump-container">
+                <div class="nav-pills">
+                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is Chirp</a>
+                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. Scale & Architecture</a>
+                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. Tokenomics</a>
+                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. Keepers & Hardware</a>
+                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. NFT Redemption</a>
+                    <a href="#section-6" class="nav-pill-btn" id="pill-sec-6">6. Pro Tips</a>
+                    <a href="#section-7" class="nav-pill-btn" id="pill-sec-7">7. Video Guides</a>
+                    <a href="#section-8" class="nav-pill-btn" id="pill-sec-8">8. FAQs</a>
+                </div>
+            </div>
+
             <!-- Full Article Content -->
             <div class="content-card">
 
                 <!-- Point 1: What is Chirp Network -->
-                <div class="article-section">
+                <div class="article-section" id="section-1">
                     <div class="section-header">
                         <div class="section-number">1</div>
                         <h3>What is Chirp Network? (The Universal IoT Web)</h3>
@@ -363,7 +448,7 @@
                 </div>
 
                 <!-- Point 2: Network Scale & Architecture -->
-                <div class="article-section">
+                <div class="article-section" id="section-2">
                     <div class="section-header">
                         <div class="section-number">2</div>
                         <h3>Infrastructure Scale & Technical Architecture</h3>
@@ -390,7 +475,7 @@
                 </div>
 
                 <!-- Point 3: Tokenomics & Ecosystem Growth -->
-                <div class="article-section">
+                <div class="article-section" id="section-3">
                     <div class="section-header">
                         <div class="section-number">3</div>
                         <h3>Tokenomics & The $CHIRP Token Utility</h3>
@@ -419,7 +504,7 @@
                 </div>
 
                 <!-- Point 4: Active Hardware Earning (Keepers) -->
-                <div class="article-section">
+                <div class="article-section" id="section-4">
                     <div class="section-header">
                         <div class="section-number">4</div>
                         <h3>Active Earning: Becoming a Hardware "Keeper"</h3>
@@ -440,7 +525,7 @@
                 </div>
 
                 <!-- Point 5: Anti-Spoofing & The NFT Miner System -->
-                <div class="article-section">
+                <div class="article-section" id="section-5">
                     <div class="section-header">
                         <div class="section-number">5</div>
                         <h3>Security Mechanics: The NFT-to-Hardware Redemption</h3>
@@ -457,7 +542,7 @@
                 </div>
 
                 <!-- Point 6: Total Crypto Network Pro Tips -->
-                <div class="article-section">
+                <div class="article-section" id="section-6">
                     <div class="section-header">
                         <div class="section-number">6</div>
                         <h3>Total Crypto Network Pro Tips: Earning Without Hardware</h3>
@@ -472,7 +557,7 @@
                 </div>
 
                 <!-- Point 7: Video Guides -->
-                <div class="article-section">
+                <div class="article-section" id="section-7">
                     <div class="section-header">
                         <div class="section-number">7</div>
                         <h3>Complete Step-by-Step Setup Guides</h3>
@@ -496,6 +581,66 @@
                             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
                                 <div class="yt-play-btn"></div>
                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 8: FAQs -->
+                <div class="article-section" id="section-8">
+                    <div class="section-header">
+                        <div class="section-number">8</div>
+                        <h3>Frequently Asked Questions</h3>
+                    </div>
+                    
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                What is Chirp Network and how does it work?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Chirp Network is a decentralized IoT telecommunications infrastructure built on the Sui blockchain, connecting smart devices via LoRaWAN and LoRa 2.4GHz.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                How do I get a Blackbird Gateway miner?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                You must acquire a 'Skyward Soarer' NFT from official collections or secondary markets, and then burn/redeem it through the Chirp dashboard to receive your physical hardware.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                Can I earn $CHIRP without buying hardware?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Yes! You can use the Kage mobile application on your smartphone to participate in decentralized data hunting and earn rewards.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                Which blockchain does Chirp use?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Chirp operates natively on the Sui Network, utilizing its high-throughput infrastructure and Walrus data-anchoring systems.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                Where can I explore official Chirp mining portals?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                You can visit the official portal at <a href="https://chirptoken.io/mining/" target="_blank" style="color: var(--accent-chirp);">chirptoken.io/mining</a>.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -548,6 +693,33 @@
             const btn = document.getElementById('themeBtn');
             if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
         }
+
+        /* FAQ Accordion Function */
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('open');
+        }
+
+        /* Automatic ScrollSpy Navigation Highlighting */
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.article-section');
+            const navPills = document.querySelectorAll('.nav-pill-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 180)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navPills.forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.getAttribute('href') === '#' + current) {
+                    pill.classList.add('active');
+                }
+            });
+        });
 
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
