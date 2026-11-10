@@ -421,7 +421,7 @@
                 
                 <div class="header-actions">
                     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <!-- Button text updated to 'Back to Community' -->
+                    <!-- Back Button Text -->
                     <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community</button>
                 </div>
             </header>
@@ -721,12 +721,14 @@
             });
         }
 
-        /* 🚀 Smart Back Function to Mobile Mining */
+        /* 🚀 Position-Preserving Smart Back Navigation */
         function goBack() {
             if (document.referrer && document.referrer.includes('mobile-mining.html')) {
+                // अगर यूजर कम्युनिटी लिस्ट से आया था, तो ठीक उसी स्क्रॉल पोजीशन पर वापस ले जाएगा
                 window.history.back();
             } else {
-                window.location.href = '../mobile-pages/mobile-mining.html';
+                // अगर यूजर डायरेक्ट लिंक से आया है, तो एंकर ID (#realgo) के साथ लिस्ट में पहुंचेगा
+                window.location.href = '../mobile-pages/mobile-mining.html#realgo';
             }
         }
 
