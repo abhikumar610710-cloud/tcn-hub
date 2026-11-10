@@ -109,6 +109,7 @@
             gap: 6px; 
             border: 1px solid var(--accent-primary);
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            cursor: pointer;
         }
         .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
 
@@ -360,7 +361,7 @@
         .faq-icon { font-size: 20px; font-weight: 800; transition: transform 0.2s; color: var(--text-muted); }
 
         /* Important Disclosure Box */
-        .disclosure-box { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
+        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
         .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14px; }
 
         /* Footer */
@@ -390,7 +391,7 @@
     <main>
         <div class="site-container">
 
-            <!-- Master Header with DePIN Back Button -->
+            <!-- Master Header with History Back Button -->
             <header class="site-header">
                 <a href="../index.html" class="header-brand">
                     <div class="header-logo">
@@ -404,7 +405,8 @@
                 
                 <div class="header-actions">
                     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <a href="../depin-pages/depin.html" class="back-to-hub-btn">← Back to DePIN</a>
+                    <!-- Fixed history.back() to return exactly to previous scroll/filter position -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to DePIN</button>
                 </div>
             </header>
 
@@ -697,7 +699,16 @@
 
     <!-- Scripts -->
     <script>
-        // Stable Theme Toggle Function
+        /* 🚀 Smart Back Function */
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = '../depin-pages/depin.html';
+            }
+        }
+
+        /* Stable Theme Toggle Function */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -709,13 +720,13 @@
             if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
         }
 
-        // FAQ Accordion Function
+        /* FAQ Accordion Function */
         function toggleFaq(element) {
             const faqItem = element.parentElement;
             faqItem.classList.toggle('open');
         }
 
-        // Automatic ScrollSpy Navigation Highlighting
+        /* Automatic ScrollSpy Navigation Highlighting */
         window.addEventListener('scroll', function() {
             const sections = document.querySelectorAll('.article-section');
             const navPills = document.querySelectorAll('.nav-pill-btn');
@@ -744,4 +755,4 @@
         };
     </script>
 </body>
-</html>s
+</html>
