@@ -418,7 +418,7 @@
     <main>
         <div class="site-container">
 
-            <!-- Master Header with History Back Button -->
+            <!-- Master Header with Smart Back Button -->
             <header class="site-header">
                 <a href="../index.html" class="header-brand">
                     <div class="header-logo">
@@ -432,8 +432,8 @@
                 
                 <div class="header-actions">
                     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <!-- Corrected goBack() fallback to mobile-mining.html -->
-                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community Projects</button>
+                    <!-- Back to Community Button with Smart Function -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community</button>
                 </div>
             </header>
 
@@ -724,12 +724,14 @@
             });
         }
 
-        /* 🚀 Smart Back Function with Corrected Path for mobile-projects to mobile-mining.html */
+        /* 🚀 Smart Position-Preserving Back Navigation */
         function goBack() {
             if (document.referrer && document.referrer.includes('mobile-mining.html')) {
+                // अगर यूजर कम्युनिटी लिस्ट से आया है, तो उसी स्क्रॉल पोजीशन पर वापस जाएगा
                 window.history.back();
             } else {
-                window.location.href = '../mobile-pages/mobile-mining.html';
+                // अगर डायरेक्ट लिंक से आया है, तो #duckchain एंकर के साथ लिस्ट में पहुंचेगा
+                window.location.href = '../mobile-pages/mobile-mining.html#duckchain';
             }
         }
 
