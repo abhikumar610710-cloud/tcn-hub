@@ -36,8 +36,8 @@
             --card-subtle: #f8fafc;
             --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
             --hero-border: #a7f3d0;
-            --container-max-width: 1240px;
-            --container-padding: 24px;
+            --container-max-width: 1380px; /* चौड़ाई बढ़ा दी गई है */
+            --container-padding: 28px;
 
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
             --shadow-md: 0 10px 30px -5px rgba(16, 185, 129, 0.08);
@@ -80,7 +80,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 14px 0; 
+            padding: 16px 0; 
             position: sticky; 
             top: 0; 
             z-index: 100; 
@@ -119,14 +119,14 @@
         .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
 
         /* Main Section Padding */
-        main { flex: 1; padding: 24px 0 60px; }
+        main { flex: 1; padding: 28px 0 60px; }
 
         /* Hero Action Card */
         .project-hero-card { 
             background: var(--hero-bg); 
             border: 1.5px solid var(--hero-border); 
             border-radius: 24px; 
-            padding: 30px 34px; 
+            padding: 32px 38px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -214,16 +214,16 @@
         }
         .btn-join:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45); }
 
-        /* 📍 Sticky Quick Jump Navigation Bar - Optimized */
+        /* 📍 Sticky Quick Jump Navigation Bar - Fixed 1 to 8 Cuting Issue */
         .quick-jump-container {
             position: sticky;
-            top: 72px;
+            top: 74px;
             z-index: 90;
             background: var(--header-bg);
             border: 1.5px solid var(--border-color);
             border-radius: 16px;
-            padding: 10px 14px;
-            margin-bottom: 26px;
+            padding: 12px 18px;
+            margin-bottom: 28px;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             box-shadow: var(--shadow-sm);
@@ -231,27 +231,31 @@
         .nav-pills {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 6px;
+            justify-content: flex-start;
+            gap: 10px;
             overflow-x: auto;
             white-space: nowrap;
-            scrollbar-width: none;
+            padding-bottom: 2px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) transparent;
         }
-        .nav-pills::-webkit-scrollbar { display: none; }
+        .nav-pills::-webkit-scrollbar { height: 4px; }
+        .nav-pills::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        
         .nav-pill-btn {
             background: var(--card-subtle);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 50px;
-            font-size: 11.5px;
+            font-size: 12px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             cursor: pointer;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Ensures items never shrink or get cut */
         }
         .nav-pill-btn:hover, .nav-pill-btn.active {
             background: var(--accent-primary);
@@ -266,17 +270,17 @@
             background: var(--bg-surface); 
             border: 1.5px solid var(--border-color); 
             border-radius: 24px; 
-            padding: 42px; 
+            padding: 48px; 
             margin-bottom: 32px; 
             box-shadow: var(--shadow-sm);
         }
-        .article-section { margin-bottom: 48px; scroll-margin-top: 145px; }
+        .article-section { margin-bottom: 52px; scroll-margin-top: 155px; }
         .article-section:last-child { margin-bottom: 0; }
         
-        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
         .section-number { 
-            width: 34px; 
-            height: 34px; 
+            width: 36px; 
+            height: 36px; 
             border-radius: 10px; 
             background: var(--accent-primary); 
             color: white; 
@@ -284,79 +288,53 @@
             align-items: center; 
             justify-content: center; 
             font-weight: 800; 
-            font-size: 14px; 
+            font-size: 14.5px; 
             flex-shrink: 0; 
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
         }
-        .section-header h3 { font-size: 21px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
+        .section-header h3 { font-size: 22px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
 
-        .article-text { font-size: 15px; line-height: 1.85; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
+        .article-text { font-size: 15.5px; line-height: 1.85; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
         .article-text strong { color: var(--text-heading); font-weight: 700; }
 
         /* 2x2 Feature Cards */
-        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; }
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 24px 0; }
         .feature-box { 
             background: var(--card-subtle); 
             border: 1.5px solid var(--border-color); 
             border-left: 5px solid var(--accent-primary);
             border-radius: 16px; 
-            padding: 24px; 
+            padding: 26px; 
         }
         .feature-box:hover {
             border-color: var(--accent-xcroll-light);
             box-shadow: var(--shadow-hover);
             transform: translateY(-3px);
         }
-        .feature-box h4 { font-size: 15.5px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; }
-        .feature-box p { font-size: 13.5px; color: var(--text-muted); line-height: 1.68; }
+        .feature-box h4 { font-size: 16px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; }
+        .feature-box p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
         /* Real-Time Stats Table */
         .stats-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--card-subtle); border-radius: 16px; overflow: hidden; border: 1.5px solid var(--border-color); }
-        .stats-table th, .stats-table td { padding: 16px 22px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14.5px; }
+        .stats-table th, .stats-table td { padding: 16px 24px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 15px; }
         .stats-table th { background: var(--bg-surface); color: var(--text-heading); font-weight: 700; width: 35%; }
         .stats-table td { color: var(--text-body); }
         .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-        /* Alert Warning Box */
-        .alert-box { 
-            background: rgba(245, 158, 11, 0.06); 
-            border: 1.5px solid rgba(245, 158, 11, 0.3);
-            border-left: 5px solid #f59e0b; 
-            padding: 24px 28px; 
-            border-radius: 16px; 
-            margin: 24px 0; 
-        }
-        .alert-box h5 { color: #d97706; font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
-        .alert-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
-        .alert-box p:last-child { margin-bottom: 0; }
-
-        /* Rule Box Style */
-        .rule-box {
-            background: var(--card-subtle); 
-            border: 1.5px solid var(--border-color); 
-            border-left: 5px solid var(--accent-primary);
-            border-radius: 16px; 
-            padding: 24px 28px; 
-            margin: 24px 0;
-        }
-        .rule-box h5 { color: var(--text-heading); font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
-        .rule-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
-        .rule-box p:last-child { margin-bottom: 0; }
-
         /* 2-Column Video Showcase */
-        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
+        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 24px; }
         .video-box { 
             background: var(--card-subtle); 
             border: 1.5px solid var(--border-color); 
             border-radius: 18px; 
-            padding: 20px; 
+            padding: 22px; 
         }
         .video-box:hover { 
             border-color: #ff0000; 
             box-shadow: 0 10px 25px -5px rgba(255, 0, 0, 0.18); 
             transform: translateY(-3px); 
         }
-        .video-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .video-box h4 { font-size: 15px; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
         
         .mock-youtube-player { background: #000; border-radius: 14px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
         .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.12); }
@@ -373,32 +351,32 @@
             overflow: hidden; 
         }
         .faq-item:hover { border-color: var(--accent-xcroll-light); box-shadow: var(--shadow-sm); }
-        .faq-question { padding: 18px 22px; font-size: 15px; font-weight: 700; color: var(--text-heading); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-        .faq-answer { padding: 0 22px 18px 22px; font-size: 14px; color: var(--text-muted); line-height: 1.7; display: none; }
+        .faq-question { padding: 18px 24px; font-size: 15.5px; font-weight: 700; color: var(--text-heading); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .faq-answer { padding: 0 24px 18px 24px; font-size: 14.5px; color: var(--text-muted); line-height: 1.7; display: none; }
         .faq-item.open .faq-answer { display: block; }
         .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent-xcroll-light); }
         .faq-icon { font-size: 20px; font-weight: 800; transition: transform 0.2s; color: var(--text-muted); }
 
         /* Important Disclosure Box */
-        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
-        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14px; }
+        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 22px 26px; font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14.5px; }
 
         /* Footer */
-        footer { padding: 30px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
+        footer { padding: 32px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
         .footer-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13.5px; font-weight: 600; }
         .footer-links a:hover { color: var(--accent-xcroll-light); text-decoration: underline; }
 
         @media (max-width: 768px) {
             :root { --container-padding: 16px; }
-            .content-card { padding: 24px 18px; }
+            .content-card { padding: 26px 18px; }
             .project-hero-card { flex-direction: column; align-items: flex-start; padding: 22px; }
             .hero-right { width: 100%; justify-content: flex-start; }
-            .section-header h3 { font-size: 18px; }
+            .section-header h3 { font-size: 19px; }
             .feature-grid-2x2 { grid-template-columns: 1fr; }
             .video-grid-2 { grid-template-columns: 1fr; }
-            .quick-jump-container { top: 62px; padding: 8px 10px; }
-            .nav-pill-btn { padding: 7px 10px; font-size: 11px; }
+            .quick-jump-container { top: 62px; padding: 10px 12px; }
+            .nav-pill-btn { padding: 7px 12px; font-size: 11.5px; }
             .stats-table th, .stats-table td { padding: 12px 14px; }
             .invite-box { flex: 1; justify-content: space-between; }
         }
@@ -412,7 +390,6 @@
 
             <!-- Master Header -->
             <header class="site-header">
-                <!-- tcn-hub/mobile-projects/xcroll.html से रूट index.html पर जाने का सही पाथ -->
                 <a href="../index.html" class="header-brand">
                     <div class="header-logo">
                         <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
@@ -425,8 +402,8 @@
                 
                 <div class="header-actions">
                     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <!-- Back Button: अब यह सही से mobile-pages/mobile-mining.html पर ले जाएगा -->
-                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community</button>
+                    <!-- Back Button using Real Browser History -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Previous Page</button>
                 </div>
             </header>
 
@@ -455,7 +432,7 @@
                 </div>
             </div>
 
-            <!-- Quick Jump Navigation -->
+            <!-- Quick Jump Navigation (1 to 8 Fixed, No Cutting) -->
             <div class="quick-jump-container">
                 <div class="nav-pills">
                     <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is Xcroll</a>
@@ -480,6 +457,9 @@
                     <p class="article-text">
                         <strong>Xcroll</strong> is an innovative mobile application designed to reward users for their everyday digital activities. Instead of enjoying entertainment, gaming, and online shopping on standard centralized platforms without getting any returns, Xcroll connects your daily habits directly to verifiable web3 rewards and the native <strong>$XCR</strong> token ecosystem.
                     </p>
+                    <p class="article-text">
+                        The app integrates seamlessly with popular video consumption formats, interactive mobile missions, and retail partner stores, ensuring that your digital footprint translates into real-world value.
+                    </p>
                 </div>
 
                 <div class="article-section" id="section-2">
@@ -490,19 +470,19 @@
                     <div class="feature-grid-2x2">
                         <div class="feature-box">
                             <h4>📺 Watch & Scroll (WP)</h4>
-                            <p>Connect your YouTube and TikTok viewing habits to earn Watch Points.</p>
+                            <p>Connect your YouTube and TikTok viewing habits. Switch effortlessly between long-form videos, shorts, and subscribed channels to earn Watch Points.</p>
                         </div>
                         <div class="feature-box">
                             <h4>🎮 Play Games (GP)</h4>
-                            <p>Install recommended mobile games and complete missions to earn Game Points.</p>
+                            <p>Explore partner offers, install recommended mobile games, and complete specific in-game mission steps to earn Game Points.</p>
                         </div>
                         <div class="feature-box">
                             <h4>🛍️ Shop Online (SP)</h4>
-                            <p>Open verified partner stores via Xcroll Shop and earn Shopping Points.</p>
+                            <p>Open verified partner stores directly via Xcroll Shop, make eligible purchases, and earn Shopping Points.</p>
                         </div>
                         <div class="feature-box">
                             <h4>🔄 Unified Wallet</h4>
-                            <p>Manage all your distinct activity point balances (WP, GP, SP) from a single dashboard.</p>
+                            <p>Manage all your distinct activity point balances (WP, GP, SP) from a single intuitive dashboard inside your mobile wallet[cite: 4].</p>
                         </div>
                     </div>
                 </div>
@@ -516,15 +496,15 @@
                         <tbody>
                             <tr>
                                 <th>Watch Points (WP)</th>
-                                <td>Earned through eligible viewing and video feed interactions.</td>
+                                <td>Earned through eligible viewing, scrolling, and interacting with video feeds (YouTube & TikTok integration).</td>
                             </tr>
                             <tr>
                                 <th>Game Points (GP)</th>
-                                <td>Earned after completing interactive gaming missions.</td>
+                                <td>Earned upon successful partner approval after completing interactive gaming missions and installing recommended apps.</td>
                             </tr>
                             <tr>
                                 <th>Shopping Points (SP)</th>
-                                <td>Earned when partner stores confirm retail purchases.</td>
+                                <td>Earned when partner stores confirm eligible retail purchases made through the built-in shopping portal.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -536,7 +516,7 @@
                         <h3>$XCR Token Exchange & Conversion Mechanics</h3>
                     </div>
                     <p class="article-text">
-                        Accumulated points can be converted into the ecosystem's core asset—<strong>$XCR (Xcroll Token)</strong> by registering a compatible non-custodial wallet and submitting requests during open rounds.
+                        Once you accumulate eligible points through daily app activity, you can request exchanges into the ecosystem's core asset—<strong>$XCR (Xcroll Token)</strong>. By linking a non-custodial wallet and participating in seasonal open rounds, users can seamlessly transition their digital activity points into tradeable tokens.
                     </p>
                 </div>
 
@@ -546,7 +526,7 @@
                         <h3>Reward Options: Vouchers, Withdrawals & Swaps</h3>
                     </div>
                     <p class="article-text">
-                        Redeem points for gift vouchers, cash withdrawals (for GP/SP), or swap them directly into $XCR ecosystem tokens.
+                        Xcroll offers versatile redemption options tailored to user preferences and regional availability, ranging from convenience store gift vouchers and cash withdrawals to direct $XCR token swaps.
                     </p>
                 </div>
 
@@ -556,7 +536,7 @@
                         <h3>Referral Program: Earn While Your Network Watches</h3>
                     </div>
                     <p class="article-text">
-                        Earn multi-tier referral bonuses: <strong>Level 1 (5%)</strong>, <strong>Level 2 (3%)</strong>, and <strong>Level 3 (2%)</strong> from your invited network's activity.
+                        When your invited network engages with the app and earns WP, you earn multi-tier referral bonuses: <strong>Level 1 (5%)</strong>, <strong>Level 2 (3%)</strong>, and <strong>Level 3 (2%)</strong>, allowing you to earn even on days you don't use the app yourself.
                     </p>
                 </div>
 
@@ -585,7 +565,11 @@
                     <div class="faq-list">
                         <div class="faq-item">
                             <div class="faq-question" onclick="toggleFaq(this)">What is Xcroll? <span class="faq-icon">+</span></div>
-                            <div class="faq-answer">Xcroll is a rewards application connecting everyday digital activities to $XCR token earnings.</div>
+                            <div class="faq-answer">Xcroll is a rewards application that connects your everyday video viewing, gaming, and shopping activities to $XCR token earnings.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">How do I earn Watch Points (WP)? <span class="faq-icon">+</span></div>
+                            <div class="faq-answer">You earn WP by connecting your YouTube and TikTok accounts and watching or scrolling through videos within the app.</div>
                         </div>
                     </div>
                 </div>
@@ -624,9 +608,13 @@
             });
         }
 
-        /* 🚀 Corrected Path: mobile-projects se mobile-pages/mobile-mining.html par jaane ke liye */
+        /* 🚀 Smart History Back Navigation: User jahan se aaya tha wahin wapas jayega */
         function goBack() {
-            window.location.href = '../mobile-pages/mobile-mining.html#xcroll';
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '../mobile-pages/mobile-mining.html';
+            }
         }
 
         function toggleTheme() {
@@ -641,6 +629,27 @@
         function toggleFaq(element) {
             element.parentElement.classList.toggle('open');
         }
+
+        /* ScrollSpy Highlighting */
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.article-section');
+            const navPills = document.querySelectorAll('.nav-pill-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 180)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navPills.forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.getAttribute('href') === '#' + current) {
+                    pill.classList.add('active');
+                }
+            });
+        });
 
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
