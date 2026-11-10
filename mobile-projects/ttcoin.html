@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Instant Anti-Flash Theme Script -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
@@ -19,334 +20,399 @@
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-bg: rgba(255, 255, 255, 0.92);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
+            
             --accent-primary: #059669; 
             --accent-hover: #047857;
-            --card-subtle: #f1f5f9;
+            --accent-ttcoin: #059669; 
+            --accent-ttcoin-light: #10b981; 
+            --accent-light: rgba(16, 185, 129, 0.12);
+            --accent-subtle: rgba(5, 150, 105, 0.08);
+            
+            --card-subtle: #f8fafc;
+            --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
+            --hero-border: #a7f3d0;
             --container-max-width: 1240px;
             --container-padding: 24px;
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 30px -5px rgba(16, 185, 129, 0.08);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.16);
         }
+
         [data-theme="dark"] {
             --bg-body: #070a12;
             --bg-surface: #0b1120;
-            --header-bg: rgba(11, 17, 32, 0.95);
+            --header-bg: rgba(11, 17, 32, 0.92);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
             --text-body: #cbd5e1;
             --text-muted: #94a3b8;
+            
             --accent-primary: #10b981; 
             --accent-hover: #34d399;
+            --accent-ttcoin: #10b981; 
+            --accent-ttcoin-light: #34d399;
+            --accent-light: rgba(16, 185, 129, 0.2);
+            --accent-subtle: rgba(16, 185, 129, 0.12);
+            
             --card-subtle: #131c31;
+            --hero-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%);
+            --hero-border: rgba(16, 185, 129, 0.35);
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.4);
+            --shadow-hover: 0 14px 35px -5px rgba(16, 185, 129, 0.25);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+        html { scroll-behavior: smooth; }
         body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
 
         .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 
-        /* Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--accent-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg-surface); padding: 1px; }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); }
-
-        .btn-hub-glow { 
+        /* Master Header Styles */
+        .site-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .header-logo { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--accent-primary); box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); flex-shrink: 0; }
+        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .header-title-box { display: flex; flex-direction: column; }
+        .header-title { font-size: 18px; font-weight: 800; color: var(--text-heading); line-height: 1.2; letter-spacing: -0.3px; }
+        .header-subtitle { font-size: 11px; font-weight: 600; color: var(--text-muted); }
+        
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+        .theme-toggle { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--text-heading); flex-shrink: 0; }
+        .theme-toggle:hover { background: var(--accent-subtle); border-color: var(--accent-primary); }
+        
+        .back-to-hub-btn { 
             background: var(--accent-primary); 
-            color: white; 
+            color: #ffffff; 
             text-decoration: none; 
-            padding: 8px 18px; 
+            padding: 9px 20px; 
             border-radius: 50px; 
+            font-size: 12.5px; 
             font-weight: 700; 
-            font-size: 12px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
             border: 1px solid var(--accent-primary);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            white-space: nowrap;
             cursor: pointer;
         }
-        .btn-hub-glow:hover { 
-            background: var(--accent-hover); 
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
-            transform: translateY(-1px);
-        }
+        .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
 
-        .theme-btn { 
-            background: var(--card-subtle); 
-            border: 1px solid var(--border-color); 
-            color: var(--text-heading); 
-            cursor: pointer; 
-            padding: 7px 12px; 
-            border-radius: 50px; 
-            font-size: 14px;
-        }
-
+        /* Main Section Padding */
         main { flex: 1; padding: 24px 0 60px; }
 
-        /* Compact Hero Action Card */
+        /* Hero Action Card */
         .project-hero-card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 14px; 
-            padding: 18px 24px; 
+            background: var(--hero-bg); 
+            border: 1.5px solid var(--hero-border); 
+            border-radius: 24px; 
+            padding: 26px 32px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             flex-wrap: wrap; 
-            gap: 16px; 
-            margin-bottom: 22px; 
-            box-shadow: 0 2px 14px -2px rgba(0,0,0,0.03); 
+            gap: 20px; 
+            margin-bottom: 24px; 
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
         }
-        .hero-left { display: flex; align-items: center; gap: 16px; }
+        .project-hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 60%);
+            pointer-events: none;
+        }
+        .hero-left { display: flex; align-items: center; gap: 18px; position: relative; z-index: 2; }
+        
         .project-big-logo { 
-            width: 56px; 
-            height: 56px; 
-            border-radius: 14px; 
+            width: 68px; 
+            height: 68px; 
+            border-radius: 18px; 
             overflow: hidden; 
-            border: 1.5px solid var(--border-color); 
-            padding: 3px; 
-            background: var(--card-subtle); 
+            border: 2px solid var(--accent-ttcoin-light); 
+            padding: 4px; 
+            background: var(--bg-surface); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             flex-shrink: 0; 
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
         }
-        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-        .project-titles h2 { font-size: 21px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
-        .verified-badge { background: var(--accent-primary); color: white; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; }
-        .project-titles p { color: var(--text-muted); font-size: 13px; margin-top: 3px; font-weight: 500; }
+        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+
+        .project-titles h2 { font-size: 23px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .verified-badge { background: var(--accent-ttcoin-light); color: white; width: 19px; height: 19px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
         
-        .hero-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
-        .tag-pill { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
-        .tag-live { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .hero-tags { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+        .tag-pill { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag-live { background: rgba(16, 185, 129, 0.15); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.35); }
         .tag-subtle { background: var(--card-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
 
-        .hero-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .project-titles p { color: var(--text-muted); font-size: 13.5px; margin-top: 4px; font-weight: 500; }
+
+        .hero-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; position: relative; z-index: 2; }
         
-        .invite-box { background: var(--card-subtle); border: 1px solid var(--border-color); padding: 5px 6px 5px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
-        .invite-label { font-size: 9px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.4px; margin-bottom: 1px; }
-        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 13px; letter-spacing: 0.4px; line-height: 1; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .btn-copy { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-heading); padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .invite-box { background: var(--bg-surface); border: 1.5px solid var(--border-color); padding: 8px 10px 8px 16px; border-radius: 14px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-sm); }
+        .invite-label { font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+        .invite-code { font-weight: 800; color: var(--accent-primary); font-size: 13px; letter-spacing: 0.5px; line-height: 1; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .btn-copy { background: var(--card-subtle); border: 1px solid var(--border-color); color: var(--text-heading); padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:hover { border-color: var(--accent-primary); color: var(--accent-primary); background: rgba(16, 185, 129, 0.08); }
 
         .btn-join { 
             background: var(--accent-primary); 
             color: white; 
             text-decoration: none; 
-            padding: 10px 18px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 13px; 
+            padding: 12px 24px; 
+            border-radius: 14px; 
+            font-weight: 800; 
+            font-size: 13.5px; 
             display: inline-flex; 
             align-items: center; 
-            gap: 6px; 
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); 
-            transition: all 0.2s; 
+            gap: 8px; 
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.32); 
         }
-        .btn-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn-join:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45); }
 
-        /* 1240px Content Card */
+        /* 📍 Sticky Quick Jump Navigation Bar - Optimized */
+        .quick-jump-container {
+            position: sticky;
+            top: 72px;
+            z-index: 90;
+            background: var(--header-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin-bottom: 26px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-pills {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        .nav-pills::-webkit-scrollbar { display: none; }
+        .nav-pill-btn {
+            background: var(--card-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .nav-pill-btn:hover, .nav-pill-btn.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* Full Article Container Card */
         .content-card { 
             background: var(--bg-surface); 
-            border: 1px solid var(--border-color); 
-            border-radius: 16px; 
-            padding: 36px 40px; 
-            margin-bottom: 28px; 
-            box-shadow: 0 4px 24px -4px rgba(0,0,0,0.03); 
+            border: 1.5px solid var(--border-color); 
+            border-radius: 24px; 
+            padding: 42px; 
+            margin-bottom: 32px; 
+            box-shadow: var(--shadow-sm);
         }
-        .article-section { margin-bottom: 36px; }
+        .article-section { margin-bottom: 48px; scroll-margin-top: 145px; }
         .article-section:last-child { margin-bottom: 0; }
         
-        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
         .section-number { 
-            width: 30px; 
-            height: 30px; 
-            border-radius: 8px; 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 10px; 
             background: var(--accent-primary); 
             color: white; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-weight: 800; 
-            font-size: 13.5px; 
+            font-size: 14px; 
             flex-shrink: 0; 
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
         }
-        .section-header h3 { font-size: 18.5px; color: var(--text-heading); font-weight: 800; }
+        .section-header h3 { font-size: 21px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
 
-        .article-text { font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 14px; }
+        .article-text { font-size: 15px; line-height: 1.85; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
         .article-text strong { color: var(--text-heading); font-weight: 700; }
 
         /* Linear Flow Boxes */
-        .linear-flow { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .linear-flow { display: flex; flex-direction: column; gap: 14px; margin: 20px 0; }
         .flow-step {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-primary);
-            border-radius: 8px;
-            padding: 16px 20px;
+            background: var(--card-subtle);
+            border: 1.5px solid var(--border-color);
+            border-left: 5px solid var(--accent-primary);
+            border-radius: 14px;
+            padding: 20px 24px;
         }
-        .flow-step h4 { font-size: 14.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 6px; }
-        .flow-step p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; margin: 0; }
+        .flow-step h4 { font-size: 15.5px; color: var(--text-heading); font-weight: 700; margin-bottom: 8px; }
+        .flow-step p { font-size: 14px; color: var(--text-body); line-height: 1.7; margin: 0; }
 
         /* Section 3 Verification Box */
         .tokenomics-verify-box {
             background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-top: 20px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-top: 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
         }
-        .verify-text-area h5 { font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 2px; }
-        .verify-text-area p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
-        .verify-buttons { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .verify-text-area h5 { font-size: 15px; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; }
+        .verify-text-area p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+        .verify-buttons { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .btn-audit {
             background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             color: var(--text-heading);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 12.5px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s;
         }
         .btn-audit:hover {
             border-color: var(--accent-primary);
             color: var(--accent-primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: rgba(16, 185, 129, 0.08);
+            transform: translateY(-1px);
         }
 
-        /* Alert Box */
+        /* Alert Warning Box */
         .alert-box { 
-            background: rgba(245, 158, 11, 0.08); 
-            border-left: 4px solid #f59e0b; 
-            padding: 18px 22px; 
-            border-radius: 0 8px 8px 0; 
-            margin: 20px 0; 
+            background: rgba(245, 158, 11, 0.06); 
+            border: 1.5px solid rgba(245, 158, 11, 0.3);
+            border-left: 5px solid #f59e0b; 
+            padding: 24px 28px; 
+            border-radius: 16px; 
+            margin: 24px 0; 
         }
-        .alert-box h5 { color: #d97706; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
-        .alert-box p { color: var(--text-body); font-size: 13.5px; line-height: 1.65; margin-bottom: 6px; }
+        .alert-box h5 { color: #d97706; font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
+        .alert-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
         .alert-box p:last-child { margin-bottom: 0; }
+        .alert-box code { background: var(--bg-surface); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 13px; border: 1px solid rgba(245, 158, 11, 0.3); }
 
         /* Video Showcase */
         .video-box-clean {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px;
-            margin-top: 14px;
-            max-width: 580px;
-        }
-        .video-box-clean h4 { font-size: 14px; color: var(--text-heading); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .mock-youtube-player { 
-            background: #000; 
-            border-radius: 8px; 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            cursor: pointer; 
-            display: block; 
-            text-decoration: none; 
-        }
-        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.08); }
-        .yt-play-btn { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 60px; 
-            height: 42px; 
-            background-color: #ff0000; 
-            border-radius: 10px; 
-            transition: transform 0.2s ease; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .yt-play-btn::before { content: ""; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
-
-        /* Disclosure */
-        .disclosure-box {
             background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px 22px;
-            font-size: 13px;
-            line-height: 1.65;
-            color: var(--text-muted);
-            margin-top: 30px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 18px;
+            padding: 22px;
+            margin-top: 20px;
+            max-width: 620px;
         }
-        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 13.5px; }
+        .video-box-clean:hover { border-color: #ff0000; box-shadow: 0 10px 25px -5px rgba(255, 0, 0, 0.18); }
+        .video-box-clean h4 { font-size: 15px; color: var(--text-heading); font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        
+        .mock-youtube-player { background: #000; border-radius: 14px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
+        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.12); }
+        
+        .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 44px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255,0,0,0.4); }
+        .yt-play-btn::before { content: ""; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+
+        /* Important Disclosure Box */
+        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
+        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14px; }
 
         /* Footer */
-        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-primary); }
+        footer { padding: 30px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
+        .footer-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent-ttcoin-light); text-decoration: underline; }
 
         @media (max-width: 768px) {
             :root { --container-padding: 16px; }
-            .content-card { padding: 22px 18px; }
-            .project-hero-card { flex-direction: column; align-items: flex-start; }
+            .content-card { padding: 24px 18px; }
+            .project-hero-card { flex-direction: column; align-items: flex-start; padding: 22px; }
             .hero-right { width: 100%; flex-direction: column; align-items: stretch; }
-            .invite-box { justify-content: space-between; }
+            .invite-box { justify-content: space-between; width: 100%; }
             .btn-join { width: 100%; justify-content: center; }
+            .section-header h3 { font-size: 18px; }
             .tokenomics-verify-box { flex-direction: column; align-items: flex-start; }
             .verify-buttons { width: 100%; }
             .btn-audit { width: 100%; justify-content: center; }
-            .section-header h3 { font-size: 17.5px; }
+            .quick-jump-container { top: 62px; padding: 8px 10px; }
+            .nav-pill-btn { padding: 7px 12px; font-size: 11px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="site-container header-inner">
-            <a href="../index.html" class="logo-box" translate="no">
-                <div class="logo-icon">
-                    <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.parentNode.innerHTML='TCN';">
-                </div>
-                <div class="logo-text">
-                    <h1>Total Crypto Hub</h1>
-                    <span>by <b>Total Crypto Network</b></span>
-                </div>
-            </a>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
-                <button onclick="goBack()" class="btn-hub-glow" style="border: none; cursor: pointer;">← Back to Community</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Area (1240px Canvas) -->
+    <!-- Main Content Area -->
     <main>
         <div class="site-container">
+
+            <!-- Master Header with Smart Back Button -->
+            <header class="site-header">
+                <a href="../index.html" class="header-brand">
+                    <div class="header-logo">
+                        <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
+                    </div>
+                    <div class="header-title-box">
+                        <div class="header-title">Total Crypto Hub</div>
+                        <div class="header-subtitle">by Total Crypto Network</div>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
+                    <!-- Position-Preserving Smart Back Navigation Button -->
+                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to Community</button>
+                </div>
+            </header>
 
             <!-- Compact Hero Action Card with Referral Box -->
             <div class="project-hero-card">
                 <div class="hero-left">
                     <div class="project-big-logo">
-                        <img src="../logos/ttcoin.png" alt="TTcoin Logo" onerror="this.parentNode.innerHTML='TC';">
+                        <img src="../logos/ttcoin.png" alt="TTcoin Logo" onerror="this.src='../logos/tcn-logo.png';">
                     </div>
                     <div class="project-titles">
-                        <h2 translate="no">TTcoin (TC) <span class="verified-badge">✓</span></h2>
+                        <h2 class="notranslate" translate="no">TTcoin (TC) <span class="verified-badge">✓</span></h2>
                         <p>Smart Chain Network (TSC), Multi-Chain Asset & Mobile Mining Architecture</p>
                         <div class="hero-tags">
                             <span class="tag-pill tag-live">🟢 Live Mainnet (TSC / BSC)</span>
@@ -369,25 +435,37 @@
                 </div>
             </div>
 
+            <!-- 📍 Sticky Quick Jump Navigation Bar - Optimized -->
+            <div class="quick-jump-container">
+                <div class="nav-pills">
+                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is TTcoin</a>
+                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. Mobile Mining</a>
+                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. Supply & Burns</a>
+                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. Ecosystem Utilities</a>
+                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. Markets & Safety</a>
+                    <a href="#section-6" class="nav-pill-btn" id="pill-sec-6">6. Video Guide</a>
+                </div>
+            </div>
+
             <!-- Full-Length 1240px Content Card -->
             <div class="content-card">
 
                 <!-- Point 1: What is TTcoin -->
-                <div class="article-section">
+                <div class="article-section" id="section-1">
                     <div class="section-header">
                         <div class="section-number">1</div>
                         <h3>What is TTcoin? (Origins, TSC Smart Chain & Governance)</h3>
                     </div>
                     <p class="article-text">
-                        <strong>TTcoin (TC)</strong> was founded on March 24, 2021, and operates under the corporate governance of <strong>TTcoin Joint Stock Company</strong>[cite: 9, 11]. Built to establish an accessible digital value ecosystem, TTcoin has expanded to over 20 million community users and more than 419,000 registered non-custodial wallets globally[cite: 6].
+                        <strong>TTcoin (TC)</strong> was founded on March 24, 2021, and operates under the corporate governance of <strong>TTcoin Joint Stock Company</strong>. Built to establish an accessible digital value ecosystem, TTcoin has expanded to over 20 million community users and more than 419,000 registered non-custodial wallets globally.
                     </p>
                     <p class="article-text">
-                        Rather than functioning solely as a third-party token, TTcoin operates its own independent Layer-1 smart contract infrastructure—<strong>TTcoin Smart Chain (TSC)</strong>[cite: 8]. To maximize cross-chain liquidity and decentralized finance interoperability, TC is also bridged and traded across <strong>BNB Smart Chain (BEP-20)</strong> and <strong>Tron Network (TRC-20)</strong>.
+                        Rather than functioning solely as a third-party token, TTcoin operates its own independent Layer-1 smart contract infrastructure—<strong>TTcoin Smart Chain (TSC)</strong>. To maximize cross-chain liquidity and decentralized finance interoperability, TC is also bridged and traded across <strong>BNB Smart Chain (BEP-20)</strong> and <strong>Tron Network (TRC-20)</strong>.
                     </p>
                 </div>
 
                 <!-- Point 2: How Mobile Mining Works -->
-                <div class="article-section">
+                <div class="article-section" id="section-2">
                     <div class="section-header">
                         <div class="section-number">2</div>
                         <h3>How Mobile Mining Works: Daily Sessions & Cloud Node Rewards</h3>
@@ -402,38 +480,38 @@
                         </div>
                         <div class="flow-step">
                             <h4>🛡️ 2. Multi-Tier Reward Infrastructure</h4>
-                            <p>Session yield is allocated directly from the predefined <strong>Mining Reserve (2,716,299,669 TC)</strong>, ensuring fixed distribution limits that prevent arbitrary algorithmic token inflation[cite: 9].</p>
+                            <p>Session yield is allocated directly from the predefined <strong>Mining Reserve (2,716,299,669 TC)</strong>, ensuring fixed distribution limits that prevent arbitrary algorithmic token inflation.</p>
                         </div>
                         <div class="flow-step">
                             <h4>💼 3. TC-Wallet Pro Integration</h4>
-                            <p>Earned balances are migrated to <strong>TC-Wallet Pro</strong>, the native Web3 mobile wallet configured for the TSC Smart Chain, allowing secure local private key custody and decentralized transaction execution[cite: 7].</p>
+                            <p>Earned balances are migrated to <strong>TC-Wallet Pro</strong>, the native Web3 mobile wallet configured for the TSC Smart Chain, allowing secure local private key custody and decentralized transaction execution.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 3: Supply, Tokenomics & Burn Verification -->
-                <div class="article-section">
+                <div class="article-section" id="section-3">
                     <div class="section-header">
                         <div class="section-number">3</div>
                         <h3>Supply Metrics, Allocation & Massive Burn Records</h3>
                     </div>
                     <p class="article-text">
-                        TTcoin enforces strict on-chain transparency with fixed maximum parameters and aggressive deflationary burn mechanisms[cite: 9]:
+                        TTcoin enforces strict on-chain transparency with fixed maximum parameters and aggressive deflationary burn mechanisms:
                     </p>
                     <p class="article-text">
-                        • <strong>Maximum Hard Cap:</strong> <strong>12,173,162,931 TC</strong> (~12.17 Billion TC fixed ceiling)[cite: 9].<br>
-                        • <strong>Total Supply (Post-Burn):</strong> <strong>7,634,886,985 TC</strong> (~7.63 Billion TC remaining)[cite: 9].<br>
-                        • <strong>Circulating Supply:</strong> <strong>4,918,587,315 TC</strong> (~4.91 Billion active in ecosystem)[cite: 9].<br>
-                        • <strong>Permanent Token Burn:</strong> <strong>4,538,275,945 TC</strong> burned permanently to reduce circulating supply[cite: 9].<br>
-                        • <strong>Mining Reserve:</strong> <strong>2,716,299,669 TC</strong> dedicated exclusively to mobile and community rewards[cite: 9].<br>
-                        • <strong>Registered Wallet Addresses:</strong> Over <strong>419,476 wallets</strong> holding on-chain balances[cite: 9].
+                        • <strong>Maximum Hard Cap:</strong> <strong>12,173,162,931 TC</strong> (~12.17 Billion TC fixed ceiling).<br>
+                        • <strong>Total Supply (Post-Burn):</strong> <strong>7,634,886,985 TC</strong> (~7.63 Billion TC remaining).<br>
+                        • <strong>Circulating Supply:</strong> <strong>4,918,587,315 TC</strong> (~4.91 Billion active in ecosystem).<br>
+                        • <strong>Permanent Token Burn:</strong> <strong>4,538,275,945 TC</strong> burned permanently to reduce circulating supply.<br>
+                        • <strong>Mining Reserve:</strong> <strong>2,716,299,669 TC</strong> dedicated exclusively to mobile and community rewards.<br>
+                        • <strong>Registered Wallet Addresses:</strong> Over <strong>419,476 wallets</strong> holding on-chain balances.
                     </p>
 
                     <!-- Section 3 Verification Box -->
                     <div class="tokenomics-verify-box">
                         <div class="verify-text-area">
                             <h5>Official Protocol Audits & Documentation</h5>
-                            <p>Verify live supply figures, burn transactions, and smart contract ledgers via official tools[cite: 7, 9, 11]:</p>
+                            <p>Verify live supply figures, burn transactions, and smart contract ledgers via official tools:</p>
                         </div>
                         <div class="verify-buttons">
                             <a href="https://www.ttcoin.info/" target="_blank" class="btn-audit">📄 Official Portal & Files ↗</a>
@@ -443,57 +521,56 @@
                 </div>
 
                 <!-- Point 4: Verified Ecosystem Products -->
-                <div class="article-section">
+                <div class="article-section" id="section-4">
                     <div class="section-header">
                         <div class="section-number">4</div>
                         <h3>Verified Ecosystem Utilities: Beyond Mobile Mining</h3>
                     </div>
                     <p class="article-text">
-                        TTcoin has developed a functional product suite to maintain active utility for the TC token[cite: 6, 7]:
+                        TTcoin has developed a functional product suite to maintain active utility for the TC token:
                     </p>
                     
                     <div class="linear-flow">
                         <div class="flow-step">
                             <h4>🔍 1. TSCSCAN Blockchain Explorer</h4>
-                            <p>The sovereign block explorer (<code>tscscan.com</code>) providing real-time verification of blocks, validator status, smart contracts, and gas fees on the TTcoin Smart Chain[cite: 7].</p>
+                            <p>The sovereign block explorer (<code class="notranslate" translate="no">tscscan.com</code>) providing real-time verification of blocks, validator status, smart contracts, and gas fees on the TTcoin Smart Chain.</p>
                         </div>
                         <div class="flow-step">
                             <h4>💱 2. TetraSwap Decentralized Exchange</h4>
-                            <p>An ecosystem DEX enabling decentralized token swaps and instant trading routes for native TSC and bridged digital assets[cite: 7].</p>
+                            <p>An ecosystem DEX enabling decentralized token swaps and instant trading routes for native TSC and bridged digital assets.</p>
                         </div>
                         <div class="flow-step">
                             <h4>⚽ 3. TTcoin FC (Sports Presence)</h4>
-                            <p>The first professional sports club in the world established and sponsored directly by a cryptocurrency project (<code>ttcoinfc.com</code>), expanding mainstream brand adoption[cite: 7].</p>
+                            <p>The first professional sports club in the world established and sponsored directly by a cryptocurrency project (<code class="notranslate" translate="no">ttcoinfc.com</code>), expanding mainstream brand adoption.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 5: Real Markets & Liquidity Reality -->
-                <div class="article-section">
+                <div class="article-section" id="section-5">
                     <div class="section-header">
                         <div class="section-number">5</div>
                         <h3>Secondary Markets, Liquidity & Network Safety</h3>
                     </div>
                     <p class="article-text">
-                        <strong>Active Exchange Trading:</strong> Unlike enclosed testnets, TTcoin (TC) trades actively on secondary liquidity pools[cite: 10]. Users can trade TC on <strong>PancakeSwap v2 (BNB Smart Chain)</strong>, as well as centralized platforms including <strong>XT Exchange</strong> and <strong>KoinBX</strong>[cite: 10].
+                        <strong>Active Exchange Trading:</strong> Unlike enclosed testnets, TTcoin (TC) trades actively on secondary liquidity pools. Users can trade TC on <strong>PancakeSwap v2 (BNB Smart Chain)</strong>, as well as centralized platforms including <strong>XT Exchange</strong> and <strong>KoinBX</strong>.
                     </p>
-                    <p class="article-text">
-                        <div class="alert-box">
-                            <h5>⚠️ Multi-Chain Transfer Advisory:</h5>
-                            <p><strong>1. Verify Target Network:</strong> TC exists on both TSC Mainnet and BSC (BEP-20)[cite: 9]. When withdrawing to decentralized wallets or external exchanges, always verify that the network selected matches the receiving address.</p>
-                            <p><strong>2. Self-Custody Security:</strong> Never disclose your wallet recovery phrase or private keys to third parties. TTcoin administrators will never ask for personal seed credentials.</p>
-                        </div>
-                    </p>
+                    
+                    <div class="alert-box">
+                        <h5>⚠️ Multi-Chain Transfer Advisory:</h5>
+                        <p><strong>1. Verify Target Network:</strong> TC exists on both TSC Mainnet and BSC (BEP-20). When withdrawing to decentralized wallets or external exchanges, always verify that the network selected matches the receiving address.</p>
+                        <p><strong>2. Self-Custody Security:</strong> Never disclose your wallet recovery phrase or private keys to third parties. TTcoin administrators will never ask for personal seed credentials.</p>
+                    </div>
                 </div>
 
                 <!-- Point 6: Dedicated Video Walkthrough -->
-                <div class="article-section">
+                <div class="article-section" id="section-6">
                     <div class="section-header">
                         <div class="section-number">6</div>
                         <h3>Dedicated Video Setup & Mining Guide</h3>
                     </div>
                     <p class="article-text">
-                        Watch our complete video guide produced by <strong>Total Crypto Network</strong> covering registration, referral activation, TC-Wallet Pro setup, and token withdrawal routes:
+                        Watch our complete video guide produced by <strong class="notranslate" translate="no">Total Crypto Network</strong> covering registration, referral activation, TC-Wallet Pro setup, and token withdrawal routes:
                     </p>
                     
                     <div class="video-box-clean">
@@ -507,7 +584,7 @@
                 <!-- Disclosure -->
                 <div class="disclosure-box">
                     <strong>Important Protocol Disclosure</strong>
-                    Total Crypto Hub provides independent educational information and technical directories only. TTcoin is an autonomous digital asset operated by TTcoin Joint Stock Company[cite: 11]. Community mobile mining rewards represent early network participation. No initial capital investment or paid upgrades are required to participate.
+                    Total Crypto Hub provides independent educational information and technical directories only. TTcoin is an autonomous digital asset operated by TTcoin Joint Stock Company. Community mobile mining rewards represent early network participation. No initial capital investment or paid upgrades are required to participate.
                 </div>
 
             </div>
@@ -518,7 +595,7 @@
     <footer>
         <div class="site-container">
             <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; <span translate="no">2026 Total Crypto Network</span>. All rights reserved.
+                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
             </div>
             <div class="footer-links">
                 <a href="../legal-pages/about.html">About Us</a>
@@ -530,6 +607,7 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
         function copyCode() {
             const code = document.getElementById('inviteCode').innerText;
@@ -538,14 +616,16 @@
             });
         }
 
+        /* 🚀 Position-Preserving Smart Back Navigation */
         function goBack() {
-            if (document.referrer && document.referrer !== window.location.href) {
+            if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
                 window.history.back();
             } else {
-                window.location.href = '../mobile-pages/mobile-mining.html';
+                window.location.href = '../mobile-pages/mobile-mining.html#ttcoin';
             }
         }
 
+        /* Stable Theme Toggle Function */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -556,6 +636,27 @@
             const btn = document.getElementById('themeBtn');
             if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
         }
+
+        /* Automatic ScrollSpy Navigation Highlighting */
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.article-section');
+            const navPills = document.querySelectorAll('.nav-pill-btn');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 180)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navPills.forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.getAttribute('href') === '#' + current) {
+                    pill.classList.add('active');
+                }
+            });
+        });
 
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
