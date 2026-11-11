@@ -15,17 +15,17 @@
   <style>
     :root {
       color-scheme: light;
-      --page:#f5f8fc;
+      --page:#f3fbf8;
       --surface:#ffffff;
-      --surface-2:#f8fbff;
-      --line:#e5edf5;
-      --ink:#101b3d;
-      --body:#263858;
-      --muted:#71809b;
+      --surface-2:#f0fff9;
+      --line:#d9eee6;
+      --ink:#102b3d;
+      --body:#294a59;
+      --muted:#718b91;
       --green:#08a86b;
-      --green-dark:#078653;
-      --green-soft:#e8fbf3;
-      --shadow:0 12px 34px rgba(27,54,93,.07);
+      --green-dark:#087b58;
+      --green-soft:#e3fff3;
+      --shadow:0 12px 34px rgba(8,110,82,.09);
       --sidebar-width:258px;
       --sponsor-height:58px;
       --bg:var(--page);
@@ -36,13 +36,13 @@
 
     [data-theme="dark"] {
       color-scheme:dark;
-      --page:#080f1c;
-      --surface:#101b2c;
-      --surface-2:#142238;
-      --line:#24344b;
-      --ink:#f2f7ff;
-      --body:#d4e0f0;
-      --muted:#91a3bc;
+      --page:#071b20;
+      --surface:#10272c;
+      --surface-2:#143139;
+      --line:#254b4b;
+      --ink:#f0fff9;
+      --body:#d4eee5;
+      --muted:#91b3ad;
       --green:#20c889;
       --green-dark:#16a873;
       --green-soft:#123b32;
@@ -84,7 +84,7 @@
         radial-gradient(circle at 92% 50%, rgba(16, 185, 129, .22), transparent 18%),
         linear-gradient(100deg, #041d1b 0%, #061a24 48%, #031d1b 100%);
       border-bottom: 1px solid rgba(52, 211, 153, .28);
-      box-shadow: 0 5px 18px rgba(2, 20, 29, .16);
+      box-shadow: 0 5px 20px rgba(2, 20, 29, .18), 0 0 18px rgba(17, 208, 145, .08);
     }
 
     .sponsor-strip::before,
@@ -1332,6 +1332,291 @@
         transition:none!important;
       }
     }
+
+
+    /* ==============================
+       PREMIUM SPONSORED BANNER AD
+       The banner is a visual sponsor placeholder, not a live ad network.
+    ============================== */
+    .depin-ad-slot {
+      margin: 18px 0 23px;
+    }
+
+    .depin-ad-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 5px 8px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .depin-ad-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green-dark);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+
+    .depin-ad-label::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      flex: 0 0 7px;
+      border-radius: 50%;
+      background: #23d69c;
+      box-shadow: 0 0 0 4px rgba(35,214,156,.13), 0 0 13px rgba(35,214,156,.65);
+    }
+
+    .depin-ad-size { color: var(--muted); }
+
+    .depin-ad-banner {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 112px;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(210px,.48fr);
+      align-items: center;
+      gap: 18px;
+      padding: 17px 24px;
+      border: 1px solid rgba(96,244,194,.62);
+      border-radius: 19px;
+      color: #f3fff9;
+      text-decoration: none;
+      background:
+        radial-gradient(circle at 82% 43%, rgba(33,232,170,.30), transparent 23%),
+        radial-gradient(circle at 8% 0%, rgba(18,187,137,.22), transparent 34%),
+        linear-gradient(105deg,#032b2b 0%,#075b4e 54%,#032b33 100%);
+      box-shadow: 0 10px 27px rgba(8,168,107,.17), inset 0 1px 0 rgba(255,255,255,.14);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .depin-ad-banner::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 310px;
+      height: 310px;
+      right: 9%;
+      top: -205px;
+      border: 1px solid rgba(143,255,220,.27);
+      border-radius: 50%;
+      box-shadow: 0 0 0 22px rgba(120,255,213,.035), 0 0 0 49px rgba(120,255,213,.025);
+    }
+
+    .depin-ad-banner::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(110deg,transparent 38%,rgba(91,255,207,.08) 72%,transparent);
+    }
+
+    .depin-ad-banner:hover {
+      transform: translateY(-2px);
+      border-color: rgba(165,255,226,.95);
+      box-shadow: 0 15px 33px rgba(8,168,107,.25), 0 0 23px rgba(45,225,169,.14);
+    }
+
+    .depin-ad-copy { position: relative; z-index: 2; min-width: 0; }
+
+    .depin-ad-eyebrow {
+      display: inline-block;
+      margin-bottom: 5px;
+      color: #91f5d0;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .depin-ad-copy h2 {
+      margin: 0 0 4px;
+      color: #fff;
+      font-size: clamp(17px,2vw,23px);
+      line-height: 1.2;
+      letter-spacing: -.55px;
+      font-weight: 800;
+    }
+
+    .depin-ad-copy p {
+      max-width: 610px;
+      margin: 0;
+      color: #c9f2e4;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .depin-ad-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 9px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 999px;
+      color: #07392d;
+      background: linear-gradient(135deg,#b8ffd8,#39e7a0);
+      box-shadow: 0 5px 15px rgba(26,221,151,.22);
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .depin-ad-visual {
+      position: relative;
+      z-index: 1;
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .depin-ad-orbit {
+      position: absolute;
+      width: min(230px,100%);
+      height: 68px;
+      border: 1px dashed rgba(135,255,222,.56);
+      border-radius: 50%;
+      transform: rotate(-13deg);
+      box-shadow: 0 0 20px rgba(43,238,176,.13);
+    }
+
+    .depin-ad-orbit::before,
+    .depin-ad-orbit::after {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #87ffcf;
+      box-shadow: 0 0 12px #4cf0b7;
+    }
+
+    .depin-ad-orbit::before { left: 22px; top: 10px; }
+    .depin-ad-orbit::after { right: 22px; bottom: 7px; background: #56c9ff; }
+
+    .depin-ad-server {
+      position: relative;
+      z-index: 2;
+      width: 82px;
+      height: 61px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5px;
+      border: 1px solid rgba(218,255,243,.7);
+      border-radius: 9px;
+      background: linear-gradient(145deg,rgba(79,245,190,.85),rgba(4,139,133,.92));
+      box-shadow: 0 9px 20px rgba(0,0,0,.22), 0 0 20px rgba(53,244,187,.22), inset 0 1px 0 rgba(255,255,255,.5);
+      transform: skewY(-5deg);
+    }
+
+    .depin-ad-server span {
+      height: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 5px;
+      border: 1px solid rgba(225,255,245,.3);
+      border-radius: 4px;
+      background: rgba(2,67,70,.38);
+    }
+
+    .depin-ad-server span::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #9effd5;
+      box-shadow: 0 0 7px #9effd5;
+    }
+
+    .depin-ad-server span::after {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: rgba(224,255,245,.7);
+    }
+
+    .depin-ad-chip {
+      position: absolute;
+      z-index: 3;
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255,255,255,.75);
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(145deg,#ffdc77,#cb8113);
+      box-shadow: 0 5px 16px rgba(0,0,0,.22),0 0 14px rgba(255,205,75,.35);
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .depin-ad-chip--left { left: 13%; bottom: 0; background: linear-gradient(145deg,#5de9c0,#078aa0); }
+    .depin-ad-chip--right { right: 12%; top: 0; }
+
+    /* Add a little more depth to the existing directory panels. */
+    .hero {
+      border-color: #b7efdc;
+      box-shadow: 0 14px 32px rgba(8,168,107,.11), inset 0 1px 0 rgba(255,255,255,.72);
+    }
+
+    .feature-card,
+    .projects-panel {
+      box-shadow: 0 9px 25px rgba(8,110,82,.055);
+    }
+
+    .feature-card:hover {
+      border-color: rgba(8,168,107,.35);
+    }
+
+    .projects-panel {
+      border-color: #d5eee4;
+    }
+
+    [data-theme="dark"] .projects-panel,
+    [data-theme="dark"] .feature-card {
+      border-color: var(--line);
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    }
+
+    @media (max-width:760px) {
+      .depin-ad-slot { margin: 14px 0 18px; }
+      .depin-ad-banner {
+        min-height: 124px;
+        grid-template-columns: minmax(0,1fr) 130px;
+        gap: 8px;
+        padding: 14px 15px;
+        border-radius: 16px;
+      }
+      .depin-ad-copy h2 { font-size: 16px; }
+      .depin-ad-copy p { font-size: 9px; }
+      .depin-ad-visual { min-height: 88px; }
+      .depin-ad-orbit { height: 54px; }
+      .depin-ad-chip { width: 31px; height: 31px; font-size: 16px; }
+      .depin-ad-chip--left { left: 0; }
+      .depin-ad-chip--right { right: 1%; }
+    }
+
+    @media (max-width:430px) {
+      .depin-ad-size { display:none; }
+      .depin-ad-banner { grid-template-columns:1fr; min-height:138px; padding:14px; }
+      .depin-ad-copy { max-width:79%; }
+      .depin-ad-copy h2 { font-size:15px; }
+      .depin-ad-copy p { font-size:8px; }
+      .depin-ad-cta { padding:7px 11px; font-size:8px; }
+      .depin-ad-visual { position:absolute; right:0; bottom:0; width:120px; min-height:90px; opacity:.72; }
+    }
+
   </style>
 </head>
 
@@ -1569,7 +1854,33 @@
         </article>
       </section>
 
-      <!-- PROJECTS TABLE -->
+
+
+      <!-- SPONSORED BANNER: positioned after the quick DePIN guide and before the project directory -->
+      <section class="depin-ad-slot" aria-label="Sponsored advertisement">
+        <div class="depin-ad-meta">
+          <span class="depin-ad-label">Sponsored placement</span>
+          <span class="depin-ad-size">DePIN community banner · Responsive placement</span>
+        </div>
+
+        <a class="depin-ad-banner" href="../legal-pages/contact.html" aria-label="Advertise your project on Total Crypto Hub">
+          <div class="depin-ad-copy">
+            <span class="depin-ad-eyebrow">REACH THE DEP IN COMMUNITY</span>
+            <h2>Put Your DePIN Project in the Spotlight</h2>
+            <p>Promote your infrastructure network to visitors exploring compute, storage, bandwidth and Web3 projects.</p>
+            <span class="depin-ad-cta">Advertise With Us <span aria-hidden="true">→</span></span>
+          </div>
+
+          <div class="depin-ad-visual" aria-hidden="true">
+            <div class="depin-ad-orbit"></div>
+            <span class="depin-ad-chip depin-ad-chip--left">◆</span>
+            <div class="depin-ad-server"><span></span><span></span><span></span></div>
+            <span class="depin-ad-chip depin-ad-chip--right">₿</span>
+          </div>
+        </a>
+      </section>
+
+            <!-- PROJECTS TABLE -->
       <section class="projects-panel" id="projects">
         <div class="projects-top">
           <div>
