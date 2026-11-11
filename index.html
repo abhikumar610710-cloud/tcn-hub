@@ -1129,6 +1129,10 @@
       background: linear-gradient(145deg, #36dbac, #1687ff);
     }
 
+    .mobile-overlay {
+      display: none;
+    }
+
     /* ==============================
        EXPLORE THE HUB
     ============================== */
@@ -1698,8 +1702,263 @@
       color: var(--green);
     }
 
-    .mobile-overlay {
-      display: none;
+    /* ==============================
+       HOMEPAGE SPONSORED BANNER AD
+    ============================== */
+
+    .hub-ad-slot {
+      margin: 19px 0 5px;
+    }
+
+    .hub-ad-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 5px 8px;
+      color: var(--muted);
+    }
+
+    .hub-ad-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green-dark);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .75px;
+      text-transform: uppercase;
+    }
+
+    .hub-ad-dot {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 7px;
+      border-radius: 50%;
+      background: #16c98a;
+      box-shadow: 0 0 0 4px rgba(22, 201, 138, .12),
+                  0 0 12px rgba(22, 201, 138, .65);
+    }
+
+    .hub-ad-format {
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .hub-ad-banner {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 116px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(190px, .42fr);
+      align-items: center;
+      gap: 16px;
+      padding: 17px 25px;
+      border: 1px solid rgba(91, 244, 194, .58);
+      border-radius: 19px;
+      color: #f5fff9;
+      text-decoration: none;
+      background:
+        radial-gradient(circle at 85% 45%, rgba(31, 229, 170, .28), transparent 25%),
+        radial-gradient(circle at 5% 0%, rgba(21, 190, 135, .22), transparent 34%),
+        linear-gradient(105deg, #032b2b 0%, #075b4e 56%, #032c34 100%);
+      box-shadow: 0 10px 26px rgba(8, 168, 107, .17),
+                  inset 0 1px 0 rgba(255, 255, 255, .13);
+      transition: transform .22s ease, box-shadow .22s ease,
+                  border-color .22s ease;
+    }
+
+    .hub-ad-banner::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 330px;
+      height: 330px;
+      top: -205px;
+      right: 10%;
+      border: 1px solid rgba(120, 255, 213, .22);
+      border-radius: 50%;
+      box-shadow: 0 0 0 22px rgba(120, 255, 213, .035),
+                  0 0 0 48px rgba(120, 255, 213, .025);
+    }
+
+    .hub-ad-banner::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 35%, rgba(91, 255, 207, .08) 72%, transparent);
+      pointer-events: none;
+    }
+
+    .hub-ad-banner:hover {
+      transform: translateY(-2px);
+      border-color: rgba(143, 255, 220, .9);
+      box-shadow: 0 15px 32px rgba(8, 168, 107, .24),
+                  0 0 22px rgba(45, 225, 169, .12),
+                  inset 0 1px 0 rgba(255, 255, 255, .18);
+    }
+
+    .hub-ad-copy {
+      position: relative;
+      z-index: 2;
+      min-width: 0;
+    }
+
+    .hub-ad-eyebrow {
+      display: inline-block;
+      margin-bottom: 5px;
+      color: #8ff6cc;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .hub-ad-copy h2 {
+      margin: 0 0 4px;
+      color: #ffffff;
+      font-size: clamp(17px, 2vw, 24px);
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -.55px;
+    }
+
+    .hub-ad-copy p {
+      max-width: 610px;
+      margin: 0;
+      color: #c7f2e3;
+      font-size: 10px;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .hub-ad-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 10px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, .38);
+      border-radius: 999px;
+      color: #07392d;
+      background: linear-gradient(135deg, #b8ffd8, #39e7a0);
+      box-shadow: 0 5px 15px rgba(26, 221, 151, .22);
+      font-size: 9px;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .hub-ad-banner:hover .hub-ad-button {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(26, 221, 151, .3);
+    }
+
+    .hub-ad-art {
+      position: relative;
+      z-index: 1;
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hub-ad-orbit {
+      position: absolute;
+      width: min(230px, 100%);
+      height: 72px;
+      border: 1px dashed rgba(125, 255, 216, .55);
+      border-radius: 50%;
+      transform: rotate(-13deg);
+      box-shadow: 0 0 19px rgba(43, 238, 176, .12);
+    }
+
+    .hub-ad-orbit::before,
+    .hub-ad-orbit::after {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #87ffcf;
+      box-shadow: 0 0 12px #4cf0b7;
+    }
+
+    .hub-ad-orbit::before {
+      left: 23px;
+      top: 10px;
+    }
+
+    .hub-ad-orbit::after {
+      right: 24px;
+      bottom: 7px;
+      background: #56c9ff;
+    }
+
+    .hub-ad-coin {
+      position: absolute;
+      z-index: 2;
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255, 255, 255, .72);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+      box-shadow: 0 5px 17px rgba(0, 0, 0, .22),
+                  0 0 17px rgba(70, 242, 188, .22);
+    }
+
+    .hub-ad-coin--one {
+      top: 1px;
+      right: 18%;
+      background: linear-gradient(145deg, #ffd76b, #d58a12);
+    }
+
+    .hub-ad-coin--two {
+      bottom: 0;
+      left: 17%;
+      background: linear-gradient(145deg, #51e7c2, #087f9c);
+    }
+
+    .hub-ad-chart {
+      position: absolute;
+      right: 18%;
+      bottom: 3px;
+      width: 105px;
+      height: 45px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 5px;
+      padding: 0 8px 3px;
+      border-bottom: 1px solid rgba(139, 255, 218, .55);
+      transform: skewY(-8deg);
+      opacity: .78;
+    }
+
+    .hub-ad-chart i {
+      display: block;
+      width: 9px;
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(180deg, #9bffdc, #10bf91);
+      box-shadow: 0 0 9px rgba(75, 255, 197, .2);
+    }
+
+    .hub-ad-chart i:nth-child(1) { height: 16px; }
+    .hub-ad-chart i:nth-child(2) { height: 25px; }
+    .hub-ad-chart i:nth-child(3) { height: 20px; }
+    .hub-ad-chart i:nth-child(4) { height: 32px; }
+    .hub-ad-chart i:nth-child(5) { height: 27px; }
+    .hub-ad-chart i:nth-child(6) { height: 40px; }
+
+    .hub-ad-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
     }
 
     /* ==============================
@@ -2004,6 +2263,25 @@
         padding: 10px;
         font-size: 9px;
       }
+
+      .hub-ad-slot { margin: 15px 0 3px; }
+
+      .hub-ad-banner {
+        min-height: 128px;
+        grid-template-columns: minmax(0, 1fr) 125px;
+        gap: 8px;
+        padding: 15px 16px;
+        border-radius: 16px;
+      }
+
+      .hub-ad-copy h2 { font-size: 17px; }
+      .hub-ad-copy p { font-size: 9px; }
+      .hub-ad-art { min-height: 92px; }
+      .hub-ad-orbit { height: 55px; }
+      .hub-ad-coin { width: 34px; height: 34px; font-size: 17px; }
+      .hub-ad-chart { right: 3%; width: 75px; }
+      .hub-ad-coin--one { right: 7%; }
+      .hub-ad-coin--two { left: 0; }
     }
 
     @media (max-width: 430px) {
@@ -2073,6 +2351,47 @@
       .hub-join-btn {
         margin-left: auto;
       }
+
+      .hub-ad-topline {
+        margin-left: 2px;
+        margin-right: 2px;
+      }
+
+      .hub-ad-format {
+        display: none;
+      }
+
+      .hub-ad-banner {
+        grid-template-columns: 1fr;
+        min-height: 142px;
+        padding: 15px 14px;
+      }
+
+      .hub-ad-copy {
+        max-width: 78%;
+      }
+
+      .hub-ad-copy h2 { font-size: 16px; }
+      .hub-ad-copy p { font-size: 8px; }
+      .hub-ad-button {
+        margin-top: 8px;
+        padding: 7px 11px;
+        font-size: 8px;
+      }
+
+      .hub-ad-art {
+        position: absolute;
+        right: 1px;
+        bottom: 2px;
+        width: 120px;
+        min-height: 90px;
+        opacity: .72;
+      }
+
+      .hub-ad-chart {
+        right: 0;
+        width: 66px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2092,11 +2411,8 @@
   <!-- TOP HEADER -->
 
   <section class="sponsor-strip" aria-label="Sponsorship opportunity">
-
     <div class="sponsor-inner">
-
       <a href="index.html" class="header-brand">
-
         <span class="header-logo">
           <img
             src="logos/tcn-logo.png"
@@ -2104,33 +2420,26 @@
             onerror="this.style.display='none'; this.parentElement.textContent='TCN';"
           >
         </span>
-
         <span>
           <span class="header-brand-name">Total Crypto Hub</span>
           <span class="header-brand-subtitle">
             by <b>Total Crypto Network</b>
           </span>
         </span>
-
       </a>
 
       <span class="sponsor-coin" aria-hidden="true">₿</span>
 
       <div class="sponsor-copy">
-
         <span class="sponsor-eyebrow">PARTNERSHIP OPPORTUNITY</span>
-
         <strong>
           Sponsor with Us on
           <em>Total Crypto Hub</em>
         </strong>
-
         <span class="sponsor-divider"></span>
-
         <span class="sponsor-tagline">
           Grow Your Brand in the Crypto Community
         </span>
-
       </div>
 
       <a href="legal-pages/contact.html" class="sponsor-cta">
@@ -2138,7 +2447,6 @@
       </a>
 
       <span class="sponsor-coin" aria-hidden="true">◆</span>
-
     </div>
   </section>
 
@@ -2148,11 +2456,9 @@
     <!-- SIDEBAR -->
 
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-
       <div class="side-label">Workspace</div>
 
       <nav class="side-nav">
-
         <a href="index.html" class="side-link active" aria-current="page">
           <span class="nav-icon nav-home">
             <svg viewBox="0 0 24 24">
@@ -2227,25 +2533,20 @@
           </span>
           Earning Calculator
         </a>
-
       </nav>
 
       <div class="sidebar-spacer"></div>
 
       <section class="side-promo" aria-label="Community invitation">
-
         <div class="promo-gift">🎁</div>
-
         <h3>
           Join the Community
           <br>
           & Earn Together
         </h3>
-
         <p>
           Follow project updates, guides and community announcements.
         </p>
-
         <a
           href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43"
           target="_blank"
@@ -2254,24 +2555,19 @@
         >
           Join Now →
         </a>
-
       </section>
 
       <a href="legal-pages/contact.html" class="support-card">
-
         <span class="support-icon">♧</span>
-
         <span>
           <strong>Need Help?</strong>
           <span>Contact Support →</span>
         </span>
-
       </a>
 
       <p class="sidebar-note">
         A research-led Web3 directory
       </p>
-
     </aside>
 
 
@@ -2285,7 +2581,6 @@
       <!-- TOPBAR -->
 
       <header class="topbar">
-
         <button
           class="mobile-menu-btn"
           id="mobileMenuBtn"
@@ -2297,22 +2592,18 @@
         </button>
 
         <label class="search-wrap" aria-label="Search Total Crypto Hub sections">
-
           <input
             id="globalSearch"
             type="search"
             placeholder="Search projects, categories or tools..."
             autocomplete="off"
           >
-
           <span class="search-icon">⌕</span>
-
         </label>
 
         <span class="topbar-spacer"></span>
 
         <div class="community-dropdown">
-
           <button
             class="community-btn"
             type="button"
@@ -2323,25 +2614,19 @@
           </button>
 
           <div class="dropdown-content" id="communityMenu">
-
             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
               ▶ YouTube
             </a>
-
             <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">
               💬 WhatsApp
             </a>
-
             <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">
               ✖ Twitter (X)
             </a>
-
             <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">
               📘 Facebook
             </a>
-
           </div>
-
         </div>
 
         <button
@@ -2353,7 +2638,6 @@
         >
           🌙
         </button>
-
       </header>
 
 
@@ -2364,9 +2648,7 @@
         <!-- HERO SECTION -->
 
         <section class="hero-panel" aria-labelledby="heroTitle">
-
           <div class="hero-copy">
-
             <span class="hero-kicker">
               ● Official Hub · Total Crypto Network
             </span>
@@ -2382,7 +2664,6 @@
             </p>
 
             <div class="hero-actions">
-
               <a href="depin-pages/depin.html" class="primary-cta">
                 🚀 Explore the Hub →
               </a>
@@ -2390,25 +2671,19 @@
               <a href="mobile-pages/mobile-mining.html" class="secondary-cta">
                 ▶ Watch Video
               </a>
-
             </div>
-
           </div>
-
 
           <!-- CRYPTO GLOBE ILLUSTRATION -->
 
           <div class="hero-art" aria-hidden="true">
-
             <div class="orbit"></div>
 
             <span class="hero-float one">₿</span>
             <span class="hero-float two">◆</span>
 
             <svg class="hero-globe" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg">
-
               <defs>
-
                 <radialGradient id="globeFill" cx="32%" cy="24%" r="78%">
                   <stop offset="0" stop-color="#b7ffe6"/>
                   <stop offset=".38" stop-color="#20d9a0"/>
@@ -2434,7 +2709,6 @@
                 <clipPath id="globeClip">
                   <circle cx="244" cy="137" r="91"/>
                 </clipPath>
-
               </defs>
 
               <ellipse
@@ -2447,7 +2721,6 @@
               />
 
               <g fill="none" stroke="#10a982" opacity=".55">
-
                 <ellipse
                   cx="245"
                   cy="137"
@@ -2472,7 +2745,6 @@
                   stroke-width="1.2"
                   stroke-dasharray="3 7"
                 />
-
               </g>
 
               <circle
@@ -2485,7 +2757,6 @@
               />
 
               <g clip-path="url(#globeClip)">
-
                 <path
                   d="M178 77 195 65 211 71 216 86 205 96 209 110 193 119 183 108 169 111 160 96Z"
                   fill="url(#landFill)"
@@ -2527,7 +2798,6 @@
                   <circle cx="299" cy="180" r="2"/>
                   <circle cx="179" cy="146" r="2"/>
                 </g>
-
               </g>
 
               <ellipse
@@ -2543,7 +2813,6 @@
               />
 
               <g transform="translate(347 50)">
-
                 <circle
                   r="27"
                   fill="url(#coinGold)"
@@ -2561,11 +2830,9 @@
                 >
                   ₿
                 </text>
-
               </g>
 
               <g transform="translate(363 203)">
-
                 <circle
                   r="25"
                   fill="url(#coinPurple)"
@@ -2578,11 +2845,9 @@
                   fill="#fff"
                   opacity=".9"
                 />
-
               </g>
 
               <g transform="translate(108 185)">
-
                 <circle
                   r="24"
                   fill="#09a99a"
@@ -2600,11 +2865,9 @@
                 >
                   ₮
                 </text>
-
               </g>
 
               <g transform="translate(244 238)">
-
                 <ellipse
                   cx="0"
                   cy="5"
@@ -2650,13 +2913,45 @@
                   stroke="#75efc2"
                   stroke-width="3"
                 />
-
               </g>
-
             </svg>
+          </div>
+        </section>
 
+
+        <!-- HOMEPAGE SPONSORED BANNER AD -->
+        <section class="hub-ad-slot" id="homepageBannerAd" aria-label="Sponsored advertisement">
+          <div class="hub-ad-topline">
+            <span class="hub-ad-label">
+              <span class="hub-ad-dot" aria-hidden="true"></span>
+              Sponsored placement
+            </span>
+            <span class="hub-ad-format">Homepage banner · 970 × 110</span>
           </div>
 
+          <a
+            class="hub-ad-banner"
+            href="legal-pages/contact.html"
+            aria-label="Advertise with Total Crypto Hub"
+          >
+            <div class="hub-ad-copy">
+              <span class="hub-ad-eyebrow">REACH THE CRYPTO COMMUNITY</span>
+              <h2>Put Your Project in the Spotlight</h2>
+              <p>Promote your Web3 brand to visitors exploring DePIN, airdrops and crypto tools.</p>
+              <span class="hub-ad-button">
+                Become a Sponsor <span aria-hidden="true">→</span>
+              </span>
+            </div>
+
+            <div class="hub-ad-art" aria-hidden="true">
+              <div class="hub-ad-orbit"></div>
+              <span class="hub-ad-coin hub-ad-coin--one">₿</span>
+              <span class="hub-ad-coin hub-ad-coin--two">◆</span>
+              <div class="hub-ad-chart">
+                <i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+          </a>
         </section>
 
 
@@ -2666,11 +2961,8 @@
           class="explore-section"
           aria-labelledby="exploreHeading"
         >
-
           <div class="section-heading">
-
             <div class="section-title-wrap">
-
               <h2 id="exploreHeading">
                 Explore the Hub
               </h2>
@@ -2678,13 +2970,11 @@
               <p>
                 Everything you need to grow in the Total Crypto Ecosystem.
               </p>
-
             </div>
 
             <a href="depin-pages/depin.html" class="section-link">
               Browse all projects →
             </a>
-
           </div>
 
 
@@ -2699,9 +2989,7 @@
               class="dash-card dash-card--depin"
               data-search="depin projects infrastructure nodes bandwidth sharing apps"
             >
-
               <div class="card-topline">
-
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
                     <path d="M13 2 4 13h7l-1 9 10-13h-7z"/>
@@ -2709,7 +2997,6 @@
                 </div>
 
                 <span class="card-tag">57+ Projects</span>
-
               </div>
 
               <h3>DePIN Projects Hub</h3>
@@ -2724,9 +3011,7 @@
               </span>
 
               <span class="card-art card-art--depin" aria-hidden="true">
-
                 <svg viewBox="0 0 140 120">
-
                   <path d="M70 10v93M58 103h24M63 96h14"/>
                   <path d="m70 12-18 88M70 12l18 88"/>
                   <path d="M51 46h38M57 68h26"/>
@@ -2735,11 +3020,8 @@
                   <path d="M120 35q-20 20 0 40M130 26q-32 27 0 56"/>
                   <circle cx="70" cy="12" r="6"/>
                   <circle cx="70" cy="103" r="5"/>
-
                 </svg>
-
               </span>
-
             </a>
 
 
@@ -2750,9 +3032,7 @@
               class="dash-card dash-card--community"
               data-search="community projects mobile apps participation rewards"
             >
-
               <div class="card-topline">
-
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
@@ -2763,7 +3043,6 @@
                 </div>
 
                 <span class="card-tag">Growing Community</span>
-
               </div>
 
               <h3>Community Projects</h3>
@@ -2778,20 +3057,15 @@
               </span>
 
               <span class="card-art card-art--community" aria-hidden="true">
-
                 <svg viewBox="0 0 140 120">
-
                   <circle cx="70" cy="35" r="14"/>
                   <circle cx="36" cy="46" r="10"/>
                   <circle cx="104" cy="46" r="10"/>
                   <path d="M38 101V87a31 31 0 0 1 62 0v14z"/>
                   <path d="M14 98V86a22 22 0 0 1 26-22M126 98V86a22 22 0 0 0-26-22"/>
                   <path d="M51 54q19 12 38 0"/>
-
                 </svg>
-
               </span>
-
             </a>
 
 
@@ -2802,9 +3076,7 @@
               class="dash-card dash-card--airdrops"
               data-search="airdrops campaigns testnet rewards tokens"
             >
-
               <div class="card-topline">
-
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
                     <rect x="3" y="8" width="18" height="13" rx="2"/>
@@ -2815,7 +3087,6 @@
                 </div>
 
                 <span class="card-tag">Campaign Updates</span>
-
               </div>
 
               <h3>Airdrops & Campaigns</h3>
@@ -2830,9 +3101,7 @@
               </span>
 
               <span class="card-art card-art--airdrops" aria-hidden="true">
-
                 <svg viewBox="0 0 140 120">
-
                   <path d="M70 40V93"/>
                   <path d="M70 43 28 14l-15 10 28 54 29-17z"/>
                   <path d="M70 43 112 14l15 10-28 54-29-17z"/>
@@ -2840,11 +3109,8 @@
                   <rect x="48" y="84" width="44" height="27" rx="4"/>
                   <path d="M48 94h44M70 84v27"/>
                   <circle cx="70" cy="29" r="5"/>
-
                 </svg>
-
               </span>
-
             </a>
 
 
@@ -2855,9 +3121,7 @@
               class="dash-card dash-card--wallets"
               data-search="wallets exchanges self custodial crypto trading assets"
             >
-
               <div class="card-topline">
-
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
                     <path d="M21 12V7H5a2 2 0 1 1 0-4h14v4M3 5v14a2 2 0 0 0 2 2h16v-5M18 12a2 2 0 0 0 0 4h4v-4Z"/>
@@ -2865,7 +3129,6 @@
                 </div>
 
                 <span class="card-tag">Wallet Resources</span>
-
               </div>
 
               <h3>Wallets & Exchanges</h3>
@@ -2880,20 +3143,15 @@
               </span>
 
               <span class="card-art card-art--wallets" aria-hidden="true">
-
                 <svg viewBox="0 0 140 120">
-
                   <rect x="23" y="32" width="91" height="64" rx="12"/>
                   <path d="M23 47h91"/>
                   <path d="M82 61h39v24H82q-12 0-12-12t12-12z"/>
                   <circle cx="91" cy="73" r="4"/>
                   <circle cx="99" cy="25" r="13"/>
                   <path d="M99 18v14M95 22h8"/>
-
                 </svg>
-
               </span>
-
             </a>
 
 
@@ -2904,9 +3162,7 @@
               class="dash-card dash-card--checker"
               data-search="token checker contract security liquidity safety"
             >
-
               <div class="card-topline">
-
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
                     <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
@@ -2915,7 +3171,6 @@
                 </div>
 
                 <span class="card-tag">Check Safety</span>
-
               </div>
 
               <h3>Token Checker</h3>
@@ -2930,17 +3185,12 @@
               </span>
 
               <span class="card-art card-art--checker" aria-hidden="true">
-
                 <svg viewBox="0 0 140 120">
-
                   <path d="M70 14 108 29v27q0 31-38 52Q32 87 32 56V29z"/>
                   <path d="m50 60 14 14 28-31"/>
                   <path d="M70 28v25"/>
-
                 </svg>
-
               </span>
-
             </a>
 
 
@@ -2951,9 +3201,7 @@
               class="dash-card dash-card--calculator"
               data-search="earning calculator rewards passive income device costs token payouts"
             >
-
               <div class="card-topline">
-
                 <div class="card-icon">
                   <svg viewBox="0 0 24 24">
                     <rect x="4" y="2" width="16" height="20" rx="2"/>
@@ -2962,7 +3210,6 @@
                 </div>
 
                 <span class="card-tag">Plan Your Earnings</span>
-
               </div>
 
               <h3>Earning Calculator</h3>
@@ -2977,9 +3224,7 @@
               </span>
 
               <span class="card-art card-art--calculator" aria-hidden="true">
-
                 <svg viewBox="0 0 140 120">
-
                   <rect x="39" y="13" width="62" height="94" rx="10"/>
                   <rect x="49" y="24" width="42" height="18" rx="4"/>
                   <path d="M52 57h7M70 57h7M88 57h1"/>
@@ -2987,15 +3232,11 @@
                   <path d="M52 93h7M70 93h7M88 93h1"/>
                   <circle cx="109" cy="88" r="15"/>
                   <path d="M109 79v18M104 84h10"/>
-
                 </svg>
-
               </span>
-
             </a>
 
           </div>
-
         </section>
 
 
@@ -3005,9 +3246,7 @@
           class="hub-bottom-band"
           aria-label="Total Crypto Hub highlights and community"
         >
-
           <div class="hub-metrics">
-
             <div class="hub-metric">
               <span class="metric-icon">◈</span>
               <strong>57+</strong>
@@ -3031,27 +3270,20 @@
               <strong>Research-Led</strong>
               <span>Directory & Resources</span>
             </div>
-
           </div>
 
 
           <div class="hub-community-cta">
-
             <div class="cta-art" aria-hidden="true">
-
               <svg viewBox="0 0 110 90">
-
                 <path d="M14 34 57 18v54L14 56z"/>
                 <path d="m57 30 25-11v48L57 55z"/>
                 <path d="M26 57 38 83h14L42 54"/>
                 <path d="M85 30q17 10 0 21M93 21q28 20 0 40"/>
-
               </svg>
-
             </div>
 
             <div class="cta-copy">
-
               <strong>
                 Be Part of a Growing Ecosystem
               </strong>
@@ -3059,7 +3291,6 @@
               <span>
                 Build. Learn. Grow with Total Crypto Hub
               </span>
-
             </div>
 
             <a
@@ -3070,9 +3301,7 @@
             >
               Join Now →
             </a>
-
           </div>
-
         </section>
 
 
@@ -3090,40 +3319,29 @@
         <!-- DISCLAIMER -->
 
         <p class="hero-disclaimer">
-
           <strong>Disclaimer:</strong>
-
           Total Crypto Hub operates as an educational directory
           and research portal. We do not provide financial advice
           or guarantee the performance, security or profits of
           third-party protocols. Always perform your own
           independent research before participating.
-
         </p>
 
 
         <!-- FOOTER -->
 
         <footer>
-
           <div class="footer-copy">
             &copy; 2026 Total Crypto Network. All rights reserved.
           </div>
 
           <div class="footer-links">
-
             <a href="legal-pages/about.html">About Us</a>
-
             <a href="legal-pages/contact.html">Contact Us</a>
-
             <a href="legal-pages/privacy.html">Privacy Policy</a>
-
             <a href="legal-pages/terms.html">Terms & Conditions</a>
-
             <a href="legal-pages/disclaimer.html">Disclaimer</a>
-
           </div>
-
         </footer>
 
       </main>
@@ -3136,327 +3354,135 @@
   <!-- JAVASCRIPT -->
 
   <script>
-
     function applyTheme(theme) {
+      const safeTheme = theme === "dark" ? "dark" : "light";
 
-      const safeTheme =
-        theme === "dark" ? "dark" : "light";
+      document.body.setAttribute("data-theme", safeTheme);
+      document.documentElement.setAttribute("data-theme", safeTheme);
 
-      document.body.setAttribute(
-        "data-theme",
-        safeTheme
-      );
-
-      const toggle =
-        document.getElementById("themeToggle");
-
+      const toggle = document.getElementById("themeToggle");
       if (toggle) {
-
-        toggle.textContent =
-          safeTheme === "light" ? "🌙" : "☀️";
-
+        toggle.textContent = safeTheme === "light" ? "🌙" : "☀️";
         toggle.setAttribute(
           "aria-label",
-          safeTheme === "light"
-            ? "Enable dark mode"
-            : "Enable light mode"
+          safeTheme === "light" ? "Enable dark mode" : "Enable light mode"
         );
-
       }
 
       try {
-
-        localStorage.setItem(
-          "theme",
-          safeTheme
-        );
-
+        localStorage.setItem("theme", safeTheme);
       } catch (error) {
-
-        /* Theme remains active for this visit. */
-
+        /* Theme remains active for session */
       }
-
     }
-
 
     function toggleTheme() {
-
-      const currentTheme =
-        document.body.getAttribute("data-theme") || "light";
-
-      applyTheme(
-        currentTheme === "light" ? "dark" : "light"
-      );
-
+      const currentTheme = document.body.getAttribute("data-theme") || "light";
+      applyTheme(currentTheme === "light" ? "dark" : "light");
     }
-
 
     function toggleCommunityMenu() {
-
-      const menu =
-        document.getElementById("communityMenu");
-
-      const button =
-        document.querySelector(".community-btn");
-
-      const isOpen =
-        menu.classList.toggle("show");
-
-      button.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
-
+      const menu = document.getElementById("communityMenu");
+      const button = document.querySelector(".community-btn");
+      const isOpen = menu.classList.toggle("show");
+      button.setAttribute("aria-expanded", String(isOpen));
     }
-
 
     function closeMobileMenu() {
-
       document.body.classList.remove("menu-open");
-
-      const menuButton =
-        document.getElementById("mobileMenuBtn");
-
+      const menuButton = document.getElementById("mobileMenuBtn");
       if (menuButton) {
-
-        menuButton.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
+        menuButton.setAttribute("aria-expanded", "false");
       }
-
     }
 
-
-    window.addEventListener(
-      "DOMContentLoaded",
-      function () {
-
-        /* Theme */
-
-        let savedTheme = "light";
-
-        try {
-
-          savedTheme =
-            localStorage.getItem("theme") || "light";
-
-        } catch (error) {
-
-          /* Use light theme when storage is unavailable. */
-
-        }
-
-        applyTheme(savedTheme);
-
-
-        /* SEARCH FUNCTIONALITY */
-
-        const search =
-          document.getElementById("globalSearch");
-
-        const cards =
-          Array.from(
-            document.querySelectorAll(".dash-card")
-          );
-
-        const emptyMessage =
-          document.getElementById("emptySearch");
-
-        const exploreSection =
-          document.querySelector(".explore-section");
-
-
-        if (search) {
-
-          search.addEventListener(
-            "input",
-            function () {
-
-              const query =
-                this.value.trim().toLowerCase();
-
-              let visible = 0;
-
-              cards.forEach(function (card) {
-
-                const searchable = (
-                  card.innerText + " " +
-                  (card.dataset.search || "")
-                ).toLowerCase();
-
-                const match =
-                  !query || searchable.includes(query);
-
-                card.hidden = !match;
-
-                if (match) {
-                  visible++;
-                }
-
-              });
-
-
-              if (exploreSection) {
-
-                exploreSection.hidden =
-                  Boolean(query) && visible === 0;
-
-              }
-
-
-              if (emptyMessage) {
-
-                emptyMessage.style.display =
-                  visible ? "none" : "block";
-
-              }
-
-            }
-          );
-
-        }
-
-
-        /* MOBILE SIDEBAR */
-
-        const menuButton =
-          document.getElementById("mobileMenuBtn");
-
-        if (menuButton) {
-
-          menuButton.addEventListener(
-            "click",
-            function () {
-
-              const isOpen =
-                document.body.classList.toggle("menu-open");
-
-              this.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-              );
-
-            }
-          );
-
-        }
-
-
-        const mobileOverlay =
-          document.getElementById("mobileOverlay");
-
-        if (mobileOverlay) {
-
-          mobileOverlay.addEventListener(
-            "click",
-            closeMobileMenu
-          );
-
-        }
-
-
-        document.querySelectorAll(".side-link").forEach(
-          function (link) {
-
-            link.addEventListener(
-              "click",
-              closeMobileMenu
-            );
-
-          }
-        );
-
-
-        /* COMMUNITY DROPDOWN */
-
-        document.addEventListener(
-          "click",
-          function (event) {
-
-            const dropdown =
-              document.querySelector(".community-dropdown");
-
-            const menu =
-              document.getElementById("communityMenu");
-
-            const button =
-              document.querySelector(".community-btn");
-
-            if (
-              dropdown &&
-              menu &&
-              button &&
-              !dropdown.contains(event.target)
-            ) {
-
-              menu.classList.remove("show");
-
-              button.setAttribute(
-                "aria-expanded",
-                "false"
-              );
-
-            }
-
-          }
-        );
-
-
-        /* ESCAPE KEY */
-
-        document.addEventListener(
-          "keydown",
-          function (event) {
-
-            if (event.key === "Escape") {
-
-              const menu =
-                document.getElementById("communityMenu");
-
-              const button =
-                document.querySelector(".community-btn");
-
-              if (menu) {
-                menu.classList.remove("show");
-              }
-
-              if (button) {
-
-                button.setAttribute(
-                  "aria-expanded",
-                  "false"
-                );
-
-              }
-
-              closeMobileMenu();
-
-            }
-
-          }
-        );
-
-
+    window.addEventListener("DOMContentLoaded", function () {
+      /* THEME */
+      let savedTheme = "light";
+      try {
+        savedTheme = localStorage.getItem("theme") || "light";
+      } catch (error) {
+        /* Default to light */
       }
-    );
+      applyTheme(savedTheme);
 
+      /* SEARCH FUNCTIONALITY */
+      const search = document.getElementById("globalSearch");
+      const cards = Array.from(document.querySelectorAll(".dash-card"));
+      const emptyMessage = document.getElementById("emptySearch");
+      const exploreSection = document.querySelector(".explore-section");
+
+      if (search) {
+        search.addEventListener("input", function () {
+          const query = this.value.trim().toLowerCase();
+          let visible = 0;
+
+          cards.forEach(function (card) {
+            const searchable = (
+              card.innerText + " " + (card.dataset.search || "")
+            ).toLowerCase();
+            const match = !query || searchable.includes(query);
+
+            card.hidden = !match;
+            if (match) visible++;
+          });
+
+          if (exploreSection) {
+            exploreSection.hidden = Boolean(query) && visible === 0;
+          }
+
+          if (emptyMessage) {
+            emptyMessage.style.display = visible ? "none" : "block";
+          }
+        });
+      }
+
+      /* MOBILE SIDEBAR */
+      const menuButton = document.getElementById("mobileMenuBtn");
+      if (menuButton) {
+        menuButton.addEventListener("click", function () {
+          const isOpen = document.body.classList.toggle("menu-open");
+          this.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      const mobileOverlay = document.getElementById("mobileOverlay");
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener("click", closeMobileMenu);
+      }
+
+      document.querySelectorAll(".side-link").forEach(function (link) {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      /* COMMUNITY DROPDOWN CLOSE ON OUTSIDE CLICK */
+      document.addEventListener("click", function (event) {
+        const dropdown = document.querySelector(".community-dropdown");
+        const menu = document.getElementById("communityMenu");
+        const button = document.querySelector(".community-btn");
+
+        if (dropdown && menu && button && !dropdown.contains(event.target)) {
+          menu.classList.remove("show");
+          button.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      /* ESCAPE KEY */
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const menu = document.getElementById("communityMenu");
+          const button = document.querySelector(".community-btn");
+          if (menu) menu.classList.remove("show");
+          if (button) button.setAttribute("aria-expanded", "false");
+          closeMobileMenu();
+        }
+      });
+    });
   </script>
 
-
   <!-- TOTAL CRYPTO HUB AI ASSISTANT -->
-
-  <script
-    src="ai-assistant/assistant.js"
-    defer
-  ></script>
-
-  <script
-    src="ai-assistant/robot-animation.js"
-    defer
-  ></script>
+  <script src="ai-assistant/assistant.js" defer></script>
+  <script src="ai-assistant/robot-animation.js" defer></script>
 
 </body>
 </html>
