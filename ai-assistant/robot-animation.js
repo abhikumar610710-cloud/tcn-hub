@@ -1,6 +1,6 @@
 /* =========================================
    TOTAL CRYPTO HUB
-   TCN AI ROBOT - CHARACTER ANIMATIONS
+   TCNAI ROBOT - CHARACTER ANIMATIONS
 ========================================= */
 
 (function () {
@@ -17,7 +17,6 @@
     style.id = "tcn-ai-animation-styles";
 
     style.textContent = `
-      /* Floating Robot: gentle natural hovering movement */
       #tcn-ai-assistant
       .tcn-ai-character
       .tcn-ai-robot-head {
@@ -25,7 +24,6 @@
         transform-origin: center center;
       }
 
-      /* Happy reaction when clicked */
       #tcn-ai-assistant
       .tcn-ai-character.is-happy
       .tcn-ai-robot-head {
@@ -34,29 +32,25 @@
 
       @keyframes tcnRobotFloat {
         0%, 100% {
-          transform: translateX(-50%) translateY(0) rotate(0deg);
+          transform: translateY(0) rotate(0deg);
         }
-
         50% {
-          transform: translateX(-50%) translateY(-5px) rotate(1.5deg);
+          transform: translateY(-5px) rotate(1.5deg);
         }
       }
 
       @keyframes tcnRobotHappy {
         0% {
-          transform: translateX(-50%) translateY(0) scale(1) rotate(0deg);
+          transform: translateY(0) scale(1) rotate(0deg);
         }
-
         35% {
-          transform: translateX(-50%) translateY(-8px) scale(1.08) rotate(-3deg);
+          transform: translateY(-8px) scale(1.08) rotate(-3deg);
         }
-
         70% {
-          transform: translateX(-50%) translateY(-4px) scale(1.05) rotate(3deg);
+          transform: translateY(-4px) scale(1.05) rotate(3deg);
         }
-
         100% {
-          transform: translateX(-50%) translateY(0) scale(1) rotate(0deg);
+          transform: translateY(0) scale(1) rotate(0deg);
         }
       }
 
