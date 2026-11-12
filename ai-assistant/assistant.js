@@ -1,8 +1,7 @@
-
-/* ==========================================
-   TOTAL CRYPTO HUB - AI GIRL ASSISTANT
-   Drag, Move, Stand, Sit and TCN Chat
-========================================== */
+/* =========================================
+   TOTAL CRYPTO HUB - TCNAI ASSISTANT
+   Drag, Move, Float and TCN Chat
+========================================= */
 
 (() => {
   "use strict";
@@ -113,28 +112,28 @@
       };
     });
 
-    /* Stand and sit */
+    /* Robot States & Idle Animation */
 
-    function standUp() {
-      robot.classList.remove("is-sitting");
-      robot.classList.add("is-standing");
+    function activateRobot() {
+      robot.classList.remove("is-resting");
+      robot.classList.add("is-active");
     }
 
-    function sitDown() {
+    function restRobot() {
       if (!chatWindow.classList.contains("is-open")) {
-        robot.classList.remove("is-standing");
-        robot.classList.add("is-sitting");
+        robot.classList.remove("is-active");
+        robot.classList.add("is-resting");
       }
     }
 
     function resetIdleTimer() {
-      standUp();
+      activateRobot();
 
       clearTimeout(idleTimer);
 
       idleTimer = setTimeout(() => {
-        sitDown();
-      }, 5000);
+        restRobot();
+      }, 6000);
     }
 
     /* Chat open and close */
@@ -144,7 +143,7 @@
       chatWindow.setAttribute("aria-hidden", "false");
       robot.setAttribute("aria-expanded", "true");
 
-      standUp();
+      activateRobot();
       clearTimeout(idleTimer);
 
       input.focus();
@@ -312,7 +311,7 @@
         q.includes("token price") ||
         q.includes("coin price")
       ) {
-        return "मैं TCN Hub की AI Assistant हूँ। किसी token की current price जानने के लिए वेबसाइट के संबंधित project या token page को देखें।";
+        return "मैं TCNAI Assistant हूँ। किसी token की current price जानने के लिए वेबसाइट के संबंधित project या token page को देखें।";
       }
 
       if (
@@ -357,7 +356,7 @@
         q.includes("hi") ||
         q.includes("hey")
       ) {
-        return "Hello! 😊 मैं TCN AI Assistant हूँ। Total Crypto Hub, DePIN, Airdrops, Community और वेबसाइट के tools के बारे में पूछ सकते हैं।";
+        return "Hello! 😊 मैं TCNAI Assistant हूँ। Total Crypto Hub, DePIN, Airdrops, Community और वेबसाइट के tools के बारे में पूछ सकते हैं।";
       }
 
       return "मैं केवल Total Crypto Hub और Total Crypto Network से संबंधित सवालों में मदद कर सकती हूँ। आप DePIN, Airdrops, Community, Wallets, Token Checker या Earning Calculator के बारे में पूछ सकते हैं।";
