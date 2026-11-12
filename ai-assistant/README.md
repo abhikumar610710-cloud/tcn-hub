@@ -1,36 +1,35 @@
+# Total Crypto Hub - TCNAI Assistant
 
-# Total Crypto Hub - AI Assistant
-
-A friendly animated AI companion for Total Crypto Hub.
+A professional, green-themed animated AI robot assistant for Total Crypto Hub.
 
 ## Project Files
 
-- `assistant.html` - Assistant robot and chat interface.
-- `assistant.css` - Robot design, chat window and visual styling.
-- `assistant.js` - Loads the assistant and handles chat interactions.
-- `robot-animation.js` - Handles robot eye movement and reactions.
+- `assistant.html` - TCNAI robot character and chat interface.
+- `assistant.css` - Robot design, floating styles, chat window and visual styling.
+- `assistant.js` - Loads the assistant and handles interactive chat and dragging logic.
+- `robot-animation.js` - Handles robot hovering and happy reaction animations.
 - `README.md` - Project documentation.
 
 ## Current Features
 
-- Floating robot assistant.
-- Animated robot face.
-- Chat window with welcome message.
-- Suggested questions about crypto topics.
-- Draggable robot.
-- Basic offline demo responses.
+- Floating cyber robot mascot (TCNAI).
+- Smooth hovering and reactive animations.
+- Interactive chat window with customized TCN ecosystem knowledge.
+- Suggested questions covering DePIN, Airdrops, Wallets, and Hub features.
+- Fully draggable assistant mascot across the screen.
+- Responsive design for both desktop and mobile views.
 
 ## Important
 
-The current chat uses predefined demo responses.
+The current chat uses curated offline responses tailored for Total Crypto Network.
 
-A secure backend and AI API integration are still required for real AI-powered conversations.
+A secure backend and AI API integration can be integrated later for advanced AI conversations.
 
 Never place private API keys in frontend JavaScript or HTML files.
 
 ## Website Integration
 
-After the assistant files are ready, the website pages will load the assistant using a script tag.
+After the assistant files are ready, the website pages load the assistant using a script tag.
 
 The script path must be adjusted according to each page's folder location.
 
@@ -38,12 +37,3 @@ Example for the homepage:
 
 ```html
 <script src="ai-assistant/assistant.js" defer></script>
-```
-
-For pages inside a one-level subfolder:
-
-```html
-<script src="../ai-assistant/assistant.js" defer></script>
-```
-
-The robot animation script will also need to be loaded after the assistant script.
