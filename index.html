@@ -101,6 +101,20 @@
     }
 
     /* ==============================
+       SAFE GLOW ANIMATION (SPONSORS)
+    ============================== */
+    @keyframes safeSponsorGlow {
+      0%, 100% {
+        box-shadow: 0 5px 20px rgba(16, 185, 129, 0.15);
+        border-color: rgba(16, 185, 129, 0.25);
+      }
+      50% {
+        box-shadow: 0 10px 35px rgba(16, 185, 129, 0.55);
+        border-color: rgba(16, 185, 129, 0.8);
+      }
+    }
+
+    /* ==============================
        TOP HEADER / SPONSOR BAR
     ============================== */
 
@@ -130,7 +144,8 @@
         );
 
       border-bottom: 1px solid rgba(74, 230, 180, .25);
-      box-shadow: 0 5px 20px rgba(1, 30, 30, .12);
+      /* Sponsor Bar Glow Applied Here */
+      animation: safeSponsorGlow 3.5s infinite ease-in-out;
     }
 
     .sponsor-inner {
@@ -933,12 +948,9 @@
 
     .hero-copy p {
       max-width: 630px;
-
       margin: 0;
-
       color: #31516a;
-
-      font-size: 14px;
+      font-size: 13.5px;
       line-height: 1.7;
       font-weight: 600;
     }
@@ -1016,9 +1028,7 @@
 
     .hero-art {
       position: relative;
-
       min-height: 260px;
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1026,35 +1036,37 @@
 
     .hero-art::before {
       content: "";
-
       position: absolute;
-
       width: 82%;
       height: 26%;
-
       left: 9%;
       bottom: 5%;
-
       border-radius: 50%;
       background: rgba(12, 173, 135, .10);
-
       filter: blur(14px);
+    }
+
+    /* GLOBE FLOAT AND ROTATE ANIMATION */
+    @keyframes safeGlobeRotate {
+      0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+        filter: drop-shadow(0 15px 19px rgba(0, 112, 105, .19)); 
+      }
+      50% { 
+        transform: translateY(-8px) rotate(2.5deg); 
+        filter: drop-shadow(0 22px 25px rgba(0, 112, 105, .25)); 
+      }
     }
 
     .hero-globe {
       position: relative;
       z-index: 2;
-
       display: block;
-
       width: min(100%, 470px);
       height: auto;
-
       overflow: visible;
-
-      filter: drop-shadow(
-        0 15px 19px rgba(0, 112, 105, .19)
-      );
+      /* Rotating & Floating Effect */
+      animation: safeGlobeRotate 6.5s infinite ease-in-out;
     }
 
     .orbit {
@@ -1095,38 +1107,70 @@
       background: #1687ff;
     }
 
+    /* 5 FLOATING LOGOS AND BLINKING ANIMATION */
+    @keyframes floatBlink {
+      0%, 100% { 
+        transform: translateY(0) rotate(var(--r)) scale(1); 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
+        opacity: 0.85; 
+      }
+      50% { 
+        transform: translateY(-12px) rotate(calc(var(--r) + 6deg)) scale(1.1); 
+        box-shadow: 0 15px 25px rgba(16, 185, 129, 0.45); 
+        opacity: 1; 
+      }
+    }
+
     .hero-float {
+      --r: 0deg;
       position: absolute;
       z-index: 3;
-
       width: 43px;
       height: 43px;
-
       display: grid;
       place-items: center;
-
       border-radius: 14px;
-
       color: #fff;
-      background: linear-gradient(145deg, #13d99c, #0789ba);
-
-      box-shadow: 0 8px 17px rgba(5, 150, 105, .2);
-
       font-size: 21px;
+      animation: floatBlink 4.5s infinite ease-in-out;
     }
 
-    .hero-float.one {
-      top: 15px;
-      right: 11%;
-      transform: rotate(8deg);
+    .hero-float.one { 
+      --r: 8deg; 
+      top: 15px; 
+      right: 11%; 
+      background: linear-gradient(145deg, #f7931a, #d97904); /* Bitcoin */
+      animation-delay: 0s; 
     }
-
-    .hero-float.two {
-      bottom: 8px;
-      left: 10%;
-      transform: rotate(-8deg);
-
-      background: linear-gradient(145deg, #36dbac, #1687ff);
+    .hero-float.two { 
+      --r: -8deg; 
+      bottom: 8px; 
+      left: 10%; 
+      background: linear-gradient(145deg, #627eea, #3952a3); /* Ethereum */
+      animation-delay: 1.2s; 
+    }
+    .hero-float.three { 
+      --r: 15deg; 
+      top: 25%; 
+      left: 5%; 
+      background: linear-gradient(145deg, #14f195, #9945ff); /* Solana */
+      animation-delay: 0.6s; 
+    }
+    .hero-float.four { 
+      --r: -12deg; 
+      bottom: 25%; 
+      right: 4%; 
+      background: linear-gradient(145deg, #08a86b, #1687ff); /* DePIN */
+      font-size: 17px; 
+      animation-delay: 1.8s; 
+    }
+    .hero-float.five { 
+      --r: -5deg; 
+      top: -5px; 
+      left: 38%; 
+      background: linear-gradient(145deg, #8b5cf6, #d946ef); /* Community */
+      font-size: 17px; 
+      animation-delay: 2.5s; 
     }
 
     .mobile-overlay {
@@ -1763,8 +1807,10 @@
         radial-gradient(circle at 85% 45%, rgba(31, 229, 170, .28), transparent 25%),
         radial-gradient(circle at 5% 0%, rgba(21, 190, 135, .22), transparent 34%),
         linear-gradient(105deg, #032b2b 0%, #075b4e 56%, #032c34 100%);
-      box-shadow: 0 10px 26px rgba(8, 168, 107, .17),
-                  inset 0 1px 0 rgba(255, 255, 255, .13);
+      
+      /* Ad Banner Glow Applied Here */
+      animation: safeSponsorGlow 3.5s infinite ease-in-out;
+      
       transition: transform .22s ease, box-shadow .22s ease,
                   border-color .22s ease;
     }
@@ -1795,9 +1841,6 @@
     .hub-ad-banner:hover {
       transform: translateY(-2px);
       border-color: rgba(143, 255, 220, .9);
-      box-shadow: 0 15px 32px rgba(8, 168, 107, .24),
-                  0 0 22px rgba(45, 225, 169, .12),
-                  inset 0 1px 0 rgba(255, 255, 255, .18);
     }
 
     .hub-ad-copy {
@@ -2654,13 +2697,12 @@
             </span>
 
             <h2 id="heroTitle">
-              Welcome to
-              <span>Total Crypto Hub</span>
+              Empowering Our Community with
+              <span>Real Web3 Opportunities</span>
             </h2>
 
             <p>
-              Explore DePIN nodes, community projects, airdrops, wallets
-              and crypto tools in one place.
+              Welcome to Total Crypto Hub — built exclusively for our community! Stop searching endlessly across multiple platforms. We have brought together 100% verified DePIN nodes, zero-investment airdrops, smart earning calculators, and essential Web3 tools all under one roof.
             </p>
 
             <div class="hero-actions">
@@ -2679,8 +2721,12 @@
           <div class="hero-art" aria-hidden="true">
             <div class="orbit"></div>
 
-            <span class="hero-float one">₿</span>
-            <span class="hero-float two">◆</span>
+            <!-- Floating & Blinking Crypto and Community Logos -->
+            <span class="hero-float one" title="Bitcoin">₿</span>
+            <span class="hero-float two" title="Ethereum">Ξ</span>
+            <span class="hero-float three" title="Solana">◎</span>
+            <span class="hero-float four" title="DePIN">📡</span>
+            <span class="hero-float five" title="Community">👥</span>
 
             <svg class="hero-globe" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg">
               <defs>
