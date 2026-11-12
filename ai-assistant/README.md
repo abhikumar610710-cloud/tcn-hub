@@ -1,18 +1,18 @@
-# Total Crypto Hub - TCNAI Assistant
+# Total Crypto Hub - AI Assistant
 
-A professional, green-themed animated AI robot assistant for Total Crypto Hub.
+A professional, green-themed animated AI assistant for Total Crypto Hub.
 
 ## Project Files
 
-- `assistant.html` - TCNAI robot character and chat interface.
-- `assistant.css` - Robot design, floating styles, chat window and visual styling.
+- `assistant.html` - Assistant character and chat interface.
+- `assistant.css` - Assistant design, floating styles, chat window and visual styling.
 - `assistant.js` - Loads the assistant and handles interactive chat and dragging logic.
-- `robot-animation.js` - Handles robot hovering and happy reaction animations.
+- `robot-animation.js` - Handles hovering and reactive animations.
 - `README.md` - Project documentation.
 
 ## Current Features
 
-- Floating cyber robot mascot (TCNAI).
+- Floating assistant mascot.
 - Smooth hovering and reactive animations.
 - Interactive chat window with customized TCN ecosystem knowledge.
 - Suggested questions covering DePIN, Airdrops, Wallets, and Hub features.
