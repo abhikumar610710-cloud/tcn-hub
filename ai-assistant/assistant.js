@@ -112,8 +112,6 @@
       };
     });
 
-    /* Robot States & Idle Animation */
-
     function activateRobot() {
       robot.classList.remove("is-resting");
       robot.classList.add("is-active");
@@ -128,15 +126,12 @@
 
     function resetIdleTimer() {
       activateRobot();
-
       clearTimeout(idleTimer);
 
       idleTimer = setTimeout(() => {
         restRobot();
       }, 6000);
     }
-
-    /* Chat open and close */
 
     function openChat() {
       chatWindow.classList.add("is-open");
@@ -173,8 +168,6 @@
     });
 
     closeButton.addEventListener("click", closeChat);
-
-    /* Drag and move character */
 
     function clamp(value, min, max) {
       return Math.min(Math.max(value, min), max);
@@ -261,8 +254,6 @@
     robot.addEventListener("pointerup", stopDragging);
     robot.addEventListener("pointercancel", stopDragging);
 
-    /* Keep character inside screen after resize */
-
     window.addEventListener("resize", () => {
       if (!characterArea.style.left) {
         return;
@@ -286,8 +277,6 @@
       characterArea.style.top = newY + "px";
     });
 
-    /* Activity detection */
-
     [
       "pointermove",
       "pointerdown",
@@ -300,8 +289,6 @@
         passive: true
       });
     });
-
-    /* TCN-only assistant knowledge */
 
     function getTCNReply(question) {
       const q = question.toLowerCase();
@@ -394,15 +381,11 @@
       sendQuestion(input.value);
     });
 
-    /* Suggestion buttons */
-
     root.querySelectorAll("[data-question]").forEach(button => {
       button.addEventListener("click", () => {
         sendQuestion(button.dataset.question);
       });
     });
-
-    /* Escape key closes chat */
 
     document.addEventListener("keydown", event => {
       if (
