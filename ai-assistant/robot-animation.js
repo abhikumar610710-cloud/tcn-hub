@@ -1,7 +1,6 @@
-
 /* =========================================
    TOTAL CRYPTO HUB
-   TCN AI GIRL - CHARACTER ANIMATIONS
+   TCN AI ROBOT - CHARACTER ANIMATIONS
 ========================================= */
 
 (function () {
@@ -18,69 +17,51 @@
     style.id = "tcn-ai-animation-styles";
 
     style.textContent = `
-      /* Standing: gentle natural movement */
+      /* Floating Robot: gentle natural hovering movement */
       #tcn-ai-assistant
-      .tcn-ai-character.is-standing
-      .tcn-ai-girl-standing {
-        animation: tcnGirlStanding 2.8s ease-in-out infinite;
-        transform-origin: center bottom;
-      }
-
-      /* Sitting: soft breathing movement */
-      #tcn-ai-assistant
-      .tcn-ai-character.is-sitting
-      .tcn-ai-girl-sitting {
-        animation: tcnGirlSitting 3.5s ease-in-out infinite;
-        transform-origin: center bottom;
+      .tcn-ai-character
+      .tcn-ai-robot-head {
+        animation: tcnRobotFloat 3.2s ease-in-out infinite;
+        transform-origin: center center;
       }
 
       /* Happy reaction when clicked */
       #tcn-ai-assistant
       .tcn-ai-character.is-happy
-      .tcn-ai-girl {
-        animation: tcnGirlHappy 0.65s ease-in-out;
+      .tcn-ai-robot-head {
+        animation: tcnRobotHappy 0.65s ease-in-out;
       }
 
-      @keyframes tcnGirlStanding {
+      @keyframes tcnRobotFloat {
         0%, 100% {
           transform: translateX(-50%) translateY(0) rotate(0deg);
         }
 
         50% {
-          transform: translateX(-50%) translateY(-3px) rotate(1deg);
+          transform: translateX(-50%) translateY(-5px) rotate(1.5deg);
         }
       }
 
-      @keyframes tcnGirlSitting {
-        0%, 100% {
-          transform: translateX(-50%) translateY(0) scale(1);
-        }
-
-        50% {
-          transform: translateX(-50%) translateY(-2px) scale(1.01);
-        }
-      }
-
-      @keyframes tcnGirlHappy {
+      @keyframes tcnRobotHappy {
         0% {
-          transform: translateX(-50%) translateY(0) scale(1);
+          transform: translateX(-50%) translateY(0) scale(1) rotate(0deg);
         }
 
         35% {
-          transform: translateX(-50%) translateY(-5px) scale(1.05) rotate(-2deg);
+          transform: translateX(-50%) translateY(-8px) scale(1.08) rotate(-3deg);
         }
 
         70% {
-          transform: translateX(-50%) translateY(-3px) scale(1.04) rotate(2deg);
+          transform: translateX(-50%) translateY(-4px) scale(1.05) rotate(3deg);
         }
 
         100% {
-          transform: translateX(-50%) translateY(0) scale(1);
+          transform: translateX(-50%) translateY(0) scale(1) rotate(0deg);
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        #tcn-ai-assistant .tcn-ai-girl {
+        #tcn-ai-assistant .tcn-ai-robot-head {
           animation: none !important;
         }
       }
