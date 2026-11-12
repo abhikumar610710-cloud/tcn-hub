@@ -101,16 +101,42 @@
     }
 
     /* ==============================
-       SAFE GLOW ANIMATION (SPONSORS)
+       🔥 NEW HIGH-VISIBILITY GLOW ANIMATIONS (SPONSORS) 🔥
     ============================== */
-    @keyframes safeSponsorGlow {
+    
+    /* 1. Top Sponsor Banner Glow */
+    @keyframes topSponsorGlow {
       0%, 100% {
-        box-shadow: 0 5px 20px rgba(16, 185, 129, 0.15);
-        border-color: rgba(16, 185, 129, 0.25);
+        box-shadow: 0 5px 20px rgba(1, 30, 30, .12);
+        border-bottom-color: rgba(74, 230, 180, .25);
       }
       50% {
-        box-shadow: 0 10px 35px rgba(16, 185, 129, 0.55);
-        border-color: rgba(16, 185, 129, 0.8);
+        box-shadow: 0 8px 30px rgba(32, 217, 154, 0.7);
+        border-bottom-color: rgba(32, 217, 154, 1);
+      }
+    }
+
+    /* 2. Bottom Spotlight Banner Glow */
+    @keyframes bottomAdGlow {
+      0%, 100% {
+        box-shadow: 0 10px 26px rgba(8, 168, 107, .17), inset 0 1px 0 rgba(255, 255, 255, .13);
+        border-color: rgba(91, 244, 194, .58);
+      }
+      50% {
+        box-shadow: 0 15px 45px rgba(32, 217, 154, 0.8), inset 0 1px 0 rgba(255, 255, 255, .4);
+        border-color: rgba(143, 255, 220, 1);
+      }
+    }
+
+    /* 3. Button Pulse & Glow */
+    @keyframes sponsorBtnGlow {
+      0%, 100% {
+        box-shadow: 0 5px 16px rgba(16, 185, 129, .2);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 5px 25px rgba(32, 217, 154, 0.85);
+        transform: scale(1.02);
       }
     }
 
@@ -144,8 +170,9 @@
         );
 
       border-bottom: 1px solid rgba(74, 230, 180, .25);
-      /* Sponsor Bar Glow Applied Here */
-      animation: safeSponsorGlow 3.5s infinite ease-in-out;
+      
+      /* 🔥 Top Banner Animation Applied Here */
+      animation: topSponsorGlow 3s infinite ease-in-out;
     }
 
     .sponsor-inner {
@@ -304,11 +331,16 @@
 
       box-shadow: 0 5px 16px rgba(16, 185, 129, .2);
       transition: .2s ease;
+      
+      /* 🔥 Button Glow Applied Here */
+      animation: sponsorBtnGlow 3s infinite ease-in-out;
     }
 
     .sponsor-cta:hover {
+      background: #fff;
+      animation: none;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(16, 185, 129, .3);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, .4);
     }
 
     /* ==============================
@@ -1808,8 +1840,8 @@
         radial-gradient(circle at 5% 0%, rgba(21, 190, 135, .22), transparent 34%),
         linear-gradient(105deg, #032b2b 0%, #075b4e 56%, #032c34 100%);
       
-      /* Ad Banner Glow Applied Here */
-      animation: safeSponsorGlow 3.5s infinite ease-in-out;
+      /* 🔥 Bottom Ad Banner Animation Applied Here */
+      animation: bottomAdGlow 3s infinite ease-in-out;
       
       transition: transform .22s ease, box-shadow .22s ease,
                   border-color .22s ease;
@@ -1839,6 +1871,7 @@
     }
 
     .hub-ad-banner:hover {
+      animation: none;
       transform: translateY(-2px);
       border-color: rgba(143, 255, 220, .9);
     }
@@ -1890,9 +1923,13 @@
       font-size: 9px;
       font-weight: 800;
       transition: transform .2s ease, box-shadow .2s ease;
+      
+      /* 🔥 Button Glow Applied Here */
+      animation: sponsorBtnGlow 3s infinite ease-in-out;
     }
 
     .hub-ad-banner:hover .hub-ad-button {
+      animation: none;
       transform: translateY(-1px);
       box-shadow: 0 8px 18px rgba(26, 221, 151, .3);
     }
