@@ -101,10 +101,9 @@
     }
 
     /* ==============================
-       🔥 NEW HIGH-VISIBILITY GLOW ANIMATIONS (SPONSORS) 🔥
+       🔥 GLOW ANIMATIONS (SPONSORS) 🔥
     ============================== */
     
-    /* 1. Top Sponsor Banner Glow */
     @keyframes topSponsorGlow {
       0%, 100% {
         box-shadow: 0 5px 20px rgba(1, 30, 30, .12);
@@ -116,7 +115,6 @@
       }
     }
 
-    /* 2. Bottom Spotlight Banner Glow */
     @keyframes bottomAdGlow {
       0%, 100% {
         box-shadow: 0 10px 26px rgba(8, 168, 107, .17), inset 0 1px 0 rgba(255, 255, 255, .13);
@@ -128,7 +126,6 @@
       }
     }
 
-    /* 3. Button Pulse & Glow */
     @keyframes sponsorBtnGlow {
       0%, 100% {
         box-shadow: 0 5px 16px rgba(16, 185, 129, .2);
@@ -139,6 +136,34 @@
         transform: scale(1.02);
       }
     }
+
+    /* ==============================
+       🔥 NEW 3D TEXT FLIP (पलटी मारने वाला इफ़ेक्ट) 🔥
+    ============================== */
+    .text-flipper {
+      display: inline-block;
+      transform-style: preserve-3d;
+      white-space: nowrap;
+    }
+
+    .flip-out {
+      animation: flipOutX 0.4s ease-in forwards;
+    }
+
+    .flip-in {
+      animation: flipInX 0.5s ease-out forwards;
+    }
+
+    @keyframes flipOutX {
+      0% { transform: perspective(600px) rotateX(0deg); opacity: 1; }
+      100% { transform: perspective(600px) rotateX(-90deg); opacity: 0; }
+    }
+
+    @keyframes flipInX {
+      0% { transform: perspective(600px) rotateX(90deg); opacity: 0; }
+      100% { transform: perspective(600px) rotateX(0deg); opacity: 1; }
+    }
+
 
     /* ==============================
        TOP HEADER / SPONSOR BAR
@@ -170,8 +195,6 @@
         );
 
       border-bottom: 1px solid rgba(74, 230, 180, .25);
-      
-      /* 🔥 Top Banner Animation Applied Here */
       animation: topSponsorGlow 3s infinite ease-in-out;
     }
 
@@ -268,22 +291,18 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-
-      white-space: nowrap;
     }
 
     .sponsor-eyebrow {
       padding: 5px 10px;
-
       border: 1px solid rgba(110, 231, 183, .35);
       border-radius: 999px;
-
       color: #a7f3d0;
       background: rgba(16, 185, 129, .12);
-
       font-size: 8px;
       font-weight: 800;
       letter-spacing: .7px;
+      white-space: nowrap;
     }
 
     .sponsor-copy strong {
@@ -307,6 +326,7 @@
       color: #cee6dc;
       font-size: 9px;
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .sponsor-cta {
@@ -332,7 +352,6 @@
       box-shadow: 0 5px 16px rgba(16, 185, 129, .2);
       transition: .2s ease;
       
-      /* 🔥 Button Glow Applied Here */
       animation: sponsorBtnGlow 3s infinite ease-in-out;
     }
 
@@ -467,40 +486,13 @@
       stroke-linejoin: round;
     }
 
-    .nav-home {
-      color: #079b69;
-      background: #d9f8e9;
-    }
-
-    .nav-depin {
-      color: #1687ff;
-      background: #dfeeff;
-    }
-
-    .nav-community {
-      color: #8b5cf6;
-      background: #eee5ff;
-    }
-
-    .nav-airdrop {
-      color: #f07819;
-      background: #fff0d9;
-    }
-
-    .nav-wallet {
-      color: #9333ea;
-      background: #f1e3ff;
-    }
-
-    .nav-checker {
-      color: #0d9488;
-      background: #d9f7f0;
-    }
-
-    .nav-calculator {
-      color: #2563eb;
-      background: #e2eaff;
-    }
+    .nav-home { color: #079b69; background: #d9f8e9; }
+    .nav-depin { color: #1687ff; background: #dfeeff; }
+    .nav-community { color: #8b5cf6; background: #eee5ff; }
+    .nav-airdrop { color: #f07819; background: #fff0d9; }
+    .nav-wallet { color: #9333ea; background: #f1e3ff; }
+    .nav-checker { color: #0d9488; background: #d9f7f0; }
+    .nav-calculator { color: #2563eb; background: #e2eaff; }
 
     .sidebar-spacer {
       flex: 1 0 18px;
@@ -533,44 +525,22 @@
       border-color: #255c49;
     }
 
-    .promo-gift {
-      margin-bottom: 8px;
-      font-size: 34px;
-    }
-
-    .side-promo h3 {
-      margin: 0 0 8px;
-
-      color: var(--heading);
-      font-size: 13px;
-      line-height: 1.5;
-      font-weight: 800;
-    }
-
-    .side-promo p {
-      margin: 0 0 12px;
-
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.55;
-    }
+    .promo-gift { margin-bottom: 8px; font-size: 34px; }
+    .side-promo h3 { margin: 0 0 8px; color: var(--heading); font-size: 13px; line-height: 1.5; font-weight: 800; }
+    .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.55; }
 
     .promo-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
-
       padding: 10px 19px;
-
       border-radius: 999px;
       color: #fff;
       background: linear-gradient(135deg, #08a86b, #06c77a);
-
       text-decoration: none;
       font-size: 11px;
       font-weight: 800;
-
       box-shadow: 0 6px 14px rgba(8, 168, 107, .2);
     }
 
@@ -578,15 +548,11 @@
       display: flex;
       align-items: center;
       gap: 10px;
-
       margin: 0 6px;
       padding: 13px;
-
       flex-shrink: 0;
-
       border-radius: 17px;
       border: 1px solid var(--border);
-
       background: var(--surface-soft);
       text-decoration: none;
     }
@@ -594,36 +560,20 @@
     .support-icon {
       width: 37px;
       height: 37px;
-
       display: grid;
       place-items: center;
-
       border-radius: 50%;
       color: var(--green-dark);
       background: var(--green-soft);
-
       font-size: 18px;
     }
 
-    .support-card strong {
-      display: block;
-      color: var(--heading);
-      font-size: 11px;
-    }
-
-    .support-card span:last-child {
-      display: block;
-      margin-top: 4px;
-
-      color: var(--green);
-      font-size: 10px;
-      font-weight: 800;
-    }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
 
     .sidebar-note {
       margin: 14px 8px 0;
       padding-bottom: 3px;
-
       color: var(--muted);
       font-size: 9px;
       text-align: center;
@@ -640,13 +590,10 @@
 
     .mobile-menu-btn {
       display: none;
-
       width: 38px;
       height: 38px;
-
       border: 1px solid var(--border);
       border-radius: 12px;
-
       color: var(--heading);
       background: var(--surface);
     }
@@ -655,1378 +602,391 @@
       position: sticky;
       top: var(--sponsor-height);
       z-index: 100;
-
       min-height: 72px;
-
       display: flex;
       align-items: center;
       gap: 18px;
-
       padding: 12px 30px;
-
-      background: color-mix(
-        in srgb,
-        var(--surface) 95%,
-        transparent
-      );
-
+      background: color-mix(in srgb, var(--surface) 95%, transparent);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(16px);
     }
 
-    .search-wrap {
-      position: relative;
-      width: min(540px, 52vw);
-    }
+    .search-wrap { position: relative; width: min(540px, 52vw); }
 
     .search-wrap input {
       width: 100%;
       height: 43px;
-
       padding: 0 44px 0 17px;
-
       border: 1px solid var(--border);
       border-radius: 999px;
       outline: none;
-
       color: var(--heading);
       background: var(--surface-soft);
-
       font-size: 11px;
       font-weight: 600;
     }
 
-    .search-wrap input:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(8, 168, 107, .10);
-    }
-
-    .search-wrap input::placeholder {
-      color: var(--muted);
-    }
+    .search-wrap input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(8, 168, 107, .10); }
+    .search-wrap input::placeholder { color: var(--muted); }
 
     .search-icon {
       position: absolute;
       right: 16px;
       top: 50%;
       transform: translateY(-50%);
-
       color: var(--heading);
       font-size: 18px;
-
       pointer-events: none;
     }
 
-    .topbar-spacer {
-      flex: 1;
-    }
-
-    .community-dropdown {
-      position: relative;
-    }
+    .topbar-spacer { flex: 1; }
+    .community-dropdown { position: relative; }
 
     .community-btn,
     .icon-btn {
       min-height: 39px;
-
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
-
       border: 1px solid var(--border);
       border-radius: 999px;
-
       color: var(--heading);
       background: var(--surface);
-
       font-size: 11px;
       font-weight: 800;
-
       box-shadow: 0 3px 9px rgba(20, 45, 75, .035);
     }
 
-    .community-btn {
-      padding: 0 16px;
-    }
-
-    .icon-btn {
-      width: 39px;
-      border-radius: 50%;
-      font-size: 17px;
-    }
+    .community-btn { padding: 0 16px; }
+    .icon-btn { width: 39px; border-radius: 50%; font-size: 17px; }
 
     .community-btn:hover,
-    .icon-btn:hover {
-      border-color: var(--green);
-      color: var(--green);
-    }
+    .icon-btn:hover { border-color: var(--green); color: var(--green); }
 
     .dropdown-content {
       display: none;
-
       position: absolute;
       z-index: 150;
-
       top: calc(100% + 10px);
       right: 0;
-
       min-width: 195px;
       overflow: hidden;
-
       border: 1px solid var(--border);
       border-radius: 14px;
-
       background: var(--surface);
       box-shadow: 0 14px 32px rgba(0, 0, 0, .14);
     }
 
-    .dropdown-content.show {
-      display: block;
-      animation: fadeIn .18s ease-out;
-    }
+    .dropdown-content.show { display: block; animation: fadeIn .18s ease-out; }
 
     .dropdown-content a {
       display: flex;
       gap: 9px;
-
       padding: 13px 15px;
-
       border-bottom: 1px solid var(--border);
-
       color: var(--heading);
       text-decoration: none;
-
       font-size: 11px;
       font-weight: 700;
     }
 
-    .dropdown-content a:last-child {
-      border-bottom: 0;
-    }
-
-    .dropdown-content a:hover {
-      color: var(--green);
-      background: var(--green-soft);
-    }
+    .dropdown-content a:last-child { border-bottom: 0; }
+    .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ==============================
        MAIN CONTENT
     ============================== */
-
-    main {
-      width: 100%;
-      max-width: 1600px;
-
-      margin: 0 auto;
-      padding: 20px 25px 35px;
-    }
+    main { width: 100%; max-width: 1600px; margin: 0 auto; padding: 20px 25px 35px; }
 
     /* ==============================
        HERO SECTION
     ============================== */
-
     .hero-panel {
       min-height: 315px;
-
       position: relative;
       isolation: isolate;
       overflow: hidden;
-
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
       align-items: center;
-
       gap: 12px;
       padding: 30px 30px;
-
       border: 1px solid #b9f2de;
       border-radius: 25px;
-
       background:
-        radial-gradient(
-          circle at 91% 12%,
-          rgba(59, 229, 180, .33),
-          transparent 26%
-        ),
-        radial-gradient(
-          circle at 66% 100%,
-          rgba(77, 223, 190, .18),
-          transparent 33%
-        ),
-        linear-gradient(
-          110deg,
-          #e7fff5 0%,
-          #effff9 45%,
-          #baf7e8 100%
-        );
-
+        radial-gradient(circle at 91% 12%, rgba(59, 229, 180, .33), transparent 26%),
+        radial-gradient(circle at 66% 100%, rgba(77, 223, 190, .18), transparent 33%),
+        linear-gradient(110deg, #e7fff5 0%, #effff9 45%, #baf7e8 100%);
       box-shadow: 0 13px 30px rgba(8, 168, 107, .09);
     }
 
     .hero-panel::before {
-      content: "";
-
-      position: absolute;
-      z-index: -1;
-
-      width: 480px;
-      height: 290px;
-
-      right: -100px;
-      top: -150px;
-
-      border-radius: 50%;
-      background: rgba(69, 220, 177, .18);
+      content: ""; position: absolute; z-index: -1; width: 480px; height: 290px;
+      right: -100px; top: -150px; border-radius: 50%; background: rgba(69, 220, 177, .18);
     }
 
     .hero-panel::after {
-      content: "";
-
-      position: absolute;
-      z-index: -1;
-
-      width: 390px;
-      height: 220px;
-
-      left: 36%;
-      bottom: -180px;
-
-      border-radius: 50%;
-      background: rgba(30, 195, 153, .13);
-      filter: blur(20px);
+      content: ""; position: absolute; z-index: -1; width: 390px; height: 220px;
+      left: 36%; bottom: -180px; border-radius: 50%; background: rgba(30, 195, 153, .13); filter: blur(20px);
     }
 
     [data-theme="dark"] .hero-panel {
       border-color: #215d4c;
-
       background:
-        radial-gradient(
-          circle at 88% 5%,
-          rgba(28, 223, 157, .18),
-          transparent 26%
-        ),
-        linear-gradient(
-          105deg,
-          #102e2b,
-          #123b36 55%,
-          #124e45
-        );
+        radial-gradient(circle at 88% 5%, rgba(28, 223, 157, .18), transparent 26%),
+        linear-gradient(105deg, #102e2b, #123b36 55%, #124e45);
     }
 
-    .hero-copy {
-      position: relative;
-      z-index: 2;
-      max-width: 660px;
-    }
+    .hero-copy { position: relative; z-index: 2; max-width: 660px; }
 
     .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      margin-bottom: 14px;
-      padding: 7px 12px;
-
-      border: 1px solid rgba(8, 168, 107, .25);
-      border-radius: 999px;
-
-      color: #078653;
-      background: rgba(255, 255, 255, .67);
-
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: .7px;
-      text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; padding: 7px 12px;
+      border: 1px solid rgba(8, 168, 107, .25); border-radius: 999px; color: #078653;
+      background: rgba(255, 255, 255, .67); font-size: 9px; font-weight: 800;
+      letter-spacing: .7px; text-transform: uppercase;
     }
 
-    [data-theme="dark"] .hero-kicker {
-      color: #8af0c5;
-      background: rgba(8, 40, 35, .55);
-    }
+    [data-theme="dark"] .hero-kicker { color: #8af0c5; background: rgba(8, 40, 35, .55); }
 
     .hero-copy h2 {
-      margin: 0 0 12px;
-
-      color: #102344;
-
-      font-size: clamp(32px, 3.7vw, 49px);
-      line-height: 1.1;
-      font-weight: 800;
-
-      letter-spacing: -1.7px;
+      margin: 0 0 12px; color: #102344; font-size: clamp(32px, 3.7vw, 49px);
+      line-height: 1.1; font-weight: 800; letter-spacing: -1.7px;
     }
 
-    [data-theme="dark"] .hero-copy h2 {
-      color: #f0fff9;
-    }
-
-    .hero-copy h2 span {
-      display: block;
-      color: #079765;
-    }
+    [data-theme="dark"] .hero-copy h2 { color: #f0fff9; }
+    .hero-copy h2 span { display: block; color: #079765; }
 
     .hero-copy p {
-      max-width: 630px;
-      margin: 0;
-      color: #31516a;
-      font-size: 13.5px;
-      line-height: 1.7;
-      font-weight: 600;
+      max-width: 630px; margin: 0; color: #31516a; font-size: 13.5px;
+      line-height: 1.7; font-weight: 600;
     }
 
-    [data-theme="dark"] .hero-copy p {
-      color: #cae9df;
-    }
+    [data-theme="dark"] .hero-copy p { color: #cae9df; }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-
-      margin-top: 21px;
-    }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 21px; }
 
     .primary-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-
-      padding: 13px 20px;
-
-      border-radius: 999px;
-
-      color: #fff;
-      background: linear-gradient(135deg, #07975d, #06bf79);
-
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-
-      box-shadow: 0 7px 18px rgba(8, 168, 107, .23);
-
-      transition: .2s ease;
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 13px 20px; border-radius: 999px; color: #fff;
+      background: linear-gradient(135deg, #07975d, #06bf79); text-decoration: none;
+      font-size: 11px; font-weight: 800; box-shadow: 0 7px 18px rgba(8, 168, 107, .23); transition: .2s ease;
     }
 
-    .primary-cta:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 23px rgba(8, 168, 107, .3);
-    }
+    .primary-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 23px rgba(8, 168, 107, .3); }
 
     .secondary-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-
-      padding: 12px 19px;
-
-      border: 1px solid #19c995;
-      border-radius: 999px;
-
-      color: #087f55;
-      background: rgba(255, 255, 255, .47);
-
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-
-      transition: .2s ease;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 19px; border: 1px solid #19c995; border-radius: 999px; color: #087f55;
+      background: rgba(255, 255, 255, .47); text-decoration: none; font-size: 11px; font-weight: 800; transition: .2s ease;
     }
 
-    .secondary-cta:hover {
-      background: #fff;
-      transform: translateY(-2px);
-    }
+    .secondary-cta:hover { background: #fff; transform: translateY(-2px); }
+    [data-theme="dark"] .secondary-cta { color: #8af0c5; background: rgba(8, 40, 35, .55); }
 
-    [data-theme="dark"] .secondary-cta {
-      color: #8af0c5;
-      background: rgba(8, 40, 35, .55);
-    }
-
-    .hero-art {
-      position: relative;
-      min-height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
+    .hero-art { position: relative; min-height: 260px; display: flex; align-items: center; justify-content: center; }
     .hero-art::before {
-      content: "";
-      position: absolute;
-      width: 82%;
-      height: 26%;
-      left: 9%;
-      bottom: 5%;
-      border-radius: 50%;
-      background: rgba(12, 173, 135, .10);
-      filter: blur(14px);
+      content: ""; position: absolute; width: 82%; height: 26%; left: 9%; bottom: 5%;
+      border-radius: 50%; background: rgba(12, 173, 135, .10); filter: blur(14px);
     }
 
-    /* GLOBE FLOAT AND ROTATE ANIMATION */
     @keyframes safeGlobeRotate {
-      0%, 100% { 
-        transform: translateY(0) rotate(0deg); 
-        filter: drop-shadow(0 15px 19px rgba(0, 112, 105, .19)); 
-      }
-      50% { 
-        transform: translateY(-8px) rotate(2.5deg); 
-        filter: drop-shadow(0 22px 25px rgba(0, 112, 105, .25)); 
-      }
+      0%, 100% { transform: translateY(0) rotate(0deg); filter: drop-shadow(0 15px 19px rgba(0, 112, 105, .19)); }
+      50% { transform: translateY(-8px) rotate(2.5deg); filter: drop-shadow(0 22px 25px rgba(0, 112, 105, .25)); }
     }
 
     .hero-globe {
-      position: relative;
-      z-index: 2;
-      display: block;
-      width: min(100%, 470px);
-      height: auto;
-      overflow: visible;
-      /* Rotating & Floating Effect */
-      animation: safeGlobeRotate 6.5s infinite ease-in-out;
+      position: relative; z-index: 2; display: block; width: min(100%, 470px); height: auto;
+      overflow: visible; animation: safeGlobeRotate 6.5s infinite ease-in-out;
     }
 
     .orbit {
-      position: absolute;
-
-      width: min(355px, 100%);
-      height: 145px;
-
-      border: 1px dashed rgba(5, 150, 105, .35);
-      border-radius: 50%;
-
-      transform: rotate(-12deg);
+      position: absolute; width: min(355px, 100%); height: 145px; border: 1px dashed rgba(5, 150, 105, .35);
+      border-radius: 50%; transform: rotate(-12deg);
     }
-
-    .orbit::before,
-    .orbit::after {
-      content: "";
-
-      position: absolute;
-
-      width: 13px;
-      height: 13px;
-
-      border-radius: 50%;
-
-      background: #09b985;
-      box-shadow: 0 4px 12px rgba(8, 168, 107, .25);
+    .orbit::before, .orbit::after {
+      content: ""; position: absolute; width: 13px; height: 13px; border-radius: 50%;
+      background: #09b985; box-shadow: 0 4px 12px rgba(8, 168, 107, .25);
     }
+    .orbit::before { left: 24px; top: 28px; }
+    .orbit::after { right: 22px; bottom: 25px; background: #1687ff; }
 
-    .orbit::before {
-      left: 24px;
-      top: 28px;
-    }
-
-    .orbit::after {
-      right: 22px;
-      bottom: 25px;
-      background: #1687ff;
-    }
-
-    /* 5 FLOATING LOGOS AND BLINKING ANIMATION */
     @keyframes floatBlink {
-      0%, 100% { 
-        transform: translateY(0) rotate(var(--r)) scale(1); 
-        box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
-        opacity: 0.85; 
-      }
-      50% { 
-        transform: translateY(-12px) rotate(calc(var(--r) + 6deg)) scale(1.1); 
-        box-shadow: 0 15px 25px rgba(16, 185, 129, 0.45); 
-        opacity: 1; 
-      }
+      0%, 100% { transform: translateY(0) rotate(var(--r)) scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.15); opacity: 0.85; }
+      50% { transform: translateY(-12px) rotate(calc(var(--r) + 6deg)) scale(1.1); box-shadow: 0 15px 25px rgba(16, 185, 129, 0.45); opacity: 1; }
     }
 
     .hero-float {
-      --r: 0deg;
-      position: absolute;
-      z-index: 3;
-      width: 43px;
-      height: 43px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      color: #fff;
-      font-size: 21px;
-      animation: floatBlink 4.5s infinite ease-in-out;
+      --r: 0deg; position: absolute; z-index: 3; width: 43px; height: 43px; display: grid; place-items: center;
+      border-radius: 14px; color: #fff; font-size: 21px; animation: floatBlink 4.5s infinite ease-in-out;
     }
+    .hero-float.one { --r: 8deg; top: 15px; right: 11%; background: linear-gradient(145deg, #f7931a, #d97904); animation-delay: 0s; }
+    .hero-float.two { --r: -8deg; bottom: 8px; left: 10%; background: linear-gradient(145deg, #627eea, #3952a3); animation-delay: 1.2s; }
+    .hero-float.three { --r: 15deg; top: 25%; left: 5%; background: linear-gradient(145deg, #14f195, #9945ff); animation-delay: 0.6s; }
+    .hero-float.four { --r: -12deg; bottom: 25%; right: 4%; background: linear-gradient(145deg, #08a86b, #1687ff); font-size: 17px; animation-delay: 1.8s; }
+    .hero-float.five { --r: -5deg; top: -5px; left: 38%; background: linear-gradient(145deg, #8b5cf6, #d946ef); font-size: 17px; animation-delay: 2.5s; }
 
-    .hero-float.one { 
-      --r: 8deg; 
-      top: 15px; 
-      right: 11%; 
-      background: linear-gradient(145deg, #f7931a, #d97904); /* Bitcoin */
-      animation-delay: 0s; 
-    }
-    .hero-float.two { 
-      --r: -8deg; 
-      bottom: 8px; 
-      left: 10%; 
-      background: linear-gradient(145deg, #627eea, #3952a3); /* Ethereum */
-      animation-delay: 1.2s; 
-    }
-    .hero-float.three { 
-      --r: 15deg; 
-      top: 25%; 
-      left: 5%; 
-      background: linear-gradient(145deg, #14f195, #9945ff); /* Solana */
-      animation-delay: 0.6s; 
-    }
-    .hero-float.four { 
-      --r: -12deg; 
-      bottom: 25%; 
-      right: 4%; 
-      background: linear-gradient(145deg, #08a86b, #1687ff); /* DePIN */
-      font-size: 17px; 
-      animation-delay: 1.8s; 
-    }
-    .hero-float.five { 
-      --r: -5deg; 
-      top: -5px; 
-      left: 38%; 
-      background: linear-gradient(145deg, #8b5cf6, #d946ef); /* Community */
-      font-size: 17px; 
-      animation-delay: 2.5s; 
-    }
-
-    .mobile-overlay {
-      display: none;
-    }
+    .mobile-overlay { display: none; }
 
     /* ==============================
        EXPLORE THE HUB
     ============================== */
-
-    .section-heading {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-
-      gap: 15px;
-
-      margin: 23px 0 15px;
-    }
-
-    .section-title-wrap {
-      position: relative;
-      padding-left: 14px;
-    }
-
+    .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 15px; margin: 23px 0 15px; }
+    .section-title-wrap { position: relative; padding-left: 14px; }
     .section-title-wrap::before {
-      content: "";
-
-      position: absolute;
-      left: 0;
-      top: 2px;
-      bottom: 3px;
-
-      width: 5px;
-
-      border-radius: 999px;
-      background: linear-gradient(#08a86b, #34e7b2);
+      content: ""; position: absolute; left: 0; top: 2px; bottom: 3px; width: 5px;
+      border-radius: 999px; background: linear-gradient(#08a86b, #34e7b2);
     }
+    .section-heading h2 { margin: 0; color: var(--heading); font-size: 20px; font-weight: 800; letter-spacing: -.5px; }
+    .section-heading p { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+    .section-link { color: var(--green-dark); text-decoration: none; font-size: 10px; font-weight: 800; white-space: nowrap; }
+    .section-link:hover { color: var(--teal); }
 
-    .section-heading h2 {
-      margin: 0;
-
-      color: var(--heading);
-
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
-
-    .section-heading p {
-      margin: 5px 0 0;
-
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .section-link {
-      color: var(--green-dark);
-      text-decoration: none;
-
-      font-size: 10px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .section-link:hover {
-      color: var(--teal);
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 
     /* ==============================
        FEATURE CARDS
     ============================== */
-
     .dash-card {
-      --card-accent: #1687ff;
-      --card-soft: rgba(22, 135, 255, .11);
-
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-
-      min-height: 174px;
-
-      display: flex;
-      flex-direction: column;
-
-      padding: 17px 19px 15px;
-
-      border: 1px solid var(--border);
-      border-top: 3px solid var(--card-accent);
-      border-radius: 21px;
-
-      color: inherit;
-      text-decoration: none;
-
-      background: linear-gradient(
-        145deg,
-        var(--card-soft) 0%,
-        var(--surface) 76%
-      );
-
-      box-shadow: 0 8px 22px rgba(15, 23, 42, .045);
-
-      transition:
-        transform .23s ease,
-        box-shadow .23s ease,
-        border-color .23s ease;
+      --card-accent: #1687ff; --card-soft: rgba(22, 135, 255, .11);
+      position: relative; isolation: isolate; overflow: hidden; min-height: 174px; display: flex; flex-direction: column;
+      padding: 17px 19px 15px; border: 1px solid var(--border); border-top: 3px solid var(--card-accent);
+      border-radius: 21px; color: inherit; text-decoration: none;
+      background: linear-gradient(145deg, var(--card-soft) 0%, var(--surface) 76%);
+      box-shadow: 0 8px 22px rgba(15, 23, 42, .045); transition: transform .23s ease, box-shadow .23s ease, border-color .23s ease;
     }
-
     .dash-card::before {
-      content: "";
-
-      position: absolute;
-      z-index: -1;
-
-      width: 155px;
-      height: 155px;
-
-      right: -65px;
-      bottom: -85px;
-
-      border-radius: 50%;
-      background: var(--card-soft);
-
-      transition: transform .3s ease;
+      content: ""; position: absolute; z-index: -1; width: 155px; height: 155px; right: -65px; bottom: -85px;
+      border-radius: 50%; background: var(--card-soft); transition: transform .3s ease;
     }
-
     .dash-card::after {
-      content: "";
-
-      position: absolute;
-      z-index: -1;
-
-      width: 72px;
-      height: 72px;
-
-      right: 15px;
-      top: 12px;
-
-      border-radius: 50%;
-      border: 1px solid var(--card-soft);
+      content: ""; position: absolute; z-index: -1; width: 72px; height: 72px; right: 15px; top: 12px;
+      border-radius: 50%; border: 1px solid var(--card-soft);
     }
+    .dash-card:hover { transform: translateY(-5px); border-color: var(--card-accent); box-shadow: 0 15px 30px rgba(15, 23, 42, .10); }
+    .dash-card:hover::before { transform: scale(1.18); }
 
-    .dash-card:hover {
-      transform: translateY(-5px);
+    [data-theme="dark"] .dash-card { background: linear-gradient(145deg, color-mix(in srgb, var(--card-accent) 18%, var(--surface)), var(--surface) 76%); }
 
-      border-color: var(--card-accent);
+    .dash-card--depin { --card-accent: #1687ff; --card-soft: rgba(22, 135, 255, .12); }
+    .dash-card--community { --card-accent: #08a878; --card-soft: rgba(16, 185, 129, .13); }
+    .dash-card--airdrops { --card-accent: #f97316; --card-soft: rgba(249, 115, 22, .13); }
+    .dash-card--wallets { --card-accent: #9333ea; --card-soft: rgba(147, 51, 234, .12); }
+    .dash-card--checker { --card-accent: #0d9488; --card-soft: rgba(13, 148, 136, .12); }
+    .dash-card--calculator { --card-accent: #2563eb; --card-soft: rgba(37, 99, 235, .12); }
 
-      box-shadow: 0 15px 30px rgba(15, 23, 42, .10);
-    }
-
-    .dash-card:hover::before {
-      transform: scale(1.18);
-    }
-
-    [data-theme="dark"] .dash-card {
-      background: linear-gradient(
-        145deg,
-        color-mix(in srgb, var(--card-accent) 18%, var(--surface)),
-        var(--surface) 76%
-      );
-    }
-
-    .dash-card--depin {
-      --card-accent: #1687ff;
-      --card-soft: rgba(22, 135, 255, .12);
-    }
-
-    .dash-card--community {
-      --card-accent: #08a878;
-      --card-soft: rgba(16, 185, 129, .13);
-    }
-
-    .dash-card--airdrops {
-      --card-accent: #f97316;
-      --card-soft: rgba(249, 115, 22, .13);
-    }
-
-    .dash-card--wallets {
-      --card-accent: #9333ea;
-      --card-soft: rgba(147, 51, 234, .12);
-    }
-
-    .dash-card--checker {
-      --card-accent: #0d9488;
-      --card-soft: rgba(13, 148, 136, .12);
-    }
-
-    .dash-card--calculator {
-      --card-accent: #2563eb;
-      --card-soft: rgba(37, 99, 235, .12);
-    }
-
-    .card-topline {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
+    .card-topline { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
     .card-icon {
-      width: 46px;
-      height: 46px;
-      flex: 0 0 46px;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 16px;
-
-      background: linear-gradient(
-        145deg,
-        var(--card-soft),
-        var(--surface)
-      );
-
-      border: 1px solid var(--card-soft);
-
-      box-shadow: 0 6px 14px rgba(15, 23, 42, .04);
+      width: 46px; height: 46px; flex: 0 0 46px; display: grid; place-items: center; border-radius: 16px;
+      background: linear-gradient(145deg, var(--card-soft), var(--surface)); border: 1px solid var(--card-soft); box-shadow: 0 6px 14px rgba(15, 23, 42, .04);
     }
-
-    .card-icon svg {
-      width: 24px;
-      height: 24px;
-
-      stroke: var(--card-accent);
-      fill: none;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
+    .card-icon svg { width: 24px; height: 24px; stroke: var(--card-accent); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    
     .card-tag {
-      display: inline-flex;
-      align-items: center;
-
-      max-width: 65%;
-      padding: 6px 9px;
-
-      border-radius: 999px;
-
-      color: var(--card-accent);
-      background: var(--card-soft);
-
-      font-size: 8px;
-      font-weight: 800;
-      line-height: 1.3;
-      text-align: center;
+      display: inline-flex; align-items: center; max-width: 65%; padding: 6px 9px; border-radius: 999px;
+      color: var(--card-accent); background: var(--card-soft); font-size: 8px; font-weight: 800; line-height: 1.3; text-align: center;
     }
+    .dash-card h3 { margin: 0 0 7px; color: var(--heading); font-size: 14px; line-height: 1.35; font-weight: 800; }
+    .dash-card p { max-width: 92%; margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.65; flex: 1; }
+    .card-action { width: fit-content; display: inline-flex; align-items: center; gap: 7px; color: var(--card-accent); font-size: 10px; font-weight: 800; }
+    
+    .card-art { position: absolute; z-index: -1; width: 126px; height: 108px; right: 12px; bottom: 1px; opacity: .75; pointer-events: none; }
+    .card-art svg { width: 100%; height: 100%; fill: var(--card-soft); stroke: var(--card-accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 5px 7px rgba(15, 23, 42, .08)); }
 
-    .dash-card h3 {
-      margin: 0 0 7px;
-
-      color: var(--heading);
-
-      font-size: 14px;
-      line-height: 1.35;
-      font-weight: 800;
-    }
-
-    .dash-card p {
-      max-width: 92%;
-
-      margin: 0 0 12px;
-
-      color: var(--muted);
-
-      font-size: 10px;
-      line-height: 1.65;
-
-      flex: 1;
-    }
-
-    .card-action {
-      width: fit-content;
-
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-
-      color: var(--card-accent);
-
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .card-art {
-      position: absolute;
-      z-index: -1;
-
-      width: 126px;
-      height: 108px;
-
-      right: 12px;
-      bottom: 1px;
-
-      opacity: .75;
-      pointer-events: none;
-    }
-
-    .card-art svg {
-      width: 100%;
-      height: 100%;
-
-      fill: var(--card-soft);
-      stroke: var(--card-accent);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-
-      filter: drop-shadow(0 5px 7px rgba(15, 23, 42, .08));
-    }
-
-    .dash-card[hidden] {
-      display: none !important;
-    }
-
-    .empty-search {
-      display: none;
-
-      margin-top: 15px;
-      padding: 22px;
-
-      text-align: center;
-
-      border: 1px dashed var(--border);
-      border-radius: 15px;
-
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .dash-card[hidden] { display: none !important; }
+    .empty-search { display: none; margin-top: 15px; padding: 22px; text-align: center; border: 1px dashed var(--border); border-radius: 15px; color: var(--muted); font-size: 12px; }
 
     /* ==============================
        BOTTOM METRICS + COMMUNITY
     ============================== */
-
-    .hub-bottom-band {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: 13px;
-
-      margin-top: 22px;
-    }
-
+    .hub-bottom-band { display: grid; grid-template-columns: 1.35fr 1fr; gap: 13px; margin-top: 22px; }
     .hub-metrics {
-      min-height: 105px;
-
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      align-items: center;
-
-      padding: 15px 12px;
-
-      border: 1px solid #c9f3e4;
-      border-radius: 23px;
-
-      background: linear-gradient(
-        120deg,
-        #edfff7,
-        #ffffff,
-        #ddfff2
-      );
-
-      box-shadow: 0 7px 19px rgba(8, 168, 107, .07);
+      min-height: 105px; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; padding: 15px 12px;
+      border: 1px solid #c9f3e4; border-radius: 23px; background: linear-gradient(120deg, #edfff7, #ffffff, #ddfff2); box-shadow: 0 7px 19px rgba(8, 168, 107, .07);
     }
-
-    [data-theme="dark"] .hub-metrics {
-      background: linear-gradient(120deg, #12352f, #142c31);
-      border-color: #255c49;
-    }
-
-    .hub-metric {
-      min-width: 0;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      padding: 4px 8px;
-
-      text-align: center;
-
-      border-right: 1px solid rgba(8, 168, 107, .25);
-    }
-
-    .hub-metric:last-child {
-      border-right: 0;
-    }
-
-    .metric-icon {
-      margin-bottom: 4px;
-
-      color: #08a86b;
-      font-size: 21px;
-      font-weight: 800;
-    }
-
-    .hub-metric strong {
-      color: var(--heading);
-      font-size: 17px;
-      font-weight: 800;
-    }
-
-    .hub-metric span:last-child {
-      margin-top: 3px;
-
-      color: var(--muted);
-      font-size: 8px;
-      font-weight: 700;
-    }
+    [data-theme="dark"] .hub-metrics { background: linear-gradient(120deg, #12352f, #142c31); border-color: #255c49; }
+    .hub-metric { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 8px; text-align: center; border-right: 1px solid rgba(8, 168, 107, .25); }
+    .hub-metric:last-child { border-right: 0; }
+    .metric-icon { margin-bottom: 4px; color: #08a86b; font-size: 21px; font-weight: 800; }
+    .hub-metric strong { color: var(--heading); font-size: 17px; font-weight: 800; }
+    .hub-metric span:last-child { margin-top: 3px; color: var(--muted); font-size: 8px; font-weight: 700; }
 
     .hub-community-cta {
-      position: relative;
-      overflow: hidden;
-
-      min-height: 105px;
-
-      display: flex;
-      align-items: center;
-      gap: 12px;
-
-      padding: 15px 17px;
-
-      border-radius: 22px;
-      border: 1px solid #079b6c;
-
-      color: white;
-
-      background:
-        radial-gradient(
-          circle at 90% 0%,
-          rgba(28, 223, 157, .30),
-          transparent 38%
-        ),
-        linear-gradient(110deg, #07875b, #075b50 60%, #032d32);
-
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .15);
+      position: relative; overflow: hidden; min-height: 105px; display: flex; align-items: center; gap: 12px; padding: 15px 17px;
+      border-radius: 22px; border: 1px solid #079b6c; color: white; background: radial-gradient(circle at 90% 0%, rgba(28, 223, 157, .30), transparent 38%), linear-gradient(110deg, #07875b, #075b50 60%, #032d32); box-shadow: 0 8px 22px rgba(8, 168, 107, .15);
     }
-
-    .cta-art {
-      width: 70px;
-      height: 65px;
-      flex: 0 0 70px;
-
-      display: grid;
-      place-items: center;
-
-      color: #61efc0;
-    }
-
-    .cta-art svg {
-      width: 100%;
-      height: 100%;
-
-      fill: rgba(57, 229, 174, .24);
-      stroke: #8affd2;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-
-      filter: drop-shadow(0 5px 10px rgba(0, 0, 0, .15));
-    }
-
-    .cta-copy {
-      min-width: 0;
-      flex: 1;
-
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .cta-copy strong {
-      color: #fff;
-      font-size: 13px;
-      line-height: 1.4;
-      font-weight: 800;
-    }
-
-    .cta-copy span {
-      color: #c8f8e8;
-      font-size: 9px;
-      line-height: 1.5;
-      font-weight: 600;
-    }
-
+    .cta-art { width: 70px; height: 65px; flex: 0 0 70px; display: grid; place-items: center; color: #61efc0; }
+    .cta-art svg { width: 100%; height: 100%; fill: rgba(57, 229, 174, .24); stroke: #8affd2; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 5px 10px rgba(0, 0, 0, .15)); }
+    .cta-copy { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 5px; }
+    .cta-copy strong { color: #fff; font-size: 13px; line-height: 1.4; font-weight: 800; }
+    .cta-copy span { color: #c8f8e8; font-size: 9px; line-height: 1.5; font-weight: 600; }
+    
     .hub-join-btn {
-      flex: 0 0 auto;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-
-      padding: 12px 18px;
-
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .45);
-
-      color: #06392c;
-      background: linear-gradient(135deg, #a7f3b5, #35e89a);
-
-      text-decoration: none;
-      font-size: 10px;
-      font-weight: 800;
-
-      transition: .2s ease;
+      flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px;
+      border-radius: 999px; border: 1px solid rgba(255, 255, 255, .45); color: #06392c; background: linear-gradient(135deg, #a7f3b5, #35e89a); text-decoration: none; font-size: 10px; font-weight: 800; transition: .2s ease;
     }
-
-    .hub-join-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 17px rgba(0, 0, 0, .17);
-    }
+    .hub-join-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 17px rgba(0, 0, 0, .17); }
 
     /* ==============================
        DISCLAIMER + FOOTER
     ============================== */
-
-    .hero-disclaimer {
-      margin: 20px 0 0;
-      padding: 13px 16px;
-
-      color: var(--muted);
-      background: var(--surface);
-
-      border: 1px solid var(--border);
-      border-radius: 13px;
-
-      font-size: 9px;
-      line-height: 1.7;
-    }
-
-    footer {
-      margin-top: 28px;
-      padding: 20px 0 8px;
-
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .footer-copy {
-      margin-bottom: 9px;
-
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px 18px;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .footer-links a:hover {
-      color: var(--green);
-    }
+    .hero-disclaimer { margin: 20px 0 0; padding: 13px 16px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 13px; font-size: 9px; line-height: 1.7; }
+    footer { margin-top: 28px; padding: 20px 0 8px; border-top: 1px solid var(--border); text-align: center; }
+    .footer-copy { margin-bottom: 9px; color: var(--muted); font-size: 10px; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 18px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 10px; font-weight: 700; }
+    .footer-links a:hover { color: var(--green); }
 
     /* ==============================
        HOMEPAGE SPONSORED BANNER AD
     ============================== */
-
-    .hub-ad-slot {
-      margin: 19px 0 5px;
-    }
-
-    .hub-ad-topline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 0 5px 8px;
-      color: var(--muted);
-    }
-
-    .hub-ad-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--green-dark);
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: .75px;
-      text-transform: uppercase;
-    }
-
-    .hub-ad-dot {
-      width: 7px;
-      height: 7px;
-      flex: 0 0 7px;
-      border-radius: 50%;
-      background: #16c98a;
-      box-shadow: 0 0 0 4px rgba(22, 201, 138, .12),
-                  0 0 12px rgba(22, 201, 138, .65);
-    }
-
-    .hub-ad-format {
-      font-size: 9px;
-      font-weight: 600;
-    }
+    .hub-ad-slot { margin: 19px 0 5px; }
+    .hub-ad-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 5px 8px; color: var(--muted); }
+    .hub-ad-label { display: inline-flex; align-items: center; gap: 7px; color: var(--green-dark); font-size: 9px; font-weight: 800; letter-spacing: .75px; text-transform: uppercase; }
+    .hub-ad-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: #16c98a; box-shadow: 0 0 0 4px rgba(22, 201, 138, .12), 0 0 12px rgba(22, 201, 138, .65); }
+    .hub-ad-format { font-size: 9px; font-weight: 600; }
 
     .hub-ad-banner {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      min-height: 116px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(190px, .42fr);
-      align-items: center;
-      gap: 16px;
-      padding: 17px 25px;
-      border: 1px solid rgba(91, 244, 194, .58);
-      border-radius: 19px;
-      color: #f5fff9;
-      text-decoration: none;
-      background:
-        radial-gradient(circle at 85% 45%, rgba(31, 229, 170, .28), transparent 25%),
-        radial-gradient(circle at 5% 0%, rgba(21, 190, 135, .22), transparent 34%),
-        linear-gradient(105deg, #032b2b 0%, #075b4e 56%, #032c34 100%);
-      
-      /* 🔥 Bottom Ad Banner Animation Applied Here */
-      animation: bottomAdGlow 3s infinite ease-in-out;
-      
-      transition: transform .22s ease, box-shadow .22s ease,
-                  border-color .22s ease;
+      position: relative; isolation: isolate; overflow: hidden; min-height: 116px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, .42fr);
+      align-items: center; gap: 16px; padding: 17px 25px; border: 1px solid rgba(91, 244, 194, .58); border-radius: 19px; color: #f5fff9; text-decoration: none;
+      background: radial-gradient(circle at 85% 45%, rgba(31, 229, 170, .28), transparent 25%), radial-gradient(circle at 5% 0%, rgba(21, 190, 135, .22), transparent 34%), linear-gradient(105deg, #032b2b 0%, #075b4e 56%, #032c34 100%);
+      animation: bottomAdGlow 3s infinite ease-in-out; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     }
-
-    .hub-ad-banner::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      width: 330px;
-      height: 330px;
-      top: -205px;
-      right: 10%;
-      border: 1px solid rgba(120, 255, 213, .22);
-      border-radius: 50%;
-      box-shadow: 0 0 0 22px rgba(120, 255, 213, .035),
-                  0 0 0 48px rgba(120, 255, 213, .025);
-    }
-
-    .hub-ad-banner::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      background: linear-gradient(110deg, transparent 35%, rgba(91, 255, 207, .08) 72%, transparent);
-      pointer-events: none;
-    }
-
-    .hub-ad-banner:hover {
-      animation: none;
-      transform: translateY(-2px);
-      border-color: rgba(143, 255, 220, .9);
-    }
-
-    .hub-ad-copy {
-      position: relative;
-      z-index: 2;
-      min-width: 0;
-    }
-
-    .hub-ad-eyebrow {
-      display: inline-block;
-      margin-bottom: 5px;
-      color: #8ff6cc;
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .hub-ad-copy h2 {
-      margin: 0 0 4px;
-      color: #ffffff;
-      font-size: clamp(17px, 2vw, 24px);
-      line-height: 1.2;
-      font-weight: 800;
-      letter-spacing: -.55px;
-    }
-
-    .hub-ad-copy p {
-      max-width: 610px;
-      margin: 0;
-      color: #c7f2e3;
-      font-size: 10px;
-      line-height: 1.55;
-      font-weight: 500;
-    }
-
+    .hub-ad-banner::before { content: ""; position: absolute; z-index: -1; width: 330px; height: 330px; top: -205px; right: 10%; border: 1px solid rgba(120, 255, 213, .22); border-radius: 50%; box-shadow: 0 0 0 22px rgba(120, 255, 213, .035), 0 0 0 48px rgba(120, 255, 213, .025); }
+    .hub-ad-banner::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(91, 255, 207, .08) 72%, transparent); pointer-events: none; }
+    
+    .hub-ad-banner:hover { animation: none; transform: translateY(-2px); border-color: rgba(143, 255, 220, .9); }
+    
+    .hub-ad-copy { position: relative; z-index: 2; min-width: 0; }
+    .hub-ad-eyebrow { display: inline-block; margin-bottom: 5px; color: #8ff6cc; font-size: 8px; font-weight: 800; letter-spacing: 1px; }
+    .hub-ad-copy h2 { margin: 0 0 4px; color: #ffffff; font-size: clamp(17px, 2vw, 24px); line-height: 1.2; font-weight: 800; letter-spacing: -.55px; }
+    .hub-ad-copy p { max-width: 610px; margin: 0; color: #c7f2e3; font-size: 10px; line-height: 1.55; font-weight: 500; }
+    
     .hub-ad-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-top: 10px;
-      padding: 8px 14px;
-      border: 1px solid rgba(255, 255, 255, .38);
-      border-radius: 999px;
-      color: #07392d;
-      background: linear-gradient(135deg, #b8ffd8, #39e7a0);
-      box-shadow: 0 5px 15px rgba(26, 221, 151, .22);
-      font-size: 9px;
-      font-weight: 800;
-      transition: transform .2s ease, box-shadow .2s ease;
-      
-      /* 🔥 Button Glow Applied Here */
-      animation: sponsorBtnGlow 3s infinite ease-in-out;
+      display: inline-flex; align-items: center; gap: 9px; margin-top: 10px; padding: 8px 14px; border: 1px solid rgba(255, 255, 255, .38);
+      border-radius: 999px; color: #07392d; background: linear-gradient(135deg, #b8ffd8, #39e7a0); box-shadow: 0 5px 15px rgba(26, 221, 151, .22);
+      font-size: 9px; font-weight: 800; transition: transform .2s ease, box-shadow .2s ease; animation: sponsorBtnGlow 3s infinite ease-in-out;
     }
+    .hub-ad-banner:hover .hub-ad-button { animation: none; transform: translateY(-1px); box-shadow: 0 8px 18px rgba(26, 221, 151, .3); }
 
-    .hub-ad-banner:hover .hub-ad-button {
-      animation: none;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(26, 221, 151, .3);
-    }
-
-    .hub-ad-art {
-      position: relative;
-      z-index: 1;
-      min-height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hub-ad-orbit {
-      position: absolute;
-      width: min(230px, 100%);
-      height: 72px;
-      border: 1px dashed rgba(125, 255, 216, .55);
-      border-radius: 50%;
-      transform: rotate(-13deg);
-      box-shadow: 0 0 19px rgba(43, 238, 176, .12);
-    }
-
-    .hub-ad-orbit::before,
-    .hub-ad-orbit::after {
-      content: "";
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #87ffcf;
-      box-shadow: 0 0 12px #4cf0b7;
-    }
-
-    .hub-ad-orbit::before {
-      left: 23px;
-      top: 10px;
-    }
-
-    .hub-ad-orbit::after {
-      right: 24px;
-      bottom: 7px;
-      background: #56c9ff;
-    }
-
-    .hub-ad-coin {
-      position: absolute;
-      z-index: 2;
-      width: 43px;
-      height: 43px;
-      display: grid;
-      place-items: center;
-      border: 2px solid rgba(255, 255, 255, .72);
-      border-radius: 50%;
-      color: #fff;
-      font-size: 22px;
-      font-weight: 800;
-      box-shadow: 0 5px 17px rgba(0, 0, 0, .22),
-                  0 0 17px rgba(70, 242, 188, .22);
-    }
-
-    .hub-ad-coin--one {
-      top: 1px;
-      right: 18%;
-      background: linear-gradient(145deg, #ffd76b, #d58a12);
-    }
-
-    .hub-ad-coin--two {
-      bottom: 0;
-      left: 17%;
-      background: linear-gradient(145deg, #51e7c2, #087f9c);
-    }
-
-    .hub-ad-chart {
-      position: absolute;
-      right: 18%;
-      bottom: 3px;
-      width: 105px;
-      height: 45px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 5px;
-      padding: 0 8px 3px;
-      border-bottom: 1px solid rgba(139, 255, 218, .55);
-      transform: skewY(-8deg);
-      opacity: .78;
-    }
-
-    .hub-ad-chart i {
-      display: block;
-      width: 9px;
-      border-radius: 3px 3px 0 0;
-      background: linear-gradient(180deg, #9bffdc, #10bf91);
-      box-shadow: 0 0 9px rgba(75, 255, 197, .2);
-    }
-
+    .hub-ad-art { position: relative; z-index: 1; min-height: 82px; display: flex; align-items: center; justify-content: center; }
+    .hub-ad-orbit { position: absolute; width: min(230px, 100%); height: 72px; border: 1px dashed rgba(125, 255, 216, .55); border-radius: 50%; transform: rotate(-13deg); box-shadow: 0 0 19px rgba(43, 238, 176, .12); }
+    .hub-ad-orbit::before, .hub-ad-orbit::after { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #87ffcf; box-shadow: 0 0 12px #4cf0b7; }
+    .hub-ad-orbit::before { left: 23px; top: 10px; }
+    .hub-ad-orbit::after { right: 24px; bottom: 7px; background: #56c9ff; }
+    
+    .hub-ad-coin { position: absolute; z-index: 2; width: 43px; height: 43px; display: grid; place-items: center; border: 2px solid rgba(255, 255, 255, .72); border-radius: 50%; color: #fff; font-size: 22px; font-weight: 800; box-shadow: 0 5px 17px rgba(0, 0, 0, .22), 0 0 17px rgba(70, 242, 188, .22); }
+    .hub-ad-coin--one { top: 1px; right: 18%; background: linear-gradient(145deg, #ffd76b, #d58a12); }
+    .hub-ad-coin--two { bottom: 0; left: 17%; background: linear-gradient(145deg, #51e7c2, #087f9c); }
+    
+    .hub-ad-chart { position: absolute; right: 18%; bottom: 3px; width: 105px; height: 45px; display: flex; align-items: flex-end; justify-content: center; gap: 5px; padding: 0 8px 3px; border-bottom: 1px solid rgba(139, 255, 218, .55); transform: skewY(-8deg); opacity: .78; }
+    .hub-ad-chart i { display: block; width: 9px; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #9bffdc, #10bf91); box-shadow: 0 0 9px rgba(75, 255, 197, .2); }
     .hub-ad-chart i:nth-child(1) { height: 16px; }
     .hub-ad-chart i:nth-child(2) { height: 25px; }
     .hub-ad-chart i:nth-child(3) { height: 20px; }
@@ -2034,326 +994,89 @@
     .hub-ad-chart i:nth-child(5) { height: 27px; }
     .hub-ad-chart i:nth-child(6) { height: 40px; }
 
-    .hub-ad-banner img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-    }
-
     /* ==============================
        ACCESSIBILITY
     ============================== */
-
-    .side-link:focus-visible,
-    .primary-cta:focus-visible,
-    .secondary-cta:focus-visible,
-    .dash-card:focus-visible,
-    .hub-join-btn:focus-visible {
-      outline: 3px solid var(--green);
-      outline-offset: 3px;
-    }
+    .side-link:focus-visible, .primary-cta:focus-visible, .secondary-cta:focus-visible, .dash-card:focus-visible, .hub-join-btn:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
 
     /* ==============================
        RESPONSIVE DESIGN
     ============================== */
-
     @media (max-width: 1250px) {
-      :root {
-        --sidebar-width: 235px;
-      }
-
-      .sponsor-inner {
-        gap: 14px;
-        padding-left: 17px;
-        padding-right: 17px;
-      }
-
-      .sponsor-tagline,
-      .sponsor-divider {
-        display: none;
-      }
-
-      main {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .dashboard-grid {
-        gap: 12px;
-      }
-
-      .hub-bottom-band {
-        grid-template-columns: 1fr;
-      }
+      :root { --sidebar-width: 235px; }
+      .sponsor-inner { gap: 14px; padding-left: 17px; padding-right: 17px; }
+      .sponsor-tagline, .sponsor-divider { display: none; }
+      main { padding-left: 20px; padding-right: 20px; }
+      .dashboard-grid { gap: 12px; }
+      .hub-bottom-band { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 900px) {
-      .header-brand {
-        width: auto;
-        flex-basis: auto;
-      }
-
-      .sponsor-inner {
-        gap: 12px;
-      }
-
-      .sponsor-copy {
-        justify-content: flex-start;
-      }
-
-      .sponsor-eyebrow {
-        display: none;
-      }
-
-      .sponsor-copy strong {
-        font-size: 12px;
-      }
-
-      .hero-panel {
-        grid-template-columns: minmax(0, 1fr) minmax(230px, .8fr);
-        padding: 25px;
-      }
-
-      .hero-copy h2 {
-        font-size: 36px;
-      }
-
-      .hero-art {
-        min-height: 220px;
-      }
-
-      .dashboard-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .header-brand { width: auto; flex-basis: auto; }
+      .sponsor-inner { gap: 12px; }
+      .sponsor-copy { justify-content: flex-start; }
+      .sponsor-eyebrow { display: none; }
+      .sponsor-copy strong { font-size: 12px; }
+      .hero-panel { grid-template-columns: minmax(0, 1fr) minmax(230px, .8fr); padding: 25px; }
+      .hero-copy h2 { font-size: 36px; }
+      .hero-art { min-height: 220px; }
+      .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 760px) {
-      :root {
-        --sidebar-width: 258px;
-        --sponsor-height: 61px;
-      }
-
-      .sponsor-inner {
-        justify-content: space-between;
-        gap: 9px;
-        padding: 6px 11px;
-      }
-
-      .header-logo {
-        width: 39px;
-        height: 39px;
-        flex-basis: 39px;
-      }
-
-      .header-brand-name {
-        font-size: 12px;
-      }
-
-      .header-brand-subtitle {
-        font-size: 8px;
-      }
-
-      .sponsor-coin {
-        display: none;
-      }
-
-      .sponsor-copy {
-        flex: 1;
-        justify-content: center;
-      }
-
-      .sponsor-copy strong {
-        font-size: 10px;
-        white-space: normal;
-        text-align: center;
-      }
-
-      .sponsor-cta {
-        padding: 9px 10px;
-        font-size: 8px;
-      }
-
-      .sidebar {
-        transform: translateX(-105%);
-        box-shadow: 12px 0 35px rgba(0, 0, 0, .13);
-      }
-
-      body.menu-open .sidebar {
-        transform: translateX(0);
-      }
-
-      .mobile-overlay {
-        position: fixed;
-        inset: var(--sponsor-height) 0 0;
-        z-index: 110;
-        background: rgba(4, 14, 27, .42);
-      }
-
-      body.menu-open .mobile-overlay {
-        display: block;
-      }
-
-      .main-column {
-        margin-left: 0;
-      }
-
-      .topbar {
-        min-height: 65px;
-        gap: 9px;
-        padding: 9px 12px;
-      }
-
-      .mobile-menu-btn {
-        display: inline-grid;
-        place-items: center;
-        flex: 0 0 38px;
-      }
-
-      .search-wrap {
-        width: auto;
-        flex: 1;
-      }
-
-      .search-wrap input {
-        height: 39px;
-        font-size: 9px;
-        padding-left: 12px;
-      }
-
-      .community-btn {
-        width: 38px;
-        padding: 0;
-        overflow: hidden;
-        font-size: 0;
-      }
-
-      .community-btn::first-letter {
-        font-size: 15px;
-      }
-
-      .topbar .icon-btn {
-        width: 36px;
-        min-height: 36px;
-        flex: 0 0 36px;
-      }
-
-      main {
-        padding: 16px 13px 25px;
-      }
-
-      .hero-panel {
-        grid-template-columns: 1fr;
-        min-height: 0;
-        padding: 23px 19px 13px;
-        border-radius: 21px;
-      }
-
-      .hero-copy h2 {
-        font-size: 32px;
-      }
-
-      .hero-copy p {
-        font-size: 11px;
-      }
-
-      .hero-art {
-        min-height: 195px;
-        margin-top: 3px;
-      }
-
-      .hero-globe {
-        width: min(100%, 360px);
-      }
-
-      .hero-actions {
-        gap: 8px;
-        margin-top: 15px;
-      }
-
-      .primary-cta,
-      .secondary-cta {
-        padding: 11px 14px;
-        font-size: 9px;
-      }
-
-      .section-heading h2 {
-        font-size: 16px;
-      }
-
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-        gap: 11px;
-      }
-
-      .dash-card {
-        min-height: 158px;
-        padding: 15px;
-        border-radius: 17px;
-      }
-
-      .dash-card h3 {
-        font-size: 13px;
-      }
-
-      .dash-card p {
-        font-size: 10px;
-      }
-
-      .card-art {
-        width: 115px;
-        height: 100px;
-      }
-
-      .hub-bottom-band {
-        grid-template-columns: 1fr;
-      }
-
-      .hub-metrics {
-        min-height: 95px;
-        padding: 10px 5px;
-      }
-
-      .hub-metric {
-        padding: 4px;
-      }
-
-      .hub-metric strong {
-        font-size: 13px;
-      }
-
-      .hub-metric span:last-child {
-        font-size: 7px;
-      }
-
-      .hub-community-cta {
-        padding: 13px;
-      }
-
-      .cta-art {
-        width: 48px;
-        flex-basis: 48px;
-      }
-
-      .cta-copy strong {
-        font-size: 11px;
-      }
-
-      .hub-join-btn {
-        padding: 10px;
-        font-size: 9px;
-      }
-
+      :root { --sidebar-width: 258px; --sponsor-height: 61px; }
+      .sponsor-inner { justify-content: space-between; gap: 9px; padding: 6px 11px; }
+      .header-logo { width: 39px; height: 39px; flex-basis: 39px; }
+      .header-brand-name { font-size: 12px; }
+      .header-brand-subtitle { font-size: 8px; }
+      .sponsor-coin { display: none; }
+      .sponsor-copy { flex: 1; justify-content: center; }
+      .sponsor-copy strong { font-size: 10px; white-space: normal; text-align: center; }
+      .sponsor-cta { padding: 9px 10px; font-size: 8px; }
+      
+      .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0, 0, 0, .13); }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4, 14, 27, .42); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; }
+      
+      .topbar { min-height: 65px; gap: 9px; padding: 9px 12px; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
+      .search-wrap { width: auto; flex: 1; }
+      .search-wrap input { height: 39px; font-size: 9px; padding-left: 12px; }
+      .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
+      .community-btn::first-letter { font-size: 15px; }
+      .topbar .icon-btn { width: 36px; min-height: 36px; flex: 0 0 36px; }
+      
+      main { padding: 16px 13px 25px; }
+      .hero-panel { grid-template-columns: 1fr; min-height: 0; padding: 23px 19px 13px; border-radius: 21px; }
+      .hero-copy h2 { font-size: 32px; }
+      .hero-copy p { font-size: 11px; }
+      .hero-art { min-height: 195px; margin-top: 3px; }
+      .hero-globe { width: min(100%, 360px); }
+      .hero-actions { gap: 8px; margin-top: 15px; }
+      .primary-cta, .secondary-cta { padding: 11px 14px; font-size: 9px; }
+      
+      .section-heading h2 { font-size: 16px; }
+      .dashboard-grid { grid-template-columns: 1fr; gap: 11px; }
+      .dash-card { min-height: 158px; padding: 15px; border-radius: 17px; }
+      .dash-card h3 { font-size: 13px; }
+      .dash-card p { font-size: 10px; }
+      .card-art { width: 115px; height: 100px; }
+      
+      .hub-bottom-band { grid-template-columns: 1fr; }
+      .hub-metrics { min-height: 95px; padding: 10px 5px; }
+      .hub-metric { padding: 4px; }
+      .hub-metric strong { font-size: 13px; }
+      .hub-metric span:last-child { font-size: 7px; }
+      
+      .hub-community-cta { padding: 13px; }
+      .cta-art { width: 48px; flex-basis: 48px; }
+      .cta-copy strong { font-size: 11px; }
+      .hub-join-btn { padding: 10px; font-size: 9px; }
+      
       .hub-ad-slot { margin: 15px 0 3px; }
-
-      .hub-ad-banner {
-        min-height: 128px;
-        grid-template-columns: minmax(0, 1fr) 125px;
-        gap: 8px;
-        padding: 15px 16px;
-        border-radius: 16px;
-      }
-
+      .hub-ad-banner { min-height: 128px; grid-template-columns: minmax(0, 1fr) 125px; gap: 8px; padding: 15px 16px; border-radius: 16px; }
       .hub-ad-copy h2 { font-size: 17px; }
       .hub-ad-copy p { font-size: 9px; }
       .hub-ad-art { min-height: 92px; }
@@ -2365,123 +1088,35 @@
     }
 
     @media (max-width: 430px) {
-      .header-brand-name {
-        font-size: 10px;
-      }
-
-      .header-brand-subtitle {
-        font-size: 7px;
-      }
-
-      .header-brand {
-        gap: 6px;
-      }
-
-      .header-logo {
-        width: 34px;
-        height: 34px;
-        flex-basis: 34px;
-      }
-
-      .sponsor-copy strong {
-        font-size: 8px;
-      }
-
-      .sponsor-cta {
-        padding: 8px;
-        font-size: 7px;
-      }
-
-      .topbar {
-        gap: 7px;
-      }
-
-      .community-dropdown {
-        display: none;
-      }
-
-      .hero-copy h2 {
-        font-size: 29px;
-      }
-
-      .hero-kicker {
-        font-size: 8px;
-      }
-
-      .hero-stats {
-        gap: 6px;
-      }
-
-      .hero-stat {
-        font-size: 8px;
-      }
-
-      .section-link {
-        font-size: 8px;
-      }
-
-      .hub-community-cta {
-        flex-wrap: wrap;
-      }
-
-      .cta-copy {
-        flex: 1 1 65%;
-      }
-
-      .hub-join-btn {
-        margin-left: auto;
-      }
-
-      .hub-ad-topline {
-        margin-left: 2px;
-        margin-right: 2px;
-      }
-
-      .hub-ad-format {
-        display: none;
-      }
-
-      .hub-ad-banner {
-        grid-template-columns: 1fr;
-        min-height: 142px;
-        padding: 15px 14px;
-      }
-
-      .hub-ad-copy {
-        max-width: 78%;
-      }
-
+      .header-brand-name { font-size: 10px; }
+      .header-brand-subtitle { font-size: 7px; }
+      .header-brand { gap: 6px; }
+      .header-logo { width: 34px; height: 34px; flex-basis: 34px; }
+      .sponsor-copy strong { font-size: 8px; }
+      .sponsor-cta { padding: 8px; font-size: 7px; }
+      .topbar { gap: 7px; }
+      .community-dropdown { display: none; }
+      .hero-copy h2 { font-size: 29px; }
+      .hero-kicker { font-size: 8px; }
+      .hero-stats { gap: 6px; }
+      .hero-stat { font-size: 8px; }
+      .section-link { font-size: 8px; }
+      .hub-community-cta { flex-wrap: wrap; }
+      .cta-copy { flex: 1 1 65%; }
+      .hub-join-btn { margin-left: auto; }
+      .hub-ad-topline { margin-left: 2px; margin-right: 2px; }
+      .hub-ad-format { display: none; }
+      .hub-ad-banner { grid-template-columns: 1fr; min-height: 142px; padding: 15px 14px; }
+      .hub-ad-copy { max-width: 78%; }
       .hub-ad-copy h2 { font-size: 16px; }
       .hub-ad-copy p { font-size: 8px; }
-      .hub-ad-button {
-        margin-top: 8px;
-        padding: 7px 11px;
-        font-size: 8px;
-      }
-
-      .hub-ad-art {
-        position: absolute;
-        right: 1px;
-        bottom: 2px;
-        width: 120px;
-        min-height: 90px;
-        opacity: .72;
-      }
-
-      .hub-ad-chart {
-        right: 0;
-        width: 66px;
-      }
+      .hub-ad-button { margin-top: 8px; padding: 7px 11px; font-size: 8px; }
+      .hub-ad-art { position: absolute; right: 1px; bottom: 2px; width: 120px; min-height: 90px; opacity: .72; }
+      .hub-ad-chart { right: 0; width: 66px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-      }
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
@@ -2513,8 +1148,8 @@
       <div class="sponsor-copy">
         <span class="sponsor-eyebrow">PARTNERSHIP OPPORTUNITY</span>
         <strong>
-          Sponsor with Us on
-          <em>Total Crypto Hub</em>
+          <!-- 🔥 Top Banner Flipper Text 🔥 -->
+          <span class="text-flipper" id="topSponsorText">Sponsor with Us on Total Crypto Hub</span>
         </strong>
         <span class="sponsor-divider"></span>
         <span class="sponsor-tagline">
@@ -2541,75 +1176,47 @@
       <nav class="side-nav">
         <a href="index.html" class="side-link active" aria-current="page">
           <span class="nav-icon nav-home">
-            <svg viewBox="0 0 24 24">
-              <path d="m3 10 9-7 9 7"/>
-              <path d="M5 9v11h14V9"/>
-              <path d="M9 20v-7h6v7"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg>
           </span>
           Home
         </a>
 
         <a href="depin-pages/depin.html" class="side-link">
-          <span class="nav-icon nav-depin">
-            <svg viewBox="0 0 24 24">
-              <path d="M13 2 4 13h7l-1 9 10-13h-7z"/>
-            </svg>
-          </span>
+          <span class="nav-icon nav-depin"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>
           DePIN Projects
         </a>
 
         <a href="mobile-pages/mobile-mining.html" class="side-link">
           <span class="nav-icon nav-community">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </span>
           Community Projects
         </a>
 
         <a href="airdrop-pages/airdrops.html" class="side-link">
           <span class="nav-icon nav-airdrop">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="8" width="18" height="13" rx="2"/>
-              <path d="M12 8v13M3 12h18"/>
-              <path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/>
-              <path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg>
           </span>
           Airdrops & Campaigns
         </a>
 
         <a href="wallet-pages/wallets.html" class="side-link">
           <span class="nav-icon nav-wallet">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="5" width="18" height="15" rx="2"/>
-              <path d="M3 9h18M16 14h.01"/>
-              <path d="M3 5V4a2 2 0 0 1 2-2h13"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01"/><path d="M3 5V4a2 2 0 0 1 2-2h13"/></svg>
           </span>
           Wallets & Exchanges
         </a>
 
         <a href="token-pages/token-checker.html" class="side-link">
           <span class="nav-icon nav-checker">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
-              <path d="m9 12 2 2 4-4"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg>
           </span>
           Token Checker
         </a>
 
         <a href="earning-pages/earning-calculator.html" class="side-link">
           <span class="nav-icon nav-calculator">
-            <svg viewBox="0 0 24 24">
-              <rect x="4" y="2" width="16" height="20" rx="2"/>
-              <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>
           </span>
           Earning Calculator
         </a>
@@ -2619,20 +1226,9 @@
 
       <section class="side-promo" aria-label="Community invitation">
         <div class="promo-gift">🎁</div>
-        <h3>
-          Join the Community
-          <br>
-          & Earn Together
-        </h3>
-        <p>
-          Follow project updates, guides and community announcements.
-        </p>
-        <a
-          href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="promo-btn"
-        >
+        <h3>Join the Community<br>& Earn Together</h3>
+        <p>Follow project updates, guides and community announcements.</p>
+        <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" class="promo-btn">
           Join Now →
         </a>
       </section>
@@ -2645,9 +1241,7 @@
         </span>
       </a>
 
-      <p class="sidebar-note">
-        A research-led Web3 directory
-      </p>
+      <p class="sidebar-note">A research-led Web3 directory</p>
     </aside>
 
 
@@ -2661,63 +1255,28 @@
       <!-- TOPBAR -->
 
       <header class="topbar">
-        <button
-          class="mobile-menu-btn"
-          id="mobileMenuBtn"
-          type="button"
-          aria-label="Open navigation"
-          aria-expanded="false"
-        >
-          ☰
-        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
 
         <label class="search-wrap" aria-label="Search Total Crypto Hub sections">
-          <input
-            id="globalSearch"
-            type="search"
-            placeholder="Search projects, categories or tools..."
-            autocomplete="off"
-          >
+          <input id="globalSearch" type="search" placeholder="Search projects, categories or tools..." autocomplete="off">
           <span class="search-icon">⌕</span>
         </label>
 
         <span class="topbar-spacer"></span>
 
         <div class="community-dropdown">
-          <button
-            class="community-btn"
-            type="button"
-            onclick="toggleCommunityMenu()"
-            aria-expanded="false"
-          >
+          <button class="community-btn" type="button" onclick="toggleCommunityMenu()" aria-expanded="false">
             👥 Community
           </button>
-
           <div class="dropdown-content" id="communityMenu">
-            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
-              ▶ YouTube
-            </a>
-            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">
-              💬 WhatsApp
-            </a>
-            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">
-              ✖ Twitter (X)
-            </a>
-            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">
-              📘 Facebook
-            </a>
+            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
+            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a>
+            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
           </div>
         </div>
 
-        <button
-          class="icon-btn"
-          id="themeToggle"
-          type="button"
-          onclick="toggleTheme()"
-          aria-label="Toggle dark mode"
-        >
-          🌙
-        </button>
+        <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
       </header>
 
 
@@ -2729,36 +1288,22 @@
 
         <section class="hero-panel" aria-labelledby="heroTitle">
           <div class="hero-copy">
-            <span class="hero-kicker">
-              ● Official Hub · Total Crypto Network
-            </span>
-
+            <span class="hero-kicker">● Official Hub · Total Crypto Network</span>
             <h2 id="heroTitle">
               Empowering Our Community with
               <span>Real Web3 Opportunities</span>
             </h2>
-
             <p>
               Welcome to Total Crypto Hub — built exclusively for our community! Stop searching endlessly across multiple platforms. We have brought together 100% verified DePIN nodes, zero-investment airdrops, smart earning calculators, and essential Web3 tools all under one roof.
             </p>
-
             <div class="hero-actions">
-              <a href="depin-pages/depin.html" class="primary-cta">
-                🚀 Explore the Hub →
-              </a>
-
-              <a href="mobile-pages/mobile-mining.html" class="secondary-cta">
-                ▶ Watch Video
-              </a>
+              <a href="depin-pages/depin.html" class="primary-cta">🚀 Explore the Hub →</a>
+              <a href="mobile-pages/mobile-mining.html" class="secondary-cta">▶ Watch Video</a>
             </div>
           </div>
 
-          <!-- CRYPTO GLOBE ILLUSTRATION -->
-
           <div class="hero-art" aria-hidden="true">
             <div class="orbit"></div>
-
-            <!-- Floating & Blinking Crypto and Community Logos -->
             <span class="hero-float one" title="Bitcoin">₿</span>
             <span class="hero-float two" title="Ethereum">Ξ</span>
             <span class="hero-float three" title="Solana">◎</span>
@@ -2772,230 +1317,73 @@
                   <stop offset=".38" stop-color="#20d9a0"/>
                   <stop offset="1" stop-color="#087e80"/>
                 </radialGradient>
-
                 <linearGradient id="landFill" x1="0" y1="0" x2="1" y2="1">
                   <stop stop-color="#c0ffe0"/>
                   <stop offset="1" stop-color="#13a879"/>
                 </linearGradient>
-
                 <linearGradient id="coinGold" x1="0" y1="0" x2="1" y2="1">
                   <stop stop-color="#ffe68a"/>
                   <stop offset=".55" stop-color="#f7a91a"/>
                   <stop offset="1" stop-color="#b96a08"/>
                 </linearGradient>
-
                 <linearGradient id="coinPurple" x1="0" y1="0" x2="1" y2="1">
                   <stop stop-color="#d7c5ff"/>
                   <stop offset="1" stop-color="#6355cf"/>
                 </linearGradient>
-
                 <clipPath id="globeClip">
                   <circle cx="244" cy="137" r="91"/>
                 </clipPath>
               </defs>
 
-              <ellipse
-                cx="245"
-                cy="258"
-                rx="155"
-                ry="18"
-                fill="#0b9b83"
-                opacity=".12"
-              />
-
+              <ellipse cx="245" cy="258" rx="155" ry="18" fill="#0b9b83" opacity=".12"/>
               <g fill="none" stroke="#10a982" opacity=".55">
-                <ellipse
-                  cx="245"
-                  cy="137"
-                  rx="156"
-                  ry="62"
-                  transform="rotate(-17 245 137)"
-                  stroke-width="2"
-                  stroke-dasharray="5 7"
-                />
-
-                <ellipse
-                  cx="245"
-                  cy="137"
-                  rx="119"
-                  ry="49"
-                  transform="rotate(32 245 137)"
-                  stroke-width="1.4"
-                />
-
-                <path
-                  d="M96 125 Q245 -3 391 128"
-                  stroke-width="1.2"
-                  stroke-dasharray="3 7"
-                />
+                <ellipse cx="245" cy="137" rx="156" ry="62" transform="rotate(-17 245 137)" stroke-width="2" stroke-dasharray="5 7"/>
+                <ellipse cx="245" cy="137" rx="119" ry="49" transform="rotate(32 245 137)" stroke-width="1.4"/>
+                <path d="M96 125 Q245 -3 391 128" stroke-width="1.2" stroke-dasharray="3 7"/>
               </g>
-
-              <circle
-                cx="244"
-                cy="137"
-                r="93"
-                fill="url(#globeFill)"
-                stroke="#8cf3ce"
-                stroke-width="3"
-              />
-
+              <circle cx="244" cy="137" r="93" fill="url(#globeFill)" stroke="#8cf3ce" stroke-width="3"/>
+              
               <g clip-path="url(#globeClip)">
-                <path
-                  d="M178 77 195 65 211 71 216 86 205 96 209 110 193 119 183 108 169 111 160 96Z"
-                  fill="url(#landFill)"
-                />
-
-                <path
-                  d="m219 128 19-9 19 9 8 17-10 13-1 20-13 20-12-5-8-24-14-13 5-16Z"
-                  fill="url(#landFill)"
-                />
-
-                <path
-                  d="m269 79 17-7 22 5 12 12-7 14-18 6-7 16-19-4-9-16-15-7Z"
-                  fill="url(#landFill)"
-                />
-
-                <path
-                  d="m309 145 22-9 19 9 7 17-14 16-22-1-15-13Z"
-                  fill="url(#landFill)"
-                />
-
-                <g
-                  fill="none"
-                  stroke="#d5fff0"
-                  stroke-width="1.2"
-                  opacity=".58"
-                >
+                <path d="M178 77 195 65 211 71 216 86 205 96 209 110 193 119 183 108 169 111 160 96Z" fill="url(#landFill)"/>
+                <path d="m219 128 19-9 19 9 8 17-10 13-1 20-13 20-12-5-8-24-14-13 5-16Z" fill="url(#landFill)"/>
+                <path d="m269 79 17-7 22 5 12 12-7 14-18 6-7 16-19-4-9-16-15-7Z" fill="url(#landFill)"/>
+                <path d="m309 145 22-9 19 9 7 17-14 16-22-1-15-13Z" fill="url(#landFill)"/>
+                <g fill="none" stroke="#d5fff0" stroke-width="1.2" opacity=".58">
                   <ellipse cx="244" cy="137" rx="38" ry="91"/>
                   <ellipse cx="244" cy="137" rx="68" ry="91"/>
                   <path d="M153 137h182"/>
                   <path d="M160 105h168"/>
                   <path d="M160 169h168"/>
                 </g>
-
                 <g fill="#e6fff5" opacity=".7">
-                  <circle cx="190" cy="116" r="2"/>
-                  <circle cx="230" cy="95" r="2"/>
-                  <circle cx="281" cy="132" r="2"/>
-                  <circle cx="220" cy="167" r="2"/>
-                  <circle cx="299" cy="180" r="2"/>
-                  <circle cx="179" cy="146" r="2"/>
+                  <circle cx="190" cy="116" r="2"/> <circle cx="230" cy="95" r="2"/> <circle cx="281" cy="132" r="2"/>
+                  <circle cx="220" cy="167" r="2"/> <circle cx="299" cy="180" r="2"/> <circle cx="179" cy="146" r="2"/>
                 </g>
               </g>
 
-              <ellipse
-                cx="244"
-                cy="137"
-                rx="105"
-                ry="33"
-                transform="rotate(-17 244 137)"
-                fill="none"
-                stroke="#a9ffe1"
-                stroke-width="3"
-                opacity=".65"
-              />
+              <ellipse cx="244" cy="137" rx="105" ry="33" transform="rotate(-17 244 137)" fill="none" stroke="#a9ffe1" stroke-width="3" opacity=".65"/>
 
               <g transform="translate(347 50)">
-                <circle
-                  r="27"
-                  fill="url(#coinGold)"
-                  stroke="#fff0ab"
-                  stroke-width="3"
-                />
-
-                <text
-                  x="0"
-                  y="9"
-                  text-anchor="middle"
-                  font-size="31"
-                  font-weight="bold"
-                  fill="#fff"
-                >
-                  ₿
-                </text>
+                <circle r="27" fill="url(#coinGold)" stroke="#fff0ab" stroke-width="3"/>
+                <text x="0" y="9" text-anchor="middle" font-size="31" font-weight="bold" fill="#fff">₿</text>
               </g>
 
               <g transform="translate(363 203)">
-                <circle
-                  r="25"
-                  fill="url(#coinPurple)"
-                  stroke="#e3d9ff"
-                  stroke-width="3"
-                />
-
-                <path
-                  d="M0-15 11-3 0 4-11-3z M0 7 11 0 0 17-11 0z"
-                  fill="#fff"
-                  opacity=".9"
-                />
+                <circle r="25" fill="url(#coinPurple)" stroke="#e3d9ff" stroke-width="3"/>
+                <path d="M0-15 11-3 0 4-11-3z M0 7 11 0 0 17-11 0z" fill="#fff" opacity=".9"/>
               </g>
 
               <g transform="translate(108 185)">
-                <circle
-                  r="24"
-                  fill="#09a99a"
-                  stroke="#9effe5"
-                  stroke-width="3"
-                />
-
-                <text
-                  x="0"
-                  y="8"
-                  text-anchor="middle"
-                  font-size="24"
-                  font-weight="bold"
-                  fill="#fff"
-                >
-                  ₮
-                </text>
+                <circle r="24" fill="#09a99a" stroke="#9effe5" stroke-width="3"/>
+                <text x="0" y="8" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">₮</text>
               </g>
 
               <g transform="translate(244 238)">
-                <ellipse
-                  cx="0"
-                  cy="5"
-                  rx="126"
-                  ry="24"
-                  fill="#0cae84"
-                  opacity=".18"
-                />
-
-                <ellipse
-                  cx="0"
-                  cy="-8"
-                  rx="105"
-                  ry="18"
-                  fill="#a9ffe1"
-                  stroke="#12b88a"
-                  stroke-width="3"
-                />
-
-                <ellipse
-                  cx="0"
-                  cy="-11"
-                  rx="78"
-                  ry="12"
-                  fill="#e8fff7"
-                  stroke="#0da77f"
-                  stroke-width="2"
-                />
-
-                <path
-                  d="M-105-8v17q0 15 105 15t105-15V-8"
-                  fill="#098c75"
-                  stroke="#a0ffe0"
-                  stroke-width="2"
-                />
-
-                <ellipse
-                  cx="0"
-                  cy="9"
-                  rx="105"
-                  ry="17"
-                  fill="none"
-                  stroke="#75efc2"
-                  stroke-width="3"
-                />
+                <ellipse cx="0" cy="5" rx="126" ry="24" fill="#0cae84" opacity=".18"/>
+                <ellipse cx="0" cy="-8" rx="105" ry="18" fill="#a9ffe1" stroke="#12b88a" stroke-width="3"/>
+                <ellipse cx="0" cy="-11" rx="78" ry="12" fill="#e8fff7" stroke="#0da77f" stroke-width="2"/>
+                <path d="M-105-8v17q0 15 105 15t105-15V-8" fill="#098c75" stroke="#a0ffe0" stroke-width="2"/>
+                <ellipse cx="0" cy="9" rx="105" ry="17" fill="none" stroke="#75efc2" stroke-width="3"/>
               </g>
             </svg>
           </div>
@@ -3012,15 +1400,14 @@
             <span class="hub-ad-format">Homepage banner · 970 × 110</span>
           </div>
 
-          <a
-            class="hub-ad-banner"
-            href="legal-pages/contact.html"
-            aria-label="Advertise with Total Crypto Hub"
-          >
+          <a class="hub-ad-banner" href="legal-pages/contact.html" aria-label="Advertise with Total Crypto Hub">
             <div class="hub-ad-copy">
               <span class="hub-ad-eyebrow">REACH THE CRYPTO COMMUNITY</span>
-              <h2>Put Your Project in the Spotlight</h2>
-              <p>Promote your Web3 brand to visitors exploring DePIN, airdrops and crypto tools.</p>
+              <h2>
+                <!-- 🔥 Bottom Banner Flipper Text 🔥 -->
+                <span class="text-flipper" id="bottomSponsorText">Put Your Project in the Spotlight</span>
+              </h2>
+              <p>Promote your Web3 brand to thousands of daily visitors exploring DePIN, airdrops and crypto tools.</p>
               <span class="hub-ad-button">
                 Become a Sponsor <span aria-hidden="true">→</span>
               </span>
@@ -3040,384 +1427,159 @@
 
         <!-- EXPLORE SECTION -->
 
-        <section
-          class="explore-section"
-          aria-labelledby="exploreHeading"
-        >
+        <section class="explore-section" aria-labelledby="exploreHeading">
           <div class="section-heading">
             <div class="section-title-wrap">
-              <h2 id="exploreHeading">
-                Explore the Hub
-              </h2>
-
-              <p>
-                Everything you need to grow in the Total Crypto Ecosystem.
-              </p>
+              <h2 id="exploreHeading">Explore the Hub</h2>
+              <p>Everything you need to grow in the Total Crypto Ecosystem.</p>
             </div>
-
-            <a href="depin-pages/depin.html" class="section-link">
-              Browse all projects →
-            </a>
+            <a href="depin-pages/depin.html" class="section-link">Browse all projects →</a>
           </div>
 
-
           <!-- SIX FEATURE CARDS -->
-
           <div class="dashboard-grid" id="dashboardGrid">
-
             <!-- DEPIN -->
-
-            <a
-              href="depin-pages/depin.html"
-              class="dash-card dash-card--depin"
-              data-search="depin projects infrastructure nodes bandwidth sharing apps"
-            >
+            <a href="depin-pages/depin.html" class="dash-card dash-card--depin" data-search="depin projects infrastructure nodes bandwidth sharing apps">
               <div class="card-topline">
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M13 2 4 13h7l-1 9 10-13h-7z"/>
-                  </svg>
-                </div>
-
+                <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></div>
                 <span class="card-tag">57+ Projects</span>
               </div>
-
               <h3>DePIN Projects Hub</h3>
-
-              <p>
-                Explore DePIN infrastructure projects and nodes.
-                Discover bandwidth-sharing apps and protocols.
-              </p>
-
-              <span class="card-action">
-                Explore DePIN Nodes →
-              </span>
-
+              <p>Explore DePIN infrastructure projects and nodes. Discover bandwidth-sharing apps and protocols.</p>
+              <span class="card-action">Explore DePIN Nodes →</span>
               <span class="card-art card-art--depin" aria-hidden="true">
                 <svg viewBox="0 0 140 120">
-                  <path d="M70 10v93M58 103h24M63 96h14"/>
-                  <path d="m70 12-18 88M70 12l18 88"/>
-                  <path d="M51 46h38M57 68h26"/>
-                  <path d="M70 12 47 33M70 12l23 21"/>
-                  <path d="M20 35q20 20 0 40M10 26q32 27 0 56"/>
-                  <path d="M120 35q-20 20 0 40M130 26q-32 27 0 56"/>
-                  <circle cx="70" cy="12" r="6"/>
-                  <circle cx="70" cy="103" r="5"/>
+                  <path d="M70 10v93M58 103h24M63 96h14"/><path d="m70 12-18 88M70 12l18 88"/><path d="M51 46h38M57 68h26"/>
+                  <path d="M70 12 47 33M70 12l23 21"/><path d="M20 35q20 20 0 40M10 26q32 27 0 56"/><path d="M120 35q-20 20 0 40M130 26q-32 27 0 56"/>
+                  <circle cx="70" cy="12" r="6"/><circle cx="70" cy="103" r="5"/>
                 </svg>
               </span>
             </a>
-
 
             <!-- COMMUNITY -->
-
-            <a
-              href="mobile-pages/mobile-mining.html"
-              class="dash-card dash-card--community"
-              data-search="community projects mobile apps participation rewards"
-            >
+            <a href="mobile-pages/mobile-mining.html" class="dash-card dash-card--community" data-search="community projects mobile apps participation rewards">
               <div class="card-topline">
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                  </svg>
-                </div>
-
+                <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
                 <span class="card-tag">Growing Community</span>
               </div>
-
               <h3>Community Projects</h3>
-
-              <p>
-                Discover innovative community initiatives,
-                mobile apps and participation opportunities.
-              </p>
-
-              <span class="card-action">
-                View Projects →
-              </span>
-
+              <p>Discover innovative community initiatives, mobile apps and participation opportunities.</p>
+              <span class="card-action">View Projects →</span>
               <span class="card-art card-art--community" aria-hidden="true">
                 <svg viewBox="0 0 140 120">
-                  <circle cx="70" cy="35" r="14"/>
-                  <circle cx="36" cy="46" r="10"/>
-                  <circle cx="104" cy="46" r="10"/>
-                  <path d="M38 101V87a31 31 0 0 1 62 0v14z"/>
-                  <path d="M14 98V86a22 22 0 0 1 26-22M126 98V86a22 22 0 0 0-26-22"/>
-                  <path d="M51 54q19 12 38 0"/>
+                  <circle cx="70" cy="35" r="14"/><circle cx="36" cy="46" r="10"/><circle cx="104" cy="46" r="10"/>
+                  <path d="M38 101V87a31 31 0 0 1 62 0v14z"/><path d="M14 98V86a22 22 0 0 1 26-22M126 98V86a22 22 0 0 0-26-22"/><path d="M51 54q19 12 38 0"/>
                 </svg>
               </span>
             </a>
-
 
             <!-- AIRDROPS -->
-
-            <a
-              href="airdrop-pages/airdrops.html"
-              class="dash-card dash-card--airdrops"
-              data-search="airdrops campaigns testnet rewards tokens"
-            >
+            <a href="airdrop-pages/airdrops.html" class="dash-card dash-card--airdrops" data-search="airdrops campaigns testnet rewards tokens">
               <div class="card-topline">
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="8" width="18" height="13" rx="2"/>
-                    <path d="M12 8v13M3 12h18"/>
-                    <path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/>
-                    <path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/>
-                  </svg>
-                </div>
-
+                <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></div>
                 <span class="card-tag">Campaign Updates</span>
               </div>
-
               <h3>Airdrops & Campaigns</h3>
-
-              <p>
-                Find incentive testnets, early network participation
-                tasks and curated campaign updates.
-              </p>
-
-              <span class="card-action">
-                Explore Airdrops →
-              </span>
-
+              <p>Find incentive testnets, early network participation tasks and curated campaign updates.</p>
+              <span class="card-action">Explore Airdrops →</span>
               <span class="card-art card-art--airdrops" aria-hidden="true">
                 <svg viewBox="0 0 140 120">
-                  <path d="M70 40V93"/>
-                  <path d="M70 43 28 14l-15 10 28 54 29-17z"/>
-                  <path d="M70 43 112 14l15 10-28 54-29-17z"/>
-                  <path d="M47 84 70 103l23-19"/>
-                  <rect x="48" y="84" width="44" height="27" rx="4"/>
-                  <path d="M48 94h44M70 84v27"/>
-                  <circle cx="70" cy="29" r="5"/>
+                  <path d="M70 40V93"/><path d="M70 43 28 14l-15 10 28 54 29-17z"/><path d="M70 43 112 14l15 10-28 54-29-17z"/>
+                  <path d="M47 84 70 103l23-19"/><rect x="48" y="84" width="44" height="27" rx="4"/><path d="M48 94h44M70 84v27"/><circle cx="70" cy="29" r="5"/>
                 </svg>
               </span>
             </a>
-
 
             <!-- WALLETS -->
-
-            <a
-              href="wallet-pages/wallets.html"
-              class="dash-card dash-card--wallets"
-              data-search="wallets exchanges self custodial crypto trading assets"
-            >
+            <a href="wallet-pages/wallets.html" class="dash-card dash-card--wallets" data-search="wallets exchanges self custodial crypto trading assets">
               <div class="card-topline">
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M21 12V7H5a2 2 0 1 1 0-4h14v4M3 5v14a2 2 0 0 0 2 2h16v-5M18 12a2 2 0 0 0 0 4h4v-4Z"/>
-                  </svg>
-                </div>
-
+                <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 1 1 0-4h14v4M3 5v14a2 2 0 0 0 2 2h16v-5M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></div>
                 <span class="card-tag">Wallet Resources</span>
               </div>
-
               <h3>Wallets & Exchanges</h3>
-
-              <p>
-                Explore self-custodial wallets and exchange
-                resources for managing digital assets.
-              </p>
-
-              <span class="card-action">
-                Open Wallets →
-              </span>
-
+              <p>Explore self-custodial wallets and exchange resources for managing digital assets.</p>
+              <span class="card-action">Open Wallets →</span>
               <span class="card-art card-art--wallets" aria-hidden="true">
                 <svg viewBox="0 0 140 120">
-                  <rect x="23" y="32" width="91" height="64" rx="12"/>
-                  <path d="M23 47h91"/>
-                  <path d="M82 61h39v24H82q-12 0-12-12t12-12z"/>
-                  <circle cx="91" cy="73" r="4"/>
-                  <circle cx="99" cy="25" r="13"/>
-                  <path d="M99 18v14M95 22h8"/>
+                  <rect x="23" y="32" width="91" height="64" rx="12"/><path d="M23 47h91"/><path d="M82 61h39v24H82q-12 0-12-12t12-12z"/>
+                  <circle cx="91" cy="73" r="4"/><circle cx="99" cy="25" r="13"/><path d="M99 18v14M95 22h8"/>
                 </svg>
               </span>
             </a>
-
 
             <!-- TOKEN CHECKER -->
-
-            <a
-              href="token-pages/token-checker.html"
-              class="dash-card dash-card--checker"
-              data-search="token checker contract security liquidity safety"
-            >
+            <a href="token-pages/token-checker.html" class="dash-card dash-card--checker" data-search="token checker contract security liquidity safety">
               <div class="card-topline">
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
-                    <path d="m9 12 2 2 4-4"/>
-                  </svg>
-                </div>
-
+                <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></div>
                 <span class="card-tag">Check Safety</span>
               </div>
-
               <h3>Token Checker</h3>
-
-              <p>
-                Review smart-contract information, liquidity details
-                and network data across supported chains.
-              </p>
-
-              <span class="card-action">
-                Launch Checker →
-              </span>
-
+              <p>Review smart-contract information, liquidity details and network data across supported chains.</p>
+              <span class="card-action">Launch Checker →</span>
               <span class="card-art card-art--checker" aria-hidden="true">
                 <svg viewBox="0 0 140 120">
-                  <path d="M70 14 108 29v27q0 31-38 52Q32 87 32 56V29z"/>
-                  <path d="m50 60 14 14 28-31"/>
-                  <path d="M70 28v25"/>
+                  <path d="M70 14 108 29v27q0 31-38 52Q32 87 32 56V29z"/><path d="m50 60 14 14 28-31"/><path d="M70 28v25"/>
                 </svg>
               </span>
             </a>
-
 
             <!-- EARNING CALCULATOR -->
-
-            <a
-              href="earning-pages/earning-calculator.html"
-              class="dash-card dash-card--calculator"
-              data-search="earning calculator rewards passive income device costs token payouts"
-            >
+            <a href="earning-pages/earning-calculator.html" class="dash-card dash-card--calculator" data-search="earning calculator rewards passive income device costs token payouts">
               <div class="card-topline">
-                <div class="card-icon">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="4" y="2" width="16" height="20" rx="2"/>
-                    <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/>
-                  </svg>
-                </div>
-
+                <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></div>
                 <span class="card-tag">Plan Your Earnings</span>
               </div>
-
               <h3>Earning Calculator</h3>
-
-              <p>
-                Estimate data-sharing rewards, device power costs
-                and potential token payouts.
-              </p>
-
-              <span class="card-action">
-                Calculate Rewards →
-              </span>
-
+              <p>Estimate data-sharing rewards, device power costs and potential token payouts.</p>
+              <span class="card-action">Calculate Rewards →</span>
               <span class="card-art card-art--calculator" aria-hidden="true">
                 <svg viewBox="0 0 140 120">
-                  <rect x="39" y="13" width="62" height="94" rx="10"/>
-                  <rect x="49" y="24" width="42" height="18" rx="4"/>
-                  <path d="M52 57h7M70 57h7M88 57h1"/>
-                  <path d="M52 75h7M70 75h7M88 75h1"/>
-                  <path d="M52 93h7M70 93h7M88 93h1"/>
-                  <circle cx="109" cy="88" r="15"/>
-                  <path d="M109 79v18M104 84h10"/>
+                  <rect x="39" y="13" width="62" height="94" rx="10"/><rect x="49" y="24" width="42" height="18" rx="4"/>
+                  <path d="M52 57h7M70 57h7M88 57h1"/><path d="M52 75h7M70 75h7M88 75h1"/><path d="M52 93h7M70 93h7M88 93h1"/>
+                  <circle cx="109" cy="88" r="15"/><path d="M109 79v18M104 84h10"/>
                 </svg>
               </span>
             </a>
-
           </div>
         </section>
 
 
         <!-- BOTTOM METRICS + COMMUNITY BANNER -->
-
-        <section
-          class="hub-bottom-band"
-          aria-label="Total Crypto Hub highlights and community"
-        >
+        <section class="hub-bottom-band" aria-label="Total Crypto Hub highlights and community">
           <div class="hub-metrics">
-            <div class="hub-metric">
-              <span class="metric-icon">◈</span>
-              <strong>57+</strong>
-              <span>DePIN Projects</span>
-            </div>
-
-            <div class="hub-metric">
-              <span class="metric-icon">▦</span>
-              <strong>6</strong>
-              <span>Hub Sections</span>
-            </div>
-
-            <div class="hub-metric">
-              <span class="metric-icon">♧</span>
-              <strong>One</strong>
-              <span>Connected Ecosystem</span>
-            </div>
-
-            <div class="hub-metric">
-              <span class="metric-icon">✓</span>
-              <strong>Research-Led</strong>
-              <span>Directory & Resources</span>
-            </div>
+            <div class="hub-metric"><span class="metric-icon">◈</span><strong>57+</strong><span>DePIN Projects</span></div>
+            <div class="hub-metric"><span class="metric-icon">▦</span><strong>6</strong><span>Hub Sections</span></div>
+            <div class="hub-metric"><span class="metric-icon">♧</span><strong>One</strong><span>Connected Ecosystem</span></div>
+            <div class="hub-metric"><span class="metric-icon">✓</span><strong>Research-Led</strong><span>Directory & Resources</span></div>
           </div>
-
 
           <div class="hub-community-cta">
             <div class="cta-art" aria-hidden="true">
               <svg viewBox="0 0 110 90">
-                <path d="M14 34 57 18v54L14 56z"/>
-                <path d="m57 30 25-11v48L57 55z"/>
-                <path d="M26 57 38 83h14L42 54"/>
-                <path d="M85 30q17 10 0 21M93 21q28 20 0 40"/>
+                <path d="M14 34 57 18v54L14 56z"/><path d="m57 30 25-11v48L57 55z"/><path d="M26 57 38 83h14L42 54"/><path d="M85 30q17 10 0 21M93 21q28 20 0 40"/>
               </svg>
             </div>
-
             <div class="cta-copy">
-              <strong>
-                Be Part of a Growing Ecosystem
-              </strong>
-
-              <span>
-                Build. Learn. Grow with Total Crypto Hub
-              </span>
+              <strong>Be Part of a Growing Ecosystem</strong>
+              <span>Build. Learn. Grow with Total Crypto Hub</span>
             </div>
-
-            <a
-              href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hub-join-btn"
-            >
+            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" class="hub-join-btn">
               Join Now →
             </a>
           </div>
         </section>
 
 
-        <!-- SEARCH EMPTY MESSAGE -->
-
-        <div
-          class="empty-search"
-          id="emptySearch"
-          role="status"
-        >
-          No matching section found. Try another keyword.
-        </div>
-
+        <div class="empty-search" id="emptySearch" role="status">No matching section found. Try another keyword.</div>
 
         <!-- DISCLAIMER -->
-
         <p class="hero-disclaimer">
-          <strong>Disclaimer:</strong>
-          Total Crypto Hub operates as an educational directory
-          and research portal. We do not provide financial advice
-          or guarantee the performance, security or profits of
-          third-party protocols. Always perform your own
-          independent research before participating.
+          <strong>Disclaimer:</strong> Total Crypto Hub operates as an educational directory and research portal. We do not provide financial advice or guarantee the performance, security or profits of third-party protocols. Always perform your own independent research before participating.
         </p>
 
-
         <!-- FOOTER -->
-
         <footer>
-          <div class="footer-copy">
-            &copy; 2026 Total Crypto Network. All rights reserved.
-          </div>
-
+          <div class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</div>
           <div class="footer-links">
             <a href="legal-pages/about.html">About Us</a>
             <a href="legal-pages/contact.html">Contact Us</a>
@@ -3428,35 +1590,22 @@
         </footer>
 
       </main>
-
     </div>
-
   </div>
 
 
   <!-- JAVASCRIPT -->
-
   <script>
     function applyTheme(theme) {
       const safeTheme = theme === "dark" ? "dark" : "light";
-
       document.body.setAttribute("data-theme", safeTheme);
       document.documentElement.setAttribute("data-theme", safeTheme);
-
       const toggle = document.getElementById("themeToggle");
       if (toggle) {
         toggle.textContent = safeTheme === "light" ? "🌙" : "☀️";
-        toggle.setAttribute(
-          "aria-label",
-          safeTheme === "light" ? "Enable dark mode" : "Enable light mode"
-        );
+        toggle.setAttribute("aria-label", safeTheme === "light" ? "Enable dark mode" : "Enable light mode");
       }
-
-      try {
-        localStorage.setItem("theme", safeTheme);
-      } catch (error) {
-        /* Theme remains active for session */
-      }
+      try { localStorage.setItem("theme", safeTheme); } catch (error) {}
     }
 
     function toggleTheme() {
@@ -3474,19 +1623,12 @@
     function closeMobileMenu() {
       document.body.classList.remove("menu-open");
       const menuButton = document.getElementById("mobileMenuBtn");
-      if (menuButton) {
-        menuButton.setAttribute("aria-expanded", "false");
-      }
+      if (menuButton) menuButton.setAttribute("aria-expanded", "false");
     }
 
     window.addEventListener("DOMContentLoaded", function () {
-      /* THEME */
       let savedTheme = "light";
-      try {
-        savedTheme = localStorage.getItem("theme") || "light";
-      } catch (error) {
-        /* Default to light */
-      }
+      try { savedTheme = localStorage.getItem("theme") || "light"; } catch (error) {}
       applyTheme(savedTheme);
 
       /* SEARCH FUNCTIONALITY */
@@ -3499,24 +1641,14 @@
         search.addEventListener("input", function () {
           const query = this.value.trim().toLowerCase();
           let visible = 0;
-
           cards.forEach(function (card) {
-            const searchable = (
-              card.innerText + " " + (card.dataset.search || "")
-            ).toLowerCase();
+            const searchable = (card.innerText + " " + (card.dataset.search || "")).toLowerCase();
             const match = !query || searchable.includes(query);
-
             card.hidden = !match;
             if (match) visible++;
           });
-
-          if (exploreSection) {
-            exploreSection.hidden = Boolean(query) && visible === 0;
-          }
-
-          if (emptyMessage) {
-            emptyMessage.style.display = visible ? "none" : "block";
-          }
+          if (exploreSection) exploreSection.hidden = Boolean(query) && visible === 0;
+          if (emptyMessage) emptyMessage.style.display = visible ? "none" : "block";
         });
       }
 
@@ -3530,27 +1662,22 @@
       }
 
       const mobileOverlay = document.getElementById("mobileOverlay");
-      if (mobileOverlay) {
-        mobileOverlay.addEventListener("click", closeMobileMenu);
-      }
+      if (mobileOverlay) mobileOverlay.addEventListener("click", closeMobileMenu);
 
       document.querySelectorAll(".side-link").forEach(function (link) {
         link.addEventListener("click", closeMobileMenu);
       });
 
-      /* COMMUNITY DROPDOWN CLOSE ON OUTSIDE CLICK */
       document.addEventListener("click", function (event) {
         const dropdown = document.querySelector(".community-dropdown");
         const menu = document.getElementById("communityMenu");
         const button = document.querySelector(".community-btn");
-
         if (dropdown && menu && button && !dropdown.contains(event.target)) {
           menu.classList.remove("show");
           button.setAttribute("aria-expanded", "false");
         }
       });
 
-      /* ESCAPE KEY */
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
           const menu = document.getElementById("communityMenu");
@@ -3560,6 +1687,63 @@
           closeMobileMenu();
         }
       });
+
+
+      /* =========================================
+         🔥 SPONSORED TEXT 3D FLIP ANIMATION JS 🔥
+      ========================================= */
+      
+      // ऊपर वाले बैनर के लिए प्रीमियम लाइनें
+      const topPhrases = [
+        "Sponsor with Us on Total Crypto Hub",
+        "Connect with Verified Web3 Audiences",
+        "Showcase Your Project to the World",
+        "Boost Your Brand in the Crypto Space"
+      ];
+      
+      // नीचे वाले स्पॉटलाइट बैनर के लिए प्रीमियम लाइनें
+      const bottomPhrases = [
+        "Put Your Project in the Spotlight",
+        "Reach 100K+ Active Crypto Users",
+        "Drive Real Growth & Engagement",
+        "Partner With a Winning Ecosystem"
+      ];
+
+      let topIndex = 0;
+      let bottomIndex = 0;
+      
+      const topElement = document.getElementById("topSponsorText");
+      const bottomElement = document.getElementById("bottomSponsorText");
+
+      function flipText(element, phrasesArray, currentIndexObj) {
+        if(!element) return currentIndexObj.index;
+        
+        // पलटी मारने वाला इफ़ेक्ट (गायब होना)
+        element.classList.remove("flip-in");
+        element.classList.add("flip-out");
+        
+        setTimeout(() => {
+          // जब टेक्स्ट उल्टा होकर छुप जाए, तब नया टेक्स्ट सेट करें
+          currentIndexObj.index = (currentIndexObj.index + 1) % phrasesArray.length;
+          element.textContent = phrasesArray[currentIndexObj.index];
+          
+          // पलटी मारकर वापस सामने आना
+          element.classList.remove("flip-out");
+          element.classList.add("flip-in");
+        }, 400); // 400 मिलीसेकंड का एनिमेशन
+        
+        return currentIndexObj.index;
+      }
+
+      // 6000 का मतलब है 6 सेकंड। अगर आपको इसे 10 सेकंड करना है तो 6000 को 10000 कर दें। 1 मिनट के लिए 60000 कर दें।
+      setInterval(() => {
+        let tObj = {index: topIndex};
+        topIndex = flipText(topElement, topPhrases, tObj);
+        
+        let bObj = {index: bottomIndex};
+        bottomIndex = flipText(bottomElement, bottomPhrases, bObj);
+      }, 6000); 
+
     });
   </script>
 
