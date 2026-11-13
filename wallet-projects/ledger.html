@@ -5,31 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#effcf7">
   <meta name="description" content="Ledger Nano hardware wallet guide by Total Crypto Hub. Compare Nano Gen5, Nano X and Nano S Plus, learn setup, Ledger Wallet app, recovery phrase safety and supported assets.">
+  <meta name="robots" content="index,follow">
   <title>Ledger Nano Wallet Guide | Total Crypto Hub</title>
   <style>
-    :root{--bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;--green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;--line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;--purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b}
+    :root{
+      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
+      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;
+      --line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;
+      --purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b;
+    }
     body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--mint-2:#205b4d;--shadow:0 12px 30px rgba(0,0,0,.2)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}button{font:inherit}
-    .sponsor{min-height:56px;padding:10px 20px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}.coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:19px;color:#fff;box-shadow:0 3px 12px #0004}.sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}.sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}.sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
-    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(4vw,22px);position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}.brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}.brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}.top-actions{display:flex;gap:10px;align-items:center}.icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}.back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
-    .wrap{width:min(1180px,calc(100% - 36px));margin:28px auto 60px}.hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:36px 40px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:20px}.hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}.eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}.hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}.hero h1 span{color:#00a875}.hero p{max-width:620px;color:#315a63;margin:0 0 17px;font-size:15px}.pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}.pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}.actions{display:flex;flex-wrap:wrap;gap:10px}.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}.primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}.secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
-    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}.device-showcase{width:min(100%,340px);height:270px;display:flex;align-items:center;justify-content:center;gap:0;position:relative}.device-showcase img{height:235px;width:48%;object-fit:contain;filter:drop-shadow(0 14px 12px #10233f35)}.device-showcase img:first-child{transform:rotate(-8deg) translateX(18px)}.device-showcase img:last-child{transform:rotate(8deg) translateX(-8px)}.device-label{position:absolute;bottom:2px;right:0;background:#fff;color:#17364b;padding:8px 12px;border-radius:30px;font-size:11px;font-weight:850;box-shadow:0 7px 18px #174d3c25}
-    .quicknav{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}.quicknav a{white-space:nowrap;padding:10px 15px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}.quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}.section{margin-top:24px}.section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}.num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
-    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:16px}.panel,.feature,.step,.video-card,.faq-item,.model-card{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 5px 18px #183b5b06}.panel p{color:var(--muted);margin:0}.panel p+p{margin-top:12px}.fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}.fact-icon{font-size:30px}.fact h3{margin:0 0 5px;font-size:16px}.fact p{font-size:13px}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.feature{text-align:center;padding:22px 14px;transition:.2s}.feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.feature .emoji{font-size:30px;display:block;margin-bottom:8px}.feature h3{font-size:15px;margin:0 0 5px}.feature p{font-size:12px;color:var(--muted);margin:0}
-    .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.model-card{padding:18px;display:flex;flex-direction:column;gap:8px}.model-card img{height:155px;width:100%;object-fit:contain;background:#f5f8fb;border-radius:12px}.model-card h3{margin:3px 0 0;font-size:16px}.model-card p{font-size:12px;color:var(--muted);margin:0}.model-card ul{padding-left:18px;margin:4px 0;color:var(--muted);font-size:12px}.model-card a{color:var(--green-dark);font-size:12px;font-weight:850;margin-top:auto}.model-note{margin-top:12px;font-size:12px;color:var(--muted)}
-    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.step{padding:17px 13px;position:relative}.step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}.step h3{font-size:13px;line-height:1.35;margin:0 0 6px}.step p{font-size:11px;color:var(--muted);margin:0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.good-bad{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini-list{border-radius:14px;padding:13px;background:#e8fbf3;color:#14553f}.mini-list.bad{background:#fff0ef;color:#873d3d}body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}.mini-list h3{font-size:13px;margin:0 0 9px}.mini-list ul,.security-list{list-style:none;padding:0;margin:0}.mini-list li{font-size:12px;margin:7px 0}.security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}.security-list b{color:var(--text)}
-    .market-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.market{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:16px}.market strong{font-size:13px}.market .price{font-weight:850;font-size:19px;letter-spacing:-.02em;margin:6px 0}.market small{font-size:11px;color:var(--muted)}.market-status{font-size:11px;color:var(--muted);margin-top:9px}.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#00a875;margin-right:6px}.note{font-size:12px;color:var(--muted);margin-top:10px}
-    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:13px;align-items:stretch}.video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}.video-thumb:before{content:"▰";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}.play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}.video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}.video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}.tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.faq-item{padding:0;overflow:hidden}.faq-q{width:100%;padding:14px 16px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}.faq-a{display:none;padding:0 16px 15px;color:var(--muted);font-size:12px}.faq-item.open .faq-a{display:block}.cta{margin-top:26px;border-radius:20px;padding:24px 28px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}.cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}.cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}.disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}.source-list{margin-top:12px;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:11px;text-align:center}.source-list a{color:var(--green-dark);font-weight:750}footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .sponsor{min-height:56px;padding:10px 24px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
+    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:19px;color:#fff;box-shadow:0 3px 12px #0004}
+    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
+    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
+    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
+    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,42px);position:sticky;top:0;z-index:20}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
+    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
+    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
+    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
+    .wrap{width:min(1380px,calc(100% - 48px));margin:28px auto 60px}
+    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:38px 44px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:24px}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
+    .hero h1 span{color:#00a875}
+    .hero p{max-width:650px;color:#315a63;margin:0 0 17px;font-size:15px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
+    .actions{display:flex;flex-wrap:wrap;gap:10px}
+    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
+    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
+    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
+    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
+    .device-showcase{width:min(100%,340px);height:270px;display:flex;align-items:center;justify-content:center;gap:0;position:relative}
+    .device-showcase img{height:235px;width:48%;object-fit:contain;filter:drop-shadow(0 14px 12px #10233f35)}
+    .device-showcase img:first-child{transform:rotate(-8deg) translateX(18px)}
+    .device-showcase img:last-child{transform:rotate(8deg) translateX(-8px)}
+    .device-label{position:absolute;bottom:2px;right:0;background:#fff;color:#17364b;padding:8px 12px;border-radius:30px;font-size:11px;font-weight:850;box-shadow:0 7px 18px #174d3c25}
+
+    .quicknav{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
+    .quicknav a{white-space:nowrap;padding:10px 16px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
+    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
+    .section{margin-top:26px}
+    .section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
+    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
+    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:18px}
+    .panel,.feature,.step,.video-card,.faq-item,.model-card{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:22px;box-shadow:0 5px 18px #183b5b06}
+    .panel p{color:var(--muted);margin:0}
+    .panel p+p{margin-top:12px}
+    .fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
+    .fact-icon{font-size:30px}
+    .fact h3{margin:0 0 5px;font-size:16px}
+    .fact p{font-size:13px}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .feature{text-align:center;padding:24px 16px;transition:.2s}
+    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .feature .emoji{font-size:30px;display:block;margin-bottom:8px}
+    .feature h3{font-size:15px;margin:0 0 5px}
+    .feature p{font-size:12px;color:var(--muted);margin:0}
+    .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .model-card{padding:22px;display:flex;flex-direction:column;gap:10px}
+    .model-card img{height:155px;width:100%;object-fit:contain;background:#f5f8fb;border-radius:12px}
+    .model-card h3{margin:3px 0 0;font-size:17px}
+    .model-card p{font-size:12px;color:var(--muted);margin:0}
+    .model-card ul{padding-left:18px;margin:6px 0;color:var(--muted);font-size:12px}
+    .model-card a{color:var(--green-dark);font-size:12px;font-weight:850;margin-top:auto}
+    .model-note{margin-top:12px;font-size:12px;color:var(--muted)}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+    .step{padding:18px 15px;position:relative}
+    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}
+    .step p{font-size:11px;color:var(--muted);margin:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .mini-list{border-radius:14px;padding:15px;background:#e8fbf3;color:#14553f}
+    .mini-list.bad{background:#fff0ef;color:#873d3d}
+    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
+    .mini-list h3{font-size:13px;margin:0 0 9px}
+    .mini-list ul,.security-list{list-style:none;padding:0;margin:0}
+    .mini-list li{font-size:12px;margin:7px 0}
+    .security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
+    .security-list b{color:var(--text)}
+
+    .market-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .market{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .market strong{font-size:13px}
+    .market .price{font-weight:850;font-size:22px;letter-spacing:-.02em;margin:6px 0}
+    .market small{font-size:11px;color:var(--muted)}
+    .market-status{font-size:11px;color:var(--muted);margin-top:10px}
+    .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#00a875;margin-right:6px}
+    .note{font-size:12px;color:var(--muted);margin-top:10px}
+
+    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:15px;align-items:stretch}
+    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
+    .video-thumb:before{content:"▰";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}
+    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
+    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
+    .video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
+    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}
+    body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
+
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .faq-item{padding:0;overflow:hidden}
+    .faq-q{width:100%;padding:15px 18px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
+    .faq-a{display:none;padding:0 18px 16px;color:var(--muted);font-size:12px}
+    .faq-item.open .faq-a{display:block}
+    .cta{margin-top:28px;border-radius:20px;padding:26px 32px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
+    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}
+    .cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
+    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}
+    .source-list{margin-top:14px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:11px;text-align:center}
+    .source-list a{color:var(--green-dark);font-weight:750}
+    footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+
     @media(max-width:850px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.device-showcase{height:220px}.device-showcase img{height:190px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}.model-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.sponsor{gap:7px;padding:9px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 13px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 11px;font-size:11px}.wrap{width:calc(100% - 22px);margin:14px auto 35px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:35px}.hero p{font-size:13px}.hero-art{min-height:160px}.device-showcase{height:170px}.device-showcase img{height:155px}.section-heading{font-size:19px}.features{gap:8px}.feature{padding:16px 9px}.steps{gap:8px}.step{padding:13px 10px}.two-col,.good-bad,.faq-grid,.video-layout,.model-grid{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.market-grid{grid-template-columns:1fr 1fr}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}}
+    @media(max-width:560px){.market-grid,.model-grid{grid-template-columns:1fr}.sponsor{gap:7px;padding:9px 12px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 14px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 12px;font-size:11px}.wrap{width:calc(100% - 24px);margin:14px auto 36px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:clamp(28px,8vw,35px)}.hero p{font-size:13px}.hero-art{min-height:160px}.device-showcase{height:170px}.device-showcase img{height:155px}.section-heading{font-size:19px}.features{gap:10px}.feature{padding:16px 10px}.steps{gap:10px}.step{padding:14px 12px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}.market{padding:14px}.market .price{font-size:20px}}
+    @media(max-width:400px){.features,.steps,.model-grid,.market-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="sponsor"><div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span><strong>Sponsor with Us on <span>Total Crypto Hub</span></strong><small>Grow Your Brand in the Crypto Community</small><a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a></div>
+  <div class="sponsor">
+    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
+    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
+    <small>Grow Your Brand in the Crypto Community</small>
+    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
+  </div>
   <header class="topbar">
     <a class="brand" href="../index.html" aria-label="Total Crypto Hub home"><span class="brand-mark">TCN</span><span>Total Crypto Hub<small>by Total Crypto Network</small></span></a>
-    <div class="top-actions"><button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button><a class="back-btn" href="wallets.html">← Back to Wallets</a></div>
+    <div class="top-actions"><button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button><a class="back-btn" id="backBtn" href="wallets.html">← Back to Wallets</a></div>
   </header>
   <main class="wrap">
     <section class="hero" id="overview">
@@ -44,68 +156,122 @@
     </section>
     <nav class="quicknav" aria-label="Page sections"><a class="active" href="#overview">⌂ Overview</a><a href="#models">▣ Models</a><a href="#features">⭐ Features</a><a href="#how-to">How to Use</a><a href="#security">🛡 Security</a><a href="#prices">₿ Market</a><a href="#guides">Guides</a><a href="#faq">ⓘ FAQ</a></nav>
 
-    <section class="section"><div class="intro-grid">
-      <article class="panel"><h2 class="section-heading"><span class="num">1</span> What is Ledger Nano?</h2><p>Ledger Nano is a family of hardware devices designed to secure the private keys used to access crypto assets. The crypto itself remains recorded on its blockchain; the device protects keys and lets you review and approve supported transactions on the device.</p><p>Ledger's companion application is now called <b>Ledger Wallet</b> (formerly Ledger Live). It helps users manage accounts, install blockchain apps on the device and access supported services. Availability and features can vary by device, asset, region and third-party provider.</p></article>
-      <aside class="panel fact"><div class="fact-icon">💡</div><div><h3>Quick Fact</h3><p>A hardware signer is not an exchange account. You remain responsible for your PIN, recovery phrase and transaction approvals. Never type your recovery phrase into a website, chat, phone or computer.</p></div></aside>
-    </div></section>
-
-    <section class="section" id="models"><h2 class="section-heading"><span class="num">2</span> Ledger Nano Models</h2><div class="model-grid">
-      <article class="model-card"><img src="https://cdn.shopify.com/s/files/1/2974/4858/files/carrousel_lng5_1.png?v=1774363239&width=900" alt="Ledger Nano Gen5 device"><h3>Ledger Nano Gen5</h3><p>Touchscreen Nano model with a modern E Ink display.</p><ul><li>USB-C and Bluetooth 5.2</li><li>NFC for Ledger Recovery Key and Security Key</li><li>Secure Element ST33K1M5 · CC EAL6+</li><li>Ledger Recovery Key included in the box</li></ul><a href="https://shop.ledger.com/products/ledger-nano-gen5" target="_blank" rel="noopener noreferrer">Official product details ↗</a></article>
-      <article class="model-card"><img src="https://cdn.shopify.com/s/files/1/2974/4858/files/lnx_black1.webp?v=1774605495&width=900" alt="Ledger Nano X device"><h3>Ledger Nano X</h3><p>Classic Nano model with a small OLED display and mobile Bluetooth connectivity.</p><ul><li>USB-C and Bluetooth 5.2</li><li>OLED display with physical buttons</li><li>Secure Element ST33J2M0 · CC EAL5+</li><li>Recovery Sheets included</li></ul><a href="https://shop.ledger.com/products/ledger-nano-x" target="_blank" rel="noopener noreferrer">Official product details ↗</a></article>
-      <article class="model-card"><img src="https://cdn.shopify.com/s/files/1/2974/4858/files/lnsp_black1.webp?v=1774605459&width=900" alt="Ledger Nano S Plus device"><h3>Ledger Nano S Plus</h3><p>Wired-only classic model intended for desktop and compatible Android use.</p><ul><li>USB-C connection only</li><li>No Bluetooth or NFC</li><li>Secure Element ST33K1M5 · CC EAL6+</li><li>Recovery Sheets included</li></ul><a href="https://shop.ledger.com/products/ledger-nano-s-plus" target="_blank" rel="noopener noreferrer">Official product details ↗</a></article>
-    </div><p class="model-note">Model specifications and product availability can change by market. Check Ledger's live comparison page before buying. Ledger Wallet lists 500+ assets directly in the app; thousands more may be accessible through compatible third-party wallets. Asset support depends on the exact model, app and wallet integration.</p></section>
-
-    <section class="section" id="features"><h2 class="section-heading"><span class="num">3</span> Key Features</h2><div class="features">
-      <article class="feature"><span class="emoji">🔐</span><h3>Private-Key Control</h3><p>Use the hardware device to securely hold keys and approve supported transactions.</p></article>
-      <article class="feature"><span class="emoji">🛡️</span><h3>Secure Element</h3><p>Each Nano model uses a certified Secure Element and Ledger OS security architecture.</p></article>
-      <article class="feature"><span class="emoji">📱</span><h3>Ledger Wallet App</h3><p>Manage accounts, install coin apps and view supported assets on desktop or mobile.</p></article>
-      <article class="feature"><span class="emoji">🧾</span><h3>Recovery Backup</h3><p>Use the recovery phrase to restore access if your device is lost or damaged.</p></article>
-    </div></section>
-
-    <section class="section" id="how-to"><h2 class="section-heading"><span class="num">4</span> How to Set Up a Ledger Nano</h2><div class="panel" style="margin-bottom:12px"><p>These are general setup steps. Follow the on-device instructions and the official guide for your exact Ledger model. Do not use a recovery phrase supplied by another person.</p></div><div class="steps">
-      <article class="step"><div class="circle">1</div><h3>Buy from an Official Source</h3><p>Use Ledger's official store or a reseller listed by Ledger.</p></article>
-      <article class="step"><div class="circle">2</div><h3>Install Ledger Wallet</h3><p>Download the companion app only from Ledger's official download page.</p></article>
-      <article class="step"><div class="circle">3</div><h3>Initialize the Device</h3><p>Choose a PIN and follow the device's new-wallet setup flow.</p></article>
-      <article class="step"><div class="circle">4</div><h3>Write the Recovery Phrase</h3><p>Record the words in order offline and verify them on the device.</p></article>
-      <article class="step"><div class="circle">5</div><h3>Install Coin Apps</h3><p>Use My Ledger to install the blockchain apps needed for your assets.</p></article>
-    </div></section>
-
-    <section class="section two-col">
-      <article id="pros-cons"><h2 class="section-heading"><span class="num">5</span> Pros & Things to Consider</h2><div class="good-bad"><div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ Private keys protected by a hardware device</li><li>✓ Multiple Nano models and connection choices</li><li>✓ Ledger Wallet plus compatible third-party wallets</li><li>✓ PIN and recovery backup options</li></ul></div><div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✕ You must protect the recovery phrase</li><li>✕ Some assets require third-party wallet apps</li><li>✕ Device and app compatibility varies by model</li><li>✕ Buying, swapping and staking services may involve fees and risks</li></ul></div></div></article>
-      <article id="security"><h2 class="section-heading"><span class="num">6</span> Security Tips</h2><div class="panel"><ul class="security-list">
-        <li><span>🛡️</span><span><b>Never share your recovery phrase.</b> Ledger support will never need you to reveal your 24 words. Anyone with the phrase can restore your wallet.</span></li>
-        <li><span>🔎</span><span><b>Download the app from Ledger.</b> Avoid search-ad lookalikes, unofficial installers and links sent by strangers.</span></li>
-        <li><span>✋</span><span><b>Verify details on the device.</b> Check the recipient address, network and transaction information before approving.</span></li>
-        <li><span>📦</span><span><b>Check device authenticity.</b> Complete Ledger's Genuine Check in Ledger Wallet. Buy from Ledger or an authorized reseller.</span></li>
-        <li><span>🔒</span><span><b>Keep the backup offline.</b> Do not photograph, email, cloud-store or paste your recovery phrase into any app or site.</span></li>
-      </ul></div></article>
+    <section class="section">
+      <div class="intro-grid">
+        <article class="panel"><h2 class="section-heading"><span class="num">1</span> What is Ledger Nano?</h2><p>Ledger Nano is a family of hardware devices designed to secure the private keys used to access crypto assets. The crypto itself remains recorded on its blockchain; the device protects keys and lets you review and approve supported transactions on the device.</p><p>Ledger's companion application is now called <b>Ledger Wallet</b> (formerly Ledger Live). It helps users manage accounts, install blockchain apps on the device and access supported services. Availability and features can vary by device, asset, region and third-party provider.</p></article>
+        <aside class="panel fact"><div class="fact-icon">💡</div><div><h3>Quick Fact</h3><p>A hardware signer is not an exchange account. You remain responsible for your PIN, recovery phrase and transaction approvals. Never type your recovery phrase into a website, chat, phone or computer.</p></div></aside>
+      </div>
     </section>
 
-    <section class="section" id="prices"><h2 class="section-heading"><span class="num">7</span> Live Crypto Market Reference</h2><div class="panel" style="margin-bottom:12px"><p>Indicative INR market prices for popular crypto assets. These are market reference prices from CoinGecko, not Ledger balances, Ledger quotes or guaranteed buy/swap rates.</p></div><div class="market-grid">
-      <article class="market"><strong>₿ Bitcoin (BTC)</strong><div class="price" id="btcPrice">Loading…</div><small id="btcMeta">INR reference</small></article>
-      <article class="market"><strong>◆ Ethereum (ETH)</strong><div class="price" id="ethPrice">Loading…</div><small id="ethMeta">INR reference</small></article>
-      <article class="market"><strong>◎ Solana (SOL)</strong><div class="price" id="solPrice">Loading…</div><small id="solMeta">INR reference</small></article>
-      <article class="market"><strong>✕ XRP</strong><div class="price" id="xrpPrice">Loading…</div><small id="xrpMeta">INR reference</small></article>
-    </div><p class="market-status" id="marketStatus"><span class="status-dot"></span>Connecting to public market data…</p><p class="note">Prices refresh automatically every 60 seconds when the public API is reachable. Data may be delayed, rate-limited or unavailable due to API/network restrictions.</p></section>
+    <section class="section" id="models">
+      <h2 class="section-heading"><span class="num">2</span> Ledger Nano Models</h2>
+      <div class="model-grid">
+        <article class="model-card">
+          <img src="https://cdn.shopify.com/s/files/1/2974/4858/files/carrousel_lng5_1.png?v=1774363239&width=900" alt="Ledger Nano Gen5 device">
+          <h3>Ledger Nano Gen5</h3><p>Touchscreen Nano model with a modern E Ink display.</p>
+          <ul><li>USB-C and Bluetooth 5.2</li><li>NFC for Ledger Recovery Key and Security Key</li><li>Secure Element ST33K1M5 · CC EAL6+</li><li>Ledger Recovery Key included in the box</li></ul>
+          <a href="https://shop.ledger.com/products/ledger-nano-gen5" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
+        </article>
+        <article class="model-card">
+          <img src="https://cdn.shopify.com/s/files/1/2974/4858/files/lnx_black1.webp?v=1774605495&width=900" alt="Ledger Nano X device">
+          <h3>Ledger Nano X</h3><p>Classic Nano model with a small OLED display and mobile Bluetooth connectivity.</p>
+          <ul><li>USB-C and Bluetooth 5.2</li><li>OLED display with physical buttons</li><li>Secure Element ST33J2M0 · CC EAL5+</li><li>Recovery Sheets included</li></ul>
+          <a href="https://shop.ledger.com/products/ledger-nano-x" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
+        </article>
+        <article class="model-card">
+          <img src="https://cdn.shopify.com/s/files/1/2974/4858/files/lnsp_black1.webp?v=1774605459&width=900" alt="Ledger Nano S Plus device">
+          <h3>Ledger Nano S Plus</h3><p>Wired-only classic model intended for desktop and compatible Android use.</p>
+          <ul><li>USB-C connection only</li><li>No Bluetooth or NFC</li><li>Secure Element ST33K1M5 · CC EAL6+</li><li>Recovery Sheets included</li></ul>
+          <a href="https://shop.ledger.com/products/ledger-nano-s-plus" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
+        </article>
+      </div>
+      <p class="model-note">Model specifications and product availability can change by market. Check Ledger's live comparison page before buying. Ledger Wallet lists 500+ assets directly in the app; thousands more may be accessible through compatible third-party wallets. Asset support depends on the exact model, app and wallet integration.</p>
+    </section>
 
-    <section class="section" id="guides"><h2 class="section-heading"><span class="num">8</span> Official Guides & Downloads</h2><div class="video-layout">
-      <article class="video-card"><div class="video-thumb"><span class="play">↗</span></div><h3>Ledger Nano Device Comparison</h3><p>Compare Nano Gen5, Nano X and Nano S Plus features, displays and connectivity.</p><a href="https://shop.ledger.com/pages/hardware-wallets-comparison" target="_blank" rel="noopener noreferrer">Open Official Comparison ↗</a></article>
-      <article class="video-card"><div class="video-thumb"><span class="play">↗</span></div><h3>Ledger Wallet App</h3><p>Get the official desktop or mobile companion app and follow its setup flow.</p><a href="https://shop.ledger.com/pages/ledger-wallet-download" target="_blank" rel="noopener noreferrer">Download Ledger Wallet ↗</a></article>
-      <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Important Reminder</h3><p>Your recovery phrase is the master backup for wallet access. Never enter it into a website, app, form or support chat.</p><a href="https://www.ledger.com/academy/basic-basics/2-how-to-own-crypto/whats-a-secret-recovery-phrase" target="_blank" rel="noopener noreferrer">Recovery Phrase Guide ↗</a></aside>
-    </div></section>
+    <section class="section" id="features">
+      <h2 class="section-heading"><span class="num">3</span> Key Features</h2>
+      <div class="features">
+        <article class="feature"><span class="emoji">🔐</span><h3>Private-Key Control</h3><p>Use the hardware device to securely hold keys and approve supported transactions.</p></article>
+        <article class="feature"><span class="emoji">🛡️</span><h3>Secure Element</h3><p>Each Nano model uses a certified Secure Element and Ledger OS security architecture.</p></article>
+        <article class="feature"><span class="emoji">📱</span><h3>Ledger Wallet App</h3><p>Manage accounts, install coin apps and view supported assets on desktop or mobile.</p></article>
+        <article class="feature"><span class="emoji">🧾</span><h3>Recovery Backup</h3><p>Use the recovery phrase to restore access if your device is lost or damaged.</p></article>
+      </div>
+    </section>
 
-    <section class="section" id="faq"><h2 class="section-heading"><span class="num">9</span> Frequently Asked Questions</h2><div class="faq-grid">
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">What is Ledger Nano used for? <span>＋</span></button><div class="faq-a">Ledger Nano is a hardware signer that protects the private keys used to access crypto assets and lets you approve supported transactions. The assets themselves remain on their blockchains.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Is Ledger Nano the same as Ledger Wallet? <span>＋</span></button><div class="faq-a">No. Ledger Nano is the hardware device. Ledger Wallet is the companion app, formerly called Ledger Live, used to manage accounts and supported services.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Which Nano models are currently listed? <span>＋</span></button><div class="faq-a">Ledger's current comparison page lists Nano Gen5, Nano X and Nano S Plus. Check the official comparison page for availability and updated specifications in your country.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Does every Ledger Nano support Bluetooth? <span>＋</span></button><div class="faq-a">No. Nano X and Nano Gen5 support Bluetooth. Nano S Plus is a wired-only model with USB-C and no Bluetooth or NFC.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">What happens if I lose my Ledger device? <span>＋</span></button><div class="faq-a">You can restore access on a compatible replacement device or wallet using your Secret Recovery Phrase. Keep that phrase private and offline. Without the device or a valid backup, access may be lost.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Can Ledger support recover my 24 words? <span>＋</span></button><div class="faq-a">No. Never disclose the phrase to support staff or anyone else. A request to share or type it into a website, app or computer is a major scam warning.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Does Ledger store my cryptocurrency? <span>＋</span></button><div class="faq-a">Your crypto assets are recorded on their respective blockchains. The Ledger device protects the keys used to access and authorize transactions for supported assets.</div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Are buying, swapping or staking services risk-free? <span>＋</span></button><div class="faq-a">No. Some services are provided by third parties and may involve fees, regional restrictions, market volatility, smart-contract risk or other provider-specific terms. Returns are not guaranteed.</div></div>
-    </div></section>
+    <section class="section" id="how-to">
+      <h2 class="section-heading"><span class="num">4</span> How to Set Up a Ledger Nano</h2>
+      <div class="panel" style="margin-bottom:12px"><p>These are general setup steps. Follow the on-device instructions and the official guide for your exact Ledger model. Do not use a recovery phrase supplied by another person.</p></div>
+      <div class="steps">
+        <article class="step"><div class="circle">1</div><h3>Buy from an Official Source</h3><p>Use Ledger's official store or a reseller listed by Ledger.</p></article>
+        <article class="step"><div class="circle">2</div><h3>Install Ledger Wallet</h3><p>Download the companion app only from Ledger's official download page.</p></article>
+        <article class="step"><div class="circle">3</div><h3>Initialize the Device</h3><p>Choose a PIN and follow the device's new-wallet setup flow.</p></article>
+        <article class="step"><div class="circle">4</div><h3>Write the Recovery Phrase</h3><p>Record the words in order offline and verify them on the device.</p></article>
+        <article class="step"><div class="circle">5</div><h3>Install Coin Apps</h3><p>Use My Ledger to install the blockchain apps needed for your assets.</p></article>
+      </div>
+    </section>
 
-    <section class="cta"><div><h2>Ready to Explore Ledger Nano?</h2><p>Compare the current models, download Ledger Wallet from Ledger and secure your recovery backup before transferring assets.</p></div><a class="primary" href="https://shop.ledger.com/pages/hardware-wallets-comparison" target="_blank" rel="noopener noreferrer">Visit Ledger ↗</a></section>
+    <section class="section two-col">
+      <article id="pros-cons">
+        <h2 class="section-heading"><span class="num">5</span> Pros &amp; Things to Consider</h2>
+        <div class="good-bad">
+          <div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ Private keys protected by a hardware device</li><li>✓ Multiple Nano models and connection choices</li><li>✓ Ledger Wallet plus compatible third-party wallets</li><li>✓ PIN and recovery backup options</li></ul></div>
+          <div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✕ You must protect the recovery phrase</li><li>✕ Some assets require third-party wallet apps</li><li>✕ Device and app compatibility varies by model</li><li>✕ Buying, swapping and staking services may involve fees and risks</li></ul></div>
+        </div>
+      </article>
+      <article id="security">
+        <h2 class="section-heading"><span class="num">6</span> Security Tips</h2>
+        <div class="panel">
+          <ul class="security-list">
+            <li><span>🛡️</span><span><b>Never share your recovery phrase.</b> Ledger support will never need you to reveal your 24 words. Anyone with the phrase can restore your wallet.</span></li>
+            <li><span>🔎</span><span><b>Download the app from Ledger.</b> Avoid search-ad lookalikes, unofficial installers and links sent by strangers.</span></li>
+            <li><span>✋</span><span><b>Verify details on the device.</b> Check the recipient address, network and transaction information before approving.</span></li>
+            <li><span>📦</span><span><b>Check device authenticity.</b> Complete Ledger's Genuine Check in Ledger Wallet. Buy from Ledger or an authorized reseller.</span></li>
+            <li><span>🔒</span><span><b>Keep the backup offline.</b> Do not photograph, email, cloud-store or paste your recovery phrase into any app or site.</span></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="prices">
+      <h2 class="section-heading"><span class="num">7</span> Live Crypto Market Reference</h2>
+      <div class="panel" style="margin-bottom:12px"><p>Indicative INR market prices for popular crypto assets. These are market reference prices from CoinGecko, not Ledger balances, Ledger quotes or guaranteed buy/swap rates.</p></div>
+      <div class="market-grid">
+        <article class="market"><strong>₿ Bitcoin (BTC)</strong><div class="price" id="btcPrice">Loading…</div><small id="btcMeta">INR reference</small></article>
+        <article class="market"><strong>◆ Ethereum (ETH)</strong><div class="price" id="ethPrice">Loading…</div><small id="ethMeta">INR reference</small></article>
+        <article class="market"><strong>◎ Solana (SOL)</strong><div class="price" id="solPrice">Loading…</div><small id="solMeta">INR reference</small></article>
+        <article class="market"><strong>✕ XRP</strong><div class="price" id="xrpPrice">Loading…</div><small id="xrpMeta">INR reference</small></article>
+      </div>
+      <p class="market-status" id="marketStatus"><span class="status-dot"></span>Connecting to public market data…</p>
+      <p class="note">Prices refresh automatically every 60 seconds when the public API is reachable. Data may be delayed, rate-limited or unavailable due to API/network restrictions.</p>
+    </section>
+
+    <section class="section" id="guides">
+      <h2 class="section-heading"><span class="num">8</span> Official Guides &amp; Downloads</h2>
+      <div class="video-layout">
+        <article class="video-card"><div class="video-thumb"><span class="play">↗</span></div><h3>Ledger Nano Device Comparison</h3><p>Compare Nano Gen5, Nano X and Nano S Plus features, displays and connectivity.</p><a href="https://shop.ledger.com/pages/hardware-wallets-comparison" target="_blank" rel="noopener noreferrer">Open Official Comparison ↗</a></article>
+        <article class="video-card"><div class="video-thumb"><span class="play">↗</span></div><h3>Ledger Wallet App</h3><p>Get the official desktop or mobile companion app and follow its setup flow.</p><a href="https://shop.ledger.com/pages/ledger-wallet-download" target="_blank" rel="noopener noreferrer">Download Ledger Wallet ↗</a></article>
+        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Important Reminder</h3><p>Your recovery phrase is the master backup for wallet access. Never enter it into a website, app, form or support chat.</p><a href="https://www.ledger.com/academy/basic-basics/2-how-to-own-crypto/whats-a-secret-recovery-phrase" target="_blank" rel="noopener noreferrer">Recovery Phrase Guide ↗</a></aside>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <h2 class="section-heading"><span class="num">9</span> Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">What is Ledger Nano used for? <span>＋</span></button><div class="faq-a">Ledger Nano is a hardware signer that protects the private keys used to access crypto assets and lets you approve supported transactions. The assets themselves remain on their blockchains.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is Ledger Nano the same as Ledger Wallet? <span>＋</span></button><div class="faq-a">No. Ledger Nano is the hardware device. Ledger Wallet is the companion app, formerly called Ledger Live, used to manage accounts and supported services.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Which Nano models are currently listed? <span>＋</span></button><div class="faq-a">Ledger's current comparison page lists Nano Gen5, Nano X and Nano S Plus. Check the official comparison page for availability and updated specifications in your country.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does every Ledger Nano support Bluetooth? <span>＋</span></button><div class="faq-a">No. Nano X and Nano Gen5 support Bluetooth. Nano S Plus is a wired-only model with USB-C and no Bluetooth or NFC.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">What happens if I lose my Ledger device? <span>＋</span></button><div class="faq-a">You can restore access on a compatible replacement device or wallet using your Secret Recovery Phrase. Keep that phrase private and offline. Without the device or a valid backup, access may be lost.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can Ledger support recover my 24 words? <span>＋</span></button><div class="faq-a">No. Never disclose the phrase to support staff or anyone else. A request to share or type it into a website, app or computer is a major scam warning.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does Ledger store my cryptocurrency? <span>＋</span></button><div class="faq-a">Your crypto assets are recorded on their respective blockchains. The Ledger device protects the keys used to access and authorize transactions for supported assets.</div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Are buying, swapping or staking services risk-free? <span>＋</span></button><div class="faq-a">No. Some services are provided by third parties and may involve fees, regional restrictions, market volatility, smart-contract risk or other provider-specific terms. Returns are not guaranteed.</div></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div><h2>Ready to Explore Ledger Nano?</h2><p>Compare the current models, download Ledger Wallet from Ledger and secure your recovery backup before transferring assets.</p></div>
+      <a class="primary" href="https://shop.ledger.com/pages/hardware-wallets-comparison" target="_blank" rel="noopener noreferrer">Visit Ledger ↗</a>
+    </section>
     <p class="disclaimer">Educational content only. Total Crypto Hub is an independent information directory and is not affiliated with Ledger. Product specifications, supported assets, software compatibility, prices and third-party services can change. Always verify details on Ledger's official website before purchasing or making a transaction. Cryptocurrency use involves risk.</p>
     <div class="source-list"><b>Official references checked: 9 November 2026</b><br>
       <a href="https://shop.ledger.com/pages/hardware-wallets-comparison" target="_blank" rel="noopener noreferrer">Ledger device comparison</a> ·
@@ -118,17 +284,70 @@
     </div>
   </main>
   <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
+
   <script>
-    const themeButton=document.getElementById('themeToggle');
-    try{if(localStorage.getItem('tch-theme')==='dark')document.body.classList.add('dark')}catch(e){}
-    themeButton.textContent=document.body.classList.contains('dark')?'☀️':'🌙';
-    themeButton.addEventListener('click',()=>{document.body.classList.toggle('dark');const dark=document.body.classList.contains('dark');themeButton.textContent=dark?'☀️':'🌙';try{localStorage.setItem('tch-theme',dark?'dark':'light')}catch(e){}});
-    document.querySelectorAll('.faq-q').forEach(button=>button.addEventListener('click',()=>{const item=button.closest('.faq-item');item.classList.toggle('open');button.setAttribute('aria-expanded',item.classList.contains('open'));button.querySelector('span').textContent=item.classList.contains('open')?'−':'＋'}));
-    document.getElementById('year').textContent=new Date().getFullYear();
-    const navLinks=document.querySelectorAll('.quicknav a');navLinks.forEach(link=>link.addEventListener('click',()=>{navLinks.forEach(item=>item.classList.remove('active'));link.classList.add('active')}));
-    const money=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
-    async function loadMarket(){const status=document.getElementById('marketStatus');try{const response=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=inr',{cache:'no-store'});if(!response.ok)throw new Error('Market API returned '+response.status);const data=await response.json();const rows=[['btc','bitcoin'],['eth','ethereum'],['sol','solana'],['xrp','ripple']];for(const [short,id] of rows){const value=data?.[id]?.inr;if(typeof value!=='number')throw new Error('Price not available for '+id);document.getElementById(short+'Price').textContent=money.format(value);document.getElementById(short+'Meta').textContent='INR reference · Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}status.innerHTML='<span class="status-dot"></span>Market reference prices refreshed at '+new Date().toLocaleTimeString('en-IN')+'.'}catch(error){status.textContent='Market prices are temporarily unavailable. Check again later; the educational wallet guide remains available.';console.warn('Ledger Nano page market data:',error)}}
-    loadMarket();setInterval(loadMarket,60000);
+    const themeButton = document.getElementById('themeToggle');
+    try { if (localStorage.getItem('tch-theme') === 'dark') document.body.classList.add('dark'); } catch(e) {}
+    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const dark = document.body.classList.contains('dark');
+      themeButton.textContent = dark ? '☀️' : '🌙';
+      try { localStorage.setItem('tch-theme', dark ? 'dark' : 'light'); } catch(e) {}
+    });
+
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        if (document.referrer && window.history.length > 1) {
+          try {
+            const refUrl = new URL(document.referrer);
+            const isLocal = window.location.protocol === 'file:' && refUrl.protocol === 'file:';
+            const isSameSite = refUrl.origin === window.location.origin;
+            if (isLocal || isSameSite) {
+              e.preventDefault();
+              window.history.back();
+            }
+          } catch (err) {}
+        }
+      });
+    }
+
+    document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      item.classList.toggle('open');
+      button.setAttribute('aria-expanded', item.classList.contains('open'));
+      button.querySelector('span').textContent = item.classList.contains('open') ? '−' : '＋';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navLinks = document.querySelectorAll('.quicknav a');
+    navLinks.forEach(link => link.addEventListener('click', () => {
+      navLinks.forEach(item => item.classList.remove('active'));
+      link.classList.add('active');
+    }));
+
+    const money = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+    async function loadMarket() {
+      const status = document.getElementById('marketStatus');
+      try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=inr', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Market API returned ' + response.status);
+        const data = await response.json();
+        const rows = [['btc', 'bitcoin'], ['eth', 'ethereum'], ['sol', 'solana'], ['xrp', 'ripple']];
+        for (const [short, id] of rows) {
+          const value = data?.[id]?.inr;
+          if (typeof value !== 'number') throw new Error('Price not available for ' + id);
+          document.getElementById(short + 'Price').textContent = money.format(value);
+          document.getElementById(short + 'Meta').textContent = 'INR reference · Updated ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+        status.innerHTML = '<span class="status-dot"></span>Market reference prices refreshed at ' + new Date().toLocaleTimeString('en-IN') + '.';
+      } catch (error) {
+        status.textContent = 'Market prices are temporarily unavailable. Check again later; the educational wallet guide remains available.';
+        console.warn('Ledger Nano page market data:', error);
+      }
+    }
+    loadMarket();
+    setInterval(loadMarket, 60000);
   </script>
 </body>
 </html>
