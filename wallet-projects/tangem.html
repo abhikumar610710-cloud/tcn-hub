@@ -5,23 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#effcf7">
   <meta name="description" content="Tangem Wallet guide by Total Crypto Hub. Learn about the NFC hardware wallet, card and ring setup, backups, supported assets and security.">
+  <meta name="robots" content="index,follow">
   <title>Tangem Wallet Guide | Total Crypto Hub</title>
   <style>
-    :root{--bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;--green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;--line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;--purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b}
+    :root{
+      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
+      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;
+      --line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;
+      --purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b;
+    }
     body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--mint-2:#205b4d;--shadow:0 12px 30px rgba(0,0,0,.2)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}button{font:inherit}
-    .sponsor{min-height:56px;padding:10px 20px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}.coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:19px;color:#fff;box-shadow:0 3px 12px #0004}.sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}.sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}.sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
-    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(4vw,22px);position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}.brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}.brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}.top-actions{display:flex;gap:10px;align-items:center}.icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}.back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
-    .wrap{width:min(1180px,calc(100% - 36px));margin:28px auto 60px}.hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:36px 40px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:20px}.hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}.eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}.hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}.hero h1 span{color:#00a875}.hero p{max-width:620px;color:#315a63;margin:0 0 17px;font-size:15px}.pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}.pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}.actions{display:flex;flex-wrap:wrap;gap:10px}.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}.primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}.secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
-    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}.card-stack{position:relative;width:260px;height:210px;display:grid;place-items:center}.wallet-card{position:absolute;width:190px;height:120px;border-radius:17px;background:linear-gradient(135deg,#152b39,#243e4e 60%,#0b1721);border:1px solid #a8d9ca;box-shadow:0 18px 28px #174d3c45;transform:rotate(-13deg);display:flex;align-items:center;justify-content:space-between;padding:17px;color:#d8fff0}.wallet-card.back{transform:translate(25px,18px) rotate(11deg);background:linear-gradient(135deg,#d8e9e2,#a9cfc2 60%,#739e91);color:#1d4b40}.chip{width:30px;height:25px;border:1px solid currentColor;border-radius:6px;opacity:.85}.card-word{font-size:12px;font-weight:900;letter-spacing:.1em}.nfc{position:absolute;right:17px;top:10px;font-size:22px}.float-tag{position:absolute;bottom:5px;right:5px;background:#fff;color:#17644d;padding:8px 12px;border-radius:30px;font-size:11px;font-weight:850;box-shadow:0 7px 18px #174d3c25}
-    .quicknav{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}.quicknav a{white-space:nowrap;padding:10px 15px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}.quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}.section{margin-top:24px}.section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}.num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
-    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:16px}.panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 5px 18px #183b5b06}.panel p{color:var(--muted);margin:0}.fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}.fact-icon{font-size:30px}.fact h3{margin:0 0 5px;font-size:16px}.fact p{font-size:13px}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.feature{text-align:center;padding:22px 14px;transition:.2s}.feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.feature .emoji{font-size:30px;display:block;margin-bottom:8px}.feature h3{font-size:15px;margin:0 0 5px}.feature p{font-size:12px;color:var(--muted);margin:0}
-    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.step{padding:17px 13px;position:relative}.step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}.step h3{font-size:13px;line-height:1.35;margin:0 0 6px}.step p{font-size:11px;color:var(--muted);margin:0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.good-bad{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini-list{border-radius:14px;padding:13px;background:#e8fbf3;color:#14553f}.mini-list.bad{background:#fff0ef;color:#873d3d}body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}.mini-list h3{font-size:13px;margin:0 0 9px}.mini-list ul,.security-list{list-style:none;padding:0;margin:0}.mini-list li{font-size:12px;margin:7px 0}.security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}.security-list b{color:var(--text)}
-    .market-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.market{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:16px}.market strong{font-size:13px}.market .price{font-weight:850;font-size:19px;letter-spacing:-.02em;margin:6px 0}.market small{font-size:11px;color:var(--muted)}.market-status{font-size:11px;color:var(--muted);margin-top:9px}.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#00a875;margin-right:6px}.note{font-size:12px;color:var(--muted);margin-top:10px}
-    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:13px;align-items:stretch}.video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}.video-thumb:before{content:"💳";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}.play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}.video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}.video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}.tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.faq-item{padding:0;overflow:hidden}.faq-q{width:100%;padding:14px 16px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}.faq-a{display:none;padding:0 16px 15px;color:var(--muted);font-size:12px}.faq-item.open .faq-a{display:block}.cta{margin-top:26px;border-radius:20px;padding:24px 28px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}.cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}.cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}.disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}.source-list{font-size:11px;color:var(--muted);text-align:left;margin-top:12px}.source-list a{text-decoration:underline;color:var(--green-dark)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .sponsor{min-height:56px;padding:10px 24px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
+    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:19px;color:#fff;box-shadow:0 3px 12px #0004}
+    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
+    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
+    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
+    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,42px);position:sticky;top:0;z-index:20}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
+    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
+    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
+    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
+    .wrap{width:min(1380px,calc(100% - 48px));margin:28px auto 60px}
+    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:38px 44px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:24px}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
+    .hero h1 span{color:#00a875}
+    .hero p{max-width:650px;color:#315a63;margin:0 0 17px;font-size:15px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
+    .actions{display:flex;flex-wrap:wrap;gap:10px}
+    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
+    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
+    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
+    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
+    .card-stack{position:relative;width:260px;height:210px;display:grid;place-items:center}
+    .wallet-card{position:absolute;width:190px;height:120px;border-radius:17px;background:linear-gradient(135deg,#152b39,#243e4e 60%,#0b1721);border:1px solid #a8d9ca;box-shadow:0 18px 28px #174d3c45;transform:rotate(-13deg);display:flex;align-items:center;justify-content:space-between;padding:17px;color:#d8fff0}
+    .wallet-card.back{transform:translate(25px,18px) rotate(11deg);background:linear-gradient(135deg,#d8e9e2,#a9cfc2 60%,#739e91);color:#1d4b40}
+    .chip{width:30px;height:25px;border:1px solid currentColor;border-radius:6px;opacity:.85}
+    .card-word{font-size:12px;font-weight:900;letter-spacing:.1em}
+    .nfc{position:absolute;right:17px;top:10px;font-size:22px}
+    .float-tag{position:absolute;bottom:5px;right:5px;background:#fff;color:#17644d;padding:8px 12px;border-radius:30px;font-size:11px;font-weight:850;box-shadow:0 7px 18px #174d3c25}
+
+    .quicknav{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
+    .quicknav a{white-space:nowrap;padding:10px 16px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
+    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
+    .section{margin-top:26px}
+    .section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
+    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
+    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:18px}
+    .panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:22px;box-shadow:0 5px 18px #183b5b06}
+    .panel p{color:var(--muted);margin:0}
+    .fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
+    .fact-icon{font-size:30px}
+    .fact h3{margin:0 0 5px;font-size:16px}
+    .fact p{font-size:13px}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .feature{text-align:center;padding:24px 16px;transition:.2s}
+    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .feature .emoji{font-size:30px;display:block;margin-bottom:8px}
+    .feature h3{font-size:15px;margin:0 0 5px}
+    .feature p{font-size:12px;color:var(--muted);margin:0}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+    .step{padding:18px 15px;position:relative}
+    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
+    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}
+    .step p{font-size:11px;color:var(--muted);margin:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .mini-list{border-radius:14px;padding:15px;background:#e8fbf3;color:#14553f}
+    .mini-list.bad{background:#fff0ef;color:#873d3d}
+    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
+    .mini-list h3{font-size:13px;margin:0 0 9px}
+    .mini-list ul,.security-list{list-style:none;padding:0;margin:0}
+    .mini-list li{font-size:12px;margin:7px 0}
+    .security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
+    .security-list b{color:var(--text)}
+
+    .market-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .market{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .market strong{font-size:13px}
+    .market .price{font-weight:850;font-size:22px;letter-spacing:-.02em;margin:6px 0}
+    .market small{font-size:11px;color:var(--muted)}
+    .market-status{font-size:11px;color:var(--muted);margin-top:10px}
+    .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#00a875;margin-right:6px}
+    .note{font-size:12px;color:var(--muted);margin-top:10px}
+
+    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:15px;align-items:stretch}
+    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
+    .video-thumb:before{content:"💳";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}
+    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
+    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
+    .video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
+    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}
+    body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
+
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .faq-item{padding:0;overflow:hidden}
+    .faq-q{width:100%;padding:15px 18px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
+    .faq-a{display:none;padding:0 18px 16px;color:var(--muted);font-size:12px}
+    .faq-item.open .faq-a{display:block}
+    .cta{margin-top:28px;border-radius:20px;padding:26px 32px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
+    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}
+    .cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
+    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}
+    footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+    .source-list{font-size:11px;color:var(--muted);text-align:left;margin-top:12px}
+    .source-list a{text-decoration:underline;color:var(--green-dark)}
+
     @media(max-width:850px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}.market-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.sponsor{gap:7px;padding:9px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 13px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 11px;font-size:11px}.wrap{width:calc(100% - 22px);margin:14px auto 35px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:35px}.hero p{font-size:13px}.hero-art{min-height:160px}.card-stack{transform:scale(.82)}.section-heading{font-size:19px}.features{gap:8px}.feature{padding:16px 9px}.steps{gap:8px}.step{padding:13px 10px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}.market-grid{gap:8px}.market{padding:12px}.market .price{font-size:16px}}
+    @media(max-width:560px){.market-grid{grid-template-columns:1fr}.sponsor{gap:7px;padding:9px 12px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 14px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 12px;font-size:11px}.wrap{width:calc(100% - 24px);margin:14px auto 36px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:clamp(28px,8vw,35px)}.hero p{font-size:13px}.hero-art{min-height:160px}.card-stack{transform:scale(.82)}.section-heading{font-size:19px}.features{gap:10px}.feature{padding:16px 10px}.steps{gap:10px}.step{padding:14px 12px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}.market{padding:14px}.market .price{font-size:20px}}
+    @media(max-width:400px){.features,.steps,.market-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -33,7 +134,7 @@
   </div>
   <header class="topbar">
     <a class="brand" href="../index.html" aria-label="Total Crypto Hub home"><span class="brand-mark">TCN</span><span>Total Crypto Hub<small>by Total Crypto Network</small></span></a>
-    <div class="top-actions"><button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button><a class="back-btn" href="wallets.html">← Back to Wallets</a></div>
+    <div class="top-actions"><button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button><a class="back-btn" id="backBtn" href="wallets.html">← Back to Wallets</a></div>
   </header>
   <main class="wrap">
     <section class="hero" id="overview">
@@ -41,7 +142,7 @@
         <span class="eyebrow">✦ Hardware Wallet Guide · Total Crypto Hub</span>
         <h1>Tangem <span>Wallet</span></h1>
         <p>A self-custody hardware wallet built around an NFC card or ring. Use the Tangem mobile app to view your portfolio and sign transactions while your private key stays protected inside the device's secure chip.</p>
-        <div class="pills"><span class="pill">✓ Self-Custody</span><span class="pill">📲 NFC Tap</span><span class="pill">🔋 No Battery</span><span class="pill">💳 Card & Ring</span></div>
+        <div class="pills"><span class="pill">✓ Self-Custody</span><span class="pill">📲 NFC Tap</span><span class="pill">🔋 No Battery</span><span class="pill">💳 Card &amp; Ring</span></div>
         <div class="actions"><a class="primary" href="https://tangem.com/en/" target="_blank" rel="noopener noreferrer">Visit Official Tangem ↗</a><a class="secondary" href="https://tangem.com/en/help-center/introduction-to-tangem-wallet/" target="_blank" rel="noopener noreferrer">Official Help Center ↗</a></div>
       </div>
       <div class="hero-art" aria-label="Illustration of Tangem-style NFC wallet cards"><div class="card-stack"><div class="wallet-card back"><span class="chip"></span><span class="card-word">TANGEM</span></div><div class="wallet-card"><span class="chip"></span><span class="card-word">TANGEM</span><span class="nfc">)))</span></div><span class="float-tag">Tap • Verify • Sign</span></div></div>
@@ -58,7 +159,7 @@
     <section class="section" id="features"><h2 class="section-heading"><span class="num">2</span> Key Features</h2><div class="features">
       <article class="feature"><span class="emoji">🔐</span><h3>Secure Element</h3><p>Private keys are generated or imported into the hardware chip and are designed to remain protected there.</p></article>
       <article class="feature"><span class="emoji">📲</span><h3>NFC Connection</h3><p>Tap the card or ring against a compatible NFC smartphone to interact with the wallet.</p></article>
-      <article class="feature"><span class="emoji">💳</span><h3>Card & Ring</h3><p>Choose a physical card or ring form factor. Both work with the Tangem app.</p></article>
+      <article class="feature"><span class="emoji">💳</span><h3>Card &amp; Ring</h3><p>Choose a physical card or ring form factor. Both work with the Tangem app.</p></article>
       <article class="feature"><span class="emoji">🌐</span><h3>Multi-network</h3><p>Manage supported coins and tokens across 90+ networks, subject to current app support.</p></article>
     </div></section>
 
@@ -71,7 +172,7 @@
     </div><div class="panel" style="margin-top:12px"><b>Backup reminder:</b> For second-generation hardware wallets, Tangem's seedless setup requires at least two devices. Keep backup devices safe and separate. If you choose a seed phrase setup, store the phrase offline and never photograph, screenshot or share it.</div></section>
 
     <section class="section two-col">
-      <article id="pros-cons"><h2 class="section-heading"><span class="num">4</span> Pros & Things to Consider</h2><div class="good-bad"><div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ No battery or charging cable</li><li>✓ Compact card or ring form</li><li>✓ NFC-based transaction signing</li><li>✓ Backup devices available</li></ul></div><div class="mini-list bad"><h3>! Considerations</h3><ul><li>! Requires compatible NFC phone</li><li>! Physical device must be kept safe</li><li>! Seed phrase handling depends on setup</li><li>! Third-party service fees may apply</li></ul></div></div></article>
+      <article id="pros-cons"><h2 class="section-heading"><span class="num">4</span> Pros &amp; Things to Consider</h2><div class="good-bad"><div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ No battery or charging cable</li><li>✓ Compact card or ring form</li><li>✓ NFC-based transaction signing</li><li>✓ Backup devices available</li></ul></div><div class="mini-list bad"><h3>! Considerations</h3><ul><li>! Requires compatible NFC phone</li><li>! Physical device must be kept safe</li><li>! Seed phrase handling depends on setup</li><li>! Third-party service fees may apply</li></ul></div></div></article>
       <article id="security"><h2 class="section-heading"><span class="num">5</span> Security Tips</h2><div class="panel"><ul class="security-list">
         <li><span>🛡️</span><span><b>Buy from a trusted source.</b> Prefer Tangem's official store or an authorized seller. During setup, follow the app's authenticity checks.</span></li>
         <li><span>🔑</span><span><b>Protect your access code.</b> Never share it. Keep backup cards or rings in separate secure places.</span></li>
@@ -88,7 +189,7 @@
       <article class="market"><strong>✕ XRP</strong><div class="price" id="xrpPrice">Loading…</div><small id="xrpMeta">INR reference</small></article>
     </div><p class="market-status" id="marketStatus"><span class="status-dot"></span>Connecting to public market data…</p><p class="note">Prices refresh automatically every 60 seconds when the public API is reachable. Data may be delayed, limited or unavailable due to API/network restrictions.</p></section>
 
-    <section class="section" id="videos"><h2 class="section-heading"><span class="num">7</span> Official Guides & Tutorials</h2><div class="video-layout">
+    <section class="section" id="videos"><h2 class="section-heading"><span class="num">7</span> Official Guides &amp; Tutorials</h2><div class="video-layout">
       <article class="video-card"><div class="video-thumb"><span class="play">▶</span></div><h3>Tangem Wallet Setup</h3><p>Read Tangem's official step-by-step guide for creating a hardware wallet without a seed phrase.</p><a href="https://tangem.com/en/help-center/getting-started-with-hardware-wallet/how-to-set-up-without-a-seed-phrase/" target="_blank" rel="noopener noreferrer">Open Official Setup Guide ↗</a></article>
       <article class="video-card"><div class="video-thumb"><span class="play">▶</span></div><h3>Seed Phrase Setup</h3><p>Learn how seed phrase generation and backup work on supported Tangem generations.</p><a href="https://tangem.com/en/help-center/getting-started-with-hardware-wallet/how-to-set-up-with-a-seed-phrase/" target="_blank" rel="noopener noreferrer">Open Official Guide ↗</a></article>
       <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Pro Tip</h3><p>Download the app only through Tangem's official website or verified app-store listing. Never enter wallet secrets into a website or chat.</p><a href="https://tangem.com/en/" target="_blank" rel="noopener noreferrer">Tangem Official Website ↗</a></aside>
@@ -122,6 +223,24 @@
     try{if(localStorage.getItem('tch-theme')==='dark')document.body.classList.add('dark')}catch(e){}
     themeButton.textContent=document.body.classList.contains('dark')?'☀️':'🌙';
     themeButton.addEventListener('click',()=>{document.body.classList.toggle('dark');const dark=document.body.classList.contains('dark');themeButton.textContent=dark?'☀️':'🌙';try{localStorage.setItem('tch-theme',dark?'dark':'light')}catch(e){}});
+
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        if (document.referrer && window.history.length > 1) {
+          try {
+            const refUrl = new URL(document.referrer);
+            const isLocal = window.location.protocol === 'file:' && refUrl.protocol === 'file:';
+            const isSameSite = refUrl.origin === window.location.origin;
+            if (isLocal || isSameSite) {
+              e.preventDefault();
+              window.history.back();
+            }
+          } catch (err) {}
+        }
+      });
+    }
+
     document.querySelectorAll('.faq-q').forEach(button=>button.addEventListener('click',()=>{const item=button.closest('.faq-item');item.classList.toggle('open');button.setAttribute('aria-expanded',item.classList.contains('open'));button.querySelector('span').textContent=item.classList.contains('open')?'−':'＋'}));
     document.getElementById('year').textContent=new Date().getFullYear();
     const navLinks=document.querySelectorAll('.quicknav a');navLinks.forEach(link=>link.addEventListener('click',()=>{navLinks.forEach(item=>item.classList.remove('active'));link.classList.add('active')}));
