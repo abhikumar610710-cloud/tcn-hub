@@ -147,7 +147,7 @@
           </div>
         </section>
 
-        <!-- SPONSORED BANNER WITH LIVE AI SCAN & 2-MONTH TIMER -->
+        <!-- SPONSORED BANNER WITH LIVE CODE ANIMATION & ROTATING TEXT -->
         <section class="hub-ad-slot" id="homepageBannerAd" aria-label="Sponsored advertisement">
           <div class="hub-ad-topline">
               <span class="hub-ad-label"><span class="hub-ad-dot" aria-hidden="true"></span>Sponsored placement</span>
@@ -163,38 +163,74 @@
             if (now < expiryDate.getTime()) {
                 document.write(`
                     <style>
-                        @keyframes aiPulseGlow { 
-                            0% { box-shadow: 0 0 10px rgba(8,168,107,0.2); border-color: rgba(32,217,154,0.3); } 
-                            50% { box-shadow: 0 0 25px rgba(32,217,154,0.7); border-color: rgba(32,217,154,1); } 
-                            100% { box-shadow: 0 0 10px rgba(8,168,107,0.2); border-color: rgba(32,217,154,0.3); } 
+                        @keyframes bannerGlow { 
+                            0%, 100% { box-shadow: 0 0 15px rgba(32,217,154,0.3); border-color: rgba(32,217,154,0.5); } 
+                            50% { box-shadow: 0 0 30px rgba(32,217,154,0.8); border-color: rgba(32,217,154,1); } 
                         }
-                        @keyframes aiLaserScan { 
-                            0% { left: -100%; } 
-                            100% { left: 200%; } 
+                        @keyframes floatCoin {
+                            0%, 100% { transform: translateY(0px) rotate(0deg); }
+                            50% { transform: translateY(-6px) rotate(8deg); }
                         }
-                        .live-ai-banner {
+                        .code-live-banner {
                             width: 100%; max-width: 970px; height: 110px; margin: 0 auto; overflow: hidden; 
-                            border-radius: 16px; border: 1px solid rgba(32,217,154,0.4); position: relative; 
-                            background: #000; animation: aiPulseGlow 3s infinite;
+                            border-radius: 16px; border: 1px solid rgba(32,217,154,0.5); position: relative; 
+                            background: radial-gradient(circle at 10% 50%, rgba(16,185,129,0.25), transparent 40%),
+                                        radial-gradient(circle at 90% 50%, rgba(6,182,212,0.25), transparent 40%),
+                                        linear-gradient(135deg, #031e21, #062c30 50%, #021417);
+                            animation: bannerGlow 3.5s infinite ease-in-out; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; text-decoration: none;
                         }
-                        .live-ai-scanner {
-                            position: absolute; top: 0; left: -100%; width: 200px; height: 100%; 
-                            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); 
-                            transform: skewX(-25deg); animation: aiLaserScan 3.5s infinite linear; 
-                            pointer-events: none;
-                        }
+                        .banner-left { display: flex; align-items: center; gap: 14px; z-index: 2; }
+                        .banner-badge { background: rgba(16,185,129,0.2); border: 1px solid rgba(32,217,154,0.4); color: #32e5a1; font-size: 8px; font-weight: 800; padding: 4px 8px; border-radius: 999px; letter-spacing: 0.8px; text-transform: uppercase; }
+                        .banner-text-box h2 { margin: 3px 0 2px; color: #fff; font-size: clamp(16px, 1.8vw, 22px); font-weight: 800; letter-spacing: -0.4px; }
+                        .banner-text-box p { margin: 0; color: #a7f3d0; font-size: 10px; font-weight: 600; }
+                        .banner-right { display: flex; align-items: center; gap: 15px; z-index: 2; }
+                        .banner-floating-coin { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(145deg, #ffd76b, #d58a12); border: 2px solid #fff; display: grid; place-items: center; font-size: 20px; font-weight: bold; color: #fff; box-shadow: 0 4px 15px rgba(245,158,11,0.4); animation: floatCoin 3s infinite ease-in-out; }
+                        .banner-action-btn { background: linear-gradient(135deg, #a7f3b5, #35e89a); color: #052b20; padding: 10px 18px; border-radius: 999px; font-size: 10px; font-weight: 800; box-shadow: 0 5px 15px rgba(16,185,129,0.3); transition: 0.2s; white-space: nowrap; }
+                        .code-live-banner:hover .banner-action-btn { background: #fff; transform: translateY(-2px); }
                     </style>
-                    <div class="live-ai-banner">
-                        <a href="${referralLink}" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none;">
-                            <img src="logos/bixberry-banner.png" alt="Bixberry AI Bandwidth Sharing" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                        </a>
-                        <div class="live-ai-scanner"></div>
-                    </div>
+                    
+                    <a href="${referralLink}" target="_blank" class="code-live-banner">
+                        <div class="banner-left">
+                            <div class="banner-floating-coin">₿</div>
+                            <div class="banner-text-box">
+                                <span class="banner-badge">★ Featured Partner · Bixberry AI</span>
+                                <h2><span class="text-flipper" id="bannerDynamicText" aria-live="off">AI Bandwidth &amp; Passive Node Mining</span></h2>
+                                <p>Earn rewards with 5,000+ brand payout options &amp; secure automated tasks.</p>
+                            </div>
+                        </div>
+                        <div class="banner-right">
+                            <span class="banner-action-btn">Join Now →</span>
+                        </div>
+                    </a>
+
+                    <script>
+                      // बैनर के अंदर टेक्स्ट को बदलने वाला रोटेटर लॉजिक
+                      const dynamicEl = document.getElementById("bannerDynamicText");
+                      if (dynamicEl) {
+                        const messages = [
+                          "AI Bandwidth &amp; Passive Node Mining",
+                          "Share Unused Internet &amp; Earn Crypto",
+                          "5,000+ Brand Payout Options Available",
+                          "Join Bixberry AI Network Today"
+                        ];
+                        let msgIdx = 0;
+                        setInterval(() => {
+                          msgIdx = (msgIdx + 1) % messages.length;
+                          dynamicEl.classList.add("flip-out");
+                          setTimeout(() => {
+                            dynamicEl.innerHTML = messages[msgIdx];
+                            dynamicEl.classList.remove("flip-out");
+                            dynamicEl.classList.add("flip-in");
+                            setTimeout(() => dynamicEl.classList.remove("flip-in"), 500);
+                          }, 380);
+                        }, 4000);
+                      }
+                    </script>
                 `);
             } else {
                 document.write(`
                     <a class="hub-ad-banner" href="legal-pages/contact.html" aria-label="Advertise with Total Crypto Hub">
-                        <div class="hub-ad-copy"><span class="hub-ad-eyebrow">REACH THE CRYPTO COMMUNITY</span><h2><span class="text-flipper" id="bottomSponsorText" aria-live="off">Put Your Project in the Spotlight</span></h2><p>Introduce your Web3 brand to readers exploring DePIN projects, airdrop campaigns, wallets and crypto tools on Total Crypto Hub.</p><span class="hub-ad-button">Become a Sponsor <span aria-hidden="true">→</span></span></div>
+                        <div class="hub-ad-copy"><span class="hub-ad-eyebrow">REACH THE CRYPTO COMMUNITY</span><h2><span class="text-flipper" id="bottomSponsorText" aria-live="off">Put Your Project in the Spotlight</span></h2><p>Introduce your Web3 brand to readers exploring DePIN projects, airdrop campaigns, wallets and crypto tools on Total Crypto Hub.</p><span class="hub-ad-button">Become a Sponsor <span aria-hidden="true">→</span></div>
                         <div class="hub-ad-art" aria-hidden="true"><div class="hub-ad-orbit"></div><span class="hub-ad-coin hub-ad-coin--one">₿</span><span class="hub-ad-coin hub-ad-coin--two">◆</span><div class="hub-ad-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
                     </a>
                 `);
@@ -307,7 +343,7 @@
             this.setAttribute("aria-expanded", String(isOpen));
           });
         }
-        if (mobileOverlay) mobileOverlay.addEventListener("click", closeMobileMenu);
+        if (mobileOverlay) mobileOverlay.addEventListener("click", closeMobileMessage);
         document.querySelectorAll(".side-link").forEach(link => link.addEventListener("click", closeMobileMenu));
 
         const dropdown = document.querySelector(".community-dropdown");
