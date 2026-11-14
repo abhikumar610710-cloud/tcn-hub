@@ -1,324 +1,1884 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Total Crypto Hub by Total Crypto Network - Explore DePIN nodes, community projects, airdrops, wallets, and crypto tools in one place.">
-  <meta name="keywords" content="Total Crypto Hub, Total Crypto Network, DePIN, Community Projects, Airdrops, Crypto Tools, Crypto Wallets">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <title>Total Crypto Hub | Ecosystem Portal</title>
+  <meta name="description" content="Explore and compare DePIN projects, decentralized infrastructure nodes, and reward networks on Total Crypto Hub.">
+  <meta name="keywords" content="DePIN, Crypto Nodes, Bandwidth Sharing, Compute, Storage, Total Crypto Hub">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <title>DePIN Projects | Total Crypto Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:70px;--shadow:0 12px 32px rgba(20,76,66,.07)}
-    [data-theme="dark"]{color-scheme:dark;--bg:#081a20;--surface:#10272c;--surface-soft:#143139;--border:#254b4b;--heading:#f0fff9;--body:#d4eee5;--muted:#91b3ad;--green:#20d99a;--green-dark:#0cad78;--green-light:#5df0bd;--green-soft:#123e34;--teal:#22cbbb;--navy:#061c24;--shadow:0 14px 34px rgba(0,0,0,.22)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}
+    :root {
+      color-scheme: light;
+      --page:#f5f8fc;
+      --surface:#ffffff;
+      --surface-2:#f8fbff;
+      --line:#e5edf5;
+      --ink:#101b3d;
+      --body:#263858;
+      --muted:#71809b;
+      --green:#08a86b;
+      --green-dark:#078653;
+      --green-soft:#e8fbf3;
+      --shadow:0 12px 34px rgba(27,54,93,.07);
+      --sidebar-width:258px;
+      --sponsor-height:58px;
+      --bg:var(--page);
+      --surface-soft:var(--surface-2);
+      --border:var(--line);
+      --heading:var(--ink);
+    }
 
-    /* Sponsorship header glow and light sweep */
-    @keyframes topSponsorGlow{0%,100%{box-shadow:0 5px 20px rgba(1,30,30,.12);border-bottom-color:rgba(74,230,180,.25)}50%{box-shadow:0 8px 30px rgba(32,217,154,.45);border-bottom-color:rgba(32,217,154,.9)}}
-    @keyframes sponsorSweep{0%{transform:translateX(-130%) skewX(-18deg);opacity:0}18%{opacity:.35}55%{opacity:.12}100%{transform:translateX(230%) skewX(-18deg);opacity:0}}
-    @keyframes sponsorBtnGlow{0%,100%{box-shadow:0 5px 16px rgba(16,185,129,.2);transform:scale(1)}50%{box-shadow:0 5px 25px rgba(32,217,154,.65);transform:scale(1.025)}}
-    .sponsor-strip{position:sticky;top:0;z-index:200;min-height:var(--sponsor-height);color:#f5fff9;background:radial-gradient(circle at 5% 50%,rgba(24,205,145,.25),transparent 20%),radial-gradient(circle at 95% 50%,rgba(20,200,160,.2),transparent 20%),linear-gradient(105deg,#031e21,#062c30 52%,#031d25);border-bottom:1px solid rgba(74,230,180,.25);animation:topSponsorGlow 3.4s infinite ease-in-out;isolation:isolate;overflow:hidden}
-    .sponsor-strip::after{content:"";position:absolute;z-index:-1;top:-35%;left:0;width:22%;height:170%;background:linear-gradient(90deg,transparent,rgba(164,255,222,.13),transparent);pointer-events:none;animation:sponsorSweep 8s ease-in-out infinite}
-    .sponsor-inner{min-height:var(--sponsor-height);max-width:1800px;margin:auto;padding:7px 24px;display:flex;align-items:center;gap:18px}
-    .header-brand{width:var(--sidebar-width);flex:0 0 var(--sidebar-width);display:flex;align-items:center;gap:11px;text-decoration:none;min-width:0}
-    .header-logo{width:48px;height:48px;flex:0 0 48px;overflow:hidden;display:grid;place-items:center;border-radius:50%;border:2px solid #20d99a;background:#fff;box-shadow:0 0 15px rgba(32,217,154,.22)}.header-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-    .header-brand-name{color:#fff;font-size:16px;font-weight:800;line-height:1.2;letter-spacing:-.4px}.header-brand-subtitle{display:block;margin-top:3px;color:#9debd0;font-size:10px;font-weight:700}.header-brand-subtitle b{color:#32e5a1}
-    .sponsor-coin{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.65);border-radius:50%;color:#fff9df;background:linear-gradient(145deg,#ffca45,#bd6b09);box-shadow:0 4px 15px rgba(245,158,11,.25);font-size:22px;font-weight:800}.sponsor-coin--eth{color:#eef4ff;background:linear-gradient(145deg,#8aa7ff,#4658bc);font-size:20px}
-    .sponsor-copy{min-width:0;flex:1;display:flex;align-items:center;justify-content:center;gap:12px}.sponsor-eyebrow{padding:5px 10px;border:1px solid rgba(110,231,183,.35);border-radius:999px;color:#a7f3d0;background:rgba(16,185,129,.12);font-size:8px;font-weight:800;letter-spacing:.7px;white-space:nowrap}
-    .sponsor-message-window{display:flex;align-items:center;justify-content:center;width:clamp(250px,30vw,440px);min-height:34px;overflow:visible;text-align:center}.sponsor-copy strong{display:block;color:#fff;font-size:clamp(12px,1.2vw,17px);font-weight:800;line-height:1.35}.sponsor-copy em{color:#42e5a2;font-style:normal}.sponsor-divider{width:1px;height:22px;flex:0 0 1px;background:rgba(255,255,255,.3)}.sponsor-tagline{color:#cee6dc;font-size:9px;font-weight:600;white-space:nowrap}
-    /* Fixed-height 3D flip window prevents the header from jumping as phrases change. */
-    .text-flipper{display:inline-block;max-width:100%;transform-origin:50% 50%;transform-style:preserve-3d;backface-visibility:hidden;will-change:transform,opacity}
-    .flip-out{animation:flipOutX .38s cubic-bezier(.55,.06,.68,.19) forwards}.flip-in{animation:flipInX .48s cubic-bezier(.2,.75,.25,1) both}
-    @keyframes flipOutX{0%{transform:perspective(700px) rotateX(0deg);opacity:1}100%{transform:perspective(700px) rotateX(-88deg);opacity:0}}
-    @keyframes flipInX{0%{transform:perspective(700px) rotateX(88deg);opacity:0}100%{transform:perspective(700px) rotateX(0deg);opacity:1}}
-    .sponsor-cta{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:#052b20;background:linear-gradient(135deg,#a7f3b5,#35e89a);text-decoration:none;font-size:10px;font-weight:800;transition:.2s ease;animation:sponsorBtnGlow 3s infinite ease-in-out}.sponsor-cta:hover{background:#fff;animation:none;transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,.4)}
+    [data-theme="dark"] {
+      color-scheme:dark;
+      --page:#080f1c;
+      --surface:#101b2c;
+      --surface-2:#142238;
+      --line:#24344b;
+      --ink:#f2f7ff;
+      --body:#d4e0f0;
+      --muted:#91a3bc;
+      --green:#20c889;
+      --green-dark:#16a873;
+      --green-soft:#123b32;
+      --shadow:0 14px 34px rgba(0,0,0,.22);
+      --bg:var(--page);
+      --surface-soft:var(--surface-2);
+      --border:var(--line);
+      --heading:var(--ink);
+    }
 
-    /* Sidebar */
-    .sidebar{position:fixed;z-index:150;inset:var(--sponsor-height) auto 0 0;width:var(--sidebar-width);height:calc(100vh - var(--sponsor-height));height:calc(100dvh - var(--sponsor-height));display:flex;flex-direction:column;padding:20px 16px 18px;overflow-y:auto;overflow-x:hidden;background:var(--surface);border-right:1px solid var(--border);box-shadow:8px 0 28px rgba(21,48,84,.025);transition:transform .25s ease}.sidebar::-webkit-scrollbar{width:5px}.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
-    .side-label{padding:14px 13px 10px;color:#9aa8bc;font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}.side-nav{display:grid;gap:7px;flex-shrink:0}.side-link{min-height:48px;display:flex;align-items:center;gap:12px;padding:9px 12px;color:var(--body);text-decoration:none;border:1px solid transparent;border-radius:15px;font-size:12px;font-weight:700;transition:.2s ease}.side-link:hover{background:var(--surface-soft);border-color:var(--border);transform:translateX(2px)}.side-link.active{color:#087b4b;background:linear-gradient(100deg,#e2fff1,#f4fff9);border-color:#b8f2d7;box-shadow:0 5px 13px rgba(8,168,107,.11)}[data-theme="dark"] .side-link.active{color:#65e6b1;background:#12382f;border-color:#23654e}
-    .nav-icon{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:12px;font-size:17px}.nav-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.nav-home{color:#079b69;background:#d9f8e9}.nav-depin{color:#1687ff;background:#dfeeff}.nav-community{color:#8b5cf6;background:#eee5ff}.nav-airdrop{color:#f07819;background:#fff0d9}.nav-wallet{color:#9333ea;background:#f1e3ff}.nav-checker{color:#0d9488;background:#d9f7f0}.nav-calculator{color:#2563eb;background:#e2eaff}
-    .sidebar-spacer{flex:1 0 18px;min-height:18px}.side-promo{margin:18px 6px 13px;padding:19px 14px;flex-shrink:0;text-align:center;border-radius:23px;border:1px solid #c7f5df;background:radial-gradient(circle at 90% 10%,rgba(92,238,176,.25),transparent 34%),linear-gradient(145deg,#e7fff4,#fff 72%);box-shadow:0 8px 20px rgba(8,168,107,.1)}[data-theme="dark"] .side-promo{background:linear-gradient(145deg,#123b32,#142238);border-color:#255c49}.promo-gift{margin-bottom:8px;font-size:34px}.side-promo h3{margin:0 0 8px;color:var(--heading);font-size:13px;line-height:1.5;font-weight:800}.side-promo p{margin:0 0 12px;color:var(--muted);font-size:10px;line-height:1.55}.promo-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 19px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#08a86b,#06c77a);text-decoration:none;font-size:11px;font-weight:800;box-shadow:0 6px 14px rgba(8,168,107,.2)}.support-card{display:flex;align-items:center;gap:10px;margin:0 6px;padding:13px;flex-shrink:0;border-radius:17px;border:1px solid var(--border);background:var(--surface-soft);text-decoration:none}.support-icon{width:37px;height:37px;display:grid;place-items:center;border-radius:50%;color:var(--green-dark);background:var(--green-soft);font-size:18px}.support-card strong{display:block;color:var(--heading);font-size:11px}.support-card span:last-child{display:block;margin-top:4px;color:var(--green);font-size:10px;font-weight:800}.sidebar-note{margin:14px 8px 0;padding-bottom:3px;color:var(--muted);font-size:9px;text-align:center}
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
 
-    /* Main area and top controls */
-    .main-column{min-height:100vh;margin-left:var(--sidebar-width)}.mobile-menu-btn{display:none;width:38px;height:38px;border:1px solid var(--border);border-radius:12px;color:var(--heading);background:var(--surface)}.topbar{position:sticky;top:var(--sponsor-height);z-index:100;min-height:72px;display:flex;align-items:center;gap:18px;padding:12px 30px;background:color-mix(in srgb,var(--surface) 95%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}.search-wrap{position:relative;width:min(540px,52vw)}.search-wrap input{width:100%;height:43px;padding:0 44px 0 17px;border:1px solid var(--border);border-radius:999px;outline:none;color:var(--heading);background:var(--surface-soft);font-size:11px;font-weight:600}.search-wrap input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(8,168,107,.1)}.search-wrap input::placeholder{color:var(--muted)}.search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--heading);font-size:18px;pointer-events:none}.topbar-spacer{flex:1}.community-dropdown{position:relative}.community-btn,.icon-btn{min-height:39px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--border);border-radius:999px;color:var(--heading);background:var(--surface);font-size:11px;font-weight:800;box-shadow:0 3px 9px rgba(20,45,75,.035)}.community-btn{padding:0 16px}.icon-btn{width:39px;border-radius:50%;font-size:17px}.community-btn:hover,.icon-btn:hover{border-color:var(--green);color:var(--green)}.dropdown-content{display:none;position:absolute;z-index:150;top:calc(100% + 10px);right:0;min-width:195px;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--surface);box-shadow:0 14px 32px rgba(0,0,0,.14)}.dropdown-content.show{display:block;animation:fadeIn .18s ease-out}@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.dropdown-content a{display:flex;gap:9px;padding:13px 15px;border-bottom:1px solid var(--border);color:var(--heading);text-decoration:none;font-size:11px;font-weight:700}.dropdown-content a:last-child{border-bottom:0}.dropdown-content a:hover{color:var(--green);background:var(--green-soft)}.mobile-overlay{display:none}
-    main{width:100%;max-width:1600px;margin:0 auto;padding:20px 25px 35px}
+    body {
+      margin:0;
+      background:var(--page);
+      color:var(--body);
+      font-family:'Plus Jakarta Sans',sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
 
-    /* Hero */
-    .hero-panel{min-height:315px;position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);align-items:center;gap:12px;padding:30px;border:1px solid #b9f2de;border-radius:25px;background:radial-gradient(circle at 91% 12%,rgba(59,229,180,.33),transparent 26%),radial-gradient(circle at 66% 100%,rgba(77,223,190,.18),transparent 33%),linear-gradient(110deg,#e7fff5 0%,#effff9 45%,#baf7e8 100%);box-shadow:0 13px 30px rgba(8,168,107,.09)}.hero-panel::before{content:"";position:absolute;z-index:-1;width:480px;height:290px;right:-100px;top:-150px;border-radius:50%;background:rgba(69,220,177,.18)}.hero-panel::after{content:"";position:absolute;z-index:-1;width:390px;height:220px;left:36%;bottom:-180px;border-radius:50%;background:rgba(30,195,153,.13);filter:blur(20px)}[data-theme="dark"] .hero-panel{border-color:#215d4c;background:radial-gradient(circle at 88% 5%,rgba(28,223,157,.18),transparent 26%),linear-gradient(105deg,#102e2b,#123b36 55%,#124e45)}.hero-copy{position:relative;z-index:2;max-width:660px}.hero-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;padding:7px 12px;border:1px solid rgba(8,168,107,.25);border-radius:999px;color:#078653;background:rgba(255,255,255,.67);font-size:9px;font-weight:800;letter-spacing:.7px;text-transform:uppercase}[data-theme="dark"] .hero-kicker{color:#8af0c5;background:rgba(8,40,35,.55)}.hero-copy h2{margin:0 0 12px;color:#102344;font-size:clamp(32px,3.7vw,49px);line-height:1.1;font-weight:800;letter-spacing:-1.7px}[data-theme="dark"] .hero-copy h2{color:#f0fff9}.hero-copy h2 span{display:block;color:#079765}.hero-copy p{max-width:630px;margin:0;color:#31516a;font-size:13.5px;line-height:1.7;font-weight:600}[data-theme="dark"] .hero-copy p{color:#cae9df}.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:21px}.primary-cta,.secondary-cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;border-radius:999px;text-decoration:none;font-size:11px;font-weight:800;transition:.2s ease}.primary-cta{color:#fff;background:linear-gradient(135deg,#07975d,#06bf79);box-shadow:0 7px 18px rgba(8,168,107,.23)}.primary-cta:hover{transform:translateY(-3px);box-shadow:0 10px 23px rgba(8,168,107,.3)}.secondary-cta{border:1px solid #19c995;color:#087f55;background:rgba(255,255,255,.47)}.secondary-cta:hover{background:#fff;transform:translateY(-2px)}[data-theme="dark"] .secondary-cta{color:#8af0c5;background:rgba(8,40,35,.55)}
-    .hero-art{position:relative;min-height:260px;display:flex;align-items:center;justify-content:center}.hero-art::before{content:"";position:absolute;width:82%;height:26%;left:9%;bottom:5%;border-radius:50%;background:rgba(12,173,135,.1);filter:blur(14px)}@keyframes safeGlobeRotate{0%,100%{transform:translateY(0) rotate(0deg);filter:drop-shadow(0 15px 19px rgba(0,112,105,.19))}50%{transform:translateY(-8px) rotate(2.5deg);filter:drop-shadow(0 22px 25px rgba(0,112,105,.25))}}
-    @keyframes globeSurfaceSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-    @keyframes globeOrbitSpin{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
-    @keyframes globeHaloPulse{0%,100%{opacity:.24;transform:translate(-50%,-50%) scale(.94)}50%{opacity:.62;transform:translate(-50%,-50%) scale(1.06)}}
-    .hero-globe{position:relative;z-index:2;display:block;width:min(100%,470px);height:auto;overflow:visible;animation:safeGlobeRotate 6.5s infinite ease-in-out}
-    .globe-sparkles{animation:globeSparkle 3.8s ease-in-out infinite alternate}
-    @keyframes globeSparkle{0%{opacity:.35}100%{opacity:1}}
-    .globe-map-spin{transform-box:view-box;transform-origin:53.04% 45.67%;animation:globeSurfaceSpin 34s linear infinite}
-    .globe-orbit-lines{transform-box:view-box;transform-origin:53.26% 45.67%;animation:globeOrbitSpin 24s linear infinite}
-    .hero-art::after{content:"";position:absolute;z-index:0;left:53%;top:46%;width:220px;height:220px;border:1px solid rgba(79,237,188,.34);border-radius:50%;box-shadow:0 0 0 15px rgba(79,237,188,.055),0 0 0 31px rgba(79,237,188,.035);pointer-events:none;animation:globeHaloPulse 5s ease-in-out infinite}
-    .hero-globe{isolation:isolate}
-    .orbit{position:absolute;width:min(355px,100%);height:145px;border:1px dashed rgba(5,150,105,.35);border-radius:50%;transform:rotate(-12deg)}.orbit::before,.orbit::after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:#09b985;box-shadow:0 4px 12px rgba(8,168,107,.25)}.orbit::before{left:24px;top:28px}.orbit::after{right:22px;bottom:25px;background:#1687ff}
-    @keyframes floatBlink{0%,100%{transform:translateY(0) rotate(var(--r)) scale(1);box-shadow:0 5px 15px rgba(0,0,0,.15);opacity:.85}50%{transform:translateY(-12px) rotate(calc(var(--r) + 6deg)) scale(1.1);box-shadow:0 15px 25px rgba(16,185,129,.45);opacity:1}}.hero-float{--r:0deg;position:absolute;z-index:3;width:43px;height:43px;display:grid;place-items:center;border-radius:14px;color:#fff;font-size:21px;animation:floatBlink 4.5s infinite ease-in-out}.hero-float.one{--r:8deg;top:15px;right:11%;background:linear-gradient(145deg,#f7931a,#d97904)}.hero-float.two{--r:-8deg;bottom:8px;left:10%;background:linear-gradient(145deg,#627eea,#3952a3);animation-delay:1.2s}.hero-float.three{--r:15deg;top:25%;left:5%;background:linear-gradient(145deg,#14f195,#9945ff);animation-delay:.6s}.hero-float.four{--r:-12deg;bottom:25%;right:4%;background:linear-gradient(145deg,#08a86b,#1687ff);font-size:17px;animation-delay:1.8s}.hero-float.five{--r:-5deg;top:-5px;left:38%;background:linear-gradient(145deg,#8b5cf6,#d946ef);font-size:17px;animation-delay:2.5s}
+    a { color:inherit; }
 
-    /* Explore cards */
-    .section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:23px 0 15px}.section-title-wrap{position:relative;padding-left:14px}.section-title-wrap::before{content:"";position:absolute;left:0;top:2px;bottom:3px;width:5px;border-radius:999px;background:linear-gradient(#08a86b,#34e7b2)}.section-heading h2{margin:0;color:var(--heading);font-size:20px;font-weight:800;letter-spacing:-.5px}.section-heading p{margin:5px 0 0;color:var(--muted);font-size:11px}.section-link{color:var(--green-dark);text-decoration:none;font-size:10px;font-weight:800;white-space:nowrap}.section-link:hover{color:var(--teal)}.dashboard-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .dash-card{--card-accent:#1687ff;--card-soft:rgba(22,135,255,.11);position:relative;isolation:isolate;overflow:hidden;min-height:174px;display:flex;flex-direction:column;padding:17px 19px 15px;border:1px solid var(--border);border-top:3px solid var(--card-accent);border-radius:21px;color:inherit;text-decoration:none;background:linear-gradient(145deg,var(--card-soft) 0%,var(--surface) 76%);box-shadow:0 8px 22px rgba(15,23,42,.045);transition:transform .23s ease,box-shadow .23s ease,border-color .23s ease}.dash-card::before{content:"";position:absolute;z-index:-1;width:155px;height:155px;right:-65px;bottom:-85px;border-radius:50%;background:var(--card-soft);transition:transform .3s ease}.dash-card::after{content:"";position:absolute;z-index:-1;width:72px;height:72px;right:15px;top:12px;border-radius:50%;border:1px solid var(--card-soft)}.dash-card:hover{transform:translateY(-5px);border-color:var(--card-accent);box-shadow:0 15px 30px rgba(15,23,42,.1)}.dash-card:hover::before{transform:scale(1.18)}[data-theme="dark"] .dash-card{background:linear-gradient(145deg,color-mix(in srgb,var(--card-accent) 18%,var(--surface)),var(--surface) 76%)}
-    .dash-card--depin{--card-accent:#1687ff;--card-soft:rgba(22,135,255,.12)}.dash-card--community{--card-accent:#08a878;--card-soft:rgba(16,185,129,.13)}.dash-card--airdrops{--card-accent:#f97316;--card-soft:rgba(249,115,22,.13)}.dash-card--wallets{--card-accent:#9333ea;--card-soft:rgba(147,51,234,.12)}.dash-card--checker{--card-accent:#0d9488;--card-soft:rgba(13,148,136,.12)}.dash-card--calculator{--card-accent:#2563eb;--card-soft:rgba(37,99,235,.12)}.card-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.card-icon{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,var(--card-soft),var(--surface));border:1px solid var(--card-soft);box-shadow:0 6px 14px rgba(15,23,42,.04)}.card-icon svg{width:24px;height:24px;stroke:var(--card-accent);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.card-tag{display:inline-flex;align-items:center;max-width:65%;padding:6px 9px;border-radius:999px;color:var(--card-accent);background:var(--card-soft);font-size:8px;font-weight:800;line-height:1.3;text-align:center}.dash-card h3{margin:0 0 7px;color:var(--heading);font-size:14px;line-height:1.35;font-weight:800}.dash-card p{max-width:92%;margin:0 0 12px;color:var(--muted);font-size:10px;line-height:1.65;flex:1}.card-action{width:fit-content;display:inline-flex;align-items:center;gap:7px;color:var(--card-accent);font-size:10px;font-weight:800}.card-art{position:absolute;z-index:-1;width:126px;height:108px;right:12px;bottom:1px;opacity:.75;pointer-events:none}.card-art svg{width:100%;height:100%;fill:var(--card-soft);stroke:var(--card-accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 5px 7px rgba(15,23,42,.08))}.dash-card[hidden]{display:none!important}.empty-search{display:none;margin-top:15px;padding:22px;text-align:center;border:1px dashed var(--border);border-radius:15px;color:var(--muted);font-size:12px}
+    /* Full-width sponsor strip: a contact CTA, not a live ad integration */
+    :root { --sponsor-height: 58px; }
 
-    /* Bottom metrics and community */
-    .hub-bottom-band{display:grid;grid-template-columns:1.35fr 1fr;gap:13px;margin-top:22px}.hub-metrics{min-height:105px;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding:15px 12px;border:1px solid #c9f3e4;border-radius:23px;background:linear-gradient(120deg,#edfff7,#fff,#ddfff2);box-shadow:0 7px 19px rgba(8,168,107,.07)}[data-theme="dark"] .hub-metrics{background:linear-gradient(120deg,#12352f,#142c31);border-color:#255c49}.hub-metric{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 8px;text-align:center;border-right:1px solid rgba(8,168,107,.25)}.hub-metric:last-child{border-right:0}.metric-icon{margin-bottom:4px;color:#08a86b;font-size:21px;font-weight:800}.hub-metric strong{color:var(--heading);font-size:17px;font-weight:800}.hub-metric span:last-child{margin-top:3px;color:var(--muted);font-size:8px;font-weight:700}
-    .hub-community-cta{position:relative;overflow:hidden;min-height:105px;display:flex;align-items:center;gap:12px;padding:15px 17px;border-radius:22px;border:1px solid #079b6c;color:#fff;background:radial-gradient(circle at 90% 0%,rgba(28,223,157,.3),transparent 38%),linear-gradient(110deg,#07875b,#075b50 60%,#032d32);box-shadow:0 8px 22px rgba(8,168,107,.15)}.cta-art{width:70px;height:65px;flex:0 0 70px;display:grid;place-items:center;color:#61efc0}.cta-art svg{width:100%;height:100%;fill:rgba(57,229,174,.24);stroke:#8affd2;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 5px 10px rgba(0,0,0,.15))}.cta-copy{min-width:0;flex:1;display:flex;flex-direction:column;gap:5px}.cta-copy strong{color:#fff;font-size:13px;line-height:1.4;font-weight:800}.cta-copy span{color:#c8f8e8;font-size:9px;line-height:1.5;font-weight:600}.hub-join-btn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.45);color:#06392c;background:linear-gradient(135deg,#a7f3b5,#35e89a);text-decoration:none;font-size:10px;font-weight:800;transition:.2s ease}.hub-join-btn:hover{transform:translateY(-3px);box-shadow:0 8px 17px rgba(0,0,0,.17)}
-    .hero-disclaimer{margin:20px 0 0;padding:13px 16px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:13px;font-size:9px;line-height:1.7}footer{margin-top:28px;padding:20px 0 8px;border-top:1px solid var(--border);text-align:center}.footer-copy{margin-bottom:9px;color:var(--muted);font-size:10px}.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px}.footer-links a{color:var(--muted);text-decoration:none;font-size:10px;font-weight:700}.footer-links a:hover{color:var(--green)}
+    .sponsor-strip {
+      position: sticky;
+      top: 0;
+      z-index: 140;
+      min-height: var(--sponsor-height);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #f4fff9;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(16, 185, 129, .24), transparent 17%),
+        radial-gradient(circle at 92% 50%, rgba(16, 185, 129, .22), transparent 18%),
+        linear-gradient(100deg, #041d1b 0%, #061a24 48%, #031d1b 100%);
+      border-bottom: 1px solid rgba(52, 211, 153, .28);
+      box-shadow: 0 5px 18px rgba(2, 20, 29, .16);
+    }
 
-    /* Sponsored banner: rotating copy + pulsing CTA + animated light sweep */
-    .hub-ad-slot{margin:19px 0 5px}.hub-ad-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 5px 8px;color:var(--muted)}.hub-ad-label{display:inline-flex;align-items:center;gap:7px;color:var(--green-dark);font-size:9px;font-weight:800;letter-spacing:.75px;text-transform:uppercase}.hub-ad-dot{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#16c98a;box-shadow:0 0 0 4px rgba(22,201,138,.12),0 0 12px rgba(22,201,138,.65)}.hub-ad-format{font-size:9px;font-weight:600}
-    .hub-ad-banner{position:relative;isolation:isolate;overflow:hidden;min-height:124px;display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,.42fr);align-items:center;gap:16px;padding:17px 25px;border:1px solid rgba(91,244,194,.58);border-radius:19px;color:#f5fff9;text-decoration:none;background:radial-gradient(circle at 85% 45%,rgba(31,229,170,.28),transparent 25%),radial-gradient(circle at 5% 0%,rgba(21,190,135,.22),transparent 34%),linear-gradient(105deg,#032b2b 0%,#075b4e 56%,#032c34 100%);animation:bottomAdGlow 3.2s infinite ease-in-out;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-    @keyframes bottomAdGlow{0%,100%{box-shadow:0 10px 26px rgba(8,168,107,.17),inset 0 1px 0 rgba(255,255,255,.13);border-color:rgba(91,244,194,.58)}50%{box-shadow:0 15px 40px rgba(32,217,154,.48),inset 0 1px 0 rgba(255,255,255,.3);border-color:rgba(143,255,220,.95)}}
-    .hub-ad-banner::before{content:"";position:absolute;z-index:-1;width:330px;height:330px;top:-205px;right:10%;border:1px solid rgba(120,255,213,.22);border-radius:50%;box-shadow:0 0 0 22px rgba(120,255,213,.035),0 0 0 48px rgba(120,255,213,.025)}.hub-ad-banner::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(91,255,207,.08) 72%,transparent);pointer-events:none;animation:sponsorSweep 8s ease-in-out infinite}.hub-ad-banner:hover{animation:none;transform:translateY(-2px);border-color:rgba(143,255,220,.9)}
-    .hub-ad-copy{position:relative;z-index:2;min-width:0}.hub-ad-eyebrow{display:inline-block;margin-bottom:5px;color:#8ff6cc;font-size:8px;font-weight:800;letter-spacing:1px}.hub-ad-copy h2{min-height:1.25em;margin:0 0 4px;color:#fff;font-size:clamp(17px,2vw,24px);line-height:1.25;font-weight:800;letter-spacing:-.55px}.hub-ad-copy p{max-width:610px;margin:0;color:#c7f2e3;font-size:10px;line-height:1.55;font-weight:500}.hub-ad-button{display:inline-flex;align-items:center;gap:9px;margin-top:10px;padding:8px 14px;border:1px solid rgba(255,255,255,.38);border-radius:999px;color:#07392d;background:linear-gradient(135deg,#b8ffd8,#39e7a0);box-shadow:0 5px 15px rgba(26,221,151,.22);font-size:9px;font-weight:800;transition:transform .2s ease,box-shadow .2s ease;animation:sponsorBtnGlow 3s infinite ease-in-out}.hub-ad-banner:hover .hub-ad-button{animation:none;transform:translateY(-1px);box-shadow:0 8px 18px rgba(26,221,151,.3)}
-    .hub-ad-art{position:relative;z-index:1;min-height:82px;display:flex;align-items:center;justify-content:center}.hub-ad-orbit{position:absolute;width:min(230px,100%);height:72px;border:1px dashed rgba(125,255,216,.55);border-radius:50%;transform:rotate(-13deg);box-shadow:0 0 19px rgba(43,238,176,.12)}.hub-ad-orbit::before,.hub-ad-orbit::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:#87ffcf;box-shadow:0 0 12px #4cf0b7}.hub-ad-orbit::before{left:23px;top:10px}.hub-ad-orbit::after{right:24px;bottom:7px;background:#56c9ff}.hub-ad-coin{position:absolute;z-index:2;width:43px;height:43px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.72);border-radius:50%;color:#fff;font-size:22px;font-weight:800;box-shadow:0 5px 17px rgba(0,0,0,.22),0 0 17px rgba(70,242,188,.22)}.hub-ad-coin--one{top:1px;right:18%;background:linear-gradient(145deg,#ffd76b,#d58a12)}.hub-ad-coin--two{bottom:0;left:17%;background:linear-gradient(145deg,#51e7c2,#087f9c)}.hub-ad-chart{position:absolute;right:18%;bottom:3px;width:105px;height:45px;display:flex;align-items:flex-end;justify-content:center;gap:5px;padding:0 8px 3px;border-bottom:1px solid rgba(139,255,218,.55);transform:skewY(-8deg);opacity:.78}.hub-ad-chart i{display:block;width:9px;border-radius:3px 3px 0 0;background:linear-gradient(180deg,#9bffdc,#10bf91);box-shadow:0 0 9px rgba(75,255,197,.2)}.hub-ad-chart i:nth-child(1){height:16px}.hub-ad-chart i:nth-child(2){height:25px}.hub-ad-chart i:nth-child(3){height:20px}.hub-ad-chart i:nth-child(4){height:32px}.hub-ad-chart i:nth-child(5){height:27px}.hub-ad-chart i:nth-child(6){height:40px}
+    .sponsor-strip::before,
+    .sponsor-strip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .28;
+      background-image: repeating-linear-gradient(130deg, transparent 0 24px, rgba(16, 185, 129, .25) 25px 27px, transparent 28px 48px);
+      mask-image: linear-gradient(90deg, #000, transparent 24%, transparent 76%, #000);
+    }
 
-    /* Accessibility and responsive behaviour */
-    .side-link:focus-visible,.primary-cta:focus-visible,.secondary-cta:focus-visible,.dash-card:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.hub-ad-banner:focus-visible{outline:3px solid var(--green);outline-offset:3px}
-    @media(max-width:1250px){:root{--sidebar-width:235px}.sponsor-inner{gap:14px;padding-left:17px;padding-right:17px}.sponsor-tagline,.sponsor-divider{display:none}main{padding-left:20px;padding-right:20px}.dashboard-grid{gap:12px}.hub-bottom-band{grid-template-columns:1fr}}
-    @media(max-width:900px){.header-brand{width:auto;flex-basis:auto}.sponsor-inner{gap:12px}.sponsor-copy{justify-content:flex-start}.sponsor-eyebrow{display:none}.sponsor-message-window{width:clamp(230px,34vw,360px)}.sponsor-copy strong{font-size:12px}.hero-panel{grid-template-columns:minmax(0,1fr) minmax(230px,.8fr);padding:25px}.hero-copy h2{font-size:36px}.hero-art{min-height:220px}.dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:61px}.sponsor-inner{justify-content:space-between;gap:9px;padding:6px 11px}.header-logo{width:39px;height:39px;flex-basis:39px}.header-brand-name{font-size:12px}.header-brand-subtitle{font-size:8px}.sponsor-coin{display:none}.sponsor-copy{flex:1;justify-content:center}.sponsor-message-window{width:auto;flex:1;min-height:34px}.sponsor-copy strong{font-size:10px;white-space:normal;text-align:center}.sponsor-cta{padding:9px 10px;font-size:8px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:65px;gap:9px;padding:9px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 38px}.search-wrap{width:auto;flex:1}.search-wrap input{height:39px;font-size:9px;padding-left:12px}.community-btn{width:38px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:36px;min-height:36px;flex:0 0 36px}main{padding:16px 13px 25px}.hero-panel{grid-template-columns:1fr;min-height:0;padding:23px 19px 13px;border-radius:21px}.hero-copy h2{font-size:32px}.hero-copy p{font-size:11px}.hero-art{min-height:195px;margin-top:3px}.hero-globe{width:min(100%,360px)}.hero-actions{gap:8px;margin-top:15px}.primary-cta,.secondary-cta{padding:11px 14px;font-size:9px}.section-heading h2{font-size:16px}.dashboard-grid{grid-template-columns:1fr;gap:11px}.dash-card{min-height:158px;padding:15px;border-radius:17px}.dash-card h3{font-size:13px}.dash-card p{font-size:10px}.card-art{width:115px;height:100px}.hub-bottom-band{grid-template-columns:1fr}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}.hub-ad-slot{margin:15px 0 3px}.hub-ad-banner{min-height:128px;grid-template-columns:minmax(0,1fr) 125px;gap:8px;padding:15px 16px;border-radius:16px}.hub-ad-copy h2{font-size:17px}.hub-ad-copy p{font-size:9px}.hub-ad-art{min-height:92px}.hub-ad-orbit{height:55px}.hub-ad-coin{width:34px;height:34px;font-size:17px}.hub-ad-chart{right:3%;width:75px}.hub-ad-coin--one{right:7%}.hub-ad-coin--two{left:0}}
-    @media(max-width:430px){.header-brand-name{font-size:10px}.header-brand-subtitle{font-size:7px}.header-brand{gap:6px}.header-logo{width:34px;height:34px;flex-basis:34px}.sponsor-copy strong{font-size:8px}.sponsor-cta{padding:8px;font-size:7px}.topbar{gap:7px}.community-dropdown{display:none}.hero-copy h2{font-size:29px}.hero-kicker{font-size:8px}.section-link{font-size:8px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}.hub-ad-topline{margin-left:2px;margin-right:2px}.hub-ad-format{display:none}.hub-ad-banner{grid-template-columns:1fr;min-height:142px;padding:15px 14px}.hub-ad-copy{max-width:78%}.hub-ad-copy h2{font-size:16px}.hub-ad-copy p{font-size:8px}.hub-ad-button{margin-top:8px;padding:7px 11px;font-size:8px}.hub-ad-art{position:absolute;right:1px;bottom:2px;width:120px;min-height:90px;opacity:.72}.hub-ad-chart{right:0;width:66px}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.text-flipper{transform:none!important}}
+    .sponsor-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1700px;
+      min-height: var(--sponsor-height);
+      margin: 0 auto;
+      padding: 7px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .sponsor-coin {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255,255,255,.65);
+      border-radius: 50%;
+      color: #fff8d7;
+      background: linear-gradient(145deg, #ffca45, #bd6b09);
+      box-shadow: 0 4px 15px rgba(245, 158, 11, .28), inset 0 1px 2px rgba(255,255,255,.55);
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .sponsor-coin--eth {
+      color: #eef4ff;
+      background: linear-gradient(145deg, #8aa7ff, #4658bc);
+      font-size: 21px;
+    }
+
+    .sponsor-copy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .sponsor-eyebrow {
+      padding: 4px 8px;
+      border: 1px solid rgba(110, 231, 183, .35);
+      border-radius: 999px;
+      color: #a7f3d0;
+      background: rgba(16, 185, 129, .12);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .8px;
+    }
+
+    .sponsor-copy strong {
+      color: #fff;
+      font-size: clamp(13px, 1.35vw, 19px);
+      font-weight: 800;
+      letter-spacing: -.35px;
+    }
+
+    .sponsor-copy em {
+      color: #4ade9b;
+      font-style: normal;
+    }
+
+    .sponsor-divider {
+      width: 1px;
+      height: 23px;
+      flex: 0 0 1px;
+      background: rgba(226, 255, 242, .35);
+    }
+
+    .sponsor-tagline {
+      color: #d0e6df;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .sponsor-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex: 0 0 auto;
+      padding: 10px 17px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      color: #05291d;
+      background: linear-gradient(135deg, #a7f3b5, #35e89a);
+      box-shadow: 0 5px 15px rgba(16, 185, 129, .2);
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 800;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .sponsor-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 19px rgba(16, 185, 129, .3);
+    }
+
+    .sponsor-cta:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* Independently scrollable sidebar */
+    .sidebar {
+      position: fixed;
+      z-index: 120;
+      inset: var(--sponsor-height) auto 0 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--sponsor-height));
+      height: calc(100dvh - var(--sponsor-height));
+      display: flex;
+      flex-direction: column;
+      padding: 20px 16px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      box-shadow: 8px 0 28px rgba(21, 48, 84, .025);
+    }
+
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0 10px 24px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--green);
+      box-shadow: 0 4px 13px rgba(8, 168, 107, .18);
+      color: var(--green-dark);
+      font-weight: 800;
+      font-size: 11px;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .brand-title {
+      color: var(--heading);
+      font-size: 17px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -.45px;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .brand-subtitle b { color: var(--green); }
+
+    .side-label {
+      padding: 10px 13px 8px;
+      color: #9aa8bc;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .side-nav {
+      display: grid;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .side-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 46px;
+      padding: 10px 12px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: background .18s, color .18s, border-color .18s, transform .18s;
+    }
+
+    .side-link:hover {
+      background: var(--surface-soft);
+      border-color: var(--border);
+      transform: translateX(2px);
+    }
+
+    .side-link.active {
+      color: #087b4b;
+      background: linear-gradient(100deg, #e2fff1, #f4fff9);
+      border-color: #b8f2d7;
+      box-shadow: 0 5px 13px rgba(8, 168, 107, .11);
+    }
+
+    [data-theme="dark"] .side-link.active {
+      color: #65e6b1;
+      background: #12382f;
+      border-color: #23654e;
+    }
+
+    .nav-icon {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      font-size: 16px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .nav-icon svg {
+      width: 19px;
+      height: 19px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .side-link:hover .nav-icon { transform: scale(1.08); }
+
+    .nav-home { color: #079B69; background: #D9F8E9; }
+    .nav-depin { color: #1687FF; background: #DFEEFF; }
+    .nav-community { color: #8B5CF6; background: #EEE5FF; }
+    .nav-airdrop { color: #F07819; background: #FFF0D9; }
+    .nav-wallet { color: #9333EA; background: #F1E3FF; }
+    .nav-checker { color: #0D9488; background: #D9F7F0; }
+    .nav-calculator { color: #2563EB; background: #E2EAFF; }
+
+    [data-theme="dark"] .nav-home { color: #54E3A7; background: #164735; }
+    [data-theme="dark"] .nav-depin { color: #70B7FF; background: #183B61; }
+    [data-theme="dark"] .nav-community { color: #C1A4FF; background: #38265E; }
+    [data-theme="dark"] .nav-airdrop { color: #FFB36D; background: #59391F; }
+    [data-theme="dark"] .nav-wallet { color: #D1A2FF; background: #43265F; }
+    [data-theme="dark"] .nav-checker { color: #65DED1; background: #164A46; }
+    [data-theme="dark"] .nav-calculator { color: #8EB5FF; background: #203C70; }
+
+    .sidebar-spacer {
+      flex: 0 0 18px;
+      min-height: 18px;
+    }
+
+    .side-promo {
+      flex-shrink: 0;
+      margin: 16px 7px 13px;
+      padding: 19px 14px;
+      text-align: center;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(92, 238, 176, .24), transparent 34%),
+        linear-gradient(145deg, #e7fff4, #fff 72%);
+      border: 1px solid #c7f5df;
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .10);
+    }
+
+    [data-theme="dark"] .side-promo {
+      background: linear-gradient(145deg, #123b32, #142238);
+      border-color: #255c49;
+    }
+
+    .promo-gift { font-size: 33px; margin-bottom: 8px; }
+
+    .side-promo h3 {
+      margin: 0 0 7px;
+      color: var(--heading);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .side-promo p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .promo-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 17px;
+      border-radius: 999px;
+      color: white;
+      background: linear-gradient(135deg, #08a86b, #06c77a);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 6px 14px rgba(8, 168, 107, .2);
+    }
+
+    .support-card {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 7px;
+      padding: 13px;
+      border-radius: 17px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+    }
+
+    .support-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #078653;
+      background: var(--green-soft);
+      font-size: 17px;
+    }
+
+    .support-card strong {
+      display: block;
+      color: var(--heading);
+      font-size: 11px;
+    }
+
+    .support-card span:last-child {
+      display: block;
+      margin-top: 4px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .sidebar-note {
+      flex-shrink: 0;
+      margin: 14px 8px 0;
+      padding-bottom: 3px;
+      color: var(--muted);
+      font-size: 9px;
+      text-align: center;
+    }
+
+    /* Main column + top bar */
+    .main-column {
+      min-height: 100vh;
+      margin-left: var(--sidebar-width);
+    }
+
+    .topbar {
+      position: sticky;
+      top: var(--sponsor-height);
+      z-index: 100;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 12px 30px;
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--heading);
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .search-wrap { position: relative; width: min(540px, 52vw); }
+
+    .search-wrap input {
+      width: 100%;
+      height: 42px;
+      padding: 0 44px 0 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      outline: none;
+      color: var(--heading);
+      background: var(--surface-soft);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .search-wrap input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(8, 168, 107, .10);
+    }
+
+    .search-wrap input::placeholder { color: var(--muted); }
+
+    .search-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--heading);
+      font-size: 17px;
+      pointer-events: none;
+    }
+
+    .topbar-spacer { flex: 1; }
+    .community-dropdown { position: relative; }
+
+    .community-btn, .icon-btn {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      border: 1px solid var(--border);
+      color: var(--heading);
+      background: var(--surface);
+      cursor: pointer;
+      font-weight: 800;
+      box-shadow: 0 3px 9px rgba(20, 45, 75, .035);
+    }
+
+    .community-btn {
+      padding: 0 15px;
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    .icon-btn {
+      width: 38px;
+      border-radius: 50%;
+      font-size: 17px;
+    }
+
+    .community-btn:hover, .icon-btn:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 150;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 190px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 14px 32px rgba(0,0,0,.14);
+    }
+
+    .dropdown-content.show {
+      display: block;
+      animation: fadeIn .18s ease-out;
+    }
+
+    .dropdown-content a {
+      display: flex;
+      gap: 9px;
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--border);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .dropdown-content a:last-child { border-bottom: 0; }
+
+    .dropdown-content a:hover {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HOME-PAGE SHELL */
+    .app-shell { min-height:100vh; }
+    .mobile-overlay { display:none; }
+
+    /* MAIN CONTENT */
+    .main-column {
+      min-height:100vh;
+      margin-left:var(--sidebar-width);
+    }
+
+    main {
+      min-width:0;
+      padding:27px clamp(18px,2.5vw,38px) 42px;
+      max-width:1700px;
+      width:100%;
+      margin:0 auto;
+    }
+
+    /* HERO BANNER */
+    .hero {
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      min-height:190px;
+      margin-bottom:20px;
+      padding:31px 34px;
+      border:1px solid #c7f0df;
+      border-radius:24px;
+      background:linear-gradient(
+        108deg,
+        #e1fff1 0%,
+        #f1fff9 46%,
+        #d5fbef 100%
+      );
+      box-shadow:0 12px 27px rgba(7,155,112,.09);
+      display:flex;
+      align-items:center;
+    }
+
+    [data-theme="dark"] .hero {
+      background:linear-gradient(108deg,#0c382e,#102d2a 52%,#124b3d);
+      border-color:#225a48;
+    }
+
+    .hero-copy {
+      position:relative;
+      z-index:2;
+      max-width:590px;
+    }
+
+    .eyebrow {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-bottom:10px;
+      padding:6px 10px;
+      border:1px solid rgba(7,155,112,.2);
+      border-radius:999px;
+      background:rgba(255,255,255,.62);
+      color:#07845f;
+      font-size:9px;
+      font-weight:800;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    .hero h1 {
+      margin:0;
+      color:#102b3d;
+      font-size:clamp(25px,3vw,35px);
+      line-height:1.15;
+      letter-spacing:-1.2px;
+      font-weight:800;
+    }
+
+    .hero p {
+      max-width:560px;
+      margin:10px 0 17px;
+      color:#35576a;
+      font-size:12px;
+      line-height:1.75;
+      font-weight:500;
+    }
+
+    [data-theme="dark"] .hero h1 { color:#ecfff8; }
+    [data-theme="dark"] .hero p { color:#c0e5d8; }
+    [data-theme="dark"] .eyebrow {
+      background:rgba(255,255,255,.08);
+      color:#8cf2c9;
+    }
+
+    .hero-cta {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#0aa978,#078b67);
+      color:white;
+      text-decoration:none;
+      font-size:11px;
+      font-weight:800;
+      box-shadow:0 7px 16px rgba(7,155,112,.2);
+    }
+
+    .hero-art {
+      position:absolute;
+      z-index:1;
+      right:5%;
+      top:50%;
+      transform:translateY(-50%);
+      width:285px;
+      height:155px;
+      opacity:.9;
+    }
+
+    .orb {
+      position:absolute;
+      border-radius:50%;
+      border:1px solid rgba(7,155,112,.2);
+      background:rgba(255,255,255,.25);
+    }
+
+    .orb.one {
+      width:145px;
+      height:145px;
+      right:60px;
+      top:0;
+    }
+
+    .orb.two {
+      width:92px;
+      height:92px;
+      right:0;
+      top:38px;
+    }
+
+    .server-stack {
+      position:absolute;
+      right:54px;
+      bottom:5px;
+      width:155px;
+      height:72px;
+      transform:skewY(-8deg);
+      filter:drop-shadow(0 12px 12px rgba(0,130,104,.2));
+    }
+
+    .server-layer {
+      position:absolute;
+      left:0;
+      width:155px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#31dfaa,#05a985 65%,#0878a3);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow:inset 0 -7px 0 rgba(0,78,104,.13);
+    }
+
+    .server-layer:nth-child(1) {
+      top:0;
+      transform:translateY(-19px) scale(.72);
+      background:linear-gradient(135deg,#73f7ca,#08b9a0);
+    }
+
+    .server-layer:nth-child(2) {
+      top:20px;
+      transform:translateY(-5px) scale(.88);
+    }
+
+    .server-layer:nth-child(3) { top:39px; }
+
+    .cube {
+      position:absolute;
+      width:23px;
+      height:23px;
+      transform:rotate(30deg) skew(-8deg,-8deg);
+      border-radius:5px;
+      background:linear-gradient(135deg,#69efc1,#08a780);
+      box-shadow:0 6px 12px rgba(0,130,104,.15);
+    }
+
+    .cube.c1 { left:10px; top:32px; }
+
+    .cube.c2 {
+      right:12px;
+      top:10px;
+      background:linear-gradient(135deg,#5fd9ff,#1685bd);
+    }
+
+    /* FOUR COMPACT INFORMATION CARDS */
+    .section-head {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:15px;
+      margin:24px 2px 12px;
+    }
+
+    .section-title {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--ink);
+      font-size:17px;
+      font-weight:800;
+      letter-spacing:-.4px;
+    }
+
+    .section-title .title-icon {
+      width:30px;
+      height:30px;
+      border-radius:10px;
+      background:var(--green-soft);
+      display:grid;
+      place-items:center;
+      color:var(--green);
+      font-size:16px;
+    }
+
+    .section-subtitle {
+      margin-top:4px;
+      color:var(--muted);
+      font-size:10px;
+      font-weight:600;
+    }
+
+    .feature-grid {
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin:0 0 25px;
+    }
+
+    .feature-card {
+      min-width:0;
+      min-height:112px;
+      padding:14px 13px;
+      display:flex;
+      align-items:center;
+      gap:11px;
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:17px;
+      box-shadow:0 6px 18px rgba(25,58,83,.035);
+      transition:transform .2s,box-shadow .2s;
+    }
+
+    .feature-card:hover {
+      transform:translateY(-3px);
+      box-shadow:var(--shadow);
+    }
+
+    .feature-icon {
+      width:43px;
+      height:43px;
+      flex:0 0 43px;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      font-size:21px;
+      background:#eaf3ff;
+      color:#2476e8;
+    }
+
+    .feature-card:nth-child(2) .feature-icon {
+      background:#e3fbf4;
+      color:#079b82;
+    }
+
+    .feature-card:nth-child(3) .feature-icon {
+      background:#fff1e7;
+      color:#e87520;
+    }
+
+    .feature-card:nth-child(4) .feature-icon {
+      background:#f3eaff;
+      color:#8753dc;
+    }
+
+    .feature-content { min-width:0; }
+
+    .feature-card h3 {
+      margin:0 0 5px;
+      color:var(--ink);
+      font-size:11px;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    .feature-card p {
+      margin:0;
+      color:var(--muted);
+      font-size:9.5px;
+      line-height:1.55;
+      font-weight:600;
+    }
+
+    /* PROJECT TABLE */
+    .projects-panel {
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:21px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .projects-top {
+      padding:18px 20px 14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .project-heading {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--ink);
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:-.5px;
+    }
+
+    .project-heading span {
+      color:var(--green);
+      font-size:22px;
+    }
+
+    #projectCount {
+      margin-top:4px;
+      color:var(--muted);
+      font-size:10px;
+      font-weight:600;
+    }
+
+    .filters {
+      display:flex;
+      align-items:center;
+      gap:7px;
+      flex-wrap:wrap;
+    }
+
+    .filter-btn,
+    .category-select {
+      height:34px;
+      padding:0 12px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:var(--surface);
+      color:var(--body);
+      font:700 10px 'Plus Jakarta Sans',sans-serif;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .filter-btn:hover,
+    .category-select:focus {
+      border-color:var(--green);
+    }
+
+    .filter-btn.active {
+      background:var(--green);
+      border-color:var(--green);
+      color:#fff;
+      box-shadow:0 4px 11px rgba(7,155,112,.18);
+    }
+
+    .table-wrap {
+      width:100%;
+      overflow:auto;
+    }
+
+    table {
+      width:100%;
+      min-width:690px;
+      border-collapse:collapse;
+      text-align:left;
+    }
+
+    thead th {
+      padding:12px 17px;
+      background:var(--surface-2);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      color:var(--muted);
+      font-size:9px;
+      font-weight:800;
+      letter-spacing:.9px;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    tbody td {
+      padding:10px 17px;
+      border-bottom:1px solid var(--line);
+      vertical-align:middle;
+    }
+
+    tbody tr:last-child td { border-bottom:0; }
+    tbody tr:hover { background:var(--surface-2); }
+
+    .project-cell {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:240px;
+    }
+
+    .project-avatar {
+      width:36px;
+      height:36px;
+      flex:0 0 36px;
+      padding:2px;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:50%;
+      background:var(--surface);
+      box-shadow:0 2px 7px rgba(7,155,112,.08);
+    }
+
+    .project-avatar img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+    }
+
+    .project-initial {
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      color:#fff;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .project-name {
+      display:flex;
+      align-items:center;
+      gap:5px;
+      flex-wrap:wrap;
+      color:var(--ink);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .project-sub {
+      margin-top:3px;
+      color:var(--muted);
+      font-size:9px;
+      font-weight:600;
+    }
+
+    .verified-tick {
+      width:14px;
+      height:14px;
+      display:inline-grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--green);
+      color:#fff;
+      font-size:8px;
+    }
+
+    .badge-new {
+      padding:2px 6px;
+      border-radius:5px;
+      background:#e5fbf2;
+      color:#07885f;
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.4px;
+    }
+
+    .status-tag {
+      padding:3px 7px;
+      border-radius:999px;
+      background:var(--green-soft);
+      color:var(--green);
+      font-size:8px;
+      font-weight:800;
+    }
+
+    .category-pill {
+      display:inline-block;
+      padding:5px 9px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:var(--surface-2);
+      color:var(--body);
+      font-size:9px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .score-text {
+      color:var(--green-dark);
+      font-size:11px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .btn-details {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 11px;
+      border:1px solid var(--green);
+      border-radius:9px;
+      background:var(--green-soft);
+      color:var(--green-dark);
+      text-decoration:none;
+      font-size:9px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .btn-details:hover {
+      background:var(--green);
+      color:#fff;
+    }
+
+    .no-data {
+      display:none;
+      padding:35px;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:600;
+    }
+
+    footer {
+      padding:22px 12px;
+      margin-top:28px;
+      border-top:1px solid var(--line);
+      text-align:center;
+      color:var(--muted);
+      font-size:10px;
+    }
+
+    footer .footer-links {
+      margin-top:9px;
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    footer a {
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    footer a:hover { color:var(--green); }
+
+
+    /* RESPONSIVE HOME-PAGE HEADER AND SIDEBAR */
+    @media(max-width:1180px) {
+      :root { --sidebar-width:230px; }
+      .topbar { padding-left:20px; padding-right:20px; }
+      .feature-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+
+    @media(max-width:900px) {
+      .sponsor-tagline, .sponsor-divider { display:none; }
+      .sponsor-copy { gap:9px; }
+      .sponsor-copy strong { font-size:13px; }
+      .sponsor-inner { gap:12px; }
+    }
+
+    @media(max-width:760px) {
+      :root { --sidebar-width:258px; --sponsor-height:52px; }
+
+      .sponsor-inner { justify-content:space-between; gap:8px; padding:6px 10px; }
+      .sponsor-coin { width:30px; height:30px; flex-basis:30px; font-size:18px; }
+      .sponsor-coin--eth, .sponsor-eyebrow, .sponsor-divider, .sponsor-tagline { display:none; }
+      .sponsor-copy { flex:1; justify-content:flex-start; gap:0; }
+      .sponsor-copy strong { font-size:11px; }
+      .sponsor-cta { padding:9px 11px; font-size:9px; }
+
+      .sidebar {
+        transform:translateX(-105%);
+        transition:transform .25s ease;
+        box-shadow:12px 0 35px rgba(0,0,0,.13);
+      }
+
+      body.menu-open .sidebar { transform:translateX(0); }
+
+      .mobile-overlay {
+        position:fixed;
+        inset:var(--sponsor-height) 0 0;
+        z-index:110;
+        background:rgba(4,14,27,.42);
+      }
+
+      body.menu-open .mobile-overlay { display:block; }
+      .main-column { margin-left:0; }
+
+      .topbar {
+        min-height:66px;
+        gap:10px;
+        padding:10px 14px;
+      }
+
+      .mobile-menu-btn {
+        display:inline-grid;
+        place-items:center;
+        flex:0 0 38px;
+      }
+
+      .search-wrap { width:auto; flex:1; }
+
+      .search-wrap input {
+        height:39px;
+        font-size:10px;
+        padding-left:13px;
+      }
+
+      .community-btn {
+        width:38px;
+        padding:0;
+        overflow:hidden;
+        font-size:0;
+      }
+
+      .community-btn::first-letter { font-size:15px; }
+
+      .topbar .icon-btn {
+        width:36px;
+        min-height:36px;
+        flex:0 0 36px;
+      }
+
+      main { padding:18px 13px 32px; }
+
+      .hero {
+        min-height:175px;
+        padding:23px 20px;
+        border-radius:19px;
+      }
+
+      .hero-art {
+        right:-80px;
+        opacity:.35;
+      }
+
+      .hero-copy { max-width:95%; }
+      .hero h1 { font-size:26px; }
+      .hero p { font-size:10px; max-width:410px; }
+
+      .feature-grid { gap:9px; }
+
+      .feature-card {
+        min-height:102px;
+        padding:11px 9px;
+        gap:8px;
+      }
+
+      .feature-icon {
+        width:36px;
+        height:36px;
+        flex-basis:36px;
+        border-radius:11px;
+        font-size:18px;
+      }
+
+      .feature-card h3 { font-size:10px; }
+      .feature-card p { font-size:8.5px; }
+      .projects-top { padding:15px 13px; }
+      .filters { width:100%; }
+
+      .filter-btn,
+      .category-select {
+        height:32px;
+        padding:0 9px;
+        font-size:9px;
+      }
+
+      .project-heading { font-size:16px; }
+    }
+
+    @media(max-width:430px) {
+      .sponsor-coin { display:none; }
+      .sponsor-copy strong { font-size:10px; }
+      .sponsor-cta { padding:8px 9px; font-size:8px; }
+      .topbar { gap:7px; }
+      .community-dropdown { display:none; }
+      .top-search input { padding-left:10px; }
+      .icon-btn { width:35px; height:35px; }
+
+      .feature-grid { grid-template-columns:1fr 1fr; }
+
+      .feature-card {
+        align-items:flex-start;
+        flex-direction:column;
+        min-height:122px;
+      }
+
+      .feature-icon { width:34px; height:34px; }
+      .feature-card h3 { font-size:9.5px; }
+      .feature-card p { font-size:8px; }
+      .hero-art { right:-125px; }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        scroll-behavior:auto!important;
+        transition:none!important;
+      }
+    }
   </style>
 </head>
+
 <body data-theme="light">
-  <!-- TOP SPONSORSHIP HEADER -->
+
+  <!-- Sponsorship opportunity banner (same layout as Home page) -->
   <section class="sponsor-strip" aria-label="Sponsorship opportunity">
     <div class="sponsor-inner">
-      <a href="index.html" class="header-brand">
-        <span class="header-logo"><img src="logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';"></span>
-        <span><span class="header-brand-name">Total Crypto Hub</span><span class="header-brand-subtitle">by <b>Total Crypto Network</b></span></span>
-      </a>
-      <span class="sponsor-coin" aria-hidden="true">₿</span>
+      <span class="sponsor-coin sponsor-coin--btc" aria-hidden="true">₿</span>
       <div class="sponsor-copy">
-        <span class="sponsor-eyebrow">PARTNERSHIP OPPORTUNITY</span>
-        <strong class="sponsor-message-window"><span class="text-flipper" id="topSponsorText" aria-live="off">Sponsor with Us on Total Crypto Hub</span></strong>
+        <span class="sponsor-eyebrow">SPONSORSHIP OPPORTUNITY</span>
+        <strong>Sponsor with Us on <em>Total Crypto Hub</em></strong>
         <span class="sponsor-divider" aria-hidden="true"></span>
         <span class="sponsor-tagline">Grow Your Brand in the Crypto Community</span>
       </div>
-      <a href="legal-pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
+      <a class="sponsor-cta" href="../legal-pages/contact.html">
+        Become a Sponsor <span aria-hidden="true">→</span>
+      </a>
       <span class="sponsor-coin sponsor-coin--eth" aria-hidden="true">◆</span>
     </div>
   </section>
 
   <div class="app-shell">
-    <!-- SIDEBAR -->
+
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo"
+            onerror="this.style.display='none'; this.parentElement.textContent='TCN';">
+        </span>
+        <span>
+          <span class="brand-title">Total Crypto Hub</span>
+          <span class="brand-subtitle">by <b>Total Crypto Network</b></span>
+        </span>
+      </a>
+
       <div class="side-label">Workspace</div>
+
       <nav class="side-nav">
-        <a href="index.html" class="side-link active" aria-current="page"><span class="nav-icon nav-home"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home</a>
-        <a href="depin-pages/depin.html" class="side-link"><span class="nav-icon nav-depin"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects</a>
-        <a href="mobile-pages/mobile-mining.html" class="side-link"><span class="nav-icon nav-community"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects</a>
-        <a href="airdrop-pages/airdrops.html" class="side-link"><span class="nav-icon nav-airdrop"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops &amp; Campaigns</a>
-        <a href="wallet-pages/wallets.html" class="side-link"><span class="nav-icon nav-wallet"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01"/><path d="M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets &amp; Exchanges</a>
-        <a href="token-pages/token-checker.html" class="side-link"><span class="nav-icon nav-checker"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
-</a>
-        <a href="earning-pages/earning-calculator.html" class="side-link"><span class="nav-icon nav-calculator"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator</a>
+        <a href="../index.html" class="side-link">
+          <span class="nav-icon nav-home">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m3 10 9-7 9 7"/>
+              <path d="M5 9v11h14V9"/>
+              <path d="M9 20v-7h6v7"/>
+            </svg>
+          </span>
+          Home
+        </a>
+
+        <a href="depin.html" class="side-link active" aria-current="page">
+          <span class="nav-icon nav-depin">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13 2 4 13h7l-1 9 10-13h-7z"/>
+            </svg>
+          </span>
+          DePIN Projects
+        </a>
+
+        <a href="../mobile-pages/mobile-mining.html" class="side-link">
+          <span class="nav-icon nav-community">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
+          Community Projects
+        </a>
+
+        <a href="../airdrop-pages/airdrops.html" class="side-link">
+          <span class="nav-icon nav-airdrop">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="8" width="18" height="13" rx="2"/>
+              <path d="M12 8v13"/>
+              <path d="M3 12h18"/>
+              <path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/>
+              <path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/>
+            </svg>
+          </span>
+          Airdrops & Campaigns
+        </a>
+
+        <a href="../wallet-pages/wallets.html" class="side-link">
+          <span class="nav-icon nav-wallet">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="15" rx="2"/>
+              <path d="M3 9h18"/>
+              <path d="M16 14h.01"/>
+              <path d="M3 5V4a2 2 0 0 1 2-2h13"/>
+              <path d="M16 12h5v5h-5a2.5 2.5 0 0 1 0-5Z"/>
+            </svg>
+          </span>
+          Wallets & Exchanges
+        </a>
+
+        <a href="../token-pages/token-checker.html" class="side-link">
+          <span class="nav-icon nav-checker">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </span>
+          Token Checker
+        </a>
+
+        <a href="../earning-pages/earning-calculator.html" class="side-link">
+          <span class="nav-icon nav-calculator">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="2" width="16" height="20" rx="2"/>
+              <path d="M8 6h8"/>
+              <path d="M8 11h.01M12 11h.01M16 11h.01"/>
+              <path d="M8 15h.01M12 15h.01M16 15h.01"/>
+              <path d="M8 19h.01M12 19h.01M16 19h.01"/>
+            </svg>
+          </span>
+          Earning Calculator
+        </a>
       </nav>
+
       <div class="sidebar-spacer"></div>
-      <section class="side-promo" aria-label="Community invitation"><div class="promo-gift" aria-hidden="true">🎁</div><h3>Join the Community<br>&amp; Earn Together</h3><p>Follow project updates, guides and community announcements.</p><a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" class="promo-btn">Join Now →</a></section>
-      <a href="legal-pages/contact.html" class="support-card"><span class="support-icon" aria-hidden="true">♧</span><span><strong>Need Help?</strong><span>Contact Support →</span></span></a>
+
+      <section class="side-promo" aria-label="Community invitation">
+        <div class="promo-gift" aria-hidden="true">🎁</div>
+        <h3>Join the Community<br>&amp; Earn Together</h3>
+        <p>Follow project updates, guides and community announcements.</p>
+        <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">
+          Join Now <span aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <a class="support-card" href="../legal-pages/contact.html">
+        <span class="support-icon" aria-hidden="true">♧</span>
+        <span>
+          <strong>Need Help?</strong>
+          <span>Contact Support →</span>
+        </span>
+      </a>
+
       <p class="sidebar-note">A research-led Web3 directory</p>
     </aside>
+
     <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
 
     <div class="main-column">
-      <!-- TOPBAR -->
+
       <header class="topbar">
-        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-        <label class="search-wrap" aria-label="Search Total Crypto Hub sections"><input id="globalSearch" type="search" placeholder="Search projects, categories or tools..." autocomplete="off"><span class="search-icon" aria-hidden="true">⌕</span></label>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"
+          aria-label="Open navigation" aria-expanded="false">☰</button>
+
+        <label class="search-wrap" aria-label="Search DePIN projects">
+          <input id="searchInput" type="search"
+            placeholder="Search projects, category..." autocomplete="off">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+        </label>
+
         <span class="topbar-spacer"></span>
-        <div class="community-dropdown"><button class="community-btn" type="button" id="communityButton" aria-expanded="false">👥 Community</button><div class="dropdown-content" id="communityMenu"><a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a><a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a><a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a><a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a></div></div>
-        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+
+        <div class="community-dropdown">
+          <button class="community-btn" type="button" onclick="toggleCommunityMenu()" aria-expanded="false">👥 Community</button>
+          <div class="dropdown-content" id="communityMenu">
+            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
+            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+          </div>
+        </div>
+
+        <button class="icon-btn" id="themeToggle" type="button"
+          onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
       </header>
 
-      <main>
-        <!-- MAIN HERO -->
-        <section class="hero-panel" aria-labelledby="heroTitle">
-          <div class="hero-copy"><span class="hero-kicker">● Official Hub · Total Crypto Network</span><h2 id="heroTitle">Empowering Our Community with <span>Real Web3 Opportunities</span></h2><p>Welcome to Total Crypto Hub — built for our community. Explore curated DePIN projects and node resources, airdrop campaign information, earning calculators, and essential Web3 tools in one place. Review each opportunity carefully and check its official sources before taking part.</p><div class="hero-actions"><a href="depin-pages/depin.html" class="primary-cta">🚀 Explore the Hub →</a><a href="mobile-pages/mobile-mining.html" class="secondary-cta">▶ Watch Video</a></div></div>
-          <div class="hero-art" aria-hidden="true"><div class="orbit"></div><span class="hero-float one" title="Bitcoin">₿</span><span class="hero-float two" title="Ethereum">Ξ</span><span class="hero-float three" title="Solana">◎</span><span class="hero-float four" title="DePIN">📡</span><span class="hero-float five" title="Community">👥</span>
-            <svg class="hero-globe" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="globeFill" cx="32%" cy="24%" r="78%"><stop offset="0" stop-color="#b7ffe6"/><stop offset=".38" stop-color="#20d9a0"/><stop offset="1" stop-color="#087e80"/></radialGradient><linearGradient id="landFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c0ffe0"/><stop offset="1" stop-color="#13a879"/></linearGradient><linearGradient id="coinGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe68a"/><stop offset=".55" stop-color="#f7a91a"/><stop offset="1" stop-color="#b96a08"/></linearGradient><linearGradient id="coinPurple" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7c5ff"/><stop offset="1" stop-color="#6355cf"/></linearGradient><clipPath id="globeClip"><circle cx="244" cy="137" r="91"/></clipPath></defs><ellipse cx="245" cy="258" rx="155" ry="18" fill="#0b9b83" opacity=".12"/><g class="globe-orbit-lines" fill="none" stroke="#10a982" opacity=".55"><ellipse cx="245" cy="137" rx="156" ry="62" transform="rotate(-17 245 137)" stroke-width="2" stroke-dasharray="5 7"/><ellipse cx="245" cy="137" rx="119" ry="49" transform="rotate(32 245 137)" stroke-width="1.4"/><path d="M96 125 Q245 -3 391 128" stroke-width="1.2" stroke-dasharray="3 7"/></g><circle cx="244" cy="137" r="93" fill="url(#globeFill)" stroke="#8cf3ce" stroke-width="3"/><g class="globe-map-spin" clip-path="url(#globeClip)"><path d="M178 77 195 65 211 71 216 86 205 96 209 110 193 119 183 108 169 111 160 96Z" fill="url(#landFill)"/><path d="m219 128 19-9 19 9 8 17-10 13-1 20-13 20-12-5-8-24-14-13 5-16Z" fill="url(#landFill)"/><path d="m269 79 17-7 22 5 12 12-7 14-18 6-7 16-19-4-9-16-15-7Z" fill="url(#landFill)"/><path d="m309 145 22-9 19 9 7 17-14 16-22-1-15-13Z" fill="url(#landFill)"/><g fill="none" stroke="#d5fff0" stroke-width="1.2" opacity=".58"><ellipse cx="244" cy="137" rx="38" ry="91"/><ellipse cx="244" cy="137" rx="68" ry="91"/><path d="M153 137h182M160 105h168M160 169h168"/></g><g class="globe-sparkles" fill="#e6fff5" opacity=".7"><circle cx="190" cy="116" r="2"/><circle cx="230" cy="95" r="2"/><circle cx="281" cy="132" r="2"/><circle cx="220" cy="167" r="2"/><circle cx="299" cy="180" r="2"/><circle cx="179" cy="146" r="2"/></g></g><ellipse cx="244" cy="137" rx="105" ry="33" transform="rotate(-17 244 137)" fill="none" stroke="#a9ffe1" stroke-width="3" opacity=".65"/><g transform="translate(347 50)"><circle r="27" fill="url(#coinGold)" stroke="#fff0ab" stroke-width="3"/><text x="0" y="9" text-anchor="middle" font-size="31" font-weight="bold" fill="#fff">₿</text></g><g transform="translate(363 203)"><circle r="25" fill="url(#coinPurple)" stroke="#e3d9ff" stroke-width="3"/><path d="M0-15 11-3 0 4-11-3z M0 7 11 0 0 17-11 0z" fill="#fff" opacity=".9"/></g><g transform="translate(108 185)"><circle r="24" fill="#09a99a" stroke="#9effe5" stroke-width="3"/><text x="0" y="8" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">₮</text></g><g transform="translate(244 238)"><ellipse cx="0" cy="5" rx="126" ry="24" fill="#0cae84" opacity=".18"/><ellipse cx="0" cy="-8" rx="105" ry="18" fill="#a9ffe1" stroke="#12b88a" stroke-width="3"/><ellipse cx="0" cy="-11" rx="78" ry="12" fill="#e8fff7" stroke="#0da77f" stroke-width="2"/><path d="M-105-8v17q0 15 105 15t105-15V-8" fill="#098c75" stroke="#a0ffe0" stroke-width="2"/><ellipse cx="0" cy="9" rx="105" ry="17" fill="none" stroke="#75efc2" stroke-width="3"/></g></svg>
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">✦ Research-led DePIN directory</span>
+          <h1>Explore DePIN Projects</h1>
+          <p>Discover decentralized infrastructure projects across bandwidth, compute, storage and more. Compare project details and explore the networks building the next generation of Web3.</p>
+          <a class="hero-cta" href="#projects">Explore Projects <span>→</span></a>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="orb one"></div>
+          <div class="orb two"></div>
+          <div class="cube c1"></div>
+          <div class="cube c2"></div>
+          <div class="server-stack">
+            <div class="server-layer"></div>
+            <div class="server-layer"></div>
+            <div class="server-layer"></div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- SPONSORED BANNER WITH 3D FLIPPING MESSAGES -->
-        <section class="hub-ad-slot" id="homepageBannerAd" aria-label="Sponsored advertisement">
-          <div class="hub-ad-topline"><span class="hub-ad-label"><span class="hub-ad-dot" aria-hidden="true"></span>Sponsored placement</span><span class="hub-ad-format">Homepage banner · 970 × 110</span></div>
-          <a class="hub-ad-banner" href="legal-pages/contact.html" aria-label="Advertise with Total Crypto Hub">
-            <div class="hub-ad-copy"><span class="hub-ad-eyebrow">REACH THE CRYPTO COMMUNITY</span><h2><span class="text-flipper" id="bottomSponsorText" aria-live="off">Put Your Project in the Spotlight</span></h2><p>Introduce your Web3 brand to readers exploring DePIN projects, airdrop campaigns, wallets and crypto tools on Total Crypto Hub.</p><span class="hub-ad-button">Become a Sponsor <span aria-hidden="true">→</span></span></div>
-            <div class="hub-ad-art" aria-hidden="true"><div class="hub-ad-orbit"></div><span class="hub-ad-coin hub-ad-coin--one">₿</span><span class="hub-ad-coin hub-ad-coin--two">◆</span><div class="hub-ad-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-          </a>
-        </section>
+      <div class="section-head">
+        <div>
+          <div class="section-title"><span class="title-icon">✧</span>DePIN at a glance</div>
+          <div class="section-subtitle">A quick guide before you explore the directory</div>
+        </div>
+      </div>
 
-        <!-- EXPLORE THE HUB -->
-        <section class="explore-section" aria-labelledby="exploreHeading"><div class="section-heading"><div class="section-title-wrap"><h2 id="exploreHeading">Explore the Hub</h2><p>Everything you need to grow in the Total Crypto Ecosystem.</p></div><a href="depin-pages/depin.html" class="section-link">Browse all projects →</a></div>
-          <div class="dashboard-grid" id="dashboardGrid">
-            <a href="depin-pages/depin.html" class="dash-card dash-card--depin" data-search="depin projects infrastructure nodes bandwidth sharing apps"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></div><span class="card-tag">57+ Projects</span></div><h3>DePIN Projects Hub</h3><p>Explore DePIN infrastructure projects and nodes. Discover bandwidth-sharing apps and protocols.</p><span class="card-action">Explore DePIN Nodes →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><path d="M70 10v93M58 103h24M63 96h14M70 12 52 100M70 12l18 88M51 46h38M57 68h26M70 12 47 33M70 12l23 21M20 35q20 20 0 40M10 26q32 27 0 56M120 35q-20 20 0 40M130 26q-32 27 0 56"/><circle cx="70" cy="12" r="6"/><circle cx="70" cy="103" r="5"/></svg></span></a>
-            <a href="mobile-pages/mobile-mining.html" class="dash-card dash-card--community" data-search="community projects mobile apps participation rewards"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="card-tag">Growing Community</span></div><h3>Community Projects</h3><p>Discover innovative community initiatives, mobile apps and participation opportunities.</p><span class="card-action">View Projects →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><circle cx="70" cy="35" r="14"/><circle cx="36" cy="46" r="10"/><circle cx="104" cy="46" r="10"/><path d="M38 101V87a31 31 0 0 1 62 0v14zM14 98V86a22 22 0 0 1 26-22M126 98V86a22 22 0 0 0-26-22M51 54q19 12 38 0"/></svg></span></a>
-            <a href="airdrop-pages/airdrops.html" class="dash-card dash-card--airdrops" data-search="airdrops campaigns testnet rewards tokens"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8ZM12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></div><span class="card-tag">Campaign Updates</span></div><h3>Airdrops &amp; Campaigns</h3><p>Find incentive testnets, early network participation tasks and curated campaign updates.</p><span class="card-action">Explore Airdrops →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><path d="M70 40V93M70 43 28 14l-15 10 28 54 29-17M70 43 112 14l15 10-28 54-29-17M47 84 70 103l23-19"/><rect x="48" y="84" width="44" height="27" rx="4"/><path d="M48 94h44M70 84v27"/><circle cx="70" cy="29" r="5"/></svg></span></a>
-            <a href="wallet-pages/wallets.html" class="dash-card dash-card--wallets" data-search="wallets exchanges self custodial crypto trading assets"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 1 1 0-4h14v4M3 5v14a2 2 0 0 0 2 2h16v-5M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></div><span class="card-tag">Wallet Resources</span></div><h3>Wallets &amp; Exchanges</h3><p>Explore self-custodial wallets and exchange resources for managing digital assets.</p><span class="card-action">Open Wallets →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><rect x="23" y="32" width="91" height="64" rx="12"/><path d="M23 47h91M82 61h39v24H82q-12 0-12-12t12-12z"/><circle cx="91" cy="73" r="4"/><circle cx="99" cy="25" r="13"/><path d="M99 18v14M95 22h8"/></svg></span></a>
-            <a href="token-pages/token-checker.html" class="dash-card dash-card--checker" data-search="Smart Token Finder
- contract security liquidity safety"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></div><span class="card-tag">Check Safety</span></div><h3>Token Checker</h3><p>Review smart-contract information, liquidity details and network data across supported chains.</p><span class="card-action">Launch Checker →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><path d="M70 14 108 29v27q0 31-38 52Q32 87 32 56V29zM50 60l14 14 28-31M70 28v25"/></svg></span></a>
-            <a href="earning-pages/earning-calculator.html" class="dash-card dash-card--calculator" data-search="earning calculator rewards passive income device costs token payouts"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></div><span class="card-tag">Plan Your Earnings</span></div><h3>Earning Calculator</h3><p>Estimate data-sharing rewards, device power costs and potential token payouts.</p><span class="card-action">Calculate Rewards →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><rect x="39" y="13" width="62" height="94" rx="10"/><rect x="49" y="24" width="42" height="18" rx="4"/><path d="M52 57h7M70 57h7M88 57h1M52 75h7M70 75h7M88 75h1M52 93h7M70 93h7M88 93h1"/><circle cx="109" cy="88" r="15"/><path d="M109 79v18M104 84h10"/></svg></span></a>
+      <!-- FOUR SMALL INFORMATION CARDS -->
+      <section class="feature-grid" aria-label="DePIN guide">
+        <article class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <div class="feature-content">
+            <h3>What Users Do</h3>
+            <p>Install a lightweight app or extension and share eligible idle resources.</p>
           </div>
-        </section>
+        </article>
 
-        <!-- METRICS AND COMMUNITY CTA -->
-        <section class="hub-bottom-band" aria-label="Total Crypto Hub highlights and community"><div class="hub-metrics"><div class="hub-metric"><span class="metric-icon">◈</span><strong>57+</strong><span>DePIN Projects</span></div><div class="hub-metric"><span class="metric-icon">▦</span><strong>6</strong><span>Hub Sections</span></div><div class="hub-metric"><span class="metric-icon">♧</span><strong>One</strong><span>Connected Ecosystem</span></div><div class="hub-metric"><span class="metric-icon">✓</span><strong>Research-Led</strong><span>Directory &amp; Resources</span></div></div><div class="hub-community-cta"><div class="cta-art" aria-hidden="true"><svg viewBox="0 0 110 90"><path d="M14 34 57 18v54L14 56zM57 30l25-11v48L57 55zM26 57l12 26h14L42 54M85 30q17 10 0 21M93 21q28 20 0 40"/></svg></div><div class="cta-copy"><strong>Be Part of a Growing Ecosystem</strong><span>Build. Learn. Grow with Total Crypto Hub</span></div><a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" class="hub-join-btn">Join Now →</a></div></section>
-        <div class="empty-search" id="emptySearch" role="status">No matching section found. Try another keyword.</div>
-        <p class="hero-disclaimer"><strong>Disclaimer:</strong> Total Crypto Hub operates as an educational directory and research portal. We do not provide financial advice or guarantee the performance, security or profits of third-party protocols. Always perform your own independent research before participating.</p>
-        <footer><div class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</div><div class="footer-links"><a href="legal-pages/about.html">About Us</a><a href="legal-pages/contact.html">Contact Us</a><a href="legal-pages/privacy.html">Privacy Policy</a><a href="legal-pages/terms.html">Terms &amp; Conditions</a><a href="legal-pages/disclaimer.html">Disclaimer</a></div></footer>
-      </main>
+        <article class="feature-card">
+          <span class="feature-icon">⚙</span>
+          <div class="feature-content">
+            <h3>How DePIN Works</h3>
+            <p>Networks coordinate distributed bandwidth, storage or computing power.</p>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon">💰</span>
+          <div class="feature-content">
+            <h3>Rewards & Cashouts</h3>
+            <p>Rewards vary by project; points or tokens are not guaranteed income.</p>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon">🛡</span>
+          <div class="feature-content">
+            <h3>Research & Safety</h3>
+            <p>Review privacy, payout terms and project risks before participating.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- PROJECTS TABLE -->
+      <section class="projects-panel" id="projects">
+        <div class="projects-top">
+          <div>
+            <div class="project-heading"><span>▰</span> DePIN Projects</div>
+            <div id="projectCount">Loading projects…</div>
+          </div>
+
+          <div class="filters" role="group" aria-label="Filter projects by payout status">
+            <button class="filter-btn active" onclick="setCategory('All',this)">▦ All Projects</button>
+            <button class="filter-btn" onclick="setCategory('Cash Payouts',this)">Cash Payouts</button>
+            <button class="filter-btn" onclick="setCategory('Token Listed',this)">Token Listed</button>
+            <button class="filter-btn" onclick="setCategory('No Token',this)">No Token</button>
+
+            <select class="category-select" id="categorySelect"
+              onchange="setSubCategory(this.value)" aria-label="Filter by project category">
+              <option value="All">All Categories</option>
+              <option value="Bandwidth">Bandwidth</option>
+              <option value="Compute">Compute</option>
+              <option value="Storage">Storage</option>
+              <option value="Sensor">Sensor</option>
+              <option value="Wireless">Wireless</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:48%">Project</th>
+                <th>Categories</th>
+                <th>Score</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="projectsTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="no-data" id="noDataMessage">
+          No matching project found. Try another search or filter.
+        </div>
+      </section>
+
+      <footer>
+        <div>© 2026 Total Crypto Network. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="../legal-pages/about.html">About Us</a>
+          <a href="../legal-pages/contact.html">Contact Us</a>
+          <a href="../legal-pages/privacy.html">Privacy Policy</a>
+          <a href="../legal-pages/terms.html">Terms & Conditions</a>
+          <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+        </div>
+      </footer>
+    </main>
     </div>
   </div>
 
   <script>
-    (() => {
-      "use strict";
+    const ALL_PROJECTS = [
+      { name: "Titan Network", sub: "Edge Routing, Bandwidth & Storage", category: "Bandwidth, Storage", status: "No Token", score: "⭐ 9.8 / 10", link: "../projects/titan.html", logo: "../logos/titan.png", verified: true, isNew: false },
+      { name: "U2U Network", sub: "DePIN Subnet Infrastructure", category: "Compute", status: "Token Listed", score: "⭐ 9.5 / 10", link: "../projects/u2u.html", logo: "../logos/u2u.png", verified: true, isNew: false },
+      { name: "Bixberry", sub: "Mobile Background Mining", category: "Compute", status: "No Token", score: "⭐ 8.2 / 10", link: "../projects/bixberry.html", logo: "../logos/Bixberry.png", verified: true, isNew: true },
+      { name: "Hyra Network", sub: "PC & Mobile Compute Node", category: "Compute", status: "No Token", score: "⭐ 7.5 / 10", link: "../projects/hyra.html", logo: "../logos/Hyra Network.png", verified: true, isNew: true },
+      { name: "NeoTrade", sub: "Self-Custodial AI Trading Agent Node", category: "Compute", status: "No Token", score: "⭐ 9.3 / 10", link: "../projects/neotrade.html", logo: "../logos/neotrade.png", verified: true, isNew: true },
+      { name: "Adreva", sub: "DePIN Advertising & Privacy", category: "Bandwidth", status: "No Token", score: "⭐ 7.7 / 10", link: "../projects/adreva.html", logo: "../logos/adreva.png", verified: true, isNew: true },
+      { name: "Swash", sub: "Data Monetization Extension", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.0 / 10", link: "../projects/swash.html", logo: "../logos/swash.png", verified: true, isNew: false },
+      { name: "Grass Network", sub: "Decentralized AI Data Layer", category: "Bandwidth", status: "Token Listed", score: "⭐ 9.8 / 10", link: "../projects/grass.html", logo: "../logos/grass.png", verified: true, isNew: false },
+      { name: "YOM", sub: "Decentralized Cloud Gaming & GPU", category: "Compute", status: "No Token", score: "⭐ 8.4 / 10", link: "../projects/yom.html", logo: "../logos/yom.png", verified: true, isNew: true },
+      { name: "DataHive AI", sub: "Solana AI Browsing & Calls Node", category: "Compute, Bandwidth", status: "No Token", score: "⭐ 8.4 / 10", link: "../projects/datahive.html", logo: "../logos/datahive.png", verified: true, isNew: true },
+      { name: "Gener8", sub: "Passive Browsing & Ad Rewards", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.5 / 10", link: "../projects/gener8.html", logo: "../logos/gener8.png", verified: true, isNew: true },
+      { name: "Nubila Network", sub: "$10.5M Funded AI Weather Oracle", category: "Sensor", status: "No Token", score: "⭐ 8.8 / 10", link: "../projects/nubila.html", logo: "../logos/nubila.png", verified: true, isNew: false },
+      { name: "ARO Protocol", sub: "AI & Data Processing", category: "Compute", status: "No Token", score: "⭐ 7.8 / 10", link: "../projects/aro.html", logo: "../logos/aro.png", verified: true, isNew: false },
+      { name: "UpRock", sub: "Mobile AI Bandwidth Mining", category: "Compute, Bandwidth", status: "Token Listed", score: "⭐ 9.4 / 10", link: "../projects/uprock.html", logo: "../logos/uprock.png", verified: true, isNew: false },
+      { name: "EarnApp", sub: "Passive Residential Bandwidth", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 9.2 / 10", link: "../projects/earnapp.html", logo: "../logos/earnapp.png", verified: true, isNew: false },
+      { name: "Bee Maps", sub: "$32M Funded Mapping Network", category: "Sensor", status: "No Token", score: "⭐ 8.9 / 10", link: "../projects/beemaps.html", logo: "../logos/Bee Maps.png", verified: true, isNew: false },
+      { name: "Perceptron Network", sub: "$6.5M Funded AI Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.8 / 10", link: "../projects/perceptron.html", logo: "../logos/Perceptron Network.png", verified: true, isNew: false },
+      { name: "375ai", sub: "$5M Edge AI Sensor Network", category: "Compute, Sensor", status: "Token Listed", score: "⭐ 8.5 / 10", link: "../projects/375ai.html", logo: "../logos/375ai.png", verified: true, isNew: false },
+      { name: "Mysterium Network", sub: "dVPN Residential Bandwidth", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.9 / 10", link: "../projects/mysterium.html", logo: "../logos/Mysterium Network.png", verified: true, isNew: false },
+      { name: "Acurast", sub: "Spare Smartphone Compute Cloud", category: "Compute", status: "Token Listed", score: "⭐ 8.5 / 10", link: "../projects/acurast.html", logo: "../logos/Acurast.png", verified: true, isNew: false },
+      { name: "OptimAI", sub: "AI Data Infrastructure", category: "Compute", status: "No Token", score: "⭐ 8.0 / 10", link: "../projects/optimai.html", logo: "../logos/OptimAI.png", verified: true, isNew: false },
+      { name: "Sweatcoin", sub: "Move-to-Earn Walking Node", category: "Sensor", status: "Token Listed", score: "⭐ 8.9 / 10", link: "../projects/sweatcoin.html", logo: "../logos/sweatcoin.png", verified: true, isNew: false },
+      { name: "MapMetrics", sub: "Decentralized Drive Navigation", category: "Sensor", status: "Token Listed", score: "⭐ 8.4 / 10", link: "../projects/mapmetrics.html", logo: "../logos/MapMetrics.png", verified: true, isNew: false },
+      { name: "NiceHash", sub: "CPU & GPU Hashrate Compute", category: "Compute", status: "Cash Payouts", score: "⭐ 9.1 / 10", link: "../projects/nicehash.html", logo: "../logos/NiceHash.png", verified: true, isNew: false },
+      { name: "Kryptex", sub: "Automated Hash Mining", category: "Compute", status: "Cash Payouts", score: "⭐ 8.9 / 10", link: "../projects/kryptex.html", logo: "../logos/Kryptex.png", verified: true, isNew: false },
+      { name: "Verus Mobile", sub: "Mobile CPU Native Mining", category: "Compute", status: "Token Listed", score: "⭐ 8.5 / 10", link: "../projects/verus.html", logo: "../logos/Verus Mobile.png", verified: true, isNew: false },
+      { name: "Honeygain", sub: "Residential Internet Monetization", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 9.5 / 10", link: "../projects/honeygain.html", logo: "../logos/Honeygain.png", verified: true, isNew: false },
+      { name: "Nodepay", sub: "Decentralized AI Extension", category: "Bandwidth", status: "No Token", score: "⭐ 9.3 / 10", link: "../projects/nodepay.html", logo: "../logos/Nodepay.png", verified: true, isNew: false },
+      { name: "DAWN Internet", sub: "Decentralized Wireless Broadband", category: "Bandwidth, Wireless", status: "No Token", score: "⭐ 9.2 / 10", link: "../projects/dawn.html", logo: "../logos/DAWN Internet.png", verified: true, isNew: false },
+      { name: "Nodle Network", sub: "BLE Smartphone IoT Mesh", category: "Wireless", status: "Token Listed", score: "⭐ 9.1 / 10", link: "../projects/nodle.html", logo: "../logos/Nodle Network.png", verified: true, isNew: false },
+      { name: "Pawns.app", sub: "Bandwidth Sharing & Surveys", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 9.0 / 10", link: "../projects/pawns.html", logo: "../logos/Pawns.app.png", verified: true, isNew: false },
+      { name: "Gradient Network", sub: "Decentralized Compute Mesh", category: "Compute", status: "Token Listed", score: "⭐ 9.0 / 10", link: "../projects/gradient.html", logo: "../logos/Gradient Network.png", verified: true, isNew: false },
+      { name: "Teneo Protocol", sub: "Community Social Data Layer", category: "Bandwidth", status: "No Token", score: "⭐ 8.8 / 10", link: "../projects/teneo.html", logo: "../logos/Teneo Protocol.png", verified: true, isNew: false },
+      { name: "Earn.fm", sub: "Automated Proxy Monetization", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.8 / 10", link: "../projects/earnfm.html", logo: "../logos/earnfm.png", verified: true, isNew: false },
+      { name: "Helium", sub: "Long-Range IoT & Mobile Hotspots", category: "Wireless", status: "Token Listed", score: "⭐ 8.8 / 10", link: "../projects/helium.html", logo: "../logos/Helium.png", verified: true, isNew: false },
+      { name: "NATIX Network", sub: "Smartphone AI Drive-to-Earn", category: "Sensor", status: "Token Listed", score: "⭐ 8.7 / 10", link: "../projects/natix.html", logo: "../logos/NATIX Network.png", verified: true, isNew: false },
+      { name: "Theta Edge Node", sub: "Distributed Video & AI Compute", category: "Compute", status: "Token Listed", score: "⭐ 8.7 / 10", link: "../projects/theta.html", logo: "../logos/Theta Edge Node.png", verified: true, isNew: false },
+      { name: "Repocket", sub: "Spare Internet Monetization", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.6 / 10", link: "../projects/repocket.html", logo: "../logos/Repocket.png", verified: true, isNew: false },
+      { name: "Silencio", sub: "Hyperlocal Noise Level Mapping", category: "Sensor", status: "Token Listed", score: "⭐ 8.6 / 10", link: "../projects/silencio.html", logo: "../logos/Silencio.png", verified: true, isNew: false },
+      { name: "PacketStream", sub: "Residential Peer Proxy Node", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.5 / 10", link: "../projects/packetstream.html", logo: "../logos/PacketStream.png", verified: true, isNew: false },
+      { name: "Bless Network", sub: "Community AI Computing Extension", category: "Compute", status: "No Token", score: "⭐ 8.4 / 10", link: "../projects/bless.html", logo: "../logos/Bless.png", verified: true, isNew: false },
+      { name: "Traffmonetizer", sub: "Global Traffic Data Sharing", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.4 / 10", link: "../projects/traffmonetizer.html", logo: "../logos/Traffmonetizer.png", verified: true, isNew: false },
+      { name: "Proxyrack", sub: "Data Routing Node", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.3 / 10", link: "../projects/proxyrack.html", logo: "../logos/Proxyrack.png", verified: true, isNew: false },
+      { name: "ByteLixir", sub: "Clean Bandwidth Monetization", category: "Bandwidth", status: "Cash Payouts", score: "⭐ 8.2 / 10", link: "../projects/bytelixir.html", logo: "../logos/ByteLixir.png", verified: true, isNew: false },
+      { name: "COIN App", sub: "Geomining & Physical Validation", category: "Sensor", status: "Token Listed", score: "⭐ 8.4 / 10", link: "../projects/coinapp.html", logo: "../logos/COIN App.png", verified: true, isNew: false },
+      { name: "GaGaNode", sub: "IP Residential Mining", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.2 / 10", link: "../projects/gaganode.html", logo: "../logos/GaGaNode.png", verified: true, isNew: false },
+      { name: "Slice", sub: "Browser Attention Monetization", category: "Bandwidth", status: "Token Listed", score: "⭐ 8.0 / 10", link: "../projects/slice.html", logo: "../logos/Slice.png", verified: true, isNew: false },
+      { name: "URnetwork", sub: "Privacy Routing Node", category: "Bandwidth", status: "Token Listed", score: "⭐ 7.9 / 10", link: "../projects/urnetwork.html", logo: "../logos/URnetwork.png", verified: true, isNew: false },
+      { name: "Chirp Network", sub: "Decentralized Telecom & IoT", category: "Wireless", status: "Token Listed", score: "⭐ 8.1 / 10", link: "../projects/chirp.html", logo: "../logos/Chirp.png", verified: true, isNew: false },
+      { name: "Roam", sub: "Open WiFi Roaming Network", category: "Wireless", status: "Token Listed", score: "⭐ 8.2 / 10", link: "../projects/roam.html", logo: "../logos/Roam.png", verified: true, isNew: false },
+      { name: "Uplink", sub: "Decentralized Connectivity Mesh", category: "Wireless", status: "Token Listed", score: "⭐ 8.2 / 10", link: "../projects/uplink.html", logo: "../logos/Uplink.png", verified: true, isNew: false },
+      { name: "Functor Network", sub: "Autonomous Agent Compute", category: "Compute", status: "No Token", score: "⭐ 8.1 / 10", link: "../projects/functor.html", logo: "../logos/Functor Network.png", verified: true, isNew: false },
+      { name: "Pipe Network", sub: "Edge CDN & Caching Node", category: "Bandwidth", status: "No Token", score: "⭐ 8.1 / 10", link: "../projects/pipe.html", logo: "../logos/Pipe Network.png", verified: true, isNew: false },
+      { name: "3DOS", sub: "3D Manufacturing Network", category: "Compute", status: "No Token", score: "⭐ 7.8 / 10", link: "../projects/3dos.html", logo: "../logos/3DOS.png", verified: true, isNew: false },
+      { name: "MinionLab", sub: "Localized Data Processing", category: "Compute", status: "No Token", score: "⭐ 7.9 / 10", link: "../projects/minionlab.html", logo: "../logos/MinionLab.png", verified: true, isNew: false },
+      { name: "Kaito Pulse", sub: "AI Search & Data Node", category: "Compute", status: "No Token", score: "⭐ 7.9 / 10", link: "../projects/kaitopulse.html", logo: "../logos/Kaito Pulse.png", verified: true, isNew: false },
+      { name: "Privasea", sub: "FHE Encrypted Compute Node", category: "Compute", status: "No Token", score: "⭐ 8.3 / 10", link: "../projects/privasea.html", logo: "../logos/Privasea.png", verified: true, isNew: false }
+    ];
 
-      function applyTheme(theme) {
-        const safeTheme = theme === "dark" ? "dark" : "light";
-        document.body.setAttribute("data-theme", safeTheme);
-        document.documentElement.setAttribute("data-theme", safeTheme);
-        const toggle = document.getElementById("themeToggle");
-        if (toggle) {
-          toggle.textContent = safeTheme === "light" ? "🌙" : "☀️";
-          toggle.setAttribute("aria-label", safeTheme === "light" ? "Enable dark mode" : "Enable light mode");
-        }
-        try { localStorage.setItem("theme", safeTheme); } catch (_) { /* Storage may be unavailable in private browsing. */ }
+    let currentFilter = 'All';
+    let currentSubCategory = 'All';
+
+    function getAvatarColor(name) {
+      const colors = [
+        '#059669','#10b981','#2563eb','#6366f1',
+        '#8b5cf6','#d946ef','#f43f5e','#f59e0b','#0ea5e9'
+      ];
+      let hash = 0;
+
+      for (let i=0;i<name.length;i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
       }
 
-      function toggleTheme() {
-        const currentTheme = document.body.getAttribute("data-theme") || "light";
-        applyTheme(currentTheme === "light" ? "dark" : "light");
-      }
+      return colors[Math.abs(hash) % colors.length];
+    }
 
-      function closeMobileMenu() {
-        document.body.classList.remove("menu-open");
-        const menuButton = document.getElementById("mobileMenuBtn");
-        if (menuButton) menuButton.setAttribute("aria-expanded", "false");
-      }
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, ch => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[ch]));
+    }
 
-      function rotateSponsorText(element, phrases, intervalMs, reducedMotion) {
-        if (!element || !Array.isArray(phrases) || phrases.length < 2) return;
-        let index = 0;
-        window.setInterval(() => {
-          if (document.hidden) return;
-          index = (index + 1) % phrases.length;
-          if (reducedMotion) {
-            element.textContent = phrases[index];
-            return;
-          }
-          element.classList.remove("flip-in", "flip-out");
-          element.classList.add("flip-out");
-          window.setTimeout(() => {
-            element.textContent = phrases[index];
-            element.classList.remove("flip-out");
-            void element.offsetWidth; // Restart the entrance animation reliably.
-            element.classList.add("flip-in");
-            window.setTimeout(() => element.classList.remove("flip-in"), 520);
-          }, 390);
-        }, intervalMs);
-      }
+    function renderTable() {
+      const searchVal = document.getElementById('searchInput').value.trim().toLowerCase();
+      const tbody = document.getElementById('projectsTableBody');
+      const noDataMsg = document.getElementById('noDataMessage');
+      const count = document.getElementById('projectCount');
 
-      window.addEventListener("DOMContentLoaded", () => {
-        let savedTheme = "light";
-        try { savedTheme = localStorage.getItem("theme") || "light"; } catch (_) { /* Use light theme. */ }
-        applyTheme(savedTheme);
+      tbody.innerHTML = '';
+      let visibleCount = 0;
 
-        const themeToggle = document.getElementById("themeToggle");
-        if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
+      ALL_PROJECTS.forEach(p => {
+        const searchable = `${p.name} ${p.sub} ${p.category} ${p.status}`.toLowerCase();
 
-        /* SEARCH: filter dashboard cards and display a no-results message. */
-        const search = document.getElementById("globalSearch");
-        const cards = Array.from(document.querySelectorAll(".dash-card"));
-        const emptyMessage = document.getElementById("emptySearch");
-        const exploreSection = document.querySelector(".explore-section");
-        if (search) {
-          search.addEventListener("input", function () {
-            const query = this.value.trim().toLowerCase();
-            let visible = 0;
-            cards.forEach(card => {
-              const searchable = (card.innerText + " " + (card.dataset.search || "")).toLowerCase();
-              const match = !query || searchable.includes(query);
-              card.hidden = !match;
-              if (match) visible++;
-            });
-            if (exploreSection) exploreSection.hidden = Boolean(query) && visible === 0;
-            if (emptyMessage) emptyMessage.style.display = visible ? "none" : "block";
-          });
-        }
+        const matchesSearch = searchable.includes(searchVal);
+        const matchesFilter = currentFilter === 'All' || p.status === currentFilter;
+        const matchesSubCat = currentSubCategory === 'All' || p.category.includes(currentSubCategory);
 
-        /* MOBILE SIDEBAR */
-        const menuButton = document.getElementById("mobileMenuBtn");
-        const mobileOverlay = document.getElementById("mobileOverlay");
-        if (menuButton) {
-          menuButton.addEventListener("click", function () {
-            const isOpen = document.body.classList.toggle("menu-open");
-            this.setAttribute("aria-expanded", String(isOpen));
-          });
-        }
-        if (mobileOverlay) mobileOverlay.addEventListener("click", closeMobileMenu);
-        document.querySelectorAll(".side-link").forEach(link => link.addEventListener("click", closeMobileMenu));
+        if (!matchesSearch || !matchesFilter || !matchesSubCat) return;
 
-        /* COMMUNITY DROPDOWN */
-        const dropdown = document.querySelector(".community-dropdown");
-        const menu = document.getElementById("communityMenu");
-        const communityButton = document.getElementById("communityButton");
-        if (communityButton && menu) {
-          communityButton.addEventListener("click", () => {
-            const isOpen = menu.classList.toggle("show");
-            communityButton.setAttribute("aria-expanded", String(isOpen));
-          });
-          document.addEventListener("click", event => {
-            if (dropdown && !dropdown.contains(event.target)) {
-              menu.classList.remove("show");
-              communityButton.setAttribute("aria-expanded", "false");
-            }
-          });
-        }
-        document.addEventListener("keydown", event => {
-          if (event.key === "Escape") {
-            if (menu) menu.classList.remove("show");
-            if (communityButton) communityButton.setAttribute("aria-expanded", "false");
-            closeMobileMenu();
-          }
-        });
+        visibleCount++;
 
-        /*
-          IMPORTANT BUG FIX:
-          Keep each banner's index inside its own rotator. In the earlier version,
-          the index was incremented inside a timeout-local object, so it reset and
-          could repeatedly show the same phrase instead of cycling through all lines.
-        */
-        const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const topPhrases = [
-          "Sponsor with Us on Total Crypto Hub",
-          "Connect with Web3 Audiences",
-          "Showcase Your Project on Our Hub",
-          "Grow Your Brand Across Web3"
-        ];
-        const bottomPhrases = [
-          "Put Your Project in the Spotlight",
-          "Reach Wallet, DePIN & Airdrop Explorers",
-          "Promote Your Web3 Brand Here",
-          "Build Visibility. Spark Engagement."
-        ];
-        rotateSponsorText(document.getElementById("topSponsorText"), topPhrases, 6200, reducedMotion);
-        rotateSponsorText(document.getElementById("bottomSponsorText"), bottomPhrases, 6800, reducedMotion);
+        const initial = escapeHtml(p.name.charAt(0).toUpperCase());
+        const bgColor = getAvatarColor(p.name);
+        const safeName = escapeHtml(p.name);
+        const safeSub = escapeHtml(p.sub);
+        const safeCategory = escapeHtml(p.category);
+
+        const avatar = p.logo
+          ? `<div class="project-avatar"><img src="${escapeHtml(p.logo)}" alt="${safeName}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="project-initial" style="background:${bgColor};display:none">${initial}</span></div>`
+          : `<div class="project-avatar"><span class="project-initial" style="background:${bgColor}">${initial}</span></div>`;
+
+        const statusLabel = p.status === 'Cash Payouts' ? 'USD Payout' : p.status;
+        const statusBadge = `<span class="status-tag">${escapeHtml(statusLabel)}</span>`;
+        const newTag = p.isNew ? '<span class="badge-new">NEW</span>' : '';
+        const verifiedBadge = p.verified ? '<span class="verified-tick" title="Marked as verified">✓</span>' : '';
+        const safeLink = escapeHtml(p.link || '#');
+
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+          <td>
+            <div class="project-cell">
+              ${avatar}
+              <div>
+                <div class="project-name">${safeName} ${newTag} ${verifiedBadge}</div>
+                <div class="project-sub">${safeSub}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="category-pill">${safeCategory}</span></td>
+          <td><span class="score-text">${escapeHtml(p.score)}</span></td>
+          <td><a href="${safeLink}" class="btn-details">View Details ↗</a></td>
+        `;
+
+        tbody.appendChild(row);
       });
-    })();
+
+      count.textContent = `Showing ${visibleCount} of ${ALL_PROJECTS.length} listed DePIN projects`;
+      noDataMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    function setCategory(filter, button) {
+      currentFilter = filter;
+
+      document.querySelectorAll('.filters .filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn === button);
+      });
+
+      renderTable();
+    }
+
+    function setSubCategory(cat) {
+      currentSubCategory = cat;
+      renderTable();
+    }
+
+    function toggleTheme() {
+      const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+
+      document.body.setAttribute('data-theme', next);
+      document.documentElement.setAttribute('data-theme', next);
+
+      document.getElementById('themeToggle').textContent =
+        next === 'light' ? '🌙' : '☀️';
+
+      try {
+        localStorage.setItem('theme', next);
+      } catch (e) {
+        /* Storage may be disabled. */
+      }
+    }
+
+    function toggleCommunityMenu() {
+      const menu = document.getElementById('communityMenu');
+      const button = document.querySelector('.community-btn');
+      const isOpen = menu.classList.toggle('show');
+      button.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    function closeMobileMenu() {
+      document.body.classList.remove('menu-open');
+      const menuButton = document.getElementById('mobileMenuBtn');
+      if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
+    }
+
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.community-dropdown')) {
+        const menu = document.getElementById('communityMenu');
+        const button = document.querySelector('.community-btn');
+        if (menu) menu.classList.remove('show');
+        if (button) button.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.getElementById('searchInput').addEventListener('input', renderTable);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      let savedTheme = 'light';
+
+      try {
+        savedTheme = localStorage.getItem('theme') || 'light';
+      } catch (e) {
+        /* Use light theme by default. */
+      }
+
+      document.body.setAttribute('data-theme', savedTheme);
+      document.documentElement.setAttribute('data-theme', savedTheme);
+
+      document.getElementById('themeToggle').textContent =
+        savedTheme === 'light' ? '🌙' : '☀️';
+
+      renderTable();
+
+      const menuButton = document.getElementById('mobileMenuBtn');
+      const overlay = document.getElementById('mobileOverlay');
+
+      if (menuButton) {
+        menuButton.addEventListener('click', function () {
+          const isOpen = document.body.classList.toggle('menu-open');
+          this.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+
+      if (overlay) overlay.addEventListener('click', closeMobileMenu);
+
+      document.querySelectorAll('.side-link').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          const menu = document.getElementById('communityMenu');
+          const communityButton = document.querySelector('.community-btn');
+          if (menu) menu.classList.remove('show');
+          if (communityButton) communityButton.setAttribute('aria-expanded', 'false');
+          closeMobileMenu();
+        }
+      });
+    });
   </script>
 
-  <!-- TOTAL CRYPTO HUB AI ASSISTANT -->
-  <script src="ai-assistant/assistant.js" defer></script>
-  <script src="ai-assistant/robot-animation.js" defer></script>
+  <!-- Total Crypto Hub AI Assistant -->
+  <script src="../ai-assistant/assistant.js" defer></script>
+  <script src="../ai-assistant/robot-animation.js" defer></script>
+
 </body>
 </html>
