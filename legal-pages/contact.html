@@ -9,6 +9,7 @@
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
+            --bg-subtle: #f1f5f9;
             --header-bg: rgba(255, 255, 255, 0.96);
             --border-color: #e2e8f0;
             --text-heading: #0f172a;
@@ -16,10 +17,15 @@
             --text-muted: #64748b;
             --accent-primary: #0d9488;
             --accent-hover: #0f766e;
+            --accent-soft: rgba(13, 148, 136, 0.1);
+            --hero-gradient: linear-gradient(135deg, rgba(13, 148, 136, 0.12) 0%, rgba(20, 184, 166, 0.04) 100%);
+            --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
         }
+
         [data-theme="dark"] {
             --bg-body: #090d16;
             --bg-surface: #0f172a;
+            --bg-subtle: #162033;
             --header-bg: rgba(15, 23, 42, 0.96);
             --border-color: #1e293b;
             --text-heading: #f8fafc;
@@ -27,43 +33,514 @@
             --text-muted: #94a3b8;
             --accent-primary: #14b8a6;
             --accent-hover: #0d9488;
+            --accent-soft: rgba(20, 184, 166, 0.14);
+            --hero-gradient: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(15, 23, 42, 0.6) 100%);
+            --shadow-card: 0 8px 24px -4px rgba(0, 0, 0, 0.35);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s; }
-        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; }
-        
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 42px; height: 42px; background: var(--accent-primary); border-radius: 12px; color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; }
-        .logo-text h1 { font-size: 20px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 12px; color: var(--text-muted); font-weight: 500;}
-        .logo-text b { color: var(--accent-primary); }
-        
-        .header-right { display: flex; align-items: center; gap: 20px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 20px; cursor: pointer; color: var(--text-heading); }
-        .back-btn { background: var(--accent-primary); color: white; text-decoration: none; padding: 8px 18px; border-radius: 10px; font-weight: 700; font-size: 13px; }
 
-        .container { width: 90%; max-width: 800px; margin: 40px auto; flex: 1; }
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05); text-align: center; }
-        h1 { font-size: 28px; color: var(--text-heading); font-weight: 800; margin-bottom: 20px; }
-        p { font-size: 16px; line-height: 1.7; color: var(--text-body); margin-bottom: 20px; }
-        
-        .email-box { background: var(--bg-body); border: 1px dashed var(--accent-primary); padding: 20px; border-radius: 12px; display: inline-block; margin-top: 10px; }
-        .email-box a { font-size: 18px; font-weight: 700; color: var(--accent-primary); text-decoration: none; }
-        .email-box a:hover { text-decoration: underline; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
 
-        footer { padding: 25px; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; background: var(--bg-surface); }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 12px; font-size: 13px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-primary); }
+        body {
+            background: var(--bg-body);
+            color: var(--text-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header (Matches your existing website header) */
+        header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--accent-primary);
+            border-radius: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            color: var(--text-heading);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .logo-text b {
+            color: var(--accent-primary);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .back-btn {
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .back-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Main Container (Large PC & Mobile Responsive) */
+        .container {
+            width: 92%;
+            max-width: 1160px;
+            margin: 34px auto 60px;
+            flex: 1;
+        }
+
+        /* Top Hero Banner */
+        .hero-banner {
+            background: var(--bg-surface);
+            background-image: var(--hero-gradient);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 36px 40px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .hero-left {
+            max-width: 660px;
+        }
+
+        .hero-pill {
+            display: inline-block;
+            background: var(--accent-soft);
+            color: var(--accent-primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .hero-banner h2 {
+            font-size: 32px;
+            color: var(--text-heading);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
+
+        .hero-banner h2 span {
+            color: var(--accent-primary);
+        }
+
+        .hero-banner p {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text-body);
+        }
+
+        .response-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px 22px;
+            min-width: 230px;
+        }
+
+        .response-box .status-dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .response-box strong {
+            display: block;
+            font-size: 15px;
+            color: var(--text-heading);
+            margin-bottom: 4px;
+        }
+
+        .response-box span {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        /* 2-Column Layout */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .section-header {
+            margin-bottom: 18px;
+        }
+
+        .section-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 4px;
+        }
+
+        .section-header p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        /* Department Email Cards */
+        .dept-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .dept-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .dept-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .dept-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+
+        .dept-title-row h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .dept-tag {
+            background: var(--accent-soft);
+            color: var(--accent-primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 6px;
+        }
+
+        .dept-desc {
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .dept-email-link {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .dept-email-link:hover {
+            text-decoration: underline;
+        }
+
+        .dept-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .btn-copy, .btn-send {
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            min-width: 105px;
+        }
+
+        .btn-copy {
+            background: var(--bg-subtle);
+            color: var(--text-heading);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-copy:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .btn-send {
+            background: var(--accent-primary);
+            color: #ffffff;
+        }
+
+        .btn-send:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Right Side Form Card */
+        .form-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 11px 14px;
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            color: var(--text-heading);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: var(--accent-primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 11px;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .form-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* Bottom Info & Security Strip */
+        .bottom-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .info-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 22px 24px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .info-box h4 {
+            font-size: 15.5px;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+        }
+
+        .info-box ul {
+            padding-left: 18px;
+            font-size: 13px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        .security-box {
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        /* Footer (Matches your existing website footer) */
+        footer {
+            padding: 25px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+            background: var(--bg-surface);
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .bottom-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         @media (max-width: 768px) {
-            header { padding: 15px 20px; }
-            .content-card { padding: 25px; }
-            .container { width: 95%; margin: 20px auto; }
+            header {
+                padding: 14px 18px;
+            }
+            .logo-text h1 {
+                font-size: 17px;
+            }
+            .back-btn {
+                padding: 8px 13px;
+                font-size: 12px;
+            }
+            .container {
+                width: 94%;
+                margin: 20px auto 40px;
+            }
+            .hero-banner {
+                padding: 24px 20px;
+            }
+            .hero-banner h2 {
+                font-size: 24px;
+            }
+            .dept-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .dept-actions {
+                flex-direction: row;
+                width: 100%;
+            }
+            .btn-copy, .btn-send {
+                flex: 1;
+            }
+            .form-card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body data-theme="light">
 
+    <!-- Top Header -->
     <header>
         <a href="../index.html" class="logo-box">
             <div class="logo-icon">TCN</div>
@@ -73,23 +550,174 @@
             </div>
         </a>
         <div class="header-right">
-            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Switch Theme">🌙</button>
             <a href="../index.html" class="back-btn">← Back to Hub</a>
         </div>
     </header>
 
+    <!-- Main Content -->
     <div class="container">
-        <div class="content-card">
-            <h1>Contact Us</h1>
-            <p>If you have any questions, business inquiries, or need support regarding the DePIN projects listed on Total Crypto Hub, feel free to reach out to us. We will get back to you as soon as possible.</p>
-            
-            <div class="email-box">
-                <p style="margin-bottom: 5px; font-weight: 600; font-size: 14px; color: var(--text-muted);">Drop us an email at:</p>
-                <a href="mailto:totalcryptonetwork@gmail.com">totalcryptonetwork@gmail.com</a>
+
+        <!-- Hero Section -->
+        <section class="hero-banner">
+            <div class="hero-left">
+                <span class="hero-pill">Official Communication Center</span>
+                <h2>Connect with <span>Total Crypto Hub</span></h2>
+                <p>Whether you want to promote a Web3 project, report a technical issue, or need help with our DePIN setup tutorials, select the dedicated department below for a faster response.</p>
+            </div>
+            <div class="response-box">
+                <strong><span class="status-dot"></span>Active Support</strong>
+                <span>Response Time: 24 – 48 Hours</span>
+                <span>Support Days: Monday – Saturday</span>
+            </div>
+        </section>
+
+        <!-- 2-Column Main Section -->
+        <div class="contact-grid">
+
+            <!-- Left Column: Dedicated Emails Directory -->
+            <div>
+                <div class="section-header">
+                    <h3>Department Email Directory</h3>
+                    <p>Choose the right email address based on your inquiry type.</p>
+                </div>
+
+                <div class="dept-list">
+
+                    <!-- 1. Business & Sponsorships -->
+                    <div class="dept-card">
+                        <div>
+                            <div class="dept-title-row">
+                                <h4>Business &amp; Sponsorships</h4>
+                                <span class="dept-tag">Ads &amp; Partnerships</span>
+                            </div>
+                            <p class="dept-desc">For sponsored banner placements, project listings, YouTube video reviews, and official brand collaborations.</p>
+                            <a href="mailto:business@totalcryptohub.com" class="dept-email-link">business@totalcryptohub.com</a>
+                        </div>
+                        <div class="dept-actions">
+                            <button class="btn-copy" onclick="copyEmail('business@totalcryptohub.com', this)">Copy Email</button>
+                            <a href="mailto:business@totalcryptohub.com" class="btn-send">Email Now</a>
+                        </div>
+                    </div>
+
+                    <!-- 2. Technical & Website Support -->
+                    <div class="dept-card">
+                        <div>
+                            <div class="dept-title-row">
+                                <h4>Technical &amp; Website Support</h4>
+                                <span class="dept-tag">Platform &amp; Nodes</span>
+                            </div>
+                            <p class="dept-desc">For reporting broken links, website bugs, calculator issues, or technical errors while setting up DePIN nodes.</p>
+                            <a href="mailto:support@totalcryptohub.com" class="dept-email-link">support@totalcryptohub.com</a>
+                        </div>
+                        <div class="dept-actions">
+                            <button class="btn-copy" onclick="copyEmail('support@totalcryptohub.com', this)">Copy Email</button>
+                            <a href="mailto:support@totalcryptohub.com" class="btn-send">Email Now</a>
+                        </div>
+                    </div>
+
+                    <!-- 3. YouTube & Community Help -->
+                    <div class="dept-card">
+                        <div>
+                            <div class="dept-title-row">
+                                <h4>YouTube &amp; Tutorial Help</h4>
+                                <span class="dept-tag">Community Help</span>
+                            </div>
+                            <p class="dept-desc">For viewer questions related to Total Crypto Network YouTube setup videos, step-by-step guides, and airdrop tasks.</p>
+                            <a href="mailto:help@totalcryptohub.com" class="dept-email-link">help@totalcryptohub.com</a>
+                        </div>
+                        <div class="dept-actions">
+                            <button class="btn-copy" onclick="copyEmail('help@totalcryptohub.com', this)">Copy Email</button>
+                            <a href="mailto:help@totalcryptohub.com" class="btn-send">Email Now</a>
+                        </div>
+                    </div>
+
+                    <!-- 4. General Inquiries -->
+                    <div class="dept-card">
+                        <div>
+                            <div class="dept-title-row">
+                                <h4>General Inquiries &amp; Feedback</h4>
+                                <span class="dept-tag">General</span>
+                            </div>
+                            <p class="dept-desc">For general questions, suggestions to improve Total Crypto Hub, or any inquiries not covered above.</p>
+                            <a href="mailto:contact@totalcryptohub.com" class="dept-email-link">contact@totalcryptohub.com</a>
+                        </div>
+                        <div class="dept-actions">
+                            <button class="btn-copy" onclick="copyEmail('contact@totalcryptohub.com', this)">Copy Email</button>
+                            <a href="mailto:contact@totalcryptohub.com" class="btn-send">Email Now</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right Column: Quick Message Form -->
+            <div>
+                <div class="section-header">
+                    <h3>Send a Direct Message</h3>
+                    <p>Select a department and compose your message instantly.</p>
+                </div>
+
+                <div class="form-card">
+                    <form onsubmit="routeMessage(event)">
+                        <div class="form-group">
+                            <label for="deptSelect">Select Department *</label>
+                            <select id="deptSelect" class="form-control" required>
+                                <option value="business@totalcryptohub.com">Business &amp; Sponsorships (business@totalcryptohub.com)</option>
+                                <option value="support@totalcryptohub.com">Technical &amp; Website Support (support@totalcryptohub.com)</option>
+                                <option value="help@totalcryptohub.com">YouTube &amp; Tutorial Help (help@totalcryptohub.com)</option>
+                                <option value="contact@totalcryptohub.com" selected>General Inquiries (contact@totalcryptohub.com)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senderName">Your Name or Project Name *</label>
+                            <input type="text" id="senderName" class="form-control" placeholder="e.g. Rahul Sharma / Project Team" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senderEmail">Your Email Address *</label>
+                            <input type="email" id="senderEmail" class="form-control" placeholder="you@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="msgSubject">Subject *</label>
+                            <input type="text" id="msgSubject" class="form-control" placeholder="Brief topic of your message" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="msgBody">Message Details *</label>
+                            <textarea id="msgBody" class="form-control" placeholder="Write your complete question, project links, or issue details here..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Open Email &amp; Send Message →</button>
+                        <p class="form-note">Clicking send will open your default email app pre-addressed to the selected department.</p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Helpful Guidelines & Security Notice -->
+        <div class="bottom-info-grid">
+            <div class="info-box">
+                <h4>📌 Before Sending Your Email</h4>
+                <ul>
+                    <li><strong>For Sponsorships:</strong> Include your official website URL, whitepaper/docs, and X (Twitter) or Telegram handle.</li>
+                    <li><strong>For Node / Setup Help:</strong> Mention the project name and whether you are using Windows PC or Android Mobile.</li>
+                    <li><strong>For Website Issues:</strong> Share the page link where you noticed the error.</li>
+                </ul>
+            </div>
+
+            <div class="info-box security-box">
+                <h4>🛡️ Official Security &amp; Anti-Scam Notice</h4>
+                <p>The <strong>Total Crypto Hub</strong> and <strong>Total Crypto Network</strong> team will <strong>NEVER</strong> ask for your wallet seed phrase, private keys, passwords, or ask you to send crypto funds via email or direct messages. Always verify that emails end with <strong>@totalcryptohub.com</strong>.</p>
             </div>
         </div>
+
     </div>
 
+    <!-- Footer (Matches your existing website footer) -->
     <footer>
         <div style="margin-bottom: 15px; color: var(--text-muted); font-size: 13px; font-weight: 500;">
             &copy; 2026 Total Crypto Network. All rights reserved.
@@ -98,12 +726,13 @@
             <a href="about.html">About Us</a>
             <a href="contact.html">Contact Us</a>
             <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
             <a href="disclaimer.html">Disclaimer</a>
         </div>
     </footer>
 
     <script>
+        // Theme Toggle (Synced with your website's localStorage)
         function toggleTheme() {
             const body = document.body;
             const toggleBtn = document.getElementById('themeToggle');
@@ -117,11 +746,42 @@
                 localStorage.setItem('theme', 'light');
             }
         }
+
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
             document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
         };
+
+        // One-Click Copy Email
+        function copyEmail(email, btn) {
+            navigator.clipboard.writeText(email).then(() => {
+                const oldText = btn.innerText;
+                btn.innerText = '✓ Copied!';
+                btn.style.background = 'var(--accent-primary)';
+                btn.style.color = '#ffffff';
+                btn.style.borderColor = 'var(--accent-primary)';
+                setTimeout(() => {
+                    btn.innerText = oldText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                    btn.style.borderColor = '';
+                }, 2000);
+            });
+        }
+
+        // Route Form to Selected Department Email
+        function routeMessage(event) {
+            event.preventDefault();
+            const targetEmail = document.getElementById('deptSelect').value;
+            const name = document.getElementById('senderName').value;
+            const email = document.getElementById('senderEmail').value;
+            const subject = document.getElementById('msgSubject').value;
+            const message = document.getElementById('msgBody').value;
+
+            const fullBody = `Name / Project: ${name}\nSender Email: ${email}\n\nMessage:\n${message}`;
+            window.location.href = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullBody)}`;
+        }
     </script>
 </body>
 </html>
