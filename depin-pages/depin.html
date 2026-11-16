@@ -388,7 +388,7 @@
     .project-card[hidden] { display:none !important; }
     .no-data { display:none; padding:35px 20px; border:1px dashed var(--border); border-radius:16px; color:var(--muted); background:var(--surface); text-align:center; font-size:12px; }
 
-    /* COMMUNITY STRIP + FOOTER */
+    /* COMMUNITY STRIP + UPGRADED FOOTER */
     .community-banner { position:relative; overflow:hidden; display:flex; align-items:center; gap:16px; min-height:94px; margin-top:23px; padding:17px 22px; border:1px solid #078f69; border-radius:20px; color:#fff; background:radial-gradient(circle at 82% 0%,rgba(35,224,162,.28),transparent 30%),linear-gradient(105deg,#07875b,#075b50 58%,#032d32); box-shadow:0 9px 22px rgba(8,168,107,.15); }
     .community-banner-icon { width:49px; height:49px; flex:0 0 49px; display:grid; place-items:center; border-radius:15px; color:#7dffd1; background:rgba(255,255,255,.08); font-size:27px; }
     .community-banner-copy { min-width:0; flex:1; }
@@ -399,11 +399,64 @@
     .social-links a:hover { transform:translateY(-2px); background:rgba(255,255,255,.22); }
     .community-join { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 16px; border:1px solid rgba(255,255,255,.38); border-radius:999px; color:#06392c; background:linear-gradient(135deg,#a7f3b5,#35e89a); text-decoration:none; font-size:9px; font-weight:800; white-space:nowrap; }
     .disclaimer { margin:19px 0 0; padding:12px 15px; border:1px solid var(--border); border-radius:12px; color:var(--muted); background:var(--surface); font-size:9px; line-height:1.7; }
-    footer { margin-top:24px; padding:20px 0 8px; border-top:1px solid var(--border); text-align:center; }
-    .footer-copy { margin-bottom:9px; color:var(--muted); font-size:10px; }
-    .footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 18px; }
-    .footer-links a { color:var(--muted); text-decoration:none; font-size:10px; font-weight:700; }
-    .footer-links a:hover { color:var(--green); }
+
+    /* Upgraded Footer */
+    footer {
+      margin-top: 28px;
+      padding: 24px 0 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .footer-brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--green);
+      background: #fff;
+      box-shadow: 0 3px 10px rgba(8, 168, 107, .18);
+    }
+    .footer-brand span {
+      color: var(--heading);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+    .footer-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 2px;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      transition: color .18s ease;
+    }
+    .footer-links a:hover {
+      color: var(--green);
+    }
+
     .mobile-overlay { display:none; }
     .side-link:focus-visible,.primary-cta:focus-visible,.secondary-cta:focus-visible,.view-details:focus-visible,.sponsor-cta:focus-visible { outline:3px solid var(--green); outline-offset:3px; }
 
@@ -705,14 +758,19 @@
         <p class="disclaimer"><strong>Disclaimer:</strong> Total Crypto Hub is an educational directory and research portal. Project information, scores and payout status may change. Rewards are not guaranteed. We do not provide financial advice or guarantee the performance, security or profits of third-party protocols. Always perform your own independent research before participating.</p>
 
         <footer>
-          <div class="footer-copy">© 2026 Total Crypto Network. All rights reserved.</div>
-          <div class="footer-links">
+          <a href="../index.html" class="footer-brand">
+            <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
+            <span>Total Crypto Hub</span>
+          </a>
+          <p class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</p>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="../index.html">Home</a>
             <a href="../legal-pages/about.html">About Us</a>
             <a href="../legal-pages/contact.html">Contact Us</a>
             <a href="../legal-pages/privacy.html">Privacy Policy</a>
-            <a href="../legal-pages/terms.html">Terms & Conditions</a>
+            <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
             <a href="../legal-pages/disclaimer.html">Disclaimer</a>
-          </div>
+          </nav>
         </footer>
       </main>
     </div>
