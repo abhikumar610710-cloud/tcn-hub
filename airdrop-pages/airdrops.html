@@ -303,8 +303,15 @@
     [data-theme="dark"] .drop-orbit { border-color:rgba(88,239,190,.35); }
     [data-theme="dark"] .airdrop-spark { color:#70e9bf; }
 
-    /* High-visibility sponsored banner */
-    .hub-ad-slot { margin: 17px 0 19px; }
+    /* High-visibility sponsored banner (Sticky below topbar when scrolled) */
+    .hub-ad-slot {
+      position: sticky;
+      top: calc(var(--sponsor-height) + 72px);
+      z-index: 90;
+      margin: 17px 0 19px;
+      padding: 8px 0 10px;
+      background: var(--bg);
+    }
     .hub-ad-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 5px 7px; color: var(--muted); }
     .hub-ad-label { display: inline-flex; align-items: center; gap: 7px; color: var(--green-dark); font-size: 9px; font-weight: 800; letter-spacing: .75px; text-transform: uppercase; }
     .hub-ad-dot { width: 7px; height: 7px; border-radius: 50%; background: #16c98a; box-shadow: 0 0 0 4px rgba(22,201,138,.12),0 0 12px rgba(22,201,138,.65); }
@@ -541,7 +548,11 @@
       .airdrop-art { min-height: 175px; margin-top: 2px; transform: scale(.88); }
       .hero-actions { gap: 8px; margin-top: 14px; }
       .primary-cta, .secondary-cta { padding: 10px 13px; font-size: 9px; }
-      .hub-ad-slot { margin: 14px 0 17px; }
+      .hub-ad-slot {
+        position: static;
+        margin: 14px 0 17px;
+        padding: 0;
+      }
       .hub-ad-banner { grid-template-columns: 1fr 155px; min-height: 112px; gap: 8px; padding: 13px 14px; }
       .ad-brand-panel { padding: 6px 8px; gap: 8px; }
       .ad-brand-mark { width: 43px; height: 43px; font-size: 20px; }
@@ -676,7 +687,7 @@
           </div>
         </section>
 
-        <!-- Sponsored banner: high-visibility position directly below hero -->
+        <!-- Sponsored banner: high-visibility position directly below hero (sticks below topbar on scroll) -->
         <section class="hub-ad-slot" aria-label="Sponsored advertisement">
           <div class="hub-ad-topline">
             <span class="hub-ad-label"><span class="hub-ad-dot" aria-hidden="true"></span> Sponsored placement</span>
