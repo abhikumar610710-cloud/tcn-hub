@@ -63,7 +63,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      overflow-x: clip;
+      overflow-x: hidden;
       background: var(--bg);
       color: var(--body);
       font-family: "Plus Jakarta Sans", sans-serif;
@@ -303,19 +303,8 @@
     [data-theme="dark"] .drop-orbit { border-color:rgba(88,239,190,.35); }
     [data-theme="dark"] .airdrop-spark { color:#70e9bf; }
 
-    /* High-visibility sponsored banner (Sticky below topbar when scrolled) */
-    .hub-ad-slot {
-      position: sticky;
-      top: calc(var(--sponsor-height) + 72px);
-      z-index: 95;
-      margin: 17px 0 19px;
-      padding: 8px 0 10px;
-      background: var(--bg);
-      transition: box-shadow .2s ease;
-    }
-    .hub-ad-slot.is-stuck {
-      box-shadow: 0 10px 24px rgba(6, 43, 49, .10);
-    }
+    /* High-visibility sponsored banner */
+    .hub-ad-slot { margin: 17px 0 19px; }
     .hub-ad-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 5px 7px; color: var(--muted); }
     .hub-ad-label { display: inline-flex; align-items: center; gap: 7px; color: var(--green-dark); font-size: 9px; font-weight: 800; letter-spacing: .75px; text-transform: uppercase; }
     .hub-ad-dot { width: 7px; height: 7px; border-radius: 50%; background: #16c98a; box-shadow: 0 0 0 4px rgba(22,201,138,.12),0 0 12px rgba(22,201,138,.65); }
@@ -552,12 +541,7 @@
       .airdrop-art { min-height: 175px; margin-top: 2px; transform: scale(.88); }
       .hero-actions { gap: 8px; margin-top: 14px; }
       .primary-cta, .secondary-cta { padding: 10px 13px; font-size: 9px; }
-      .hub-ad-slot {
-        position: static;
-        margin: 14px 0 17px;
-        padding: 0;
-        box-shadow: none;
-      }
+      .hub-ad-slot { margin: 14px 0 17px; }
       .hub-ad-banner { grid-template-columns: 1fr 155px; min-height: 112px; gap: 8px; padding: 13px 14px; }
       .ad-brand-panel { padding: 6px 8px; gap: 8px; }
       .ad-brand-mark { width: 43px; height: 43px; font-size: 20px; }
@@ -651,7 +635,7 @@
 
     <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
     <div class="main-column">
-      <header class="topbar" id="mainTopbar">
+      <header class="topbar">
         <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
         <label class="search-wrap" aria-label="Search airdrop campaigns"><input id="searchInput" type="search" placeholder="Search campaigns, testnets, quests or projects..." autocomplete="off"><span class="search-icon" aria-hidden="true">⌕</span></label>
         <span class="topbar-spacer"></span>
@@ -692,8 +676,8 @@
           </div>
         </section>
 
-        <!-- Sponsored banner: high-visibility position directly below hero (sticks below topbar on scroll) -->
-        <section class="hub-ad-slot" id="stickyAdSlot" aria-label="Sponsored advertisement">
+        <!-- Sponsored banner: high-visibility position directly below hero -->
+        <section class="hub-ad-slot" aria-label="Sponsored advertisement">
           <div class="hub-ad-topline">
             <span class="hub-ad-label"><span class="hub-ad-dot" aria-hidden="true"></span> Sponsored placement</span>
             <span class="hub-ad-format">Airdrop campaign banner · Partner spotlight</span>
@@ -944,21 +928,6 @@
       if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
     }
 
-    function syncStickyAdPosition() {
-      const adSlot = document.getElementById('stickyAdSlot');
-      const topbar = document.getElementById('mainTopbar');
-      if (!adSlot || !topbar) return;
-      if (window.innerWidth <= 760) {
-        adSlot.style.top = '';
-        adSlot.classList.remove('is-stuck');
-        return;
-      }
-      const topOffset = Math.round(topbar.getBoundingClientRect().bottom);
-      adSlot.style.top = `${topOffset}px`;
-      const slotTop = Math.round(adSlot.getBoundingClientRect().top);
-      adSlot.classList.toggle('is-stuck', slotTop <= topOffset + 2);
-    }
-
     document.addEventListener('click', event => {
       if (!event.target.closest('.community-dropdown')) {
         const menu = document.getElementById('communityMenu');
@@ -977,10 +946,6 @@
       if (themeButton) themeButton.textContent = savedTheme === 'light' ? '🌙' : '☀️';
 
       renderCampaigns();
-      syncStickyAdPosition();
-      window.addEventListener('scroll', syncStickyAdPosition, { passive: true });
-      window.addEventListener('resize', syncStickyAdPosition);
-
       const search = document.getElementById('searchInput');
       if (search) search.addEventListener('input', renderCampaigns);
 
