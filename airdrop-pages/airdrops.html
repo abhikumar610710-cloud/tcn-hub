@@ -149,7 +149,7 @@
     }
     [data-theme="dark"] .header-v-sep { background: rgba(255,255,255,.2); }
 
-    /* WIDE SPONSOR BANNER SLOT (728x90 / 970x90) */
+    /* WIDE SPONSOR BANNER SLOT */
     .sponsor-slot-box {
       flex: 1 1 auto;
       max-width: 970px;
@@ -385,7 +385,7 @@
     .secondary-cta { border: 1px solid #19c995; color: #087f55; background: rgba(255,255,255,.6); }
     .secondary-cta:hover { background: #fff; transform: translateY(-2px); }
 
-    /* Airdrop-themed hero artwork: parachute, reward crate and token orbit */
+    /* Airdrop-themed hero artwork */
     .airdrop-art { position:relative; min-height:205px; display:flex; align-items:center; justify-content:center; isolation:isolate; }
     .airdrop-art::before { content:""; position:absolute; width:82%; height:27%; bottom:4%; border-radius:50%; background:rgba(7,151,112,.17); filter:blur(19px); }
     .drop-orbit { position:absolute; width:92%; height:122px; border:1px dashed rgba(5,150,105,.4); border-radius:50%; transform:rotate(-13deg); box-shadow:0 0 20px rgba(10,190,145,.12); }
@@ -472,9 +472,43 @@
     .campaign-card.type-waitlist { --card-accent:#8b5cf6; --card-soft:rgba(139,92,246,.13); }
     .campaign-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:12px; }
     .campaign-identity { display:flex; align-items:center; gap:10px; min-width:0; }
-    .project-avatar-box { width:48px; height:48px; flex:0 0 48px; padding:2px; display:grid; place-items:center; overflow:hidden; border:1px solid var(--line); border-radius:15px; background:var(--surface); box-shadow:0 4px 12px rgba(7,155,112,.09); }
-    .project-avatar-box img { width:100%; height:100%; object-fit:contain; border-radius:12px; }
-    .project-avatar-box .project-initial { width:100%; height:100%; display:none; align-items:center; justify-content:center; border-radius:12px; color:#fff; font-size:16px; font-weight:800; }
+
+    /* Logo Box with Top NEW Badge */
+    .project-avatar-box {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      padding: 2px;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--surface);
+      box-shadow: 0 4px 12px rgba(7,155,112,.09);
+    }
+    .project-avatar-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; }
+    .project-avatar-box .project-initial { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; border-radius: 12px; color: #fff; font-size: 16px; font-weight: 800; }
+    .logo-new-badge {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #079b69, #10b981);
+      color: #ffffff;
+      border: 1.5px solid var(--surface);
+      font-size: 7px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      line-height: 1;
+      white-space: nowrap;
+      box-shadow: 0 3px 8px rgba(8, 168, 107, 0.35);
+    }
+
     .campaign-name { min-width:0; }
     .campaign-name h3 { margin:0 0 4px; color:var(--heading); font-size:13px; line-height:1.3; font-weight:800; overflow-wrap:anywhere; }
     .campaign-name p { margin:0; color:var(--muted); font-size:9px; line-height:1.45; font-weight:600; }
@@ -489,13 +523,12 @@
     .btn-details:hover { filter: brightness(1.06); }
     .verified-tick { display:inline-grid; place-items:center; width:14px; height:14px; margin-left:3px; border-radius:50%; color:#fff; background:#08a86b; font-size:8px; font-weight:800; vertical-align:1px; }
     [data-theme="dark"] .verified-tick { background:#0cad78; }
-    .badge-new { display: inline-block; margin-left: 3px; padding: 2px 5px; border-radius: 5px; color: #07885f; background: #e5fbf2; font-size: 7px; font-weight: 800; vertical-align: middle; }
     .badge-listed, .badge-upcoming { display: inline-grid; place-items: center; width: 13px; height: 13px; margin-left: 3px; border-radius: 50%; color: #fff; font-size: 8px; font-weight: 800; vertical-align: 1px; }
     .badge-listed { background: #059669; }
     .badge-upcoming { background: #8996a8; }
     .no-data { display: none; margin-top: 15px; padding: 28px; text-align: center; border: 1px dashed var(--border); border-radius: 15px; color: var(--muted); font-size: 12px; }
 
-    /* Guide cards retained from the original page */
+    /* Guide cards */
     .guide-section { margin-top: 25px; }
     .guide-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; }
     .guide-card { display: flex; align-items: flex-start; gap: 9px; min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 15px; background: var(--surface); box-shadow: 0 5px 15px rgba(25,58,83,.035); }
@@ -804,7 +837,7 @@
           </div>
         </section>
 
-        <!-- Sponsored banner: high-visibility position directly below hero -->
+        <!-- Sponsored banner -->
         <section class="hub-ad-slot" aria-label="Sponsored advertisement">
           <div class="hub-ad-topline">
             <span class="hub-ad-label"><span class="hub-ad-dot" aria-hidden="true"></span> Sponsored placement</span>
@@ -911,9 +944,18 @@
   </div>
 
   <script>
-    // Airdrop campaign directory. Project names, descriptions, scores, paths and logos
-    // are carried over from the supplied source HTML.
+    // Whenever you add a new project, set addedDate: "YYYY-MM-DD" and newDays: 60 (or 90).
+    // It will automatically stay at the top with a NEW badge on its logo for those days,
+    // and automatically move down once the days expire.
     const AIRDROP_PROJECTS = [
+      // Newly Added Projects (Auto-pinned at top with Logo NEW badge for 60 days)
+      {name:"Asend",sub:"Early Access Trading App • Social & Position Features",category:"Waitlist",type:"Waitlist",liveStatus:"Active",addedDate:"2026-11-17",newDays:60,score:"⭐ 9.1 / 10",link:"../airdrop-projects/asend.html",logo:"../logos/asend.png",verified:true},
+      {name:"Arch Prime",sub:"Arch Network Early Access • Priority Waitlist Spot",category:"Waitlist",type:"Waitlist",liveStatus:"Active",addedDate:"2026-11-17",newDays:60,score:"⭐ 9.3 / 10",link:"../airdrop-projects/arch-prime.html",logo:"../logos/arch-prime.png",verified:true},
+      {name:"Dow Protocol",sub:"RWAFi Points & AI Quests • Daily XP & Quiz Rewards",category:"Quest",type:"Quest",liveStatus:"Active",addedDate:"2026-11-17",newDays:60,score:"⭐ 9.2 / 10",link:"../airdrop-projects/dow-protocol.html",logo:"../logos/dow-protocol.png",verified:true},
+      {name:"GetOn",sub:"Early Access Waitlist • Stamps, Check-ins & Quests",category:"Waitlist",type:"Waitlist",liveStatus:"Active",addedDate:"2026-11-17",newDays:60,score:"⭐ 9.0 / 10",link:"../airdrop-projects/geton.html",logo:"../logos/geton.png",verified:true},
+      {name:"Reya",sub:"Reya Network Waitlist • Wallet & X Verification Queue",category:"Waitlist",type:"Waitlist",liveStatus:"Active",addedDate:"2026-11-17",newDays:60,score:"⭐ 9.4 / 10",link:"../airdrop-projects/reya.html",logo:"../logos/reya.png",verified:true},
+
+      // Existing Projects
       {name:"Titan Exchange",sub:"Incentivized Perp DEX • Free Faucet Testnet",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:false,score:"⭐ 9.8 / 10",link:"../airdrop-projects/titan-exchange.html",logo:"../logos/titan-exchange.png",verified:true},
       {name:"KiiChain",sub:"$24M Funded Layer 1 • Genesis XP & Testnet Quests",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:false,score:"⭐ 9.4 / 10",link:"../airdrop-projects/kiichain.html",logo:"../logos/kiichain.png",verified:true},
       {name:"Sweep.finance",sub:"Sweepbird Mini-Game • Phase 3 Live & Airdrop",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 9.5 / 10",link:"../airdrop-projects/sweep-finance.html",logo:"../logos/sweep-finance.png",verified:true},
@@ -921,24 +963,36 @@
       {name:"Sleepagotchi",sub:"Gotchi Labs • Consumer AI Agents & Health Tracking",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 9.2 / 10",link:"../airdrop-projects/sleepagotchi.html",logo:"../logos/sleepagotchi.png",verified:true},
       {name:"Axis Robotics",sub:"Autonomous AI Simulation • Daily Browser Quests",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 9.4 / 10",link:"../airdrop-projects/axisrobotics.html",logo:"../logos/axisrobotics.png",verified:true},
       {name:"Raycash",sub:"Confidential Banking Waitlist • 6 Zero-Cost Social Tasks",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:false,score:"⭐ 8.7 / 10",link:"../airdrop-projects/raycash.html",logo:"../logos/raycash.png",verified:true},
-      {name:"AMA Hub Airdrop",sub:"Community Event & Task Rewards • Early Access",category:"Quest",type:"Quest",liveStatus:"Active",isNew:true,score:"⭐ 9.1 / 10",link:"../airdrop-projects/amahub-airdrop.html",logo:"../logos/amahub-airdrop.png",verified:true},
-      {name:"BullGems Mining",sub:"Gamified Mining Quests • Daily Token Payouts",category:"Quest",type:"Quest",liveStatus:"Active",isNew:true,score:"⭐ 8.9 / 10",link:"../airdrop-projects/bullgems-mining.html",logo:"../logos/bullgems-mining.png",verified:true},
-      {name:"DarkHorse Genesis",sub:"Genesis NFT & Web3 Gaming Rewards",category:"Quest",type:"Quest",liveStatus:"Active",isNew:true,score:"⭐ 9.0 / 10",link:"../airdrop-projects/darkhorse-genesis.html",logo:"../logos/darkhorse-genesis.png",verified:true},
-      {name:"FanSZN Waitlist",sub:"Sports Fan Engagement • Early Pass Waitlist",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:true,score:"⭐ 8.8 / 10",link:"../airdrop-projects/fanszn-waitlist.html",logo:"../logos/fanszn-waitlist.png",verified:true},
-      {name:"Forks Wiki",sub:"Knowledge Base & Protocol Fork Rewards",category:"Quest",type:"Quest",liveStatus:"Active",isNew:true,score:"⭐ 8.6 / 10",link:"../airdrop-projects/forks-wiki.html",logo:"../logos/forks-wiki.png",verified:true},
-      {name:"Kaito Launchpad",sub:"AI-Powered Info Search & Early Token Allocations",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:true,score:"⭐ 9.6 / 10",link:"../airdrop-projects/kaito-launchpad.html",logo:"../logos/kaito-launchpad.png",verified:true},
-      {name:"Nuance Labs",sub:"Decentralized Publishing & Writer Rewards",category:"Quest",type:"Quest",liveStatus:"Active",isNew:true,score:"⭐ 8.9 / 10",link:"../airdrop-projects/nuance-labs.html",logo:"../logos/nuance-labs.png",verified:true},
-      {name:"PackVault Waitlist",sub:"DeFi Asset Vaults • Early Supporter Badge",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:true,score:"⭐ 8.7 / 10",link:"../airdrop-projects/packvault-waitlist.html",logo:"../logos/packvault-waitlist.png",verified:true},
-      {name:"Perceptron Network",sub:"Distributed AI Compute Node & Token Incentives",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:true,score:"⭐ 9.3 / 10",link:"../airdrop-projects/perceptron-network.html",logo:"../logos/perceptron-network.png",verified:true},
-      {name:"Risk Protocol",sub:"On-Chain Risk Management & Yield Testnet",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:true,score:"⭐ 9.1 / 10",link:"../airdrop-projects/risk-protocol.html",logo:"../logos/risk-protocol.png",verified:true},
-      {name:"SOEI Proof",sub:"Zero-Knowledge Proof Verification Quests",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:true,score:"⭐ 9.0 / 10",link:"../airdrop-projects/soei-proof.html",logo:"../logos/soei-proof.png",verified:true},
-      {name:"Startale Waitlist",sub:"Web3 Infrastructure & Astar Ecosystem Portal",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:true,score:"⭐ 9.5 / 10",link:"../airdrop-projects/startale-waitlist.html",logo:"../logos/startale-waitlist.png",verified:true},
-      {name:"Wick Protocol",sub:"DeFi Trading & Liquidity Incentive Program",category:"Quest",type:"Quest",liveStatus:"Active",isNew:true,score:"⭐ 8.8 / 10",link:"../airdrop-projects/wick.html",logo:"../logos/wick.png",verified:true},
-      {name:"ZetaLabs",sub:"Omnichain Smart Contract Testnet & Zeta Faucet",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:true,score:"⭐ 9.7 / 10",link:"../airdrop-projects/zetalabs.html",logo:"../logos/zetalabs.png",verified:true}
+      {name:"AMA Hub Airdrop",sub:"Community Event & Task Rewards • Early Access",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 9.1 / 10",link:"../airdrop-projects/amahub-airdrop.html",logo:"../logos/amahub-airdrop.png",verified:true},
+      {name:"BullGems Mining",sub:"Gamified Mining Quests • Daily Token Payouts",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 8.9 / 10",link:"../airdrop-projects/bullgems-mining.html",logo:"../logos/bullgems-mining.png",verified:true},
+      {name:"DarkHorse Genesis",sub:"Genesis NFT & Web3 Gaming Rewards",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 9.0 / 10",link:"../airdrop-projects/darkhorse-genesis.html",logo:"../logos/darkhorse-genesis.png",verified:true},
+      {name:"FanSZN Waitlist",sub:"Sports Fan Engagement • Early Pass Waitlist",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:false,score:"⭐ 8.8 / 10",link:"../airdrop-projects/fanszn-waitlist.html",logo:"../logos/fanszn-waitlist.png",verified:true},
+      {name:"Forks Wiki",sub:"Knowledge Base & Protocol Fork Rewards",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 8.6 / 10",link:"../airdrop-projects/forks-wiki.html",logo:"../logos/forks-wiki.png",verified:true},
+      {name:"Kaito Launchpad",sub:"AI-Powered Info Search & Early Token Allocations",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:false,score:"⭐ 9.6 / 10",link:"../airdrop-projects/kaito-launchpad.html",logo:"../logos/kaito-launchpad.png",verified:true},
+      {name:"Nuance Labs",sub:"Decentralized Publishing & Writer Rewards",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 8.9 / 10",link:"../airdrop-projects/nuance-labs.html",logo:"../logos/nuance-labs.png",verified:true},
+      {name:"PackVault Waitlist",sub:"DeFi Asset Vaults • Early Supporter Badge",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:false,score:"⭐ 8.7 / 10",link:"../airdrop-projects/packvault-waitlist.html",logo:"../logos/packvault-waitlist.png",verified:true},
+      {name:"Perceptron Network",sub:"Distributed AI Compute Node & Token Incentives",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:false,score:"⭐ 9.3 / 10",link:"../airdrop-projects/perceptron-network.html",logo:"../logos/perceptron-network.png",verified:true},
+      {name:"Risk Protocol",sub:"On-Chain Risk Management & Yield Testnet",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:false,score:"⭐ 9.1 / 10",link:"../airdrop-projects/risk-protocol.html",logo:"../logos/risk-protocol.png",verified:true},
+      {name:"SOEI Proof",sub:"Zero-Knowledge Proof Verification Quests",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:false,score:"⭐ 9.0 / 10",link:"../airdrop-projects/soei-proof.html",logo:"../logos/soei-proof.png",verified:true},
+      {name:"Startale Waitlist",sub:"Web3 Infrastructure & Astar Ecosystem Portal",category:"Waitlist",type:"Waitlist",liveStatus:"Active",isNew:false,score:"⭐ 9.5 / 10",link:"../airdrop-projects/startale-waitlist.html",logo:"../logos/startale-waitlist.png",verified:true},
+      {name:"Wick Protocol",sub:"DeFi Trading & Liquidity Incentive Program",category:"Quest",type:"Quest",liveStatus:"Active",isNew:false,score:"⭐ 8.8 / 10",link:"../airdrop-projects/wick.html",logo:"../logos/wick.png",verified:true},
+      {name:"ZetaLabs",sub:"Omnichain Smart Contract Testnet & Zeta Faucet",category:"Testnet",type:"Testnet",liveStatus:"Active",isNew:false,score:"⭐ 9.7 / 10",link:"../airdrop-projects/zetalabs.html",logo:"../logos/zetalabs.png",verified:true}
     ];
 
     let currentFilter = 'all';
     let currentSubCategory = 'All';
+
+    // Automatically checks if project is within its 60-day (or 90-day) NEW window
+    function isProjectNew(project) {
+      if (project.addedDate) {
+        const added = new Date(project.addedDate + 'T00:00:00');
+        const now = new Date();
+        const maxDays = Number(project.newDays) || 60;
+        const diffDays = (now - added) / (1000 * 60 * 60 * 24);
+        return diffDays >= 0 && diffDays <= maxDays;
+      }
+      return Boolean(project.isNew);
+    }
 
     function escapeHtml(value) {
       return String(value).replace(/[&<>"']/g, ch => ({
@@ -972,7 +1026,19 @@
       const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
       const noData = document.getElementById('noDataMessage');
       const count = document.getElementById('projectCount');
-      const filtered = AIRDROP_PROJECTS.filter(project => campaignMatches(project, query));
+
+      // Keep active NEW projects automatically at the top; expired ones move down automatically
+      const sortedProjects = [...AIRDROP_PROJECTS].sort((a, b) => {
+        const aNew = isProjectNew(a) ? 1 : 0;
+        const bNew = isProjectNew(b) ? 1 : 0;
+        if (bNew !== aNew) return bNew - aNew;
+        if (aNew && bNew && a.addedDate && b.addedDate) {
+          return new Date(b.addedDate) - new Date(a.addedDate);
+        }
+        return 0;
+      });
+
+      const filtered = sortedProjects.filter(project => campaignMatches(project, query));
       grid.innerHTML = '';
 
       filtered.forEach(project => {
@@ -986,11 +1052,13 @@
         const typeClass = String(project.type || 'quest').toLowerCase();
         const statusText = project.liveStatus === 'Ending Soon' ? 'Ending Soon' : 'Active';
         const statusClass = project.liveStatus === 'Ending Soon' ? 'ending' : 'live';
-        const newBadge = project.isNew ? '<span class="badge-new">★ NEW</span>' : '';
+        const activeNew = isProjectNew(project);
+        const logoNewBadge = activeNew ? '<span class="logo-new-badge">NEW</span>' : '';
         const verifiedBadge = project.verified ? '<span class="verified-tick" title="Marked as verified campaign">✓</span>' : '';
+
         const avatar = safeLogo
-          ? `<div class="project-avatar-box"><img src="${safeLogo}" alt="${safeName} logo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="project-initial" style="display:none;background:${avatarColor}">${initial}</span></div>`
-          : `<div class="project-avatar-box"><span class="project-initial" style="display:flex;background:${avatarColor}">${initial}</span></div>`;
+          ? `<div class="project-avatar-box">${logoNewBadge}<img src="${safeLogo}" alt="${safeName} logo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="project-initial" style="display:none;background:${avatarColor}">${initial}</span></div>`
+          : `<div class="project-avatar-box">${logoNewBadge}<span class="project-initial" style="display:flex;background:${avatarColor}">${initial}</span></div>`;
 
         const card = document.createElement('article');
         card.className = `campaign-card type-${typeClass}`;
@@ -999,7 +1067,7 @@
             <div class="campaign-identity">
               ${avatar}
               <div class="campaign-name">
-                <h3>${safeName} ${verifiedBadge} ${newBadge}</h3>
+                <h3>${safeName} ${verifiedBadge}</h3>
                 <p>${safeSub}</p>
               </div>
             </div>
