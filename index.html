@@ -11,29 +11,201 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:70px;--shadow:0 12px 32px rgba(20,76,66,.07)}
+    :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:74px;--shadow:0 12px 32px rgba(20,76,66,.07)}
     [data-theme="dark"]{color-scheme:dark;--bg:#081a20;--surface:#10272c;--surface-soft:#143139;--border:#254b4b;--heading:#f0fff9;--body:#d4eee5;--muted:#91b3ad;--green:#20d99a;--green-dark:#0cad78;--green-light:#5df0bd;--green-soft:#123e34;--teal:#22cbbb;--navy:#061c24;--shadow:0 14px 34px rgba(0,0,0,.22)}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}
 
-    /* Sponsorship header glow and light sweep */
-    @keyframes topSponsorGlow{0%,100%{box-shadow:0 5px 20px rgba(1,30,30,.12);border-bottom-color:rgba(74,230,180,.25)}50%{box-shadow:0 8px 30px rgba(32,217,154,.45);border-bottom-color:rgba(32,217,154,.9)}}
+    /* LIGHT MINT SPONSOR HEADER BAR (MATCHES WEBSITE THEME) */
     @keyframes sponsorSweep{0%{transform:translateX(-130%) skewX(-18deg);opacity:0}18%{opacity:.35}55%{opacity:.12}100%{transform:translateX(230%) skewX(-18deg);opacity:0}}
     @keyframes sponsorBtnGlow{0%,100%{box-shadow:0 5px 16px rgba(16,185,129,.2);transform:scale(1)}50%{box-shadow:0 5px 25px rgba(32,217,154,.65);transform:scale(1.025)}}
-    .sponsor-strip{position:sticky;top:0;z-index:200;min-height:var(--sponsor-height);color:#f5fff9;background:radial-gradient(circle at 5% 50%,rgba(24,205,145,.25),transparent 20%),radial-gradient(circle at 95% 50%,rgba(20,200,160,.2),transparent 20%),linear-gradient(105deg,#031e21,#062c30 52%,#031d25);border-bottom:1px solid rgba(74,230,180,.25);animation:topSponsorGlow 3.4s infinite ease-in-out;isolation:isolate;overflow:hidden}
-    .sponsor-strip::after{content:"";position:absolute;z-index:-1;top:-35%;left:0;width:22%;height:170%;background:linear-gradient(90deg,transparent,rgba(164,255,222,.13),transparent);pointer-events:none;animation:sponsorSweep 8s ease-in-out infinite}
-    .sponsor-inner{min-height:var(--sponsor-height);max-width:1800px;margin:auto;padding:7px 24px;display:flex;align-items:center;gap:18px}
-    .header-brand{width:var(--sidebar-width);flex:0 0 var(--sidebar-width);display:flex;align-items:center;gap:11px;text-decoration:none;min-width:0}
-    .header-logo{width:48px;height:48px;flex:0 0 48px;overflow:hidden;display:grid;place-items:center;border-radius:50%;border:2px solid #20d99a;background:#fff;box-shadow:0 0 15px rgba(32,217,154,.22)}.header-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-    .header-brand-name{color:#fff;font-size:16px;font-weight:800;line-height:1.2;letter-spacing:-.4px}.header-brand-subtitle{display:block;margin-top:3px;color:#9debd0;font-size:10px;font-weight:700}.header-brand-subtitle b{color:#32e5a1}
-    .sponsor-coin{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.65);border-radius:50%;color:#fff9df;background:linear-gradient(145deg,#ffca45,#bd6b09);box-shadow:0 4px 15px rgba(245,158,11,.25);font-size:22px;font-weight:800}.sponsor-coin--eth{color:#eef4ff;background:linear-gradient(145deg,#8aa7ff,#4658bc);font-size:20px}
-    .sponsor-copy{min-width:0;flex:1;display:flex;align-items:center;justify-content:center;gap:12px}.sponsor-eyebrow{padding:5px 10px;border:1px solid rgba(110,231,183,.35);border-radius:999px;color:#a7f3d0;background:rgba(16,185,129,.12);font-size:8px;font-weight:800;letter-spacing:.7px;white-space:nowrap}
-    .sponsor-message-window{display:flex;align-items:center;justify-content:center;width:clamp(250px,30vw,440px);min-height:34px;overflow:visible;text-align:center}.sponsor-copy strong{display:block;color:#fff;font-size:clamp(12px,1.2vw,17px);font-weight:800;line-height:1.35}.sponsor-copy em{color:#42e5a2;font-style:normal}.sponsor-divider{width:1px;height:22px;flex:0 0 1px;background:rgba(255,255,255,.3)}.sponsor-tagline{color:#cee6dc;font-size:9px;font-weight:600;white-space:nowrap}
-    /* Fixed-height 3D flip window prevents the header from jumping as phrases change. */
+    .sponsor-strip{
+      position:sticky;
+      top:0;
+      z-index:200;
+      min-height:var(--sponsor-height);
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      color:#071b38;
+      background:
+        radial-gradient(circle at 8% 50%,rgba(0,235,165,.28),transparent 24%),
+        radial-gradient(circle at 92% 50%,rgba(0,210,160,.24),transparent 24%),
+        linear-gradient(95deg,#c9ffea 0%,#f2fff9 48%,#c4fcef 100%);
+      border-bottom:1px solid #96ecd0;
+      box-shadow:0 4px 18px rgba(0,130,90,.09);
+      isolation:isolate;
+    }
+    [data-theme="dark"] .sponsor-strip{
+      color:#f0fff8;
+      background:
+        radial-gradient(circle at 8% 50%,rgba(0,245,158,.18),transparent 22%),
+        linear-gradient(95deg,#0b2b27 0%,#0f3530 50%,#0b2b27 100%);
+      border-bottom:1px solid #245f4d;
+    }
+    .sponsor-inner{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:1800px;
+      min-height:var(--sponsor-height);
+      margin:auto;
+      padding:7px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .header-brand{
+      min-width:210px;
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      gap:11px;
+      text-decoration:none;
+    }
+    .header-logo{
+      width:44px;
+      height:44px;
+      flex:0 0 44px;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      border:2px solid #00bd79;
+      background:radial-gradient(circle at 30% 25%,#5bffc8,#009c6d 65%,#004938);
+      box-shadow:0 3px 12px rgba(0,175,115,.25);
+      color:#fff;
+      font-size:14px;
+      font-weight:900;
+    }
+    .header-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+    .header-brand-name{display:block;color:var(--heading);font-size:17px;font-weight:800;line-height:1.15;letter-spacing:-.45px}
+    .header-brand-subtitle{display:block;margin-top:2px;color:#008556;font-size:10px;font-weight:800}
+    .header-brand-subtitle b{color:#007b51}
+    [data-theme="dark"] .header-brand-subtitle,[data-theme="dark"] .header-brand-subtitle b{color:#4ef2b1}
+
+    .header-v-sep{
+      width:1.5px;
+      height:36px;
+      flex:0 0 1.5px;
+      background:rgba(7,27,56,.22);
+    }
+    [data-theme="dark"] .header-v-sep{background:rgba(255,255,255,.2)}
+
+    /* WIDE SPONSOR BANNER SLOT (728x90 / 970x90) */
+    .sponsor-slot-box{
+      flex:1 1 auto;
+      max-width:970px;
+      min-width:280px;
+      height:58px;
+      padding:6px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      border:1.8px dashed #00a86b;
+      border-radius:14px;
+      background:linear-gradient(90deg,rgba(195,255,231,.72),rgba(245,255,250,.92) 50%,rgba(195,255,231,.72));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),0 3px 12px rgba(0,150,100,.08);
+      text-decoration:none;
+      transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+    }
+    .sponsor-slot-box:hover{
+      transform:translateY(-1px);
+      border-color:#008252;
+      box-shadow:0 6px 16px rgba(0,160,105,.16);
+    }
+    [data-theme="dark"] .sponsor-slot-box{
+      border-color:#36e5a0;
+      background:linear-gradient(90deg,rgba(18,62,50,.85),rgba(13,41,38,.95) 50%,rgba(18,62,50,.85));
+      box-shadow:none;
+    }
+    .slot-megaphone{
+      font-size:27px;
+      line-height:1;
+      flex:0 0 auto;
+      filter:drop-shadow(0 2px 4px rgba(0,0,0,.14));
+    }
+    .slot-arrow{
+      flex:1 1 60px;
+      max-width:130px;
+      height:16px;
+      display:flex;
+      align-items:center;
+      color:#009960;
+    }
+    [data-theme="dark"] .slot-arrow{color:#4ef2b1}
+    .slot-arrow svg{width:100%;height:16px;display:block;overflow:visible}
+    .slot-center-text{
+      text-align:center;
+      flex:0 0 auto;
+    }
+    .slot-center-text strong{
+      display:block;
+      color:var(--heading);
+      font-size:17px;
+      line-height:1.15;
+      font-weight:800;
+      letter-spacing:-.35px;
+    }
+    .slot-center-text span{
+      display:block;
+      margin-top:2px;
+      color:var(--body);
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .sponsor-right-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+    }
+    .sponsor-cta{
+      flex:0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+      padding:11px 20px;
+      border-radius:999px;
+      border:1.5px solid #00a86b;
+      color:#042b1d;
+      background:linear-gradient(135deg,#8affb8,#3be898);
+      box-shadow:0 4px 14px rgba(0,185,115,.25),inset 0 1px 1px rgba(255,255,255,.75);
+      text-decoration:none;
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .sponsor-cta:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 18px rgba(0,185,115,.38);
+    }
+    .sponsor-orb-btn{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      border:1.5px solid rgba(255,255,255,.75);
+      color:#ffffff;
+      background:linear-gradient(145deg,#818cf8,#4f46e5);
+      box-shadow:0 4px 12px rgba(79,70,229,.28);
+      text-decoration:none;
+      font-size:12px;
+      font-weight:800;
+      transition:transform .2s;
+    }
+    .sponsor-orb-btn:hover{transform:translateY(-1px)}
+
+    /* Fixed-height 3D flip window for bottom banner phrases */
     .text-flipper{display:inline-block;max-width:100%;transform-origin:50% 50%;transform-style:preserve-3d;backface-visibility:hidden;will-change:transform,opacity}
     .flip-out{animation:flipOutX .38s cubic-bezier(.55,.06,.68,.19) forwards}.flip-in{animation:flipInX .48s cubic-bezier(.2,.75,.25,1) both}
     @keyframes flipOutX{0%{transform:perspective(700px) rotateX(0deg);opacity:1}100%{transform:perspective(700px) rotateX(-88deg);opacity:0}}
     @keyframes flipInX{0%{transform:perspective(700px) rotateX(88deg);opacity:0}100%{transform:perspective(700px) rotateX(0deg);opacity:1}}
-    .sponsor-cta{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:#052b20;background:linear-gradient(135deg,#a7f3b5,#35e89a);text-decoration:none;font-size:10px;font-weight:800;transition:.2s ease;animation:sponsorBtnGlow 3s infinite ease-in-out}.sponsor-cta:hover{background:#fff;animation:none;transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,.4)}
 
     /* Sidebar */
     .sidebar{position:fixed;z-index:150;inset:var(--sponsor-height) auto 0 0;width:var(--sidebar-width);height:calc(100vh - var(--sponsor-height));height:calc(100dvh - var(--sponsor-height));display:flex;flex-direction:column;padding:20px 16px 18px;overflow-y:auto;overflow-x:hidden;background:var(--surface);border-right:1px solid var(--border);box-shadow:8px 0 28px rgba(21,48,84,.025);transition:transform .25s ease}.sidebar::-webkit-scrollbar{width:5px}.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
@@ -90,11 +262,11 @@
     .hub-ad-art{position:relative;z-index:1;min-height:82px;display:flex;align-items:center;justify-content:center}.hub-ad-orbit{position:absolute;width:min(230px,100%);height:72px;border:1px dashed rgba(125,255,216,.55);border-radius:50%;transform:rotate(-13deg);box-shadow:0 0 19px rgba(43,238,176,.12)}.hub-ad-orbit::before,.hub-ad-orbit::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:#87ffcf;box-shadow:0 0 12px #4cf0b7}.hub-ad-orbit::before{left:23px;top:10px}.hub-ad-orbit::after{right:24px;bottom:7px;background:#56c9ff}.hub-ad-coin{position:absolute;z-index:2;width:43px;height:43px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.72);border-radius:50%;color:#fff;font-size:22px;font-weight:800;box-shadow:0 5px 17px rgba(0,0,0,.22),0 0 17px rgba(70,242,188,.22)}.hub-ad-coin--one{top:1px;right:18%;background:linear-gradient(145deg,#ffd76b,#d58a12)}.hub-ad-coin--two{bottom:0;left:17%;background:linear-gradient(145deg,#51e7c2,#087f9c)}.hub-ad-chart{position:absolute;right:18%;bottom:3px;width:105px;height:45px;display:flex;align-items:flex-end;justify-content:center;gap:5px;padding:0 8px 3px;border-bottom:1px solid rgba(139,255,218,.55);transform:skewY(-8deg);opacity:.78}.hub-ad-chart i{display:block;width:9px;border-radius:3px 3px 0 0;background:linear-gradient(180deg,#9bffdc,#10bf91);box-shadow:0 0 9px rgba(75,255,197,.2)}.hub-ad-chart i:nth-child(1){height:16px}.hub-ad-chart i:nth-child(2){height:25px}.hub-ad-chart i:nth-child(3){height:20px}.hub-ad-chart i:nth-child(4){height:32px}.hub-ad-chart i:nth-child(5){height:27px}.hub-ad-chart i:nth-child(6){height:40px}
 
     /* Accessibility and responsive behaviour */
-    .side-link:focus-visible,.primary-cta:focus-visible,.secondary-cta:focus-visible,.dash-card:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.hub-ad-banner:focus-visible{outline:3px solid var(--green);outline-offset:3px}
-    @media(max-width:1250px){:root{--sidebar-width:235px}.sponsor-inner{gap:14px;padding-left:17px;padding-right:17px}.sponsor-tagline,.sponsor-divider{display:none}main{padding-left:20px;padding-right:20px}.dashboard-grid{gap:12px}.hub-bottom-band{grid-template-columns:1fr}}
-    @media(max-width:900px){.header-brand{width:auto;flex-basis:auto}.sponsor-inner{gap:12px}.sponsor-copy{justify-content:flex-start}.sponsor-eyebrow{display:none}.sponsor-message-window{width:clamp(230px,34vw,360px)}.sponsor-copy strong{font-size:12px}.hero-panel{grid-template-columns:minmax(0,1fr) minmax(230px,.8fr);padding:25px}.hero-copy h2{font-size:36px}.hero-art{min-height:220px}.dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:61px}.sponsor-inner{justify-content:space-between;gap:9px;padding:6px 11px}.header-logo{width:39px;height:39px;flex-basis:39px}.header-brand-name{font-size:12px}.header-brand-subtitle{font-size:8px}.sponsor-coin{display:none}.sponsor-copy{flex:1;justify-content:center}.sponsor-message-window{width:auto;flex:1;min-height:34px}.sponsor-copy strong{font-size:10px;white-space:normal;text-align:center}.sponsor-cta{padding:9px 10px;font-size:8px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:65px;gap:9px;padding:9px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 38px}.search-wrap{width:auto;flex:1}.search-wrap input{height:39px;font-size:9px;padding-left:12px}.community-btn{width:38px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:36px;min-height:36px;flex:0 0 36px}main{padding:16px 13px 25px}.hero-panel{grid-template-columns:1fr;min-height:0;padding:23px 19px 13px;border-radius:21px}.hero-copy h2{font-size:32px}.hero-copy p{font-size:11px}.hero-art{min-height:195px;margin-top:3px}.hero-globe{width:min(100%,360px)}.hero-actions{gap:8px;margin-top:15px}.primary-cta,.secondary-cta{padding:11px 14px;font-size:9px}.section-heading h2{font-size:16px}.dashboard-grid{grid-template-columns:1fr;gap:11px}.dash-card{min-height:158px;padding:15px;border-radius:17px}.dash-card h3{font-size:13px}.dash-card p{font-size:10px}.card-art{width:115px;height:100px}.hub-bottom-band{grid-template-columns:1fr}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}.hub-ad-slot{margin:15px 0 3px}.hub-ad-banner{min-height:128px;grid-template-columns:minmax(0,1fr) 125px;gap:8px;padding:15px 16px;border-radius:16px}.hub-ad-copy h2{font-size:17px}.hub-ad-copy p{font-size:9px}.hub-ad-art{min-height:92px}.hub-ad-orbit{height:55px}.hub-ad-coin{width:34px;height:34px;font-size:17px}.hub-ad-chart{right:3%;width:75px}.hub-ad-coin--one{right:7%}.hub-ad-coin--two{left:0}}
-    @media(max-width:430px){.header-brand-name{font-size:10px}.header-brand-subtitle{font-size:7px}.header-brand{gap:6px}.header-logo{width:34px;height:34px;flex-basis:34px}.sponsor-copy strong{font-size:8px}.sponsor-cta{padding:8px;font-size:7px}.topbar{gap:7px}.community-dropdown{display:none}.hero-copy h2{font-size:29px}.hero-kicker{font-size:8px}.section-link{font-size:8px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}.hub-ad-topline{margin-left:2px;margin-right:2px}.hub-ad-format{display:none}.hub-ad-banner{grid-template-columns:1fr;min-height:142px;padding:15px 14px}.hub-ad-copy{max-width:78%}.hub-ad-copy h2{font-size:16px}.hub-ad-copy p{font-size:8px}.hub-ad-button{margin-top:8px;padding:7px 11px;font-size:8px}.hub-ad-art{position:absolute;right:1px;bottom:2px;width:120px;min-height:90px;opacity:.72}.hub-ad-chart{right:0;width:66px}}
+    .side-link:focus-visible,.primary-cta:focus-visible,.secondary-cta:focus-visible,.dash-card:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible,.hub-ad-banner:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+    @media(max-width:1250px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.dashboard-grid{gap:12px}.hub-bottom-band{grid-template-columns:1fr}}
+    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.hero-panel{grid-template-columns:minmax(0,1fr) minmax(230px,.8fr);padding:25px}.hero-copy h2{font-size:36px}.hero-art{min-height:220px}.dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:65px;gap:9px;padding:9px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 38px}.search-wrap{width:auto;flex:1}.search-wrap input{height:39px;font-size:9px;padding-left:12px}.community-btn{width:38px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:36px;min-height:36px;flex:0 0 36px}main{padding:16px 13px 25px}.hero-panel{grid-template-columns:1fr;min-height:0;padding:23px 19px 13px;border-radius:21px}.hero-copy h2{font-size:32px}.hero-copy p{font-size:11px}.hero-art{min-height:195px;margin-top:3px}.hero-globe{width:min(100%,360px)}.hero-actions{gap:8px;margin-top:15px}.primary-cta,.secondary-cta{padding:11px 14px;font-size:9px}.section-heading h2{font-size:16px}.dashboard-grid{grid-template-columns:1fr;gap:11px}.dash-card{min-height:158px;padding:15px;border-radius:17px}.dash-card h3{font-size:13px}.dash-card p{font-size:10px}.card-art{width:115px;height:100px}.hub-bottom-band{grid-template-columns:1fr}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}.hub-ad-slot{margin:15px 0 3px}.hub-ad-banner{min-height:128px;grid-template-columns:minmax(0,1fr) 125px;gap:8px;padding:15px 16px;border-radius:16px}.hub-ad-copy h2{font-size:17px}.hub-ad-copy p{font-size:9px}.hub-ad-art{min-height:92px}.hub-ad-orbit{height:55px}.hub-ad-coin{width:34px;height:34px;font-size:17px}.hub-ad-chart{right:3%;width:75px}.hub-ad-coin--one{right:7%}.hub-ad-coin--two{left:0}}
+    @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slot-megaphone{display:none}.slot-center-text strong{font-size:10px}.slot-center-text span{font-size:7px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:7px}.community-dropdown{display:none}.hero-copy h2{font-size:29px}.hero-kicker{font-size:8px}.section-link{font-size:8px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}.hub-ad-topline{margin-left:2px;margin-right:2px}.hub-ad-format{display:none}.hub-ad-banner{grid-template-columns:1fr;min-height:142px;padding:15px 14px}.hub-ad-copy{max-width:78%}.hub-ad-copy h2{font-size:16px}.hub-ad-copy p{font-size:8px}.hub-ad-button{margin-top:8px;padding:7px 11px;font-size:8px}.hub-ad-art{position:absolute;right:1px;bottom:2px;width:120px;min-height:90px;opacity:.72}.hub-ad-chart{right:0;width:66px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.text-flipper{transform:none!important}}
   </style>
 </head>
@@ -106,15 +278,35 @@
         <span class="header-logo"><img src="logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';"></span>
         <span><span class="header-brand-name">Total Crypto Hub</span><span class="header-brand-subtitle">by <b>Total Crypto Network</b></span></span>
       </a>
-      <span class="sponsor-coin" aria-hidden="true">₿</span>
-      <div class="sponsor-copy">
-        <span class="sponsor-eyebrow">PARTNERSHIP OPPORTUNITY</span>
-        <strong class="sponsor-message-window"><span class="text-flipper" id="topSponsorText" aria-live="off">Sponsor with Us on Total Crypto Hub</span></strong>
-        <span class="sponsor-divider" aria-hidden="true"></span>
-        <span class="sponsor-tagline">Grow Your Brand in the Crypto Community</span>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <a class="sponsor-slot-box" href="legal-pages/contact.html" aria-label="Sponsor Banner Area 728 by 90 or 970 by 90 pixels">
+        <span class="slot-megaphone" aria-hidden="true">📢</span>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="slot-center-text">
+          <strong>Sponsor Banner Area</strong>
+          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
+        </div>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <div class="sponsor-right-actions">
+        <a href="legal-pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
+        <a href="legal-pages/contact.html" class="sponsor-orb-btn" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
       </div>
-      <a href="legal-pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
-      <span class="sponsor-coin sponsor-coin--eth" aria-hidden="true">◆</span>
     </div>
   </section>
 
@@ -172,7 +364,7 @@
           <div class="dashboard-grid" id="dashboardGrid">
             <a href="depin-pages/depin.html" class="dash-card dash-card--depin" data-search="depin projects infrastructure nodes bandwidth sharing apps"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></div><span class="card-tag">57+ Projects</span></div><h3>DePIN Projects Hub</h3><p>Explore DePIN infrastructure projects and nodes. Discover bandwidth-sharing apps and protocols.</p><span class="card-action">Explore DePIN Nodes →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><path d="M70 10v93M58 103h24M63 96h14M70 12 52 100M70 12l18 88M51 46h38M57 68h26M70 12 47 33M70 12l23 21M20 35q20 20 0 40M10 26q32 27 0 56M120 35q-20 20 0 40M130 26q-32 27 0 56"/><circle cx="70" cy="12" r="6"/><circle cx="70" cy="103" r="5"/></svg></span></a>
             <a href="mobile-pages/mobile-mining.html" class="dash-card dash-card--community" data-search="community projects mobile apps participation rewards"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="card-tag">Growing Community</span></div><h3>Community Projects</h3><p>Discover innovative community initiatives, mobile apps and participation opportunities.</p><span class="card-action">View Projects →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><circle cx="70" cy="35" r="14"/><circle cx="36" cy="46" r="10"/><circle cx="104" cy="46" r="10"/><path d="M38 101V87a31 31 0 0 1 62 0v14zM14 98V86a22 22 0 0 1 26-22M126 98V86a22 22 0 0 0-26-22M51 54q19 12 38 0"/></svg></span></a>
-            <a href="airdrop-pages/airdrops.html" class="dash-card dash-card--airdrops" data-search="airdrops campaigns testnet rewards tokens"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8ZM12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></div><span class="card-tag">Campaign Updates</span></div><h3>Airdrops &amp; Campaigns</h3><p>Find incentive testnets, early network participation tasks and curated campaign updates.</p><span class="card-action">Explore Airdrops →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><path d="M70 40V93M70 43 28 14l-15 10 28 54 29-17M70 43 112 14l15 10-28 54-29-17M47 84 70 103l23-19"/><rect x="48" y="84" width="44" height="27" rx="4"/><path d="M48 94h44M70 84v27"/><circle cx="70" cy="29" r="5"/></svg></span></a>
+            <a href="airdrop-pages/airdrops.html" class="dash-card dash-card--airdrops" data-search="airdrops campaigns testnet rewards tokens"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8ZM12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></div><span class="card-tag">Campaign Updates</span></div><h3>Airdrops &amp; Campaigns</h3><p>Find incentive testnets, early network participation tasks and curated campaign updates.</p><span class="card-action">Explore Airdrops →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><path d="M70 40V93M70 43 28 14l-15 10 28 54 29-17M70 43 112 14l15 10-28 54-29-17M47 84 70 103l23-19"/><rect x="48" y="84" width="44" height="27" rx="4"/><path d="M48 94h44M70 84v27"/><circle cx="70" cy="29" r="5"/></svg></span></a>
             <a href="wallet-pages/wallets.html" class="dash-card dash-card--wallets" data-search="wallets exchanges self custodial crypto trading assets"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 1 1 0-4h14v4M3 5v14a2 2 0 0 0 2 2h16v-5M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></div><span class="card-tag">Wallet Resources</span></div><h3>Wallets &amp; Exchanges</h3><p>Explore self-custodial wallets and exchange resources for managing digital assets.</p><span class="card-action">Open Wallets →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><rect x="23" y="32" width="91" height="64" rx="12"/><path d="M23 47h91M82 61h39v24H82q-12 0-12-12t12-12z"/><circle cx="91" cy="73" r="4"/><circle cx="99" cy="25" r="13"/><path d="M99 18v14M95 22h8"/></svg></span></a>
             <a href="token-pages/token-checker.html" class="dash-card dash-card--checker" data-search="token checker contract security liquidity safety"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></div><span class="card-tag">Check Safety</span></div><h3>Token Checker</h3><p>Review smart-contract information, liquidity details and network data across supported chains.</p><span class="card-action">Launch Checker →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><path d="M70 14 108 29v27q0 31-38 52Q32 87 32 56V29zM50 60l14 14 28-31M70 28v25"/></svg></span></a>
             <a href="earning-pages/earning-calculator.html" class="dash-card dash-card--calculator" data-search="earning calculator rewards passive income device costs token payouts"><div class="card-topline"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></div><span class="card-tag">Plan Your Earnings</span></div><h3>Earning Calculator</h3><p>Estimate data-sharing rewards, device power costs and potential token payouts.</p><span class="card-action">Calculate Rewards →</span><span class="card-art" aria-hidden="true"><svg viewBox="0 0 140 120"><rect x="39" y="13" width="62" height="94" rx="10"/><rect x="49" y="24" width="42" height="18" rx="4"/><path d="M52 57h7M70 57h7M88 57h1M52 75h7M70 75h7M88 75h1M52 93h7M70 93h7M88 93h1"/><circle cx="109" cy="88" r="15"/><path d="M109 79v18M104 84h10"/></svg></span></a>
@@ -316,12 +508,6 @@
           }
         });
 
-        /*
-          IMPORTANT BUG FIX:
-          Keep each banner's index inside its own rotator. In the earlier version,
-          the index was incremented inside a timeout-local object, so it reset and
-          could repeatedly show the same phrase instead of cycling through all lines.
-        */
         const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const topPhrases = [
           "Sponsor with Us on Total Crypto Hub",
