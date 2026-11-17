@@ -13,7 +13,7 @@
   <style>
     :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:74px;--shadow:0 12px 32px rgba(20,76,66,.07)}
     [data-theme="dark"]{color-scheme:dark;--bg:#081a20;--surface:#10272c;--surface-soft:#143139;--border:#254b4b;--heading:#f0fff9;--body:#d4eee5;--muted:#91b3ad;--green:#20d99a;--green-dark:#0cad78;--green-light:#5df0bd;--green-soft:#123e34;--teal:#22cbbb;--navy:#061c24;--shadow:0 14px 34px rgba(0,0,0,.22)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}
 
     /* LIGHT MINT SPONSOR HEADER BAR (MATCHES WEBSITE THEME) */
     .sponsor-strip{
@@ -209,7 +209,7 @@
     .main-column{min-height:100vh;margin-left:var(--sidebar-width)}.mobile-menu-btn{display:none;width:38px;height:38px;border:1px solid var(--border);border-radius:12px;color:var(--heading);background:var(--surface)}.topbar{position:sticky;top:var(--sponsor-height);z-index:100;min-height:66px;display:flex;align-items:center;gap:18px;padding:10px 30px;background:color-mix(in srgb,var(--surface) 95%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}.search-wrap{position:relative;width:min(540px,52vw)}.search-wrap input{width:100%;height:41px;padding:0 44px 0 17px;border:1px solid var(--border);border-radius:999px;outline:none;color:var(--heading);background:var(--surface-soft);font-size:11px;font-weight:600}.search-wrap input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(8,168,107,.1)}.search-wrap input::placeholder{color:var(--muted)}.search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--heading);font-size:18px;pointer-events:none}.topbar-spacer{flex:1}.community-dropdown{position:relative}.community-btn,.icon-btn{min-height:38px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--border);border-radius:999px;color:var(--heading);background:var(--surface);font-size:11px;font-weight:800;box-shadow:0 3px 9px rgba(20,45,75,.035)}.community-btn{padding:0 16px}.icon-btn{width:38px;border-radius:50%;font-size:17px}.community-btn:hover,.icon-btn:hover{border-color:var(--green);color:var(--green)}.dropdown-content{display:none;position:absolute;z-index:150;top:calc(100% + 10px);right:0;min-width:195px;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--surface);box-shadow:0 14px 32px rgba(0,0,0,.14)}.dropdown-content.show{display:block;animation:fadeIn .18s ease-out}@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.dropdown-content a{display:flex;gap:9px;padding:13px 15px;border-bottom:1px solid var(--border);color:var(--heading);text-decoration:none;font-size:11px;font-weight:700}.dropdown-content a:last-child{border-bottom:0}.dropdown-content a:hover{color:var(--green);background:var(--green-soft)}.mobile-overlay{display:none}
     main{width:100%;max-width:1600px;margin:0 auto;padding:18px 25px 32px}
 
-    /* COMPACT HERO PANEL (SMALLER HEIGHT & CLEANER SPACING) */
+    /* COMPACT HERO PANEL */
     .hero-panel{
       min-height:208px;
       position:relative;
@@ -262,127 +262,59 @@
     .hero-float.three{--r:15deg;top:22%;left:8%;background:linear-gradient(145deg,#14f195,#9945ff);animation-delay:.6s}
     .hero-float.four{--r:-12deg;bottom:22%;right:8%;background:linear-gradient(145deg,#08a86b,#1687ff);font-size:14px;animation-delay:1.8s}
 
-    /* RECOMMENDED PROJECTS & EARNING OPPORTUNITIES */
-    .section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:20px 0 14px}
+    /* SECTION HEADING */
+    .section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:20px 0 14px;flex-wrap:wrap}
     .section-title-wrap{position:relative;padding-left:14px}
     .section-title-wrap::before{content:"";position:absolute;left:0;top:2px;bottom:3px;width:5px;border-radius:999px;background:linear-gradient(#08a86b,#34e7b2)}
     .section-heading h2{margin:0;color:var(--heading);font-size:19px;font-weight:800;letter-spacing:-.45px}
     .section-heading p{margin:4px 0 0;color:var(--muted);font-size:11px}
-    .section-link{color:var(--green-dark);text-decoration:none;font-size:10.5px;font-weight:800;white-space:nowrap}
-    .section-link:hover{color:var(--teal)}
+    .annual-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--green-soft);color:var(--green-dark);border:1px solid #b5f0d6;font-size:10px;font-weight:800}
+    [data-theme="dark"] .annual-badge{color:var(--green-light);border-color:#266852}
 
-    .recommended-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:14px;
-    }
-    .rec-card{
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      padding:18px 20px;
-      border:1px solid var(--border);
-      border-top:3px solid var(--green);
-      border-radius:20px;
-      background:linear-gradient(145deg,var(--surface-soft) 0%,var(--surface) 75%);
-      box-shadow:0 8px 22px rgba(8,168,107,.06);
-      text-decoration:none;
-      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
-    }
-    .rec-card:hover{
-      transform:translateY(-4px);
-      border-color:var(--green);
-      box-shadow:0 14px 28px rgba(8,168,107,.13);
-    }
-    .rec-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:11px;
-    }
-    .rec-identity{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-    }
-    .rec-logo{
-      width:44px;
-      height:44px;
-      flex:0 0 44px;
-      border-radius:14px;
-      overflow:hidden;
-      display:grid;
-      place-items:center;
-      background:var(--green-soft);
-      border:1px solid #b5f0d6;
-      color:var(--green-dark);
-      font-size:18px;
-      font-weight:800;
-    }
-    [data-theme="dark"] .rec-logo{color:var(--green-light);border-color:#266852}
-    .rec-logo img{width:100%;height:100%;object-fit:cover}
-    .rec-title-wrap h3{
-      margin:0;
-      color:var(--heading);
-      font-size:15px;
-      font-weight:800;
-      line-height:1.25;
-    }
-    .rec-title-wrap span{
-      display:block;
-      margin-top:2px;
-      color:var(--green-dark);
-      font-size:10.5px;
-      font-weight:700;
-    }
-    [data-theme="dark"] .rec-title-wrap span{color:var(--green-light)}
-    .rec-badge{
-      padding:5px 10px;
-      border-radius:999px;
-      background:var(--green-soft);
-      color:var(--green-dark);
-      border:1px solid #b2eed5;
-      font-size:9px;
-      font-weight:800;
-      white-space:nowrap;
-    }
-    [data-theme="dark"] .rec-badge{color:var(--green-light);border-color:#256650}
-    .rec-card p{
-      margin:0 0 13px;
-      color:var(--body);
-      font-size:11.5px;
-      line-height:1.62;
-      flex:1;
-    }
-    .rec-footer{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding-top:10px;
-      border-top:1px solid var(--border);
-    }
-    .rec-meta{
-      font-size:10px;
-      font-weight:800;
-      color:var(--muted);
-    }
-    .rec-meta b{color:var(--heading)}
-    .rec-cta{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:7px 13px;
-      border-radius:999px;
-      background:linear-gradient(135deg,#08a86b,#06c77a);
-      color:#ffffff;
-      font-size:10px;
-      font-weight:800;
-    }
-    .rec-card[hidden]{display:none!important}
+    /* ANNUAL COMMUNITY POLL & REVIEWS */
+    .poll-reviews-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:15px}
+    .panel-box{background:var(--surface);border:1px solid var(--border);border-radius:21px;padding:18px 20px;box-shadow:var(--shadow)}
+    .panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+    .panel-head h3{margin:0;color:var(--heading);font-size:14.5px;font-weight:800}
+    .panel-head span{font-size:10px;font-weight:800;color:var(--green-dark)}
+    [data-theme="dark"] .panel-head span{color:var(--green-light)}
+
+    .poll-list{display:grid;gap:9px;max-height:430px;overflow-y:auto;padding-right:4px}
+    .poll-list::-webkit-scrollbar{width:5px}.poll-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:8px}
+    .poll-item{padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:var(--surface-soft);transition:border-color .18s}
+    .poll-item:hover{border-color:var(--green)}
+    .poll-item.voted-choice{border-color:var(--green);box-shadow:0 4px 14px rgba(8,168,107,.12)}
+    .poll-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+    .poll-proj-left{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 220px}
+    .poll-logo{width:32px;height:32px;flex:0 0 32px;border-radius:10px;overflow:hidden;display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);font-size:10.5px;font-weight:800;color:var(--green-dark)}
+    .poll-logo img{width:100%;height:100%;object-fit:cover}
+    .poll-name-wrap strong{display:block;font-size:11.5px;font-weight:800;color:var(--heading)}
+    .poll-name-wrap small{display:block;font-size:9px;color:var(--muted);font-weight:600}
+    .poll-actions-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .poll-stats-text{font-size:10px;font-weight:800;color:var(--heading);text-align:right}
+    .poll-stats-text small{display:block;color:var(--muted);font-size:8.5px;font-weight:700}
+    .vote-btn{padding:6px 12px;border-radius:999px;border:1px solid var(--green);background:var(--surface);color:var(--green-dark);font-size:10px;font-weight:800;transition:.18s ease}
+    [data-theme="dark"] .vote-btn{color:var(--green-light)}
+    .vote-btn:hover,.vote-btn.active{background:linear-gradient(135deg,#08a86b,#06c77a);color:#ffffff;border-color:transparent}
+    .poll-bar-track{width:100%;height:6px;border-radius:999px;background:rgba(8,168,107,.12);overflow:hidden}
+    .poll-bar-fill{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#08a86b,#20d99a);transition:width .45s ease}
+    .poll-status-note{margin-top:10px;font-size:10px;color:var(--muted);font-weight:700}
+
+    /* REVIEWS PANEL */
+    .reviews-feed{display:grid;gap:9px;max-height:295px;overflow-y:auto;padding-right:3px;margin-bottom:13px}
+    .reviews-feed::-webkit-scrollbar{width:4px}.reviews-feed::-webkit-scrollbar-thumb{background:var(--border);border-radius:8px}
+    .review-card{padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:var(--surface-soft)}
+    .review-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+    .review-user{font-size:11px;font-weight:800;color:var(--heading)}
+    .review-tag{padding:2px 7px;border-radius:999px;background:var(--green-soft);color:var(--green-dark);font-size:8.5px;font-weight:800;margin-left:5px}
+    [data-theme="dark"] .review-tag{color:var(--green-light)}
+    .review-stars{color:#f59e0b;font-size:10px;letter-spacing:1px}
+    .review-card p{margin:0;font-size:10.5px;line-height:1.5;color:var(--body)}
+    .review-form{display:grid;gap:8px;padding-top:11px;border-top:1px solid var(--border)}
+    .review-row{display:grid;grid-template-columns:1fr 1.2fr auto;gap:8px}
+    .review-input,.review-select{width:100%;height:35px;padding:0 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface-soft);color:var(--heading);font-size:10.5px;font-weight:600;outline:none}
+    .review-input:focus,.review-select:focus{border-color:var(--green)}
+    .review-submit{height:35px;padding:0 14px;border-radius:10px;border:0;background:linear-gradient(135deg,#08a86b,#06c77a);color:#fff;font-size:10.5px;font-weight:800;white-space:nowrap}
     .empty-search{display:none;margin-top:15px;padding:22px;text-align:center;border:1px dashed var(--border);border-radius:15px;color:var(--muted);font-size:12px}
 
     /* Bottom metrics and community (Exact Original) */
@@ -401,11 +333,11 @@
     .footer-links a:hover{color:var(--green)}
 
     /* Accessibility and responsive behaviour */
-    .side-link:focus-visible,.primary-cta:focus-visible,.secondary-cta:focus-visible,.rec-card:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible{outline:3px solid var(--green);outline-offset:3px}
-    @media(max-width:1250px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.hub-bottom-band{grid-template-columns:1fr}}
-    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.hero-panel{grid-template-columns:minmax(0,1fr) minmax(200px,.75fr);padding:18px 20px}.hero-copy h2{font-size:25px}.hero-art{min-height:155px}.recommended-grid{grid-template-columns:1fr}}
-    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:62px;gap:9px;padding:9px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 38px}.search-wrap{width:auto;flex:1}.search-wrap input{height:39px;font-size:9px;padding-left:12px}.community-btn{width:38px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:36px;min-height:36px;flex:0 0 36px}main{padding:15px 13px 25px}.hero-panel{grid-template-columns:1fr;min-height:0;padding:18px 16px 14px;border-radius:19px}.hero-copy h2{font-size:23px}.hero-copy p{font-size:11px}.hero-art{min-height:150px;margin-top:4px}.hero-globe{width:min(100%,270px)}.hero-actions{gap:8px;margin-top:12px}.primary-cta,.secondary-cta{padding:9px 14px;font-size:9.5px}.section-heading h2{font-size:16px}.hub-bottom-band{grid-template-columns:1fr}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
-    @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slot-megaphone{display:none}.slot-center-text strong{font-size:10px}.slot-center-text span{font-size:7px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:7px}.community-dropdown{display:none}.hero-copy h2{font-size:21px}.hero-kicker{font-size:8px}.section-link{font-size:8.5px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}}
+    .side-link:focus-visible,.primary-cta:focus-visible,.secondary-cta:focus-visible,.vote-btn:focus-visible,.review-submit:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+    @media(max-width:1250px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.poll-reviews-grid,.hub-bottom-band{grid-template-columns:1fr}}
+    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.hero-panel{grid-template-columns:minmax(0,1fr) minmax(200px,.75fr);padding:18px 20px}.hero-copy h2{font-size:25px}.hero-art{min-height:155px}}
+    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:62px;gap:9px;padding:9px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 38px}.search-wrap{width:auto;flex:1}.search-wrap input{height:39px;font-size:9px;padding-left:12px}.community-btn{width:38px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:36px;min-height:36px;flex:0 0 36px}main{padding:15px 13px 25px}.hero-panel{grid-template-columns:1fr;min-height:0;padding:18px 16px 14px;border-radius:19px}.hero-copy h2{font-size:23px}.hero-copy p{font-size:11px}.hero-art{min-height:150px;margin-top:4px}.hero-globe{width:min(100%,270px)}.hero-actions{gap:8px;margin-top:12px}.primary-cta,.secondary-cta{padding:9px 14px;font-size:9.5px}.section-heading h2{font-size:16px}.review-row{grid-template-columns:1fr}.hub-bottom-band{grid-template-columns:1fr}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
+    @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slot-megaphone{display:none}.slot-center-text strong{font-size:10px}.slot-center-text span{font-size:7px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:7px}.community-dropdown{display:none}.hero-copy h2{font-size:21px}.hero-kicker{font-size:8px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
@@ -473,7 +405,7 @@
       <!-- TOPBAR -->
       <header class="topbar">
         <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-        <label class="search-wrap" aria-label="Search Total Crypto Hub projects"><input id="globalSearch" type="search" placeholder="Search recommended projects, DePIN nodes or rewards..." autocomplete="off"><span class="search-icon" aria-hidden="true">⌕</span></label>
+        <label class="search-wrap" aria-label="Search DePIN projects in annual poll"><input id="globalSearch" type="search" placeholder="Search Titan, Grass, U2U, BixBery, Hyra, Silencio, Roam..." autocomplete="off"><span class="search-icon" aria-hidden="true">⌕</span></label>
         <span class="topbar-spacer"></span>
         <div class="community-dropdown"><button class="community-btn" type="button" id="communityButton" aria-expanded="false">👥 Community</button><div class="dropdown-content" id="communityMenu"><a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a><a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a><a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a><a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a></div></div>
         <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
@@ -485,10 +417,10 @@
           <div class="hero-copy">
             <span class="hero-kicker">● Official Hub · Total Crypto Network</span>
             <h2 id="heroTitle">Empowering Our Community with <span>Real Web3 Opportunities</span></h2>
-            <p>Explore verified DePIN nodes, active earning projects, airdrop updates, and practical Web3 tools in one clean hub. Check official links and guides before participating.</p>
+            <p>Vote for the best rewarding DePIN projects of <span class="auto-year">2026</span> and read or submit community reviews in one clean hub. Automatically updates to <span class="next-year">2027</span> next year.</p>
             <div class="hero-actions">
               <a href="depin-pages/depin.html" class="primary-cta">🚀 Explore All Projects →</a>
-              <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer" class="secondary-cta">▶ Watch Guides</a>
+              <a href="#annualPollSection" class="secondary-cta">🗳️ Vote &amp; Review (<span class="auto-year">2026</span>)</a>
             </div>
           </div>
           <div class="hero-art" aria-hidden="true">
@@ -500,94 +432,50 @@
           </div>
         </section>
 
-        <!-- RECOMMENDED PROJECTS & EARNING OPPORTUNITIES -->
-        <section class="explore-section" aria-labelledby="exploreHeading">
+        <!-- ANNUAL COMMUNITY POLL & REVIEWS (AUTO-UPDATES BY YEAR: 2026 -> 2027) -->
+        <section class="explore-section" id="annualPollSection" aria-labelledby="pollHeading">
           <div class="section-heading">
             <div class="section-title-wrap">
-              <h2 id="exploreHeading">Recommended Projects &amp; Active Opportunities</h2>
-              <p>Handpicked earning projects and verified sections tested for our community.</p>
+              <h2 id="pollHeading">Top Rewarding DePIN Projects of <span class="auto-year">2026</span></h2>
+              <p>Vote for the best rewarding DePIN project of <span class="auto-year">2026</span> and share your review. Automatically switches to <span class="next-year">2027</span> next year.</p>
             </div>
-            <a href="depin-pages/depin.html" class="section-link">View all 57+ projects →</a>
+            <span class="annual-badge">📅 Annual Poll · <span class="auto-year">2026</span></span>
           </div>
 
-          <div class="recommended-grid" id="dashboardGrid">
-            <!-- RECOMMENDED PROJECT 1: QUALOO NETWORK -->
-            <a href="projects/qualoo.html" class="rec-card" data-search="qualoo network qxt recommended depin earning connectivity code p6jy5a">
-              <div class="rec-top">
-                <div class="rec-identity">
-                  <div class="rec-logo">
-                    <img src="logos/qualoo.png" alt="Qualoo Network" onerror="this.style.display='none';this.parentElement.textContent='QXT';">
-                  </div>
-                  <div class="rec-title-wrap">
-                    <h3>Qualoo Network ($QXT)</h3>
-                    <span>Connectivity &amp; Network Mapping DePIN</span>
-                  </div>
-                </div>
-                <span class="rec-badge">⭐ Top Pick</span>
+          <div class="poll-reviews-grid">
+            <!-- LEFT: LIVE ANNUAL POLL -->
+            <div class="panel-box">
+              <div class="panel-head">
+                <h3>🗳️ <span class="auto-year">2026</span> Community Reward Poll</h3>
+                <span id="totalVotesLabel">Total Votes: 0</span>
               </div>
-              <p>Earn points by running ~5-minute Global Connectivity Tests and network mapping on mobile. Enter referral code <strong>P6JY5A</strong> during registration for +200 bonus points.</p>
-              <div class="rec-footer">
-                <span class="rec-meta">Bonus Code: <b>P6JY5A (+200 Pts)</b></span>
-                <span class="rec-cta">View Details →</span>
-              </div>
-            </a>
+              <div class="poll-list" id="pollList"></div>
+              <p class="poll-status-note" id="pollStatusNote">Voting updates live percentages and review/feedback counts for <span class="auto-year">2026</span>.</p>
+            </div>
 
-            <!-- RECOMMENDED CATEGORY 2: ACTIVE DEPIN NODES -->
-            <a href="depin-pages/depin.html" class="rec-card" data-search="depin bandwidth sharing passive nodes desktop mobile earning">
-              <div class="rec-top">
-                <div class="rec-identity">
-                  <div class="rec-logo">⚡</div>
-                  <div class="rec-title-wrap">
-                    <h3>Active DePIN Bandwidth Nodes</h3>
-                    <span>57+ Curated Infrastructure Projects</span>
-                  </div>
+            <!-- RIGHT: COMMUNITY REVIEWS & RATING FORM -->
+            <div class="panel-box">
+              <div class="panel-head">
+                <h3>⭐ <span class="auto-year">2026</span> Community Reviews</h3>
+                <span id="totalReviewsLabel">Reviews &amp; Feedback: 0</span>
+              </div>
+              <div class="reviews-feed" id="reviewsFeed"></div>
+              <form class="review-form" id="reviewForm">
+                <div class="review-row">
+                  <input type="text" class="review-input" id="reviewerName" placeholder="Your name (optional)" maxlength="30">
+                  <select class="review-select" id="reviewProjectSelect" aria-label="Select project for review"></select>
+                  <select class="review-select" id="reviewRatingSelect" aria-label="Select star rating">
+                    <option value="5">★★★★★ (5)</option>
+                    <option value="4">★★★★☆ (4)</option>
+                    <option value="3">★★★☆☆ (3)</option>
+                  </select>
                 </div>
-                <span class="rec-badge">🔥 Trending</span>
-              </div>
-              <p>Browse verified bandwidth-sharing and sensor DePIN projects with clear setup instructions, supported devices, and official download portals in one place.</p>
-              <div class="rec-footer">
-                <span class="rec-meta">Directory: <b>57+ Active Nodes</b></span>
-                <span class="rec-cta">Explore Nodes →</span>
-              </div>
-            </a>
-
-            <!-- RECOMMENDED CATEGORY 3: MOBILE EARNING APPS -->
-            <a href="mobile-pages/mobile-mining.html" class="rec-card" data-search="mobile mining smartphone earning apps community projects">
-              <div class="rec-top">
-                <div class="rec-identity">
-                  <div class="rec-logo">📱</div>
-                  <div class="rec-title-wrap">
-                    <h3>Mobile Earning &amp; Mining Apps</h3>
-                    <span>Smartphone-Friendly Daily Rewards</span>
-                  </div>
+                <div class="review-row" style="grid-template-columns:1fr auto;">
+                  <input type="text" class="review-input" id="reviewTextInput" placeholder="Write a review about rewards or node experience..." maxlength="160" required>
+                  <button type="submit" class="review-submit">Post Review</button>
                 </div>
-                <span class="rec-badge">✓ Mobile Ready</span>
-              </div>
-              <p>Discover lightweight mobile apps and community-tested networks that run smoothly on Android devices without heavy battery or hardware requirements.</p>
-              <div class="rec-footer">
-                <span class="rec-meta">Platform: <b>Android &amp; Mobile</b></span>
-                <span class="rec-cta">Open Mobile List →</span>
-              </div>
-            </a>
-
-            <!-- RECOMMENDED CATEGORY 4: AIRDROPS & CAMPAIGNS -->
-            <a href="airdrop-pages/airdrops.html" class="rec-card" data-search="airdrops incentivized testnets free rewards campaigns">
-              <div class="rec-top">
-                <div class="rec-identity">
-                  <div class="rec-logo">🎁</div>
-                  <div class="rec-title-wrap">
-                    <h3>Verified Airdrops &amp; Testnets</h3>
-                    <span>Early Participation &amp; Points Campaigns</span>
-                  </div>
-                </div>
-                <span class="rec-badge">⚡ Early Access</span>
-              </div>
-              <p>Join early-stage Web3 testnets and points campaigns with step-by-step participation details and verified official links to avoid fake portals.</p>
-              <div class="rec-footer">
-                <span class="rec-meta">Status: <b>Updated Regularly</b></span>
-                <span class="rec-cta">View Airdrops →</span>
-              </div>
-            </a>
+              </form>
+            </div>
           </div>
         </section>
 
@@ -614,7 +502,7 @@
             <img src="logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
             <span>Total Crypto Hub</span>
           </a>
-          <p class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</p>
+          <p class="footer-copy">&copy; <span class="auto-year">2026</span> Total Crypto Network. All rights reserved.</p>
           <nav class="footer-links" aria-label="Footer navigation">
             <a href="index.html">Home</a>
             <a href="legal-pages/about.html">About Us</a>
@@ -631,6 +519,102 @@
   <script>
     (() => {
       "use strict";
+
+      const CURRENT_YEAR = new Date().getFullYear();
+      const STORAGE_KEY = `tch_annual_poll_v2_${CURRENT_YEAR}`;
+
+      // All requested DePIN & earning projects mapped cleanly
+      const ANNUAL_POLL_PROJECTS = [
+        { id: "titan", name: "Titan Network", sub: "Edge Routing, Bandwidth & Storage", baseVotes: 64, baseReviews: 12 },
+        { id: "u2u", name: "U2U Network", sub: "DePIN Subnet Infrastructure", baseVotes: 58, baseReviews: 10 },
+        { id: "bixberry", name: "BixBery (Bixberry)", sub: "Mobile Background Mining", baseVotes: 46, baseReviews: 8 },
+        { id: "hyra", name: "Hyra Network", sub: "PC & Mobile Compute Node", baseVotes: 42, baseReviews: 7 },
+        { id: "grass", name: "Grass Network", sub: "Decentralized AI Data Layer", baseVotes: 72, baseReviews: 15 },
+        { id: "over_protocol", name: "Over Protocol", sub: "Decentralized Node & Network", baseVotes: 39, baseReviews: 6 },
+        { id: "swash", name: "Swash", sub: "Data Monetization Extension", baseVotes: 37, baseReviews: 6 },
+        { id: "kulu_qualoo", name: "Kulu / Qualoo Network", sub: "Internet Quality & Connectivity Mapping", baseVotes: 49, baseReviews: 9 },
+        { id: "generate_gener8", name: "Generate (Gener8)", sub: "Passive Browsing & Rewards", baseVotes: 35, baseReviews: 5 },
+        { id: "aprok_aro", name: "APROK (ARO Protocol)", sub: "AI & Data Processing", baseVotes: 34, baseReviews: 5 },
+        { id: "375ai", name: "375AI", sub: "Edge AI Sensor Network", baseVotes: 41, baseReviews: 7 },
+        { id: "mysterium_node", name: "Mysterium Node", sub: "Residential Node Sharing", baseVotes: 38, baseReviews: 6 },
+        { id: "mysterium_network", name: "Mysterium Network", sub: "dVPN Residential Bandwidth", baseVotes: 44, baseReviews: 8 },
+        { id: "acurast", name: "Acurast", sub: "Smartphone Compute Cloud", baseVotes: 40, baseReviews: 7 },
+        { id: "sweetcoin_sweatcoin", name: "Sweetcoin (Sweatcoin)", sub: "Move-to-Earn Activity Node", baseVotes: 43, baseReviews: 8 },
+        { id: "nodal_network", name: "Nodal Network", sub: "Decentralized Node Infrastructure", baseVotes: 33, baseReviews: 5 },
+        { id: "repocket", name: "Repocket", sub: "Spare Internet Monetization", baseVotes: 36, baseReviews: 6 },
+        { id: "silencio", name: "Silencio", sub: "Hyperlocal Noise Level Mapping", baseVotes: 45, baseReviews: 8 },
+        { id: "coin_app", name: "Coin App (COIN App)", sub: "Geomining & Physical Validation", baseVotes: 38, baseReviews: 6 },
+        { id: "slice", name: "Slice", sub: "Browser Attention Monetization", baseVotes: 32, baseReviews: 5 },
+        { id: "gaganode", name: "Gaganode (GaGaNode)", sub: "IP Residential Mining", baseVotes: 37, baseReviews: 6 },
+        { id: "packetstream", name: "PacketStream", sub: "Residential Peer Proxy Node", baseVotes: 35, baseReviews: 6 },
+        { id: "honeygain", name: "Honeygain", sub: "Residential Internet Monetization", baseVotes: 61, baseReviews: 11 },
+        { id: "pounce_pawns", name: "Pounce.app (Pawns.app)", sub: "Bandwidth Sharing & Surveys", baseVotes: 47, baseReviews: 8 },
+        { id: "earnfm", name: "EarnFM (Earn.fm)", sub: "Automated Proxy Monetization", baseVotes: 36, baseReviews: 6 },
+        { id: "proxyrack", name: "Proxyrack", sub: "Data Routing Node", baseVotes: 31, baseReviews: 4 },
+        { id: "bitping", name: "Bitping", sub: "Network & Server Monitoring Node", baseVotes: 34, baseReviews: 5 },
+        { id: "ur_network", name: "UR Network (URnetwork)", sub: "Privacy Routing Node", baseVotes: 33, baseReviews: 5 },
+        { id: "uplink", name: "Uplink", sub: "Decentralized Connectivity Mesh", baseVotes: 35, baseReviews: 6 },
+        { id: "roam", name: "Roam", sub: "Open WiFi Roaming Network", baseVotes: 44, baseReviews: 8 }
+      ];
+
+      const DEFAULT_REVIEWS = [
+        { id: "def_1", user: "Vikash R.", projectId: "grass", projectName: "Grass Network", rating: 5, text: "Consistent points tracking and smooth background session performance." },
+        { id: "def_2", user: "Sandeep T.", projectId: "titan", projectName: "Titan Network", rating: 5, text: "Solid edge and bandwidth node activity with clean setup flow." },
+        { id: "def_3", user: "Pradeep K.", projectId: "honeygain", projectName: "Honeygain", rating: 4, text: "Steady passive bandwidth sharing across active connections." }
+      ];
+
+      function syncYearLabels() {
+        document.querySelectorAll(".auto-year").forEach(el => { el.textContent = String(CURRENT_YEAR); });
+        document.querySelectorAll(".next-year").forEach(el => { el.textContent = String(CURRENT_YEAR + 1); });
+      }
+
+      function loadState() {
+        const votes = {};
+        const extraReviews = {};
+        ANNUAL_POLL_PROJECTS.forEach(p => {
+          votes[p.id] = p.baseVotes;
+          extraReviews[p.id] = 0;
+        });
+
+        let state = {
+          votes,
+          extraReviews,
+          userVotedId: null,
+          reviews: DEFAULT_REVIEWS.slice()
+        };
+
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === "object") {
+              state.votes = Object.assign(votes, parsed.votes || {});
+              state.extraReviews = Object.assign(extraReviews, parsed.extraReviews || {});
+              state.userVotedId = parsed.userVotedId || null;
+              if (Array.isArray(parsed.reviews) && parsed.reviews.length) {
+                state.reviews = parsed.reviews;
+              }
+            }
+          }
+        } catch (_) { /* Fallback to default state */ }
+
+        return state;
+      }
+
+      function saveState(state) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) { /* Ignore storage quota errors */ }
+      }
+
+      function getStarString(rating) {
+        const r = Math.max(1, Math.min(5, Number(rating) || 5));
+        return "★".repeat(r) + "☆".repeat(5 - r);
+      }
+
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, ch => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        }[ch]));
+      }
 
       function applyTheme(theme) {
         const safeTheme = theme === "dark" ? "dark" : "light";
@@ -656,6 +640,8 @@
       }
 
       window.addEventListener("DOMContentLoaded", () => {
+        syncYearLabels();
+
         let savedTheme = "light";
         try { savedTheme = localStorage.getItem("theme") || "light"; } catch (_) { /* Use light theme. */ }
         applyTheme(savedTheme);
@@ -663,23 +649,167 @@
         const themeToggle = document.getElementById("themeToggle");
         if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
 
-        /* SEARCH: filter recommended cards and display a no-results message. */
+        const pollState = loadState();
+        const pollListEl = document.getElementById("pollList");
+        const reviewsFeedEl = document.getElementById("reviewsFeed");
+        const reviewProjectSelect = document.getElementById("reviewProjectSelect");
+        const totalVotesLabel = document.getElementById("totalVotesLabel");
+        const totalReviewsLabel = document.getElementById("totalReviewsLabel");
+        const pollStatusNote = document.getElementById("pollStatusNote");
         const search = document.getElementById("globalSearch");
-        const cards = Array.from(document.querySelectorAll(".rec-card"));
         const emptyMessage = document.getElementById("emptySearch");
         const exploreSection = document.querySelector(".explore-section");
+
+        if (reviewProjectSelect) {
+          reviewProjectSelect.innerHTML = ANNUAL_POLL_PROJECTS.map(p =>
+            `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`
+          ).join("");
+        }
+
+        function renderPollAndReviews(query = "") {
+          const q = query.trim().toLowerCase();
+          const totalVotes = ANNUAL_POLL_PROJECTS.reduce((sum, p) => sum + (Number(pollState.votes[p.id]) || 0), 0);
+          const totalReviewsFeedback = ANNUAL_POLL_PROJECTS.reduce((sum, p) => sum + p.baseReviews + (Number(pollState.extraReviews[p.id]) || 0), 0);
+
+          if (totalVotesLabel) totalVotesLabel.textContent = `Total Votes: ${totalVotes}`;
+          if (totalReviewsLabel) totalReviewsLabel.textContent = `Reviews & Feedback: ${totalReviewsFeedback}`;
+
+          if (pollListEl) {
+            const filtered = ANNUAL_POLL_PROJECTS.filter(p => {
+              if (!q) return true;
+              return `${p.name} ${p.sub}`.toLowerCase().includes(q);
+            });
+
+            if (exploreSection) exploreSection.hidden = Boolean(q) && filtered.length === 0;
+            if (emptyMessage) emptyMessage.style.display = (q && filtered.length === 0) ? "block" : "none";
+
+            pollListEl.innerHTML = filtered.map(p => {
+              const vCount = Number(pollState.votes[p.id]) || 0;
+              const pct = totalVotes > 0 ? ((vCount / totalVotes) * 100).toFixed(1) : "0.0";
+              const isVoted = pollState.userVotedId === p.id;
+              const revCount = p.baseReviews + (Number(pollState.extraReviews[p.id]) || 0);
+
+              return `
+                <div class="poll-item ${isVoted ? "voted-choice" : ""}">
+                  <div class="poll-top">
+                    <div class="poll-proj-left">
+                      <div class="poll-logo">${escapeHtml(p.name.slice(0, 2).toUpperCase())}</div>
+                      <div class="poll-name-wrap">
+                        <strong>${escapeHtml(p.name)}</strong>
+                        <small>${escapeHtml(p.sub)}</small>
+                      </div>
+                    </div>
+                    <div class="poll-actions-right">
+                      <div class="poll-stats-text">
+                        ${pct}% (${vCount} votes)
+                        <small>${revCount} reviews</small>
+                      </div>
+                      <button type="button" class="vote-btn ${isVoted ? "active" : ""}" data-vote-id="${escapeHtml(p.id)}">
+                        ${isVoted ? "✓ Voted" : "Vote"}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="poll-bar-track">
+                    <div class="poll-bar-fill" style="width:${pct}%"></div>
+                  </div>
+                </div>
+              `;
+            }).join("");
+
+            pollListEl.querySelectorAll(".vote-btn").forEach(btn => {
+              btn.addEventListener("click", () => {
+                const targetId = btn.getAttribute("data-vote-id");
+                if (!targetId) return;
+
+                if (pollState.userVotedId === targetId) {
+                  pollState.votes[targetId] = Math.max(0, (Number(pollState.votes[targetId]) || 0) - 1);
+                  pollState.extraReviews[targetId] = Math.max(0, (Number(pollState.extraReviews[targetId]) || 0) - 1);
+                  pollState.userVotedId = null;
+                  if (pollStatusNote) pollStatusNote.textContent = `Vote cleared for ${CURRENT_YEAR}. Click Vote on any project to cast your vote.`;
+                } else {
+                  if (pollState.userVotedId) {
+                    const prevId = pollState.userVotedId;
+                    pollState.votes[prevId] = Math.max(0, (Number(pollState.votes[prevId]) || 0) - 1);
+                    pollState.extraReviews[prevId] = Math.max(0, (Number(pollState.extraReviews[prevId]) || 0) - 1);
+                  }
+                  pollState.votes[targetId] = (Number(pollState.votes[targetId]) || 0) + 1;
+                  pollState.extraReviews[targetId] = (Number(pollState.extraReviews[targetId]) || 0) + 1;
+                  pollState.userVotedId = targetId;
+                  const proj = ANNUAL_POLL_PROJECTS.find(item => item.id === targetId);
+                  if (pollStatusNote && proj) {
+                    pollStatusNote.textContent = `Voted for ${proj.name} (${CURRENT_YEAR}). Live percentage and review count updated.`;
+                  }
+                }
+
+                saveState(pollState);
+                renderPollAndReviews(search ? search.value : "");
+              });
+            });
+          }
+
+          if (reviewsFeedEl) {
+            const visibleReviews = q
+              ? pollState.reviews.filter(r => `${r.user} ${r.projectName} ${r.text}`.toLowerCase().includes(q))
+              : pollState.reviews;
+
+            if (!visibleReviews.length) {
+              reviewsFeedEl.innerHTML = `<div class="review-card"><p>No reviews matching "${escapeHtml(query)}" yet.</p></div>`;
+            } else {
+              reviewsFeedEl.innerHTML = visibleReviews.map(r => `
+                <div class="review-card">
+                  <div class="review-head">
+                    <div>
+                      <span class="review-user">${escapeHtml(r.user || "Community Member")}</span>
+                      <span class="review-tag">${escapeHtml(r.projectName)}</span>
+                    </div>
+                    <span class="review-stars">${getStarString(r.rating)}</span>
+                  </div>
+                  <p>${escapeHtml(r.text)}</p>
+                </div>
+              `).join("");
+            }
+          }
+        }
+
+        renderPollAndReviews("");
+
+        const reviewForm = document.getElementById("reviewForm");
+        if (reviewForm) {
+          reviewForm.addEventListener("submit", e => {
+            e.preventDefault();
+            const nameEl = document.getElementById("reviewerName");
+            const projEl = document.getElementById("reviewProjectSelect");
+            const ratingEl = document.getElementById("reviewRatingSelect");
+            const textEl = document.getElementById("reviewTextInput");
+            if (!projEl || !ratingEl || !textEl) return;
+
+            const textVal = textEl.value.trim();
+            if (!textVal) return;
+
+            const chosenProj = ANNUAL_POLL_PROJECTS.find(p => p.id === projEl.value) || ANNUAL_POLL_PROJECTS[0];
+            const userName = (nameEl && nameEl.value.trim()) ? nameEl.value.trim() : "Community Member";
+            const ratingVal = Number(ratingEl.value) || 5;
+
+            pollState.reviews.unshift({
+              id: "rev_" + Date.now(),
+              user: userName,
+              projectId: chosenProj.id,
+              projectName: chosenProj.name,
+              rating: ratingVal,
+              text: textVal
+            });
+            pollState.extraReviews[chosenProj.id] = (Number(pollState.extraReviews[chosenProj.id]) || 0) + 1;
+
+            saveState(pollState);
+            textEl.value = "";
+            if (nameEl) nameEl.value = "";
+            renderPollAndReviews(search ? search.value : "");
+          });
+        }
+
         if (search) {
           search.addEventListener("input", function () {
-            const query = this.value.trim().toLowerCase();
-            let visible = 0;
-            cards.forEach(card => {
-              const searchable = (card.innerText + " " + (card.dataset.search || "")).toLowerCase();
-              const match = !query || searchable.includes(query);
-              card.hidden = !match;
-              if (match) visible++;
-            });
-            if (exploreSection) exploreSection.hidden = Boolean(query) && visible === 0;
-            if (emptyMessage) emptyMessage.style.display = visible ? "none" : "block";
+            renderPollAndReviews(this.value);
           });
         }
 
