@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Estimate crypto staking, mining, DePIN, airdrop and referral earnings with the Total Crypto Hub calculator.">
   <meta name="keywords" content="Crypto Earning Calculator, Staking Calculator, Mining Profit, DePIN Rewards, Airdrop Calculator, Referral Rewards, Total Crypto Hub">
+  <meta name="theme-color" content="#c9ffea">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <title>Earning Calculator | Total Crypto Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-
     :root {
       color-scheme: light;
       --page:#f5f8fc;
@@ -25,8 +25,8 @@
       --green-dark:#078653;
       --green-soft:#e8fbf3;
       --shadow:0 12px 34px rgba(27,54,93,.07);
-      --sidebar-width:258px;
-      --sponsor-height:58px;
+      --sidebar-width:260px;
+      --sponsor-height:74px;
       --bg:var(--page);
       --surface-soft:var(--surface-2);
       --border:var(--line);
@@ -66,144 +66,222 @@
 
     a { color:inherit; }
 
-    /* Full-width sponsor strip: a contact CTA, not a live ad integration */
-    :root { --sponsor-height: 58px; }
-
+    /* LIGHT MINT SPONSOR HEADER BAR */
     .sponsor-strip {
       position: sticky;
       top: 0;
-      z-index: 140;
+      z-index: 200;
       min-height: var(--sponsor-height);
       display: flex;
       align-items: center;
       overflow: hidden;
-      color: #f4fff9;
+      color: #071b38;
       background:
-        radial-gradient(circle at 8% 50%, rgba(16, 185, 129, .24), transparent 17%),
-        radial-gradient(circle at 92% 50%, rgba(16, 185, 129, .22), transparent 18%),
-        linear-gradient(100deg, #041d1b 0%, #061a24 48%, #031d1b 100%);
-      border-bottom: 1px solid rgba(52, 211, 153, .28);
-      box-shadow: 0 5px 18px rgba(2, 20, 29, .16);
+        radial-gradient(circle at 8% 50%, rgba(0, 235, 165, .28), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(0, 210, 160, .24), transparent 24%),
+        linear-gradient(95deg, #c9ffea 0%, #f2fff9 48%, #c4fcef 100%);
+      border-bottom: 1px solid #96ecd0;
+      box-shadow: 0 4px 18px rgba(0, 130, 90, .09);
+      isolation: isolate;
     }
 
-    .sponsor-strip::before,
-    .sponsor-strip::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: .28;
-      background-image: repeating-linear-gradient(130deg, transparent 0 24px, rgba(16, 185, 129, .25) 25px 27px, transparent 28px 48px);
-      mask-image: linear-gradient(90deg, #000, transparent 24%, transparent 76%, #000);
+    [data-theme="dark"] .sponsor-strip {
+      color: #f0fff8;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(0, 245, 158, .18), transparent 22%),
+        linear-gradient(95deg, #0b2b27 0%, #0f3530 50%, #0b2b27 100%);
+      border-bottom: 1px solid #245f4d;
     }
 
     .sponsor-inner {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 1700px;
+      max-width: 1800px;
       min-height: var(--sponsor-height);
-      margin: 0 auto;
-      padding: 7px 28px;
+      margin: auto;
+      padding: 7px 22px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 18px;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .sponsor-coin {
-      width: 38px;
-      height: 38px;
-      flex: 0 0 38px;
+    .sponsor-brand-top {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 210px;
+      flex: 0 0 auto;
+      text-decoration: none;
+    }
+
+    .brand-orb {
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
-      border: 2px solid rgba(255,255,255,.65);
+      flex: 0 0 44px;
+      overflow: hidden;
+      border: 2px solid #00bd79;
       border-radius: 50%;
-      color: #fff8d7;
-      background: linear-gradient(145deg, #ffca45, #bd6b09);
-      box-shadow: 0 4px 15px rgba(245, 158, 11, .28), inset 0 1px 2px rgba(255,255,255,.55);
-      font-size: 23px;
+      color: #fff;
+      background: radial-gradient(circle at 30% 25%, #5bffc8, #009c6d 65%, #004938);
+      box-shadow: 0 3px 12px rgba(0, 175, 115, .25);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .brand-orb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .sponsor-brand-top strong {
+      display: block;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -.45px;
+    }
+
+    .sponsor-brand-top small {
+      display: block;
+      margin-top: 2px;
+      color: #008556;
+      font-size: 10px;
       font-weight: 800;
     }
 
-    .sponsor-coin--eth {
-      color: #eef4ff;
-      background: linear-gradient(145deg, #8aa7ff, #4658bc);
-      font-size: 21px;
+    [data-theme="dark"] .sponsor-brand-top small { color: #4ef2b1; }
+
+    .header-v-sep {
+      width: 1.5px;
+      height: 36px;
+      flex: 0 0 1.5px;
+      background: rgba(7, 27, 56, .22);
     }
 
-    .sponsor-copy {
+    [data-theme="dark"] .header-v-sep { background: rgba(255, 255, 255, .2); }
+
+    .sponsor-slot-box {
+      flex: 1 1 auto;
+      max-width: 970px;
+      min-width: 280px;
+      height: 58px;
+      padding: 6px 22px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 13px;
-      min-width: 0;
-      white-space: nowrap;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1.8px dashed #00a86b;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(195, 255, 231, .72), rgba(245, 255, 250, .92) 50%, rgba(195, 255, 231, .72));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7), 0 3px 12px rgba(0, 150, 100, .08);
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
 
-    .sponsor-eyebrow {
-      padding: 4px 8px;
-      border: 1px solid rgba(110, 231, 183, .35);
-      border-radius: 999px;
-      color: #a7f3d0;
-      background: rgba(16, 185, 129, .12);
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: .8px;
+    .sponsor-slot-box:hover {
+      transform: translateY(-1px);
+      border-color: #008252;
+      box-shadow: 0 6px 16px rgba(0, 160, 105, .16);
     }
 
-    .sponsor-copy strong {
-      color: #fff;
-      font-size: clamp(13px, 1.35vw, 19px);
+    [data-theme="dark"] .sponsor-slot-box {
+      border-color: #36e5a0;
+      background: linear-gradient(90deg, rgba(18, 62, 50, .85), rgba(13, 41, 38, .95) 50%, rgba(18, 62, 50, .85));
+      box-shadow: none;
+    }
+
+    .slot-megaphone {
+      font-size: 27px;
+      line-height: 1;
+      flex: 0 0 auto;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .14));
+    }
+
+    .slot-arrow {
+      flex: 1 1 60px;
+      max-width: 130px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      color: #009960;
+    }
+
+    [data-theme="dark"] .slot-arrow { color: #4ef2b1; }
+    .slot-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
+    .slot-center-text { text-align: center; flex: 0 0 auto; }
+
+    .slot-center-text strong {
+      display: block;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.15;
       font-weight: 800;
       letter-spacing: -.35px;
     }
 
-    .sponsor-copy em {
-      color: #4ade9b;
-      font-style: normal;
+    .slot-center-text span {
+      display: block;
+      margin-top: 2px;
+      color: var(--body);
+      font-size: 12px;
+      font-weight: 700;
     }
 
-    .sponsor-divider {
-      width: 1px;
-      height: 23px;
-      flex: 0 0 1px;
-      background: rgba(226, 255, 242, .35);
-    }
-
-    .sponsor-tagline {
-      color: #d0e6df;
-      font-size: 10px;
-      font-weight: 600;
+    .sponsor-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
     }
 
     .sponsor-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 7px;
       flex: 0 0 auto;
-      padding: 10px 17px;
-      border: 1px solid rgba(255,255,255,.22);
+      padding: 11px 20px;
+      border: 1.5px solid #00a86b;
       border-radius: 999px;
-      color: #05291d;
-      background: linear-gradient(135deg, #a7f3b5, #35e89a);
-      box-shadow: 0 5px 15px rgba(16, 185, 129, .2);
+      color: #042b1d;
+      background: linear-gradient(135deg, #8affb8, #3be898);
+      box-shadow: 0 4px 14px rgba(0, 185, 115, .25), inset 0 1px 1px rgba(255, 255, 255, .75);
       text-decoration: none;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 800;
-      transition: transform .18s ease, box-shadow .18s ease;
+      white-space: nowrap;
+      transition: transform .2s, box-shadow .2s;
     }
 
     .sponsor-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 19px rgba(16, 185, 129, .3);
+      box-shadow: 0 6px 18px rgba(0, 185, 115, .38);
     }
 
-    .sponsor-cta:focus-visible {
-      outline: 3px solid #fff;
-      outline-offset: 3px;
+    .sponsor-orb-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid rgba(255, 255, 255, .75);
+      color: #ffffff;
+      background: linear-gradient(145deg, #818cf8, #4f46e5);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, .28);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      transition: transform .2s;
     }
+
+    .sponsor-orb-btn:hover { transform: translateY(-1px); }
 
     /* Independently scrollable sidebar */
     .sidebar {
@@ -233,56 +311,6 @@
       background: var(--border);
       border-radius: 10px;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 0 10px 24px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .brand-mark {
-      width: 46px;
-      height: 46px;
-      flex: 0 0 46px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border-radius: 50%;
-      background: var(--surface);
-      border: 2px solid var(--green);
-      box-shadow: 0 4px 13px rgba(8, 168, 107, .18);
-      color: var(--green-dark);
-      font-weight: 800;
-      font-size: 11px;
-    }
-
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .brand-title {
-      color: var(--heading);
-      font-size: 17px;
-      line-height: 1.2;
-      font-weight: 800;
-      letter-spacing: -.45px;
-    }
-
-    .brand-subtitle {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 600;
-    }
-
-    .brand-subtitle b { color: var(--green); }
 
     .side-label {
       padding: 10px 13px 8px;
@@ -614,166 +642,8 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-
-    /* HOME-PAGE SHELL */
     .app-shell { min-height:100vh; }
     .mobile-overlay { display:none; }
-    /* RESPONSIVE HOME-PAGE HEADER AND SIDEBAR */
-    @media(max-width:1180px) {
-      :root { --sidebar-width:230px; }
-      .topbar { padding-left:20px; padding-right:20px; }
-      .feature-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-    }
-
-    @media(max-width:900px) {
-      .sponsor-tagline, .sponsor-divider { display:none; }
-      .sponsor-copy { gap:9px; }
-      .sponsor-copy strong { font-size:13px; }
-      .sponsor-inner { gap:12px; }
-    }
-
-    @media(max-width:760px) {
-      :root { --sidebar-width:258px; --sponsor-height:52px; }
-
-      .sponsor-inner { justify-content:space-between; gap:8px; padding:6px 10px; }
-      .sponsor-coin { width:30px; height:30px; flex-basis:30px; font-size:18px; }
-      .sponsor-coin--eth, .sponsor-eyebrow, .sponsor-divider, .sponsor-tagline { display:none; }
-      .sponsor-copy { flex:1; justify-content:flex-start; gap:0; }
-      .sponsor-copy strong { font-size:11px; }
-      .sponsor-cta { padding:9px 11px; font-size:9px; }
-
-      .sidebar {
-        transform:translateX(-105%);
-        transition:transform .25s ease;
-        box-shadow:12px 0 35px rgba(0,0,0,.13);
-      }
-
-      body.menu-open .sidebar { transform:translateX(0); }
-
-      .mobile-overlay {
-        position:fixed;
-        inset:var(--sponsor-height) 0 0;
-        z-index:110;
-        background:rgba(4,14,27,.42);
-      }
-
-      body.menu-open .mobile-overlay { display:block; }
-      .main-column { margin-left:0; }
-
-      .topbar {
-        min-height:66px;
-        gap:10px;
-        padding:10px 14px;
-      }
-
-      .mobile-menu-btn {
-        display:inline-grid;
-        place-items:center;
-        flex:0 0 38px;
-      }
-
-      .search-wrap { width:auto; flex:1; }
-
-      .search-wrap input {
-        height:39px;
-        font-size:10px;
-        padding-left:13px;
-      }
-
-      .community-btn {
-        width:38px;
-        padding:0;
-        overflow:hidden;
-        font-size:0;
-      }
-
-      .community-btn::first-letter { font-size:15px; }
-
-      .topbar .icon-btn {
-        width:36px;
-        min-height:36px;
-        flex:0 0 36px;
-      }
-
-      main { padding:18px 13px 32px; }
-
-      .hero {
-        min-height:175px;
-        padding:23px 20px;
-        border-radius:19px;
-      }
-
-      .hero-art {
-        right:-80px;
-        opacity:.35;
-      }
-
-      .hero-copy { max-width:95%; }
-      .hero h1 { font-size:26px; }
-      .hero p { font-size:10px; max-width:410px; }
-
-      .feature-grid { gap:9px; }
-
-      .feature-card {
-        min-height:102px;
-        padding:11px 9px;
-        gap:8px;
-      }
-
-      .feature-icon {
-        width:36px;
-        height:36px;
-        flex-basis:36px;
-        border-radius:11px;
-        font-size:18px;
-      }
-
-      .feature-card h3 { font-size:10px; }
-      .feature-card p { font-size:8.5px; }
-      .projects-top { padding:15px 13px; }
-      .filters { width:100%; }
-
-      .filter-btn,
-      .category-select {
-        height:32px;
-        padding:0 9px;
-        font-size:9px;
-      }
-
-      .project-heading { font-size:16px; }
-    }
-
-    @media(max-width:430px) {
-      .sponsor-coin { display:none; }
-      .sponsor-copy strong { font-size:10px; }
-      .sponsor-cta { padding:8px 9px; font-size:8px; }
-      .topbar { gap:7px; }
-      .community-dropdown { display:none; }
-      .top-search input { padding-left:10px; }
-      .icon-btn { width:35px; height:35px; }
-
-      .feature-grid { grid-template-columns:1fr 1fr; }
-
-      .feature-card {
-        align-items:flex-start;
-        flex-direction:column;
-        min-height:122px;
-      }
-
-      .feature-icon { width:34px; height:34px; }
-      .feature-card h3 { font-size:9.5px; }
-      .feature-card p { font-size:8px; }
-      .hero-art { right:-125px; }
-    }
-
-    @media(prefers-reduced-motion:reduce) {
-      *,*::before,*::after {
-        scroll-behavior:auto!important;
-        transition:none!important;
-      }
-    }
-  
-
 
     /* EARNING CALCULATOR PAGE */
     main { min-width:0; max-width:1700px; margin:0 auto; padding:27px clamp(18px,2.5vw,38px) 42px; }
@@ -931,9 +801,98 @@
     [data-theme="dark"] .result-foot { color:#b4c8be; }
     [data-theme="dark"] .warning { background:#392f1c; border-color:#63512c; color:#f1d89c; }
 
-    @media(max-width:1180px) { .summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media(max-width:1050px) { .hero { grid-template-columns:minmax(0,1fr) minmax(230px,.75fr); gap:16px; } }
+    @media(max-width:1350px) {
+      :root { --sidebar-width:238px; }
+      .sponsor-brand-top { min-width:185px; }
+      .slot-arrow { display:none; }
+    }
+
+    @media(max-width:1180px) {
+      .topbar { padding-left:20px; padding-right:20px; }
+      .summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+
+    @media(max-width:1050px) {
+      .hero { grid-template-columns:minmax(0,1fr) minmax(230px,.75fr); gap:16px; }
+    }
+
+    @media(max-width:900px) {
+      .sponsor-brand-top { min-width:auto; }
+      .sponsor-brand-top .brand-orb { width:36px; height:36px; flex-basis:36px; }
+      .sponsor-inner { gap:10px; padding-left:14px; padding-right:14px; }
+      .sponsor-slot-box { padding:5px 12px; height:50px; }
+      .slot-center-text strong { font-size:13px; }
+      .slot-center-text span { font-size:10px; }
+    }
+
     @media(max-width:760px) {
+      :root { --sidebar-width:258px; --sponsor-height:56px; }
+
+      .sponsor-inner { justify-content:space-between; gap:8px; padding:6px 10px; }
+      .sponsor-brand-top { gap:7px; }
+      .sponsor-brand-top .brand-orb { width:31px; height:31px; flex-basis:31px; font-size:12px; }
+      .sponsor-brand-top strong { font-size:11px; }
+      .sponsor-brand-top small { font-size:8px; }
+      .header-v-sep, .sponsor-orb-btn { display:none; }
+      .sponsor-slot-box { min-width:0; height:42px; padding:4px 10px; justify-content:center; gap:8px; }
+      .slot-megaphone { font-size:17px; }
+      .slot-center-text strong { font-size:11px; }
+      .slot-center-text span { font-size:8px; }
+      .sponsor-cta { padding:8px 11px; font-size:9px; gap:4px; }
+
+      .sidebar {
+        transform:translateX(-105%);
+        transition:transform .25s ease;
+        box-shadow:12px 0 35px rgba(0,0,0,.13);
+      }
+
+      body.menu-open .sidebar { transform:translateX(0); }
+
+      .mobile-overlay {
+        position:fixed;
+        inset:var(--sponsor-height) 0 0;
+        z-index:110;
+        background:rgba(4,14,27,.42);
+      }
+
+      body.menu-open .mobile-overlay { display:block; }
+      .main-column { margin-left:0; }
+
+      .topbar {
+        min-height:66px;
+        gap:10px;
+        padding:10px 14px;
+      }
+
+      .mobile-menu-btn {
+        display:inline-grid;
+        place-items:center;
+        flex:0 0 38px;
+      }
+
+      .search-wrap { width:auto; flex:1; }
+
+      .search-wrap input {
+        height:39px;
+        font-size:10px;
+        padding-left:13px;
+      }
+
+      .community-btn {
+        width:38px;
+        padding:0;
+        overflow:hidden;
+        font-size:0;
+      }
+
+      .community-btn::first-letter { font-size:15px; }
+
+      .topbar .icon-btn {
+        width:36px;
+        min-height:36px;
+        flex:0 0 36px;
+      }
+
       main { padding:18px 13px 32px; }
       .hero { grid-template-columns:1fr; gap:18px; padding:23px 20px; }
       .sponsor-box { min-height:150px; }
@@ -948,7 +907,17 @@
       .tab-btn { flex:1 1 auto; }
       .section-heading { margin-top:23px; }
     }
-    @media(max-width:430px) {
+
+    @media(max-width:480px) {
+      .sponsor-brand-top small { display:none; }
+      .sponsor-brand-top { min-width:96px; gap:6px; }
+      .sponsor-brand-top strong { font-size:10px; }
+      .slot-megaphone { display:none; }
+      .slot-center-text strong { font-size:10px; }
+      .slot-center-text span { font-size:7px; }
+      .sponsor-cta { padding:7px 9px; font-size:8px; }
+      .topbar { gap:7px; }
+      .community-dropdown { display:none; }
       .hero { padding:21px 17px; }
       .info-panel { padding:16px; }
       .footer-links { gap:10px; }
@@ -956,46 +925,64 @@
       .summary-value { font-size:16px; }
       .calc-actions button { flex:1; }
     }
-    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
 
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        scroll-behavior:auto!important;
+        transition:none!important;
+      }
+    }
   </style>
 </head>
 <body data-theme="light">
   <section class="sponsor-strip" aria-label="Sponsorship opportunity">
     <div class="sponsor-inner">
-      <span class="sponsor-coin sponsor-coin--btc" aria-hidden="true">₿</span>
-      <div class="sponsor-copy">
-        <span class="sponsor-eyebrow">SPONSORSHIP OPPORTUNITY</span>
-        <strong>Sponsor with Us on <em>Total Crypto Hub</em></strong>
-        <span class="sponsor-divider" aria-hidden="true"></span>
-        <span class="sponsor-tagline">Grow Your Brand in the Crypto Community</span>
+      <a class="sponsor-brand-top" href="../index.html" aria-label="Total Crypto Hub home">
+        <span class="brand-orb" aria-hidden="true"><img src="../logos/tcn-logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='TCN'"></span>
+        <span><strong>Total Crypto Hub</strong><small>by Total Crypto Network</small></span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <a class="sponsor-slot-box" href="../legal-pages/contact.html" aria-label="Sponsor Banner Area 728 by 90 or 970 by 90 pixels">
+        <span class="slot-megaphone" aria-hidden="true">📢</span>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="slot-center-text">
+          <strong>Sponsor Banner Area</strong>
+          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
+        </div>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <div class="sponsor-right-actions">
+        <a class="sponsor-cta" href="../legal-pages/contact.html">Become a Sponsor <span aria-hidden="true">→</span></a>
+        <a class="sponsor-orb-btn" href="../legal-pages/contact.html" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
       </div>
-      <a class="sponsor-cta" href="../legal-pages/contact.html">Become a Sponsor <span aria-hidden="true">→</span></a>
-      <span class="sponsor-coin sponsor-coin--eth" aria-hidden="true">◆</span>
     </div>
   </section>
 
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-      <a href="../index.html" class="brand">
-        <span class="brand-mark">
-          <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none'; this.parentElement.textContent='TCN';">
-        </span>
-        <span>
-          <span class="brand-title">Total Crypto Hub</span>
-          <span class="brand-subtitle">by <b>Total Crypto Network</b></span>
-        </span>
-      </a>
-
       <div class="side-label">Workspace</div>
       <nav class="side-nav">
         <a href="../index.html" class="side-link"><span class="nav-icon nav-home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home</a>
         <a href="../depin-pages/depin.html" class="side-link"><span class="nav-icon nav-depin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects</a>
         <a href="../mobile-pages/mobile-mining.html" class="side-link"><span class="nav-icon nav-community"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects</a>
-        <a href="../airdrop-pages/airdrops.html" class="side-link"><span class="nav-icon nav-airdrop"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops & Campaigns</a>
-        <a href="../wallet-pages/wallets.html" class="side-link"><span class="nav-icon nav-wallet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13M16 12h5v5h-5a2.5 2.5 0 0 1 0-5Z"/></svg></span>Wallets & Exchanges</a>
-        <a href="../token-pages/token-checker.html" class="side-link"><span class="nav-icon nav-checker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
-</a>
+        <a href="../airdrop-pages/airdrops.html" class="side-link"><span class="nav-icon nav-airdrop"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops &amp; Campaigns</a>
+        <a href="../wallet-pages/wallets.html" class="side-link"><span class="nav-icon nav-wallet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13M16 12h5v5h-5a2.5 2.5 0 0 1 0-5Z"/></svg></span>Wallets &amp; Exchanges</a>
+        <a href="../token-pages/token-checker.html" class="side-link"><span class="nav-icon nav-checker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder</a>
         <a href="earning-calculator.html" class="side-link active" aria-current="page"><span class="nav-icon nav-calculator"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator</a>
       </nav>
       <div class="sidebar-spacer"></div>
@@ -1251,7 +1238,6 @@
     }
 
     function updateCurrency() {
-      // Re-render already calculated results with the selected display symbol.
       if (earnings.staking !== null) calculateStaking();
       if (earnings.mining !== null) calculateMining();
       if (earnings.depin !== null) calculateDepin();
