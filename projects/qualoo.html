@@ -55,7 +55,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    article[id] { scroll-margin-top: calc(var(--sponsor-height) + 122px); }
+    article[id] { scroll-margin-top: calc(var(--sponsor-height) + 124px); }
     body {
       margin: 0;
       min-height: 100vh;
@@ -274,17 +274,17 @@
     .support-card span:last-child { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
     .sidebar-note { margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
 
-    /* MAIN COLUMN + TOPBAR (BACK & BREADCRUMB AT TOP) */
+    /* MAIN COLUMN + TOPBAR */
     .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
     .topbar {
       position: sticky;
       top: var(--sponsor-height);
       z-index: 100;
-      min-height: 58px;
+      min-height: 60px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 24px;
+      gap: 14px;
+      padding: 8px 28px;
       background: color-mix(in srgb, var(--surface) 96%, transparent);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(16px);
@@ -294,8 +294,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      min-height: 34px;
-      padding: 0 13px;
+      min-height: 35px;
+      padding: 0 14px;
       border-radius: 999px;
       border: 1px solid var(--green);
       background: var(--green-soft);
@@ -337,21 +337,21 @@
     .dropdown-content a:last-child { border-bottom: 0; }
     .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
 
-    /* 11-TAB SHORTCUT JUMP BAR RIGHT BELOW TOPBAR */
+    /* FULL-WIDTH 11-TAB SHORTCUT JUMP BAR */
     .jump-strip {
       position: sticky;
-      top: calc(var(--sponsor-height) + 58px);
+      top: calc(var(--sponsor-height) + 60px);
       z-index: 95;
       background: var(--surface-soft);
       border-bottom: 1px solid var(--border);
     }
     .jump-inner {
-      max-width: 1040px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 8px 20px;
+      padding: 8px clamp(16px, 2.4vw, 32px);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       overflow-x: auto;
       scrollbar-width: none;
     }
@@ -360,7 +360,7 @@
       flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
-      padding: 6px 12px;
+      padding: 6px 13px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface);
@@ -377,46 +377,49 @@
       color: #ffffff;
     }
 
-    /* SINGLE-COLUMN CLEAN CONTAINER */
+    /* ORIGINAL WIDE 1440px CONTAINER */
     main {
       width: 100%;
-      max-width: 1040px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 20px 20px 42px;
+      padding: 22px clamp(16px, 2.4vw, 32px) 42px;
     }
 
-    /* COMPACT PROJECT HERO WITH REFERRAL & JOIN INSIDE */
+    /* PROJECT HERO BANNER */
     .project-hero {
+      position: relative;
+      overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(260px, .85fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .82fr);
       align-items: center;
-      gap: 18px;
-      padding: 20px 22px;
+      gap: 22px;
+      padding: 22px 26px;
       border: 1px solid #a9f0d8;
-      border-radius: 20px;
+      border-radius: 22px;
       background:
-        radial-gradient(circle at 90% 15%, rgba(8, 168, 107, .20), transparent 34%),
-        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+        radial-gradient(circle at 90% 15%, rgba(8, 168, 107, .22), transparent 32%),
+        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 50%, var(--banner-end) 100%);
       box-shadow: var(--shadow);
     }
     [data-theme="dark"] .project-hero { border-color: #215d4c; }
     .hero-identity {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
+      gap: 16px;
     }
     .hero-logo-box {
-      width: 60px;
-      height: 60px;
-      flex: 0 0 60px;
-      border-radius: 16px;
+      width: 68px;
+      height: 68px;
+      flex: 0 0 68px;
+      border-radius: 18px;
       overflow: hidden;
       display: grid;
       place-items: center;
       background: var(--surface);
       border: 2px solid var(--green);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
       color: var(--green-dark);
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 800;
     }
     [data-theme="dark"] .hero-logo-box { color: var(--green-light); }
@@ -425,15 +428,17 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .badge-pill {
       display: inline-flex;
       align-items: center;
+      gap: 5px;
       padding: 4px 10px;
       border-radius: 999px;
       font-size: 9.5px;
       font-weight: 800;
+      letter-spacing: .3px;
       background: var(--green-soft);
       color: var(--green-dark);
       border: 1px solid #a9f0d8;
@@ -441,49 +446,51 @@
     [data-theme="dark"] .badge-pill { color: var(--green-light); border-color: #256f55; }
 
     .hero-title-group h1 {
-      margin: 0 0 5px;
+      margin: 0 0 6px;
       color: var(--heading);
-      font-size: clamp(22px, 2.4vw, 30px);
-      line-height: 1.15;
+      font-size: clamp(24px, 2.6vw, 34px);
+      line-height: 1.14;
       font-weight: 800;
-      letter-spacing: -.6px;
+      letter-spacing: -.8px;
     }
     .hero-title-group p {
       margin: 0;
       color: var(--body);
-      font-size: 12.5px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.6;
       font-weight: 600;
+      max-width: 680px;
     }
 
-    /* COMPACT REFERRAL & JOIN ACTION BOX */
+    /* REFERRAL & JOIN CARD INSIDE HERO */
     .portal-action-card {
-      padding: 15px 16px;
-      border-radius: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
       background: var(--surface);
       border: 1px solid var(--border);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .07);
     }
     .referral-code-box {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 9px 12px;
-      margin-bottom: 10px;
+      padding: 10px 13px;
+      margin-bottom: 12px;
       border-radius: 12px;
       background: var(--green-soft);
       border: 1px dashed var(--green);
     }
-    .referral-code-box div small { display: block; font-size: 9px; font-weight: 800; color: var(--green-dark); text-transform: uppercase; letter-spacing: .5px; }
+    .referral-code-box div small { display: block; font-size: 9.5px; font-weight: 800; color: var(--green-dark); text-transform: uppercase; letter-spacing: .5px; }
     [data-theme="dark"] .referral-code-box div small { color: var(--green-light); }
     .referral-code-box div strong { display: block; margin-top: 2px; font-size: 14px; font-weight: 800; letter-spacing: 1px; color: var(--heading); font-family: monospace; }
     .btn-copy-code {
-      padding: 6px 11px;
+      padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid var(--green);
       background: var(--surface);
       color: var(--green-dark);
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 800;
       white-space: nowrap;
       transition: .18s ease;
@@ -496,11 +503,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      padding: 11px 16px;
+      gap: 8px;
+      padding: 12px 16px;
       border-radius: 999px;
       color: #ffffff;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
+      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
       text-decoration: none;
       font-size: 12px;
       font-weight: 800;
@@ -508,47 +516,47 @@
     }
     .btn-launch-primary:hover { transform: translateY(-1px); }
 
-    /* SINGLE-COLUMN STACK OF INDIVIDUAL SECTION BOXES */
+    /* SINGLE-COLUMN STACK OF INDIVIDUAL SECTION BOXES (FULL WIDTH) */
     .single-column-stack {
       display: grid;
-      gap: 16px;
-      margin-top: 18px;
+      gap: 18px;
+      margin-top: 20px;
     }
 
     .info-card {
-      padding: 20px 22px;
-      border-radius: 18px;
+      padding: 22px 24px;
+      border-radius: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
-      box-shadow: 0 6px 18px rgba(8, 168, 107, .05);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .05);
     }
     .card-heading {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       color: var(--heading);
-      font-size: 16.5px;
+      font-size: 17.5px;
       font-weight: 800;
       letter-spacing: -.3px;
     }
     .card-heading-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
       display: grid;
       place-items: center;
       background: var(--green-soft);
       color: var(--green-dark);
-      font-size: 15px;
-      flex: 0 0 30px;
+      font-size: 16px;
+      flex: 0 0 32px;
     }
     [data-theme="dark"] .card-heading-icon { color: var(--green-light); }
 
     .info-card p {
-      margin: 0 0 10px;
+      margin: 0 0 11px;
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.72;
       color: var(--body);
     }
     .info-card p:last-child { margin-bottom: 0; }
@@ -556,31 +564,31 @@
     .mini-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 8px;
+      gap: 14px;
+      margin-top: 10px;
     }
     .mini-box {
-      padding: 13px 15px;
-      border-radius: 14px;
+      padding: 15px 16px;
+      border-radius: 16px;
       background: var(--surface-soft);
       border: 1px solid var(--border);
     }
     .mini-box h3 {
-      margin: 0 0 4px;
-      font-size: 13px;
+      margin: 0 0 6px;
+      font-size: 13.5px;
       font-weight: 800;
       color: var(--heading);
     }
     .mini-box p {
       margin: 0;
-      font-size: 11.5px;
-      line-height: 1.6;
+      font-size: 12px;
+      line-height: 1.65;
       color: var(--body);
     }
 
-    .perm-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .perm-pill {
-      padding: 6px 11px;
+      padding: 6px 12px;
       border-radius: 999px;
       font-size: 10.5px;
       font-weight: 800;
@@ -593,43 +601,44 @@
     /* STEP-BY-STEP HOW TO JOIN */
     .steps-list {
       display: grid;
-      gap: 10px;
-      margin-top: 8px;
+      gap: 11px;
+      margin-top: 10px;
     }
     .step-row {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 14px;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
       background: var(--surface-soft);
       border: 1px solid var(--border);
     }
     .step-num {
-      width: 26px;
-      height: 26px;
-      flex: 0 0 26px;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
       color: #ffffff;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 800;
     }
-    .step-body h4 { margin: 0 0 3px; font-size: 12.5px; font-weight: 800; color: var(--heading); }
-    .step-body p { margin: 0; font-size: 11.5px; line-height: 1.6; color: var(--body); }
+    .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-body p { margin: 0; font-size: 12px; line-height: 1.65; color: var(--body); }
 
-    /* VIDEO BOX */
+    /* COMPACT VIDEO BOX INSIDE FULL-WIDTH CARD */
     .video-frame-box {
       position: relative;
       width: 100%;
+      max-width: 780px;
       aspect-ratio: 16 / 9;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid #a9f0d8;
       background: var(--surface-soft);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .video-frame-box iframe {
       position: absolute;
@@ -653,14 +662,14 @@
       color: var(--heading);
     }
     .video-play-badge {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
       color: #ffffff;
-      font-size: 18px;
+      font-size: 17px;
       margin-bottom: 10px;
     }
     .video-placeholder strong { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
@@ -684,16 +693,16 @@
     .verdict-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 14px;
     }
     .verdict-col {
-      padding: 14px 15px;
-      border-radius: 14px;
+      padding: 15px 16px;
+      border-radius: 16px;
       background: var(--surface-soft);
       border: 1px solid var(--border);
     }
-    .verdict-col h3 { margin: 0 0 8px; font-size: 13px; font-weight: 800; color: var(--heading); }
-    .verdict-col ul { margin: 0; padding-left: 16px; font-size: 11.5px; line-height: 1.7; color: var(--body); }
+    .verdict-col h3 { margin: 0 0 8px; font-size: 13.5px; font-weight: 800; color: var(--heading); }
+    .verdict-col ul { margin: 0; padding-left: 18px; font-size: 12px; line-height: 1.75; color: var(--body); }
 
     /* FAQ ACCORDION */
     .faq-list { display: grid; gap: 10px; }
@@ -701,10 +710,10 @@
       border-radius: 14px;
       background: var(--surface-soft);
       border: 1px solid var(--border);
-      padding: 12px 15px;
+      padding: 12px 16px;
     }
     .faq-item summary {
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--heading);
       cursor: pointer;
@@ -712,13 +721,13 @@
     }
     .faq-item p {
       margin: 8px 0 0;
-      font-size: 11.5px;
+      font-size: 12px;
       line-height: 1.65;
       color: var(--body);
     }
 
     .disclaimer {
-      margin: 22px 0 0;
+      margin: 24px 0 0;
       padding: 13px 16px;
       border: 1px solid var(--border);
       border-radius: 14px;
@@ -730,8 +739,8 @@
 
     /* FOOTER */
     footer {
-      margin-top: 26px;
-      padding: 22px 0 10px;
+      margin-top: 28px;
+      padding: 24px 0 10px;
       border-top: 1px solid var(--border);
       display: flex;
       flex-direction: column;
@@ -754,13 +763,13 @@
       .header-brand { min-width: 185px; }
       .slot-arrow { display: none; }
     }
-    @media(max-width: 900px) {
+    @media(max-width: 1020px) {
       .project-hero { grid-template-columns: 1fr; }
     }
     @media(max-width: 760px) {
       :root { --sidebar-width: 258px; --sponsor-height: 56px; }
-      article[id] { scroll-margin-top: calc(var(--sponsor-height) + 104px); }
-      .jump-strip { top: calc(var(--sponsor-height) + 54px); }
+      article[id] { scroll-margin-top: calc(var(--sponsor-height) + 106px); }
+      .jump-strip { top: calc(var(--sponsor-height) + 56px); }
       .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
       .header-brand { min-width: auto; gap: 7px; }
       .header-logo { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
@@ -778,13 +787,13 @@
       .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4,14,27,.42); }
       body.menu-open .mobile-overlay { display: block; }
       .main-column { margin-left: 0; }
-      .topbar { min-height: 54px; padding: 8px 14px; }
+      .topbar { min-height: 56px; padding: 8px 14px; }
       .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
       .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
       .community-btn::first-letter { font-size: 15px; }
 
-      main { padding: 16px 14px 32px; }
-      .project-hero { padding: 16px; }
+      main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
+      .project-hero { padding: 18px; }
       .hero-identity { flex-direction: column; gap: 12px; }
       .mini-grid, .verdict-grid { grid-template-columns: 1fr; }
     }
@@ -934,10 +943,11 @@
             <div class="hero-title-group">
               <div class="hero-badges">
                 <span class="badge-pill">✓ Verified DePIN</span>
-                <span class="badge-pill">⚡ $QXT</span>
+                <span class="badge-pill">🛡️ Guardian +200 Points</span>
+                <span class="badge-pill">⚡ $QXT Economy</span>
               </div>
               <h1 id="projectTitle">Qualoo Network</h1>
-              <p>Decentralized connectivity and internet quality mapping DePIN network rewarding global tests, route telemetry, and tasks.</p>
+              <p>A decentralized network diagnostics and connectivity mapping DePIN platform—often described as the "Google Maps" of internet quality—rewarding users for global connectivity tests, route mapping, and on-the-move telemetry.</p>
             </div>
           </div>
 
@@ -947,15 +957,15 @@
                 <small>Referral Code (+200 Pts)</small>
                 <strong id="referralCodeText">P6JY5A</strong>
               </div>
-              <button type="button" class="btn-copy-code" id="copyCodeBtn" onclick="copyReferralCode()">📋 Copy</button>
+              <button type="button" class="btn-copy-code" id="copyCodeBtn" onclick="copyReferralCode()">📋 Copy Code</button>
             </div>
             <a class="btn-launch-primary" href="https://qualoo.io/download" target="_blank" rel="noopener noreferrer">
-              📲 Join / Download App →
+              📲 Join / Download Qualoo App →
             </a>
           </div>
         </section>
 
-        <!-- SINGLE-COLUMN STACK OF 11 INDIVIDUAL SECTION BOXES -->
+        <!-- SINGLE-COLUMN STACK OF 11 FULL-WIDTH SECTION BOXES -->
         <div class="single-column-stack">
           <!-- 1. OVERVIEW -->
           <article class="info-card" id="overview">
@@ -963,8 +973,8 @@
               <span class="card-heading-icon">🌐</span>
               Overview
             </h2>
-            <p><strong>Qualoo Network</strong> is a decentralized connectivity diagnostics and network mapping DePIN platform that measures real-world internet quality, speed, stability, and coverage across regions.</p>
-            <p>Users act as distributed measurement probes, helping map public Wi-Fi spots, cellular performance, and route telemetry.</p>
+            <p><strong>Qualoo Network</strong> leverages decentralized physical infrastructure (DePIN) and AI/ML analytics to map and monitor real-world internet connectivity performance across regions. Drawing on telecom audit methodology, Qualoo turns everyday smartphones and connected nodes into distributed network measurement probes.</p>
+            <p>Users contribute real-world diagnostics on internet speed, stability, public Wi-Fi, and route quality, helping build a transparent map of connectivity performance.</p>
           </article>
 
           <!-- 2. NETWORK -->
@@ -973,14 +983,15 @@
               <span class="card-heading-icon">🔗</span>
               Network
             </h2>
+            <p>Qualoo combines distributed user probe measurements with analytical processing to evaluate connectivity conditions across networks and locations.</p>
             <div class="mini-grid">
               <div class="mini-box">
-                <h3>Distributed Probe Diagnostics</h3>
-                <p>Runs multi-stage connectivity, bandwidth, latency, and route checks and aggregates telemetry via AI/ML analytics.</p>
+                <h3>Global Connectivity &amp; Route Diagnostics</h3>
+                <p>Measures connectivity environment data, bandwidth performance, internet stability, and global route behavior during structured test runs.</p>
               </div>
               <div class="mini-box">
-                <h3>On-the-Move Telemetry</h3>
-                <p>Captures network quality changes across locations and providers to highlight coverage and stability patterns.</p>
+                <h3>On-the-Move &amp; Active Node Telemetry</h3>
+                <p>Tracks network changes while moving across areas or switching providers, helping surface dead zones and quality shifts.</p>
               </div>
             </div>
           </article>
@@ -991,11 +1002,12 @@
               <span class="card-heading-icon">📱</span>
               Devices
             </h2>
-            <p>Designed as a mobile connectivity probe app (seen in build <strong>v2.4.5 (432)</strong>) available via <strong>qualoo.io/download</strong>.</p>
+            <p>Qualoo operates as a mobile connectivity diagnostics app (observed in build <strong>v2.4.5 (432)</strong>) distributed via <strong>qualoo.io/download</strong>.</p>
             <div class="perm-pills">
-              <span class="perm-pill">Android</span>
-              <span class="perm-pill">iOS (per official release)</span>
-              <span class="perm-pill">Mobile Data &amp; Wi-Fi</span>
+              <span class="perm-pill">Android Smartphones</span>
+              <span class="perm-pill">iOS Devices (per official release)</span>
+              <span class="perm-pill">Mobile Cellular Data</span>
+              <span class="perm-pill">Wi-Fi Connections</span>
             </div>
           </article>
 
@@ -1005,8 +1017,8 @@
               <span class="card-heading-icon">🛡️</span>
               Safety
             </h2>
-            <p><strong>Joining Cost:</strong> Free to join and download—no paid node purchase is required.</p>
-            <p><strong>Data &amp; Battery:</strong> Global tests (~5 minutes) and mapping consume mobile/Wi-Fi data and battery. Always download only from official links and review permissions in device settings.</p>
+            <p><strong>Joining Cost:</strong> Completely free to download and join—there is no paid hardware or upfront deposit requirement on Total Crypto Hub listings.</p>
+            <p><strong>Data &amp; Battery Usage:</strong> ~5-minute Global Tests and continuous/on-the-move mapping consume mobile/Wi-Fi data and battery. Always download from official sources and manage permissions in your device settings.</p>
           </article>
 
           <!-- 5. EARNING -->
@@ -1015,14 +1027,15 @@
               <span class="card-heading-icon">⚡</span>
               Earning
             </h2>
+            <p>Contributors earn points through active diagnostics, tasks, and referrals, which tie into ecosystem rewards according to Qualoo's program terms.</p>
             <div class="mini-grid">
               <div class="mini-box">
-                <h3>Global Tests (~5 Min)</h3>
-                <p>Earn points by running structured diagnostic cycles via the <strong>GO</strong> button for bandwidth, stability, and routes.</p>
+                <h3>Global Tests (~5 Minutes)</h3>
+                <p>Tap <strong>GO</strong> in Global Tests and keep the app open through the diagnostic cycle to earn points from connectivity, bandwidth, stability, and route checks.</p>
               </div>
               <div class="mini-box">
-                <h3>Tasks &amp; Referral Bonus</h3>
-                <p>Earn extra points through tasks, mapping activity, and inviting friends with code <strong>P6JY5A</strong> (+200 points).</p>
+                <h3>Tasks, Mapping &amp; Referrals</h3>
+                <p>Complete tasks on the dashboard, run on-the-move/mapping checks, and share your invite code—new users using <strong>P6JY5A</strong> receive a <strong>+200 points</strong> bonus.</p>
               </div>
             </div>
           </article>
@@ -1033,8 +1046,8 @@
               <span class="card-heading-icon">🪙</span>
               Tokenomics
             </h2>
-            <p>Powered by <strong>$QXT</strong> with a documented maximum supply of <strong>500,000,000 QXT</strong> and <strong>33%</strong> allocated to Ecosystem Rewards.</p>
-            <p>In-app points track contributor activity and ecosystem rewards under Qualoo's published rules.</p>
+            <p>Qualoo's ecosystem token is <strong>$QXT</strong>, with a documented maximum supply of <strong>500,000,000 QXT</strong> and <strong>33%</strong> allocated to Ecosystem Rewards.</p>
+            <p>Points earned inside the app represent activity/contribution tracking under Qualoo's published tokenomics and reward framework.</p>
           </article>
 
           <!-- 7. TEAM -->
@@ -1043,8 +1056,8 @@
               <span class="card-heading-icon">👥</span>
               Team
             </h2>
-            <p>Built on telecom network audit and connectivity measurement principles with a community probe model ("Guardians of the Internet").</p>
-            <p>Always verify official announcements, whitepaper details, and updates through Qualoo's official website and channels.</p>
+            <p>Qualoo builds on telecom network audit and connectivity measurement concepts, mobilizing community participants ("Guardians of the Internet") to collect real-world network telemetry.</p>
+            <p>Always review official whitepaper notes, announcements, and policy updates directly from Qualoo's official website and social channels.</p>
           </article>
 
           <!-- 8. JOIN GUIDE -->
@@ -1057,29 +1070,29 @@
               <div class="step-row">
                 <span class="step-num">1</span>
                 <div class="step-body">
-                  <h4>Download the App</h4>
-                  <p>Install the official Qualoo app from <strong>qualoo.io/download</strong>.</p>
+                  <h4>Download the Official Qualoo App</h4>
+                  <p>Visit <strong>qualoo.io/download</strong> and install the official Qualoo mobile application.</p>
                 </div>
               </div>
               <div class="step-row">
                 <span class="step-num">2</span>
                 <div class="step-body">
-                  <h4>Enter Referral Code P6JY5A</h4>
-                  <p>Apply code <strong>P6JY5A</strong> during sign-up/onboarding to unlock the <strong>+200 points</strong> bonus.</p>
+                  <h4>Create Account &amp; Apply Referral Code P6JY5A</h4>
+                  <p>During account registration/onboarding, enter referral code <strong>P6JY5A</strong> to join as a Guardian and unlock the <strong>+200 points</strong> bonus.</p>
                 </div>
               </div>
               <div class="step-row">
                 <span class="step-num">3</span>
                 <div class="step-body">
-                  <h4>Enable Required Permissions</h4>
-                  <p>Allow Location (While Using / Always), Notifications, Phone Info, and configure Battery Optimization.</p>
+                  <h4>Grant Required App Permissions</h4>
+                  <p>In <strong>Settings → Permissions</strong>, configure Location (While Using / Always), Notifications, Phone Info, and Battery Optimization settings so diagnostics run smoothly.</p>
                 </div>
               </div>
               <div class="step-row">
                 <span class="step-num">4</span>
                 <div class="step-body">
-                  <h4>Run Global Tests &amp; Tasks</h4>
-                  <p>Complete ~5-minute Global Tests and check <strong>Tasks</strong> and <strong>My Balance</strong>.</p>
+                  <h4>Run Global Tests &amp; Check Tasks / Balance</h4>
+                  <p>Start a ~5-minute Global Test, let the diagnostic stages complete, and check <strong>Tasks</strong> and <strong>My Balance</strong> regularly.</p>
                 </div>
               </div>
             </div>
@@ -1094,8 +1107,8 @@
             <div class="video-frame-box" id="videoPlayerBox">
               <div class="video-placeholder" id="videoPlaceholder">
                 <div class="video-play-badge" aria-hidden="true">▶</div>
-                <strong>Qualoo Step-by-Step Setup Walkthrough</strong>
-                <p>Set your YouTube video ID in <code>YOUTUBE_VIDEO_ID</code> inside the script below to display your tutorial directly here.</p>
+                <strong>Qualoo Step-by-Step Setup &amp; Registration Walkthrough</strong>
+                <p>Set your YouTube video ID in <code>YOUTUBE_VIDEO_ID</code> inside the script below to embed your tutorial video directly here.</p>
               </div>
             </div>
             <a class="btn-channel-link" href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
@@ -1113,17 +1126,17 @@
               <div class="verdict-col">
                 <h3>✓ Pros</h3>
                 <ul>
-                  <li>Free to join with a +200 point code bonus (P6JY5A).</li>
-                  <li>Practical connectivity and route testing workflow.</li>
-                  <li>500M QXT supply with 33% ecosystem allocation.</li>
+                  <li>Free to join with a +200 point onboarding code bonus (P6JY5A).</li>
+                  <li>Practical connectivity, bandwidth, and route diagnostics workflow.</li>
+                  <li>Clear 500,000,000 QXT max supply with 33% ecosystem allocation.</li>
                 </ul>
               </div>
               <div class="verdict-col">
-                <h3>! Cons</h3>
+                <h3>! Cons &amp; Considerations</h3>
                 <ul>
-                  <li>~5-minute tests and mapping use data and battery.</li>
-                  <li>Points and reward rules depend on official project terms.</li>
-                  <li>Requires location and device permissions.</li>
+                  <li>~5-minute tests and mapping consume mobile/Wi-Fi data and battery.</li>
+                  <li>Points, bonuses, and reward rules depend on Qualoo's official terms.</li>
+                  <li>Requires location and device permissions to run diagnostics properly.</li>
                 </ul>
               </div>
             </div>
@@ -1137,16 +1150,28 @@
             </h2>
             <div class="faq-list">
               <details class="faq-item" open>
-                <summary>How do I get the 200-point referral bonus on Qualoo?</summary>
-                <p>Enter referral code <strong>P6JY5A</strong> during account registration/onboarding before completing setup.</p>
+                <summary>How do I claim the 200-point referral bonus on Qualoo?</summary>
+                <p>Enter referral code <strong>P6JY5A</strong> during account creation/onboarding before finishing your initial setup.</p>
               </details>
               <details class="faq-item">
-                <summary>Is Qualoo free to join?</summary>
-                <p>Yes, joining is free, though tests and mapping use mobile/Wi-Fi data and battery.</p>
+                <summary>Is joining Qualoo Network free?</summary>
+                <p>Yes, downloading the app and joining is free, though running tests and mapping uses internet data and battery.</p>
               </details>
               <details class="faq-item">
                 <summary>How long does a Global Test take?</summary>
-                <p>A full Global Test diagnostic cycle takes around ~5 minutes.</p>
+                <p>A full Global Test diagnostic cycle takes approximately ~5 minutes from start to completion.</p>
+              </details>
+              <details class="faq-item">
+                <summary>What does Qualoo test during a diagnostic cycle?</summary>
+                <p>It checks connectivity environment data, bandwidth performance, internet stability, and global route telemetry.</p>
+              </details>
+              <details class="faq-item">
+                <summary>What is the total supply and ecosystem share of $QXT?</summary>
+                <p>Qualoo's documented tokenomics specifies a 500,000,000 $QXT maximum supply with 33% allocated to Ecosystem Rewards.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Where should I download the Qualoo app from?</summary>
+                <p>Always download from the official portal at <strong>qualoo.io/download</strong> and avoid unofficial third-party files.</p>
               </details>
             </div>
           </article>
@@ -1199,7 +1224,7 @@
         navigator.clipboard.writeText(code).then(() => {
           if (btn) {
             btn.textContent = '✓ Copied!';
-            setTimeout(() => { btn.textContent = '📋 Copy'; }, 2000);
+            setTimeout(() => { btn.textContent = '📋 Copy Code'; }, 2000);
           }
         }).catch(() => {});
       }
