@@ -629,7 +629,7 @@
     }
     [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
 
-    /* STEP-BY-STEP HOW TO JOIN + EMBEDDED SETUP VIDEO */
+    /* STEP-BY-STEP HOW TO JOIN + COMPACT SETUP VIDEO INSIDE */
     .steps-list {
       display: grid;
       gap: 11px;
@@ -660,8 +660,8 @@
     .step-body p { margin: 0; font-size: 12px; line-height: 1.65; color: var(--body); }
 
     .join-video-block {
-      margin-top: 18px;
-      padding: 18px;
+      margin-top: 16px;
+      padding: 16px 18px;
       border-radius: 16px;
       background: var(--surface-soft);
       border: 1px solid var(--border);
@@ -676,16 +676,16 @@
     }
     .join-video-header h3 {
       margin: 0;
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--heading);
     }
     .video-frame-box {
       position: relative;
       width: 100%;
-      max-width: 760px;
+      max-width: 440px;
       aspect-ratio: 16 / 9;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid #a9f0d8;
       background: var(--surface);
@@ -701,7 +701,7 @@
     .video-placeholder {
       position: absolute;
       inset: 0;
-      padding: 20px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -713,30 +713,30 @@
       color: var(--heading);
     }
     .video-play-badge {
-      width: 48px;
-      height: 48px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
       color: #ffffff;
-      font-size: 17px;
-      margin-bottom: 10px;
+      font-size: 14px;
+      margin-bottom: 7px;
     }
-    .video-placeholder strong { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
-    .video-placeholder p { margin: 0; max-width: 440px; font-size: 11.5px; line-height: 1.6; }
+    .video-placeholder strong { font-size: 12.5px; font-weight: 800; margin-bottom: 3px; }
+    .video-placeholder p { margin: 0; max-width: 340px; font-size: 10.5px; line-height: 1.5; }
 
     .btn-channel-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
-      padding: 9px 15px;
+      padding: 8px 14px;
       border-radius: 999px;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
       color: #ffffff;
       text-decoration: none;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
     }
 
@@ -846,6 +846,7 @@
       main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
       .project-hero { padding: 18px; }
       .hero-identity { flex-direction: column; gap: 12px; }
+      .video-frame-box { max-width: 100%; }
       .mini-grid, .verdict-grid, .portal-sub-links { grid-template-columns: 1fr; }
     }
     @media(max-width: 480px) {
@@ -969,17 +970,17 @@
 
       <!-- 10-TAB SHORTCUT JUMP BAR RIGHT BELOW TOPBAR -->
       <nav class="jump-strip" aria-label="Project evaluation sections">
-        <div class="jump-inner">
-          <a class="jump-tab active" href="#overview">Overview</a>
-          <a class="jump-tab" href="#network">Network</a>
-          <a class="jump-tab" href="#devices">Devices</a>
-          <a class="jump-tab" href="#safety">Safety</a>
-          <a class="jump-tab" href="#earning">Earning</a>
-          <a class="jump-tab" href="#tokenomics">Tokenomics</a>
-          <a class="jump-tab" href="#team">Team</a>
-          <a class="jump-tab" href="#join-guide">Join Guide</a>
-          <a class="jump-tab" href="#verdict">Verdict</a>
-          <a class="jump-tab" href="#faq">FAQ</a>
+        <div class="jump-inner" id="jumpInner">
+          <a class="jump-tab active" data-target="overview" href="#overview">Overview</a>
+          <a class="jump-tab" data-target="network" href="#network">Network</a>
+          <a class="jump-tab" data-target="devices" href="#devices">Devices</a>
+          <a class="jump-tab" data-target="safety" href="#safety">Safety</a>
+          <a class="jump-tab" data-target="earning" href="#earning">Earning</a>
+          <a class="jump-tab" data-target="tokenomics" href="#tokenomics">Tokenomics</a>
+          <a class="jump-tab" data-target="team" href="#team">Team</a>
+          <a class="jump-tab" data-target="join-guide" href="#join-guide">Join Guide</a>
+          <a class="jump-tab" data-target="verdict" href="#verdict">Verdict</a>
+          <a class="jump-tab" data-target="faq" href="#faq">FAQ</a>
         </div>
       </nav>
 
@@ -1119,7 +1120,7 @@
             <p>Always review official whitepaper notes, announcements, and policy updates directly from Qualoo's official website and social channels.</p>
           </article>
 
-          <!-- 8. JOIN GUIDE (STEPS + SINGLE STEP-BY-STEP SETUP VIDEO INSIDE) -->
+          <!-- 8. JOIN GUIDE (STEPS + COMPACT STEP-BY-STEP SETUP VIDEO INSIDE) -->
           <article class="info-card" id="join-guide">
             <h2 class="card-heading">
               <span class="card-heading-icon">🚀</span>
@@ -1311,19 +1312,69 @@
       if (button) button.setAttribute('aria-expanded', 'false');
     }
 
-    function initJumpTabsActiveState() {
+    function initScrollSpyTabs() {
       const tabs = Array.from(document.querySelectorAll('.jump-tab'));
+      const jumpInner = document.getElementById('jumpInner');
+      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      if (!tabs.length || !sections.length) return;
+
+      const tabById = new Map();
       tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-        });
+        const targetId = tab.getAttribute('data-target');
+        if (targetId) tabById.set(targetId, tab);
       });
+
+      function setActiveTab(sectionId) {
+        const activeTab = tabById.get(sectionId);
+        if (!activeTab) return;
+        tabs.forEach(t => t.classList.remove('active'));
+        activeTab.classList.add('active');
+
+        if (jumpInner) {
+          const tabLeft = activeTab.offsetLeft;
+          const tabWidth = activeTab.offsetWidth;
+          const containerWidth = jumpInner.clientWidth;
+          const desiredScroll = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+          jumpInner.scrollTo({ left: Math.max(0, desiredScroll), behavior: 'smooth' });
+        }
+      }
+
+      let scrollTicking = false;
+      function updateOnScroll() {
+        scrollTicking = false;
+        const headerOffset = 155;
+        let currentId = sections[0].id;
+
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= headerOffset) {
+            currentId = section.id;
+          } else {
+            break;
+          }
+        }
+
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+        if (nearBottom) {
+          currentId = sections[sections.length - 1].id;
+        }
+
+        setActiveTab(currentId);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          window.requestAnimationFrame(updateOnScroll);
+        }
+      }, { passive: true });
+
+      updateOnScroll();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       renderSetupVideo();
-      initJumpTabsActiveState();
+      initScrollSpyTabs();
 
       let savedTheme = 'light';
       try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (e) {}
