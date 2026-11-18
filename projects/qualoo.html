@@ -377,7 +377,7 @@
       color: #ffffff;
     }
 
-    /* ORIGINAL WIDE 1440px CONTAINER */
+    /* FULL-WIDTH CONTAINER (NO RIGHT SNAPSHOT SIDEBAR) */
     main {
       width: 100%;
       max-width: 1440px;
@@ -385,7 +385,7 @@
       padding: 22px clamp(16px, 2.4vw, 32px) 42px;
     }
 
-    /* PROJECT HERO BANNER */
+    /* MINT-GREEN & WHITE HERO BANNER */
     .project-hero {
       position: relative;
       overflow: hidden;
@@ -393,12 +393,12 @@
       grid-template-columns: minmax(0, 1.35fr) minmax(300px, .82fr);
       align-items: center;
       gap: 22px;
-      padding: 22px 26px;
+      padding: 24px 28px;
       border: 1px solid #a9f0d8;
       border-radius: 22px;
       background:
-        radial-gradient(circle at 90% 15%, rgba(8, 168, 107, .22), transparent 32%),
-        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 50%, var(--banner-end) 100%);
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
+        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
       box-shadow: var(--shadow);
     }
     [data-theme="dark"] .project-hero { border-color: #215d4c; }
@@ -408,10 +408,10 @@
       gap: 16px;
     }
     .hero-logo-box {
-      width: 68px;
-      height: 68px;
-      flex: 0 0 68px;
-      border-radius: 18px;
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      border-radius: 20px;
       overflow: hidden;
       display: grid;
       place-items: center;
@@ -439,16 +439,16 @@
       font-size: 9.5px;
       font-weight: 800;
       letter-spacing: .3px;
-      background: var(--green-soft);
+      background: var(--surface);
       color: var(--green-dark);
       border: 1px solid #a9f0d8;
     }
-    [data-theme="dark"] .badge-pill { color: var(--green-light); border-color: #256f55; }
+    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
 
     .hero-title-group h1 {
       margin: 0 0 6px;
       color: var(--heading);
-      font-size: clamp(24px, 2.6vw, 34px);
+      font-size: clamp(24px, 2.7vw, 35px);
       line-height: 1.14;
       font-weight: 800;
       letter-spacing: -.8px;
@@ -457,9 +457,9 @@
       margin: 0;
       color: var(--body);
       font-size: 13px;
-      line-height: 1.6;
+      line-height: 1.62;
       font-weight: 600;
-      max-width: 680px;
+      max-width: 720px;
     }
 
     /* REFERRAL & JOIN CARD INSIDE HERO */
@@ -476,7 +476,7 @@
       justify-content: space-between;
       gap: 10px;
       padding: 10px 13px;
-      margin-bottom: 12px;
+      margin-bottom: 11px;
       border-radius: 12px;
       background: var(--green-soft);
       border: 1px dashed var(--green);
@@ -516,7 +516,30 @@
     }
     .btn-launch-primary:hover { transform: translateY(-1px); }
 
-    /* SINGLE-COLUMN STACK OF INDIVIDUAL SECTION BOXES (FULL WIDTH) */
+    .portal-sub-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 9px;
+    }
+    .btn-sub-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 800;
+      transition: border-color .18s, color .18s;
+    }
+    .btn-sub-outline:hover { border-color: var(--green); color: var(--green); }
+
+    /* FULL-PAGE SINGLE-COLUMN STACK OF 11 SECTION BOXES */
     .single-column-stack {
       display: grid;
       gap: 18px;
@@ -560,6 +583,14 @@
       color: var(--body);
     }
     .info-card p:last-child { margin-bottom: 0; }
+
+    .bullet-highlights {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      font-size: 12.5px;
+      line-height: 1.75;
+      color: var(--body);
+    }
 
     .mini-grid {
       display: grid;
@@ -795,7 +826,7 @@
       main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
       .project-hero { padding: 18px; }
       .hero-identity { flex-direction: column; gap: 12px; }
-      .mini-grid, .verdict-grid { grid-template-columns: 1fr; }
+      .mini-grid, .verdict-grid, .portal-sub-links { grid-template-columns: 1fr; }
     }
     @media(max-width: 480px) {
       .header-brand-subtitle, .slot-megaphone, .community-dropdown { display: none; }
@@ -934,7 +965,7 @@
       </nav>
 
       <main>
-        <!-- COMPACT PROJECT HERO WITH REFERRAL & JOIN LINK -->
+        <!-- MINT-GREEN & WHITE PROJECT HERO BANNER -->
         <section class="project-hero" aria-labelledby="projectTitle">
           <div class="hero-identity">
             <div class="hero-logo-box">
@@ -942,12 +973,12 @@
             </div>
             <div class="hero-title-group">
               <div class="hero-badges">
-                <span class="badge-pill">✓ Verified DePIN</span>
-                <span class="badge-pill">🛡️ Guardian +200 Points</span>
-                <span class="badge-pill">⚡ $QXT Economy</span>
+                <span class="badge-pill">✓ DePIN</span>
+                <span class="badge-pill">🌐 Global Network</span>
+                <span class="badge-pill">⚡ $QXT</span>
               </div>
               <h1 id="projectTitle">Qualoo Network</h1>
-              <p>A decentralized network diagnostics and connectivity mapping DePIN platform—often described as the "Google Maps" of internet quality—rewarding users for global connectivity tests, route mapping, and on-the-move telemetry.</p>
+              <p>Decentralized Connectivity Mapping Platform — Map • Connect • Earn. A decentralized network diagnostics and connectivity mapping DePIN platform rewarding users for global connectivity tests, route mapping, and on-the-move telemetry.</p>
             </div>
           </div>
 
@@ -960,21 +991,30 @@
               <button type="button" class="btn-copy-code" id="copyCodeBtn" onclick="copyReferralCode()">📋 Copy Code</button>
             </div>
             <a class="btn-launch-primary" href="https://qualoo.io/download" target="_blank" rel="noopener noreferrer">
-              📲 Join / Download Qualoo App →
+              Open Official App →
             </a>
+            <div class="portal-sub-links">
+              <a class="btn-sub-outline" href="https://www.qualoo.io" target="_blank" rel="noopener noreferrer">🌐 Official Website</a>
+              <a class="btn-sub-outline" href="../depin-pages/depin.html">← All DePIN Nodes</a>
+            </div>
           </div>
         </section>
 
-        <!-- SINGLE-COLUMN STACK OF 11 FULL-WIDTH SECTION BOXES -->
+        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 11 SECTION BOXES -->
         <div class="single-column-stack">
           <!-- 1. OVERVIEW -->
           <article class="info-card" id="overview">
             <h2 class="card-heading">
               <span class="card-heading-icon">🌐</span>
-              Overview
+              About Qualoo Network
             </h2>
-            <p><strong>Qualoo Network</strong> leverages decentralized physical infrastructure (DePIN) and AI/ML analytics to map and monitor real-world internet connectivity performance across regions. Drawing on telecom audit methodology, Qualoo turns everyday smartphones and connected nodes into distributed network measurement probes.</p>
-            <p>Users contribute real-world diagnostics on internet speed, stability, public Wi-Fi, and route quality, helping build a transparent map of connectivity performance.</p>
+            <p><strong>Qualoo Network</strong> is a decentralized physical infrastructure (DePIN) and AI/ML analytics platform—often described as the "Google Maps" of internet quality—rewarding users for global connectivity tests, route mapping, and on-the-move telemetry.</p>
+            <ul class="bullet-highlights">
+              <li><strong>Global Connectivity Mapping:</strong> Measures real-world internet quality, speed, stability, and coverage across regions.</li>
+              <li><strong>Earn Rewards with Simple Tasks:</strong> Contribute diagnostics, complete tasks, and invite friends.</li>
+              <li><strong>Powered by DePIN Technology:</strong> Turns everyday smartphones and probes into distributed measurement nodes.</li>
+              <li><strong>Build a Transparent Network:</strong> Helps surface coverage gaps and provider performance insights.</li>
+            </ul>
           </article>
 
           <!-- 2. NETWORK -->
@@ -1017,7 +1057,7 @@
               <span class="card-heading-icon">🛡️</span>
               Safety
             </h2>
-            <p><strong>Joining Cost:</strong> Completely free to download and join—there is no paid hardware or upfront deposit requirement on Total Crypto Hub listings.</p>
+            <p><strong>Joining Cost:</strong> Free to start—no paid node purchase or upfront deposit is required on Total Crypto Hub listings.</p>
             <p><strong>Data &amp; Battery Usage:</strong> ~5-minute Global Tests and continuous/on-the-move mapping consume mobile/Wi-Fi data and battery. Always download from official sources and manage permissions in your device settings.</p>
           </article>
 
@@ -1070,29 +1110,22 @@
               <div class="step-row">
                 <span class="step-num">1</span>
                 <div class="step-body">
-                  <h4>Download the Official Qualoo App</h4>
+                  <h4>Download Qualoo App</h4>
                   <p>Visit <strong>qualoo.io/download</strong> and install the official Qualoo mobile application.</p>
                 </div>
               </div>
               <div class="step-row">
                 <span class="step-num">2</span>
                 <div class="step-body">
-                  <h4>Create Account &amp; Apply Referral Code P6JY5A</h4>
-                  <p>During account registration/onboarding, enter referral code <strong>P6JY5A</strong> to join as a Guardian and unlock the <strong>+200 points</strong> bonus.</p>
+                  <h4>Enter Referral Code P6JY5A</h4>
+                  <p>During account registration/onboarding, enter referral code <strong>P6JY5A</strong> to unlock the <strong>+200 points</strong> bonus.</p>
                 </div>
               </div>
               <div class="step-row">
                 <span class="step-num">3</span>
                 <div class="step-body">
-                  <h4>Grant Required App Permissions</h4>
-                  <p>In <strong>Settings → Permissions</strong>, configure Location (While Using / Always), Notifications, Phone Info, and Battery Optimization settings so diagnostics run smoothly.</p>
-                </div>
-              </div>
-              <div class="step-row">
-                <span class="step-num">4</span>
-                <div class="step-body">
-                  <h4>Run Global Tests &amp; Check Tasks / Balance</h4>
-                  <p>Start a ~5-minute Global Test, let the diagnostic stages complete, and check <strong>Tasks</strong> and <strong>My Balance</strong> regularly.</p>
+                  <h4>Start Mapping &amp; Earn Rewards</h4>
+                  <p>Enable required permissions (Location, Notifications, Phone Info, Battery Optimization), run ~5-minute Global Tests, and check <strong>Tasks</strong> and <strong>My Balance</strong>.</p>
                 </div>
               </div>
             </div>
@@ -1107,7 +1140,7 @@
             <div class="video-frame-box" id="videoPlayerBox">
               <div class="video-placeholder" id="videoPlaceholder">
                 <div class="video-play-badge" aria-hidden="true">▶</div>
-                <strong>Qualoo Step-by-Step Setup &amp; Registration Walkthrough</strong>
+                <strong>Qualoo Network Setup Guide</strong>
                 <p>Set your YouTube video ID in <code>YOUTUBE_VIDEO_ID</code> inside the script below to embed your tutorial video directly here.</p>
               </div>
             </div>
