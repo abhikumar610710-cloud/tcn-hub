@@ -55,6 +55,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    section[id], article[id], div[id] { scroll-margin-top: calc(var(--sponsor-height) + 124px); }
     body {
       margin: 0;
       min-height: 100vh;
@@ -86,9 +87,7 @@
       box-shadow: 0 4px 18px rgba(8, 168, 107, .09);
       isolation: isolate;
     }
-    [data-theme="dark"] .sponsor-strip {
-      border-bottom: 1px solid #245f4d;
-    }
+    [data-theme="dark"] .sponsor-strip { border-bottom: 1px solid #245f4d; }
     .sponsor-inner {
       position: relative;
       z-index: 1;
@@ -281,11 +280,11 @@
       position: sticky;
       top: var(--sponsor-height);
       z-index: 100;
-      min-height: 68px;
+      min-height: 62px;
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 10px 28px;
+      padding: 9px 28px;
       background: color-mix(in srgb, var(--surface) 95%, transparent);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(16px);
@@ -295,8 +294,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      min-height: 36px;
-      padding: 0 14px;
+      min-height: 34px;
+      padding: 0 13px;
       border-radius: 999px;
       border: 1px solid var(--green);
       background: var(--green-soft);
@@ -328,9 +327,9 @@
 
     .topbar-spacer { flex: 1; }
     .community-dropdown { position: relative; }
-    .community-btn,.icon-btn { min-height: 39px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--border); border-radius: 999px; color: var(--heading); background: var(--surface); font-size: 11px; font-weight: 800; box-shadow: 0 3px 9px rgba(8, 168, 107, .05); }
-    .community-btn { padding: 0 16px; }
-    .icon-btn { width: 39px; border-radius: 50%; font-size: 17px; }
+    .community-btn,.icon-btn { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--border); border-radius: 999px; color: var(--heading); background: var(--surface); font-size: 11px; font-weight: 800; box-shadow: 0 3px 9px rgba(8, 168, 107, .05); }
+    .community-btn { padding: 0 15px; }
+    .icon-btn { width: 38px; border-radius: 50%; font-size: 16px; }
     .community-btn:hover,.icon-btn:hover { border-color: var(--green); color: var(--green); }
     .dropdown-content { display: none; position: absolute; z-index: 150; top: calc(100% + 10px); right: 0; min-width: 195px; overflow: hidden; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: 0 14px 32px rgba(0,0,0,.14); }
     .dropdown-content.show { display: block; }
@@ -338,12 +337,53 @@
     .dropdown-content a:last-child { border-bottom: 0; }
     .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
 
-    /* ENTERPRISE DESKTOP CONTAINER (1440px STANDARD MAX-WIDTH) */
+    /* COMPACT 11-TAB SHORTCUT JUMP BAR */
+    .jump-strip {
+      position: sticky;
+      top: calc(var(--sponsor-height) + 62px);
+      z-index: 95;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+    .jump-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 8px clamp(16px, 2.4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-inner::-webkit-scrollbar { display: none; }
+    .jump-tab {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .16s ease;
+    }
+    .jump-tab:hover, .jump-tab.active {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-color: var(--green);
+      color: #ffffff;
+    }
+
+    /* ENTERPRISE DESKTOP CONTAINER */
     main {
       width: 100%;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 24px clamp(16px, 2.4vw, 32px) 42px;
+      padding: 20px clamp(16px, 2.4vw, 32px) 42px;
     }
 
     /* PROJECT HERO BANNER */
@@ -354,7 +394,7 @@
       grid-template-columns: minmax(0, 1.35fr) minmax(310px, .85fr);
       align-items: center;
       gap: 24px;
-      padding: 28px 32px;
+      padding: 26px 30px;
       border: 1px solid #a9f0d8;
       border-radius: 24px;
       background:
@@ -362,9 +402,7 @@
         linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 50%, var(--banner-end) 100%);
       box-shadow: var(--shadow);
     }
-    [data-theme="dark"] .project-hero {
-      border-color: #215d4c;
-    }
+    [data-theme="dark"] .project-hero { border-color: #215d4c; }
     .hero-identity {
       display: flex;
       align-items: flex-start;
@@ -516,44 +554,6 @@
     }
     .btn-sub-outline:hover { border-color: var(--green); color: var(--green); }
 
-    /* QUICK METRICS STRIP */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-    .metric-card {
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: 0 6px 18px rgba(8, 168, 107, .05);
-    }
-    .metric-card span {
-      display: block;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .6px;
-      color: var(--muted);
-    }
-    .metric-card strong {
-      display: block;
-      margin-top: 6px;
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .metric-card small {
-      display: block;
-      margin-top: 4px;
-      font-size: 10.5px;
-      font-weight: 600;
-      color: var(--green-dark);
-    }
-    [data-theme="dark"] .metric-card small { color: var(--green-light); }
-
     /* MAIN TWO-COLUMN CONTENT GRID (DESKTOP 2:1 RATIO) */
     .content-layout {
       display: grid;
@@ -563,6 +563,7 @@
       align-items: start;
     }
     .content-stack { display: grid; gap: 18px; }
+    .sticky-aside { position: sticky; top: calc(var(--sponsor-height) + 114px); }
 
     .info-card {
       padding: 22px 24px;
@@ -590,6 +591,7 @@
       background: var(--green-soft);
       color: var(--green-dark);
       font-size: 16px;
+      flex: 0 0 32px;
     }
     [data-theme="dark"] .card-heading-icon { color: var(--green-light); }
 
@@ -601,54 +603,50 @@
     }
     .info-card p:last-child { margin-bottom: 0; }
 
-    /* FEATURE GRID */
-    .tech-grid {
+    .mini-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 12px;
+      margin-top: 10px;
     }
-    .tech-item {
-      padding: 15px 16px;
-      border-radius: 16px;
+    .mini-box {
+      padding: 14px 15px;
+      border-radius: 15px;
       background: var(--surface-soft);
       border: 1px solid var(--border);
     }
-    .tech-item h3 {
-      margin: 0 0 6px;
-      font-size: 13.5px;
+    .mini-box h3 {
+      margin: 0 0 5px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--heading);
-      display: flex;
-      align-items: center;
-      gap: 7px;
     }
-    .tech-item p {
+    .mini-box p {
       margin: 0;
       font-size: 11.5px;
       line-height: 1.6;
       color: var(--body);
     }
 
-    /* STEP-BY-STEP HOW TO JOIN & EARN */
+    /* STEP-BY-STEP HOW TO JOIN */
     .steps-list {
       display: grid;
-      gap: 12px;
+      gap: 11px;
       margin-top: 10px;
     }
     .step-row {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
+      padding: 13px 15px;
+      border-radius: 15px;
       background: var(--surface-soft);
       border: 1px solid var(--border);
     }
     .step-num {
-      width: 30px;
-      height: 30px;
-      flex: 0 0 30px;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
       border-radius: 50%;
       display: grid;
       place-items: center;
@@ -658,7 +656,7 @@
       font-weight: 800;
     }
     .step-body h4 {
-      margin: 0 0 4px;
+      margin: 0 0 3px;
       font-size: 13px;
       font-weight: 800;
       color: var(--heading);
@@ -670,30 +668,16 @@
       color: var(--body);
     }
 
-    /* BOTTOM VIDEO GUIDE SECTION */
-    .video-guide-section {
-      margin-top: 22px;
-      padding: 24px 26px;
-      border-radius: 22px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-    .video-guide-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(270px, .95fr);
-      gap: 22px;
-      align-items: center;
-      margin-top: 14px;
-    }
+    /* VIDEO BOX */
     .video-frame-box {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      border-radius: 18px;
+      border-radius: 16px;
       overflow: hidden;
       border: 1px solid #a9f0d8;
       background: var(--surface-soft);
+      margin-bottom: 14px;
     }
     .video-frame-box iframe {
       position: absolute;
@@ -705,7 +689,7 @@
     .video-placeholder {
       position: absolute;
       inset: 0;
-      padding: 24px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -717,49 +701,20 @@
       color: var(--heading);
     }
     .video-play-badge {
-      width: 56px;
-      height: 56px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
       color: #ffffff;
-      font-size: 20px;
-      margin-bottom: 12px;
+      font-size: 19px;
+      margin-bottom: 10px;
       box-shadow: 0 8px 22px rgba(8, 168, 107, .32);
     }
-    .video-placeholder strong {
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: var(--heading);
-    }
-    .video-placeholder p {
-      margin: 0;
-      max-width: 430px;
-      font-size: 11.5px;
-      line-height: 1.6;
-      color: var(--body);
-    }
-    .video-side-notes {
-      padding: 18px;
-      border-radius: 18px;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-    }
-    .video-side-notes h3 {
-      margin: 0 0 10px;
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .video-checklist {
-      margin: 0 0 16px;
-      padding-left: 18px;
-      font-size: 12px;
-      line-height: 1.75;
-      color: var(--body);
-    }
+    .video-placeholder strong { font-size: 14.5px; font-weight: 800; margin-bottom: 5px; }
+    .video-placeholder p { margin: 0; max-width: 440px; font-size: 11.5px; line-height: 1.6; }
+
     .btn-channel-link {
       display: inline-flex;
       align-items: center;
@@ -774,11 +729,45 @@
       font-weight: 800;
     }
 
-    /* RIGHT SIDEBAR SPECS */
-    .spec-list {
+    /* PROS & CONS */
+    .verdict-grid {
       display: grid;
-      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
+    .verdict-col {
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+    .verdict-col h3 { margin: 0 0 8px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .verdict-col ul { margin: 0; padding-left: 16px; font-size: 11.5px; line-height: 1.7; color: var(--body); }
+
+    /* FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; }
+    .faq-item {
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      padding: 12px 15px;
+    }
+    .faq-item summary {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--heading);
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-item p {
+      margin: 8px 0 0;
+      font-size: 11.5px;
+      line-height: 1.65;
+      color: var(--body);
+    }
+
+    /* RIGHT SIDEBAR SPECS */
+    .spec-list { display: grid; gap: 10px; }
     .spec-row {
       display: flex;
       align-items: center;
@@ -793,12 +782,7 @@
     .spec-row span { color: var(--muted); font-weight: 700; }
     .spec-row strong { color: var(--heading); font-weight: 800; text-align: right; }
 
-    .perm-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 12px;
-    }
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
     .perm-pill {
       padding: 6px 11px;
       border-radius: 999px;
@@ -842,7 +826,6 @@
 
     .mobile-overlay { display: none; }
 
-    /* RESPONSIVE BREAKPOINTS */
     @media(max-width: 1250px) {
       :root { --sidebar-width: 235px; }
       .header-brand { min-width: 185px; }
@@ -851,11 +834,12 @@
     @media(max-width: 1080px) {
       .project-hero { grid-template-columns: 1fr; }
       .content-layout { grid-template-columns: 1fr; }
-      .video-guide-grid { grid-template-columns: 1fr; }
-      .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sticky-aside { position: static; }
     }
     @media(max-width: 760px) {
       :root { --sidebar-width: 258px; --sponsor-height: 56px; }
+      section[id], article[id], div[id] { scroll-margin-top: calc(var(--sponsor-height) + 108px); }
+      .jump-strip { top: calc(var(--sponsor-height) + 56px); }
       .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
       .header-brand { min-width: auto; gap: 7px; }
       .header-logo { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
@@ -873,18 +857,17 @@
       .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4,14,27,.42); }
       body.menu-open .mobile-overlay { display: block; }
       .main-column { margin-left: 0; }
-      .topbar { min-height: 62px; padding: 9px 14px; }
+      .topbar { min-height: 56px; padding: 8px 14px; }
       .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
       .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
       .community-btn::first-letter { font-size: 15px; }
 
       .project-hero { padding: 20px 18px; }
       .hero-identity { flex-direction: column; gap: 14px; }
-      .tech-grid { grid-template-columns: 1fr; }
+      .mini-grid, .verdict-grid { grid-template-columns: 1fr; }
     }
     @media(max-width: 480px) {
       .header-brand-subtitle, .slot-megaphone, .community-dropdown { display: none; }
-      .metrics-grid { grid-template-columns: 1fr; }
       .portal-sub-links { grid-template-columns: 1fr; }
     }
   </style>
@@ -1003,6 +986,23 @@
         <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
       </header>
 
+      <!-- COMPACT 11-TAB SHORTCUT JUMP BAR -->
+      <nav class="jump-strip" aria-label="Project evaluation sections">
+        <div class="jump-inner">
+          <a class="jump-tab active" href="#overview">Overview</a>
+          <a class="jump-tab" href="#network">Network</a>
+          <a class="jump-tab" href="#devices">Devices</a>
+          <a class="jump-tab" href="#safety">Safety</a>
+          <a class="jump-tab" href="#earning">Earning</a>
+          <a class="jump-tab" href="#tokenomics">Tokenomics</a>
+          <a class="jump-tab" href="#team">Team</a>
+          <a class="jump-tab" href="#join-guide">Join Guide</a>
+          <a class="jump-tab" href="#video">Video</a>
+          <a class="jump-tab" href="#verdict">Verdict</a>
+          <a class="jump-tab" href="#faq">FAQ</a>
+        </div>
+      </nav>
+
       <main>
         <!-- HERO SECTION -->
         <section class="project-hero" aria-labelledby="projectTitle">
@@ -1044,130 +1044,229 @@
           </div>
         </section>
 
-        <!-- QUICK METRICS STRIP -->
-        <section class="metrics-grid" aria-label="Key project metrics">
-          <div class="metric-card">
-            <span>DePIN Category</span>
-            <strong>Bandwidth &amp; Sensor</strong>
-            <small>Connectivity &amp; Route Diagnostics</small>
-          </div>
-          <div class="metric-card">
-            <span>Reward Token</span>
-            <strong>Points → $QXT</strong>
-            <small>500M Total Supply (33% Ecosystem)</small>
-          </div>
-          <div class="metric-card">
-            <span>Active App Build</span>
-            <strong>v2.4.5 (432)</strong>
-            <small>Global Tests &amp; On the Move Mode</small>
-          </div>
-          <div class="metric-card">
-            <span>Referral Bonus</span>
-            <strong>200 Points</strong>
-            <small>Use Code: P6JY5A on Sign-Up</small>
-          </div>
-        </section>
-
         <!-- MAIN TWO-COLUMN BODY -->
         <div class="content-layout">
-          <!-- LEFT COLUMN: OVERVIEW, APP DIAGNOSTICS, HOW TO JOIN -->
+          <!-- LEFT COLUMN: 11 EVALUATION SECTIONS -->
           <div class="content-stack">
-            <article class="info-card">
+            <!-- 1. OVERVIEW -->
+            <article class="info-card" id="overview">
               <h2 class="card-heading">
                 <span class="card-heading-icon">🌐</span>
-                Project Overview &amp; Whitepaper Insights
+                Project Overview
               </h2>
-              <p><strong>Qualoo Network</strong> leverages decentralized physical infrastructure (DePIN) and AI/ML analytics to map and monitor real-world internet connectivity performance across regions. Drawing on telecom audit methodology, Qualoo turns everyday smartphones and connected nodes into distributed network measurement probes.</p>
-              <p>According to Qualoo's tokenomics and whitepaper framework, the ecosystem is powered by the <strong>QXT</strong> token (500,000,000 maximum supply, with 33% allocated to Ecosystem Rewards). Contributors earn points by running diagnostics, mapping coverage and public Wi-Fi spots, completing tasks, and inviting friends, which can tie into ecosystem rewards and partner benefits.</p>
+              <p><strong>Qualoo Network</strong> is a decentralized physical infrastructure (DePIN) connectivity and network diagnostics platform that maps real-world internet quality, speed, stability, and coverage across regions.</p>
+              <p>By turning everyday smartphones and connected probes into distributed measurement nodes, Qualoo helps map public Wi-Fi spots, cellular performance, and route telemetry.</p>
             </article>
 
-            <article class="info-card">
+            <!-- 2. NETWORK -->
+            <article class="info-card" id="network">
               <h2 class="card-heading">
-                <span class="card-heading-icon">📡</span>
-                Core App Modules &amp; Diagnostics
+                <span class="card-heading-icon">🔗</span>
+                Blockchain &amp; Network Technology
               </h2>
-              <div class="tech-grid">
-                <div class="tech-item">
-                  <h3>🌍 Global Connectivity Tests (~5 Min)</h3>
-                  <p>Run structured multi-stage network checks via the <strong>GO</strong> button, covering connectivity environment data, bandwidth checks, global connectivity tests, internet stability, and global route mapping.</p>
+              <div class="mini-grid">
+                <div class="mini-box">
+                  <h3>Distributed Probe Architecture</h3>
+                  <p>Collects real-time connectivity, bandwidth, latency, and route diagnostics from user devices and aggregates telemetry using AI/ML models.</p>
                 </div>
-                <div class="tech-item">
-                  <h3>🚶 On the Move &amp; Active Node Testing</h3>
-                  <p>Supports continuous mapping and active node diagnostics as you move across locations, helping identify coverage gaps and network quality shifts.</p>
-                </div>
-                <div class="tech-item">
-                  <h3>🔔 Tasks &amp; Community Missions</h3>
-                  <p>Track available tasks and notifications directly from the home dashboard to earn additional points and stay updated on network campaigns.</p>
-                </div>
-                <div class="tech-item">
-                  <h3>⚙️ Device, Provider &amp; Wallet Controls</h3>
-                  <p>Manage permissions, language, country, home provider settings, background mapping preferences, and wallet connection status inside Settings.</p>
+                <div class="mini-box">
+                  <h3>On-the-Move Telemetry</h3>
+                  <p>Maps network behavior across locations and provider transitions so coverage gaps and quality shifts are documented accurately.</p>
                 </div>
               </div>
             </article>
 
-            <article class="info-card">
+            <!-- 3. DEVICES -->
+            <article class="info-card" id="devices">
+              <h2 class="card-heading">
+                <span class="card-heading-icon">📱</span>
+                Supported Devices
+              </h2>
+              <p>Qualoo is designed primarily as a mobile connectivity probe application (seen in build <strong>v2.4.5 (432)</strong>) available via <strong>qualoo.io/download</strong>.</p>
+              <div class="perm-pills">
+                <span class="perm-pill">Android Smartphones</span>
+                <span class="perm-pill">iOS Devices (per official release)</span>
+                <span class="perm-pill">Mobile Data &amp; Wi-Fi</span>
+              </div>
+            </article>
+
+            <!-- 4. SAFETY -->
+            <article class="info-card" id="safety">
+              <h2 class="card-heading">
+                <span class="card-heading-icon">🛡️</span>
+                Joining Cost &amp; Safety Check
+              </h2>
+              <p><strong>Joining Cost:</strong> Free to download and join—no paid node purchase or upfront investment is required on Total Crypto Hub listings.</p>
+              <p><strong>Data &amp; Battery Safety:</strong> Running Global Tests (~5 minutes) and background/on-the-move mapping uses mobile/Wi-Fi data and battery. Always download only from official sources and review app permissions in device settings.</p>
+            </article>
+
+            <!-- 5. EARNING -->
+            <article class="info-card" id="earning">
+              <h2 class="card-heading">
+                <span class="card-heading-icon">⚡</span>
+                Earning Mechanism
+              </h2>
+              <div class="mini-grid">
+                <div class="mini-box">
+                  <h3>Global Connectivity Tests</h3>
+                  <p>Earn points by running structured diagnostic cycles (~5 minutes) via the <strong>GO</strong> button to test bandwidth, stability, and routes.</p>
+                </div>
+                <div class="mini-box">
+                  <h3>Tasks, Mapping &amp; Referrals</h3>
+                  <p>Earn extra points through dashboard tasks, mapping/on-the-move activity, and inviting friends with referral code <strong>P6JY5A</strong> (+200 points).</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- 6. TOKENOMICS -->
+            <article class="info-card" id="tokenomics">
+              <h2 class="card-heading">
+                <span class="card-heading-icon">🪙</span>
+                Tokenomics ($QXT)
+              </h2>
+              <p>According to Qualoo's documented tokenomics framework, the network centers on the <strong>$QXT</strong> token with a <strong>500,000,000</strong> maximum supply and <strong>33%</strong> allocated to Ecosystem Rewards.</p>
+              <p>In-app points track contributor activity and ecosystem participation under Qualoo's reward rules.</p>
+            </article>
+
+            <!-- 7. TEAM -->
+            <article class="info-card" id="team">
+              <h2 class="card-heading">
+                <span class="card-heading-icon">👥</span>
+                Team &amp; Ecosystem Background
+              </h2>
+              <p>Qualoo draws on telecom network audit and connectivity measurement concepts, building a community-driven probe network where users act as Guardians of the Internet.</p>
+              <p>Always verify official announcements, whitepaper updates, and partner integrations directly through Qualoo's official channels.</p>
+            </article>
+
+            <!-- 8. JOIN GUIDE -->
+            <article class="info-card" id="join-guide">
               <h2 class="card-heading">
                 <span class="card-heading-icon">🚀</span>
-                Step-by-Step Guide: How to Join with Code P6JY5A
+                Step-by-Step Join Guide (Code: P6JY5A)
               </h2>
               <div class="steps-list">
                 <div class="step-row">
                   <span class="step-num">1</span>
                   <div class="step-body">
                     <h4>Download the Qualoo App</h4>
-                    <p>Download and install the official Qualoo mobile app from <strong>qualoo.io/download</strong>.</p>
+                    <p>Install the official app from <strong>qualoo.io/download</strong>.</p>
                   </div>
                 </div>
                 <div class="step-row">
                   <span class="step-num">2</span>
                   <div class="step-body">
-                    <h4>Create Account &amp; Enter Referral Code P6JY5A</h4>
-                    <p>During account setup, enter referral code <strong>P6JY5A</strong> to become a Guardian of the Internet and unlock the 200-point onboarding bonus.</p>
+                    <h4>Register &amp; Apply Referral Code P6JY5A</h4>
+                    <p>Enter code <strong>P6JY5A</strong> during onboarding to unlock the <strong>+200 points</strong> welcome bonus.</p>
                   </div>
                 </div>
                 <div class="step-row">
                   <span class="step-num">3</span>
                   <div class="step-body">
-                    <h4>Grant Required Network Permissions</h4>
-                    <p>In <strong>Settings → Permissions</strong>, enable Location (While Using / Always), Notifications, Phone Info, and Battery Optimization exclusion so network monitoring and background mapping run reliably.</p>
+                    <h4>Configure Permissions</h4>
+                    <p>Enable Location (While Using / Always), Notifications, Phone Info, and adjust Battery Optimization as needed.</p>
                   </div>
                 </div>
                 <div class="step-row">
                   <span class="step-num">4</span>
                   <div class="step-body">
-                    <h4>Run Global Tests &amp; Complete Tasks</h4>
-                    <p>Open <strong>Global Tests</strong>, keep the app open while the ~5-minute diagnostic cycle completes, and check <strong>Tasks</strong> and <strong>My Balance</strong> regularly.</p>
+                    <h4>Run Global Tests &amp; Check Tasks</h4>
+                    <p>Start a ~5-minute Global Test, keep the app active during the cycle, and check <strong>Tasks</strong> and <strong>My Balance</strong>.</p>
                   </div>
                 </div>
               </div>
             </article>
+
+            <!-- 9. VIDEO -->
+            <article class="info-card" id="video">
+              <h2 class="card-heading">
+                <span class="card-heading-icon">🎬</span>
+                Setup &amp; Registration Video Guide
+              </h2>
+              <div class="video-frame-box" id="videoPlayerBox">
+                <div class="video-placeholder" id="videoPlaceholder">
+                  <div class="video-play-badge" aria-hidden="true">▶</div>
+                  <strong>Qualoo Step-by-Step Setup Walkthrough</strong>
+                  <p>Set your YouTube video ID in <code>YOUTUBE_VIDEO_ID</code> inside the script below to display your tutorial directly here.</p>
+                </div>
+              </div>
+              <a class="btn-channel-link" href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
+                ▶ Watch on Total Crypto Network
+              </a>
+            </article>
+
+            <!-- 10. VERDICT -->
+            <article class="info-card" id="verdict">
+              <h2 class="card-heading">
+                <span class="card-heading-icon">⚖️</span>
+                Pros &amp; Cons Verdict
+              </h2>
+              <div class="verdict-grid">
+                <div class="verdict-col">
+                  <h3>✓ Pros</h3>
+                  <ul>
+                    <li>Free to join with a +200 point code bonus (P6JY5A).</li>
+                    <li>Clear, practical connectivity &amp; route testing workflow.</li>
+                    <li>Defined 500M QXT supply with 33% ecosystem allocation.</li>
+                  </ul>
+                </div>
+                <div class="verdict-col">
+                  <h3>! Cons &amp; Considerations</h3>
+                  <ul>
+                    <li>~5-minute tests and mapping consume data and battery.</li>
+                    <li>Points and token reward mechanics depend on project terms.</li>
+                    <li>Requires location and device permissions to function properly.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <!-- 11. FAQ -->
+            <article class="info-card" id="faq">
+              <h2 class="card-heading">
+                <span class="card-heading-icon">❓</span>
+                Frequently Asked Questions (FAQ)
+              </h2>
+              <div class="faq-list">
+                <details class="faq-item" open>
+                  <summary>How do I get the 200-point referral bonus on Qualoo?</summary>
+                  <p>Enter referral code <strong>P6JY5A</strong> during account registration/onboarding before completing your initial setup.</p>
+                </details>
+                <details class="faq-item">
+                  <summary>Is Qualoo Network free to join?</summary>
+                  <p>Yes, downloading the app and participating in diagnostics is free, though network tests use internet bandwidth and battery.</p>
+                </details>
+                <details class="faq-item">
+                  <summary>What happens during a Global Test?</summary>
+                  <p>The app runs a ~5-minute diagnostic sequence checking connectivity environment, bandwidth, stability, and route telemetry.</p>
+                </details>
+              </div>
+            </article>
           </div>
 
-          <!-- RIGHT COLUMN: TECHNICAL SPECS & PERMISSIONS -->
-          <aside class="content-stack" aria-label="Technical specifications">
+          <!-- RIGHT COLUMN: STICKY SPECS & PERMISSIONS -->
+          <aside class="content-stack sticky-aside" aria-label="Technical specifications">
             <div class="info-card">
               <h2 class="card-heading">
                 <span class="card-heading-icon">📊</span>
-                Network &amp; App Specs
+                Quick Project Specs
               </h2>
               <div class="spec-list">
                 <div class="spec-row"><span>Token Ticker</span><strong>$QXT</strong></div>
-                <div class="spec-row"><span>Total Supply</span><strong>500,000,000 QXT</strong></div>
-                <div class="spec-row"><span>Ecosystem Pool</span><strong>33% Allocation</strong></div>
+                <div class="spec-row"><span>Max Supply</span><strong>500,000,000 QXT</strong></div>
+                <div class="spec-row"><span>Ecosystem Share</span><strong>33%</strong></div>
                 <div class="spec-row"><span>Referral Code</span><strong>P6JY5A (+200 Pts)</strong></div>
+                <div class="spec-row"><span>Joining Cost</span><strong>Free</strong></div>
                 <div class="spec-row"><span>App Build Seen</span><strong>v2.4.5 (432)</strong></div>
-                <div class="spec-row"><span>Diagnostic Cycle</span><strong>~5 Min Global Test</strong></div>
-                <div class="spec-row"><span>Download Portal</span><strong>qualoo.io/download</strong></div>
+                <div class="spec-row"><span>Download</span><strong>qualoo.io/download</strong></div>
               </div>
             </div>
 
             <div class="info-card">
               <h2 class="card-heading">
                 <span class="card-heading-icon">🔐</span>
-                App Permissions Checklist
+                Key App Permissions
               </h2>
-              <p>Qualoo uses these permissions to monitor connectivity quality and map network performance:</p>
+              <p>Permissions used for connectivity &amp; telemetry diagnostics:</p>
               <div class="perm-pills">
                 <span class="perm-pill">Location (While Using)</span>
                 <span class="perm-pill">Location (All the Time)</span>
@@ -1178,36 +1277,6 @@
             </div>
           </aside>
         </div>
-
-        <!-- BOTTOM STEP-BY-STEP SETUP & REGISTRATION GUIDE VIDEO SECTION -->
-        <section class="video-guide-section" id="setup-video" aria-labelledby="videoGuideTitle">
-          <h2 class="card-heading" id="videoGuideTitle">
-            <span class="card-heading-icon">🎬</span>
-            Step-by-Step Setup &amp; Registration Video Guide
-          </h2>
-          <div class="video-guide-grid">
-            <div class="video-frame-box" id="videoPlayerBox">
-              <div class="video-placeholder" id="videoPlaceholder">
-                <div class="video-play-badge" aria-hidden="true">▶</div>
-                <strong>Qualoo Step-by-Step Registration &amp; Setup Walkthrough</strong>
-                <p>Add your YouTube video ID in <code>YOUTUBE_VIDEO_ID</code> inside the script below to embed your walkthrough video directly here.</p>
-              </div>
-            </div>
-
-            <div class="video-side-notes">
-              <h3>Step-by-Step Video Walkthrough</h3>
-              <ol class="video-checklist">
-                <li>Download and install from <strong>qualoo.io/download</strong>.</li>
-                <li>Register and apply referral code <strong>P6JY5A</strong> for +200 points.</li>
-                <li>Configure Location, Notifications, Phone Info &amp; Battery Optimization.</li>
-                <li>Run ~5-minute Global Tests and check Tasks &amp; Balance.</li>
-              </ol>
-              <a class="btn-channel-link" href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
-                ▶ Watch on Total Crypto Network
-              </a>
-            </div>
-          </div>
-        </section>
 
         <p class="disclaimer"><strong>Disclaimer:</strong> Total Crypto Hub is an independent educational directory and research portal. Points, bonus rules, background data usage, and future $QXT token rewards are subject to Qualoo Network terms and availability. Always do your own research before participating.</p>
 
@@ -1293,8 +1362,19 @@
       if (button) button.setAttribute('aria-expanded', 'false');
     }
 
+    function initJumpTabsActiveState() {
+      const tabs = Array.from(document.querySelectorAll('.jump-tab'));
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+        });
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       renderSetupVideo();
+      initJumpTabsActiveState();
 
       let savedTheme = 'light';
       try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (e) {}
