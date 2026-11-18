@@ -337,7 +337,7 @@
     .dropdown-content a:last-child { border-bottom: 0; }
     .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
 
-    /* FULL-WIDTH 11-TAB SHORTCUT JUMP BAR */
+    /* FULL-WIDTH 10-TAB SHORTCUT JUMP BAR */
     .jump-strip {
       position: sticky;
       top: calc(var(--sponsor-height) + 60px);
@@ -377,7 +377,7 @@
       color: #ffffff;
     }
 
-    /* FULL-WIDTH CONTAINER (NO RIGHT SNAPSHOT SIDEBAR) */
+    /* FULL-WIDTH CONTAINER */
     main {
       width: 100%;
       max-width: 1440px;
@@ -539,7 +539,7 @@
     }
     .btn-sub-outline:hover { border-color: var(--green); color: var(--green); }
 
-    /* FULL-PAGE SINGLE-COLUMN STACK OF 11 SECTION BOXES */
+    /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
     .single-column-stack {
       display: grid;
       gap: 18px;
@@ -629,7 +629,7 @@
     }
     [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
 
-    /* STEP-BY-STEP HOW TO JOIN */
+    /* STEP-BY-STEP HOW TO JOIN + EMBEDDED SETUP VIDEO */
     .steps-list {
       display: grid;
       gap: 11px;
@@ -659,17 +659,37 @@
     .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
     .step-body p { margin: 0; font-size: 12px; line-height: 1.65; color: var(--body); }
 
-    /* COMPACT VIDEO BOX INSIDE FULL-WIDTH CARD */
+    .join-video-block {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+    .join-video-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .join-video-header h3 {
+      margin: 0;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--heading);
+    }
     .video-frame-box {
       position: relative;
       width: 100%;
-      max-width: 780px;
+      max-width: 760px;
       aspect-ratio: 16 / 9;
-      border-radius: 16px;
+      border-radius: 14px;
       overflow: hidden;
       border: 1px solid #a9f0d8;
-      background: var(--surface-soft);
-      margin-bottom: 14px;
+      background: var(--surface);
+      margin-bottom: 12px;
     }
     .video-frame-box iframe {
       position: absolute;
@@ -711,7 +731,7 @@
       align-items: center;
       justify-content: center;
       gap: 7px;
-      padding: 10px 16px;
+      padding: 9px 15px;
       border-radius: 999px;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
       color: #ffffff;
@@ -947,7 +967,7 @@
         <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
       </header>
 
-      <!-- 11-TAB SHORTCUT JUMP BAR RIGHT BELOW TOPBAR -->
+      <!-- 10-TAB SHORTCUT JUMP BAR RIGHT BELOW TOPBAR -->
       <nav class="jump-strip" aria-label="Project evaluation sections">
         <div class="jump-inner">
           <a class="jump-tab active" href="#overview">Overview</a>
@@ -958,7 +978,6 @@
           <a class="jump-tab" href="#tokenomics">Tokenomics</a>
           <a class="jump-tab" href="#team">Team</a>
           <a class="jump-tab" href="#join-guide">Join Guide</a>
-          <a class="jump-tab" href="#video">Video</a>
           <a class="jump-tab" href="#verdict">Verdict</a>
           <a class="jump-tab" href="#faq">FAQ</a>
         </div>
@@ -1000,7 +1019,7 @@
           </div>
         </section>
 
-        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 11 SECTION BOXES -->
+        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES -->
         <div class="single-column-stack">
           <!-- 1. OVERVIEW -->
           <article class="info-card" id="overview">
@@ -1100,7 +1119,7 @@
             <p>Always review official whitepaper notes, announcements, and policy updates directly from Qualoo's official website and social channels.</p>
           </article>
 
-          <!-- 8. JOIN GUIDE -->
+          <!-- 8. JOIN GUIDE (STEPS + SINGLE STEP-BY-STEP SETUP VIDEO INSIDE) -->
           <article class="info-card" id="join-guide">
             <h2 class="card-heading">
               <span class="card-heading-icon">🚀</span>
@@ -1129,27 +1148,25 @@
                 </div>
               </div>
             </div>
-          </article>
 
-          <!-- 9. VIDEO -->
-          <article class="info-card" id="video">
-            <h2 class="card-heading">
-              <span class="card-heading-icon">🎬</span>
-              Video
-            </h2>
-            <div class="video-frame-box" id="videoPlayerBox">
-              <div class="video-placeholder" id="videoPlaceholder">
-                <div class="video-play-badge" aria-hidden="true">▶</div>
-                <strong>Qualoo Network Setup Guide</strong>
-                <p>Set your YouTube video ID in <code>YOUTUBE_VIDEO_ID</code> inside the script below to embed your tutorial video directly here.</p>
+            <div class="join-video-block">
+              <div class="join-video-header">
+                <h3>🎬 Step-by-Step Setup Guide Video</h3>
+                <a class="btn-channel-link" href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
+                  ▶ Watch on Total Crypto Network
+                </a>
+              </div>
+              <div class="video-frame-box" id="videoPlayerBox">
+                <div class="video-placeholder" id="videoPlaceholder">
+                  <div class="video-play-badge" aria-hidden="true">▶</div>
+                  <strong>Qualoo Step-by-Step Setup Guide</strong>
+                  <p>Set your YouTube video ID in <code>YOUTUBE_VIDEO_ID</code> inside the script below to embed your step-by-step setup video here.</p>
+                </div>
               </div>
             </div>
-            <a class="btn-channel-link" href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
-              ▶ Watch on Total Crypto Network
-            </a>
           </article>
 
-          <!-- 10. VERDICT -->
+          <!-- 9. VERDICT -->
           <article class="info-card" id="verdict">
             <h2 class="card-heading">
               <span class="card-heading-icon">⚖️</span>
@@ -1175,7 +1192,7 @@
             </div>
           </article>
 
-          <!-- 11. FAQ -->
+          <!-- 10. FAQ -->
           <article class="info-card" id="faq">
             <h2 class="card-heading">
               <span class="card-heading-icon">❓</span>
@@ -1239,7 +1256,7 @@
       const box = document.getElementById('videoPlayerBox');
       if (!box || !YOUTUBE_VIDEO_ID.trim()) return;
       const cleanId = encodeURIComponent(YOUTUBE_VIDEO_ID.trim());
-      box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${cleanId}" title="Qualoo Step-by-Step Setup and Registration Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+      box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${cleanId}" title="Qualoo Step-by-Step Setup Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
     }
 
     function goBackToList() {
