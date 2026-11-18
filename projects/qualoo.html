@@ -326,16 +326,20 @@
     .breadcrumb span.current { color: var(--heading); font-weight: 800; }
 
     .topbar-spacer { flex: 1; }
-    .community-dropdown { position: relative; }
-    .community-btn,.icon-btn { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--border); border-radius: 999px; color: var(--heading); background: var(--surface); font-size: 11px; font-weight: 800; box-shadow: 0 3px 9px rgba(8, 168, 107, .05); }
-    .community-btn { padding: 0 15px; }
-    .icon-btn { width: 38px; border-radius: 50%; font-size: 16px; }
-    .community-btn:hover,.icon-btn:hover { border-color: var(--green); color: var(--green); }
-    .dropdown-content { display: none; position: absolute; z-index: 150; top: calc(100% + 10px); right: 0; min-width: 195px; overflow: hidden; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: 0 14px 32px rgba(0,0,0,.14); }
-    .dropdown-content.show { display: block; }
-    .dropdown-content a { display: flex; gap: 9px; padding: 13px 15px; border-bottom: 1px solid var(--border); color: var(--heading); text-decoration: none; font-size: 11px; font-weight: 700; }
-    .dropdown-content a:last-child { border-bottom: 0; }
-    .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
+    .icon-btn {
+      min-height: 38px;
+      width: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 16px;
+      box-shadow: 0 3px 9px rgba(8, 168, 107, .05);
+    }
+    .icon-btn:hover { border-color: var(--green); color: var(--green); }
 
     /* FULL-WIDTH 10-TAB SHORTCUT JUMP BAR */
     .jump-strip {
@@ -857,8 +861,6 @@
       .main-column { margin-left: 0; }
       .topbar { min-height: 56px; padding: 8px 14px; }
       .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
-      .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
-      .community-btn::first-letter { font-size: 15px; }
 
       main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
       .project-hero { padding: 18px; }
@@ -867,7 +869,7 @@
       .mini-grid, .verdict-grid { grid-template-columns: 1fr; }
     }
     @media(max-width: 480px) {
-      .header-brand-subtitle, .slot-megaphone, .community-dropdown { display: none; }
+      .header-brand-subtitle, .slot-megaphone { display: none; }
     }
   </style>
 </head>
@@ -973,15 +975,6 @@
           <span class="current">Qualoo Network</span>
         </nav>
         <span class="topbar-spacer"></span>
-        <div class="community-dropdown">
-          <button class="community-btn" type="button" onclick="toggleCommunityMenu()" aria-expanded="false">♟ Community</button>
-          <div class="dropdown-content" id="communityMenu">
-            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
-            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a>
-            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-          </div>
-        </div>
         <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
       </header>
 
@@ -1319,14 +1312,6 @@
       applyTheme(current === 'light' ? 'dark' : 'light');
     }
 
-    function toggleCommunityMenu() {
-      const menu = document.getElementById('communityMenu');
-      const button = document.querySelector('.community-btn');
-      if (!menu || !button) return;
-      const isOpen = menu.classList.toggle('show');
-      button.setAttribute('aria-expanded', String(isOpen));
-    }
-
     function closeMobileMenu() {
       document.body.classList.remove('menu-open');
       const button = document.getElementById('mobileMenuBtn');
@@ -1412,22 +1397,8 @@
       if (overlay) overlay.addEventListener('click', closeMobileMenu);
       document.querySelectorAll('.side-link').forEach(link => link.addEventListener('click', closeMobileMenu));
 
-      document.addEventListener('click', event => {
-        const dropdown = document.querySelector('.community-dropdown');
-        if (dropdown && !dropdown.contains(event.target)) {
-          const menu = document.getElementById('communityMenu');
-          const button = document.querySelector('.community-btn');
-          if (menu) menu.classList.remove('show');
-          if (button) button.setAttribute('aria-expanded', 'false');
-        }
-      });
-
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
-          const menu = document.getElementById('communityMenu');
-          const button = document.querySelector('.community-btn');
-          if (menu) menu.classList.remove('show');
-          if (button) button.setAttribute('aria-expanded', 'false');
           closeMobileMenu();
         }
       });
