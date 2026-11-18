@@ -18,10 +18,10 @@
       --bg: #f3fbf9;
       --surface: #ffffff;
       --surface-soft: #effcf8;
-      --border: #d5eee6;
+      --border: #c8eee1;
       --heading: #102344;
       --body: #29415c;
-      --muted: #74869b;
+      --muted: #6c8299;
       --green: #08a86b;
       --green-dark: #008556;
       --green-light: #39e7a7;
@@ -31,7 +31,7 @@
       --banner-end: #c4fcef;
       --sidebar-width: 258px;
       --sponsor-height: 74px;
-      --shadow: 0 12px 32px rgba(8, 168, 107, .08);
+      --shadow: 0 12px 32px rgba(8, 168, 107, .09);
     }
 
     [data-theme="dark"] {
@@ -50,7 +50,7 @@
       --banner-start: #0b2b27;
       --banner-mid: #0f3530;
       --banner-end: #0b2b27;
-      --shadow: 0 14px 34px rgba(0, 0, 0, .22);
+      --shadow: 0 14px 34px rgba(0, 0, 0, .24);
     }
 
     * { box-sizing: border-box; }
@@ -390,11 +390,11 @@
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .82fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(305px, .82fr);
       align-items: center;
       gap: 22px;
       padding: 24px 28px;
-      border: 1px solid #a9f0d8;
+      border: 1px solid #96ecd0;
       border-radius: 22px;
       background:
         radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
@@ -441,7 +441,7 @@
       letter-spacing: .3px;
       background: var(--surface);
       color: var(--green-dark);
-      border: 1px solid #a9f0d8;
+      border: 1px solid #96ecd0;
     }
     [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
 
@@ -462,41 +462,71 @@
       max-width: 720px;
     }
 
-    /* REFERRAL & JOIN CARD INSIDE HERO */
+    /* REFERRAL & JOIN CARD INSIDE HERO (MINT-GREEN & WHITE) */
     .portal-action-card {
       padding: 16px 18px;
       border-radius: 18px;
       background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .07);
+      border: 1px solid #96ecd0;
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
     }
+    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
+
     .referral-code-box {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       padding: 10px 13px;
       margin-bottom: 11px;
-      border-radius: 12px;
+      border-radius: 13px;
       background: var(--green-soft);
       border: 1px dashed var(--green);
     }
-    .referral-code-box div small { display: block; font-size: 9.5px; font-weight: 800; color: var(--green-dark); text-transform: uppercase; letter-spacing: .5px; }
-    [data-theme="dark"] .referral-code-box div small { color: var(--green-light); }
-    .referral-code-box div strong { display: block; margin-top: 2px; font-size: 14px; font-weight: 800; letter-spacing: 1px; color: var(--heading); font-family: monospace; }
+    .referral-meta {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .referral-meta small {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--green-dark);
+      text-transform: uppercase;
+      letter-spacing: .45px;
+    }
+    [data-theme="dark"] .referral-meta small { color: var(--green-light); }
+    .referral-meta strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--heading);
+      font-family: monospace;
+    }
     .btn-copy-code {
-      padding: 6px 12px;
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 7px 13px;
       border-radius: 999px;
-      border: 1px solid var(--green);
+      border: 1.5px solid var(--green);
       background: var(--surface);
       color: var(--green-dark);
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 800;
       white-space: nowrap;
       transition: .18s ease;
     }
     [data-theme="dark"] .btn-copy-code { color: var(--green-light); }
-    .btn-copy-code:hover { background: var(--green); color: #ffffff; }
+    .btn-copy-code:hover, .btn-copy-code.copied {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      border-color: var(--green-dark);
+    }
 
     .btn-launch-primary {
       width: 100%;
@@ -529,15 +559,19 @@
       gap: 6px;
       padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid var(--border);
+      border: 1px solid #a9f0d8;
       background: var(--surface-soft);
-      color: var(--heading);
+      color: var(--green-dark);
       text-decoration: none;
       font-size: 10.5px;
       font-weight: 800;
-      transition: border-color .18s, color .18s;
+      transition: .18s ease;
     }
-    .btn-sub-outline:hover { border-color: var(--green); color: var(--green); }
+    [data-theme="dark"] .btn-sub-outline { color: var(--green-light); border-color: #256650; }
+    .btn-sub-outline:hover {
+      background: var(--green-soft);
+      border-color: var(--green);
+    }
 
     /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
     .single-column-stack {
@@ -551,7 +585,7 @@
       border-radius: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .05);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
     }
     .card-heading {
       display: flex;
@@ -571,10 +605,11 @@
       place-items: center;
       background: var(--green-soft);
       color: var(--green-dark);
+      border: 1px solid #b4edd6;
       font-size: 16px;
       flex: 0 0 32px;
     }
-    [data-theme="dark"] .card-heading-icon { color: var(--green-light); }
+    [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
 
     .info-card p {
       margin: 0 0 11px;
@@ -602,8 +637,9 @@
       padding: 15px 16px;
       border-radius: 16px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
+      border: 1px solid #b8f2d7;
     }
+    [data-theme="dark"] .mini-box { border-color: #23654e; }
     .mini-box h3 {
       margin: 0 0 6px;
       font-size: 13.5px;
@@ -642,8 +678,9 @@
       padding: 14px 16px;
       border-radius: 16px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
+      border: 1px solid #b8f2d7;
     }
+    [data-theme="dark"] .step-row { border-color: #23654e; }
     .step-num {
       width: 28px;
       height: 28px;
@@ -664,8 +701,9 @@
       padding: 16px 18px;
       border-radius: 16px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
+      border: 1px solid #96ecd0;
     }
+    [data-theme="dark"] .join-video-block { border-color: #245f4d; }
     .join-video-header {
       display: flex;
       align-items: center;
@@ -687,9 +725,10 @@
       aspect-ratio: 16 / 9;
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid #a9f0d8;
+      border: 1.5px solid #96ecd0;
       background: var(--surface);
       margin-bottom: 12px;
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
     }
     .video-frame-box iframe {
       position: absolute;
@@ -708,7 +747,7 @@
       justify-content: center;
       text-align: center;
       background:
-        radial-gradient(circle at 50% 20%, rgba(8, 168, 107, .16), transparent 60%),
+        radial-gradient(circle at 50% 20%, rgba(8, 168, 107, .2), transparent 62%),
         linear-gradient(135deg, var(--banner-start), var(--banner-mid));
       color: var(--heading);
     }
@@ -722,9 +761,10 @@
       color: #ffffff;
       font-size: 14px;
       margin-bottom: 7px;
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .24);
     }
-    .video-placeholder strong { font-size: 12.5px; font-weight: 800; margin-bottom: 3px; }
-    .video-placeholder p { margin: 0; max-width: 340px; font-size: 10.5px; line-height: 1.5; }
+    .video-placeholder strong { font-size: 12.5px; font-weight: 800; margin-bottom: 3px; color: var(--heading); }
+    .video-placeholder p { margin: 0; max-width: 340px; font-size: 10.5px; line-height: 1.5; color: var(--body); }
 
     .btn-channel-link {
       display: inline-flex;
@@ -738,6 +778,7 @@
       text-decoration: none;
       font-size: 11px;
       font-weight: 800;
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .2);
     }
 
     /* PROS & CONS */
@@ -750,9 +791,11 @@
       padding: 15px 16px;
       border-radius: 16px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
+      border: 1px solid #b8f2d7;
     }
-    .verdict-col h3 { margin: 0 0 8px; font-size: 13.5px; font-weight: 800; color: var(--heading); }
+    [data-theme="dark"] .verdict-col { border-color: #23654e; }
+    .verdict-col h3 { margin: 0 0 8px; font-size: 13.5px; font-weight: 800; color: var(--green-dark); }
+    [data-theme="dark"] .verdict-col h3 { color: var(--green-light); }
     .verdict-col ul { margin: 0; padding-left: 18px; font-size: 12px; line-height: 1.75; color: var(--body); }
 
     /* FAQ ACCORDION */
@@ -760,9 +803,10 @@
     .faq-item {
       border-radius: 14px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
+      border: 1px solid #b8f2d7;
       padding: 12px 16px;
     }
+    [data-theme="dark"] .faq-item { border-color: #23654e; }
     .faq-item summary {
       font-size: 13px;
       font-weight: 800;
@@ -1004,7 +1048,7 @@
 
           <div class="portal-action-card">
             <div class="referral-code-box">
-              <div>
+              <div class="referral-meta">
                 <small>Referral Code (+200 Pts)</small>
                 <strong id="referralCodeText">P6JY5A</strong>
               </div>
@@ -1271,13 +1315,18 @@
     function copyReferralCode() {
       const code = 'P6JY5A';
       const btn = document.getElementById('copyCodeBtn');
+      const finishCopy = () => {
+        if (!btn) return;
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '📋 Copy Code';
+          btn.classList.remove('copied');
+        }, 2000);
+      };
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).then(() => {
-          if (btn) {
-            btn.textContent = '✓ Copied!';
-            setTimeout(() => { btn.textContent = '📋 Copy Code'; }, 2000);
-          }
-        }).catch(() => {});
+        navigator.clipboard.writeText(code).then(finishCopy).catch(() => {});
       }
     }
 
