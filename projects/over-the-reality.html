@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Over The Reality (OVER) DePIN project review, Map2Earn guide, Visual Positioning System (VPS), OVRLands, and $OVR tokenomics on Total Crypto Hub.">
   <meta name="keywords" content="Over The Reality, OVER, OVR Token, Map2Earn, DePIN, Spatial Computing, AR, Total Crypto Hub">
-  <meta name="theme-color" content="#062d2d">
+  <meta name="theme-color" content="#08a86b">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <title>Over The Reality (OVER) — DePIN Project Guide | Total Crypto Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,19 +18,20 @@
       --bg: #f3fbf9;
       --surface: #ffffff;
       --surface-soft: #effcf8;
-      --border: #d5eee6;
+      --border: #c8eee1;
       --heading: #102344;
       --body: #29415c;
-      --muted: #74869b;
+      --muted: #6c8299;
       --green: #08a86b;
-      --green-dark: #087b52;
+      --green-dark: #008556;
       --green-light: #39e7a7;
       --green-soft: #e3fff3;
-      --teal: #08b5a0;
-      --navy: #062b31;
+      --banner-start: #c9ffea;
+      --banner-mid: #f2fff9;
+      --banner-end: #c4fcef;
       --sidebar-width: 258px;
       --sponsor-height: 74px;
-      --shadow: 0 12px 32px rgba(20, 76, 66, .07);
+      --shadow: 0 12px 32px rgba(8, 168, 107, .09);
     }
 
     [data-theme="dark"] {
@@ -46,13 +47,15 @@
       --green-dark: #0cad78;
       --green-light: #5df0bd;
       --green-soft: #123e34;
-      --teal: #22cbbb;
-      --navy: #061c24;
-      --shadow: 0 14px 34px rgba(0, 0, 0, .22);
+      --banner-start: #0b2b27;
+      --banner-mid: #0f3530;
+      --banner-end: #0b2b27;
+      --shadow: 0 14px 34px rgba(0, 0, 0, .24);
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    article[id] { scroll-margin-top: calc(var(--sponsor-height) + 124px); }
     body {
       margin: 0;
       min-height: 100vh;
@@ -75,22 +78,16 @@
       display: flex;
       align-items: center;
       overflow: hidden;
-      color: #071b38;
+      color: var(--heading);
       background:
-        radial-gradient(circle at 8% 50%, rgba(0,235,165,.28), transparent 24%),
-        radial-gradient(circle at 92% 50%, rgba(0,210,160,.24), transparent 24%),
-        linear-gradient(95deg, #c9ffea 0%, #f2fff9 48%, #c4fcef 100%);
+        radial-gradient(circle at 8% 50%, rgba(8, 168, 107, .22), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(8, 168, 107, .18), transparent 24%),
+        linear-gradient(95deg, var(--banner-start) 0%, var(--banner-mid) 48%, var(--banner-end) 100%);
       border-bottom: 1px solid #96ecd0;
-      box-shadow: 0 4px 18px rgba(0,130,90,.09);
+      box-shadow: 0 4px 18px rgba(8, 168, 107, .09);
       isolation: isolate;
     }
-    [data-theme="dark"] .sponsor-strip {
-      color: #f0fff8;
-      background:
-        radial-gradient(circle at 8% 50%, rgba(0,245,158,.18), transparent 22%),
-        linear-gradient(95deg, #0b2b27 0%, #0f3530 50%, #0b2b27 100%);
-      border-bottom: 1px solid #245f4d;
-    }
+    [data-theme="dark"] .sponsor-strip { border-bottom: 1px solid #245f4d; }
     .sponsor-inner {
       position: relative;
       z-index: 1;
@@ -120,26 +117,26 @@
       display: grid;
       place-items: center;
       border-radius: 50%;
-      border: 2px solid #00bd79;
-      background: radial-gradient(circle at 30% 25%, #5bffc8, #009c6d 65%, #004938);
-      box-shadow: 0 3px 12px rgba(0,175,115,.25);
-      color: #fff;
+      border: 2px solid var(--green);
+      background: radial-gradient(circle at 30% 25%, #5bffc8, var(--green) 65%, var(--green-dark));
+      box-shadow: 0 3px 12px rgba(8, 168, 107, .25);
+      color: #ffffff;
       font-size: 14px;
       font-weight: 900;
     }
     .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
     .header-brand-name { display: block; color: var(--heading); font-size: 17px; font-weight: 800; line-height: 1.15; letter-spacing: -.45px; }
-    .header-brand-subtitle { display: block; margin-top: 2px; color: #008556; font-size: 10px; font-weight: 800; }
-    .header-brand-subtitle b { color: #007b51; }
-    [data-theme="dark"] .header-brand-subtitle, [data-theme="dark"] .header-brand-subtitle b { color: #4ef2b1; }
+    .header-brand-subtitle { display: block; margin-top: 2px; color: var(--green-dark); font-size: 10px; font-weight: 800; }
+    .header-brand-subtitle b { color: var(--green-dark); }
+    [data-theme="dark"] .header-brand-subtitle, [data-theme="dark"] .header-brand-subtitle b { color: var(--green-light); }
 
     .header-v-sep {
       width: 1.5px;
       height: 36px;
       flex: 0 0 1.5px;
-      background: rgba(7,27,56,.22);
+      background: rgba(16, 35, 68, .2);
     }
-    [data-theme="dark"] .header-v-sep { background: rgba(255,255,255,.2); }
+    [data-theme="dark"] .header-v-sep { background: rgba(240, 255, 249, .2); }
 
     .sponsor-slot-box {
       flex: 1 1 auto;
@@ -151,26 +148,26 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      border: 1.8px dashed #00a86b;
+      border: 1.8px dashed var(--green);
       border-radius: 14px;
-      background: linear-gradient(90deg, rgba(195,255,231,.72), rgba(245,255,250,.92) 50%, rgba(195,255,231,.72));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), 0 3px 12px rgba(0,150,100,.08);
+      background: linear-gradient(90deg, rgba(201, 255, 234, .75), rgba(242, 255, 249, .95) 50%, rgba(196, 252, 239, .75));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .75), 0 3px 12px rgba(8, 168, 107, .08);
       text-decoration: none;
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
     .sponsor-slot-box:hover {
       transform: translateY(-1px);
-      border-color: #008252;
-      box-shadow: 0 6px 16px rgba(0,160,105,.16);
+      border-color: var(--green-dark);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .16);
     }
     [data-theme="dark"] .sponsor-slot-box {
-      border-color: #36e5a0;
-      background: linear-gradient(90deg, rgba(18,62,50,.85), rgba(13,41,38,.95) 50%, rgba(18,62,50,.85));
+      border-color: var(--green-light);
+      background: linear-gradient(90deg, rgba(18, 62, 50, .85), rgba(16, 39, 44, .95) 50%, rgba(18, 62, 50, .85));
       box-shadow: none;
     }
     .slot-megaphone { font-size: 27px; line-height: 1; flex: 0 0 auto; }
-    .slot-arrow { flex: 1 1 60px; max-width: 130px; height: 16px; display: flex; align-items: center; color: #009960; }
-    [data-theme="dark"] .slot-arrow { color: #4ef2b1; }
+    .slot-arrow { flex: 1 1 60px; max-width: 130px; height: 16px; display: flex; align-items: center; color: var(--green); }
+    [data-theme="dark"] .slot-arrow { color: var(--green-light); }
     .slot-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
     .slot-center-text { text-align: center; flex: 0 0 auto; }
     .slot-center-text strong { display: block; color: var(--heading); font-size: 17px; line-height: 1.15; font-weight: 800; letter-spacing: -.35px; }
@@ -185,27 +182,27 @@
       gap: 7px;
       padding: 11px 20px;
       border-radius: 999px;
-      border: 1.5px solid #00a86b;
-      color: #042b1d;
-      background: linear-gradient(135deg, #8affb8, #3be898);
-      box-shadow: 0 4px 14px rgba(0,185,115,.25), inset 0 1px 1px rgba(255,255,255,.75);
+      border: 1.5px solid var(--green);
+      color: var(--heading);
+      background: linear-gradient(135deg, #b6ffdf, #58f0ad);
+      box-shadow: 0 4px 14px rgba(8, 168, 107, .22), inset 0 1px 1px rgba(255, 255, 255, .75);
       text-decoration: none;
       font-size: 12px;
       font-weight: 800;
       white-space: nowrap;
       transition: transform .2s, box-shadow .2s;
     }
-    .sponsor-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,185,115,.38); }
+    .sponsor-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(8, 168, 107, .34); }
     .sponsor-orb-btn {
       width: 38px;
       height: 38px;
       border-radius: 50%;
       display: grid;
       place-items: center;
-      border: 1.5px solid rgba(255,255,255,.75);
+      border: 1.5px solid var(--green);
       color: #ffffff;
-      background: linear-gradient(145deg, #818cf8, #4f46e5);
-      box-shadow: 0 4px 12px rgba(79,70,229,.28);
+      background: linear-gradient(145deg, var(--green), var(--green-dark));
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .25);
       text-decoration: none;
       font-size: 12px;
       font-weight: 800;
@@ -227,12 +224,12 @@
       overscroll-behavior: contain;
       background: var(--surface);
       border-right: 1px solid var(--border);
-      box-shadow: 8px 0 28px rgba(21,48,84,.025);
+      box-shadow: 8px 0 28px rgba(8, 168, 107, .03);
       transition: transform .25s ease;
     }
     .sidebar::-webkit-scrollbar { width: 5px; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-    .side-label { padding: 14px 13px 10px; color: #9aa8bc; font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+    .side-label { padding: 14px 13px 10px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
     .side-nav { display: grid; gap: 7px; flex-shrink: 0; }
     .side-link {
       min-height: 47px;
@@ -249,17 +246,11 @@
       transition: .2s ease;
     }
     .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
-    .side-link.active { color: #087b4b; background: linear-gradient(100deg,#e2fff1,#f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8,168,107,.11); }
-    [data-theme="dark"] .side-link.active { color: #65e6b1; background: #12382f; border-color: #23654e; }
-    .nav-icon { width: 36px; height: 36px; flex: 0 0 36px; display: grid; place-items: center; border-radius: 12px; font-size: 17px; }
+    .side-link.active { color: var(--green-dark); background: linear-gradient(100deg, var(--green-soft), #f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8, 168, 107, .11); }
+    [data-theme="dark"] .side-link.active { color: var(--green-light); background: var(--green-soft); border-color: #23654e; }
+    .nav-icon { width: 36px; height: 36px; flex: 0 0 36px; display: grid; place-items: center; border-radius: 12px; font-size: 17px; color: var(--green-dark); background: var(--green-soft); border: 1px solid var(--border); }
+    [data-theme="dark"] .nav-icon { color: var(--green-light); }
     .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .nav-home { color: #079b69; background: #d9f8e9; }
-    .nav-depin { color: #1687ff; background: #dfeeff; }
-    .nav-community { color: #8b5cf6; background: #eee5ff; }
-    .nav-airdrop { color: #f07819; background: #fff0d9; }
-    .nav-wallet { color: #9333ea; background: #f1e3ff; }
-    .nav-checker { color: #0d9488; background: #d9f7f0; }
-    .nav-calculator { color: #2563eb; background: #e2eaff; }
     .sidebar-spacer { flex: 1 0 18px; min-height: 18px; }
     .side-promo {
       margin: 18px 6px 13px;
@@ -268,16 +259,17 @@
       text-align: center;
       border-radius: 23px;
       border: 1px solid #c7f5df;
-      background: radial-gradient(circle at 90% 10%,rgba(92,238,176,.25),transparent 34%),linear-gradient(145deg,#e7fff4,#fff 72%);
-      box-shadow: 0 8px 20px rgba(8,168,107,.10);
+      background: radial-gradient(circle at 90% 10%, rgba(8, 168, 107, .18), transparent 34%), linear-gradient(145deg, var(--green-soft), var(--surface) 72%);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .10);
     }
-    [data-theme="dark"] .side-promo { background: linear-gradient(145deg,#123b32,#142238); border-color: #255c49; }
+    [data-theme="dark"] .side-promo { background: linear-gradient(145deg, var(--surface-soft), var(--surface)); border-color: #255c49; }
     .promo-gift { margin-bottom: 8px; font-size: 34px; }
     .side-promo h3 { margin: 0 0 8px; color: var(--heading); font-size: 13px; line-height: 1.5; font-weight: 800; }
     .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.55; }
-    .promo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 19px; border-radius: 999px; color: #fff; background: linear-gradient(135deg,#08a86b,#06c77a); text-decoration: none; font-size: 11px; font-weight: 800; box-shadow: 0 6px 14px rgba(8,168,107,.2); }
+    .promo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 19px; border-radius: 999px; color: #ffffff; background: linear-gradient(135deg, var(--green), var(--green-dark)); text-decoration: none; font-size: 11px; font-weight: 800; box-shadow: 0 6px 14px rgba(8, 168, 107, .2); }
     .support-card { display: flex; align-items: center; gap: 10px; margin: 0 6px; padding: 13px; flex-shrink: 0; border-radius: 17px; border: 1px solid var(--border); background: var(--surface-soft); text-decoration: none; }
     .support-icon { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 18px; }
+    [data-theme="dark"] .support-icon { color: var(--green-light); }
     .support-card strong { display: block; color: var(--heading); font-size: 11px; }
     .support-card span:last-child { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
     .sidebar-note { margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
@@ -288,16 +280,33 @@
       position: sticky;
       top: var(--sponsor-height);
       z-index: 100;
-      min-height: 68px;
+      min-height: 60px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 10px 28px;
-      background: color-mix(in srgb,var(--surface) 95%,transparent);
+      gap: 14px;
+      padding: 8px 28px;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(16px);
     }
     .mobile-menu-btn { display: none; width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 12px; color: var(--heading); background: var(--surface); }
+    .btn-back-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 35px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .btn-back-pill { color: var(--green-light); }
+    .btn-back-pill:hover { background: var(--green); color: #ffffff; }
+
     .breadcrumb {
       display: flex;
       align-items: center;
@@ -317,121 +326,162 @@
     .breadcrumb span.current { color: var(--heading); font-weight: 800; }
 
     .topbar-spacer { flex: 1; }
-    .community-dropdown { position: relative; }
-    .community-btn,.icon-btn { min-height: 39px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--border); border-radius: 999px; color: var(--heading); background: var(--surface); font-size: 11px; font-weight: 800; box-shadow: 0 3px 9px rgba(20,45,75,.035); }
-    .community-btn { padding: 0 16px; }
-    .icon-btn { width: 39px; border-radius: 50%; font-size: 17px; }
-    .community-btn:hover,.icon-btn:hover { border-color: var(--green); color: var(--green); }
-    .dropdown-content { display: none; position: absolute; z-index: 150; top: calc(100% + 10px); right: 0; min-width: 195px; overflow: hidden; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: 0 14px 32px rgba(0,0,0,.14); }
-    .dropdown-content.show { display: block; }
-    .dropdown-content a { display: flex; gap: 9px; padding: 13px 15px; border-bottom: 1px solid var(--border); color: var(--heading); text-decoration: none; font-size: 11px; font-weight: 700; }
-    .dropdown-content a:last-child { border-bottom: 0; }
-    .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
+    .icon-btn {
+      min-height: 38px;
+      width: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 16px;
+      box-shadow: 0 3px 9px rgba(8, 168, 107, .05);
+    }
+    .icon-btn:hover { border-color: var(--green); color: var(--green); }
 
-    /* ENTERPRISE DESKTOP CONTAINER (1440px STANDARD MAX-WIDTH) */
+    /* SHORTCUT JUMP BAR */
+    .jump-strip {
+      position: sticky;
+      top: calc(var(--sponsor-height) + 60px);
+      z-index: 95;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .jump-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 8px clamp(16px, 2.4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-inner::-webkit-scrollbar { display: none; }
+    .jump-tab {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .16s ease;
+    }
+    .jump-tab:hover, .jump-tab.active {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-color: var(--green);
+      color: #ffffff;
+    }
+
+    /* FULL-WIDTH CONTAINER */
     main {
       width: 100%;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 24px clamp(16px, 2.4vw, 32px) 42px;
+      padding: 22px clamp(16px, 2.4vw, 32px) 42px;
     }
 
-    /* PROJECT HERO BANNER */
+    /* MINT-GREEN & WHITE HERO BANNER */
     .project-hero {
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .85fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(305px, .82fr);
       align-items: center;
-      gap: 24px;
-      padding: 28px 32px;
-      border: 1px solid #a9f0d8;
-      border-radius: 24px;
+      gap: 22px;
+      padding: 24px 28px;
+      border: 1px solid #96ecd0;
+      border-radius: 22px;
       background:
-        radial-gradient(circle at 90% 15%, rgba(47,237,190,.35), transparent 32%),
-        linear-gradient(110deg, #dffff1 0%, #f1fff9 50%, #b8f7e6 100%);
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
+        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
       box-shadow: var(--shadow);
     }
-    [data-theme="dark"] .project-hero {
-      border-color: #215d4c;
-      background: radial-gradient(circle at 90% 12%, rgba(28,223,157,.22), transparent 32%), linear-gradient(110deg, #0f2c29, #133c36 55%, #124b42);
-    }
+    [data-theme="dark"] .project-hero { border-color: #215d4c; }
     .hero-identity {
       display: flex;
       align-items: flex-start;
-      gap: 18px;
+      gap: 16px;
     }
     .hero-logo-box {
-      width: 78px;
-      height: 78px;
-      flex: 0 0 78px;
-      border-radius: 22px;
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      border-radius: 20px;
       overflow: hidden;
       display: grid;
       place-items: center;
-      background: #0d1624;
-      border: 2px solid #1fd198;
-      box-shadow: 0 10px 24px rgba(8, 168, 107, .22);
-      color: #fff;
-      font-size: 28px;
+      background: var(--surface);
+      border: 2px solid var(--green);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
+      color: var(--green-dark);
+      font-size: 24px;
       font-weight: 800;
     }
+    [data-theme="dark"] .hero-logo-box { color: var(--green-light); }
     .hero-logo-box img { width: 100%; height: 100%; object-fit: cover; }
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 10px;
+      gap: 6px;
+      margin-bottom: 8px;
     }
     .badge-pill {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 5px 11px;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 800;
       letter-spacing: .3px;
+      background: var(--surface);
+      color: var(--green-dark);
+      border: 1px solid #96ecd0;
     }
-    .badge-verified { background: #dcfce7; color: #066e46; border: 1px solid #9be7c2; }
-    .badge-token { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
-    .badge-open { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
-    [data-theme="dark"] .badge-verified { background: #144434; color: #6ee7b7; border-color: #256f55; }
-    [data-theme="dark"] .badge-token { background: #133952; color: #7dd3fc; border-color: #23587a; }
-    [data-theme="dark"] .badge-open { background: #453114; color: #fcd34d; border-color: #705022; }
+    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
 
     .hero-title-group h1 {
-      margin: 0 0 8px;
+      margin: 0 0 6px;
       color: var(--heading);
-      font-size: clamp(26px, 2.8vw, 38px);
-      line-height: 1.12;
+      font-size: clamp(24px, 2.7vw, 35px);
+      line-height: 1.14;
       font-weight: 800;
-      letter-spacing: -1px;
+      letter-spacing: -.8px;
     }
     .hero-title-group p {
       margin: 0;
       color: var(--body);
-      font-size: 13.5px;
-      line-height: 1.65;
+      font-size: 13px;
+      line-height: 1.62;
       font-weight: 600;
-      max-width: 680px;
+      max-width: 720px;
     }
 
     /* OPEN PORTAL ACTION CARD INSIDE HERO */
     .portal-action-card {
-      padding: 20px 22px;
-      border-radius: 20px;
+      padding: 16px 18px;
+      border-radius: 18px;
       background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 26px rgba(10, 62, 52, .08);
+      border: 1px solid #96ecd0;
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
     }
+    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
     .portal-status-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 12px;
-      padding-bottom: 10px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
     }
     .portal-status-row span { font-size: 11px; font-weight: 700; color: var(--muted); }
@@ -444,23 +494,24 @@
       justify-content: space-between;
       gap: 10px;
       padding: 10px 13px;
-      margin-bottom: 14px;
-      border-radius: 12px;
-      background: var(--surface-soft);
+      margin-bottom: 12px;
+      border-radius: 13px;
+      background: var(--green-soft);
       border: 1px dashed var(--green);
     }
-    .open-portal-box div small { display: block; font-size: 9.5px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
-    .open-portal-box div strong { display: block; margin-top: 2px; font-size: 12px; font-weight: 800; color: var(--heading); }
+    .open-portal-box div small { display: block; font-size: 9.5px; font-weight: 800; color: var(--green-dark); text-transform: uppercase; letter-spacing: .45px; }
+    [data-theme="dark"] .open-portal-box div small { color: var(--green-light); }
+    .open-portal-box div strong { display: block; margin-top: 2px; font-size: 12.5px; font-weight: 800; color: var(--heading); }
     .portal-tag {
       padding: 4px 9px;
       border-radius: 999px;
       font-size: 9.5px;
       font-weight: 800;
-      background: var(--green-soft);
+      background: var(--surface);
       color: var(--green-dark);
+      border: 1px solid #96ecd0;
       white-space: nowrap;
     }
-    [data-theme="dark"] .portal-tag { color: var(--green-light); }
 
     .btn-launch-primary {
       width: 100%;
@@ -468,20 +519,17 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 13px 18px;
+      padding: 12px 16px;
       border-radius: 999px;
       color: #ffffff;
-      background: linear-gradient(135deg, #07975f, #06c77a);
-      box-shadow: 0 8px 20px rgba(8, 168, 107, .26);
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
       text-decoration: none;
       font-size: 12.5px;
       font-weight: 800;
-      transition: transform .2s ease, box-shadow .2s ease;
+      transition: transform .2s ease;
     }
-    .btn-launch-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(8, 168, 107, .35);
-    }
+    .btn-launch-primary:hover { transform: translateY(-1px); }
     .portal-sub-links {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -493,7 +541,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 9px 12px;
+      padding: 8px 12px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface-soft);
@@ -501,64 +549,22 @@
       text-decoration: none;
       font-size: 10.5px;
       font-weight: 800;
-      transition: border-color .18s, color .18s;
     }
-    .btn-sub-outline:hover { border-color: var(--green); color: var(--green); }
+    .btn-sub-outline:hover { border-color: var(--green); color: var(--green-dark); }
 
-    /* QUICK METRICS STRIP */
-    .metrics-grid {
+    /* FULL-PAGE SINGLE-COLUMN STACK OF SECTION BOXES */
+    .single-column-stack {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
+      gap: 18px;
+      margin-top: 20px;
     }
-    .metric-card {
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: 0 6px 18px rgba(15, 76, 65, .04);
-    }
-    .metric-card span {
-      display: block;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .6px;
-      color: var(--muted);
-    }
-    .metric-card strong {
-      display: block;
-      margin-top: 6px;
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .metric-card small {
-      display: block;
-      margin-top: 4px;
-      font-size: 10.5px;
-      font-weight: 600;
-      color: var(--green-dark);
-    }
-    [data-theme="dark"] .metric-card small { color: var(--green-light); }
-
-    /* MAIN TWO-COLUMN CONTENT GRID (DESKTOP 2:1 RATIO) */
-    .content-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.75fr) minmax(310px, 1fr);
-      gap: 20px;
-      margin-top: 22px;
-      align-items: start;
-    }
-    .content-stack { display: grid; gap: 18px; }
 
     .info-card {
       padding: 22px 24px;
       border-radius: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 22px rgba(15, 76, 65, .045);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
     }
     .card-heading {
       display: flex;
@@ -566,7 +572,7 @@
       gap: 10px;
       margin: 0 0 14px;
       color: var(--heading);
-      font-size: 17px;
+      font-size: 17.5px;
       font-weight: 800;
       letter-spacing: -.3px;
     }
@@ -578,51 +584,49 @@
       place-items: center;
       background: var(--green-soft);
       color: var(--green-dark);
+      border: 1px solid #b4edd6;
       font-size: 16px;
+      flex: 0 0 32px;
     }
-    [data-theme="dark"] .card-heading-icon { color: var(--green-light); }
+    [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
 
     .info-card p {
-      margin: 0 0 12px;
+      margin: 0 0 11px;
       font-size: 13px;
       line-height: 1.72;
       color: var(--body);
     }
     .info-card p:last-child { margin-bottom: 0; }
 
-    /* CORE TECHNOLOGY FEATURE BOXES */
-    .tech-grid {
+    .mini-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 12px;
+      gap: 14px;
+      margin-top: 10px;
     }
-    .tech-item {
+    .mini-box {
       padding: 15px 16px;
       border-radius: 16px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
+      border: 1px solid #b8f2d7;
     }
-    .tech-item h3 {
+    [data-theme="dark"] .mini-box { border-color: #23654e; }
+    .mini-box h3 {
       margin: 0 0 6px;
       font-size: 13.5px;
       font-weight: 800;
       color: var(--heading);
-      display: flex;
-      align-items: center;
-      gap: 7px;
     }
-    .tech-item p {
+    .mini-box p {
       margin: 0;
-      font-size: 11.5px;
-      line-height: 1.6;
+      font-size: 12px;
+      line-height: 1.65;
       color: var(--body);
     }
 
-    /* STEP-BY-STEP HOW TO EARN */
     .steps-list {
       display: grid;
-      gap: 12px;
+      gap: 11px;
       margin-top: 10px;
     }
     .step-row {
@@ -632,36 +636,27 @@
       padding: 14px 16px;
       border-radius: 16px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
+      border: 1px solid #b8f2d7;
     }
+    [data-theme="dark"] .step-row { border-color: #23654e; }
     .step-num {
-      width: 30px;
-      height: 30px;
-      flex: 0 0 30px;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, #08a86b, #06c77a);
-      color: #fff;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
       font-size: 12px;
       font-weight: 800;
     }
-    .step-body h4 {
-      margin: 0 0 4px;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .step-body p {
-      margin: 0;
-      font-size: 11.5px;
-      line-height: 1.6;
-      color: var(--body);
-    }
+    .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-body p { margin: 0; font-size: 12px; line-height: 1.65; color: var(--body); }
 
-    /* RIGHT SIDEBAR SPECS & TOKENOMICS TABLE */
     .spec-list {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
     .spec-row {
@@ -669,23 +664,24 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 10px 12px;
+      padding: 11px 14px;
       border-radius: 12px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
-      font-size: 11.5px;
+      border: 1px solid #b8f2d7;
+      font-size: 12px;
     }
+    [data-theme="dark"] .spec-row { border-color: #23654e; }
     .spec-row span { color: var(--muted); font-weight: 700; }
     .spec-row strong { color: var(--heading); font-weight: 800; text-align: right; }
 
-    .chain-pills {
+    .chain-pills, .exchange-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
+      gap: 8px;
       margin-top: 12px;
     }
     .chain-pill {
-      padding: 6px 11px;
+      padding: 6px 12px;
       border-radius: 999px;
       font-size: 10.5px;
       font-weight: 800;
@@ -694,23 +690,16 @@
       border: 1px solid #b4edd6;
     }
     [data-theme="dark"] .chain-pill { color: var(--green-light); border-color: #256650; }
-
-    .exchange-badges {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 12px;
-    }
     .ex-badge {
-      padding: 9px 8px;
+      padding: 8px 14px;
       border-radius: 12px;
-      text-align: center;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
-      font-size: 11px;
+      border: 1px solid #b8f2d7;
+      font-size: 11.5px;
       font-weight: 800;
       color: var(--heading);
     }
+    [data-theme="dark"] .ex-badge { border-color: #23654e; }
 
     .disclaimer {
       margin: 24px 0 0;
@@ -719,8 +708,8 @@
       border-radius: 14px;
       color: var(--muted);
       background: var(--surface);
-      font-size: 10px;
-      line-height: 1.7;
+      font-size: 10.5px;
+      line-height: 1.72;
     }
 
     /* FOOTER */
@@ -735,7 +724,7 @@
       gap: 10px;
     }
     .footer-brand { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
-    .footer-brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); background: #fff; }
+    .footer-brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); background: #ffffff; }
     .footer-brand span { color: var(--heading); font-size: 14px; font-weight: 800; }
     .footer-copy { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
     .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 2px; }
@@ -744,19 +733,18 @@
 
     .mobile-overlay { display: none; }
 
-    /* RESPONSIVE BREAKPOINTS (1280px LAPTOP -> 1024px TABLET -> 768px -> 480px MOBILE) */
     @media(max-width: 1250px) {
       :root { --sidebar-width: 235px; }
       .header-brand { min-width: 185px; }
       .slot-arrow { display: none; }
     }
-    @media(max-width: 1080px) {
+    @media(max-width: 1020px) {
       .project-hero { grid-template-columns: 1fr; }
-      .content-layout { grid-template-columns: 1fr; }
-      .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media(max-width: 760px) {
       :root { --sidebar-width: 258px; --sponsor-height: 56px; }
+      article[id] { scroll-margin-top: calc(var(--sponsor-height) + 106px); }
+      .jump-strip { top: calc(var(--sponsor-height) + 56px); }
       .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
       .header-brand { min-width: auto; gap: 7px; }
       .header-logo { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
@@ -774,19 +762,16 @@
       .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4,14,27,.42); }
       body.menu-open .mobile-overlay { display: block; }
       .main-column { margin-left: 0; }
-      .topbar { min-height: 62px; padding: 9px 14px; }
+      .topbar { min-height: 56px; padding: 8px 14px; }
       .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
-      .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
-      .community-btn::first-letter { font-size: 15px; }
 
-      .project-hero { padding: 20px 18px; }
-      .hero-identity { flex-direction: column; gap: 14px; }
-      .tech-grid { grid-template-columns: 1fr; }
+      main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
+      .project-hero { padding: 18px; }
+      .hero-identity { flex-direction: column; gap: 12px; }
+      .mini-grid, .spec-list, .portal-sub-links { grid-template-columns: 1fr; }
     }
     @media(max-width: 480px) {
-      .header-brand-subtitle, .slot-megaphone, .community-dropdown { display: none; }
-      .metrics-grid { grid-template-columns: 1fr; }
-      .portal-sub-links { grid-template-columns: 1fr; }
+      .header-brand-subtitle, .slot-megaphone { display: none; }
     }
   </style>
 </head>
@@ -842,25 +827,25 @@
       <div class="side-label">Workspace</div>
       <nav class="side-nav">
         <a href="../index.html" class="side-link">
-          <span class="nav-icon nav-home"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home
         </a>
         <a href="../depin-pages/depin.html" class="side-link active">
-          <span class="nav-icon nav-depin"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects
         </a>
         <a href="../mobile-pages/mobile-mining.html" class="side-link">
-          <span class="nav-icon nav-community"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects
         </a>
         <a href="../airdrop-pages/airdrops.html" class="side-link">
-          <span class="nav-icon nav-airdrop"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops &amp; Campaigns
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops &amp; Campaigns
         </a>
         <a href="../wallet-pages/wallets.html" class="side-link">
-          <span class="nav-icon nav-wallet"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets &amp; Exchanges
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets &amp; Exchanges
         </a>
         <a href="../token-pages/token-checker.html" class="side-link">
-          <span class="nav-icon nav-checker"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
         </a>
         <a href="../earning-pages/earning-calculator.html" class="side-link">
-          <span class="nav-icon nav-calculator"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator
         </a>
       </nav>
       <div class="sidebar-spacer"></div>
@@ -880,9 +865,10 @@
     <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
 
     <div class="main-column">
-      <!-- TOP BREADCRUMB + THEME BAR -->
+      <!-- TOP BACK & BREADCRUMB BAR -->
       <header class="topbar">
         <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <button type="button" class="btn-back-pill" onclick="goBackToList()" aria-label="Go back to previous page">← Back</button>
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="../index.html">Home</a>
           <span>/</span>
@@ -891,17 +877,19 @@
           <span class="current">Over The Reality (OVER)</span>
         </nav>
         <span class="topbar-spacer"></span>
-        <div class="community-dropdown">
-          <button class="community-btn" type="button" onclick="toggleCommunityMenu()" aria-expanded="false">♟ Community</button>
-          <div class="dropdown-content" id="communityMenu">
-            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
-            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a>
-            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-          </div>
-        </div>
         <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
       </header>
+
+      <!-- SHORTCUT JUMP BAR -->
+      <nav class="jump-strip" aria-label="Project evaluation sections">
+        <div class="jump-inner" id="jumpInner">
+          <a class="jump-tab active" data-target="overview" href="#overview">Overview</a>
+          <a class="jump-tab" data-target="architecture" href="#architecture">Architecture</a>
+          <a class="jump-tab" data-target="join-guide" href="#join-guide">Join Guide</a>
+          <a class="jump-tab" data-target="specs" href="#specs">Specs &amp; Chains</a>
+          <a class="jump-tab" data-target="exchanges" href="#exchanges">Exchanges</a>
+        </div>
+      </nav>
 
       <main>
         <!-- HERO SECTION -->
@@ -912,9 +900,9 @@
             </div>
             <div class="hero-title-group">
               <div class="hero-badges">
-                <span class="badge-pill badge-verified">✓ Verified DePIN</span>
-                <span class="badge-pill badge-token">🪙 Token Listed ($OVR)</span>
-                <span class="badge-pill badge-open">🌐 Open Portal</span>
+                <span class="badge-pill">✓ Verified DePIN</span>
+                <span class="badge-pill">🪙 Token Listed ($OVR)</span>
+                <span class="badge-pill">🌐 Open Portal</span>
               </div>
               <h1 id="projectTitle">Over The Reality (OVER)</h1>
               <p>A global Augmented Reality (AR) and spatial computing DePIN platform that merges the physical world with a decentralized digital twin layer powered by Visual Positioning System (VPS) and Map2Earn.</p>
@@ -944,151 +932,115 @@
           </div>
         </section>
 
-        <!-- QUICK KEY METRICS -->
-        <section class="metrics-grid" aria-label="Key project metrics">
-          <div class="metric-card">
-            <span>DePIN Category</span>
-            <strong>Sensor &amp; Spatial AR</strong>
-            <small>3D Mapping &amp; VPS Localization</small>
-          </div>
-          <div class="metric-card">
-            <span>Reward Token</span>
-            <strong>$OVR (Listed)</strong>
-            <small>Multi-Chain: ETH, BSC, Polygon</small>
-          </div>
-          <div class="metric-card">
-            <span>Supported Devices</span>
-            <strong>Android, iOS &amp; 360° Cam</strong>
-            <small>Smartphone Rear Camera / Insta360</small>
-          </div>
-          <div class="metric-card">
-            <span>Entry Requirement</span>
-            <strong>Free Open Portal</strong>
-            <small>Direct App &amp; Web Sign-Up</small>
-          </div>
-        </section>
+        <!-- SINGLE-COLUMN SECTION STACK -->
+        <div class="single-column-stack">
+          <article class="info-card" id="overview">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🌍</span>
+              Project Overview &amp; Spatial DePIN Vision
+            </h2>
+            <p><strong>Over The Reality (OVER)</strong> is building a decentralized spatial computing infrastructure that bridges physical real-world locations with persistent Augmented Reality (AR) experiences. Rather than relying on centralized mapping corporations, OVER crowdsources high-precision 3D spatial data directly from everyday smartphone users and 360-degree camera operators.</p>
+            <p>Through its <strong>Map2Earn</strong> protocol, contributors scan physical landmarks, streets, and indoor spaces to construct a global 3D digital twin. This infrastructure powers centimeter-level Visual Positioning System (VPS) localization for robotics, Physical AI, gaming, and location-based AR commerce.</p>
+          </article>
 
-        <!-- MAIN TWO-COLUMN BODY -->
-        <div class="content-layout">
-          <!-- LEFT COLUMN: OVERVIEW, TECH ARCHITECTURE, HOW TO EARN -->
-          <div class="content-stack">
-            <article class="info-card">
-              <h2 class="card-heading">
-                <span class="card-heading-icon">🌍</span>
-                Project Overview &amp; Spatial DePIN Vision
-              </h2>
-              <p><strong>Over The Reality (OVER)</strong> is building a decentralized spatial computing infrastructure that bridges physical real-world locations with persistent Augmented Reality (AR) experiences. Rather than relying on centralized mapping corporations, OVER crowdsources high-precision 3D spatial data directly from everyday smartphone users and 360-degree camera operators.</p>
-              <p>Through its <strong>Map2Earn</strong> protocol, contributors scan physical landmarks, streets, and indoor spaces to construct a global 3D digital twin. This infrastructure powers centimeter-level Visual Positioning System (VPS) localization for robotics, Physical AI, gaming, and location-based AR commerce.</p>
-            </article>
-
-            <article class="info-card">
-              <h2 class="card-heading">
-                <span class="card-heading-icon">⚙️</span>
-                Core Ecosystem Architecture
-              </h2>
-              <div class="tech-grid">
-                <div class="tech-item">
-                  <h3>🗺️ Map2Earn Protocol</h3>
-                  <p>Scan real-world locations using a smartphone rear camera or compatible 360° cameras (such as Insta360) to build OVRMaps and earn $OVR rewards with active area boosters.</p>
-                </div>
-                <div class="tech-item">
-                  <h3>⬡ OVRLands (Hexagonal NFTs)</h3>
-                  <p>Earth's surface is divided into a global grid of hexagonal virtual land parcels (identified by 3-word coordinates like <em>likewise.cake.joey</em>) that users can own, trade, and host AR content on.</p>
-                </div>
-                <div class="tech-item">
-                  <h3>🎯 Visual Positioning System (VPS)</h3>
-                  <p>Delivers centimeter-accurate indoor and outdoor spatial localization—far more precise than standard GPS—for real-time AR experiences, robotics, and Physical AI.</p>
-                </div>
-                <div class="tech-item">
-                  <h3>🛠️ AR Creation &amp; Unity SDK</h3>
-                  <p>Includes an in-app AR builder, no-code web builder, and Unity SDK enabling creators and brands to deploy geolocated 3D experiences without heavy coding.</p>
-                </div>
+          <article class="info-card" id="architecture">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">⚙️</span>
+              Core Ecosystem Architecture
+            </h2>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>🗺️ Map2Earn Protocol</h3>
+                <p>Scan real-world locations using a smartphone rear camera or compatible 360° cameras (such as Insta360) to build OVRMaps and earn $OVR rewards with active area boosters.</p>
               </div>
-            </article>
-
-            <article class="info-card">
-              <h2 class="card-heading">
-                <span class="card-heading-icon">🚀</span>
-                Step-by-Step Guide: How to Start Mapping
-              </h2>
-              <div class="steps-list">
-                <div class="step-row">
-                  <span class="step-num">1</span>
-                  <div class="step-body">
-                    <h4>Access the Open Portal &amp; Download OVER App</h4>
-                    <p>Visit the official Over The Reality portal (no invite code required) and install the OVER mobile application on Android or iOS, or sign in via <strong>marketplace.ovr.ai</strong>.</p>
-                  </div>
-                </div>
-                <div class="step-row">
-                  <span class="step-num">2</span>
-                  <div class="step-body">
-                    <h4>Configure Profile &amp; Web3 Wallet</h4>
-                    <p>Create your account to receive your unique UUID, link your social accounts, and connect an EVM-compatible wallet (MetaMask / WalletConnect) to manage OVR across Ethereum, BSC, and Polygon.</p>
-                  </div>
-                </div>
-                <div class="step-row">
-                  <span class="step-num">3</span>
-                  <div class="step-body">
-                    <h4>Select Map2Earn Mode (Phone or 360 Cam)</h4>
-                    <p>Open the <strong>Map2Earn</strong> tab inside the app, check local area reward rates and your multiplier (e.g., <em>x1.00 Booster</em>), and tap <strong>Start mapping</strong> while walking smoothly around an unmapped spot.</p>
-                  </div>
-                </div>
-                <div class="step-row">
-                  <span class="step-num">4</span>
-                  <div class="step-body">
-                    <h4>Track Rewards in Mapper Dashboard</h4>
-                    <p>Monitor your created OVRMaps and lifetime $OVR breakdown across <em>Standard mapping rewards</em>, <em>360 mapping rewards</em>, and <em>Extra rewards</em> directly inside your dashboard.</p>
-                  </div>
-                </div>
+              <div class="mini-box">
+                <h3>⬡ OVRLands (Hexagonal NFTs)</h3>
+                <p>Earth's surface is divided into a global grid of hexagonal virtual land parcels (identified by 3-word coordinates like <em>likewise.cake.joey</em>) that users can own, trade, and host AR content on.</p>
               </div>
-            </article>
-          </div>
-
-          <!-- RIGHT COLUMN: TECHNICAL SPECS & TOKEN UTILITY -->
-          <aside class="content-stack" aria-label="Technical specifications">
-            <div class="info-card">
-              <h2 class="card-heading">
-                <span class="card-heading-icon">📊</span>
-                Technical &amp; Node Specs
-              </h2>
-              <div class="spec-list">
-                <div class="spec-row"><span>Token Ticker</span><strong>$OVR</strong></div>
-                <div class="spec-row"><span>Token Status</span><strong>Live &amp; Tradable</strong></div>
-                <div class="spec-row"><span>Portal Type</span><strong>Open Portal (Public)</strong></div>
-                <div class="spec-row"><span>Hardware Needed</span><strong>Smartphone / 360 Cam</strong></div>
-                <div class="spec-row"><span>Reward Streams</span><strong>Standard, 360 &amp; Extra</strong></div>
-                <div class="spec-row"><span>Marketplace</span><strong>marketplace.ovr.ai</strong></div>
-                <div class="spec-row"><span>Operator Entity</span><strong>OVER Holding S.r.l.</strong></div>
+              <div class="mini-box">
+                <h3>🎯 Visual Positioning System (VPS)</h3>
+                <p>Delivers centimeter-accurate indoor and outdoor spatial localization—far more precise than standard GPS—for real-time AR experiences, robotics, and Physical AI.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🛠️ AR Creation &amp; Unity SDK</h3>
+                <p>Includes an in-app AR builder, no-code web builder, and Unity SDK enabling creators and brands to deploy geolocated 3D experiences without heavy coding.</p>
               </div>
             </div>
+          </article>
 
-            <div class="info-card">
-              <h2 class="card-heading">
-                <span class="card-heading-icon">🔗</span>
-                Supported Wallet Networks
-              </h2>
-              <p>Inside the OVER profile wallet interface, user balances and assets are organized across four environments:</p>
-              <div class="chain-pills">
-                <span class="chain-pill">OVR Managed</span>
-                <span class="chain-pill">Ethereum (ERC-20)</span>
-                <span class="chain-pill">BNB Smart Chain</span>
-                <span class="chain-pill">Polygon PoS</span>
+          <article class="info-card" id="join-guide">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🚀</span>
+              Step-by-Step Guide: How to Start Mapping
+            </h2>
+            <div class="steps-list">
+              <div class="step-row">
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <h4>Access the Open Portal &amp; Download OVER App</h4>
+                  <p>Visit the official Over The Reality portal (no invite code required) and install the OVER mobile application on Android or iOS, or sign in via <strong>marketplace.ovr.ai</strong>.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <h4>Configure Profile &amp; Web3 Wallet</h4>
+                  <p>Create your account to receive your unique UUID, link your social accounts, and connect an EVM-compatible wallet (MetaMask / WalletConnect) to manage OVR across Ethereum, BSC, and Polygon.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <h4>Select Map2Earn Mode (Phone or 360 Cam)</h4>
+                  <p>Open the <strong>Map2Earn</strong> tab inside the app, check local area reward rates and your multiplier (e.g., <em>x1.00 Booster</em>), and tap <strong>Start mapping</strong> while walking smoothly around an unmapped spot.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">4</span>
+                <div class="step-body">
+                  <h4>Track Rewards in Mapper Dashboard</h4>
+                  <p>Monitor your created OVRMaps and lifetime $OVR breakdown across <em>Standard mapping rewards</em>, <em>360 mapping rewards</em>, and <em>Extra rewards</em> directly inside your dashboard.</p>
+                </div>
               </div>
             </div>
+          </article>
 
-            <div class="info-card">
-              <h2 class="card-heading">
-                <span class="card-heading-icon">💱</span>
-                Listed CEX &amp; DEX Venues
-              </h2>
-              <p>$OVR is listed across major centralized exchanges as well as decentralized DEX bridges:</p>
-              <div class="exchange-badges">
-                <div class="ex-badge">Gate.io</div>
-                <div class="ex-badge">KuCoin</div>
-                <div class="ex-badge">MEXC</div>
-              </div>
+          <article class="info-card" id="specs">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">📊</span>
+              Technical Specs &amp; Supported Wallet Networks
+            </h2>
+            <div class="spec-list">
+              <div class="spec-row"><span>Token Ticker</span><strong>$OVR</strong></div>
+              <div class="spec-row"><span>Token Status</span><strong>Live &amp; Tradable</strong></div>
+              <div class="spec-row"><span>Portal Type</span><strong>Open Portal (Public)</strong></div>
+              <div class="spec-row"><span>Hardware Needed</span><strong>Smartphone / 360 Cam</strong></div>
+              <div class="spec-row"><span>Reward Streams</span><strong>Standard, 360 &amp; Extra</strong></div>
+              <div class="spec-row"><span>Marketplace</span><strong>marketplace.ovr.ai</strong></div>
+              <div class="spec-row"><span>Operator Entity</span><strong>OVER Holding S.r.l.</strong></div>
+              <div class="spec-row"><span>Devices</span><strong>Android, iOS &amp; 360° Cam</strong></div>
             </div>
-          </aside>
+            <p style="margin-top: 14px;">Inside the OVER profile wallet interface, user balances and assets are organized across four environments:</p>
+            <div class="chain-pills">
+              <span class="chain-pill">OVR Managed</span>
+              <span class="chain-pill">Ethereum (ERC-20)</span>
+              <span class="chain-pill">BNB Smart Chain</span>
+              <span class="chain-pill">Polygon PoS</span>
+            </div>
+          </article>
+
+          <article class="info-card" id="exchanges">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">💱</span>
+              Listed CEX &amp; DEX Venues
+            </h2>
+            <p>$OVR is listed across major centralized exchanges as well as decentralized DEX bridges:</p>
+            <div class="exchange-badges">
+              <div class="ex-badge">Gate.io</div>
+              <div class="ex-badge">KuCoin</div>
+              <div class="ex-badge">MEXC</div>
+            </div>
+          </article>
         </div>
 
         <p class="disclaimer"><strong>Disclaimer:</strong> Total Crypto Hub is an independent educational directory and research portal. Mapping rewards, $OVR market prices, and area multipliers vary by location and network demand. Always verify official URLs and perform your own due diligence before connecting any Web3 wallet.</p>
@@ -1113,6 +1065,14 @@
   </div>
 
   <script>
+    function goBackToList() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '../depin-pages/depin.html';
+      }
+    }
+
     function applyTheme(theme) {
       const safeTheme = theme === 'dark' ? 'dark' : 'light';
       document.body.setAttribute('data-theme', safeTheme);
@@ -1130,21 +1090,75 @@
       applyTheme(current === 'light' ? 'dark' : 'light');
     }
 
-    function toggleCommunityMenu() {
-      const menu = document.getElementById('communityMenu');
-      const button = document.querySelector('.community-btn');
-      if (!menu || !button) return;
-      const isOpen = menu.classList.toggle('show');
-      button.setAttribute('aria-expanded', String(isOpen));
-    }
-
     function closeMobileMenu() {
       document.body.classList.remove('menu-open');
       const button = document.getElementById('mobileMenuBtn');
       if (button) button.setAttribute('aria-expanded', 'false');
     }
 
+    function initScrollSpyTabs() {
+      const tabs = Array.from(document.querySelectorAll('.jump-tab'));
+      const jumpInner = document.getElementById('jumpInner');
+      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      if (!tabs.length || !sections.length) return;
+
+      const tabById = new Map();
+      tabs.forEach(tab => {
+        const targetId = tab.getAttribute('data-target');
+        if (targetId) tabById.set(targetId, tab);
+      });
+
+      function setActiveTab(sectionId) {
+        const activeTab = tabById.get(sectionId);
+        if (!activeTab) return;
+        tabs.forEach(t => t.classList.remove('active'));
+        activeTab.classList.add('active');
+
+        if (jumpInner) {
+          const tabLeft = activeTab.offsetLeft;
+          const tabWidth = activeTab.offsetWidth;
+          const containerWidth = jumpInner.clientWidth;
+          const desiredScroll = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+          jumpInner.scrollTo({ left: Math.max(0, desiredScroll), behavior: 'smooth' });
+        }
+      }
+
+      let scrollTicking = false;
+      function updateOnScroll() {
+        scrollTicking = false;
+        const headerOffset = 155;
+        let currentId = sections[0].id;
+
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= headerOffset) {
+            currentId = section.id;
+          } else {
+            break;
+          }
+        }
+
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+        if (nearBottom) {
+          currentId = sections[sections.length - 1].id;
+        }
+
+        setActiveTab(currentId);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          window.requestAnimationFrame(updateOnScroll);
+        }
+      }, { passive: true });
+
+      updateOnScroll();
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      initScrollSpyTabs();
+
       let savedTheme = 'light';
       try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (e) {}
       applyTheme(savedTheme);
@@ -1160,22 +1174,8 @@
       if (overlay) overlay.addEventListener('click', closeMobileMenu);
       document.querySelectorAll('.side-link').forEach(link => link.addEventListener('click', closeMobileMenu));
 
-      document.addEventListener('click', event => {
-        const dropdown = document.querySelector('.community-dropdown');
-        if (dropdown && !dropdown.contains(event.target)) {
-          const menu = document.getElementById('communityMenu');
-          const button = document.querySelector('.community-btn');
-          if (menu) menu.classList.remove('show');
-          if (button) button.setAttribute('aria-expanded', 'false');
-        }
-      });
-
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
-          const menu = document.getElementById('communityMenu');
-          const button = document.querySelector('.community-btn');
-          if (menu) menu.classList.remove('show');
-          if (button) button.setAttribute('aria-expanded', 'false');
           closeMobileMenu();
         }
       });
