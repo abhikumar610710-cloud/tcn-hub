@@ -1,731 +1,1496 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uplink Architecture, DeWi Marketplace & $ULX Token Review | Total Crypto Hub</title>
-    <meta name="description" content="Complete deep-dive into Uplink. Learn how this Avalanche-based DeWi marketplace offloads cellular traffic to decentralized Wi-Fi and rewards users with $ULX.">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Instant Anti-Flash Theme Script -->
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        })();
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete deep-dive into Uplink. Learn how this Avalanche-based DeWi marketplace offloads cellular traffic to decentralized Wi-Fi and rewards users with $ULX.">
+  <meta name="keywords" content="Uplink, $ULX token, Avalanche L1, DeWi marketplace, Wi-Fi offload, OpenRoaming, Passpoint, Framework Ventures, Ericsson, Deutsche Telekom, Total Crypto Hub">
+  <meta name="theme-color" content="#08a86b">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <title>Uplink Architecture, DeWi Marketplace &amp; $ULX Token Review | Total Crypto Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --bg-body: #f8fafc;
-            --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.92);
-            --border-color: #e2e8f0;
-            --text-heading: #0f172a;
-            --text-body: #334155;
-            --text-muted: #64748b;
-            
-            --accent-primary: #059669; 
-            --accent-hover: #047857;
-            --accent-uplink: #2563eb;
-            --accent-light: rgba(37, 99, 235, 0.12);
-            --accent-subtle: rgba(5, 150, 105, 0.08);
-            
-            --card-subtle: #f8fafc;
-            --hero-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(248, 250, 252, 1) 100%);
-            --hero-border: #bfdbfe;
-            --container-max-width: 1240px;
-            --container-padding: 24px;
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f3fbf9;
+      --surface: #ffffff;
+      --surface-soft: #effcf8;
+      --border: #c8eee1;
+      --heading: #102344;
+      --body: #29415c;
+      --muted: #6c8299;
+      --green: #08a86b;
+      --green-dark: #008556;
+      --green-light: #39e7a7;
+      --green-soft: #e3fff3;
+      --banner-start: #c9ffea;
+      --banner-mid: #f2fff9;
+      --banner-end: #c4fcef;
+      --sidebar-width: 258px;
+      --sponsor-height: 74px;
+      --shadow: 0 12px 32px rgba(8, 168, 107, .09);
+    }
 
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
-            --shadow-md: 0 10px 30px -5px rgba(37, 99, 235, 0.08);
-            --shadow-hover: 0 14px 35px -5px rgba(37, 99, 235, 0.16);
-        }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #081a20;
+      --surface: #10272c;
+      --surface-soft: #143139;
+      --border: #254b4b;
+      --heading: #f0fff9;
+      --body: #d4eee5;
+      --muted: #91b3ad;
+      --green: #20d99a;
+      --green-dark: #0cad78;
+      --green-light: #5df0bd;
+      --green-soft: #123e34;
+      --banner-start: #0b2b27;
+      --banner-mid: #0f3530;
+      --banner-end: #0b2b27;
+      --shadow: 0 14px 34px rgba(0, 0, 0, .24);
+    }
 
-        [data-theme="dark"] {
-            --bg-body: #070a12;
-            --bg-surface: #0b1120;
-            --header-bg: rgba(11, 17, 32, 0.92);
-            --border-color: #1e293b;
-            --text-heading: #f8fafc;
-            --text-body: #cbd5e1;
-            --text-muted: #94a3b8;
-            
-            --accent-primary: #10b981; 
-            --accent-hover: #34d399;
-            --accent-uplink: #3b82f6;
-            --accent-light: rgba(59, 130, 246, 0.2);
-            --accent-subtle: rgba(16, 185, 129, 0.12);
-            
-            --card-subtle: #131c31;
-            --hero-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(11, 17, 32, 0.95) 100%);
-            --hero-border: rgba(37, 99, 235, 0.35);
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    article[id] { scroll-margin-top: calc(var(--sponsor-height) + 124px); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--body);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
 
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
-            --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.4);
-            --shadow-hover: 0 14px 35px -5px rgba(37, 99, 235, 0.25);
-        }
+    /* TOP SPONSOR & BRAND BAR */
+    .sponsor-strip {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      min-height: var(--sponsor-height);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: var(--heading);
+      background:
+        radial-gradient(circle at 8% 50%, rgba(8, 168, 107, .22), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(8, 168, 107, .18), transparent 24%),
+        linear-gradient(95deg, var(--banner-start) 0%, var(--banner-mid) 48%, var(--banner-end) 100%);
+      border-bottom: 1px solid #96ecd0;
+      box-shadow: 0 4px 18px rgba(8, 168, 107, .09);
+      isolation: isolate;
+    }
+    [data-theme="dark"] .sponsor-strip { border-bottom: 1px solid #245f4d; }
+    .sponsor-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1800px;
+      min-height: var(--sponsor-height);
+      margin: auto;
+      padding: 7px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-brand {
+      min-width: 210px;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: radial-gradient(circle at 30% 25%, #5bffc8, var(--green) 65%, var(--green-dark));
+      box-shadow: 0 3px 12px rgba(8, 168, 107, .25);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .header-brand-name { display: block; color: var(--heading); font-size: 17px; font-weight: 800; line-height: 1.15; letter-spacing: -.45px; }
+    .header-brand-subtitle { display: block; margin-top: 2px; color: var(--green-dark); font-size: 10px; font-weight: 800; }
+    .header-brand-subtitle b { color: var(--green-dark); }
+    [data-theme="dark"] .header-brand-subtitle, [data-theme="dark"] .header-brand-subtitle b { color: var(--green-light); }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+    .header-v-sep {
+      width: 1.5px;
+      height: 36px;
+      flex: 0 0 1.5px;
+      background: rgba(16, 35, 68, .2);
+    }
+    [data-theme="dark"] .header-v-sep { background: rgba(240, 255, 249, .2); }
 
-        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+    .sponsor-slot-box {
+      flex: 1 1 auto;
+      max-width: 970px;
+      min-width: 280px;
+      height: 58px;
+      padding: 6px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1.8px dashed var(--green);
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(201, 255, 234, .75), rgba(242, 255, 249, .95) 50%, rgba(196, 252, 239, .75));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .75), 0 3px 12px rgba(8, 168, 107, .08);
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .sponsor-slot-box:hover {
+      transform: translateY(-1px);
+      border-color: var(--green-dark);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .16);
+    }
+    [data-theme="dark"] .sponsor-slot-box {
+      border-color: var(--green-light);
+      background: linear-gradient(90deg, rgba(18, 62, 50, .85), rgba(16, 39, 44, .95) 50%, rgba(18, 62, 50, .85));
+      box-shadow: none;
+    }
+    .slot-megaphone { font-size: 27px; line-height: 1; flex: 0 0 auto; }
+    .slot-arrow { flex: 1 1 60px; max-width: 130px; height: 16px; display: flex; align-items: center; color: var(--green); }
+    [data-theme="dark"] .slot-arrow { color: var(--green-light); }
+    .slot-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
+    .slot-center-text { text-align: center; flex: 0 0 auto; }
+    .slot-center-text strong { display: block; color: var(--heading); font-size: 17px; line-height: 1.15; font-weight: 800; letter-spacing: -.35px; }
+    .slot-center-text span { display: block; margin-top: 2px; color: var(--body); font-size: 12px; font-weight: 700; }
 
-        /* Master Header Styles */
-        .site-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 14px 0; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            background: var(--header-bg);
-            border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .header-logo { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #dc2626; border: 2px solid var(--accent-primary); box-shadow: 0 0 12px rgba(16, 185, 129, 0.2); flex-shrink: 0; }
-        .header-logo img { width: 100%; height: 100%; object-fit: cover; }
-        .header-title-box { display: flex; flex-direction: column; }
-        .header-title { font-size: 18px; font-weight: 800; color: var(--text-heading); line-height: 1.2; letter-spacing: -0.3px; }
-        .header-subtitle { font-size: 11px; font-weight: 600; color: var(--text-muted); }
-        
-        .header-actions { display: flex; align-items: center; gap: 12px; }
-        .theme-toggle { background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--text-heading); flex-shrink: 0; }
-        .theme-toggle:hover { background: var(--accent-subtle); border-color: var(--accent-primary); }
-        
-        .back-to-hub-btn { 
-            background: var(--accent-primary); 
-            color: #ffffff; 
-            text-decoration: none; 
-            padding: 9px 20px; 
-            border-radius: 50px; 
-            font-size: 12.5px; 
-            font-weight: 700; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 6px; 
-            border: 1px solid var(--accent-primary);
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-            white-space: nowrap;
-            cursor: pointer;
-        }
-        .back-to-hub-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45); transform: translateY(-1.5px); }
+    .sponsor-right-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+    .sponsor-cta {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: 1.5px solid var(--green);
+      color: var(--heading);
+      background: linear-gradient(135deg, #b6ffdf, #58f0ad);
+      box-shadow: 0 4px 14px rgba(8, 168, 107, .22), inset 0 1px 1px rgba(255, 255, 255, .75);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .sponsor-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(8, 168, 107, .34); }
+    .sponsor-orb-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid var(--green);
+      color: #ffffff;
+      background: linear-gradient(145deg, var(--green), var(--green-dark));
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .25);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
 
-        /* Main Section Padding */
-        main { flex: 1; padding: 24px 0 60px; }
+    /* LEFT WORKSPACE SIDEBAR */
+    .sidebar {
+      position: fixed;
+      z-index: 150;
+      inset: var(--sponsor-height) auto 0 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--sponsor-height));
+      height: calc(100dvh - var(--sponsor-height));
+      display: flex;
+      flex-direction: column;
+      padding: 20px 16px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      box-shadow: 8px 0 28px rgba(8, 168, 107, .03);
+      transition: transform .25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    .side-label { padding: 14px 13px 10px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+    .side-nav { display: grid; gap: 7px; flex-shrink: 0; }
+    .side-link {
+      min-height: 47px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
+    .side-link.active { color: var(--green-dark); background: linear-gradient(100deg, var(--green-soft), #f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8, 168, 107, .11); }
+    [data-theme="dark"] .side-link.active { color: var(--green-light); background: var(--green-soft); border-color: #23654e; }
+    .nav-icon { width: 36px; height: 36px; flex: 0 0 36px; display: grid; place-items: center; border-radius: 12px; font-size: 17px; color: var(--green-dark); background: var(--green-soft); border: 1px solid var(--border); }
+    [data-theme="dark"] .nav-icon { color: var(--green-light); }
+    .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sidebar-spacer { flex: 1 0 18px; min-height: 18px; }
+    .side-promo {
+      margin: 18px 6px 13px;
+      padding: 19px 14px;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 23px;
+      border: 1px solid #c7f5df;
+      background: radial-gradient(circle at 90% 10%, rgba(8, 168, 107, .18), transparent 34%), linear-gradient(145deg, var(--green-soft), var(--surface) 72%);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .10);
+    }
+    [data-theme="dark"] .side-promo { background: linear-gradient(145deg, var(--surface-soft), var(--surface)); border-color: #255c49; }
+    .promo-gift { margin-bottom: 8px; font-size: 34px; }
+    .side-promo h3 { margin: 0 0 8px; color: var(--heading); font-size: 13px; line-height: 1.5; font-weight: 800; }
+    .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .promo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 19px; border-radius: 999px; color: #ffffff; background: linear-gradient(135deg, var(--green), var(--green-dark)); text-decoration: none; font-size: 11px; font-weight: 800; box-shadow: 0 6px 14px rgba(8, 168, 107, .2); }
+    .support-card { display: flex; align-items: center; gap: 10px; margin: 0 6px; padding: 13px; flex-shrink: 0; border-radius: 17px; border: 1px solid var(--border); background: var(--surface-soft); text-decoration: none; }
+    .support-icon { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 18px; }
+    [data-theme="dark"] .support-icon { color: var(--green-light); }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
 
-        /* Hero Action Card */
-        .project-hero-card { 
-            background: var(--hero-bg); 
-            border: 1.5px solid var(--hero-border); 
-            border-radius: 24px; 
-            padding: 30px 34px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            flex-wrap: wrap; 
-            gap: 24px; 
-            margin-bottom: 24px; 
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
-        }
-        .project-hero-card::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 60%);
-            pointer-events: none;
-        }
-        .hero-left { display: flex; align-items: center; gap: 20px; position: relative; z-index: 2; }
-        
-        .project-big-logo { 
-            width: 74px; 
-            height: 74px; 
-            border-radius: 20px; 
-            overflow: hidden; 
-            border: 2px solid var(--accent-uplink); 
-            padding: 5px; 
-            background: var(--bg-surface); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-shrink: 0; 
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
-        }
-        .project-big-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+    /* MAIN COLUMN + TOPBAR */
+    .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
+    .topbar {
+      position: sticky;
+      top: var(--sponsor-height);
+      z-index: 100;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 28px;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .mobile-menu-btn { display: none; width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 12px; color: var(--heading); background: var(--surface); }
+    .btn-back-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 35px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .btn-back-pill { color: var(--green-light); }
+    .btn-back-pill:hover { background: var(--green); color: #ffffff; }
 
-        .project-titles h2 { font-size: 24px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .verified-badge { background: var(--accent-uplink); color: white; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3); }
-        
-        .dewi-badge { background: #3b82f6; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
-        .avax-badge { background: #ef4444; color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;}
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: var(--green-dark);
+      transition: color .18s;
+    }
+    [data-theme="dark"] .breadcrumb a { color: var(--green-light); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span.current { color: var(--heading); font-weight: 800; }
 
-        .project-titles p { color: var(--text-muted); font-size: 14px; margin-top: 5px; font-weight: 500; }
+    .topbar-spacer { flex: 1; }
+    .icon-btn {
+      min-height: 38px;
+      width: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 16px;
+      box-shadow: 0 3px 9px rgba(8, 168, 107, .05);
+    }
+    .icon-btn:hover { border-color: var(--green); color: var(--green); }
 
-        .hero-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; position: relative; z-index: 2; }
-        
-        .btn-join { 
-            background: var(--accent-uplink); 
-            color: white; 
-            text-decoration: none; 
-            padding: 13px 26px; 
-            border-radius: 14px; 
-            font-weight: 800; 
-            font-size: 13.5px; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 8px; 
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.32); 
-        }
-        .btn-join:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(29, 78, 216, 0.45); }
+    /* SHORTCUT JUMP BAR */
+    .jump-strip {
+      position: sticky;
+      top: calc(var(--sponsor-height) + 60px);
+      z-index: 95;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .jump-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 8px clamp(16px, 2.4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-inner::-webkit-scrollbar { display: none; }
+    .jump-tab {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .16s ease;
+    }
+    .jump-tab:hover, .jump-tab.active {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-color: var(--green);
+      color: #ffffff;
+    }
 
-        /* 📍 Sticky Quick Jump Navigation Bar - Optimized */
-        .quick-jump-container {
-            position: sticky;
-            top: 72px;
-            z-index: 90;
-            background: var(--header-bg);
-            border: 1.5px solid var(--border-color);
-            border-radius: 16px;
-            padding: 10px 14px;
-            margin-bottom: 26px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-sm);
-        }
-        .nav-pills {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-        }
-        .nav-pills::-webkit-scrollbar { display: none; }
-        .nav-pill-btn {
-            background: var(--card-subtle);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 8px 12px;
-            border-radius: 50px;
-            font-size: 11.5px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .nav-pill-btn:hover, .nav-pill-btn.active {
-            background: var(--accent-uplink);
-            color: white;
-            border-color: var(--accent-uplink);
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-            transform: translateY(-1px);
-        }
+    /* FULL-WIDTH CONTAINER */
+    main {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 22px clamp(16px, 2.4vw, 32px) 42px;
+    }
 
-        /* Full Article Container Card */
-        .content-card { 
-            background: var(--bg-surface); 
-            border: 1.5px solid var(--border-color); 
-            border-radius: 24px; 
-            padding: 42px; 
-            margin-bottom: 32px; 
-            box-shadow: var(--shadow-sm);
-        }
-        .article-section { margin-bottom: 48px; scroll-margin-top: 145px; }
-        .article-section:last-child { margin-bottom: 0; }
-        
-        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-        .section-number { 
-            width: 34px; 
-            height: 34px; 
-            border-radius: 10px; 
-            background: var(--accent-uplink); 
-            color: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: 800; 
-            font-size: 14px; 
-            flex-shrink: 0; 
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-        }
-        .section-header h3 { font-size: 21px; color: var(--text-heading); font-weight: 800; letter-spacing: -0.2px; }
+    /* MINT-GREEN & WHITE HERO BANNER */
+    .project-hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .78fr);
+      align-items: center;
+      gap: 22px;
+      padding: 24px 28px;
+      border: 1px solid #96ecd0;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
+        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+      box-shadow: var(--shadow);
+    }
+    [data-theme="dark"] .project-hero { border-color: #215d4c; }
+    .hero-identity {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .hero-logo-box {
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      border: 2px solid var(--green);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
+      color: var(--green-dark);
+      font-size: 24px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .hero-logo-box { color: var(--green-light); }
+    .hero-logo-box img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      background: var(--surface);
+      color: var(--green-dark);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
 
-        .article-text { font-size: 15px; line-height: 1.85; color: var(--text-body); margin-bottom: 16px; font-weight: 400; }
-        .article-text strong { color: var(--text-heading); font-weight: 700; }
+    .hero-title-group h1 {
+      margin: 0 0 6px;
+      color: var(--heading);
+      font-size: clamp(24px, 2.7vw, 35px);
+      line-height: 1.14;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+    .hero-title-group p {
+      margin: 0;
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.62;
+      font-weight: 600;
+      max-width: 720px;
+    }
 
-        /* 2x2 Feature Cards */
-        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 24px 0; }
-        .feature-box { 
-            background: var(--card-subtle); 
-            border: 1.5px solid var(--border-color); 
-            border-left: 5px solid var(--accent-uplink);
-            border-radius: 16px; 
-            padding: 24px; 
-        }
-        .feature-box:hover {
-            border-color: var(--accent-uplink);
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-3px);
-        }
-        .feature-box h4 { font-size: 15.5px; color: var(--text-heading); margin-bottom: 10px; font-weight: 700; }
-        .feature-box p { font-size: 13.5px; color: var(--text-muted); line-height: 1.68; }
+    /* PORTAL ACTION CARD INSIDE HERO */
+    .portal-action-card {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: var(--surface);
+      border: 1px solid #96ecd0;
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
+    }
+    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
+    .invite-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 12px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      margin-bottom: 12px;
+    }
+    [data-theme="dark"] .invite-box { border-color: #23654e; }
+    .invite-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .5px;
+    }
+    .invite-code {
+      font-weight: 800;
+      color: var(--green-dark);
+      font-size: 13.5px;
+      letter-spacing: .3px;
+    }
+    [data-theme="dark"] .invite-code { color: var(--green-light); }
+    .btn-copy {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--surface);
+      color: var(--green-dark);
+      font-size: 10.5px;
+      font-weight: 800;
+      transition: .16s ease;
+    }
+    [data-theme="dark"] .btn-copy { background: var(--green-soft); color: var(--green-light); }
+    .btn-copy:hover {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+    }
 
-        /* Real-Time Stats Table */
-        .stats-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--card-subtle); border-radius: 16px; overflow: hidden; border: 1.5px solid var(--border-color); }
-        .stats-table th, .stats-table td { padding: 16px 22px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14.5px; }
-        .stats-table th { background: var(--bg-surface); color: var(--text-heading); font-weight: 700; width: 35%; }
-        .stats-table td { color: var(--text-body); }
-        .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+    .btn-launch-primary {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 800;
+      transition: transform .2s ease;
+    }
+    .btn-launch-primary:hover { transform: translateY(-1px); }
 
-        /* Alert Warning Box */
-        .alert-box { 
-            background: rgba(245, 158, 11, 0.06); 
-            border: 1.5px solid rgba(245, 158, 11, 0.3);
-            border-left: 5px solid #f59e0b; 
-            padding: 24px 28px; 
-            border-radius: 16px; 
-            margin: 24px 0; 
-        }
-        .alert-box h5 { color: #d97706; font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
-        .alert-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
-        .alert-box p:last-child { margin-bottom: 0; }
+    /* FULL-PAGE SINGLE-COLUMN STACK OF SECTION BOXES */
+    .single-column-stack {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
 
-        /* Rule Box Style */
-        .rule-box {
-            background: var(--card-subtle); 
-            border: 1.5px solid var(--border-color); 
-            border-left: 5px solid var(--accent-uplink);
-            border-radius: 16px; 
-            padding: 24px 28px; 
-            margin: 24px 0;
-        }
-        .rule-box h5 { color: var(--text-heading); font-size: 15.5px; font-weight: 800; margin-bottom: 12px; }
-        .rule-box p { color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
-        .rule-box p:last-child { margin-bottom: 0; }
+    .info-card {
+      padding: 22px 24px;
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+    }
+    .card-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--heading);
+      font-size: 17.5px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+    .card-heading-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+      font-size: 16px;
+      flex: 0 0 32px;
+    }
+    [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
 
-        /* 2-Column Video Showcase */
-        .video-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
-        .video-box { 
-            background: var(--card-subtle); 
-            border: 1.5px solid var(--border-color); 
-            border-radius: 18px; 
-            padding: 20px; 
-        }
-        .video-box:hover { 
-            border-color: #ff0000; 
-            box-shadow: 0 10px 25px -5px rgba(255, 0, 0, 0.18); 
-            transform: translateY(-3px); 
-        }
-        .video-box h4 { font-size: 14.5px; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-        
-        .mock-youtube-player { background: #000; border-radius: 14px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer; display: block; text-decoration: none; }
-        .mock-youtube-player:hover .yt-play-btn { transform: translate(-50%, -50%) scale(1.12); }
-        
-        .yt-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 44px; background-color: #ff0000; border-radius: 12px; transition: transform 0.2s ease-in-out; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255,0,0,0.4); }
-        .yt-play-btn::before { content: ""; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+    .info-card p {
+      margin: 0 0 11px;
+      font-size: 13px;
+      line-height: 1.72;
+      color: var(--body);
+    }
+    .info-card p:last-child { margin-bottom: 0; }
 
-        /* FAQ Accordion Section */
-        .faq-list { display: flex; flex-direction: column; gap: 14px; margin-top: 22px; }
-        .faq-item { 
-            background: var(--card-subtle); 
-            border: 1.5px solid var(--border-color); 
-            border-radius: 14px; 
-            overflow: hidden; 
-        }
-        .faq-item:hover { border-color: var(--accent-uplink); box-shadow: var(--shadow-sm); }
-        .faq-question { padding: 18px 22px; font-size: 15px; font-weight: 700; color: var(--text-heading); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-        .faq-answer { padding: 0 22px 18px 22px; font-size: 14px; color: var(--text-muted); line-height: 1.7; display: none; }
-        .faq-item.open .faq-answer { display: block; }
-        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent-uplink); }
-        .faq-icon { font-size: 20px; font-weight: 800; transition: transform 0.2s; color: var(--text-muted); }
+    .bullet-highlights {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      font-size: 12.5px;
+      line-height: 1.75;
+      color: var(--body);
+    }
+    .bullet-highlights a {
+      color: var(--green-dark);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .bullet-highlights a { color: var(--green-light); }
 
-        /* Important Disclosure Box */
-        .disclosure-box { background: var(--card-subtle); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px 24px; font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-top: 36px; text-align: center; }
-        .disclosure-box strong { color: var(--text-heading); display: block; margin-bottom: 4px; font-size: 14px; }
+    .channel-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .channel-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid var(--green);
+      font-size: 11.5px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .channel-link-pill { color: var(--green-light); }
+    .channel-link-pill:hover {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+    }
 
-        /* Footer */
-        footer { padding: 30px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; position: relative; z-index: 10; }
-        .footer-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-uplink); text-decoration: underline; }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .mini-box {
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .mini-box { border-color: #23654e; }
+    .mini-box h3 {
+      margin: 0 0 6px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .mini-box p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--body);
+    }
 
-        @media (max-width: 768px) {
-            :root { --container-padding: 16px; }
-            .content-card { padding: 24px 18px; }
-            .project-hero-card { flex-direction: column; align-items: flex-start; padding: 22px; }
-            .hero-right { width: 100%; justify-content: flex-start; }
-            .section-header h3 { font-size: 18px; }
-            .feature-grid-2x2 { grid-template-columns: 1fr; }
-            .video-grid-2 { grid-template-columns: 1fr; }
-            .quick-jump-container { top: 62px; padding: 8px 10px; }
-            .nav-pill-btn { padding: 7px 10px; font-size: 11px; }
-            .stats-table th, .stats-table td { padding: 12px 14px; }
-        }
-    </style>
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      background: var(--surface-soft);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .stats-table { border-color: #23654e; }
+    .stats-table th, .stats-table td {
+      padding: 11px 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+    }
+    .stats-table th {
+      background: var(--surface);
+      color: var(--heading);
+      font-weight: 800;
+      width: 34%;
+    }
+    .stats-table td { color: var(--body); }
+    .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .perm-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 800;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+    }
+    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
+
+    /* STEP-BY-STEP HOW TO JOIN + COMPACT SETUP VIDEO INSIDE */
+    .steps-list {
+      display: grid;
+      gap: 11px;
+      margin-top: 10px;
+    }
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-body p { margin: 0; font-size: 12px; line-height: 1.65; color: var(--body); }
+
+    .join-video-block {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .join-video-block { border-color: #245f4d; }
+    .join-video-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .join-video-header h3 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .video-frame-box {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1.5px solid #96ecd0;
+      background: var(--surface);
+      margin-bottom: 12px;
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
+    }
+    .video-frame-box iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(8, 168, 107, .2), transparent 62%),
+        linear-gradient(135deg, var(--banner-start), var(--banner-mid));
+      color: var(--heading);
+    }
+    .video-play-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      font-size: 14px;
+      margin-bottom: 7px;
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .24);
+    }
+    .video-placeholder strong { font-size: 12.5px; font-weight: 800; margin-bottom: 3px; color: var(--heading); }
+    .video-placeholder p { margin: 0; max-width: 340px; font-size: 10.5px; line-height: 1.5; color: var(--body); }
+
+    .btn-channel-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .2);
+    }
+
+    /* PROS & CONS */
+    .verdict-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .verdict-col {
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .verdict-col { border-color: #23654e; }
+    .verdict-col h3 { margin: 0 0 8px; font-size: 13.5px; font-weight: 800; color: var(--green-dark); }
+    [data-theme="dark"] .verdict-col h3 { color: var(--green-light); }
+    .verdict-col ul { margin: 0; padding-left: 18px; font-size: 12px; line-height: 1.75; color: var(--body); }
+
+    /* FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; }
+    .faq-item {
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      padding: 12px 16px;
+    }
+    [data-theme="dark"] .faq-item { border-color: #23654e; }
+    .faq-item summary {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--heading);
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-item p {
+      margin: 8px 0 0;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--body);
+    }
+    .faq-item a {
+      color: var(--green-dark);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .faq-item a { color: var(--green-light); }
+
+    .disclaimer {
+      margin: 24px 0 0;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 10.5px;
+      line-height: 1.72;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 28px;
+      padding: 24px 0 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .footer-brand { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+    .footer-brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); background: #ffffff; }
+    .footer-brand span { color: var(--heading); font-size: 14px; font-weight: 800; }
+    .footer-copy { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 2px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .footer-links a:hover { color: var(--green); }
+
+    .mobile-overlay { display: none; }
+
+    @media(max-width: 1250px) {
+      :root { --sidebar-width: 235px; }
+      .header-brand { min-width: 185px; }
+      .slot-arrow { display: none; }
+    }
+    @media(max-width: 1020px) {
+      .project-hero { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 760px) {
+      :root { --sidebar-width: 258px; --sponsor-height: 56px; }
+      article[id] { scroll-margin-top: calc(var(--sponsor-height) + 106px); }
+      .jump-strip { top: calc(var(--sponsor-height) + 56px); }
+      .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
+      .header-brand { min-width: auto; gap: 7px; }
+      .header-logo { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
+      .header-brand-name { font-size: 11px; }
+      .header-brand-subtitle { font-size: 8px; }
+      .header-v-sep, .sponsor-orb-btn { display: none; }
+      .sponsor-slot-box { min-width: 0; height: 42px; padding: 4px 10px; justify-content: center; gap: 8px; }
+      .slot-megaphone { font-size: 17px; }
+      .slot-center-text strong { font-size: 11px; }
+      .slot-center-text span { font-size: 8px; }
+      .sponsor-cta { padding: 8px 11px; font-size: 9px; }
+
+      .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0,0,0,.13); }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4,14,27,.42); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; }
+      .topbar { min-height: 56px; padding: 8px 14px; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
+
+      main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
+      .project-hero { padding: 18px; }
+      .hero-identity { flex-direction: column; gap: 12px; }
+      .video-frame-box { max-width: 100%; }
+      .mini-grid, .verdict-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 480px) {
+      .header-brand-subtitle, .slot-megaphone { display: none; }
+    }
+  </style>
 </head>
-<body>
 
-    <!-- Main Content Area -->
-    <main>
-        <div class="site-container">
+<body data-theme="light">
+  <!-- TOP SPONSOR & BRAND BAR -->
+  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
+    <div class="sponsor-inner">
+      <a href="../index.html" class="header-brand">
+        <span class="header-logo">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+        </span>
+        <span>
+          <span class="header-brand-name">Total Crypto Hub</span>
+          <span class="header-brand-subtitle">by <b>Total Crypto Network</b></span>
+        </span>
+      </a>
 
-            <!-- Master Header with History Back Button -->
-            <header class="site-header">
-                <a href="../index.html" class="header-brand">
-                    <div class="header-logo">
-                        <img src="../logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none'">
-                    </div>
-                    <div class="header-title-box">
-                        <div class="header-title">Total Crypto Hub</div>
-                        <div class="header-subtitle">by Total Crypto Network</div>
-                    </div>
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <a class="sponsor-slot-box" href="../pages/contact.html" aria-label="Sponsor Banner Area">
+        <span class="slot-megaphone" aria-hidden="true">📢</span>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="slot-center-text">
+          <strong>Sponsor Banner Area</strong>
+          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
+        </div>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <div class="sponsor-right-actions">
+        <a href="../pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
+        <a href="../pages/contact.html" class="sponsor-orb-btn" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell">
+    <!-- LEFT WORKSPACE SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="side-label">Workspace</div>
+      <nav class="side-nav">
+        <a href="../index.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home
+        </a>
+        <a href="../depin-pages/depin.html" class="side-link active">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects
+        </a>
+        <a href="../mobile-pages/mobile-mining.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects
+        </a>
+        <a href="../airdrop-pages/airdrops.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops &amp; Campaigns
+        </a>
+        <a href="../wallet-pages/wallets.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets &amp; Exchanges
+        </a>
+        <a href="../token-pages/token-checker.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
+        </a>
+        <a href="../earning-pages/earning-calculator.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator
+        </a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <section class="side-promo" aria-label="Community invitation">
+        <div class="promo-gift" aria-hidden="true">🎁</div>
+        <h3>Join the Community<br>&amp; Earn Together</h3>
+        <p>Follow project updates, guides and community announcements.</p>
+        <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
+      </section>
+      <a class="support-card" href="../pages/contact.html">
+        <span class="support-icon" aria-hidden="true">♧</span>
+        <span><strong>Need Help?</strong><span>Contact Support →</span></span>
+      </a>
+      <p class="sidebar-note">A research-led Web3 directory</p>
+    </aside>
+
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+
+    <div class="main-column">
+      <!-- TOP BACK & BREADCRUMB BAR -->
+      <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <button type="button" class="btn-back-pill" onclick="goBackToList()" aria-label="Go back to previous page">← Back</button>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <a href="../depin-pages/depin.html">DePIN Projects</a>
+          <span>/</span>
+          <span class="current">Uplink</span>
+        </nav>
+        <span class="topbar-spacer"></span>
+        <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+      </header>
+
+      <!-- SHORTCUT JUMP BAR -->
+      <nav class="jump-strip" aria-label="Project evaluation sections">
+        <div class="jump-inner" id="jumpInner">
+          <a class="jump-tab active" data-target="overview" href="#overview">Overview</a>
+          <a class="jump-tab" data-target="network" href="#network">Network</a>
+          <a class="jump-tab" data-target="devices" href="#devices">Devices</a>
+          <a class="jump-tab" data-target="safety" href="#safety">Safety</a>
+          <a class="jump-tab" data-target="earning" href="#earning">Earning</a>
+          <a class="jump-tab" data-target="tokenomics" href="#tokenomics">Tokenomics</a>
+          <a class="jump-tab" data-target="team" href="#team">Team</a>
+          <a class="jump-tab" data-target="join-guide" href="#join-guide">Join Guide</a>
+          <a class="jump-tab" data-target="verdict" href="#verdict">Verdict</a>
+          <a class="jump-tab" data-target="faq" href="#faq">FAQ</a>
+        </div>
+      </nav>
+
+      <main>
+        <!-- MINT-GREEN & WHITE PROJECT HERO BANNER -->
+        <section class="project-hero" aria-labelledby="projectTitle">
+          <div class="hero-identity">
+            <div class="hero-logo-box">
+              <img src="../logos/Uplink.png" alt="Uplink logo" onerror="this.src='../logos/uplink.png'; this.onerror=function(){this.style.display='none';this.parentElement.textContent='U';};">
+            </div>
+            <div class="hero-title-group">
+              <div class="hero-badges">
+                <span class="badge-pill">✓ Verified DeWi Market</span>
+                <span class="badge-pill">🔺 Avalanche L1 Subnet</span>
+                <span class="badge-pill">📡 No Custom Hardware Needed</span>
+              </div>
+              <h1 id="projectTitle" class="notranslate" translate="no">Uplink</h1>
+              <p>The Neutral Exchange for Global Wi-Fi Offload — connect standard consumer Wi-Fi routers to an Avalanche L1 DeWi clearinghouse and earn points toward <strong>$ULX</strong>.</p>
+            </div>
+          </div>
+
+          <div class="portal-action-card">
+            <div class="invite-box">
+              <div>
+                <div class="invite-label">Ecosystem Token</div>
+                <div class="invite-code notranslate" id="inviteCode" translate="no">$ULX (Avalanche L1)</div>
+              </div>
+              <button type="button" class="btn-copy" onclick="copyCode()">Copy Ticker</button>
+            </div>
+            <a class="btn-launch-primary" href="https://uplink.xyz/" target="_blank" rel="noopener noreferrer">
+              Explore Uplink Portal →
+            </a>
+          </div>
+        </section>
+
+        <!-- FULL-PAGE SINGLE-COLUMN STACK OF SECTION BOXES -->
+        <div class="single-column-stack">
+          <!-- 1. OVERVIEW -->
+          <article class="info-card" id="overview">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">📡</span>
+              What is Uplink? (The DeWi Clearinghouse)
+            </h2>
+            <p><strong>Uplink</strong> is a Decentralized Wireless (DeWi) ecosystem built as a dedicated Layer 1 sub-network (subnet) on the <strong>Avalanche blockchain</strong>, serving as a neutral clearinghouse and marketplace for global Wi-Fi offload.</p>
+            <p>Historically, major telecom companies wanting to offload heavy 4G/5G indoor traffic onto third-party Wi-Fi routers had to spend months negotiating closed bilateral agreements. Uplink replaces that legacy bottleneck with OpenRoaming, Passpoint, and blockchain smart contracts—matching telecom demand with user-operated routers in real time and settling metered sessions automatically.</p>
+          </article>
+
+          <!-- 2. NETWORK -->
+          <article class="info-card" id="network">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🔺</span>
+              The Settlement Rail: Supply vs. Demand Architecture
+            </h2>
+            <p>Uplink automates the marketplace workflow into three steps—<strong>Connect, Discover, Settle</strong>—moving networks from integration to live traffic in days instead of months:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>Blockchain Layer</th>
+                  <td>Dedicated Layer 1 sub-network (subnet) on the <strong>Avalanche blockchain</strong> with automated RADIUS accounting reconciliation</td>
+                </tr>
+                <tr>
+                  <th>Supply Side (Providers)</th>
+                  <td>Venue operators, managed Wi-Fi providers, and individuals monetize idle Wi-Fi infrastructure with near-zero operational overhead</td>
+                </tr>
+                <tr>
+                  <th>Demand Side (Telcos)</th>
+                  <td>Mobile Network Operators (MNOs) and eSIM providers purchase verified Wi-Fi offload capacity to cut cellular CAPEX without building new 5G small cells</td>
+                </tr>
+                <tr>
+                  <th>Settlement Workflow</th>
+                  <td>3-step smart-contract automation (<strong>Connect, Discover, Settle</strong>) eliminating manual spreadsheet disputes</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- 3. DEVICES -->
+          <article class="info-card" id="devices">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">📶</span>
+              Hardware-Agnostic Setup ("No Hardware" Advantage)
+            </h2>
+            <p>Unlike traditional DePIN projects that require expensive proprietary mining rigs, Uplink features a hardware-agnostic software layer:</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>🏠 Existing Consumer Routers &amp; Setups</h3>
+                <p>Supports standard consumer-grade Wi-Fi routers, 5G setups, and LoRaWAN equipment—handling Passpoint profile configuration natively via software without custom hardware purchases.</p>
+              </div>
+              <div class="mini-box">
+                <h3>📱 Mobile App Location &amp; Network Validation</h3>
+                <p>Pair your dashboard with the Uplink mobile app to confirm router locations, validate connectivity coverage, and participate in regional "Surge" events.</p>
+              </div>
+            </div>
+            <div class="perm-pills">
+              <span class="perm-pill">Standard Wi-Fi Routers</span>
+              <span class="perm-pill">Passpoint / OpenRoaming</span>
+              <span class="perm-pill">5G &amp; LoRaWAN Compatible</span>
+              <span class="perm-pill">Uplink Mobile App</span>
+              <span class="perm-pill">No Proprietary Rig Required</span>
+            </div>
+          </article>
+
+          <!-- 4. SAFETY -->
+          <article class="info-card" id="safety">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🛡️</span>
+              Pre-Mainnet Token Caution &amp; ISP Policy Compliance
+            </h2>
+            <p><strong>Beware of Fake DEX Tokens:</strong> Because the Uplink portal and <strong>$ULX</strong> token operate through pre-mainnet points phases prior to full Avalanche L1 mainnet TGE rollout, stay vigilant against fake tokens or unverified smart contracts circulating on decentralized exchanges.</p>
+            <p><strong>ISP Acceptable Use Policy (AUP):</strong> Before sharing public offload bandwidth through your home or venue router, confirm that doing so complies with the Acceptable Use Policy (AUP) of your primary Internet Service Provider (ISP).</p>
+          </article>
+
+          <!-- 5. EARNING -->
+          <article class="info-card" id="earning">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">⚡</span>
+              Earning as a Provider &amp; Pre-Mainnet Points
+            </h2>
+            <p>Participants act as <strong>Providers</strong> on the Uplink dashboard and accumulate points driving future <strong>$ULX</strong> airdrop eligibility:</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>🌐 Sharing Real Internet &amp; Validation</h3>
+                <p>Earn points via the dashboard by linking compatible Wi-Fi routers, sharing real internet connectivity, confirming router locations in the mobile app, and validating network activity.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🚀 Regional "Surge" Connectivity Multipliers</h3>
+                <p>Register your account early, link your router for pre-registration, and participate in localized regional <strong>"Surge"</strong> connectivity events to boost point multipliers before TGE snapshots.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. TOKENOMICS -->
+          <article class="info-card" id="tokenomics">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🪙</span>
+              Tokenomics &amp; The $ULX Ecosystem Token
+            </h2>
+            <p>The entire Avalanche L1 DeWi clearinghouse is powered and secured by the native <strong>$ULX</strong> token:</p>
+            <ul class="bullet-highlights">
+              <li><strong>Official Uplink Portal:</strong> <a href="https://uplink.xyz/" target="_blank" rel="noopener noreferrer">https://uplink.xyz/</a></li>
+              <li><strong>Native Network Token:</strong> <code>$ULX</code> (Avalanche Layer 1 Subnet)</li>
+            </ul>
+            <div class="channel-links-row">
+              <a class="channel-link-pill" href="https://uplink.xyz/" target="_blank" rel="noopener noreferrer">🌐 Visit Official Uplink Portal →</a>
+            </div>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>Maximum Supply</th>
+                  <td>Hard-capped at <strong>1,000,000,000 (1 Billion) $ULX</strong> tokens</td>
+                </tr>
+                <tr>
+                  <th>Launch Rollout</th>
+                  <td>Official TGE rolls out alongside full <strong>Avalanche L1 mainnet</strong> deployment, driven by pre-mainnet Points campaigns</td>
+                </tr>
+                <tr>
+                  <th>Core Token Utilities</th>
+                  <td>Hardware minting, network transaction settlements, node staking, and acting as <strong>Network Credits</strong> for telecom bandwidth purchases</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- 7. TEAM & OFFICIAL CHANNELS -->
+          <article class="info-card" id="team">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🏢</span>
+              Tier-1 Venture Backing &amp; Enterprise Collaborators
+            </h2>
+            <p>Uplink is backed by leading Web3 venture funds and collaborates directly with global telecommunications and infrastructure leaders:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>Total Capital Raised</th>
+                  <td><strong>$10 Million USD</strong> secured in a Series A funding round</td>
+                </tr>
+                <tr>
+                  <th>Lead Venture Capitalists</th>
+                  <td>Led by <strong>Framework Ventures</strong>, with participation from <strong>Blockchange Ventures</strong>, <strong>Outlier Ventures</strong>, and <strong>NxGen</strong></td>
+                </tr>
+                <tr>
+                  <th>Enterprise Collaborators</th>
+                  <td>Strategic integrations with <strong>Ericsson</strong>, <strong>Deutsche Telekom (T-Mobile)</strong>, <strong>E.ON</strong>, and the <strong>Wireless Broadband Alliance (WBA)</strong></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="channel-links-row">
+              <a class="channel-link-pill" href="https://uplink.xyz/" target="_blank" rel="noopener noreferrer">📡 Open Uplink Official Website →</a>
+            </div>
+          </article>
+
+          <!-- 8. JOIN GUIDE (STEPS + COMPACT SETUP VIDEO INSIDE) -->
+          <article class="info-card" id="join-guide">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🚀</span>
+              Join Guide
+            </h2>
+            <div class="steps-list">
+              <div class="step-row">
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <h4>Register on the Official Uplink Portal</h4>
+                  <p>Visit <a href="https://uplink.xyz/" target="_blank" rel="noopener noreferrer">uplink.xyz</a> and create your Provider account to access the pre-mainnet dashboard and points tracker.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <h4>Link Your Standard Consumer Wi-Fi Router</h4>
+                  <p>Pre-register and connect your existing consumer Wi-Fi router (or compatible 5G/LoRaWAN setup)—Uplink configures Passpoint/OpenRoaming profiles via software without proprietary hardware.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <h4>Verify Location via Mobile App &amp; Join Surge Events</h4>
+                  <p>Confirm your router's physical location through the mobile app, validate network activity, and join regional <strong>"Surge"</strong> connectivity events to maximize your <strong>$ULX</strong> points before TGE.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="join-video-block">
+              <div class="join-video-header">
+                <h3>🎬 Step-by-Step Router Linking &amp; $ULX Points Guide</h3>
+                <a class="btn-channel-link" href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
+                  ▶ Watch on Total Crypto Network
                 </a>
-                
-                <div class="header-actions">
-                    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
-                    <!-- Fixed history.back() to return exactly to previous scroll/filter position -->
-                    <button onclick="goBack()" class="back-to-hub-btn" style="border: none;">← Back to DePIN</button>
+              </div>
+              <div class="video-frame-box" id="videoPlayerBox">
+                <div class="video-placeholder" id="videoPlaceholder">
+                  <div class="video-play-badge" aria-hidden="true">▶</div>
+                  <strong>Uplink Wi-Fi Router Setup &amp; $ULX Airdrop Walkthrough</strong>
+                  <p>Set your YouTube video ID in <code>YOUTUBE_VIDEO_ID</code> inside the script below to embed your step-by-step tutorial video here.</p>
                 </div>
-            </header>
-
-            <!-- Hero Action Card -->
-            <div class="project-hero-card">
-                <div class="hero-left">
-                    <div class="project-big-logo">
-                        <img src="../logos/Uplink.png" alt="Uplink Logo" onerror="this.src='../logos/uplink.png'; this.onerror=function(){this.parentNode.innerHTML='U';};">
-                    </div>
-                    <div class="project-titles">
-                        <h2 class="notranslate" translate="no">Uplink <span class="verified-badge">✓</span> <span class="dewi-badge">DeWi Market</span> <span class="avax-badge">Avalanche L1</span></h2>
-                        <p>The Neutral Exchange for Global Wi-Fi Offload</p>
-                    </div>
-                </div>
-
-                <div class="hero-right">
-                    <a href="https://uplink.xyz/" target="_blank" class="btn-join">🌐 Explore Uplink Portal</a>
-                </div>
+              </div>
             </div>
+          </article>
 
-            <!-- 📍 Sticky Quick Jump Navigation Bar - Optimized -->
-            <div class="quick-jump-container">
-                <div class="nav-pills">
-                    <a href="#section-1" class="nav-pill-btn active" id="pill-sec-1">1. What is Uplink</a>
-                    <a href="#section-2" class="nav-pill-btn" id="pill-sec-2">2. Enterprise & Funding</a>
-                    <a href="#section-3" class="nav-pill-btn" id="pill-sec-3">3. Supply vs Demand</a>
-                    <a href="#section-4" class="nav-pill-btn" id="pill-sec-4">4. Tokenomics & $ULX</a>
-                    <a href="#section-5" class="nav-pill-btn" id="pill-sec-5">5. Active Earning</a>
-                    <a href="#section-6" class="nav-pill-btn" id="pill-sec-6">6. Pro Tips</a>
-                    <a href="#section-7" class="nav-pill-btn" id="pill-sec-7">7. Video Guides</a>
-                    <a href="#section-8" class="nav-pill-btn" id="pill-sec-8">8. FAQs</a>
-                </div>
+          <!-- 9. VERDICT -->
+          <article class="info-card" id="verdict">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">⚖️</span>
+              Verdict
+            </h2>
+            <div class="verdict-grid">
+              <div class="verdict-col">
+                <h3>✓ Pros</h3>
+                <ul>
+                  <li>Hardware-agnostic "no proprietary rig" model—monetize existing consumer Wi-Fi routers using Passpoint and OpenRoaming software.</li>
+                  <li>Strong institutional backing ($10M Series A led by <strong>Framework Ventures</strong>) and enterprise collaborations with <strong>Ericsson</strong> and <strong>Deutsche Telekom</strong>.</li>
+                  <li>Built on a dedicated <strong>Avalanche L1 subnet</strong> with automated RADIUS smart-contract settlement for real-time telecom Wi-Fi offload.</li>
+                </ul>
+              </div>
+              <div class="verdict-col">
+                <h3>! Cons &amp; Considerations</h3>
+                <ul>
+                  <li>Currently in pre-mainnet points phase prior to full $ULX TGE—requires vigilance against fake tokens on decentralized exchanges.</li>
+                  <li>Actual telecom offload revenue depends on router foot-traffic location and regional carrier demand.</li>
+                  <li>Sharing bandwidth must comply with your primary ISP's Acceptable Use Policy (AUP).</li>
+                </ul>
+              </div>
             </div>
+          </article>
 
-            <!-- Full Article Content Card -->
-            <div class="content-card">
-
-                <!-- Point 1: What is Uplink -->
-                <div class="article-section" id="section-1">
-                    <div class="section-header">
-                        <div class="section-number">1</div>
-                        <h3>What is Uplink? (The DeWi Clearinghouse)</h3>
-                    </div>
-                    <p class="article-text">
-                        <strong>Uplink</strong> is a massive Decentralized Wireless (DeWi) ecosystem designed to democratize global internet access. Built as a dedicated Layer 1 sub-network (subnet) on the <strong>Avalanche blockchain</strong>, it serves as the ultimate neutral clearinghouse and marketplace for the Wi-Fi industry.
-                    </p>
-                    <p class="article-text">
-                        Historically, if a major telecom company wanted to use third-party Wi-Fi routers to offload heavy 4G/5G traffic, they had to spend months negotiating closed, "bilateral agreements" with specific venue owners. Uplink completely replaces this legacy model. By leveraging OpenRoaming and blockchain smart contracts, it creates a multi-sided marketplace where demand (telecoms) automatically matches with supply (user-operated routers) in real-time, executing settlements dynamically.
-                    </p>
-                </div>
-
-                <!-- Point 2: Enterprise Tech & Funding -->
-                <div class="article-section" id="section-2">
-                    <div class="section-header">
-                        <div class="section-number">2</div>
-                        <h3>Tier-1 Enterprise Partners & Funding</h3>
-                    </div>
-                    <p class="article-text">
-                        The sheer scale of building a global telecommunications clearinghouse requires massive institutional backing and legacy corporate partnerships:
-                    </p>
-                    <table class="stats-table">
-                        <tbody>
-                            <tr>
-                                <th>Total Capital Raised</th>
-                                <td><strong>$10 Million USD</strong> secured in a highly competitive Series A funding round.</td>
-                            </tr>
-                            <tr>
-                                <th>Lead Venture Capitalists</th>
-                                <td>Led prominently by <strong>Framework Ventures</strong>, with participation from Blockchange Ventures, Outlier Ventures, and NxGen.</td>
-                            </tr>
-                            <tr>
-                                <th>Enterprise Collaborators</th>
-                                <td>Uplink has secured strategic integrations with global legacy giants including <strong>Ericsson, Deutsche Telekom (T-Mobile), E.ON</strong>, and the Wireless Broadband Alliance (WBA).</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Point 3: Supply vs Demand Economics -->
-                <div class="article-section" id="section-3">
-                    <div class="section-header">
-                        <div class="section-number">3</div>
-                        <h3>The Settlement Rail: Supply vs. Demand</h3>
-                    </div>
-                    <p class="article-text">
-                        Uplink operates as the neutral settlement rail connecting two distinct sides of the telecom industry:
-                    </p>
-                    <div class="feature-grid-2x2">
-                        <div class="feature-box">
-                            <h4>📡 The Supply Side (You)</h4>
-                            <p>Venue operators, managed Wi-Fi providers, or individuals can transform idle Wi-Fi infrastructure into a monetized asset with near-zero operational overhead. You provide the actual internet connection.</p>
-                        </div>
-                        <div class="feature-box">
-                            <h4>🏢 The Demand Side (Telcos)</h4>
-                            <p>Mobile Network Operators (MNOs) and eSIM providers purchase access to your Wi-Fi to reduce their cellular CAPEX. They offload their indoor traffic to your verified network without building new 5G small cells.</p>
-                        </div>
-                        <div class="feature-box">
-                            <h4>⚡ 3-Step Automation</h4>
-                            <p>The entire marketplace workflow is automated into three steps: <strong>Connect, Discover, Settle</strong>. It takes networks from manual integration to live, paying traffic in days instead of months.</p>
-                        </div>
-                        <div class="feature-box">
-                            <h4>🤖 Automated Reconciliation</h4>
-                            <p>Every session is metered and settled automatically via blockchain smart contracts. Automated RADIUS accounting reconciliation completely eliminates manual spreadsheet disputes.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Point 4: Tokenomics & $ULX Utility -->
-                <div class="article-section" id="section-4">
-                    <div class="section-header">
-                        <div class="section-number">4</div>
-                        <h3>Tokenomics & The $ULX Ecosystem Token</h3>
-                    </div>
-                    <p class="article-text">
-                        The entire marketplace clearinghouse is powered and secured by the native ecosystem token:
-                    </p>
-                    <div class="feature-grid-2x2">
-                        <div class="feature-box">
-                            <h4>🪙 The $ULX Token</h4>
-                            <p>The native token has a maximum hard cap of <strong>1 Billion $ULX</strong> tokens. The official TGE (Token Generation Event) rolls out in tandem with the full Avalanche L1 mainnet deployment.</p>
-                        </div>
-                        <div class="feature-box">
-                            <h4>💰 Core Utilities</h4>
-                            <p>The token is strictly utilized for minting hardware, processing network transactions, node staking, and acting as the primary medium of exchange (Network Credits) for telecoms to consume global bandwidth.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Point 5: Active Earning & Hardware Agnosticism -->
-                <div class="article-section" id="section-5">
-                    <div class="section-header">
-                        <div class="section-number">5</div>
-                        <h3>Active Earning: The "No Hardware" Advantage</h3>
-                    </div>
-                    <p class="article-text">
-                        Unlike traditional DePIN projects that force you to buy expensive, proprietary mining rigs, Uplink utilizes a hardware-agnostic architecture:
-                    </p>
-                    <div class="alert-box">
-                        <h5>🛡️ Earning as a Provider:</h5>
-                        <p><strong>1. Existing Infrastructure:</strong> Uplink supports standard consumer-grade Wi-Fi routers, 5G setups, and LoRaWAN equipment. You do not need complex custom hardware. Uplink handles the Passpoint profile configuration natively via software.</p>
-                        <p style="margin-top:6px;"><strong>2. Points & Rewards:</strong> Users act as "Providers" and accumulate points via the dashboard by sharing real internet connections, confirming router locations through the mobile app, and validating broader network activities.</p>
-                    </div>
-                </div>
-
-                <!-- Point 6: Total Crypto Network Pro Tips -->
-                <div class="article-section" id="section-6">
-                    <div class="section-header">
-                        <div class="section-number">6</div>
-                        <h3>Total Crypto Network Pro Tips: Early Adoption</h3>
-                    </div>
-                    <p class="article-text">
-                        While the portal prepares for its mainnet transition, early positioning is critical:
-                    </p>
-                    <div class="rule-box">
-                        <h5>💡 Maximizing Pre-Mainnet Points:</h5>
-                        <p>The upcoming $ULX airdrop eligibility is heavily driven by a Points-based campaign. Ensure you have registered your account, linked your compatible router for pre-registration, and actively participated in any localized regional "Surge" connectivity events to maximize your multiplier before the TGE snapshot.</p>
-                    </div>
-                </div>
-
-                <!-- Point 7: Video Guides -->
-                <div class="article-section" id="section-7">
-                    <div class="section-header">
-                        <div class="section-number">7</div>
-                        <h3>Complete Step-by-Step Setup Guides</h3>
-                    </div>
-                    <p class="article-text">
-                        Watch our complete video tutorials produced by <strong class="notranslate" translate="no">Total Crypto Network</strong>. Follow the exact operational walkthrough for linking your existing consumer Wi-Fi router to the Uplink testnet marketplace:
-                    </p>
-                    
-                    <div class="video-grid-2">
-                        <!-- Video Box 1 -->
-                        <div class="video-box">
-                            <h4>📡 Linking Your Wi-Fi Router to Uplink</h4>
-                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
-                                <div class="yt-play-btn"></div>
-                            </a>
-                        </div>
-
-                        <!-- Video Box 2 -->
-                        <div class="video-box">
-                            <h4>💰 Maximizing Points for the $ULX Airdrop</h4>
-                            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" class="mock-youtube-player" title="Watch on YouTube">
-                                <div class="yt-play-btn"></div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Point 8: FAQs -->
-                <div class="article-section" id="section-8">
-                    <div class="section-header">
-                        <div class="section-number">8</div>
-                        <h3>Frequently Asked Questions</h3>
-                    </div>
-                    
-                    <div class="faq-list">
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                What is Uplink and how does it work?
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                Uplink is an Avalanche-based DeWi marketplace that serves as a neutral clearinghouse, allowing telecom operators to offload cellular traffic onto decentralized Wi-Fi networks automatically.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                Do I need to buy special hardware to participate?
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                No! Uplink features a hardware-agnostic architecture, meaning you can integrate standard consumer Wi-Fi routers and existing infrastructure without buying proprietary mining devices.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                Who are the main investors and corporate partners?
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                Uplink has raised $10M led by Framework Ventures, alongside major industry partnerships with enterprise telecom giants like Ericsson and Deutsche Telekom.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                What is the utility of the $ULX token?
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                The $ULX token (capped at 1 Billion supply) is used for hardware minting, network transaction settlements, node staking, and as a payment medium for telecom bandwidth consumption.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFaq(this)">
-                                Where can I explore the official Uplink portal?
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                You can visit the official website at <a href="https://uplink.xyz/" target="_blank" style="color: var(--accent-uplink);">uplink.xyz</a>.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Standard Disclosure Box -->
-                <div class="disclosure-box">
-                    <strong>Important Disclosure</strong>
-                    Total Crypto Hub provides educational and technical guides only. The Uplink portal and $ULX token are currently in pre-mainnet phases. Be highly vigilant against fake tokens or unverified contracts circulating on decentralized exchanges. Ensure that sharing your bandwidth complies with the Acceptable Use Policy (AUP) of your primary Internet Service Provider (ISP). Never invest funds you cannot afford to risk.
-                </div>
-
+          <!-- 10. FAQ -->
+          <article class="info-card" id="faq">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">❓</span>
+              FAQ
+            </h2>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>What is Uplink and how does it work?</summary>
+                <p>Uplink is an <strong>Avalanche-based DeWi marketplace</strong> that acts as a neutral clearinghouse, enabling telecom operators to offload cellular traffic onto decentralized Wi-Fi networks automatically.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Do I need to buy special hardware to participate?</summary>
+                <p>No! Uplink features a hardware-agnostic architecture, allowing you to integrate standard consumer Wi-Fi routers and existing infrastructure without buying proprietary mining devices.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Who are the main investors and corporate partners?</summary>
+                <p>Uplink has raised <strong>$10M</strong> led by <strong>Framework Ventures</strong>, alongside strategic partnerships with enterprise telecom and infrastructure leaders including <strong>Ericsson</strong>, <strong>Deutsche Telekom</strong>, and <strong>E.ON</strong>.</p>
+              </details>
+              <details class="faq-item">
+                <summary>What is the utility of the $ULX token?</summary>
+                <p>The <strong>$ULX</strong> token (hard-capped at 1 Billion supply) is used for hardware minting, network transaction settlements, node staking, and as Network Credits for telecom bandwidth consumption.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Where can I explore the official Uplink portal?</summary>
+                <p>You can visit the official website at <a href="https://uplink.xyz/" target="_blank" rel="noopener noreferrer">uplink.xyz</a>.</p>
+              </details>
             </div>
+          </article>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="site-container">
-            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">
-                &copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.
-            </div>
-            <div class="footer-links">
-                <a href="../pages/about.html">About Us</a>
-                <a href="../pages/contact.html">Contact Us</a>
-                <a href="../pages/privacy.html">Privacy Policy</a>
-                <a href="../pages/terms.html">Terms & Conditions</a>
-                <a href="../pages/disclaimer.html">Disclaimer</a>
-            </div>
-        </div>
-    </footer>
+        <p class="disclaimer"><strong>Disclaimer:</strong> Total Crypto Hub provides educational and technical guides only (NFA / DYOR). The Uplink portal and $ULX token operate across pre-mainnet phases prior to full mainnet rollout. Be highly vigilant against fake tokens or unverified contracts circulating on decentralized exchanges. Ensure that sharing your bandwidth complies with the Acceptable Use Policy (AUP) of your primary Internet Service Provider (ISP). Never invest funds you cannot afford to risk.</p>
 
-    <!-- Scripts -->
-    <script>
-        /* 🚀 Smart Back Function */
-        function goBack() {
-            if (document.referrer && document.referrer !== window.location.href) {
-                window.history.back();
-            } else {
-                window.location.href = '../depin-pages/depin.html';
-            }
+        <footer>
+          <a href="../index.html" class="footer-brand">
+            <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
+            <span>Total Crypto Hub</span>
+          </a>
+          <p class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</p>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="../index.html">Home</a>
+            <a href="../pages/about.html">About Us</a>
+            <a href="../pages/contact.html">Contact Us</a>
+            <a href="../pages/privacy.html">Privacy Policy</a>
+            <a href="../pages/terms.html">Terms &amp; Conditions</a>
+            <a href="../pages/disclaimer.html">Disclaimer</a>
+          </nav>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Put your verified YouTube video ID here (e.g., "dQw4w9WgXcQ") once published on Total Crypto Network
+    const YOUTUBE_VIDEO_ID = "";
+
+    function renderSetupVideo() {
+      const box = document.getElementById('videoPlayerBox');
+      if (!box || !YOUTUBE_VIDEO_ID.trim()) return;
+      const cleanId = encodeURIComponent(YOUTUBE_VIDEO_ID.trim());
+      box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${cleanId}" title="Uplink Wi-Fi Router Setup & $ULX Airdrop Walkthrough" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+    }
+
+    function copyCode() {
+      const code = "$ULX";
+      navigator.clipboard.writeText(code).then(() => {
+        alert("Token ticker copied: " + code);
+      }).catch(() => {
+        alert("Token ticker: " + code);
+      });
+    }
+
+    function goBackToList() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '../depin-pages/depin.html';
+      }
+    }
+
+    function applyTheme(theme) {
+      const safeTheme = theme === 'dark' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', safeTheme);
+      document.documentElement.setAttribute('data-theme', safeTheme);
+      const toggle = document.getElementById('themeToggle');
+      if (toggle) {
+        toggle.textContent = safeTheme === 'light' ? '🌙' : '☀️';
+        toggle.setAttribute('aria-label', safeTheme === 'light' ? 'Enable dark mode' : 'Enable light mode');
+      }
+      try { localStorage.setItem('theme', safeTheme); } catch (e) {}
+    }
+
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    }
+
+    function closeMobileMenu() {
+      document.body.classList.remove('menu-open');
+      const button = document.getElementById('mobileMenuBtn');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    }
+
+    function initScrollSpyTabs() {
+      const tabs = Array.from(document.querySelectorAll('.jump-tab'));
+      const jumpInner = document.getElementById('jumpInner');
+      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      if (!tabs.length || !sections.length) return;
+
+      const tabById = new Map();
+      tabs.forEach(tab => {
+        const targetId = tab.getAttribute('data-target');
+        if (targetId) tabById.set(targetId, tab);
+      });
+
+      function setActiveTab(sectionId) {
+        const activeTab = tabById.get(sectionId);
+        if (!activeTab) return;
+        tabs.forEach(t => t.classList.remove('active'));
+        activeTab.classList.add('active');
+
+        if (jumpInner) {
+          const tabLeft = activeTab.offsetLeft;
+          const tabWidth = activeTab.offsetWidth;
+          const containerWidth = jumpInner.clientWidth;
+          const desiredScroll = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+          jumpInner.scrollTo({ left: Math.max(0, desiredScroll), behavior: 'smooth' });
+        }
+      }
+
+      let scrollTicking = false;
+      function updateOnScroll() {
+        scrollTicking = false;
+        const headerOffset = 155;
+        let currentId = sections[0].id;
+
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= headerOffset) {
+            currentId = section.id;
+          } else {
+            break;
+          }
         }
 
-        /* Stable Theme Toggle Function */
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            const btn = document.getElementById('themeBtn');
-            if (btn) btn.innerText = newTheme === 'light' ? '🌙' : '☀️';
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+        if (nearBottom) {
+          currentId = sections[sections.length - 1].id;
         }
 
-        /* FAQ Accordion Function */
-        function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            faqItem.classList.toggle('open');
+        setActiveTab(currentId);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          window.requestAnimationFrame(updateOnScroll);
         }
+      }, { passive: true });
 
-        /* Automatic ScrollSpy Navigation Highlighting */
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('.article-section');
-            const navPills = document.querySelectorAll('.nav-pill-btn');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 180)) {
-                    current = section.getAttribute('id');
-                }
-            });
+      updateOnScroll();
+    }
 
-            navPills.forEach(pill => {
-                pill.classList.remove('active');
-                if (pill.getAttribute('href') === '#' + current) {
-                    pill.classList.add('active');
-                }
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSetupVideo();
+      initScrollSpyTabs();
+
+      let savedTheme = 'light';
+      try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (e) {}
+      applyTheme(savedTheme);
+
+      const menuButton = document.getElementById('mobileMenuBtn');
+      const overlay = document.getElementById('mobileOverlay');
+      if (menuButton) {
+        menuButton.addEventListener('click', function () {
+          const isOpen = document.body.classList.toggle('menu-open');
+          this.setAttribute('aria-expanded', String(isOpen));
         });
+      }
+      if (overlay) overlay.addEventListener('click', closeMobileMenu);
+      document.querySelectorAll('.side-link').forEach(link => link.addEventListener('click', closeMobileMenu));
 
-        window.onload = function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            const btn = document.getElementById('themeBtn');
-            if (btn) btn.innerText = savedTheme === 'light' ? '🌙' : '☀️';
-        };
-    </script>
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
