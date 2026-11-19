@@ -394,7 +394,7 @@
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.38fr) minmax(275px, .75fr);
+      grid-template-columns: minmax(0, 1.32fr) minmax(300px, .88fr);
       align-items: center;
       gap: 22px;
       padding: 24px 28px;
@@ -466,42 +466,85 @@
       max-width: 720px;
     }
 
-    /* LAUNCH CARD INSIDE HERO */
-    .portal-action-card {
-      padding: 16px 18px;
-      border-radius: 18px;
+    /* TWO BOXES INSIDE HERO ACTION PANEL: REFERRAL CODE + REFERRAL LINK */
+    .portal-action-panel {
+      display: grid;
+      gap: 10px;
+    }
+    .ref-action-box {
+      padding: 11px 14px;
+      border-radius: 15px;
       background: var(--surface);
       border: 1px solid #96ecd0;
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
-      text-align: center;
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-decoration: none;
     }
-    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
-    .portal-action-note {
-      margin: 0 0 10px;
-      font-size: 10.5px;
+    [data-theme="dark"] .ref-action-box { border-color: #245f4d; }
+    .ref-box-meta {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .ref-box-label {
+      display: block;
+      font-size: 9.5px;
       font-weight: 800;
       color: var(--green-dark);
       text-transform: uppercase;
       letter-spacing: .45px;
+      margin-bottom: 3px;
     }
-    [data-theme="dark"] .portal-action-note { color: var(--green-light); }
-    .btn-launch-primary {
-      width: 100%;
+    [data-theme="dark"] .ref-box-label { color: var(--green-light); }
+    .ref-box-value {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--heading);
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn-copy-code {
+      flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 16px;
+      gap: 5px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .btn-copy-code { color: var(--green-light); }
+    .btn-copy-code:hover, .btn-copy-code.copied {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+    }
+    .btn-open-link {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 7px 13px;
       border-radius: 999px;
       color: #ffffff;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
-      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .22);
       text-decoration: none;
-      font-size: 12.5px;
+      font-size: 11px;
       font-weight: 800;
-      transition: transform .2s ease;
+      transition: transform .18s ease;
     }
-    .btn-launch-primary:hover { transform: translateY(-1px); }
+    .btn-open-link:hover { transform: translateY(-1px); }
 
     /* FULL-PAGE SINGLE-COLUMN STACK OF SECTION BOXES */
     .single-column-stack {
@@ -1009,10 +1052,25 @@
             </div>
           </div>
 
-          <div class="portal-action-card">
-            <p class="portal-action-note">Official Invite: <code>7CiJkp</code></p>
-            <a class="btn-launch-primary" href="https://link.kgen.io/7CiJkp" target="_blank" rel="noopener noreferrer">
-              📲 Download &amp; Join KGeN →
+          <div class="portal-action-panel">
+            <!-- Box 1: Referral Code + Copy Button -->
+            <div class="ref-action-box">
+              <div class="ref-box-meta">
+                <span class="ref-box-label">Referral Code</span>
+                <span class="ref-box-value" id="inviteCode">7CiJkp</span>
+              </div>
+              <button type="button" class="btn-copy-code" id="copyCodeBtn" onclick="copyCode()">
+                📋 Copy
+              </button>
+            </div>
+
+            <!-- Box 2: Referral Link -->
+            <a class="ref-action-box" href="https://link.kgen.io/7CiJkp" target="_blank" rel="noopener noreferrer" aria-label="Open KGeN Referral Link">
+              <div class="ref-box-meta">
+                <span class="ref-box-label">Referral Link</span>
+                <span class="ref-box-value">https://link.kgen.io/7CiJkp</span>
+              </div>
+              <span class="btn-open-link">Open ↗</span>
             </a>
           </div>
         </section>
@@ -1283,9 +1341,20 @@
     }
 
     function copyCode() {
-      const code = document.getElementById('inviteCode').innerText;
+      const codeEl = document.getElementById('inviteCode');
+      const btn = document.getElementById('copyCodeBtn');
+      if (!codeEl) return;
+      const code = codeEl.innerText.trim();
       navigator.clipboard.writeText(code).then(() => {
-        alert("Invite Code copied: " + code);
+        if (btn) {
+          const prev = btn.innerHTML;
+          btn.textContent = "✓ Copied";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.innerHTML = prev;
+            btn.classList.remove("copied");
+          }, 1600);
+        }
       });
     }
 
