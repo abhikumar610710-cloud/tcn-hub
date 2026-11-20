@@ -394,7 +394,7 @@
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.38fr) minmax(275px, .75fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .82fr);
       align-items: center;
       gap: 22px;
       padding: 24px 28px;
@@ -466,25 +466,79 @@
       max-width: 720px;
     }
 
-    /* LAUNCH CARD INSIDE HERO */
+    /* EXACT REALGO STYLE JOINING CARD: REFERRAL CODE BOX + COPY CODE + GREEN JOIN BUTTON */
     .portal-action-card {
-      padding: 16px 18px;
+      padding: 14px 16px;
       border-radius: 18px;
       background: var(--surface);
       border: 1px solid #96ecd0;
       box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
-      text-align: center;
+      display: grid;
+      gap: 11px;
     }
     [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
-    .portal-action-note {
-      margin: 0 0 10px;
-      font-size: 10.5px;
-      font-weight: 800;
-      color: var(--green-dark);
-      text-transform: uppercase;
-      letter-spacing: .45px;
+
+    .invite-code-box {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
-    [data-theme="dark"] .portal-action-note { color: var(--green-light); }
+    [data-theme="dark"] .invite-code-box { border-color: #23654e; }
+
+    .invite-code-meta {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .invite-code-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .55px;
+      margin-bottom: 3px;
+    }
+    .invite-code-value {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--heading);
+      font-family: monospace;
+      letter-spacing: .4px;
+    }
+    .btn-copy-code {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(8, 168, 107, .06);
+      transition: .18s ease;
+    }
+    .btn-copy-code:hover {
+      border-color: var(--green);
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .btn-copy-code:hover { color: var(--green-light); }
+    .btn-copy-code.copied {
+      background: var(--green-soft);
+      border-color: var(--green);
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .btn-copy-code.copied { color: var(--green-light); }
+
     .btn-launch-primary {
       width: 100%;
       display: inline-flex;
@@ -992,7 +1046,7 @@
       </nav>
 
       <main>
-        <!-- MINT-GREEN & WHITE PROJECT HERO BANNER -->
+        <!-- MINT-GREEN & WHITE HERO BANNER -->
         <section class="project-hero" aria-labelledby="projectTitle">
           <div class="hero-identity">
             <div class="hero-logo-box">
@@ -1009,8 +1063,18 @@
             </div>
           </div>
 
+          <!-- EXACT REALGO STYLE JOINING CARD -->
           <div class="portal-action-card">
-            <p class="portal-action-note">Official Referral: <code>2260445</code></p>
+            <div class="invite-code-box">
+              <div class="invite-code-meta">
+                <span class="invite-code-label">OFFICIAL REFERRAL CODE • JOIN BONUS</span>
+                <span class="invite-code-value" id="inviteCode">2260445</span>
+              </div>
+              <button type="button" class="btn-copy-code" id="copyCodeBtn" onclick="copyCode()">
+                📋 Copy Code
+              </button>
+            </div>
+
             <a class="btn-launch-primary" href="https://interlinklabs.ai/2260445" target="_blank" rel="noopener noreferrer">
               ⚡ Join &amp; Mine ITLG →
             </a>
@@ -1132,7 +1196,7 @@
             </table>
           </article>
 
-          <!-- 6. TOKENOMICS -->
+          <!-- 6. TOKENOMICS (ONLY OFFICIAL WEBSITE — NO REFERRAL CODE) -->
           <article class="info-card" id="tokenomics">
             <h2 class="card-heading">
               <span class="card-heading-icon">🪙</span>
@@ -1156,12 +1220,11 @@
               </tbody>
             </table>
             <div class="doc-links-row">
-              <a class="doc-link-pill" href="https://interlinklabs.ai/" target="_blank" rel="noopener noreferrer">📄 Official Whitepaper &amp; Portal →</a>
-              <a class="doc-link-pill" href="https://interlinklabs.ai/" target="_blank" rel="noopener noreferrer">🏛️ Interlink Foundation Docs →</a>
+              <a class="doc-link-pill" href="https://interlinklabs.ai/" target="_blank" rel="noopener noreferrer">🌐 Official Website (interlinklabs.ai) →</a>
             </div>
           </article>
 
-          <!-- 7. TEAM -->
+          <!-- 7. TEAM (ONLY OFFICIAL WEBSITE — NO REFERRAL CODE) -->
           <article class="info-card" id="team">
             <h2 class="card-heading">
               <span class="card-heading-icon">👥</span>
@@ -1169,8 +1232,7 @@
             </h2>
             <p>InterLink Network is built by <strong>InterLink Labs</strong> alongside the <strong>Interlink Foundation</strong> and <strong>Treasury Company</strong>. Always access official documentation directly and never share private keys or recovery phrases.</p>
             <div class="doc-links-row">
-              <a class="doc-link-pill" href="https://interlinklabs.ai/" target="_blank" rel="noopener noreferrer">🌐 Official Website →</a>
-              <a class="doc-link-pill" href="https://interlinklabs.ai/2260445" target="_blank" rel="noopener noreferrer">⚡ Join with Referral 2260445 →</a>
+              <a class="doc-link-pill" href="https://interlinklabs.ai/" target="_blank" rel="noopener noreferrer">🌐 Official Website (interlinklabs.ai) →</a>
             </div>
           </article>
 
@@ -1185,7 +1247,7 @@
                 <span class="step-num">1</span>
                 <div class="step-body">
                   <h4>Open Official Portal &amp; Apply Referral Code</h4>
-                  <p>Visit <code>interlinklabs.ai</code> and enter referral code <code>2260445</code> to unlock the <strong>+0.5 HHP</strong> bonus on top of the 0.5 HHP baseline.</p>
+                  <p>Visit <code>https://interlinklabs.ai/2260445</code> and enter referral code <code>2260445</code> to unlock the <strong>+0.5 HHP</strong> bonus on top of the 0.5 HHP baseline.</p>
                 </div>
               </div>
               <div class="step-row">
@@ -1283,9 +1345,20 @@
     }
 
     function copyCode() {
-      const code = document.getElementById('inviteCode').innerText;
+      const codeEl = document.getElementById('inviteCode');
+      const btn = document.getElementById('copyCodeBtn');
+      if (!codeEl) return;
+      const code = codeEl.innerText.trim();
       navigator.clipboard.writeText(code).then(() => {
-        alert("Referral code copied: " + code);
+        if (btn) {
+          const prev = btn.innerHTML;
+          btn.textContent = "✓ Copied!";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.innerHTML = prev;
+            btn.classList.remove("copied");
+          }, 1600);
+        }
       });
     }
 
