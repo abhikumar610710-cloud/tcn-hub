@@ -3,295 +3,1379 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#effcf7">
-  <meta name="description" content="A beginner-friendly OKX Web3 Wallet guide by Total Crypto Hub. Explore multi-chain features, DApps, setup and wallet security.">
+  <meta name="theme-color" content="#08a86b">
+  <meta name="description" content="Complete OKX Web3 Wallet guide by Total Crypto Hub: overview, key features, gas and swap fees, multi-chain network support, self-custody, how to use, security, platforms, guide checklist, and detailed FAQ.">
   <title>OKX Web3 Wallet Guide | Total Crypto Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Instant Anti-Flash Theme Script -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('tch-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
-    :root{
-      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
-      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--line:#dce7f1;
-      --shadow:0 12px 30px rgba(17,55,83,.08);
+    :root {
+      color-scheme: light;
+      --bg: #f3fbf9;
+      --surface: #ffffff;
+      --surface-soft: #effcf8;
+      --border: #c8eee1;
+      --heading: #102344;
+      --body: #29415c;
+      --muted: #6c8299;
+      --green: #08a86b;
+      --green-dark: #008556;
+      --green-light: #39e7a7;
+      --green-soft: #e3fff3;
+      --banner-start: #c9ffea;
+      --banner-mid: #f2fff9;
+      --banner-end: #c4fcef;
+      --sidebar-width: 258px;
+      --sponsor-height: 70px;
+      --shadow: 0 10px 26px rgba(8, 168, 107, .08);
     }
-    body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--shadow:0 12px 30px rgba(0,0,0,.2)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}button{font:inherit}
-    .sponsor{min-height:56px;padding:10px 24px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
-    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:20px;color:#fff;box-shadow:0 3px 12px #0004}
-    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
-    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
-    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
-    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,42px);position:sticky;top:0;z-index:20}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
-    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
-    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
-    .top-actions{display:flex;gap:10px;align-items:center}
-    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
-    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
-    .wrap{width:min(1380px,calc(100% - 48px));margin:28px auto 60px}
-    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:38px 44px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:24px}
-    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
-    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
-    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
-    .hero h1 span{color:#00a875}.hero p{max-width:650px;color:#315a63;margin:0 0 17px;font-size:15px}
-    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
-    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
-    .actions{display:flex;flex-wrap:wrap;gap:10px}
-    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
-    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
-    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
-    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
-    .okx-orb{width:220px;height:220px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff,#c9fff0 55%,#71ddbd);box-shadow:0 18px 35px #2c9c8050;border:1px solid #8be5c7;position:relative}
-    .okx-mark{width:130px;height:130px;border-radius:34px;background:#050505;color:#fff;display:grid;place-items:center;font-size:82px;font-weight:900;line-height:1;box-shadow:0 12px 22px #1115}
-    .okx-label{position:absolute;bottom:25px;background:#fff;color:#111;border:1px solid #d8e1e5;border-radius:30px;padding:5px 12px;font-size:10px;font-weight:900;letter-spacing:.07em}
-    .float-coin{position:absolute;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:25px;font-weight:900;box-shadow:0 6px 15px #174d3c30}
-    .btc{top:18px;left:4%;background:#fff0cc;color:#e99a12}.eth{right:2%;top:50px;background:#e7e2ff;color:#7155d9}
-    .quicknav{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
-    .quicknav a{white-space:nowrap;padding:10px 16px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
-    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
-    .section{margin-top:26px}.section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
-    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
-    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:18px}
-    .panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:22px;box-shadow:0 5px 18px #183b5b06}
-    .panel p{color:var(--muted);margin:0}.fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
-    .fact-icon{font-size:30px}.fact h3{margin:0 0 5px;font-size:16px}.fact p{font-size:13px}
-    .notice{border:1px solid #f3d38b;background:#fff8e8;color:#704d0b;border-radius:16px;padding:16px 18px;margin-top:18px}
-    .notice strong{display:block;margin-bottom:4px}.notice p{font-size:13px;margin:0}body.dark .notice{background:#3c321d;color:#f8df9f;border-color:#78602b}
-    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.feature{text-align:center;padding:24px 16px;transition:.2s}
-    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.feature .emoji{font-size:30px;display:block;margin-bottom:8px}
-    .feature h3{font-size:15px;margin:0 0 5px}.feature p{font-size:12px;color:var(--muted);margin:0}
-    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.step{padding:18px 15px;position:relative}
-    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
-    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}.step p{font-size:11px;color:var(--muted);margin:0}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}.good-bad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .mini-list{border-radius:14px;padding:15px;background:#e8fbf3;color:#14553f}.mini-list.bad{background:#fff0ef;color:#873d3d}
-    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
-    .mini-list h3{font-size:13px;margin:0 0 9px}.mini-list ul,.security-list{list-style:none;padding:0;margin:0}
-    .mini-list li{font-size:12px;margin:7px 0}.security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
-    .security-list b{color:var(--text)}
-    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:15px;align-items:stretch}
-    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#0e0e0e 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
-    .video-thumb:before{content:"◈";font-size:100px;position:absolute;opacity:.18;left:12px;bottom:-23px}
-    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
-    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}.video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
-    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.faq-item{padding:0;overflow:hidden}
-    .faq-q{width:100%;padding:15px 18px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
-    .faq-a{display:none;padding:0 18px 16px;color:var(--muted);font-size:12px}.faq-item.open .faq-a{display:block}
-    .cta{margin-top:28px;border-radius:20px;padding:26px 32px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
-    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}.cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
-    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}.source-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px}
-    .source-links a{color:var(--green-dark);font-weight:750;text-decoration:underline}footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
-    @media(max-width:850px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.okx-orb{width:175px;height:175px}.okx-mark{width:105px;height:105px;font-size:67px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}}
-    @media(max-width:560px){.sponsor{gap:7px;padding:9px 12px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 14px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 12px;font-size:11px}.wrap{width:calc(100% - 24px);margin:14px auto 36px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:clamp(28px,8vw,35px)}.hero p{font-size:13px}.hero-art{min-height:160px}.okx-orb{width:150px;height:150px}.okx-mark{width:85px;height:85px;font-size:54px}.section-heading{font-size:19px}.features{gap:10px}.feature{padding:16px 10px}.steps{gap:10px}.step{padding:14px 12px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}}
-    @media(max-width:400px){.features,.steps{grid-template-columns:1fr}}
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #081a20;
+      --surface: #10272c;
+      --surface-soft: #143139;
+      --border: #254b4b;
+      --heading: #f0fff9;
+      --body: #d4eee5;
+      --muted: #91b3ad;
+      --green: #20d99a;
+      --green-dark: #0cad78;
+      --green-light: #5df0bd;
+      --green-soft: #123e34;
+      --banner-start: #0b2b27;
+      --banner-mid: #0f3530;
+      --banner-end: #0b2b27;
+      --shadow: 0 12px 30px rgba(0, 0, 0, .24);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    article[id] { scroll-margin-top: calc(var(--sponsor-height) + 114px); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--body);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    /* TOP SPONSOR & BRAND BAR */
+    .sponsor-strip {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      min-height: var(--sponsor-height);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: var(--heading);
+      background:
+        radial-gradient(circle at 8% 50%, rgba(8, 168, 107, .22), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(8, 168, 107, .18), transparent 24%),
+        linear-gradient(95deg, var(--banner-start) 0%, var(--banner-mid) 48%, var(--banner-end) 100%);
+      border-bottom: 1px solid #96ecd0;
+      box-shadow: 0 4px 18px rgba(8, 168, 107, .09);
+      isolation: isolate;
+    }
+    [data-theme="dark"] .sponsor-strip { border-bottom: 1px solid #245f4d; }
+    .sponsor-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1800px;
+      min-height: var(--sponsor-height);
+      margin: auto;
+      padding: 6px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .header-brand {
+      min-width: 205px;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .header-logo {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: radial-gradient(circle at 30% 25%, #5bffc8, var(--green) 65%, var(--green-dark));
+      box-shadow: 0 3px 12px rgba(8, 168, 107, .25);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .header-brand-name { display: block; color: var(--heading); font-size: 16px; font-weight: 800; line-height: 1.15; letter-spacing: -.4px; }
+    .header-brand-subtitle { display: block; margin-top: 2px; color: var(--green-dark); font-size: 10px; font-weight: 800; }
+    [data-theme="dark"] .header-brand-subtitle { color: var(--green-light); }
+
+    .header-v-sep {
+      width: 1.5px;
+      height: 34px;
+      flex: 0 0 1.5px;
+      background: rgba(16, 35, 68, .2);
+    }
+    [data-theme="dark"] .header-v-sep { background: rgba(240, 255, 249, .2); }
+
+    .sponsor-slot-box {
+      flex: 1 1 auto;
+      max-width: 920px;
+      min-width: 250px;
+      height: 52px;
+      padding: 6px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1.8px dashed var(--green);
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(201, 255, 234, .75), rgba(242, 255, 249, .95) 50%, rgba(196, 252, 239, .75));
+      text-decoration: none;
+    }
+    [data-theme="dark"] .sponsor-slot-box {
+      border-color: var(--green-light);
+      background: linear-gradient(90deg, rgba(18, 62, 50, .85), rgba(16, 39, 44, .95) 50%, rgba(18, 62, 50, .85));
+    }
+    .slot-megaphone { font-size: 22px; line-height: 1; flex: 0 0 auto; }
+    .slot-arrow { flex: 1 1 50px; max-width: 110px; height: 14px; display: flex; align-items: center; color: var(--green); }
+    [data-theme="dark"] .slot-arrow { color: var(--green-light); }
+    .slot-arrow svg { width: 100%; height: 14px; display: block; overflow: visible; }
+    .slot-center-text { text-align: center; flex: 0 0 auto; }
+    .slot-center-text strong { display: block; color: var(--heading); font-size: 15px; line-height: 1.15; font-weight: 800; letter-spacing: -.3px; }
+    .slot-center-text span { display: block; margin-top: 2px; color: var(--body); font-size: 11px; font-weight: 700; }
+
+    .sponsor-right-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+    .sponsor-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--green);
+      color: var(--heading);
+      background: linear-gradient(135deg, #b6ffdf, #58f0ad);
+      box-shadow: 0 4px 14px rgba(8, 168, 107, .2);
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .sponsor-orb-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid var(--green);
+      color: #ffffff;
+      background: linear-gradient(145deg, var(--green), var(--green-dark));
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* LEFT WORKSPACE SIDEBAR */
+    .sidebar {
+      position: fixed;
+      z-index: 150;
+      inset: var(--sponsor-height) auto 0 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--sponsor-height));
+      height: calc(100dvh - var(--sponsor-height));
+      display: flex;
+      flex-direction: column;
+      padding: 18px 14px 16px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      transition: transform .25s ease;
+    }
+    .side-label { padding: 10px 12px 8px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+    .side-nav { display: grid; gap: 6px; }
+    .side-link {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 7px 11px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .18s ease;
+    }
+    .side-link:hover { background: var(--surface-soft); border-color: var(--border); }
+    .side-link.active { color: var(--green-dark); background: linear-gradient(100deg, var(--green-soft), #f4fff9); border-color: #b8f2d7; }
+    [data-theme="dark"] .side-link.active { color: var(--green-light); background: var(--green-soft); border-color: #23654e; }
+    .nav-icon { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; border-radius: 11px; font-size: 16px; color: var(--green-dark); background: var(--green-soft); border: 1px solid var(--border); }
+    [data-theme="dark"] .nav-icon { color: var(--green-light); }
+    .nav-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sidebar-spacer { flex: 1 0 14px; min-height: 14px; }
+    .side-promo {
+      margin: 14px 4px 12px;
+      padding: 16px 12px;
+      text-align: center;
+      border-radius: 20px;
+      border: 1px solid #c7f5df;
+      background: linear-gradient(145deg, var(--green-soft), var(--surface) 75%);
+    }
+    [data-theme="dark"] .side-promo { background: linear-gradient(145deg, var(--surface-soft), var(--surface)); border-color: #255c49; }
+    .promo-gift { margin-bottom: 6px; font-size: 28px; }
+    .side-promo h3 { margin: 0 0 6px; color: var(--heading); font-size: 12.5px; line-height: 1.45; font-weight: 800; }
+    .side-promo p { margin: 0 0 10px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .promo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 16px; border-radius: 999px; color: #ffffff; background: linear-gradient(135deg, var(--green), var(--green-dark)); text-decoration: none; font-size: 11px; font-weight: 800; }
+    .support-card { display: flex; align-items: center; gap: 10px; margin: 0 4px; padding: 11px 12px; border-radius: 15px; border: 1px solid var(--border); background: var(--surface-soft); text-decoration: none; }
+    .support-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 16px; }
+    [data-theme="dark"] .support-icon { color: var(--green-light); }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 2px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { margin: 12px 6px 0; color: var(--muted); font-size: 9px; text-align: center; }
+
+    /* MAIN COLUMN + TOPBAR */
+    .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
+    .topbar {
+      position: sticky;
+      top: var(--sponsor-height);
+      z-index: 100;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 26px;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .mobile-menu-btn { display: none; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 11px; color: var(--heading); background: var(--surface); }
+    .btn-back-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 33px;
+      padding: 0 13px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .btn-back-pill { color: var(--green-light); }
+    .btn-back-pill:hover { background: var(--green); color: #ffffff; }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .breadcrumb a { text-decoration: none; color: var(--green-dark); }
+    [data-theme="dark"] .breadcrumb a { color: var(--green-light); }
+    .breadcrumb span.current { color: var(--heading); font-weight: 800; }
+
+    .topbar-spacer { flex: 1; }
+    .icon-btn {
+      min-height: 36px;
+      width: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 15px;
+    }
+
+    /* SHORTCUT JUMP BAR (10 SECTIONS) */
+    .jump-strip {
+      position: sticky;
+      top: calc(var(--sponsor-height) + 54px);
+      z-index: 95;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .jump-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 7px clamp(16px, 2.4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-inner::-webkit-scrollbar { display: none; }
+    .jump-tab {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      padding: 5.5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .16s ease;
+    }
+    .jump-tab:hover, .jump-tab.active {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-color: var(--green);
+      color: #ffffff;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 20px clamp(16px, 2.4vw, 32px) 44px;
+    }
+
+    /* ENLARGED MINT-GREEN & WHITE HERO BANNER WITH CLEAR LOGO & TEXT */
+    .project-hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(305px, .82fr);
+      align-items: center;
+      gap: 22px;
+      padding: 24px 28px;
+      border: 1.5px solid #96ecd0;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .18), transparent 36%),
+        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+      box-shadow: var(--shadow);
+    }
+    [data-theme="dark"] .project-hero { border-color: #215d4c; }
+    .hero-identity {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .hero-logo-box {
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      border-radius: 19px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: #101826;
+      border: 2px solid var(--green);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .16);
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .hero-logo-box img { width: 72%; height: 72%; object-fit: contain; display: block; }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      background: var(--surface);
+      color: var(--green-dark);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
+
+    .hero-title-group h1 {
+      margin: 0 0 6px;
+      color: var(--heading);
+      font-size: clamp(24px, 2.5vw, 33px);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -.6px;
+    }
+    .hero-title-group p {
+      margin: 0;
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.62;
+      font-weight: 600;
+      max-width: 740px;
+    }
+
+    /* PORTAL ACTION CARD */
+    .portal-action-card {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: var(--surface);
+      border: 1px solid #96ecd0;
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .07);
+      display: grid;
+      gap: 10px;
+    }
+    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
+
+    .portal-meta-box {
+      padding: 10px 13px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .portal-meta-box { border-color: #23654e; }
+    .portal-meta-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 2px;
+    }
+    .portal-meta-value {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--heading);
+      overflow-wrap: anywhere;
+    }
+
+    .btn-launch-primary {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      box-shadow: 0 6px 14px rgba(8, 168, 107, .22);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 800;
+      transition: transform .18s ease;
+    }
+    .btn-launch-primary:hover { transform: translateY(-1px); }
+
+    /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
+    .single-column-stack {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .info-card {
+      padding: 22px 24px;
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+    }
+    .card-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--heading);
+      font-size: 17.5px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+    .card-heading-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+      font-size: 16px;
+      flex: 0 0 32px;
+    }
+    [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
+
+    .info-card p {
+      margin: 0 0 11px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--body);
+    }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card code {
+      background: var(--surface-soft);
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      font-family: monospace;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .doc-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .doc-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid var(--green);
+      font-size: 11.5px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .doc-link-pill { color: var(--green-light); }
+    .doc-link-pill:hover {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .mini-box {
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .mini-box { border-color: #23654e; }
+    .mini-box h3 {
+      margin: 0 0 6px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .mini-box p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.68;
+      color: var(--body);
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      background: var(--surface-soft);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .stats-table { border-color: #23654e; }
+    .stats-table th, .stats-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+      line-height: 1.65;
+    }
+    .stats-table th {
+      background: var(--green-soft);
+      color: var(--heading);
+      font-weight: 800;
+      width: 28%;
+    }
+    .stats-table td { color: var(--body); }
+    .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .perm-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+    }
+    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
+
+    .steps-list {
+      display: grid;
+      gap: 11px;
+      margin-top: 10px;
+    }
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-body p { margin: 0; font-size: 12px; line-height: 1.68; color: var(--body); }
+
+    /* RICH FAQ ACCORDION */
+    .faq-list { display: grid; gap: 11px; }
+    .faq-item {
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      padding: 14px 18px;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .faq-item { border-color: #23654e; }
+    .faq-item[open] {
+      background: var(--surface);
+      box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
+    }
+    .faq-item summary {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--heading);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-item summary::after {
+      content: "+";
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--green-dark);
+      flex: 0 0 auto;
+    }
+    [data-theme="dark"] .faq-item summary::after { color: var(--green-light); }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-body {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      display: grid;
+      gap: 7px;
+    }
+    .faq-body p {
+      margin: 0;
+      font-size: 12.2px;
+      line-height: 1.7;
+      color: var(--body);
+    }
+
+    .disclaimer {
+      margin: 24px 0 0;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 10.5px;
+      line-height: 1.72;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 28px;
+      padding: 24px 0 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .footer-brand { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+    .footer-brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); background: #ffffff; }
+    .footer-brand span { color: var(--heading); font-size: 14px; font-weight: 800; }
+    .footer-copy { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 2px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .footer-links a:hover { color: var(--green); }
+
+    .mobile-overlay { display: none; }
+
+    @media(max-width: 1250px) {
+      :root { --sidebar-width: 235px; }
+      .header-brand { min-width: 185px; }
+      .slot-arrow { display: none; }
+    }
+    @media(max-width: 1020px) {
+      .project-hero { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 760px) {
+      :root { --sidebar-width: 258px; --sponsor-height: 56px; }
+      article[id] { scroll-margin-top: calc(var(--sponsor-height) + 102px); }
+      .jump-strip { top: calc(var(--sponsor-height) + 56px); }
+      .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
+      .header-brand { min-width: auto; gap: 7px; }
+      .header-logo { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
+      .header-brand-name { font-size: 11px; }
+      .header-brand-subtitle { font-size: 8px; }
+      .header-v-sep, .sponsor-orb-btn { display: none; }
+      .sponsor-slot-box { min-width: 0; height: 42px; padding: 4px 10px; justify-content: center; gap: 8px; }
+      .slot-megaphone { font-size: 17px; }
+      .slot-center-text strong { font-size: 11px; }
+      .slot-center-text span { font-size: 8px; }
+      .sponsor-cta { padding: 8px 11px; font-size: 9px; }
+
+      .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0,0,0,.13); }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4,14,27,.42); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; }
+      .topbar { min-height: 54px; padding: 6px 14px; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 36px; }
+
+      main { padding: 14px clamp(14px, 3vw, 24px) 36px; }
+      .project-hero { padding: 18px 16px; }
+      .hero-identity { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hero-logo-box { width: 64px; height: 64px; flex-basis: 64px; }
+      .mini-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 480px) {
+      .header-brand-subtitle, .slot-megaphone { display: none; }
+    }
   </style>
 </head>
-<body>
-  <div class="sponsor">
-    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
-    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
-    <small>Grow Your Brand in the Crypto Community</small>
-    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
+
+<body data-theme="light">
+  <!-- TOP SPONSOR & BRAND BAR -->
+  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
+    <div class="sponsor-inner">
+      <a href="../index.html" class="header-brand" translate="no">
+        <span class="header-logo">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+        </span>
+        <span>
+          <span class="header-brand-name">Total Crypto Hub</span>
+          <span class="header-brand-subtitle">by <b>Total Crypto Network</b></span>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <a class="sponsor-slot-box" href="../legal-pages/contact.html" aria-label="Sponsor Banner Area">
+        <span class="slot-megaphone" aria-hidden="true">📢</span>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="slot-center-text">
+          <strong>Sponsor Banner Area</strong>
+          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
+        </div>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <div class="sponsor-right-actions">
+        <a href="../legal-pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
+        <a href="../legal-pages/contact.html" class="sponsor-orb-btn" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell">
+    <!-- LEFT WORKSPACE SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="side-label">Workspace</div>
+      <nav class="side-nav">
+        <a href="../index.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home
+        </a>
+        <a href="../depin-pages/depin.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects
+        </a>
+        <a href="../mobile-pages/mobile-mining.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects
+        </a>
+        <a href="../airdrop-pages/airdrops.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 0 1 16 0Z"/><path d="M4 10 10 16M20 10 14 16M12 10v6"/><rect x="9" y="16" width="6" height="5" rx="1.2"/></svg></span>Airdrops &amp; Campaigns
+        </a>
+        <a href="../wallet-pages/wallets.html" class="side-link active" aria-current="page">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets &amp; Exchanges
+        </a>
+        <a href="../token-pages/token-checker.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
+        </a>
+        <a href="../earning-pages/earning-calculator.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator
+        </a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <section class="side-promo" aria-label="Community invitation">
+        <div class="promo-gift" aria-hidden="true">🌐</div>
+        <h3>Explore Web3 Wallets<br>&amp; Stay Safe</h3>
+        <p>Follow setup guides, security checklists and community announcements.</p>
+        <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
+      </section>
+      <a class="support-card" href="../legal-pages/contact.html">
+        <span class="support-icon" aria-hidden="true">♧</span>
+        <span><strong>Need Help?</strong><span>Contact Support →</span></span>
+      </a>
+      <p class="sidebar-note">An open Web3 directory portal</p>
+    </aside>
+
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+
+    <div class="main-column">
+      <!-- TOP BACK & BREADCRUMB BAR -->
+      <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <button type="button" class="btn-back-pill" onclick="goBackToList()" aria-label="Go back to previous page">← Back</button>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <a href="../wallet-pages/wallets.html">Wallets &amp; Exchanges</a>
+          <span>/</span>
+          <span class="current notranslate" translate="no">OKX Web3 Wallet</span>
+        </nav>
+        <span class="topbar-spacer"></span>
+        <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+      </header>
+
+      <!-- SHORTCUT JUMP BAR (10 SECTIONS) -->
+      <nav class="jump-strip" aria-label="Wallet sections">
+        <div class="jump-inner" id="jumpInner">
+          <a class="jump-tab active" data-target="overview" href="#overview">1. Overview</a>
+          <a class="jump-tab" data-target="key-features" href="#key-features">2. Key Features</a>
+          <a class="jump-tab" data-target="fee" href="#fee">3. Fee</a>
+          <a class="jump-tab" data-target="network-support" href="#network-support">4. Network Support</a>
+          <a class="jump-tab" data-target="custody-control" href="#custody-control">5. Custody &amp; Control</a>
+          <a class="jump-tab" data-target="how-to-use" href="#how-to-use">6. How to Use</a>
+          <a class="jump-tab" data-target="security" href="#security">7. Security</a>
+          <a class="jump-tab" data-target="platforms" href="#platforms">8. Platforms</a>
+          <a class="jump-tab" data-target="guide-checklist" href="#guide-checklist">9. Guide Checklist</a>
+          <a class="jump-tab" data-target="faq" href="#faq">10. FAQ</a>
+        </div>
+      </nav>
+
+      <main>
+        <!-- ENLARGED MINT-GREEN & WHITE HERO BANNER WITH CLEAR LOGO & TEXT -->
+        <section class="project-hero" aria-labelledby="walletTitle">
+          <div class="hero-identity">
+            <div class="hero-logo-box" aria-label="OKX Web3 Wallet logo">OKX</div>
+            <div class="hero-title-group">
+              <div class="hero-badges">
+                <span class="badge-pill">🌐 Self-Custody Web3 Wallet</span>
+                <span class="badge-pill">⛓️ Multi-Chain</span>
+                <span class="badge-pill">🔄 DEX &amp; Swap Access</span>
+                <span class="badge-pill">🛡️ Security &amp; Risk Alerts</span>
+              </div>
+              <h1 id="walletTitle" class="notranslate" translate="no">OKX Web3 Wallet</h1>
+              <p>Complete guide explaining what OKX Web3 Wallet is, its key features, gas and swap fees, multi-chain network support, self-custody control, setup steps, and safety practices.</p>
+            </div>
+          </div>
+
+          <!-- COMPACT PORTAL ACTION CARD -->
+          <div class="portal-action-card">
+            <div class="portal-meta-box">
+              <span class="portal-meta-label">OFFICIAL PORTAL &amp; WALLET MODEL</span>
+              <span class="portal-meta-value notranslate" translate="no">okx.com/web3 • Self-Custody</span>
+            </div>
+
+            <a class="btn-launch-primary" href="https://www.okx.com/web3" target="_blank" rel="noopener noreferrer">
+              🌐 Official OKX Web3 Portal →
+            </a>
+          </div>
+        </section>
+
+        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES -->
+        <div class="single-column-stack">
+          <!-- 1. OVERVIEW -->
+          <article class="info-card" id="overview">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🌐</span>
+              1. Overview
+            </h2>
+            <p><strong>OKX Web3 Wallet</strong> is a <strong>self-custody (non-custodial)</strong> multi-chain wallet designed to help users manage supported crypto assets and NFTs and connect to decentralized applications (dApps) across multiple blockchains.</p>
+            <p>Even though it is offered under the OKX ecosystem, a self-custody wallet works differently from a standard custodial exchange account: you control your wallet access/recovery credentials directly, and you must carefully verify networks, addresses, and transaction prompts before signing.</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>✅ What It Helps You Do</h3>
+                <p>Manage supported tokens and NFTs across multiple networks, connect to dApps, and access swap or Web3 tools from mobile or browser.</p>
+              </div>
+              <div class="mini-box">
+                <h3>⚠️ What to Keep in Mind</h3>
+                <p>Self-custody means you are responsible for protecting recovery details, checking network compatibility, and reviewing permissions before approving transactions.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. KEY FEATURES -->
+          <article class="info-card" id="key-features">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">⭐</span>
+              2. Key Features
+            </h2>
+            <p>OKX Web3 Wallet brings multi-chain asset management, dApp access, and transaction checks together:</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>⛓️ Multi-Chain Wallet Experience</h3>
+                <p>Supports switching and viewing supported assets across multiple EVM and non-EVM networks within one wallet interface.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🔄 Swap &amp; dApp Connectivity</h3>
+                <p>Allows connecting to supported dApps and reviewing swap/transaction routes and quotes before confirming.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🖼️ NFT &amp; Collectible Management</h3>
+                <p>Lets you view and manage supported NFTs and digital assets on compatible networks.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🛡️ Transaction &amp; Approval Checks</h3>
+                <p>Displays transaction details and token/contract prompts so you can inspect permissions before signing.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. FEE -->
+          <article class="info-card" id="fee">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">💸</span>
+              3. Fee
+            </h2>
+            <p>Understanding how fees apply on a self-custody Web3 wallet helps prevent failed transactions or surprises:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>Wallet Setup &amp; Holding</th>
+                  <td>Creating or importing a self-custody wallet is free; there is no recurring fee just for holding a wallet.</td>
+                </tr>
+                <tr>
+                  <th>Network / Gas Fees</th>
+                  <td>Onchain transfers, token approvals, and contract interactions require network gas paid in the active chain's native token (such as ETH, SOL, or another chain's gas asset).</td>
+                </tr>
+                <tr>
+                  <th>Swap, Bridge &amp; dApp Charges</th>
+                  <td>Swaps, bridges, or third-party dApps may involve network gas, routing/service fees, or slippage/spread—always check the exact quote before signing.</td>
+                </tr>
+                <tr>
+                  <th>Wrong Network Risk</th>
+                  <td>Sending funds on an unsupported or mismatched network can result in loss or recovery difficulty—always verify network support before sending.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- 4. NETWORK SUPPORT -->
+          <article class="info-card" id="network-support">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🌐</span>
+              4. Network Support
+            </h2>
+            <p>OKX Web3 Wallet supports many major blockchains across EVM and non-EVM ecosystems, though exact network availability and custom RPC/chain support can update over time:</p>
+            <div class="perm-pills">
+              <span class="perm-pill">Ethereum &amp; EVM Networks</span>
+              <span class="perm-pill">Base / Arbitrum / Optimism</span>
+              <span class="perm-pill">Polygon / BNB Chain / Avalanche</span>
+              <span class="perm-pill">Solana &amp; Non-EVM Chains</span>
+              <span class="perm-pill">Verify Current Chain List in Official Docs</span>
+            </div>
+          </article>
+
+          <!-- 5. CUSTODY & CONTROL -->
+          <article class="info-card" id="custody-control">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🗝️</span>
+              5. Custody &amp; Control
+            </h2>
+            <p>As a <strong>self-custody</strong> wallet, you hold control over your wallet keys or recovery credentials rather than relying on a third party to hold them for you:</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>📜 Recovery Phrase &amp; Backup Control</h3>
+                <p>Whoever holds your recovery phrase or backup credentials can access the wallet—store backups securely and privately.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🚫 Irreversible Onchain Actions</h3>
+                <p>Once a blockchain transaction is signed and confirmed, it cannot simply be reversed by support—verify details before approving.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. HOW TO USE -->
+          <article class="info-card" id="how-to-use">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🛠️</span>
+              6. How to Use
+            </h2>
+            <p>Start from official OKX channels and follow a careful setup and verification flow:</p>
+            <div class="steps-list">
+              <div class="step-row">
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <h4>Visit the Official OKX Web3 Portal</h4>
+                  <p>Open <code>okx.com/web3</code> directly and avoid links from unverified messages or ads.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <h4>Choose Mobile App or Browser Extension</h4>
+                  <p>Install the official mobile app or browser extension from verified official sources and check publisher details.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <h4>Create or Import Your Wallet</h4>
+                  <p>Create a new self-custody wallet or import an existing wallet you control, and set a strong local password/lock.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">4</span>
+                <div class="step-body">
+                  <h4>Back Up Recovery Credentials Safely</h4>
+                  <p>Record and store your recovery phrase securely offline—never share it or type it into websites or chats.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">5</span>
+                <div class="step-body">
+                  <h4>Verify Network, Gas &amp; Test First</h4>
+                  <p>Confirm the active network, native gas balance, and recipient/contract details, and start with a small test transfer first.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. SECURITY -->
+          <article class="info-card" id="security">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🛡️</span>
+              7. Security
+            </h2>
+            <p>Follow strict security habits whenever you connect to dApps, sign messages, or transfer assets:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>Use a Secondary Wallet</th>
+                  <td>Use a <strong>secondary wallet</strong> with limited funds when testing new dApps, airdrops, or unfamiliar links so your main wallet stays protected.</td>
+                </tr>
+                <tr>
+                  <th>Never Share Recovery Phrase</th>
+                  <td>Never share your <strong>recovery phrase</strong> or private keys with anyone—including anyone claiming to be support—and never enter them on websites or chats.</td>
+                </tr>
+                <tr>
+                  <th>Inspect Approvals &amp; Signatures</th>
+                  <td>Check token approvals, spending limits, and transaction prompts carefully before signing, and revoke unused permissions when needed.</td>
+                </tr>
+                <tr>
+                  <th>Verify URLs &amp; Networks</th>
+                  <td>Double-check official domains and selected networks before sending funds or interacting with smart contracts.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- 8. PLATFORMS -->
+          <article class="info-card" id="platforms">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">📱</span>
+              8. Platforms
+            </h2>
+            <p>OKX Web3 Wallet is accessible across mobile devices and desktop web browsers via official channels:</p>
+            <div class="perm-pills">
+              <span class="perm-pill">Mobile App (iOS &amp; Android)</span>
+              <span class="perm-pill">Desktop Browser Extension</span>
+              <span class="perm-pill">Web / dApp Connection Support</span>
+            </div>
+          </article>
+
+          <!-- 9. GUIDE CHECKLIST -->
+          <article class="info-card" id="guide-checklist">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">✅</span>
+              9. Guide Checklist
+            </h2>
+            <p>Use this quick text checklist (no video needed) before sending funds, swapping, or connecting to a dApp:</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>✔ Before Sending or Swapping</h3>
+                <p>Verify the network matches the recipient/chain, check that you have enough native gas token, verify the address, and test with a small amount first.</p>
+              </div>
+              <div class="mini-box">
+                <h3>✔ Before Connecting to New dApps</h3>
+                <p>Use a secondary wallet for testing, check the URL and approval scope carefully, and never share your recovery phrase.</p>
+              </div>
+            </div>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.okx.com/web3" target="_blank" rel="noopener noreferrer">🌐 Official OKX Web3 Portal →</a>
+              <a class="doc-link-pill" href="https://www.okx.com/help" target="_blank" rel="noopener noreferrer">🛟 OKX Help Center →</a>
+            </div>
+          </article>
+
+          <!-- 10. FAQ -->
+          <article class="info-card" id="faq">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">❓</span>
+              10. FAQ
+            </h2>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>1. Is OKX Web3 Wallet a self-custody wallet?</summary>
+                <div class="faq-body">
+                  <p><strong>What it is:</strong> Yes—OKX Web3 Wallet is a <strong>self-custody</strong> wallet where you control your wallet access and recovery credentials rather than relying on custodial exchange storage.</p>
+                  <p><strong>How to use it:</strong> Keep your recovery phrase private and offline, and verify every network and transaction prompt yourself.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>2. What fees apply when using OKX Web3 Wallet?</summary>
+                <div class="faq-body">
+                  <p><strong>What fees apply:</strong> Creating or importing a wallet is free, while onchain transactions require network gas fees and swaps, bridges, or dApps may involve gas, service/routing fees, or slippage/spread.</p>
+                  <p><strong>How to check:</strong> Review the exact fee, gas token, and output details shown before confirming a transaction.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>3. Which networks does OKX Web3 Wallet support?</summary>
+                <div class="faq-body">
+                  <p><strong>What is supported:</strong> It supports multiple EVM and non-EVM blockchains, with exact network availability subject to updates in official documentation.</p>
+                  <p><strong>How to check:</strong> Confirm that your target chain is supported and matches the receiving network before transferring funds.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>4. Can I use OKX Web3 Wallet on mobile and desktop?</summary>
+                <div class="faq-body">
+                  <p><strong>What it is:</strong> Yes—it is available through official mobile app and browser extension options listed on OKX's official portal.</p>
+                  <p><strong>How to set up:</strong> Always install from <code>okx.com/web3</code> or verified official app/extension stores.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>5. Why should I use a secondary wallet and review approvals?</summary>
+                <div class="faq-body">
+                  <p><strong>What it is:</strong> A <strong>secondary wallet</strong> keeps limited funds separate for testing new dApps or links, and token approvals control contract access to your tokens.</p>
+                  <p><strong>How to stay safe:</strong> Use a secondary wallet on unfamiliar sites, inspect approval requests before signing, and revoke unused permissions.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>6. Can support recover a lost recovery phrase or reverse a transfer?</summary>
+                <div class="faq-body">
+                  <p><strong>What to know:</strong> With self-custody wallets, lost recovery credentials cannot simply be reset like a typical account password, and confirmed blockchain transfers generally cannot be undone.</p>
+                  <p><strong>How to stay safe:</strong> Never share your recovery phrase with anyone claiming to be support and always test or double-check details before sending.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+
+        <p class="disclaimer"><strong>Important Disclosure:</strong> Total Crypto Hub provides educational guides only (NFA / DYOR). Nothing on this page is financial, investment, or legal advice, nor a guarantee of rewards or returns. Total Crypto Hub is an independent directory and is not affiliated with OKX. Always verify official URLs, check fees and network details before transacting, never share private keys, seed phrases, or passwords, and use a secondary wallet when interacting with dApps or unfamiliar links.</p>
+
+        <footer>
+          <a href="../index.html" class="footer-brand" translate="no">
+            <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
+            <span>Total Crypto Hub</span>
+          </a>
+          <p class="footer-copy">&copy; <span class="notranslate" translate="no">Total Crypto Network</span>. All rights reserved.</p>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="../index.html">Home</a>
+            <a href="../legal-pages/about.html">About Us</a>
+            <a href="../legal-pages/contact.html">Contact Us</a>
+            <a href="../legal-pages/privacy.html">Privacy Policy</a>
+            <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
+            <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+          </nav>
+        </footer>
+      </main>
+    </div>
   </div>
 
-  <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="Total Crypto Hub home">
-      <span class="brand-mark">TCN</span>
-      <span>Total Crypto Hub<small>by Total Crypto Network</small></span>
-    </a>
-    <div class="top-actions">
-      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-      <a class="back-btn" id="backBtn" href="../wallet-pages/wallets.html">← Back to Wallets</a>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="hero" id="overview">
-      <div>
-        <span class="eyebrow">✦ Web3 Wallet Guide · Total Crypto Hub</span>
-        <h1>OKX Web3 <span>Wallet</span></h1>
-        <p>Your multi-chain gateway to Web3 — manage supported digital assets, connect to decentralized apps, explore onchain markets and use cross-chain tools from one self-custody wallet.</p>
-        <div class="pills">
-          <span class="pill">✓ Self-Custody</span><span class="pill">🌐 80+ Networks</span>
-          <span class="pill">🔁 Cross-Chain DEX</span><span class="pill">🛡️ Risk Screening</span>
-        </div>
-        <div class="actions">
-          <a class="primary" href="https://web3.okx.com/" target="_blank" rel="noopener noreferrer">Join Now / Get Started ↗</a>
-          <a class="secondary" href="https://www.okx.com/download" target="_blank" rel="noopener noreferrer">Official Download ↗</a>
-        </div>
-      </div>
-      <div class="hero-art" aria-label="OKX Web3 Wallet illustration">
-        <span class="float-coin btc">₿</span><span class="float-coin eth">◆</span>
-        <div class="okx-orb"><div class="okx-mark" role="img" aria-label="OKX logo">◈</div><span class="okx-label">OKX WEB3 WALLET</span></div>
-      </div>
-    </section>
-
-    <nav class="quicknav" aria-label="Page sections">
-      <a class="active" href="#overview">⌂ Overview</a><a href="#features">⭐ Features</a><a href="#how-to">▣ How to Use</a>
-      <a href="#networks">🌐 Networks</a><a href="#security">🛡 Security</a><a href="#videos">▶ Videos</a><a href="#faq">ⓘ FAQ</a>
-    </nav>
-
-    <section class="section">
-      <div class="intro-grid">
-        <article class="panel">
-          <h2 class="section-heading"><span class="num">1</span> What is OKX Web3 Wallet?</h2>
-          <p>OKX Web3 Wallet is a non-custodial, multi-chain wallet designed to help users manage digital assets and connect to decentralized applications (DApps). It is available through the OKX app, browser extension and Web3 website. Users can create a wallet or import an existing wallet they control.</p>
-          <p style="margin-top:12px">The Web3 Wallet is distinct from an OKX centralized exchange account. With a self-custody wallet, you control the recovery phrase or private keys. OKX cannot recover a lost seed phrase or private key, so secure backup is essential.</p>
-        </article>
-        <aside class="panel fact">
-          <div class="fact-icon">💡</div><div><h3>Quick Fact</h3><p>OKX says its Web3 Wallet supports 80+ networks, including EVM, Bitcoin, Solana, TON, Sui and Aptos. The available networks and features can vary by app, extension and region.</p></div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="features">
-      <h2 class="section-heading"><span class="num">2</span> Key Features</h2>
-      <div class="features">
-        <article class="feature"><span class="emoji">🌐</span><h3>Multi-Chain Wallet</h3><p>Manage assets across many supported EVM and non-EVM networks.</p></article>
-        <article class="feature"><span class="emoji">🔄</span><h3>Network Recognition</h3><p>Automatically recognizes a DApp's network in supported connection flows.</p></article>
-        <article class="feature"><span class="emoji">🔁</span><h3>Cross-Chain DEX</h3><p>Explore same-chain and cross-chain swap routes with available quotes.</p></article>
-        <article class="feature"><span class="emoji">🧩</span><h3>DApp Discovery</h3><p>Connect to supported DeFi, NFT and other onchain applications.</p></article>
-        <article class="feature"><span class="emoji">🖼️</span><h3>NFT Marketplace</h3><p>View supported digital collectibles and access NFT-related services.</p></article>
-        <article class="feature"><span class="emoji">⚠️</span><h3>Risk Detection</h3><p>Security tools flag high-risk tokens and screen suspicious addresses or DApps.</p></article>
-        <article class="feature"><span class="emoji">📊</span><h3>Portfolio Management</h3><p>View and manage onchain assets from a multi-chain wallet interface.</p></article>
-        <article class="feature"><span class="emoji">🔐</span><h3>Wallet Backup Options</h3><p>Back up a seed phrase manually or use supported cloud backup options.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="networks">
-      <h2 class="section-heading"><span class="num">3</span> Supported Networks</h2>
-      <div class="panel" style="margin-bottom:12px"><p>OKX currently describes support for 80+ networks. Examples below are not a complete list; check the live network list inside OKX Wallet before transferring funds.</p></div>
-      <div class="pills">
-        <span class="pill">Bitcoin</span><span class="pill">Ethereum</span><span class="pill">Solana</span>
-        <span class="pill">BNB Chain</span><span class="pill">Polygon</span><span class="pill">Avalanche</span>
-        <span class="pill">Arbitrum</span><span class="pill">Optimism</span><span class="pill">Tron</span>
-        <span class="pill">TON</span><span class="pill">Sui</span><span class="pill">Aptos</span>
-        <span class="pill">Cosmos</span><span class="pill">Starknet</span>
-      </div>
-      <div class="notice">
-        <strong>⚠️ Important</strong>
-        <p>Network support can differ between the app and browser extension and may change over time. Always match the sending network and receiving network exactly. A transfer on the wrong chain may be difficult or impossible to recover.</p>
-      </div>
-    </section>
-
-    <section class="section" id="how-to">
-      <h2 class="section-heading"><span class="num">4</span> How to Create an OKX Wallet?</h2>
-      <div class="panel" style="margin-bottom:12px"><p>Use the official OKX Web3 site or app-store links to begin. The setup options and screens can vary by device and region.</p></div>
-      <div class="steps">
-        <article class="step"><div class="circle">1</div><h3>Open Official Website</h3><p>Visit web3.okx.com or the official OKX download page.</p></article>
-        <article class="step"><div class="circle">2</div><h3>Choose Your Platform</h3><p>Select the OKX Wallet app or supported browser extension.</p></article>
-        <article class="step"><div class="circle">3</div><h3>Create or Import</h3><p>Create a new wallet or import one using its recovery phrase or private key.</p></article>
-        <article class="step"><div class="circle">4</div><h3>Back Up Securely</h3><p>Write down the recovery phrase offline and store it somewhere private and safe.</p></article>
-        <article class="step"><div class="circle">5</div><h3>Explore Web3</h3><p>Check the network, connect to trusted DApps and review each transaction.</p></article>
-      </div>
-    </section>
-
-    <section class="section two-col">
-      <article id="pros-cons">
-        <h2 class="section-heading"><span class="num">5</span> Pros & Things to Consider</h2>
-        <div class="good-bad">
-          <div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ Supports many blockchain networks</li><li>✓ App, extension and web access</li><li>✓ DApp and NFT discovery features</li><li>✓ Cross-chain swap tools</li></ul></div>
-          <div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✕ Recovery phrase safety is your responsibility</li><li>✕ Network and feature availability vary</li><li>✕ Swaps and bridges may involve fees</li><li>✕ Wrong-network transfers can be lost</li></ul></div>
-        </div>
-      </article>
-      <article id="security">
-        <h2 class="section-heading"><span class="num">6</span> Security Tips</h2>
-        <div class="panel">
-          <ul class="security-list">
-            <li><span>🛡️</span><span><b>Protect your seed phrase.</b> Never share it with anyone or enter it into a website sent by another person.</span></li>
-            <li><span>🔎</span><span><b>Verify the official app.</b> Download from OKX's official website or a verified app-store listing.</span></li>
-            <li><span>📋</span><span><b>Review transaction details.</b> Check the network, address, token, amount and estimated fees before signing.</span></li>
-            <li><span>⚠️</span><span><b>Be careful with tokens and DApps.</b> Risk alerts are helpful, but they cannot guarantee that an asset or application is safe.</span></li>
-            <li><span>🔐</span><span><b>Keep backup passwords safe.</b> If you use cloud backup, protect the backup password and associated account.</span></li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
-    <section class="section" id="videos">
-      <h2 class="section-heading"><span class="num">7</span> Video Tutorials</h2>
-      <div class="video-layout">
-        <article class="video-card">
-          <div class="video-thumb"><span class="play">▶</span></div>
-          <h3>OKX Wallet Beginner Guide</h3><p>Find beginner tutorials for installing OKX Wallet and creating a wallet.</p>
-          <a href="https://www.youtube.com/results?search_query=OKX+Web3+Wallet+official+beginner+guide" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
-        </article>
-        <article class="video-card">
-          <div class="video-thumb"><span class="play">▶</span></div>
-          <h3>How to Use OKX Web3 Wallet</h3><p>Learn about receiving assets, connecting DApps and using cross-chain swaps.</p>
-          <a href="https://www.youtube.com/results?search_query=OKX+Web3+Wallet+how+to+use+official+tutorial" target="_blank" rel="noopener noreferrer">Explore Tutorials ↗</a>
-        </article>
-        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Pro Tip</h3><p>Prefer official OKX tutorials and verify the network and token contract before making a transaction. Never reveal your recovery phrase to anyone.</p><a href="https://www.okx.com/help/section/faq-web3-wallet" target="_blank" rel="noopener noreferrer">OKX Wallet Help ↗</a></aside>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <h2 class="section-heading"><span class="num">8</span> Frequently Asked Questions</h2>
-      <div class="faq-grid">
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is OKX Web3 Wallet custodial? <span>＋</span></button><div class="faq-a">No. OKX describes its Web3 Wallet as non-custodial. You control your private keys or recovery phrase and are responsible for keeping them safe.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">How many networks does OKX Wallet support? <span>＋</span></button><div class="faq-a">OKX's current help documentation says 80+ networks. The available networks and connection support can vary by platform and region.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can OKX Wallet connect to DApps? <span>＋</span></button><div class="faq-a">Yes. OKX Wallet supports connections to decentralized applications, with network recognition in supported connection flows.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can I use the same wallet on app and extension? <span>＋</span></button><div class="faq-a">You can import the same seed phrase or private key into supported OKX Wallet platforms to access the corresponding wallet. Be certain you are using the correct recovery details.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does OKX Wallet support NFTs and swaps? <span>＋</span></button><div class="faq-a">OKX provides NFT-related features and same-chain and cross-chain DEX tools. Feature availability, quotes, fees and supported networks may vary.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">What if I lose my seed phrase? <span>＋</span></button><div class="faq-a">OKX says it cannot recover a lost seed phrase or private key for a non-custodial wallet. Keep a secure offline backup before you need it.</div></div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div><h2>Ready to Explore Web3 with OKX Wallet?</h2><p>Start from the official OKX Web3 site, choose your wallet platform and keep your recovery phrase secure.</p></div>
-      <a class="primary" href="https://web3.okx.com/" target="_blank" rel="noopener noreferrer">Visit OKX Web3 ↗</a>
-    </section>
-
-    <p class="disclaimer">Educational content only. Total Crypto Hub is an independent information directory and is not affiliated with OKX. Product features, supported networks and regional availability may change. Always verify current details on OKX's official pages before downloading or transferring assets. Cryptocurrency use involves risk.
-      <span class="source-links"><a href="https://web3.okx.com/" target="_blank" rel="noopener noreferrer">Official Web3 Wallet</a><a href="https://www.okx.com/download" target="_blank" rel="noopener noreferrer">Official Download</a><a href="https://www.okx.com/en-gb/help/how-do-i-manage-my-wallet-web" target="_blank" rel="noopener noreferrer">Wallet Guide</a><a href="https://web3.okx.com/security" target="_blank" rel="noopener noreferrer">Security</a></span>
-    </p>
-  </main>
-  <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
-
   <script>
-    const themeButton = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('tch-theme');
-    if (savedTheme === 'dark') document.body.classList.add('dark');
-    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    themeButton.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const dark = document.body.classList.contains('dark');
-      themeButton.textContent = dark ? '☀️' : '🌙';
-      localStorage.setItem('tch-theme', dark ? 'dark' : 'light');
-    });
-
-    const backBtn = document.getElementById('backBtn');
-    if (backBtn) {
-      backBtn.addEventListener('click', (e) => {
-        if (document.referrer && window.history.length > 1) {
-          try {
-            const refUrl = new URL(document.referrer);
-            const isLocal = window.location.protocol === 'file:' && refUrl.protocol === 'file:';
-            const isSameSite = refUrl.origin === window.location.origin;
-            if (isLocal || isSameSite) {
-              e.preventDefault();
-              window.history.back();
-            }
-          } catch (err) {}
-        }
-      });
+    function goBackToList() {
+      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
+        window.history.back();
+      } else {
+        window.location.href = '../wallet-pages/wallets.html';
+      }
     }
 
-    document.querySelectorAll('.faq-q').forEach(button => {
-      button.addEventListener('click', () => {
-        const item = button.closest('.faq-item');
-        item.classList.toggle('open');
-        button.setAttribute('aria-expanded', item.classList.contains('open'));
-        button.querySelector('span').textContent = item.classList.contains('open') ? '−' : '＋';
+    function applyTheme(theme) {
+      const safeTheme = theme === 'dark' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', safeTheme);
+      document.documentElement.setAttribute('data-theme', safeTheme);
+      const toggle = document.getElementById('themeToggle');
+      if (toggle) {
+        toggle.textContent = safeTheme === 'light' ? '🌙' : '☀️';
+        toggle.setAttribute('aria-label', safeTheme === 'light' ? 'Enable dark mode' : 'Enable light mode');
+      }
+      try {
+        localStorage.setItem('theme', safeTheme);
+        localStorage.setItem('tch-theme', safeTheme);
+      } catch (e) {}
+    }
+
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    }
+
+    function closeMobileMenu() {
+      document.body.classList.remove('menu-open');
+      const button = document.getElementById('mobileMenuBtn');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    }
+
+    function initScrollSpyTabs() {
+      const tabs = Array.from(document.querySelectorAll('.jump-tab'));
+      const jumpInner = document.getElementById('jumpInner');
+      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      if (!tabs.length || !sections.length) return;
+
+      const tabById = new Map();
+      tabs.forEach(tab => {
+        const targetId = tab.getAttribute('data-target');
+        if (targetId) tabById.set(targetId, tab);
+      });
+
+      function setActiveTab(sectionId) {
+        const activeTab = tabById.get(sectionId);
+        if (!activeTab) return;
+        tabs.forEach(t => t.classList.remove('active'));
+        activeTab.classList.add('active');
+
+        if (jumpInner) {
+          const tabLeft = activeTab.offsetLeft;
+          const tabWidth = activeTab.offsetWidth;
+          const containerWidth = jumpInner.clientWidth;
+          const desiredScroll = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+          jumpInner.scrollTo({ left: Math.max(0, desiredScroll), behavior: 'smooth' });
+        }
+      }
+
+      let scrollTicking = false;
+      function updateOnScroll() {
+        scrollTicking = false;
+        const headerOffset = 150;
+        let currentId = sections[0].id;
+
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= headerOffset) {
+            currentId = section.id;
+          } else {
+            break;
+          }
+        }
+
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+        if (nearBottom) {
+          currentId = sections[sections.length - 1].id;
+        }
+
+        setActiveTab(currentId);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          window.requestAnimationFrame(updateOnScroll);
+        }
+      }, { passive: true });
+
+      updateOnScroll();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollSpyTabs();
+
+      let savedTheme = 'light';
+      try {
+        savedTheme = localStorage.getItem('theme') || localStorage.getItem('tch-theme') || 'light';
+      } catch (e) {}
+      applyTheme(savedTheme);
+
+      const menuButton = document.getElementById('mobileMenuBtn');
+      const overlay = document.getElementById('mobileOverlay');
+      if (menuButton) {
+        menuButton.addEventListener('click', function () {
+          const isOpen = document.body.classList.toggle('menu-open');
+          this.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+      if (overlay) overlay.addEventListener('click', closeMobileMenu);
+      document.querySelectorAll('.side-link').forEach(link => link.addEventListener('click', closeMobileMenu));
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
       });
     });
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const navLinks = document.querySelectorAll('.quicknav a');
-    navLinks.forEach(link => link.addEventListener('click', () => {
-      navLinks.forEach(item => item.classList.remove('active'));
-      link.classList.add('active');
-    }));
   </script>
+
+  <script src="../ai-assistant/assistant.js" defer></script>
+  <script src="../ai-assistant/robot-animation.js" defer></script>
 </body>
 </html>
