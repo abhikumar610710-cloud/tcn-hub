@@ -1,368 +1,1519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wick Protocol Architecture & Waitlist Research | Total Crypto Hub</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-body: #f8fafc;
-            --bg-surface: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --border-color: #e2e8f0;
-            --text-heading: #0f172a;
-            --text-body: #1e293b;
-            --text-muted: #475569;
-            --accent-primary: #059669; 
-            --accent-hover: #047857;
-            --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
-            --container-max-width: 1040px;
-        }
-        [data-theme="dark"] {
-            --bg-body: #070a12;
-            --bg-surface: #0b1120;
-            --header-bg: rgba(11, 17, 32, 0.95);
-            --border-color: #1e293b;
-            --text-heading: #f8fafc;
-            --text-body: #e2e8f0;
-            --text-muted: #94a3b8;
-            --accent-primary: #10b981; 
-            --accent-hover: #34d399;
-            --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
-        body { background: var(--bg-body); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
-        .site-container { width: 100%; max-width: var(--container-max-width); margin: 0 auto; padding: 0 20px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wick Protocol (wick.xyz) guide: wAMM bin-based liquidity pools, wLIT & wLLP auto-compounding position tokens, waitlist & referral flow, safety rules, team & links, and FAQ on Total Crypto Hub.">
+  <meta name="keywords" content="Wick Protocol, wick.xyz, 975988, wAMM, wLIT, wLLP, Total Crypto Hub">
+  <meta name="theme-color" content="#08a86b">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <title>Wick Protocol — DeFi Trading &amp; Liquidity Incentive Program | Total Crypto Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        /* Standard Hub Header */
-        header { background: var(--header-bg); border-bottom: 1px solid var(--border-color); padding: 14px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-surface); border: 1.5px solid var(--accent-primary); flex-shrink: 0; }
-        .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .logo-text h1 { font-size: 17px; color: var(--text-heading); font-weight: 800; line-height: 1.1; }
-        .logo-text span { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-        .logo-text b { color: var(--accent-primary); }
+  <!-- Instant Anti-Flash Theme Script -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
 
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .theme-toggle-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; color: var(--text-heading); padding: 4px; display: flex; align-items: center; justify-content: center; }
-        
-        /* Green Capsule Back Button */
-        .btn-back-capsule {
-            background: var(--accent-primary);
-            color: white;
-            text-decoration: none;
-            font-size: 12.5px;
-            font-weight: 700;
-            padding: 8px 18px;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-back-capsule:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f3fbf9;
+      --surface: #ffffff;
+      --surface-soft: #effcf8;
+      --border: #c8eee1;
+      --heading: #102344;
+      --body: #29415c;
+      --muted: #6c8299;
+      --green: #08a86b;
+      --green-dark: #008556;
+      --green-light: #39e7a7;
+      --green-soft: #e3fff3;
+      --banner-start: #c9ffea;
+      --banner-mid: #f2fff9;
+      --banner-end: #c4fcef;
+      --sidebar-width: 258px;
+      --sponsor-height: 74px;
+      --shadow: 0 12px 32px rgba(8, 168, 107, .09);
+    }
 
-        main { flex: 1; padding: 32px 0 60px; }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #081a20;
+      --surface: #10272c;
+      --surface-soft: #143139;
+      --border: #254b4b;
+      --heading: #f0fff9;
+      --body: #d4eee5;
+      --muted: #91b3ad;
+      --green: #20d99a;
+      --green-dark: #0cad78;
+      --green-light: #5df0bd;
+      --green-soft: #123e34;
+      --banner-start: #0b2b27;
+      --banner-mid: #0f3530;
+      --banner-end: #0b2b27;
+      --shadow: 0 14px 34px rgba(0, 0, 0, .24);
+    }
 
-        /* Top Hero Section */
-        .project-hero { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; box-shadow: var(--card-shadow); margin-bottom: 24px; }
-        .hero-split-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
-        
-        .hero-left { display: flex; align-items: center; gap: 16px; min-width: 280px; flex: 1; }
-        .hero-avatar { width: 68px; height: 68px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-primary); flex-shrink: 0; padding: 2px; background: var(--bg-surface); }
-        .hero-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hero-meta h1 { font-size: 24px; color: var(--text-heading); font-weight: 800; display: flex; align-items: center; gap: 8px; }
-        .hero-meta p { color: var(--text-muted); font-size: 13px; font-weight: 600; margin-top: 3px; }
-        .badge-verified { background: rgba(16, 185, 129, 0.12); color: var(--accent-primary); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    article[id] { scroll-margin-top: calc(var(--sponsor-height) + 124px); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--body);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
 
-        /* Hero Right Action Boxes */
-        .hero-right-boxes { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        
-        .action-box-ref {
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            padding: 8px 14px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            min-width: 140px;
-        }
-        .action-box-label { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .action-box-code-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-        .action-box-code { font-size: 14px; font-weight: 800; color: var(--text-heading); font-family: monospace; }
-        .btn-copy-code {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--accent-primary);
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .btn-copy-code:hover { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+    /* TOP SPONSOR & BRAND BAR */
+    .sponsor-strip {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      min-height: var(--sponsor-height);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: var(--heading);
+      background:
+        radial-gradient(circle at 8% 50%, rgba(8, 168, 107, .22), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(8, 168, 107, .18), transparent 24%),
+        linear-gradient(95deg, var(--banner-start) 0%, var(--banner-mid) 48%, var(--banner-end) 100%);
+      border-bottom: 1px solid #96ecd0;
+      box-shadow: 0 4px 18px rgba(8, 168, 107, .09);
+      isolation: isolate;
+    }
+    [data-theme="dark"] .sponsor-strip { border-bottom: 1px solid #245f4d; }
+    .sponsor-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1800px;
+      min-height: var(--sponsor-height);
+      margin: auto;
+      padding: 7px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-brand {
+      min-width: 210px;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: radial-gradient(circle at 30% 25%, #5bffc8, var(--green) 65%, var(--green-dark));
+      box-shadow: 0 3px 12px rgba(8, 168, 107, .25);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .header-brand-name { display: block; color: var(--heading); font-size: 17px; font-weight: 800; line-height: 1.15; letter-spacing: -.45px; }
+    .header-brand-subtitle { display: block; margin-top: 2px; color: var(--green-dark); font-size: 10px; font-weight: 800; }
+    .header-brand-subtitle b { color: var(--green-dark); }
+    [data-theme="dark"] .header-brand-subtitle, [data-theme="dark"] .header-brand-subtitle b { color: var(--green-light); }
 
-        .btn-launch-join {
-            background: var(--accent-primary);
-            color: white;
-            padding: 14px 22px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 13.5px;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-            transition: all 0.2s;
-            height: 100%;
-            min-height: 52px;
-            white-space: nowrap;
-        }
-        .btn-launch-join:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .header-v-sep {
+      width: 1.5px;
+      height: 36px;
+      flex: 0 0 1.5px;
+      background: rgba(16, 35, 68, .2);
+    }
+    [data-theme="dark"] .header-v-sep { background: rgba(240, 255, 249, .2); }
 
-        /* Stats Grid */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); }
-        .stat-box { background: var(--bg-body); border: 1px solid var(--border-color); padding: 14px 16px; border-radius: 10px; }
-        .stat-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
-        .stat-value { font-size: 16px; font-weight: 800; color: var(--text-heading); }
-        .stat-value.highlight { color: var(--accent-primary); }
+    .sponsor-slot-box {
+      flex: 1 1 auto;
+      max-width: 970px;
+      min-width: 280px;
+      height: 58px;
+      padding: 6px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1.8px dashed var(--green);
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(201, 255, 234, .75), rgba(242, 255, 249, .95) 50%, rgba(196, 252, 239, .75));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .75), 0 3px 12px rgba(8, 168, 107, .08);
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .sponsor-slot-box:hover {
+      transform: translateY(-1px);
+      border-color: var(--green-dark);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .16);
+    }
+    [data-theme="dark"] .sponsor-slot-box {
+      border-color: var(--green-light);
+      background: linear-gradient(90deg, rgba(18, 62, 50, .85), rgba(16, 39, 44, .95) 50%, rgba(18, 62, 50, .85));
+      box-shadow: none;
+    }
+    .slot-megaphone { font-size: 27px; line-height: 1; flex: 0 0 auto; }
+    .slot-arrow { flex: 1 1 60px; max-width: 130px; height: 16px; display: flex; align-items: center; color: var(--green); }
+    [data-theme="dark"] .slot-arrow { color: var(--green-light); }
+    .slot-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
+    .slot-center-text { text-align: center; flex: 0 0 auto; }
+    .slot-center-text strong { display: block; color: var(--heading); font-size: 17px; line-height: 1.15; font-weight: 800; letter-spacing: -.35px; }
+    .slot-center-text span { display: block; margin-top: 2px; color: var(--body); font-size: 12px; font-weight: 700; }
 
-        /* Content Cards */
-        .content-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; box-shadow: var(--card-shadow); margin-bottom: 24px; }
-        .section-title { font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 14px; border-left: 4px solid var(--accent-primary); padding-left: 10px; }
-        .desc-text { font-size: 14px; line-height: 1.7; color: var(--text-body); font-weight: 500; margin-bottom: 14px; }
-        .desc-text b { color: var(--text-heading); font-weight: 800; }
+    .sponsor-right-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+    .sponsor-cta {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: 1.5px solid var(--green);
+      color: var(--heading);
+      background: linear-gradient(135deg, #b6ffdf, #58f0ad);
+      box-shadow: 0 4px 14px rgba(8, 168, 107, .22), inset 0 1px 1px rgba(255, 255, 255, .75);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .sponsor-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(8, 168, 107, .34); }
+    .sponsor-orb-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid var(--green);
+      color: #ffffff;
+      background: linear-gradient(145deg, var(--green), var(--green-dark));
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .25);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
 
-        .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
-        .arch-box { background: var(--bg-body); border: 1px solid var(--border-color); padding: 18px; border-radius: 12px; }
-        .arch-title { font-size: 14px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; }
-        .arch-desc { font-size: 13px; line-height: 1.6; color: var(--text-muted); font-weight: 500; }
+    /* LEFT WORKSPACE SIDEBAR */
+    .sidebar {
+      position: fixed;
+      z-index: 150;
+      inset: var(--sponsor-height) auto 0 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--sponsor-height));
+      height: calc(100dvh - var(--sponsor-height));
+      display: flex;
+      flex-direction: column;
+      padding: 20px 16px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      box-shadow: 8px 0 28px rgba(8, 168, 107, .03);
+      transition: transform .25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    .side-label { padding: 14px 13px 10px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+    .side-nav { display: grid; gap: 7px; flex-shrink: 0; }
+    .side-link {
+      min-height: 47px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
+    .side-link.active { color: var(--green-dark); background: linear-gradient(100deg, var(--green-soft), #f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8, 168, 107, .11); }
+    [data-theme="dark"] .side-link.active { color: var(--green-light); background: var(--green-soft); border-color: #23654e; }
+    .nav-icon { width: 36px; height: 36px; flex: 0 0 36px; display: grid; place-items: center; border-radius: 12px; font-size: 17px; color: var(--green-dark); background: var(--green-soft); border: 1px solid var(--border); }
+    [data-theme="dark"] .nav-icon { color: var(--green-light); }
+    .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sidebar-spacer { flex: 1 0 18px; min-height: 18px; }
+    .side-promo {
+      margin: 18px 6px 13px;
+      padding: 19px 14px;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 23px;
+      border: 1px solid #c7f5df;
+      background: radial-gradient(circle at 90% 10%, rgba(8, 168, 107, .18), transparent 34%), linear-gradient(145deg, var(--green-soft), var(--surface) 72%);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .10);
+    }
+    [data-theme="dark"] .side-promo { background: linear-gradient(145deg, var(--surface-soft), var(--surface)); border-color: #255c49; }
+    .promo-gift { margin-bottom: 8px; font-size: 34px; }
+    .side-promo h3 { margin: 0 0 8px; color: var(--heading); font-size: 13px; line-height: 1.5; font-weight: 800; }
+    .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .promo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 19px; border-radius: 999px; color: #ffffff; background: linear-gradient(135deg, var(--green), var(--green-dark)); text-decoration: none; font-size: 11px; font-weight: 800; box-shadow: 0 6px 14px rgba(8, 168, 107, .2); }
+    .support-card { display: flex; align-items: center; gap: 10px; margin: 0 6px; padding: 13px; flex-shrink: 0; border-radius: 17px; border: 1px solid var(--border); background: var(--surface-soft); text-decoration: none; }
+    .support-icon { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 18px; }
+    [data-theme="dark"] .support-icon { color: var(--green-light); }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
 
-        /* Video Section */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            background: #000;
-            margin-top: 16px;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+    /* MAIN COLUMN + TOPBAR */
+    .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
+    .topbar {
+      position: sticky;
+      top: var(--sponsor-height);
+      z-index: 100;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 28px;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .mobile-menu-btn { display: none; width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 12px; color: var(--heading); background: var(--surface); }
+    .btn-back-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 35px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .btn-back-pill { color: var(--green-light); }
+    .btn-back-pill:hover { background: var(--green); color: #ffffff; }
 
-        footer { padding: 24px 0; text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-surface); margin-top: auto; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-size: 12px; font-weight: 600; }
-        .footer-links a:hover { color: var(--accent-primary); }
-    </style>
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: var(--green-dark);
+      transition: color .18s;
+    }
+    [data-theme="dark"] .breadcrumb a { color: var(--green-light); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span.current { color: var(--heading); font-weight: 800; }
+
+    .topbar-spacer { flex: 1; }
+    .icon-btn {
+      min-height: 38px;
+      width: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 16px;
+      box-shadow: 0 3px 9px rgba(8, 168, 107, .05);
+    }
+    .icon-btn:hover { border-color: var(--green); color: var(--green); }
+
+    /* FULL-WIDTH SHORTCUT JUMP BAR */
+    .jump-strip {
+      position: sticky;
+      top: calc(var(--sponsor-height) + 60px);
+      z-index: 95;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .jump-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 8px clamp(16px, 2.4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-inner::-webkit-scrollbar { display: none; }
+    .jump-tab {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .16s ease;
+    }
+    .jump-tab:hover, .jump-tab.active {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-color: var(--green);
+      color: #ffffff;
+    }
+
+    /* FULL-WIDTH CONTAINER */
+    main {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 22px clamp(16px, 2.4vw, 32px) 42px;
+    }
+
+    /* MINT-GREEN & WHITE HERO BANNER */
+    .project-hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(300px, .88fr);
+      align-items: center;
+      gap: 22px;
+      padding: 24px 28px;
+      border: 1px solid #96ecd0;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
+        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+      box-shadow: var(--shadow);
+    }
+    [data-theme="dark"] .project-hero { border-color: #215d4c; }
+    .hero-identity {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .hero-logo-box {
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      border: 2px solid var(--green);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
+      color: var(--green-dark);
+      font-size: 24px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .hero-logo-box { color: var(--green-light); }
+    .hero-logo-box img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      background: var(--surface);
+      color: var(--green-dark);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
+
+    .hero-title-group h1 {
+      margin: 0 0 6px;
+      color: var(--heading);
+      font-size: clamp(24px, 2.7vw, 35px);
+      line-height: 1.14;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+    .hero-title-group p {
+      margin: 0;
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.62;
+      font-weight: 600;
+      max-width: 720px;
+    }
+
+    /* JOINING CARD: INVITE CODE BOX + COPY BUTTON + PRIMARY LAUNCH BUTTON */
+    .portal-action-card {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: var(--surface);
+      border: 1px solid #96ecd0;
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
+      display: grid;
+      gap: 11px;
+    }
+    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
+
+    .invite-code-box {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    [data-theme="dark"] .invite-code-box { border-color: #23654e; }
+
+    .invite-code-meta {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .invite-code-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .55px;
+      margin-bottom: 3px;
+    }
+    .invite-code-value {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--heading);
+      letter-spacing: .2px;
+      overflow-wrap: anywhere;
+    }
+    .btn-copy-code {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 7px 12px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(8, 168, 107, .06);
+      transition: .18s ease;
+    }
+    .btn-copy-code:hover {
+      border-color: var(--green);
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .btn-copy-code:hover { color: var(--green-light); }
+    .btn-copy-code.copied {
+      background: var(--green-soft);
+      border-color: var(--green);
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .btn-copy-code.copied { color: var(--green-light); }
+
+    .btn-launch-primary {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 800;
+      transition: transform .2s ease;
+    }
+    .btn-launch-primary:hover { transform: translateY(-1px); }
+
+    /* FULL-PAGE SINGLE-COLUMN STACK OF SECTION BOXES */
+    .single-column-stack {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .info-card {
+      padding: 22px 24px;
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+    }
+    .card-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--heading);
+      font-size: 17.5px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+    .card-heading-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+      font-size: 16px;
+      flex: 0 0 32px;
+    }
+    [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
+
+    .info-card p {
+      margin: 0 0 11px;
+      font-size: 13px;
+      line-height: 1.72;
+      color: var(--body);
+    }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card code {
+      background: var(--surface-soft);
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      font-family: monospace;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .doc-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .doc-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid var(--green);
+      font-size: 11.5px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .doc-link-pill { color: var(--green-light); }
+    .doc-link-pill:hover {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .mini-box {
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .mini-box { border-color: #23654e; }
+    .mini-box h3 {
+      margin: 0 0 6px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--heading);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .mini-box h3 span {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .mini-box h3 span { color: var(--green-light); }
+    .mini-box p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--body);
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      background: var(--surface-soft);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .stats-table { border-color: #23654e; }
+    .stats-table th, .stats-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+    .stats-table th {
+      background: var(--green-soft);
+      color: var(--heading);
+      font-weight: 800;
+      width: 28%;
+    }
+    .stats-table td { color: var(--body); }
+    .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .perm-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 800;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+    }
+    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
+
+    /* STEP-BY-STEP HOW TO JOIN + SINGLE SETUP GUIDE VIDEO */
+    .steps-list {
+      display: grid;
+      gap: 11px;
+      margin-top: 10px;
+    }
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-body p { margin: 0; font-size: 12px; line-height: 1.65; color: var(--body); }
+
+    .join-video-block {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .join-video-block { border-color: #245f4d; }
+    .join-video-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .join-video-header h3 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .video-single-wrap {
+      max-width: 560px;
+    }
+    .video-card-item {
+      padding: 12px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .video-card-item h4 {
+      margin: 0 0 8px;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .video-frame-box {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid #96ecd0;
+      background: var(--surface-soft);
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
+    }
+    .video-frame-box:hover .video-play-badge {
+      transform: scale(1.1);
+    }
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(8, 168, 107, .22), transparent 62%),
+        linear-gradient(135deg, var(--banner-start), var(--banner-mid));
+      color: var(--heading);
+    }
+    .video-play-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      font-size: 15px;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .24);
+      transition: transform .18s ease;
+    }
+    .video-placeholder strong { font-size: 12.5px; font-weight: 800; color: var(--heading); }
+
+    .btn-channel-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .2);
+    }
+
+    /* FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; }
+    .faq-item {
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      padding: 12px 16px;
+    }
+    [data-theme="dark"] .faq-item { border-color: #23654e; }
+    .faq-item summary {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--heading);
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-item p {
+      margin: 8px 0 0;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--body);
+    }
+
+    .disclaimer {
+      margin: 24px 0 0;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 10.5px;
+      line-height: 1.72;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 28px;
+      padding: 24px 0 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .footer-brand { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+    .footer-brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); background: #ffffff; }
+    .footer-brand span { color: var(--heading); font-size: 14px; font-weight: 800; }
+    .footer-copy { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 2px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .footer-links a:hover { color: var(--green); }
+
+    .mobile-overlay { display: none; }
+
+    @media(max-width: 1250px) {
+      :root { --sidebar-width: 235px; }
+      .header-brand { min-width: 185px; }
+      .slot-arrow { display: none; }
+    }
+    @media(max-width: 1020px) {
+      .project-hero { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 760px) {
+      :root { --sidebar-width: 258px; --sponsor-height: 56px; }
+      article[id] { scroll-margin-top: calc(var(--sponsor-height) + 106px); }
+      .jump-strip { top: calc(var(--sponsor-height) + 56px); }
+      .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
+      .header-brand { min-width: auto; gap: 7px; }
+      .header-logo { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
+      .header-brand-name { font-size: 11px; }
+      .header-brand-subtitle { font-size: 8px; }
+      .header-v-sep, .sponsor-orb-btn { display: none; }
+      .sponsor-slot-box { min-width: 0; height: 42px; padding: 4px 10px; justify-content: center; gap: 8px; }
+      .slot-megaphone { font-size: 17px; }
+      .slot-center-text strong { font-size: 11px; }
+      .slot-center-text span { font-size: 8px; }
+      .sponsor-cta { padding: 8px 11px; font-size: 9px; }
+
+      .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0,0,0,.13); }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4,14,27,.42); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; }
+      .topbar { min-height: 56px; padding: 8px 14px; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
+
+      main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
+      .project-hero { padding: 18px; }
+      .hero-identity { flex-direction: column; gap: 12px; }
+      .mini-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 480px) {
+      .header-brand-subtitle, .slot-megaphone { display: none; }
+    }
+  </style>
 </head>
+
 <body data-theme="light">
-    <header>
-        <div class="site-container header-inner">
-            <a href="../index.html" class="logo-box">
-                <div class="logo-icon"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.src='../logos/tcn-logo.png'"></div>
-                <div class="logo-text"><h1>Total Crypto Hub</h1><span>by <b>Total Crypto Network</b></span></div>
+  <!-- TOP SPONSOR & BRAND BAR -->
+  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
+    <div class="sponsor-inner">
+      <a href="../index.html" class="header-brand" translate="no">
+        <span class="header-logo">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+        </span>
+        <span>
+          <span class="header-brand-name">Total Crypto Hub</span>
+          <span class="header-brand-subtitle">by <b>Total Crypto Network</b></span>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <a class="sponsor-slot-box" href="../legal-pages/contact.html" aria-label="Sponsor Banner Area">
+        <span class="slot-megaphone" aria-hidden="true">📢</span>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="slot-center-text">
+          <strong>Sponsor Banner Area</strong>
+          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
+        </div>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <div class="sponsor-right-actions">
+        <a href="../legal-pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
+        <a href="../legal-pages/contact.html" class="sponsor-orb-btn" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell">
+    <!-- LEFT WORKSPACE SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="side-label">Workspace</div>
+      <nav class="side-nav">
+        <a href="../index.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home
+        </a>
+        <a href="../depin-pages/depin.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects
+        </a>
+        <a href="../mobile-pages/mobile-mining.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects
+        </a>
+        <a href="../airdrop-pages/airdrops.html" class="side-link active" aria-current="page">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 0 1 16 0Z"/><path d="M4 10 10 16M20 10 14 16M12 10v6"/><rect x="9" y="16" width="6" height="5" rx="1.2"/></svg></span>Airdrops &amp; Campaigns
+        </a>
+        <a href="../wallet-pages/wallets.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets &amp; Exchanges
+        </a>
+        <a href="../token-pages/token-checker.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
+        </a>
+        <a href="../earning-pages/earning-calculator.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator
+        </a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <section class="side-promo" aria-label="Community invitation">
+        <div class="promo-gift" aria-hidden="true">🪂</div>
+        <h3>Explore Campaigns<br>&amp; Earn Knowledge</h3>
+        <p>Follow project updates, guides and community announcements.</p>
+        <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
+      </section>
+      <a class="support-card" href="../legal-pages/contact.html">
+        <span class="support-icon" aria-hidden="true">♧</span>
+        <span><strong>Need Help?</strong><span>Contact Support →</span></span>
+      </a>
+      <p class="sidebar-note">A research-led Web3 directory</p>
+    </aside>
+
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+
+    <div class="main-column">
+      <!-- TOP BACK & BREADCRUMB BAR -->
+      <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <button type="button" class="btn-back-pill" onclick="goBackToList()" aria-label="Go back to previous page">← Back</button>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <a href="../airdrop-pages/airdrops.html">Airdrops &amp; Campaigns</a>
+          <span>/</span>
+          <span class="current notranslate" translate="no">Wick Protocol</span>
+        </nav>
+        <span class="topbar-spacer"></span>
+        <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+      </header>
+
+      <!-- SHORTCUT JUMP BAR (9 SECTIONS) -->
+      <nav class="jump-strip" aria-label="Project sections">
+        <div class="jump-inner" id="jumpInner">
+          <a class="jump-tab active" data-target="overview" href="#overview">1. Overview</a>
+          <a class="jump-tab" data-target="how-it-works" href="#how-it-works">2. How It Works</a>
+          <a class="jump-tab" data-target="platforms" href="#platforms">3. Platforms</a>
+          <a class="jump-tab" data-target="safety" href="#safety">4. Safety</a>
+          <a class="jump-tab" data-target="earning" href="#earning">5. Earning</a>
+          <a class="jump-tab" data-target="tokenomics" href="#tokenomics">6. Tokenomics</a>
+          <a class="jump-tab" data-target="team" href="#team">7. Team</a>
+          <a class="jump-tab" data-target="join-guide" href="#join-guide">8. Join Guide</a>
+          <a class="jump-tab" data-target="faq" href="#faq">9. FAQ</a>
+        </div>
+      </nav>
+
+      <main>
+        <!-- MINT-GREEN & WHITE HERO BANNER -->
+        <section class="project-hero" aria-labelledby="projectTitle">
+          <div class="hero-identity">
+            <div class="hero-logo-box">
+              <img src="../logos/wick.png" alt="Wick Protocol" onerror="this.style.display='none';this.parentElement.textContent='WP';">
+            </div>
+            <div class="hero-title-group">
+              <div class="hero-badges">
+                <span class="badge-pill">📊 wAMM Liquidity Pools</span>
+                <span class="badge-pill">🔄 wLIT &amp; wLLP Position Tokens</span>
+                <span class="badge-pill">⏳ Waitlist &amp; Referral Flow</span>
+                <span class="badge-pill">📈 DeFi Trading &amp; Liquidity</span>
+              </div>
+              <h1 id="projectTitle" class="notranslate" translate="no">Wick Protocol</h1>
+              <p>DeFi trading and liquidity protocol (wick.xyz) featuring bin-based wAMM liquidity pools, dynamic fees, AMM-orderbook arbitrage, and auto-compounding wLIT and wLLP position tokens.</p>
+            </div>
+          </div>
+
+          <!-- JOINING CARD: INVITE CODE BOX + COPY BUTTON + PRIMARY LAUNCH BUTTON -->
+          <div class="portal-action-card">
+            <div class="invite-code-box">
+              <div class="invite-code-meta">
+                <span class="invite-code-label">INVITE CODE</span>
+                <span class="invite-code-value notranslate" id="inviteCode" translate="no">975988</span>
+              </div>
+              <button type="button" class="btn-copy-code" id="copyBtn" onclick="copyCode()">
+                📋 Copy
+              </button>
+            </div>
+
+            <a class="btn-launch-primary" href="https://www.wick.xyz/waitlist?r=975988" target="_blank" rel="noopener noreferrer">
+              🚀 Join Wick Waitlist →
             </a>
-            
-            <div class="header-right">
-                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">🌙</button>
-                <button onclick="goBackToAirdrops()" class="btn-back-capsule">← Back to Airdrops</button>
+          </div>
+        </section>
+
+        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 9 SECTION BOXES -->
+        <div class="single-column-stack">
+          <!-- 1. OVERVIEW -->
+          <article class="info-card" id="overview">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🌐</span>
+1. Overview (DeFi Trading, wAMM &amp; Auto-Compounding Tokens)
+            </h2>
+            <p><strong>Protocol Focus:</strong> <strong>Wick</strong> (<code>wick.xyz</code>) is a decentralized finance (DeFi) trading and liquidity protocol built around concentrated bin-based liquidity and capital-efficient position tokens.</p>
+            <p><strong>Core Architecture:</strong> Its documentation highlights <strong>wAMM</strong> (bin-based liquidity pools with dynamic fees and AMM-orderbook arbitrage), auto-compounding position tokens such as <strong>wLIT</strong> and <strong>wLLP</strong>, and token concepts like <strong>WICK</strong> and <strong>sWICK</strong> alongside discussions around crypto, perpetuals/options/index markets, and RWA concepts.</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>📊 Bin-Based wAMM &amp; Dynamic Fees</h3>
+                <p>Uses bin-based liquidity pools with dynamic fees and AMM-orderbook arbitrage mechanics described in the protocol docs.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🔄 wLIT &amp; wLLP Position Tokens</h3>
+                <p>Features auto-compounding position token structures (<strong>wLIT</strong> and <strong>wLLP</strong>) designed to streamline liquidity and position management.</p>
+              </div>
             </div>
+          </article>
+
+          <!-- 2. HOW IT WORKS -->
+          <article class="info-card" id="how-it-works">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">⚙️</span>
+2. How It Works (Liquidity Bins, Arbitrage &amp; Waitlist Steps)
+            </h2>
+            <p>How the <strong>Wick</strong> mechanism and early waitlist/referral onboarding operate:</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>🧱 1. Bin-Based Liquidity (wAMM)</h3>
+                <p>Liquidity is organized into bins within <strong>wAMM</strong> pools so liquidity providers and traders interact with structured depth.</p>
+              </div>
+              <div class="mini-box">
+                <h3>⚖️ 2. Dynamic Fees &amp; Arbitrage</h3>
+                <p>Dynamic fee adjustments and AMM-orderbook arbitrage help align pricing and fee capture across market conditions.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🔁 3. Auto-Compounding Tokens (wLIT &amp; wLLP)</h3>
+                <p><strong>wLIT</strong> and <strong>wLLP</strong> represent auto-compounding position tokens within the protocol's architecture.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🎟️ 4. Waitlist, Social &amp; Referral Flow</h3>
+                <p>Early participants complete waitlist registration, social actions, and referral steps via <code>wick.xyz</code>.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. PLATFORMS -->
+          <article class="info-card" id="platforms">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">💻</span>
+3. Platforms, Modules &amp; Protocol Concepts
+            </h2>
+            <p>Key components and concepts referenced across <strong>Wick</strong>:</p>
+            <div class="perm-pills">
+              <span class="perm-pill">Wick Portal (wick.xyz)</span>
+              <span class="perm-pill">wAMM Bin Liquidity</span>
+              <span class="perm-pill">Dynamic Fees &amp; Arbitrage</span>
+              <span class="perm-pill">wLIT &amp; wLLP Position Tokens</span>
+              <span class="perm-pill">WICK &amp; sWICK Concepts</span>
+              <span class="perm-pill">Crypto, Perps/Options/Index &amp; RWA Concepts</span>
+            </div>
+          </article>
+
+          <!-- 4. SAFETY -->
+          <article class="info-card" id="safety">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🛡️</span>
+4. Safety Rules, Wallet Security &amp; Scam Prevention
+            </h2>
+            <p>Important security rules when exploring early DeFi protocols and waitlists:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>1. Stick to Official Domains &amp; Links</th>
+                  <td>Only use official links such as <code>wick.xyz</code> and watch out for fake websites, phishing pop-ups, or impersonators.</td>
+                </tr>
+                <tr>
+                  <th>2. Never Share Keys or Seed Phrases</th>
+                  <td>Never disclose your seed phrase, private key, or passwords to anyone or enter them on unverified pages.</td>
+                </tr>
+                <tr>
+                  <th>3. Use a Secondary Wallet &amp; Check Prompts</th>
+                  <td>Use a <strong>secondary wallet</strong> for any dApp or wallet interaction and carefully verify every transaction or signature request.</td>
+                </tr>
+                <tr>
+                  <th>4. Treat Unconfirmed Rewards Cautiously</th>
+                  <td>No airdrop, points program, or TGE date is confirmed publicly—do not trust unofficial token or reward claims.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- 5. EARNING -->
+          <article class="info-card" id="earning">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">⚡</span>
+5. Liquidity Mechanics &amp; Early Participation Status
+            </h2>
+            <p>How liquidity mechanics and early participation status look for <strong>Wick</strong>:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>Liquidity &amp; Fee Mechanics</th>
+                  <td><strong>wAMM</strong> bins with dynamic fees and AMM-orderbook arbitrage, paired with auto-compounding <strong>wLIT</strong> and <strong>wLLP</strong> position tokens.</td>
+                </tr>
+                <tr>
+                  <th>Airdrop &amp; Points Status</th>
+                  <td>Public trackers indicate <strong>no confirmed airdrop, points program, or TGE date</strong> has been announced yet.</td>
+                </tr>
+                <tr>
+                  <th>Early Waitlist &amp; Referrals</th>
+                  <td>Early stages focus on waitlist registration, social tasks, and referral participation via <code>wick.xyz</code>.</td>
+                </tr>
+                <tr>
+                  <th>No Guaranteed Returns</th>
+                  <td>DeFi liquidity and early-stage participation carry market and smart-contract risks with no guaranteed profits.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- 6. TOKENOMICS -->
+          <article class="info-card" id="tokenomics">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🪙</span>
+6. Tokenomics &amp; TGE Status
+            </h2>
+            <p>Current token and TGE details documented for <strong>Wick</strong>:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>TGE &amp; Airdrop Status</th>
+                  <td><strong>No confirmed airdrop, points program, or TGE date</strong> has been publicly announced according to public tracking sources.</td>
+                </tr>
+                <tr>
+                  <th>Token &amp; Position Concepts</th>
+                  <td>Protocol docs reference <strong>WICK</strong> and <strong>sWICK</strong> alongside auto-compounding position tokens <strong>wLIT</strong> and <strong>wLLP</strong>.</td>
+                </tr>
+                <tr>
+                  <th>Market &amp; Product Scope</th>
+                  <td>Docs and discussions cover crypto alongside perpetuals/options/index and RWA concepts.</td>
+                </tr>
+                <tr>
+                  <th>Official Verification</th>
+                  <td>Verify any future tokenomics, launch schedules, or contract details directly through official <code>wick.xyz</code> channels.</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.wick.xyz/waitlist?r=975988" target="_blank" rel="noopener noreferrer">🚀 Join Wick Waitlist (wick.xyz) →</a>
+            </div>
+          </article>
+
+          <!-- 7. TEAM -->
+          <article class="info-card" id="team">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">👥</span>
+7. Team
+            </h2>
+            <p><strong>Wick</strong> (<code>wick.xyz</code>) is developed by its protocol team and contributors building the <strong>wAMM</strong> liquidity architecture and <strong>wLIT</strong> / <strong>wLLP</strong> position token mechanics. Always verify official team and channel announcements through <code>wick.xyz</code>.</p>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.wick.xyz/waitlist?r=975988" target="_blank" rel="noopener noreferrer">🚀 Official Wick Waitlist →</a>
+            </div>
+          </article>
+
+          <!-- 8. JOIN GUIDE (STEPS + SINGLE SETUP GUIDE VIDEO) -->
+          <article class="info-card" id="join-guide">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🚀</span>
+8. Join Guide &amp; Setup Video
+            </h2>
+            <div class="steps-list">
+              <div class="step-row">
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <h4>Open Official Wick Waitlist Link</h4>
+                  <p>Visit <code>https://www.wick.xyz/waitlist?r=975988</code> (invite code: <code>975988</code>) and confirm the domain is authentic.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <h4>Complete Waitlist &amp; Social / Referral Steps</h4>
+                  <p>Follow the registration, social, and referral steps shown on the waitlist page using a <strong>secondary wallet</strong> if wallet connection is prompted.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <h4>Review Protocol Mechanics Safely</h4>
+                  <p>Read up on <strong>wAMM</strong> bin liquidity, dynamic fees, and <strong>wLIT</strong> / <strong>wLLP</strong> tokens without sharing private keys or signing suspicious approvals.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">4</span>
+                <div class="step-body">
+                  <h4>Track Official Updates</h4>
+                  <p>Monitor official <code>wick.xyz</code> announcements for any future testnet, product rollout, or token updates.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="join-video-block">
+              <div class="join-video-header">
+                <h3>🎬 Setup Guide Video</h3>
+                <a class="btn-channel-link" href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
+                  ▶ Watch on Total Crypto Network
+                </a>
+              </div>
+              <div class="video-single-wrap">
+                <div class="video-card-item">
+                  <h4>📊 Wick Protocol Waitlist, wAMM &amp; Liquidity Guide</h4>
+                  <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer" class="video-frame-box" title="Watch Wick Protocol Waitlist, wAMM & Liquidity Guide on YouTube">
+                    <div class="video-placeholder">
+                      <div class="video-play-badge" aria-hidden="true">▶</div>
+                      <strong>Watch Wick Protocol Waitlist, wAMM &amp; Liquidity Guide</strong>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 9. FAQ -->
+          <article class="info-card" id="faq">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">❓</span>
+9. FAQ
+            </h2>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>What is Wick Protocol?</summary>
+                <p><strong>Wick</strong> (<code>wick.xyz</code>) is a DeFi trading and liquidity protocol featuring bin-based <strong>wAMM</strong> liquidity pools, dynamic fees, AMM-orderbook arbitrage, and auto-compounding <strong>wLIT</strong> and <strong>wLLP</strong> position tokens.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Are there confirmed airdrops, points, or TGE dates for Wick?</summary>
+                <p>According to public tracking sources, there is no confirmed airdrop, points program, or TGE date announced yet; early stages involve waitlist registration and social/referral steps.</p>
+              </details>
+              <details class="faq-item">
+                <summary>What are wLIT, wLLP, WICK, and sWICK?</summary>
+                <p><strong>wLIT</strong> and <strong>wLLP</strong> are auto-compounding position token structures referenced in the docs, while <strong>WICK</strong> and <strong>sWICK</strong> appear as token concepts alongside crypto, perpetuals/options/index, and RWA discussions.</p>
+              </details>
+              <details class="faq-item">
+                <summary>How should I stay safe while participating?</summary>
+                <p>Use only official links, never share seed phrases/private keys/passwords, use a secondary wallet for any wallet or dApp interaction, and stay cautious of unverified reward or token claims.</p>
+              </details>
+            </div>
+          </article>
         </div>
-    </header>
 
-    <main>
-        <div class="site-container">
-            <!-- Project Hero with Top Action Boxes -->
-            <div class="project-hero">
-                <div class="hero-split-row">
-                    <div class="hero-left">
-                        <div class="hero-avatar">
-                            <img src="../logos/wick.png" alt="Wick Logo" onerror="this.src='../logos/tcn-logo.png'">
-                        </div>
-                        <div class="hero-meta">
-                            <h1>Wick Protocol <span class="badge-verified">Verified Waitlist</span></h1>
-                            <p>The Home of Real World Finance • Lighter EVM Infrastructure</p>
-                        </div>
-                    </div>
+        <p class="disclaimer"><strong>Important Disclosure:</strong> Total Crypto Hub provides educational guides only (NFA / DYOR). No airdrop, points program, or TGE date is confirmed publicly for Wick, and DeFi protocols carry market and technical risks. Always verify official links, never share private keys or seed phrases, and use a secondary wallet if connecting any wallet.</p>
 
-                    <div class="hero-right-boxes">
-                        <!-- Box 1: Referral Code Box with Copy Action -->
-                        <div class="action-box-ref">
-                            <span class="action-box-label">Invite Code</span>
-                            <div class="action-box-code-row">
-                                <span class="action-box-code" id="refCodeText">975988</span>
-                                <button class="btn-copy-code" id="copyBtn" onclick="copyReferralCode()">Copy</button>
-                            </div>
-                        </div>
+        <footer>
+          <a href="../index.html" class="footer-brand" translate="no">
+            <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
+            <span>Total Crypto Hub</span>
+          </a>
+          <p class="footer-copy">&copy; <span class="notranslate" translate="no">2026 Total Crypto Network</span>. All rights reserved.</p>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="../index.html">Home</a>
+            <a href="../legal-pages/about.html">About Us</a>
+            <a href="../legal-pages/contact.html">Contact Us</a>
+            <a href="../legal-pages/privacy.html">Privacy Policy</a>
+            <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
+            <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+          </nav>
+        </footer>
+      </main>
+    </div>
+  </div>
 
-                        <!-- Box 2: Direct Join / Launch Link Box -->
-                        <a href="https://www.wick.xyz/waitlist?r=975988" target="_blank" rel="noopener noreferrer" class="btn-launch-join">
-                            Join Wick Waitlist →
-                        </a>
-                    </div>
-                </div>
+  <script>
+    function copyCode() {
+      const codeEl = document.getElementById('inviteCode');
+      const btn = document.getElementById('copyBtn');
+      if (!codeEl) return;
+      const code = codeEl.innerText.trim();
+      navigator.clipboard.writeText(code).then(() => {
+        if (btn) {
+          const prev = btn.innerHTML;
+          btn.textContent = "✓ Copied!";
+          btn.classList.add("copied");
+          setTimeout(() => {
+            btn.innerHTML = prev;
+            btn.classList.remove("copied");
+          }, 1800);
+        }
+      });
+    }
 
-                <!-- Stats Overview Row -->
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-label">Financial Focus</div>
-                        <div class="stat-value highlight">Real World Finance (RWA)</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">Execution Environment</div>
-                        <div class="stat-value">Lighter EVM Chain</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">Early Access Phase</div>
-                        <div class="stat-value highlight">Genesis Trader Waitlist</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">TCN Audit Score</div>
-                        <div class="stat-value highlight">8.8 / 10</div>
-                    </div>
-                </div>
-            </div>
+    function goBackToList() {
+      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
+        window.history.back();
+      } else {
+        window.location.href = '../airdrop-pages/airdrops.html';
+      }
+    }
 
-            <!-- Protocol Overview & Core Engine -->
-            <div class="content-card">
-                <h2 class="section-title">Protocol Overview & Real World Finance Architecture</h2>
-                <p class="desc-text">
-                    <b>Wick</b> positions itself as the foundational layer for <b>Real World Finance</b> built directly on high-performance <b>Lighter EVM infrastructure</b>. Traditional DeFi Automated Market Makers (AMMs) face fragmented capital distribution, high latency, and poor liquidity efficiency when bridging real-world financial instruments on-chain.
-                </p>
-                <p class="desc-text">
-                    Wick solves this by unifying options, limit orders, and decentralized index trading directly across a single consolidated pool architecture. Institutional-grade quantitative arbitrage and high-frequency market-making (HFT) mechanics operate friction-free without continuous gas degradation.
-                </p>
+    function applyTheme(theme) {
+      const safeTheme = theme === 'dark' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', safeTheme);
+      document.documentElement.setAttribute('data-theme', safeTheme);
+      const toggle = document.getElementById('themeToggle');
+      if (toggle) {
+        toggle.textContent = safeTheme === 'light' ? '🌙' : '☀️';
+        toggle.setAttribute('aria-label', safeTheme === 'light' ? 'Enable dark mode' : 'Enable light mode');
+      }
+      try { localStorage.setItem('theme', safeTheme); } catch (e) {}
+    }
 
-                <div class="arch-grid">
-                    <div class="arch-box">
-                        <div class="arch-title">State of the Art AMM</div>
-                        <div class="arch-desc">Enables multi-asset options, decentralized limit orders, and index markets settled trustlessly on unified pool liquidity.</div>
-                    </div>
-                    <div class="arch-box">
-                        <div class="arch-title">Institutional Arbitrage & HFT</div>
-                        <div class="arch-desc">Purpose-built algorithmic execution routes designed for high-frequency trading and low-slippage market making.</div>
-                    </div>
-                    <div class="arch-box">
-                        <div class="arch-title">LIT Liquid Staking & LP Yield</div>
-                        <div class="arch-desc">Features wLIT autocompounding liquid staking paired with Wick Lighter LP (wLLP) to maximize yield while retaining on-chain exit liquidity.</div>
-                    </div>
-                </div>
-            </div>
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    }
 
-            <!-- Whitepaper & Early Trader Allocation Model -->
-            <div class="content-card">
-                <h2 class="section-title">Whitepaper, Ecosystem Roadmap & Waitlist Allocation</h2>
-                <p class="desc-text">
-                    According to protocol whitepaper documentation, the early <b>Wick Genesis Waitlist</b> is engineered to identify authentic on-chain traders, liquidity providers, and active testnet participants prior to mainnet deployment:
-                </p>
-                <p class="desc-text">
-                    • <b>Zero-Capital Onboarding:</b> Registering for the waitlist requires zero upfront capital ($0.00). Users simply connect their non-custodial EVM wallet or submit early email credentials.<br>
-                    • <b>Trader Priority Quests:</b> Early waitlist members receive prioritized access to private testnet faucet distributions, Genesis LP pools, and future protocol fee rebates.<br>
-                    • <b>Referral Queue Boost:</b> Submitting the official invite code <b>975988</b> accelerates waitlist position ranking ahead of upcoming protocol governance token distribution snapshots.
-                </p>
-            </div>
+    function closeMobileMenu() {
+      document.body.classList.remove('menu-open');
+      const button = document.getElementById('mobileMenuBtn');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    }
 
-            <!-- Dedicated Video Walkthrough Section -->
-            <div class="content-card">
-                <h2 class="section-title">Dedicated Video Walkthrough (Total Crypto Network)</h2>
-                <p class="desc-text">
-                    Watch our step-by-step video guide from <b>Total Crypto Network</b> covering Wick’s Real World Finance model, connecting your EVM wallet, securing early waitlist ranking, and preparing for the testnet phase.
-                </p>
-                <div class="video-wrapper">
-                    <!-- Replace the embed URL below with your dedicated Wick video link once uploaded -->
-                    <iframe 
-                        src="https://www.youtube.com/embed?listType=user_uploads&list=TotalCryptoNetwork" 
-                        title="Wick Complete Waitlist Guide" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
+    function initScrollSpyTabs() {
+      const tabs = Array.from(document.querySelectorAll('.jump-tab'));
+      const jumpInner = document.getElementById('jumpInner');
+      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      if (!tabs.length || !sections.length) return;
 
-            <!-- Security & Risk Clearance -->
-            <div class="content-card">
-                <h2 class="section-title">Total Crypto Network Security Clearance</h2>
-                <p class="desc-text">
-                    • <b>Zero Initial Risk:</b> Waitlist registration is 100% free with no deposit required.<br>
-                    • <b>Wallet Safety:</b> The waitlist interface only requests basic signature verification. Never share recovery phrases or grant high-risk token spending permissions.<br>
-                    • <b>Recommended Practice:</b> Connect using a dedicated secondary Web3 wallet address for participating in emerging DeFi waitlists.
-                </p>
-            </div>
-        </div>
-    </main>
+      const tabById = new Map();
+      tabs.forEach(tab => {
+        const targetId = tab.getAttribute('data-target');
+        if (targetId) tabById.set(targetId, tab);
+      });
 
-    <footer>
-        <div class="site-container">
-            <div style="margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 500;">&copy; 2026 Total Crypto Network. All rights reserved.</div>
-            <div class="footer-links">
-                <a href="../legal-pages/about.html">About Us</a>
-                <a href="../legal-pages/privacy.html">Privacy Policy</a>
-                <a href="../legal-pages/terms.html">Terms & Conditions</a>
-                <a href="../legal-pages/disclaimer.html">Disclaimer</a>
-            </div>
-        </div>
-    </footer>
+      function setActiveTab(sectionId) {
+        const activeTab = tabById.get(sectionId);
+        if (!activeTab) return;
+        tabs.forEach(t => t.classList.remove('active'));
+        activeTab.classList.add('active');
 
-    <script>
-        // Exact history back preservation function
-        function goBackToAirdrops() {
-            if (document.referrer && document.referrer.indexOf('airdrops.html') !== -1) {
-                history.back();
-            } else {
-                window.location.href = '../airdrop-pages/airdrops.html';
-            }
+        if (jumpInner) {
+          const tabLeft = activeTab.offsetLeft;
+          const tabWidth = activeTab.offsetWidth;
+          const containerWidth = jumpInner.clientWidth;
+          const desiredScroll = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+          jumpInner.scrollTo({ left: Math.max(0, desiredScroll), behavior: 'smooth' });
+        }
+      }
+
+      let scrollTicking = false;
+      function updateOnScroll() {
+        scrollTicking = false;
+        const headerOffset = 155;
+        let currentId = sections[0].id;
+
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= headerOffset) {
+            currentId = section.id;
+          } else {
+            break;
+          }
         }
 
-        function copyReferralCode() {
-            const code = document.getElementById('refCodeText').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.getElementById('copyBtn');
-                btn.innerText = 'Copied!';
-                btn.style.background = 'var(--accent-primary)';
-                btn.style.color = '#ffffff';
-                setTimeout(() => {
-                    btn.innerText = 'Copy';
-                    btn.style.background = 'transparent';
-                    btn.style.color = 'var(--accent-primary)';
-                }, 2000);
-            });
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+        if (nearBottom) {
+          currentId = sections[sections.length - 1].id;
         }
 
-        function toggleTheme() {
-            const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
+        setActiveTab(currentId);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          window.requestAnimationFrame(updateOnScroll);
         }
-        window.onload = function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').innerText = savedTheme === 'light' ? '🌙' : '☀️';
-        };
-    </script>
+      }, { passive: true });
+
+      updateOnScroll();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollSpyTabs();
+
+      let savedTheme = 'light';
+      try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (e) {}
+      applyTheme(savedTheme);
+
+      const menuButton = document.getElementById('mobileMenuBtn');
+      const overlay = document.getElementById('mobileOverlay');
+      if (menuButton) {
+        menuButton.addEventListener('click', function () {
+          const isOpen = document.body.classList.toggle('menu-open');
+          this.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+      if (overlay) overlay.addEventListener('click', closeMobileMenu);
+      document.querySelectorAll('.side-link').forEach(link => link.addEventListener('click', closeMobileMenu));
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+    });
+  </script>
+
+  <script src="../ai-assistant/assistant.js" defer></script>
+  <script src="../ai-assistant/robot-animation.js" defer></script>
 </body>
 </html>
