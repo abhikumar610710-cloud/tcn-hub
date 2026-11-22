@@ -397,155 +397,202 @@
       padding: 22px clamp(16px, 2.4vw, 32px) 42px;
     }
 
-    /* MINT-GREEN & WHITE HERO BANNER */
+    /* HERO BANNER: LEFT LINKS/BUTTONS + RIGHT LOGO ORB WITH CLOSE SUBTLE BLINK COINS */
     .project-hero {
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(305px, .82fr);
+      grid-template-columns: 1.3fr .7fr;
       align-items: center;
-      gap: 22px;
-      padding: 24px 28px;
+      gap: 24px;
+      padding: 32px 38px;
       border: 1px solid #96ecd0;
-      border-radius: 22px;
+      border-radius: 26px;
       background:
-        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
-        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+        radial-gradient(circle at 88% 18%, rgba(8, 168, 107, .22) 0 13%, transparent 13.2%),
+        linear-gradient(115deg, var(--banner-start) 0%, var(--banner-mid) 56%, var(--banner-end) 100%);
       box-shadow: var(--shadow);
     }
+    .project-hero::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(8, 168, 107, .35);
+      border-radius: 50%;
+      right: 5%;
+      top: 4%;
+      pointer-events: none;
+    }
     [data-theme="dark"] .project-hero { border-color: #215d4c; }
-    .hero-identity {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .hero-logo-box {
-      width: 72px;
-      height: 72px;
-      flex: 0 0 72px;
-      border-radius: 20px;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, #8b7dff, #6252e8);
-      border: 2px solid var(--green);
-      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
-      color: #ffffff;
-      font-size: 38px;
-    }
-    .hero-logo-box img { width: 72%; height: 72%; object-fit: contain; display: block; }
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .badge-pill {
+
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
+      gap: 7px;
+      border: 1px solid #8ce0c1;
+      background: var(--surface);
       border-radius: 999px;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: .3px;
-      background: var(--surface);
+      padding: 6px 13px;
       color: var(--green-dark);
-      border: 1px solid #96ecd0;
-    }
-    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
-
-    .hero-title-group h1 {
-      margin: 0 0 6px;
-      color: var(--heading);
-      font-size: clamp(24px, 2.7vw, 35px);
-      line-height: 1.14;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: -.8px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
-    .hero-title-group p {
-      margin: 0;
+    [data-theme="dark"] .hero-eyebrow { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
+
+    .project-hero h1 {
+      font-size: clamp(32px, 4.2vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      margin: 14px 0 10px;
+      color: var(--heading);
+      font-weight: 800;
+    }
+    .project-hero h1 span { color: var(--green); }
+
+    .project-hero p {
+      max-width: 650px;
       color: var(--body);
-      font-size: 13px;
-      line-height: 1.62;
+      margin: 0 0 16px;
+      font-size: 14.5px;
+      line-height: 1.65;
       font-weight: 600;
-      max-width: 720px;
     }
 
-    /* PORTAL ACTION CARD */
-    .portal-action-card {
-      padding: 16px 18px;
-      border-radius: 18px;
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 20px;
+    }
+    .hero-pill {
       background: var(--surface);
-      border: 1px solid #96ecd0;
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
-      display: grid;
+      color: var(--heading);
+      border: 1px solid #b8f2d7;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .hero-pill { border-color: #23654e; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
     }
-    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
-
-    .portal-meta-box {
-      padding: 10px 13px;
-      border-radius: 13px;
-      background: var(--green-soft);
-      border: 1px solid #8ce0c1;
-    }
-    [data-theme="dark"] .portal-meta-box { border-color: #267358; }
-    .portal-meta-label {
-      display: block;
-      font-size: 9.5px;
-      font-weight: 800;
-      color: var(--green-dark);
-      text-transform: uppercase;
-      letter-spacing: .45px;
-      margin-bottom: 2px;
-    }
-    [data-theme="dark"] .portal-meta-label { color: var(--green-light); }
-    .portal-meta-value {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--heading);
-      overflow-wrap: anywhere;
-    }
-
-    .btn-launch-primary {
-      width: 100%;
+    .btn-hero-primary, .btn-hero-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 16px;
       border-radius: 999px;
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
-      text-decoration: none;
+      padding: 12px 20px;
       font-size: 12.5px;
       font-weight: 800;
-      transition: transform .2s ease;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
-    .btn-launch-primary:hover { transform: translateY(-1px); }
+    .btn-hero-primary {
+      background: linear-gradient(110deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      box-shadow: 0 7px 16px rgba(8, 168, 107, .24);
+    }
+    .btn-hero-secondary {
+      background: var(--surface);
+      color: var(--heading);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .btn-hero-secondary { border-color: #245f4d; }
+    .btn-hero-primary:hover, .btn-hero-secondary:hover { transform: translateY(-2px); }
 
-    /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
-    .single-column-stack {
+    /* RIGHT SIDE LARGE LOGO ORB + CLOSE SUBTLE BLINK POPULAR COINS */
+    .hero-art {
+      position: relative;
+      z-index: 1;
       display: grid;
-      gap: 18px;
-      margin-top: 20px;
+      place-items: center;
+      min-height: 220px;
+    }
+    .orb-cluster {
+      position: relative;
+      width: 224px;
+      height: 224px;
+      display: grid;
+      place-items: center;
+    }
+    .phantom-orb {
+      width: 196px;
+      height: 196px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 35% 28%, #ffffff, #c9fff0 55%, #71ddbd);
+      box-shadow: 0 18px 35px rgba(8, 168, 107, .25);
+      border: 2px solid #8be5c7;
+      font-size: 86px;
+    }
+    [data-theme="dark"] .phantom-orb {
+      background: radial-gradient(circle at 35% 28%, #1a473f, #11322c 65%, #0c2420);
+      border-color: #297a60;
     }
 
-    .info-card {
-      padding: 22px 24px;
+    @keyframes subtleCoinBlink {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+      50% {
+        opacity: .68;
+        transform: translateY(-2px);
+      }
+    }
+
+    .near-coin {
+      position: absolute;
+      z-index: 2;
+      min-width: 44px;
+      height: 28px;
+      padding: 0 8px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+      border: 1px solid rgba(8, 168, 107, .35);
+      box-shadow: 0 4px 10px rgba(8, 168, 107, .14);
+      animation: subtleCoinBlink 3.4s ease-in-out infinite;
+    }
+    .near-sol { top: 4px; left: 4px; background: #e3fff3; color: #008556; animation-delay: 0s; }
+    .near-eth { top: 10px; right: 2px; background: #e7e2ff; color: #6346cf; animation-delay: .65s; }
+    .near-btc { bottom: 10px; left: 2px; background: #fff0cc; color: #c97d00; animation-delay: 1.3s; }
+    .near-base { bottom: 4px; right: 4px; background: #e5f3ff; color: #1b65a8; animation-delay: 1.95s; }
+
+    /* CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) */
+    .editorial-flow {
+      display: grid;
+      gap: 24px;
+      margin-top: 22px;
+    }
+
+    .editorial-section {
+      padding: 22px 26px;
       border-radius: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .05);
     }
+
     .card-heading {
       display: flex;
       align-items: center;
       gap: 10px;
       margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
       color: var(--heading);
       font-size: 17.5px;
       font-weight: 800;
@@ -565,14 +612,14 @@
     }
     [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
 
-    .info-card p {
+    .editorial-section p {
       margin: 0 0 11px;
       font-size: 13px;
-      line-height: 1.75;
+      line-height: 1.78;
       color: var(--body);
     }
-    .info-card p:last-child { margin-bottom: 0; }
-    .info-card code {
+    .editorial-section p:last-child { margin-bottom: 0; }
+    .editorial-section code {
       background: var(--surface-soft);
       padding: 2px 6px;
       border-radius: 5px;
@@ -582,32 +629,37 @@
       overflow-wrap: anywhere;
     }
 
-    /* WEBSITE GREEN THEME FOR IMPORTANT INFO BOXES */
-    .highlight-box,
-    .notice-box {
-      margin-top: 12px;
-      padding: 14px 16px;
-      border-radius: 15px;
-      border: 1.5px solid #4bd69f;
+    .sub-heading {
+      margin: 16px 0 8px;
+      color: var(--heading);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .clean-list {
+      margin: 6px 0 12px;
+      padding-left: 20px;
+      display: grid;
+      gap: 7px;
+      font-size: 12.8px;
+      line-height: 1.72;
+      color: var(--body);
+    }
+    .clean-list li strong { color: var(--heading); }
+
+    /* WEBSITE GREEN THEME — ONLY FOR IMPORTANT / KEY INFORMATION */
+    .important-callout {
+      margin: 14px 0;
+      padding: 13px 16px;
+      border-radius: 14px;
       border-left: 4px solid var(--green);
-      background: linear-gradient(120deg, var(--green-soft), #f2fff9);
+      background: linear-gradient(110deg, var(--green-soft), color-mix(in srgb, var(--green-soft) 45%, var(--surface)));
       color: var(--heading);
-      font-size: 12.2px;
-      line-height: 1.68;
-      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
+      font-size: 12.5px;
+      line-height: 1.7;
     }
-    [data-theme="dark"] .highlight-box,
-    [data-theme="dark"] .notice-box {
-      background: linear-gradient(120deg, var(--green-soft), #10322c);
-      color: var(--heading);
-      border-color: #287a5e;
-      border-left-color: var(--green);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
-    }
-    .highlight-box strong,
-    .notice-box strong { color: var(--green-dark); }
-    [data-theme="dark"] .highlight-box strong,
-    [data-theme="dark"] .notice-box strong { color: var(--green-light); }
+    .important-callout strong { color: var(--green-dark); }
+    [data-theme="dark"] .important-callout strong { color: var(--green-light); }
 
     .doc-links-row {
       display: flex;
@@ -635,53 +687,6 @@
       color: #ffffff;
     }
 
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-
-    /* STANDARD BOX (SUBTLE/NEUTRAL FOR GENERAL INFO) */
-    .mini-box {
-      padding: 15px 16px;
-      border-radius: 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-    .mini-box h3 {
-      margin: 0 0 6px;
-      font-size: 13.5px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .mini-box p {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.68;
-      color: var(--body);
-    }
-
-    /* IMPORTANT INFO BOX IN WEBSITE GREEN THEME */
-    .mini-box.important-box {
-      background: linear-gradient(135deg, var(--green-soft) 0%, #f4fff9 100%);
-      border: 1.5px solid #59d9a4;
-      border-top: 3px solid var(--green);
-      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
-    }
-    [data-theme="dark"] .mini-box.important-box {
-      background: linear-gradient(135deg, var(--green-soft) 0%, #11302a 100%);
-      border: 1.5px solid #2b8264;
-      border-top: 3px solid var(--green);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
-    }
-    .mini-box.important-box h3 {
-      color: var(--green-dark);
-    }
-    [data-theme="dark"] .mini-box.important-box h3 {
-      color: var(--green-light);
-    }
-
     .stats-table {
       width: 100%;
       border-collapse: collapse;
@@ -696,7 +701,7 @@
       text-align: left;
       border-bottom: 1px solid var(--border);
       font-size: 12.5px;
-      line-height: 1.65;
+      line-height: 1.68;
     }
     .stats-table th {
       background: var(--surface-soft);
@@ -705,55 +710,75 @@
       width: 28%;
     }
     .stats-table td { color: var(--body); }
+    .stats-table tr.important-row th,
+    .stats-table tr.important-row td {
+      background: color-mix(in srgb, var(--green-soft) 55%, var(--surface));
+      color: var(--heading);
+    }
     .stats-table tr.important-row th {
-      background: var(--green-soft);
       color: var(--green-dark);
       border-left: 3px solid var(--green);
     }
-    [data-theme="dark"] .stats-table tr.important-row th {
-      color: var(--green-light);
-    }
-    .stats-table tr.important-row td {
-      background: color-mix(in srgb, var(--green-soft) 38%, var(--surface));
-      color: var(--heading);
-      font-weight: 600;
-    }
+    [data-theme="dark"] .stats-table tr.important-row th { color: var(--green-light); }
     .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    /* POPULAR COINS / NETWORKS WITH SUBTLE BLINK */
+    .coin-stream {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .coin-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
+      animation: subtleCoinBlink 3.6s ease-in-out infinite;
+    }
+    .coin-chip.featured-coin {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-color: var(--green);
+    }
+    [data-theme="dark"] .coin-chip.featured-coin { color: var(--green-light); }
+    .coin-chip:nth-child(2n) { animation-delay: .5s; }
+    .coin-chip:nth-child(3n) { animation-delay: 1s; }
+    .coin-chip:nth-child(4n) { animation-delay: 1.5s; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .perm-pill {
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 800;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      border: 1px solid #b4edd6;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
 
-    .steps-list {
-      display: grid;
-      gap: 11px;
+    /* CLEAN STEP FLOW (NO HEAVY BOXES) */
+    .steps-flow {
       margin-top: 10px;
+      display: grid;
+      gap: 12px;
     }
-    .step-row {
+    .step-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      padding-bottom: 11px;
+      border-bottom: 1px dashed var(--border);
     }
-    .step-row.important-step {
-      background: linear-gradient(125deg, var(--green-soft), #f4fff9);
-      border: 1.5px solid #59d9a4;
-      box-shadow: 0 6px 14px rgba(8, 168, 107, .07);
-    }
-    [data-theme="dark"] .step-row.important-step {
-      background: linear-gradient(125deg, var(--green-soft), #11302a);
-      border-color: #2b8264;
+    .step-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
     }
     .step-num {
       width: 28px;
@@ -766,35 +791,23 @@
       color: #ffffff;
       font-size: 12px;
       font-weight: 800;
+      margin-top: 2px;
     }
     .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
-    .step-row.important-step .step-body h4 { color: var(--green-dark); }
-    [data-theme="dark"] .step-row.important-step .step-body h4 { color: var(--green-light); }
-    .step-body p { margin: 0; font-size: 12px; line-height: 1.68; color: var(--body); }
+    .step-body p { margin: 0; font-size: 12.4px; line-height: 1.7; color: var(--body); }
 
-    /* RICH FAQ ACCORDION */
-    .faq-list { display: grid; gap: 11px; }
+    /* CLEAN FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; margin-top: 10px; }
     .faq-item {
-      border-radius: 16px;
+      border-radius: 14px;
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 14px 18px;
+      padding: 13px 16px;
       transition: .18s ease;
     }
     .faq-item.important-faq {
-      background: linear-gradient(130deg, var(--green-soft) 0%, #f6fffb 100%);
-      border: 1.5px solid #59d9a4;
-    }
-    [data-theme="dark"] .faq-item.important-faq {
-      background: linear-gradient(130deg, var(--green-soft) 0%, #11302a 100%);
-      border-color: #2b8264;
-    }
-    .faq-item[open] {
-      background: var(--surface);
-      box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
-    }
-    .faq-item.important-faq[open] {
-      background: linear-gradient(180deg, var(--green-soft) 0%, var(--surface) 45%);
+      border-left: 3.5px solid var(--green);
+      background: color-mix(in srgb, var(--green-soft) 35%, var(--surface));
     }
     .faq-item summary {
       font-size: 13.5px;
@@ -862,13 +875,22 @@
 
     .mobile-overlay { display: none; }
 
+    @media (prefers-reduced-motion: reduce) {
+      .near-coin, .coin-chip {
+        animation: none !important;
+      }
+    }
+
     @media(max-width: 1250px) {
       :root { --sidebar-width: 235px; }
       .header-brand { min-width: 185px; }
       .slot-arrow { display: none; }
     }
     @media(max-width: 1020px) {
-      .project-hero { grid-template-columns: 1fr; }
+      .project-hero { grid-template-columns: 1fr; padding: 26px; }
+      .hero-art { min-height: 195px; }
+      .orb-cluster { width: 196px; height: 196px; }
+      .phantom-orb { width: 168px; height: 168px; font-size: 72px; }
     }
     @media(max-width: 760px) {
       :root { --sidebar-width: 258px; --sponsor-height: 56px; }
@@ -895,12 +917,13 @@
       .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
 
       main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
-      .project-hero { padding: 18px; }
-      .hero-identity { flex-direction: column; gap: 12px; }
-      .mini-grid { grid-template-columns: 1fr; }
+      .project-hero { padding: 20px 18px; }
+      .editorial-section { padding: 18px 18px; }
     }
     @media(max-width: 480px) {
       .header-brand-subtitle, .slot-megaphone { display: none; }
+      .orb-cluster { width: 174px; height: 174px; }
+      .phantom-orb { width: 146px; height: 146px; font-size: 62px; }
     }
   </style>
 </head>
@@ -1026,86 +1049,76 @@
       </nav>
 
       <main>
-        <!-- MINT-GREEN & WHITE HERO BANNER -->
+        <!-- HERO BANNER: LEFT LINKS/BUTTONS + RIGHT LOGO ORB WITH CLOSE SUBTLE BLINK COINS -->
         <section class="project-hero" aria-labelledby="walletTitle">
-          <div class="hero-identity">
-            <div class="hero-logo-box" aria-label="Phantom Wallet emblem">👻</div>
-            <div class="hero-title-group">
-              <div class="hero-badges">
-                <span class="badge-pill">👻 Self-Custody Wallet</span>
-                <span class="badge-pill">🌐 Multi-Chain</span>
-                <span class="badge-pill">🖼️ NFTs &amp; Collectibles</span>
-                <span class="badge-pill">🛡️ Security Warnings</span>
-              </div>
-              <h1 id="walletTitle" class="notranslate" translate="no">Phantom Wallet</h1>
-              <p>Complete guide explaining what Phantom Wallet is, its key features, gas and swap fees, supported and unsupported networks, self-custody control, setup steps, and safety practices.</p>
+          <div>
+            <span class="hero-eyebrow">✦ Self-Custody Multi-Chain Wallet · Total Crypto Hub</span>
+            <h1 id="walletTitle" class="notranslate" translate="no">Phantom <span>Wallet</span></h1>
+            <p>Complete guide explaining what Phantom Wallet is, its key features, gas and swap fees, Solana, Ethereum, Bitcoin, Base, Polygon and other supported networks, self-custody control, setup steps, and safety practices.</p>
+            <div class="hero-pills">
+              <span class="hero-pill">✓ Self-Custody Wallet</span>
+              <span class="hero-pill">🌐 Multi-Chain</span>
+              <span class="hero-pill">🖼️ NFTs &amp; Collectibles</span>
+              <span class="hero-pill">🛡️ Security Warnings</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn-hero-primary" href="https://phantom.com/download" target="_blank" rel="noopener noreferrer">Official Download ↗</a>
+              <a class="btn-hero-secondary" href="https://help.phantom.com/" target="_blank" rel="noopener noreferrer">Help Center ↗</a>
             </div>
           </div>
 
-          <!-- COMPACT PORTAL ACTION CARD -->
-          <div class="portal-action-card">
-            <div class="portal-meta-box">
-              <span class="portal-meta-label">OFFICIAL DOWNLOADS &amp; WALLET MODEL</span>
-              <span class="portal-meta-value notranslate" translate="no">phantom.com/download • Self-Custody</span>
+          <div class="hero-art" aria-label="Phantom Wallet emblem and popular networks">
+            <div class="orb-cluster">
+              <span class="near-coin near-sol" aria-hidden="true">◎ SOL</span>
+              <span class="near-coin near-eth" aria-hidden="true">◆ ETH</span>
+              <span class="near-coin near-btc" aria-hidden="true">₿ BTC</span>
+              <span class="near-coin near-base" aria-hidden="true">● BASE</span>
+              <div class="phantom-orb" aria-hidden="true">👻</div>
             </div>
-
-            <a class="btn-launch-primary" href="https://phantom.com/download" target="_blank" rel="noopener noreferrer">
-              🌐 Official Phantom Download →
-            </a>
           </div>
         </section>
 
-        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES -->
-        <div class="single-column-stack">
+        <!-- CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) -->
+        <div class="editorial-flow">
           <!-- 1. OVERVIEW -->
-          <article class="info-card" id="overview">
+          <article class="editorial-section" id="overview">
             <h2 class="card-heading">
               <span class="card-heading-icon">👻</span>
               1. Overview
             </h2>
             <p><strong>Phantom</strong> is a <strong>self-custody (non-custodial)</strong> crypto wallet that helps you manage supported digital assets and connect to decentralized applications (dApps). Originally known for a strong Solana focus, Phantom has expanded to support several additional networks including Ethereum, Bitcoin, and selected EVM chains.</p>
             <p>Phantom is available on mobile and desktop browsers. You can create a wallet with a Secret Recovery Phrase or, where supported, sign in with a Google or Apple account—while still keeping full responsibility for protecting your recovery credentials because Phantom cannot access your funds or restore a lost wallet without the required credentials.</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>✅ What It Helps You Do</h3>
-                <p>View and manage supported tokens and NFTs across enabled networks, interact with dApps, and access built-in swap or staking features where available.</p>
-              </div>
-              <div class="mini-box important-box">
-                <h3>⚡ What to Keep in Mind</h3>
-                <p>Network balances stay separate on each chain, each network needs its own native gas token for transactions, and unsupported network transfers risk loss.</p>
-              </div>
-            </div>
+
+            <h3 class="sub-heading">What It Helps You Do</h3>
+            <ul class="clean-list">
+              <li><strong>Multi-Chain Asset &amp; NFT Management:</strong> View and manage supported tokens and NFTs across enabled networks, interact with dApps, and access built-in swap or staking features where available.</li>
+              <li><strong>Flexible Onboarding:</strong> Create a wallet using a Secret Recovery Phrase or supported Google/Apple sign-in flows.</li>
+            </ul>
+
+            <h3 class="sub-heading">What to Keep in Mind</h3>
+            <ul class="clean-list">
+              <li><strong>Separate Chain Balances &amp; Gas:</strong> Network balances stay separate on each chain, and each network needs its own native gas token for transactions.</li>
+              <li><strong>Unsupported Chain Transfers:</strong> Sending funds on an unsupported network risks permanent loss.</li>
+            </ul>
           </article>
 
           <!-- 2. KEY FEATURES -->
-          <article class="info-card" id="key-features">
+          <article class="editorial-section" id="key-features">
             <h2 class="card-heading">
               <span class="card-heading-icon">⭐</span>
               2. Key Features
             </h2>
             <p>Phantom brings multi-chain asset viewing, dApp connectivity, and transaction checks into one wallet interface:</p>
-            <div class="mini-grid">
-              <div class="mini-box important-box">
-                <h3>🌐 Multi-Chain &amp; Cross-Network View</h3>
-                <p>Supports Solana, Ethereum, Bitcoin, and selected EVM networks, showing assets across enabled chains without manually switching wallets each time.</p>
-              </div>
-              <div class="mini-box important-box">
-                <h3>🔎 Transaction Insights &amp; Security Alerts</h3>
-                <p>Provides transaction details and available security warnings before you sign requests or connect to applications.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🖼️ NFTs, Swaps &amp; Staking</h3>
-                <p>Lets you view supported digital collectibles, swap supported assets, and access staking options depending on network and product availability.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🔐 Hardware Wallet Support</h3>
-                <p>Supports connecting a compatible Ledger hardware device to manage accounts and sign supported transactions.</p>
-              </div>
-            </div>
+            <ul class="clean-list">
+              <li><strong>Multi-Chain &amp; Cross-Network View:</strong> Supports Solana, Ethereum, Bitcoin, and selected EVM networks, showing assets across enabled chains without manually switching wallets each time.</li>
+              <li><strong>Transaction Insights &amp; Security Alerts:</strong> Provides transaction details and available security warnings before you sign requests or connect to applications.</li>
+              <li><strong>NFTs, Swaps &amp; Staking:</strong> Lets you view supported digital collectibles, swap supported assets, and access staking options depending on network and product availability.</li>
+              <li><strong>Hardware Wallet Support:</strong> Supports connecting a compatible Ledger hardware device to manage accounts and sign supported transactions.</li>
+            </ul>
           </article>
 
           <!-- 3. FEE -->
-          <article class="info-card" id="fee">
+          <article class="editorial-section" id="fee">
             <h2 class="card-heading">
               <span class="card-heading-icon">💸</span>
               3. Fee
@@ -1134,12 +1147,30 @@
           </article>
 
           <!-- 4. NETWORK SUPPORT -->
-          <article class="info-card" id="network-support">
+          <article class="editorial-section" id="network-support">
             <h2 class="card-heading">
               <span class="card-heading-icon">🌐</span>
-              4. Network Support
+              4. Network Support &amp; Popular Coins
             </h2>
             <p>Phantom's supported-network documentation lists several active networks while noting that support can evolve. Always confirm current support inside your wallet before sending or receiving funds:</p>
+
+            <h3 class="sub-heading">Popular Coins &amp; Supported Networks</h3>
+            <div class="coin-stream" aria-label="Popular coins and supported networks">
+              <span class="coin-chip featured-coin">◎ Solana (SOL)</span>
+              <span class="coin-chip featured-coin">◆ Ethereum (ETH)</span>
+              <span class="coin-chip featured-coin">₿ Bitcoin (BTC)</span>
+              <span class="coin-chip">● Base</span>
+              <span class="coin-chip">🟣 Polygon</span>
+              <span class="coin-chip">🟡 BNB Chain</span>
+              <span class="coin-chip">Robinhood Chain</span>
+              <span class="coin-chip">Arc</span>
+              <span class="coin-chip">HyperEVM</span>
+            </div>
+
+            <div class="important-callout">
+              <strong>Unsupported Network Warning:</strong> Phantom's help guide lists <strong>Arbitrum, Optimism, Avalanche, Unichain, and Linea</strong> as unsupported. Do not send assets on an unsupported network to a Phantom address, and verify the exact network before every transfer.
+            </div>
+
             <div class="perm-pills">
               <span class="perm-pill">Solana</span>
               <span class="perm-pill">Ethereum</span>
@@ -1151,70 +1182,61 @@
               <span class="perm-pill">Arc</span>
               <span class="perm-pill">HyperEVM</span>
             </div>
-            <div class="notice-box">
-              <strong>📌 Unsupported Network Warning:</strong> Phantom's help guide lists <strong>Arbitrum, Optimism, Avalanche, Unichain, and Linea</strong> as unsupported. Do not send assets on an unsupported network to a Phantom address, and verify the exact network before every transfer.
-            </div>
           </article>
 
           <!-- 5. CUSTODY & CONTROL -->
-          <article class="info-card" id="custody-control">
+          <article class="editorial-section" id="custody-control">
             <h2 class="card-heading">
               <span class="card-heading-icon">🗝️</span>
               5. Custody &amp; Control
             </h2>
             <p>Phantom is a <strong>self-custody</strong> wallet, giving you direct control over your wallet credentials rather than relying on a custodial exchange:</p>
-            <div class="mini-grid">
-              <div class="mini-box important-box">
-                <h3>📜 Secret Recovery Phrase &amp; Sign-In Recovery</h3>
-                <p>Whether you set up with a Secret Recovery Phrase or a supported Google/Apple sign-in flow, safeguarding your recovery credentials is essential.</p>
-              </div>
-              <div class="mini-box important-box">
-                <h3>🚫 No Custodial Recovery by Support</h3>
-                <p>Phantom cannot access your funds or restore a wallet if you lose the credentials required to recover it, and confirmed transactions cannot simply be reversed.</p>
-              </div>
-            </div>
+            <ul class="clean-list">
+              <li><strong>Secret Recovery Phrase &amp; Sign-In Recovery:</strong> Whether you set up with a Secret Recovery Phrase or a supported Google/Apple sign-in flow, safeguarding your recovery credentials is essential.</li>
+              <li><strong>No Custodial Recovery by Support:</strong> Phantom cannot access your funds or restore a wallet if you lose the credentials required to recover it, and confirmed transactions cannot simply be reversed.</li>
+            </ul>
           </article>
 
           <!-- 6. HOW TO USE -->
-          <article class="info-card" id="how-to-use">
+          <article class="editorial-section" id="how-to-use">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛠️</span>
               6. How to Use
             </h2>
             <p>Set up Phantom cleanly by starting directly from the official download page and checking network settings:</p>
-            <div class="steps-list">
-              <div class="step-row">
+            <div class="steps-flow">
+              <div class="step-item">
                 <span class="step-num">1</span>
                 <div class="step-body">
-                  <h4>Visit the Official Website</h4>
+                  <h4>Step 1: Visit the Official Website</h4>
                   <p>Type <code>phantom.com/download</code> directly into your browser rather than following unverified links.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">2</span>
                 <div class="step-body">
-                  <h4>Select Your Device</h4>
+                  <h4>Step 2: Select Your Device</h4>
                   <p>Choose Chrome, iOS, or Android from the official download page and verify the publisher before installing.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">3</span>
                 <div class="step-body">
-                  <h4>Create or Import a Wallet</h4>
+                  <h4>Step 3: Create or Import a Wallet</h4>
                   <p>Create a new wallet or import an existing wallet you already control, and set up strong local device protection.</p>
                 </div>
               </div>
-              <div class="step-row important-step">
+              <div class="step-item">
                 <span class="step-num">4</span>
                 <div class="step-body">
-                  <h4>Back Up Recovery Credentials</h4>
+                  <h4>Step 4: Back Up Recovery Credentials</h4>
                   <p>Store your Secret Recovery Phrase safely offline—or secure your sign-in recovery method—and never share it or enter it on websites or chats.</p>
                 </div>
               </div>
-              <div class="step-row important-step">
+              <div class="step-item">
                 <span class="step-num">5</span>
                 <div class="step-body">
-                  <h4>Check Active Networks &amp; Test First</h4>
+                  <h4>Step 5: Check Active Networks &amp; Test First</h4>
                   <p>Review your active networks, confirm the recipient address and network, inspect transaction prompts, and test with a small amount first.</p>
                 </div>
               </div>
@@ -1222,7 +1244,7 @@
           </article>
 
           <!-- 7. SECURITY -->
-          <article class="info-card" id="security">
+          <article class="editorial-section" id="security">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛡️</span>
               7. Security
@@ -1251,7 +1273,7 @@
           </article>
 
           <!-- 8. PLATFORMS -->
-          <article class="info-card" id="platforms">
+          <article class="editorial-section" id="platforms">
             <h2 class="card-heading">
               <span class="card-heading-icon">📱</span>
               8. Platforms
@@ -1266,22 +1288,16 @@
           </article>
 
           <!-- 9. GUIDE CHECKLIST -->
-          <article class="info-card" id="guide-checklist">
+          <article class="editorial-section" id="guide-checklist">
             <h2 class="card-heading">
               <span class="card-heading-icon">✅</span>
               9. Guide Checklist
             </h2>
-            <p>Use this quick text checklist (no video needed) before transferring funds, swapping tokens, or connecting to a dApp:</p>
-            <div class="mini-grid">
-              <div class="mini-box important-box">
-                <h3>✔ Before Sending or Swapping</h3>
-                <p>Verify the network is supported by Phantom and matches the recipient/chain, ensure you have that chain's native gas token, and test with a small transfer first.</p>
-              </div>
-              <div class="mini-box important-box">
-                <h3>✔ Before Connecting to dApps</h3>
-                <p>Use a secondary wallet for testing new apps, double-check the site URL and signature details, and never share your recovery phrase.</p>
-              </div>
-            </div>
+            <p>Use this quick text checklist before transferring funds, swapping tokens, or connecting to a dApp:</p>
+            <ul class="clean-list">
+              <li><strong>Before Sending or Swapping:</strong> Verify the network is supported by Phantom and matches the recipient/chain, ensure you have that chain's native gas token, and test with a small transfer first.</li>
+              <li><strong>Before Connecting to dApps:</strong> Use a secondary wallet for testing new apps, double-check the site URL and signature details, and never share your recovery phrase.</li>
+            </ul>
             <div class="doc-links-row">
               <a class="doc-link-pill" href="https://phantom.com/download" target="_blank" rel="noopener noreferrer">🌐 Official Download →</a>
               <a class="doc-link-pill" href="https://help.phantom.com/articles/41372840389651" target="_blank" rel="noopener noreferrer">🌐 Supported Networks →</a>
@@ -1291,7 +1307,7 @@
           </article>
 
           <!-- 10. FAQ -->
-          <article class="info-card" id="faq">
+          <article class="editorial-section" id="faq">
             <h2 class="card-heading">
               <span class="card-heading-icon">❓</span>
               10. FAQ
@@ -1379,7 +1395,7 @@
 
   <script>
     function goBackToList() {
-      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
+      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname) && window.history.length > 1) {
         window.history.back();
       } else {
         window.location.href = '../wallet-pages/wallets.html';
@@ -1415,7 +1431,7 @@
     function initScrollSpyTabs() {
       const tabs = Array.from(document.querySelectorAll('.jump-tab'));
       const jumpInner = document.getElementById('jumpInner');
-      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      const sections = Array.from(document.querySelectorAll('.editorial-flow > article[id]'));
       if (!tabs.length || !sections.length) return;
 
       const tabById = new Map();
