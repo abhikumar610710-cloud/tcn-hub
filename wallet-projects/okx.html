@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08a86b">
   <meta name="description" content="Complete OKX Web3 Wallet guide by Total Crypto Hub: overview, key features, gas and swap fees, multi-chain network support, self-custody, how to use, security, platforms, guide checklist, and detailed FAQ.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <title>OKX Web3 Wallet Guide | Total Crypto Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -394,158 +395,198 @@
       width: 100%;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 22px clamp(16px, 2.4vw, 32px) 42px;
+      padding: 20px clamp(16px, 2.4vw, 32px) 42px;
     }
 
-    /* MINT-GREEN & WHITE HERO BANNER */
+    /* COMPACT HERO BANNER: LEFT LINKS/BUTTONS + RIGHT COMPACT LOGO ORB WITH CLOSE SUBTLE BLINK COINS */
     .project-hero {
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(305px, .82fr);
+      grid-template-columns: 1.38fr .62fr;
       align-items: center;
-      gap: 22px;
-      padding: 24px 28px;
+      gap: 18px;
+      padding: 22px 26px;
       border: 1px solid #96ecd0;
       border-radius: 22px;
       background:
-        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
-        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .18) 0 11%, transparent 11.2%),
+        linear-gradient(115deg, var(--banner-start) 0%, var(--banner-mid) 56%, var(--banner-end) 100%);
       box-shadow: var(--shadow);
     }
     [data-theme="dark"] .project-hero { border-color: #215d4c; }
-    .hero-identity {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .hero-logo-box {
-      width: 72px;
-      height: 72px;
-      flex: 0 0 72px;
-      border-radius: 20px;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      background: #101826;
-      border: 2px solid var(--green);
-      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
-      color: #ffffff;
-      font-size: 20px;
-      font-weight: 900;
-    }
-    .hero-logo-box img { width: 72%; height: 72%; object-fit: contain; display: block; }
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .badge-pill {
+
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
+      gap: 6px;
+      border: 1px solid #8ce0c1;
+      background: var(--surface);
       border-radius: 999px;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: .3px;
-      background: var(--surface);
+      padding: 5px 11px;
       color: var(--green-dark);
-      border: 1px solid #96ecd0;
-    }
-    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
-
-    .hero-title-group h1 {
-      margin: 0 0 6px;
-      color: var(--heading);
-      font-size: clamp(24px, 2.7vw, 35px);
-      line-height: 1.14;
-      font-weight: 800;
-      letter-spacing: -.8px;
-    }
-    .hero-title-group p {
-      margin: 0;
-      color: var(--body);
-      font-size: 13px;
-      line-height: 1.62;
-      font-weight: 600;
-      max-width: 720px;
-    }
-
-    /* PORTAL ACTION CARD */
-    .portal-action-card {
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: var(--surface);
-      border: 1px solid #96ecd0;
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
-      display: grid;
-      gap: 10px;
-    }
-    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
-
-    .portal-meta-box {
-      padding: 10px 13px;
-      border-radius: 13px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
-    }
-    [data-theme="dark"] .portal-meta-box { border-color: #23654e; }
-    .portal-meta-label {
-      display: block;
       font-size: 9.5px;
       font-weight: 800;
-      color: var(--muted);
+      letter-spacing: .05em;
       text-transform: uppercase;
-      letter-spacing: .45px;
-      margin-bottom: 2px;
     }
-    .portal-meta-value {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
+    [data-theme="dark"] .hero-eyebrow { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
+
+    .project-hero h1 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+      margin: 10px 0 8px;
       color: var(--heading);
-      overflow-wrap: anywhere;
+      font-weight: 800;
+    }
+    .project-hero h1 span { color: var(--green); }
+
+    .project-hero p {
+      max-width: 640px;
+      color: var(--body);
+      margin: 0 0 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 600;
     }
 
-    .btn-launch-primary {
-      width: 100%;
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0 14px;
+    }
+    .hero-pill {
+      background: var(--surface);
+      color: var(--heading);
+      border: 1px solid #b8f2d7;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .hero-pill { border-color: #23654e; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .btn-hero-primary, .btn-hero-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 16px;
+      gap: 7px;
       border-radius: 999px;
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
-      text-decoration: none;
-      font-size: 12.5px;
+      padding: 10px 17px;
+      font-size: 12px;
       font-weight: 800;
-      transition: transform .2s ease;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
-    .btn-launch-primary:hover { transform: translateY(-1px); }
+    .btn-hero-primary {
+      background: linear-gradient(110deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      box-shadow: 0 6px 14px rgba(8, 168, 107, .22);
+    }
+    .btn-hero-secondary {
+      background: var(--surface);
+      color: var(--heading);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .btn-hero-secondary { border-color: #245f4d; }
+    .btn-hero-primary:hover, .btn-hero-secondary:hover { transform: translateY(-1px); }
 
-    /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
-    .single-column-stack {
+    /* RIGHT SIDE COMPACT LOGO ORB + CLOSE SUBTLE BLINK POPULAR COINS */
+    .hero-art {
+      position: relative;
+      z-index: 1;
       display: grid;
-      gap: 18px;
+      place-items: center;
+      min-height: 164px;
+    }
+    .orb-cluster {
+      position: relative;
+      width: 176px;
+      height: 176px;
+      display: grid;
+      place-items: center;
+    }
+    .wallet-orb {
+      width: 146px;
+      height: 146px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 35% 28%, #ffffff, #c9fff0 55%, #71ddbd);
+      box-shadow: 0 12px 26px rgba(8, 168, 107, .22);
+      border: 2px solid #8be5c7;
+      color: var(--heading);
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+    [data-theme="dark"] .wallet-orb {
+      background: radial-gradient(circle at 35% 28%, #1a473f, #11322c 65%, #0c2420);
+      border-color: #297a60;
+      color: var(--green-light);
+    }
+
+    @keyframes subtleCoinBlink {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+      50% {
+        opacity: .68;
+        transform: translateY(-2px);
+      }
+    }
+
+    .near-coin {
+      position: absolute;
+      z-index: 2;
+      min-width: 40px;
+      height: 24px;
+      padding: 0 7px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+      border: 1px solid rgba(8, 168, 107, .35);
+      box-shadow: 0 3px 8px rgba(8, 168, 107, .14);
+      animation: subtleCoinBlink 3.4s ease-in-out infinite;
+    }
+    .near-eth { top: 2px; left: 2px; background: #e7e2ff; color: #6346cf; animation-delay: 0s; }
+    .near-sol { top: 6px; right: 0px; background: #e3fff3; color: #008556; animation-delay: .65s; }
+    .near-base { bottom: 6px; left: 0px; background: #e5f3ff; color: #1b65a8; animation-delay: 1.3s; }
+    .near-bnb { bottom: 2px; right: 2px; background: #fff0cc; color: #c97d00; animation-delay: 1.95s; }
+
+    /* CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) */
+    .editorial-flow {
+      display: grid;
+      gap: 22px;
       margin-top: 20px;
     }
 
-    .info-card {
-      padding: 22px 24px;
+    .editorial-section {
+      padding: 22px 26px;
       border-radius: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .05);
     }
+
     .card-heading {
       display: flex;
       align-items: center;
       gap: 10px;
       margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
       color: var(--heading);
       font-size: 17.5px;
       font-weight: 800;
@@ -565,14 +606,14 @@
     }
     [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
 
-    .info-card p {
+    .editorial-section p {
       margin: 0 0 11px;
       font-size: 13px;
-      line-height: 1.75;
+      line-height: 1.78;
       color: var(--body);
     }
-    .info-card p:last-child { margin-bottom: 0; }
-    .info-card code {
+    .editorial-section p:last-child { margin-bottom: 0; }
+    .editorial-section code {
       background: var(--surface-soft);
       padding: 2px 6px;
       border-radius: 5px;
@@ -581,6 +622,38 @@
       font-size: 12px;
       overflow-wrap: anywhere;
     }
+
+    .sub-heading {
+      margin: 16px 0 8px;
+      color: var(--heading);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .clean-list {
+      margin: 6px 0 12px;
+      padding-left: 20px;
+      display: grid;
+      gap: 7px;
+      font-size: 12.8px;
+      line-height: 1.72;
+      color: var(--body);
+    }
+    .clean-list li strong { color: var(--heading); }
+
+    /* WEBSITE GREEN THEME — ONLY FOR IMPORTANT / KEY INFORMATION */
+    .important-callout {
+      margin: 14px 0;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border-left: 4px solid var(--green);
+      background: linear-gradient(110deg, var(--green-soft), color-mix(in srgb, var(--green-soft) 45%, var(--surface)));
+      color: var(--heading);
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+    .important-callout strong { color: var(--green-dark); }
+    [data-theme="dark"] .important-callout strong { color: var(--green-light); }
 
     .doc-links-row {
       display: flex;
@@ -608,85 +681,99 @@
       color: #ffffff;
     }
 
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-    .mini-box {
-      padding: 15px 16px;
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
-    }
-    [data-theme="dark"] .mini-box { border-color: #23654e; }
-    .mini-box h3 {
-      margin: 0 0 6px;
-      font-size: 13.5px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .mini-box p {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.68;
-      color: var(--body);
-    }
-
     .stats-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 12px;
-      background: var(--surface-soft);
+      background: var(--surface);
       border-radius: 14px;
       overflow: hidden;
-      border: 1px solid #b8f2d7;
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .stats-table { border-color: #23654e; }
     .stats-table th, .stats-table td {
       padding: 12px 16px;
       text-align: left;
       border-bottom: 1px solid var(--border);
       font-size: 12.5px;
-      line-height: 1.65;
+      line-height: 1.68;
     }
     .stats-table th {
-      background: var(--green-soft);
+      background: var(--surface-soft);
       color: var(--heading);
       font-weight: 800;
       width: 28%;
     }
     .stats-table td { color: var(--body); }
+    .stats-table tr.important-row th,
+    .stats-table tr.important-row td {
+      background: color-mix(in srgb, var(--green-soft) 55%, var(--surface));
+      color: var(--heading);
+    }
+    .stats-table tr.important-row th {
+      color: var(--green-dark);
+      border-left: 3px solid var(--green);
+    }
+    [data-theme="dark"] .stats-table tr.important-row th { color: var(--green-light); }
     .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    /* POPULAR COINS / NETWORKS WITH SUBTLE BLINK */
+    .coin-stream {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .coin-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
+      animation: subtleCoinBlink 3.6s ease-in-out infinite;
+    }
+    .coin-chip.featured-coin {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-color: var(--green);
+    }
+    [data-theme="dark"] .coin-chip.featured-coin { color: var(--green-light); }
+    .coin-chip:nth-child(2n) { animation-delay: .5s; }
+    .coin-chip:nth-child(3n) { animation-delay: 1s; }
+    .coin-chip:nth-child(4n) { animation-delay: 1.5s; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .perm-pill {
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 800;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      border: 1px solid #b4edd6;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
 
-    .steps-list {
-      display: grid;
-      gap: 11px;
+    /* CLEAN STEP FLOW (NO HEAVY BOXES) */
+    .steps-flow {
       margin-top: 10px;
+      display: grid;
+      gap: 12px;
     }
-    .step-row {
+    .step-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      padding-bottom: 11px;
+      border-bottom: 1px dashed var(--border);
     }
-    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
     .step-num {
       width: 28px;
       height: 28px;
@@ -698,23 +785,23 @@
       color: #ffffff;
       font-size: 12px;
       font-weight: 800;
+      margin-top: 2px;
     }
     .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
-    .step-body p { margin: 0; font-size: 12px; line-height: 1.68; color: var(--body); }
+    .step-body p { margin: 0; font-size: 12.4px; line-height: 1.7; color: var(--body); }
 
-    /* RICH FAQ ACCORDION */
-    .faq-list { display: grid; gap: 11px; }
+    /* CLEAN FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; margin-top: 10px; }
     .faq-item {
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
-      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 13px 16px;
       transition: .18s ease;
     }
-    [data-theme="dark"] .faq-item { border-color: #23654e; }
-    .faq-item[open] {
-      background: var(--surface);
-      box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
+    .faq-item.important-faq {
+      border-left: 3.5px solid var(--green);
+      background: color-mix(in srgb, var(--green-soft) 35%, var(--surface));
     }
     .faq-item summary {
       font-size: 13.5px;
@@ -782,13 +869,22 @@
 
     .mobile-overlay { display: none; }
 
+    @media (prefers-reduced-motion: reduce) {
+      .near-coin, .coin-chip {
+        animation: none !important;
+      }
+    }
+
     @media(max-width: 1250px) {
       :root { --sidebar-width: 235px; }
       .header-brand { min-width: 185px; }
       .slot-arrow { display: none; }
     }
     @media(max-width: 1020px) {
-      .project-hero { grid-template-columns: 1fr; }
+      .project-hero { grid-template-columns: 1fr; padding: 20px 22px; }
+      .hero-art { min-height: 152px; }
+      .orb-cluster { width: 162px; height: 162px; }
+      .wallet-orb { width: 132px; height: 132px; font-size: 34px; }
     }
     @media(max-width: 760px) {
       :root { --sidebar-width: 258px; --sponsor-height: 56px; }
@@ -816,11 +912,12 @@
 
       main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
       .project-hero { padding: 18px; }
-      .hero-identity { flex-direction: column; gap: 12px; }
-      .mini-grid { grid-template-columns: 1fr; }
+      .editorial-section { padding: 18px 18px; }
     }
     @media(max-width: 480px) {
       .header-brand-subtitle, .slot-megaphone { display: none; }
+      .orb-cluster { width: 152px; height: 152px; }
+      .wallet-orb { width: 124px; height: 124px; font-size: 30px; }
     }
   </style>
 </head>
@@ -946,86 +1043,75 @@
       </nav>
 
       <main>
-        <!-- MINT-GREEN & WHITE HERO BANNER -->
+        <!-- COMPACT HERO BANNER: LEFT LINKS/BUTTONS + RIGHT COMPACT LOGO ORB WITH CLOSE SUBTLE BLINK COINS -->
         <section class="project-hero" aria-labelledby="walletTitle">
-          <div class="hero-identity">
-            <div class="hero-logo-box" aria-label="OKX Web3 Wallet logo">OKX</div>
-            <div class="hero-title-group">
-              <div class="hero-badges">
-                <span class="badge-pill">🌐 Self-Custody Web3 Wallet</span>
-                <span class="badge-pill">⛓️ Multi-Chain</span>
-                <span class="badge-pill">🔄 DEX &amp; Swap Access</span>
-                <span class="badge-pill">🛡️ Security &amp; Risk Alerts</span>
-              </div>
-              <h1 id="walletTitle" class="notranslate" translate="no">OKX Web3 Wallet</h1>
-              <p>Complete guide explaining what OKX Web3 Wallet is, its key features, gas and swap fees, multi-chain network support, self-custody control, setup steps, and safety practices.</p>
+          <div>
+            <span class="hero-eyebrow">✦ Self-Custody Multi-Chain Wallet · Total Crypto Hub</span>
+            <h1 id="walletTitle" class="notranslate" translate="no">OKX Web3 <span>Wallet</span></h1>
+            <p>Complete guide explaining what OKX Web3 Wallet is, its key features, gas and swap fees, multi-chain network support, self-custody control, setup steps, and safety practices.</p>
+            <div class="hero-pills">
+              <span class="hero-pill">✓ Self-Custody Wallet</span>
+              <span class="hero-pill">⛓️ Multi-Chain</span>
+              <span class="hero-pill">🔄 DEX &amp; Swap Access</span>
+              <span class="hero-pill">🛡️ Security &amp; Risk Alerts</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn-hero-primary" href="https://www.okx.com/web3" target="_blank" rel="noopener noreferrer">Official OKX Web3 Portal ↗</a>
+              <a class="btn-hero-secondary" href="https://www.okx.com/help" target="_blank" rel="noopener noreferrer">OKX Help Center ↗</a>
             </div>
           </div>
 
-          <!-- COMPACT PORTAL ACTION CARD -->
-          <div class="portal-action-card">
-            <div class="portal-meta-box">
-              <span class="portal-meta-label">OFFICIAL PORTAL &amp; WALLET MODEL</span>
-              <span class="portal-meta-value notranslate" translate="no">okx.com/web3 • Self-Custody</span>
+          <div class="hero-art" aria-label="OKX Web3 Wallet emblem and popular networks">
+            <div class="orb-cluster">
+              <span class="near-coin near-eth" aria-hidden="true">◆ ETH</span>
+              <span class="near-coin near-sol" aria-hidden="true">◎ SOL</span>
+              <span class="near-coin near-base" aria-hidden="true">● BASE</span>
+              <span class="near-coin near-bnb" aria-hidden="true">🟡 BNB</span>
+              <div class="wallet-orb" aria-hidden="true">OKX</div>
             </div>
-
-            <a class="btn-launch-primary" href="https://www.okx.com/web3" target="_blank" rel="noopener noreferrer">
-              🌐 Official OKX Web3 Portal →
-            </a>
           </div>
         </section>
 
-        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES -->
-        <div class="single-column-stack">
+        <!-- CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) -->
+        <div class="editorial-flow">
           <!-- 1. OVERVIEW -->
-          <article class="info-card" id="overview">
+          <article class="editorial-section" id="overview">
             <h2 class="card-heading">
               <span class="card-heading-icon">🌐</span>
               1. Overview
             </h2>
             <p><strong>OKX Web3 Wallet</strong> is a <strong>self-custody (non-custodial)</strong> multi-chain wallet designed to help users manage supported crypto assets and NFTs and connect to decentralized applications (dApps) across multiple blockchains.</p>
             <p>Even though it is offered under the OKX ecosystem, a self-custody wallet works differently from a standard custodial exchange account: you control your wallet access/recovery credentials directly, and you must carefully verify networks, addresses, and transaction prompts before signing.</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>✅ What It Helps You Do</h3>
-                <p>Manage supported tokens and NFTs across multiple networks, connect to dApps, and access swap or Web3 tools from mobile or browser.</p>
-              </div>
-              <div class="mini-box">
-                <h3>⚠️ What to Keep in Mind</h3>
-                <p>Self-custody means you are responsible for protecting recovery details, checking network compatibility, and reviewing permissions before approving transactions.</p>
-              </div>
-            </div>
+
+            <h3 class="sub-heading">What It Helps You Do</h3>
+            <ul class="clean-list">
+              <li><strong>Multi-Chain Asset &amp; NFT Management:</strong> Manage supported tokens and NFTs across multiple networks, connect to dApps, and access swap or Web3 tools from mobile or browser.</li>
+              <li><strong>Independent Self-Custody:</strong> Control your wallet credentials directly rather than relying on custodial exchange storage.</li>
+            </ul>
+
+            <h3 class="sub-heading">What to Keep in Mind</h3>
+            <ul class="clean-list">
+              <li><strong>Backup &amp; Verification Responsibility:</strong> Protecting recovery details, checking network compatibility, and reviewing permissions before approving transactions rests with you.</li>
+            </ul>
           </article>
 
           <!-- 2. KEY FEATURES -->
-          <article class="info-card" id="key-features">
+          <article class="editorial-section" id="key-features">
             <h2 class="card-heading">
               <span class="card-heading-icon">⭐</span>
               2. Key Features
             </h2>
             <p>OKX Web3 Wallet brings multi-chain asset management, dApp access, and transaction checks together:</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>⛓️ Multi-Chain Wallet Experience</h3>
-                <p>Supports switching and viewing supported assets across multiple EVM and non-EVM networks within one wallet interface.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🔄 Swap &amp; dApp Connectivity</h3>
-                <p>Allows connecting to supported dApps and reviewing swap/transaction routes and quotes before confirming.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🖼️ NFT &amp; Collectible Management</h3>
-                <p>Lets you view and manage supported NFTs and digital assets on compatible networks.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🛡️ Transaction &amp; Approval Checks</h3>
-                <p>Displays transaction details and token/contract prompts so you can inspect permissions before signing.</p>
-              </div>
-            </div>
+            <ul class="clean-list">
+              <li><strong>Multi-Chain Wallet Experience:</strong> Supports switching and viewing supported assets across multiple EVM and non-EVM networks within one wallet interface.</li>
+              <li><strong>Swap &amp; dApp Connectivity:</strong> Allows connecting to supported dApps and reviewing swap/transaction routes and quotes before confirming.</li>
+              <li><strong>NFT &amp; Collectible Management:</strong> Lets you view and manage supported NFTs and digital assets on compatible networks.</li>
+              <li><strong>Transaction &amp; Approval Checks:</strong> Displays transaction details and token/contract prompts so you can inspect permissions before signing.</li>
+            </ul>
           </article>
 
           <!-- 3. FEE -->
-          <article class="info-card" id="fee">
+          <article class="editorial-section" id="fee">
             <h2 class="card-heading">
               <span class="card-heading-icon">💸</span>
               3. Fee
@@ -1037,7 +1123,7 @@
                   <th>Wallet Setup &amp; Holding</th>
                   <td>Creating or importing a self-custody wallet is free; there is no recurring fee just for holding a wallet.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Network / Gas Fees</th>
                   <td>Onchain transfers, token approvals, and contract interactions require network gas paid in the active chain's native token (such as ETH, SOL, or another chain's gas asset).</td>
                 </tr>
@@ -1045,7 +1131,7 @@
                   <th>Swap, Bridge &amp; dApp Charges</th>
                   <td>Swaps, bridges, or third-party dApps may involve network gas, routing/service fees, or slippage/spread—always check the exact quote before signing.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Wrong Network Risk</th>
                   <td>Sending funds on an unsupported or mismatched network can result in loss or recovery difficulty—always verify network support before sending.</td>
                 </tr>
@@ -1054,12 +1140,29 @@
           </article>
 
           <!-- 4. NETWORK SUPPORT -->
-          <article class="info-card" id="network-support">
+          <article class="editorial-section" id="network-support">
             <h2 class="card-heading">
               <span class="card-heading-icon">🌐</span>
-              4. Network Support
+              4. Network Support &amp; Popular Coins
             </h2>
             <p>OKX Web3 Wallet supports many major blockchains across EVM and non-EVM ecosystems, though exact network availability and custom RPC/chain support can update over time:</p>
+
+            <h3 class="sub-heading">Popular Coins &amp; Ecosystem Networks</h3>
+            <div class="coin-stream" aria-label="Popular coins and networks">
+              <span class="coin-chip featured-coin">◆ Ethereum (ETH)</span>
+              <span class="coin-chip featured-coin">◎ Solana (SOL)</span>
+              <span class="coin-chip featured-coin">● Base</span>
+              <span class="coin-chip">🟡 BNB Chain</span>
+              <span class="coin-chip">◈ Arbitrum</span>
+              <span class="coin-chip">🔴 Optimism</span>
+              <span class="coin-chip">🟣 Polygon</span>
+              <span class="coin-chip">🔺 Avalanche</span>
+            </div>
+
+            <div class="important-callout">
+              <strong>Network Availability Note:</strong> Exact supported chains and custom network options can update over time—always verify that your target network is supported and matches the receiving chain before transferring funds.
+            </div>
+
             <div class="perm-pills">
               <span class="perm-pill">Ethereum &amp; EVM Networks</span>
               <span class="perm-pill">Base / Arbitrum / Optimism</span>
@@ -1070,64 +1173,58 @@
           </article>
 
           <!-- 5. CUSTODY & CONTROL -->
-          <article class="info-card" id="custody-control">
+          <article class="editorial-section" id="custody-control">
             <h2 class="card-heading">
               <span class="card-heading-icon">🗝️</span>
               5. Custody &amp; Control
             </h2>
             <p>As a <strong>self-custody</strong> wallet, you hold control over your wallet keys or recovery credentials rather than relying on a third party to hold them for you:</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>📜 Recovery Phrase &amp; Backup Control</h3>
-                <p>Whoever holds your recovery phrase or backup credentials can access the wallet—store backups securely and privately.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🚫 Irreversible Onchain Actions</h3>
-                <p>Once a blockchain transaction is signed and confirmed, it cannot simply be reversed by support—verify details before approving.</p>
-              </div>
-            </div>
+            <ul class="clean-list">
+              <li><strong>Recovery Phrase &amp; Backup Control:</strong> Whoever holds your recovery phrase or backup credentials can access the wallet—store backups securely and privately.</li>
+              <li><strong>Irreversible Onchain Actions:</strong> Once a blockchain transaction is signed and confirmed, it cannot simply be reversed by support—verify details before approving.</li>
+            </ul>
           </article>
 
           <!-- 6. HOW TO USE -->
-          <article class="info-card" id="how-to-use">
+          <article class="editorial-section" id="how-to-use">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛠️</span>
               6. How to Use
             </h2>
             <p>Start from official OKX channels and follow a careful setup and verification flow:</p>
-            <div class="steps-list">
-              <div class="step-row">
+            <div class="steps-flow">
+              <div class="step-item">
                 <span class="step-num">1</span>
                 <div class="step-body">
-                  <h4>Visit the Official OKX Web3 Portal</h4>
+                  <h4>Step 1: Visit the Official OKX Web3 Portal</h4>
                   <p>Open <code>okx.com/web3</code> directly and avoid links from unverified messages or ads.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">2</span>
                 <div class="step-body">
-                  <h4>Choose Mobile App or Browser Extension</h4>
+                  <h4>Step 2: Choose Mobile App or Browser Extension</h4>
                   <p>Install the official mobile app or browser extension from verified official sources and check publisher details.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">3</span>
                 <div class="step-body">
-                  <h4>Create or Import Your Wallet</h4>
+                  <h4>Step 3: Create or Import Your Wallet</h4>
                   <p>Create a new self-custody wallet or import an existing wallet you control, and set a strong local password/lock.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">4</span>
                 <div class="step-body">
-                  <h4>Back Up Recovery Credentials Safely</h4>
+                  <h4>Step 4: Back Up Recovery Credentials Safely</h4>
                   <p>Record and store your recovery phrase securely offline—never share it or type it into websites or chats.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">5</span>
                 <div class="step-body">
-                  <h4>Verify Network, Gas &amp; Test First</h4>
+                  <h4>Step 5: Verify Network, Gas &amp; Test First</h4>
                   <p>Confirm the active network, native gas balance, and recipient/contract details, and start with a small test transfer first.</p>
                 </div>
               </div>
@@ -1135,7 +1232,7 @@
           </article>
 
           <!-- 7. SECURITY -->
-          <article class="info-card" id="security">
+          <article class="editorial-section" id="security">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛡️</span>
               7. Security
@@ -1143,11 +1240,11 @@
             <p>Follow strict security habits whenever you connect to dApps, sign messages, or transfer assets:</p>
             <table class="stats-table">
               <tbody>
-                <tr>
+                <tr class="important-row">
                   <th>Use a Secondary Wallet</th>
                   <td>Use a <strong>secondary wallet</strong> with limited funds when testing new dApps, airdrops, or unfamiliar links so your main wallet stays protected.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Never Share Recovery Phrase</th>
                   <td>Never share your <strong>recovery phrase</strong> or private keys with anyone—including anyone claiming to be support—and never enter them on websites or chats.</td>
                 </tr>
@@ -1164,7 +1261,7 @@
           </article>
 
           <!-- 8. PLATFORMS -->
-          <article class="info-card" id="platforms">
+          <article class="editorial-section" id="platforms">
             <h2 class="card-heading">
               <span class="card-heading-icon">📱</span>
               8. Platforms
@@ -1178,22 +1275,16 @@
           </article>
 
           <!-- 9. GUIDE CHECKLIST -->
-          <article class="info-card" id="guide-checklist">
+          <article class="editorial-section" id="guide-checklist">
             <h2 class="card-heading">
               <span class="card-heading-icon">✅</span>
               9. Guide Checklist
             </h2>
-            <p>Use this quick text checklist (no video needed) before sending funds, swapping, or connecting to a dApp:</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>✔ Before Sending or Swapping</h3>
-                <p>Verify the network matches the recipient/chain, check that you have enough native gas token, verify the address, and test with a small amount first.</p>
-              </div>
-              <div class="mini-box">
-                <h3>✔ Before Connecting to New dApps</h3>
-                <p>Use a secondary wallet for testing, check the URL and approval scope carefully, and never share your recovery phrase.</p>
-              </div>
-            </div>
+            <p>Use this quick text checklist before sending funds, swapping, or connecting to a dApp:</p>
+            <ul class="clean-list">
+              <li><strong>Before Sending or Swapping:</strong> Verify the network matches the recipient/chain, check that you have enough native gas token, verify the address, and test with a small amount first.</li>
+              <li><strong>Before Connecting to New dApps:</strong> Use a secondary wallet for testing, check the URL and approval scope carefully, and never share your recovery phrase.</li>
+            </ul>
             <div class="doc-links-row">
               <a class="doc-link-pill" href="https://www.okx.com/web3" target="_blank" rel="noopener noreferrer">🌐 Official OKX Web3 Portal →</a>
               <a class="doc-link-pill" href="https://www.okx.com/help" target="_blank" rel="noopener noreferrer">🛟 OKX Help Center →</a>
@@ -1201,13 +1292,13 @@
           </article>
 
           <!-- 10. FAQ -->
-          <article class="info-card" id="faq">
+          <article class="editorial-section" id="faq">
             <h2 class="card-heading">
               <span class="card-heading-icon">❓</span>
               10. FAQ
             </h2>
             <div class="faq-list">
-              <details class="faq-item" open>
+              <details class="faq-item important-faq" open>
                 <summary>1. Is OKX Web3 Wallet a self-custody wallet?</summary>
                 <div class="faq-body">
                   <p><strong>What it is:</strong> Yes—OKX Web3 Wallet is a <strong>self-custody</strong> wallet where you control your wallet access and recovery credentials rather than relying on custodial exchange storage.</p>
@@ -1239,7 +1330,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>5. Why should I use a secondary wallet and review approvals?</summary>
                 <div class="faq-body">
                   <p><strong>What it is:</strong> A <strong>secondary wallet</strong> keeps limited funds separate for testing new dApps or links, and token approvals control contract access to your tokens.</p>
@@ -1247,7 +1338,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>6. Can support recover a lost recovery phrase or reverse a transfer?</summary>
                 <div class="faq-body">
                   <p><strong>What to know:</strong> With self-custody wallets, lost recovery credentials cannot simply be reset like a typical account password, and confirmed blockchain transfers generally cannot be undone.</p>
@@ -1281,7 +1372,7 @@
 
   <script>
     function goBackToList() {
-      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
+      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname) && window.history.length > 1) {
         window.history.back();
       } else {
         window.location.href = '../wallet-pages/wallets.html';
@@ -1317,7 +1408,7 @@
     function initScrollSpyTabs() {
       const tabs = Array.from(document.querySelectorAll('.jump-tab'));
       const jumpInner = document.getElementById('jumpInner');
-      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      const sections = Array.from(document.querySelectorAll('.editorial-flow > article[id]'));
       if (!tabs.length || !sections.length) return;
 
       const tabById = new Map();
