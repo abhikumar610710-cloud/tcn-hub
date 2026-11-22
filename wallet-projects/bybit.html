@@ -395,158 +395,197 @@
       width: 100%;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 22px clamp(16px, 2.4vw, 32px) 42px;
+      padding: 20px clamp(16px, 2.4vw, 32px) 42px;
     }
 
-    /* MINT-GREEN & WHITE HERO BANNER */
+    /* COMPACT HERO BANNER: LEFT LINKS/BUTTONS + RIGHT COMPACT LOGO ORB WITH CLOSE SUBTLE BLINK COINS */
     .project-hero {
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(305px, .82fr);
+      grid-template-columns: 1.38fr .62fr;
       align-items: center;
-      gap: 22px;
-      padding: 24px 28px;
+      gap: 18px;
+      padding: 22px 26px;
       border: 1px solid #96ecd0;
       border-radius: 22px;
       background:
-        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
-        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .18) 0 11%, transparent 11.2%),
+        linear-gradient(115deg, var(--banner-start) 0%, var(--banner-mid) 56%, var(--banner-end) 100%);
       box-shadow: var(--shadow);
     }
     [data-theme="dark"] .project-hero { border-color: #215d4c; }
-    .hero-identity {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .hero-logo-box {
-      width: 72px;
-      height: 72px;
-      flex: 0 0 72px;
-      border-radius: 20px;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, #17181e, #101114);
-      border: 2px solid var(--green);
-      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
-      color: #f7a600;
-      font-size: 38px;
-      font-weight: 900;
-    }
-    .hero-logo-box img { width: 72%; height: 72%; object-fit: contain; display: block; }
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .badge-pill {
+
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
+      gap: 6px;
+      border: 1px solid #8ce0c1;
+      background: var(--surface);
       border-radius: 999px;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: .3px;
-      background: var(--surface);
+      padding: 5px 11px;
       color: var(--green-dark);
-      border: 1px solid #96ecd0;
-    }
-    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
-
-    .hero-title-group h1 {
-      margin: 0 0 6px;
-      color: var(--heading);
-      font-size: clamp(24px, 2.7vw, 35px);
-      line-height: 1.14;
-      font-weight: 800;
-      letter-spacing: -.8px;
-    }
-    .hero-title-group p {
-      margin: 0;
-      color: var(--body);
-      font-size: 13px;
-      line-height: 1.62;
-      font-weight: 600;
-      max-width: 720px;
-    }
-
-    /* PORTAL ACTION CARD */
-    .portal-action-card {
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: var(--surface);
-      border: 1px solid #96ecd0;
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
-      display: grid;
-      gap: 10px;
-    }
-    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
-
-    .portal-meta-box {
-      padding: 10px 13px;
-      border-radius: 13px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
-    }
-    [data-theme="dark"] .portal-meta-box { border-color: #23654e; }
-    .portal-meta-label {
-      display: block;
       font-size: 9.5px;
       font-weight: 800;
-      color: var(--muted);
+      letter-spacing: .05em;
       text-transform: uppercase;
-      letter-spacing: .45px;
-      margin-bottom: 2px;
     }
-    .portal-meta-value {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
+    [data-theme="dark"] .hero-eyebrow { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
+
+    .project-hero h1 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+      margin: 10px 0 8px;
       color: var(--heading);
-      overflow-wrap: anywhere;
+      font-weight: 800;
+    }
+    .project-hero h1 span { color: var(--green); }
+
+    .project-hero p {
+      max-width: 640px;
+      color: var(--body);
+      margin: 0 0 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 600;
     }
 
-    .btn-launch-primary {
-      width: 100%;
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0 14px;
+    }
+    .hero-pill {
+      background: var(--surface);
+      color: var(--heading);
+      border: 1px solid #b8f2d7;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .hero-pill { border-color: #23654e; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .btn-hero-primary, .btn-hero-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 16px;
+      gap: 7px;
       border-radius: 999px;
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
-      text-decoration: none;
-      font-size: 12.5px;
+      padding: 10px 17px;
+      font-size: 12px;
       font-weight: 800;
-      transition: transform .2s ease;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
-    .btn-launch-primary:hover { transform: translateY(-1px); }
+    .btn-hero-primary {
+      background: linear-gradient(110deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      box-shadow: 0 6px 14px rgba(8, 168, 107, .22);
+    }
+    .btn-hero-secondary {
+      background: var(--surface);
+      color: var(--heading);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .btn-hero-secondary { border-color: #245f4d; }
+    .btn-hero-primary:hover, .btn-hero-secondary:hover { transform: translateY(-1px); }
 
-    /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
-    .single-column-stack {
+    /* RIGHT SIDE COMPACT LOGO ORB + CLOSE SUBTLE BLINK POPULAR COINS */
+    .hero-art {
+      position: relative;
+      z-index: 1;
       display: grid;
-      gap: 18px;
+      place-items: center;
+      min-height: 164px;
+    }
+    .orb-cluster {
+      position: relative;
+      width: 176px;
+      height: 176px;
+      display: grid;
+      place-items: center;
+    }
+    .exchange-orb {
+      width: 146px;
+      height: 146px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 35% 28%, #ffffff, #c9fff0 55%, #71ddbd);
+      box-shadow: 0 12px 26px rgba(8, 168, 107, .22);
+      border: 2px solid #8be5c7;
+      color: #102344;
+      font-size: 56px;
+      font-weight: 900;
+    }
+    [data-theme="dark"] .exchange-orb {
+      background: radial-gradient(circle at 35% 28%, #1a473f, #11322c 65%, #0c2420);
+      border-color: #297a60;
+      color: #f7a600;
+    }
+
+    @keyframes subtleCoinBlink {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+      50% {
+        opacity: .68;
+        transform: translateY(-2px);
+      }
+    }
+
+    .near-coin {
+      position: absolute;
+      z-index: 2;
+      min-width: 40px;
+      height: 24px;
+      padding: 0 7px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+      border: 1px solid rgba(8, 168, 107, .35);
+      box-shadow: 0 3px 8px rgba(8, 168, 107, .14);
+      animation: subtleCoinBlink 3.4s ease-in-out infinite;
+    }
+    .near-btc { top: 2px; left: 2px; background: #fff0cc; color: #c97d00; animation-delay: 0s; }
+    .near-eth { top: 6px; right: 0px; background: #e7e2ff; color: #6346cf; animation-delay: .65s; }
+    .near-xrp { bottom: 6px; left: 0px; background: #e3fff3; color: #008556; animation-delay: 1.3s; }
+    .near-usdt { bottom: 2px; right: 2px; background: #fff5d6; color: #a86b00; animation-delay: 1.95s; }
+
+    /* CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) */
+    .editorial-flow {
+      display: grid;
+      gap: 22px;
       margin-top: 20px;
     }
 
-    .info-card {
-      padding: 22px 24px;
+    .editorial-section {
+      padding: 22px 26px;
       border-radius: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .05);
     }
+
     .card-heading {
       display: flex;
       align-items: center;
       gap: 10px;
       margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
       color: var(--heading);
       font-size: 17.5px;
       font-weight: 800;
@@ -566,14 +605,14 @@
     }
     [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
 
-    .info-card p {
+    .editorial-section p {
       margin: 0 0 11px;
       font-size: 13px;
-      line-height: 1.75;
+      line-height: 1.78;
       color: var(--body);
     }
-    .info-card p:last-child { margin-bottom: 0; }
-    .info-card code {
+    .editorial-section p:last-child { margin-bottom: 0; }
+    .editorial-section code {
       background: var(--surface-soft);
       padding: 2px 6px;
       border-radius: 5px;
@@ -583,22 +622,39 @@
       overflow-wrap: anywhere;
     }
 
-    .notice-box {
-      margin-top: 12px;
-      padding: 14px 16px;
+    .sub-heading {
+      margin: 16px 0 8px;
+      color: var(--heading);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .clean-list {
+      margin: 6px 0 12px;
+      padding-left: 20px;
+      display: grid;
+      gap: 7px;
+      font-size: 12.8px;
+      line-height: 1.72;
+      color: var(--body);
+    }
+    .clean-list li strong { color: var(--heading); }
+
+    /* WEBSITE GREEN THEME — ONLY FOR IMPORTANT / KEY INFORMATION */
+    .important-callout {
+      margin: 14px 0;
+      padding: 13px 16px;
       border-radius: 14px;
-      border: 1px solid #f3d38b;
-      background: #fff8e8;
-      color: #704d0b;
-      font-size: 12.2px;
-      line-height: 1.68;
+      border-left: 4px solid var(--green);
+      background: linear-gradient(110deg, var(--green-soft), color-mix(in srgb, var(--green-soft) 45%, var(--surface)));
+      color: var(--heading);
+      font-size: 12.5px;
+      line-height: 1.7;
     }
-    [data-theme="dark"] .notice-box {
-      background: #3c321d;
-      color: #f8df9f;
-      border-color: #78602b;
-    }
-    .notice-box a { color: inherit; font-weight: 800; text-decoration: underline; }
+    .important-callout strong { color: var(--green-dark); }
+    [data-theme="dark"] .important-callout strong { color: var(--green-light); }
+    .important-callout a { color: var(--green-dark); font-weight: 800; text-decoration: underline; }
+    [data-theme="dark"] .important-callout a { color: var(--green-light); }
 
     /* LIVE MARKET TICKER GRID */
     .market-controls {
@@ -705,85 +761,99 @@
       color: #ffffff;
     }
 
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-    .mini-box {
-      padding: 15px 16px;
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
-    }
-    [data-theme="dark"] .mini-box { border-color: #23654e; }
-    .mini-box h3 {
-      margin: 0 0 6px;
-      font-size: 13.5px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .mini-box p {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.68;
-      color: var(--body);
-    }
-
     .stats-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 12px;
-      background: var(--surface-soft);
+      background: var(--surface);
       border-radius: 14px;
       overflow: hidden;
-      border: 1px solid #b8f2d7;
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .stats-table { border-color: #23654e; }
     .stats-table th, .stats-table td {
       padding: 12px 16px;
       text-align: left;
       border-bottom: 1px solid var(--border);
       font-size: 12.5px;
-      line-height: 1.65;
+      line-height: 1.68;
     }
     .stats-table th {
-      background: var(--green-soft);
+      background: var(--surface-soft);
       color: var(--heading);
       font-weight: 800;
       width: 28%;
     }
     .stats-table td { color: var(--body); }
+    .stats-table tr.important-row th,
+    .stats-table tr.important-row td {
+      background: color-mix(in srgb, var(--green-soft) 55%, var(--surface));
+      color: var(--heading);
+    }
+    .stats-table tr.important-row th {
+      color: var(--green-dark);
+      border-left: 3px solid var(--green);
+    }
+    [data-theme="dark"] .stats-table tr.important-row th { color: var(--green-light); }
     .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    /* POPULAR COINS WITH SUBTLE BLINK */
+    .coin-stream {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .coin-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
+      animation: subtleCoinBlink 3.6s ease-in-out infinite;
+    }
+    .coin-chip.featured-coin {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-color: var(--green);
+    }
+    [data-theme="dark"] .coin-chip.featured-coin { color: var(--green-light); }
+    .coin-chip:nth-child(2n) { animation-delay: .5s; }
+    .coin-chip:nth-child(3n) { animation-delay: 1s; }
+    .coin-chip:nth-child(4n) { animation-delay: 1.5s; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .perm-pill {
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 800;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      border: 1px solid #b4edd6;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
 
-    .steps-list {
-      display: grid;
-      gap: 11px;
+    /* CLEAN STEP FLOW (NO HEAVY BOXES) */
+    .steps-flow {
       margin-top: 10px;
+      display: grid;
+      gap: 12px;
     }
-    .step-row {
+    .step-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      padding-bottom: 11px;
+      border-bottom: 1px dashed var(--border);
     }
-    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
     .step-num {
       width: 28px;
       height: 28px;
@@ -795,23 +865,23 @@
       color: #ffffff;
       font-size: 12px;
       font-weight: 800;
+      margin-top: 2px;
     }
     .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
-    .step-body p { margin: 0; font-size: 12px; line-height: 1.68; color: var(--body); }
+    .step-body p { margin: 0; font-size: 12.4px; line-height: 1.7; color: var(--body); }
 
-    /* RICH FAQ ACCORDION */
-    .faq-list { display: grid; gap: 11px; }
+    /* CLEAN FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; margin-top: 10px; }
     .faq-item {
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
-      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 13px 16px;
       transition: .18s ease;
     }
-    [data-theme="dark"] .faq-item { border-color: #23654e; }
-    .faq-item[open] {
-      background: var(--surface);
-      box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
+    .faq-item.important-faq {
+      border-left: 3.5px solid var(--green);
+      background: color-mix(in srgb, var(--green-soft) 35%, var(--surface));
     }
     .faq-item summary {
       font-size: 13.5px;
@@ -879,13 +949,22 @@
 
     .mobile-overlay { display: none; }
 
+    @media (prefers-reduced-motion: reduce) {
+      .near-coin, .coin-chip {
+        animation: none !important;
+      }
+    }
+
     @media(max-width: 1250px) {
       :root { --sidebar-width: 235px; }
       .header-brand { min-width: 185px; }
       .slot-arrow { display: none; }
     }
     @media(max-width: 1020px) {
-      .project-hero { grid-template-columns: 1fr; }
+      .project-hero { grid-template-columns: 1fr; padding: 20px 22px; }
+      .hero-art { min-height: 152px; }
+      .orb-cluster { width: 162px; height: 162px; }
+      .exchange-orb { width: 132px; height: 132px; font-size: 48px; }
     }
     @media(max-width: 760px) {
       :root { --sidebar-width: 258px; --sponsor-height: 56px; }
@@ -913,11 +992,13 @@
 
       main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
       .project-hero { padding: 18px; }
-      .hero-identity { flex-direction: column; gap: 12px; }
-      .mini-grid, .market-grid { grid-template-columns: 1fr; }
+      .editorial-section { padding: 18px 18px; }
+      .market-grid { grid-template-columns: 1fr; }
     }
     @media(max-width: 480px) {
       .header-brand-subtitle, .slot-megaphone { display: none; }
+      .orb-cluster { width: 152px; height: 152px; }
+      .exchange-orb { width: 124px; height: 124px; font-size: 44px; }
     }
   </style>
 </head>
@@ -1043,89 +1124,78 @@
       </nav>
 
       <main>
-        <!-- MINT-GREEN & WHITE HERO BANNER -->
+        <!-- COMPACT HERO BANNER: LEFT LINKS/BUTTONS + RIGHT COMPACT LOGO ORB WITH CLOSE SUBTLE BLINK COINS -->
         <section class="project-hero" aria-labelledby="exchangeTitle">
-          <div class="hero-identity">
-            <div class="hero-logo-box" aria-label="Bybit emblem">◈</div>
-            <div class="hero-title-group">
-              <div class="hero-badges">
-                <span class="badge-pill">📊 Spot Markets</span>
-                <span class="badge-pill">⚡ Derivatives</span>
-                <span class="badge-pill">👥 Copy Trading</span>
-                <span class="badge-pill">🛡️ Bybit Protect</span>
-              </div>
-              <h1 id="exchangeTitle" class="notranslate" translate="no">Bybit Exchange</h1>
-              <p>Explore Bybit's digital-asset trading platform. Learn about Spot markets, derivatives, Copy Trading, Bybit Earn, live public Spot quotes, account setup, and essential security practices.</p>
+          <div>
+            <span class="hero-eyebrow">✦ Centralized Exchange (CEX) Guide · Total Crypto Hub</span>
+            <h1 id="exchangeTitle" class="notranslate" translate="no">Bybit <span>Exchange</span></h1>
+            <p>Explore Bybit's digital-asset trading platform. Learn about Spot markets, derivatives, Copy Trading, Bybit Earn, live public Spot quotes, account setup, and essential security practices.</p>
+            <div class="hero-pills">
+              <span class="hero-pill">📊 Spot Markets</span>
+              <span class="hero-pill">⚡ Derivatives</span>
+              <span class="hero-pill">👥 Copy Trading</span>
+              <span class="hero-pill">🛡️ Bybit Protect</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn-hero-primary" href="https://www.bybit.com/en" target="_blank" rel="noopener noreferrer">Official Bybit ↗</a>
+              <a class="btn-hero-secondary" href="https://www.bybit.com/en/help-center/" target="_blank" rel="noopener noreferrer">Help Center ↗</a>
             </div>
           </div>
 
-          <!-- COMPACT PORTAL ACTION CARD -->
-          <div class="portal-action-card">
-            <div class="portal-meta-box">
-              <span class="portal-meta-label">OFFICIAL WEBSITE &amp; CUSTODY MODEL</span>
-              <span class="portal-meta-value notranslate" translate="no">bybit.com • Centralized Exchange (CEX)</span>
+          <div class="hero-art" aria-label="Bybit exchange emblem and popular coins">
+            <div class="orb-cluster">
+              <span class="near-coin near-btc" aria-hidden="true">₿ BTC</span>
+              <span class="near-coin near-eth" aria-hidden="true">◆ ETH</span>
+              <span class="near-coin near-xrp" aria-hidden="true">✕ XRP</span>
+              <span class="near-coin near-usdt" aria-hidden="true">💵 USDT</span>
+              <div class="exchange-orb" aria-hidden="true">◈</div>
             </div>
-
-            <a class="btn-launch-primary" href="https://www.bybit.com/en" target="_blank" rel="noopener noreferrer">
-              🌐 Visit Official Bybit →
-            </a>
           </div>
         </section>
 
-        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES -->
-        <div class="single-column-stack">
+        <!-- CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) -->
+        <div class="editorial-flow">
           <!-- 1. OVERVIEW -->
-          <article class="info-card" id="overview">
+          <article class="editorial-section" id="overview">
             <h2 class="card-heading">
               <span class="card-heading-icon">🏛️</span>
               1. Overview
             </h2>
             <p><strong>Bybit</strong> is a <strong>centralized cryptocurrency exchange (CEX)</strong> that offers digital-asset trading and related services. Its product categories include Spot trading, derivatives, options, Copy Trading, trading bots, Earn products, and P2P services. Bybit also describes a Unified Trading Account (UTA) that provides access to supported trading products through a unified account structure.</p>
             <p>Beginners should start by understanding Spot orders, fees, and account security—derivatives, margin, and options can magnify losses and are not beginner shortcuts. Availability and verification requirements depend on your country and account.</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>✅ Potential Advantages</h3>
-                <p>Multiple trading product categories, Spot markets and live market data, Unified Trading Account features, plus Bybit Learn and Help Center resources.</p>
-              </div>
-              <div class="mini-box">
-                <h3>⚠️ Things to Consider</h3>
-                <p>Exchange custody and platform risk, maker/taker fees, spreads and funding costs, regional product differences, and rapid liquidation risk on leverage.</p>
-              </div>
-            </div>
-            <div class="notice-box">
-              <strong>🇮🇳 Note for Users in India:</strong> Bybit announced on 8 September 2025 that it had restored full app access for users in India after its FIU-IND registration. This is a dated company announcement, not a guarantee that every product, payment method, or account feature is available now. Check the current Bybit country notice and follow applicable Indian tax and legal requirements before using the service. <a href="https://www.bybit.com/press/post/bybit-resumes-full-access-for-indian-users-reinforces-commitment-to-compliance-and-crypto-inclusion-blt7042bbc940598172" target="_blank" rel="noopener noreferrer">Read Bybit's India announcement ↗</a>
+
+            <h3 class="sub-heading">Potential Advantages</h3>
+            <ul class="clean-list">
+              <li><strong>Multi-Module Trading &amp; Learning:</strong> Access to multiple trading product categories, Spot markets and live market data, Unified Trading Account features, plus Bybit Learn and Help Center resources.</li>
+            </ul>
+
+            <h3 class="sub-heading">Things to Consider</h3>
+            <ul class="clean-list">
+              <li><strong>Custody, Fees &amp; Leverage Risk:</strong> Exchange custody and platform risk, maker/taker fees, spreads and funding costs, regional product differences, and rapid liquidation risk on leverage.</li>
+            </ul>
+
+            <div class="important-callout">
+              <strong>Note for Users in India:</strong> Bybit announced on 8 September 2025 that it had restored full app access for users in India after its FIU-IND registration. This is a dated company announcement, not a guarantee that every product, payment method, or account feature is available now. Check the current Bybit country notice and follow applicable Indian tax and legal requirements before using the service. <a href="https://www.bybit.com/press/post/bybit-resumes-full-access-for-indian-users-reinforces-commitment-to-compliance-and-crypto-inclusion-blt7042bbc940598172" target="_blank" rel="noopener noreferrer">Read Bybit's India announcement ↗</a>
             </div>
           </article>
 
           <!-- 2. KEY FEATURES -->
-          <article class="info-card" id="key-features">
+          <article class="editorial-section" id="key-features">
             <h2 class="card-heading">
               <span class="card-heading-icon">⭐</span>
               2. Key Features
             </h2>
             <p>Bybit provides Spot, derivatives, automated strategy, and passive savings modules inside its platform:</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>📈 Spot Trading</h3>
-                <p>Buy or sell supported crypto pairs using available order types—review the order book, quote, and fee before placing an order.</p>
-              </div>
-              <div class="mini-box">
-                <h3>⚖️ Derivatives &amp; Options</h3>
-                <p>Explore eligible contracts only after learning margin, funding, expiry, and liquidation risks; access varies by jurisdiction.</p>
-              </div>
-              <div class="mini-box">
-                <h3>👥 Copy Trading</h3>
-                <p>Eligible users may follow selected traders—past performance does not predict future results, and losses remain possible.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🌱 Bybit Earn</h3>
-                <p>Review eligible savings and on-chain yield products, lock-up terms, and asset risks carefully before subscribing.</p>
-              </div>
-            </div>
+            <ul class="clean-list">
+              <li><strong>Spot Trading:</strong> Buy or sell supported crypto pairs using available order types—review the order book, quote, and fee before placing an order.</li>
+              <li><strong>Derivatives &amp; Options:</strong> Explore eligible contracts only after learning margin, funding, expiry, and liquidation risks; access varies by jurisdiction.</li>
+              <li><strong>Copy Trading:</strong> Eligible users may follow selected traders—past performance does not predict future results, and losses remain possible.</li>
+              <li><strong>Bybit Earn:</strong> Review eligible savings and on-chain yield products, lock-up terms, and asset risks carefully before subscribing.</li>
+            </ul>
           </article>
 
           <!-- 3. FEE & LIVE MARKETS -->
-          <article class="info-card" id="fee">
+          <article class="editorial-section" id="fee">
             <h2 class="card-heading">
               <span class="card-heading-icon">💸</span>
               3. Fee &amp; Live Public Markets
@@ -1147,7 +1217,7 @@
 
             <table class="stats-table">
               <tbody>
-                <tr>
+                <tr class="important-row">
                   <th>Spot &amp; Derivatives Fees</th>
                   <td>Fees vary by product category, maker/taker role, VIP level, 30-day trading volume, and regional fee schedules.</td>
                 </tr>
@@ -1155,7 +1225,7 @@
                   <th>Funding &amp; Spreads</th>
                   <td>Perpetual contracts involve periodic funding payments, and instant conversions or P2P trades reflect quoted market spreads.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Deposit &amp; Withdrawal Fees</th>
                   <td>On-chain deposits are typically free on supported networks, while withdrawals carry dynamic blockchain network fees.</td>
                 </tr>
@@ -1167,12 +1237,29 @@
           </article>
 
           <!-- 4. SERVICES & NETWORKS -->
-          <article class="info-card" id="network-support">
+          <article class="editorial-section" id="network-support">
             <h2 class="card-heading">
               <span class="card-heading-icon">🌐</span>
-              4. Services &amp; Deposit/Withdrawal Networks
+              4. Services, Popular Assets &amp; Deposit/Withdrawal Networks
             </h2>
             <p>Bybit supports multiple trading and ecosystem modules alongside multi-chain crypto deposits and withdrawals—check your country notice for current product eligibility:</p>
+
+            <h3 class="sub-heading">Popular Spot Assets &amp; Pairs</h3>
+            <div class="coin-stream" aria-label="Popular crypto assets on Bybit">
+              <span class="coin-chip featured-coin">₿ Bitcoin (BTC)</span>
+              <span class="coin-chip featured-coin">◆ Ethereum (ETH)</span>
+              <span class="coin-chip featured-coin">✕ XRP</span>
+              <span class="coin-chip featured-coin">💵 USDT</span>
+              <span class="coin-chip">◎ Solana (SOL)</span>
+              <span class="coin-chip">🟡 BNB</span>
+              <span class="coin-chip">◈ Arbitrum</span>
+              <span class="coin-chip">● Base</span>
+            </div>
+
+            <div class="important-callout">
+              <strong>Transfer Network &amp; Memo/Tag Check:</strong> Always confirm that the deposit or withdrawal blockchain network (and Memo/Tag where required, such as XRP, XLM, or TON) matches exactly between Bybit and your receiving wallet.
+            </div>
+
             <div class="perm-pills">
               <span class="perm-pill">Spot Trading</span>
               <span class="perm-pill">Unified Trading Account</span>
@@ -1185,70 +1272,61 @@
               <span class="perm-pill">Bybit Pay</span>
               <span class="perm-pill">Bybit Wallet</span>
             </div>
-            <div class="notice-box">
-              <strong>⚠️ Transfer Network &amp; Memo/Tag Check:</strong> Always confirm that the deposit or withdrawal blockchain network (and Memo/Tag where required, such as XRP, XLM, or TON) matches exactly between Bybit and your receiving wallet.
-            </div>
           </article>
 
           <!-- 5. CUSTODY & CONTROL -->
-          <article class="info-card" id="custody-control">
+          <article class="editorial-section" id="custody-control">
             <h2 class="card-heading">
               <span class="card-heading-icon">🗝️</span>
               5. Custody &amp; Control
             </h2>
             <p>An exchange account on Bybit is <strong>custodial</strong> and differs from a self-custody wallet. Assets held in an exchange account are subject to the platform's custody, account, and withdrawal arrangements.</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>🏦 Bybit Exchange vs. Bybit Wallet</h3>
-                <p>Bybit Exchange holds assets under platform account custody, whereas the separate Bybit Wallet product has different self-custody and access characteristics—always verify which product you are using.</p>
-              </div>
-              <div class="mini-box">
-                <h3>📋 Regional &amp; Verification Terms</h3>
-                <p>Account verification (KYC), deposit/withdrawal limits, and country-specific restrictions govern how funds are accessed and withdrawn.</p>
-              </div>
-            </div>
+            <ul class="clean-list">
+              <li><strong>Bybit Exchange vs. Bybit Wallet:</strong> Bybit Exchange holds assets under platform account custody, whereas the separate Bybit Wallet product has different self-custody and access characteristics—always verify which product you are using.</li>
+              <li><strong>Regional &amp; Verification Terms:</strong> Account verification (KYC), deposit/withdrawal limits, and country-specific restrictions govern how funds are accessed and withdrawn.</li>
+            </ul>
           </article>
 
           <!-- 6. HOW TO USE -->
-          <article class="info-card" id="how-to-use">
+          <article class="editorial-section" id="how-to-use">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛠️</span>
               6. How to Use
             </h2>
             <p>Follow these general educational steps (registration, KYC, payment methods, and product access vary by country; follow the latest instructions on Bybit's official website):</p>
-            <div class="steps-list">
-              <div class="step-row">
+            <div class="steps-flow">
+              <div class="step-item">
                 <span class="step-num">1</span>
                 <div class="step-body">
-                  <h4>Open Official Website</h4>
+                  <h4>Step 1: Open Official Website</h4>
                   <p>Type <code>bybit.com</code> yourself into your browser and carefully verify the domain.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">2</span>
                 <div class="step-body">
-                  <h4>Check Your Region</h4>
+                  <h4>Step 2: Check Your Region</h4>
                   <p>Read the country notice and confirm which services and verification rules apply to your jurisdiction.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">3</span>
                 <div class="step-body">
-                  <h4>Register &amp; Verify</h4>
+                  <h4>Step 3: Register &amp; Verify</h4>
                   <p>Create your own account with a strong unique password and complete identity checks when required.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">4</span>
                 <div class="step-body">
-                  <h4>Enable Protection</h4>
+                  <h4>Step 4: Enable Protection</h4>
                   <p>Set up 2FA or a passkey, an anti-phishing code, and withdrawal address safeguards.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">5</span>
                 <div class="step-body">
-                  <h4>Learn Before Trading</h4>
+                  <h4>Step 5: Learn Before Trading</h4>
                   <p>Understand order types, fees, and risks—avoid leverage until you fully understand margin and liquidation.</p>
                 </div>
               </div>
@@ -1259,7 +1337,7 @@
           </article>
 
           <!-- 7. SECURITY -->
-          <article class="info-card" id="security">
+          <article class="editorial-section" id="security">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛡️</span>
               7. Security
@@ -1271,7 +1349,7 @@
                   <th>Use Bybit Protect</th>
                   <td>Review the security recommendations shown inside your account and enable available protection levels.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Enable 2FA or a Passkey</th>
                   <td>Activate authenticator-app 2FA or hardware/biometric passkeys, and secure your email and device as well.</td>
                 </tr>
@@ -1279,7 +1357,7 @@
                   <th>Set an Anti-Phishing Code</th>
                   <td>Configure an anti-phishing code and verify it appears in genuine Bybit messages; check links before signing in.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Withdrawal Safeguards &amp; Secrets</th>
                   <td>Use address-book whitelists or withdrawal locks where appropriate, and never share passwords, OTPs, 2FA codes, API secrets, or remote access.</td>
                 </tr>
@@ -1293,7 +1371,7 @@
           </article>
 
           <!-- 8. PLATFORMS -->
-          <article class="info-card" id="platforms">
+          <article class="editorial-section" id="platforms">
             <h2 class="card-heading">
               <span class="card-heading-icon">📱</span>
               8. Platforms
@@ -1311,22 +1389,16 @@
           </article>
 
           <!-- 9. GUIDE CHECKLIST -->
-          <article class="info-card" id="guide-checklist">
+          <article class="editorial-section" id="guide-checklist">
             <h2 class="card-heading">
               <span class="card-heading-icon">✅</span>
               9. Guide Checklist
             </h2>
             <p>Use this quick checklist and official learning links before placing orders, copying traders, or transferring assets on Bybit:</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>✔ Before Trading or Copy Trading</h3>
-                <p>Check order book liquidity, maker/taker fees, and regional rules; for Copy Trading, evaluate historical drawdowns and risk limits rather than headline returns.</p>
-              </div>
-              <div class="mini-box">
-                <h3>✔ Before Depositing or Withdrawing</h3>
-                <p>Confirm the exact blockchain network and Memo/Tag if needed, verify the destination address, and test with a small transfer first.</p>
-              </div>
-            </div>
+            <ul class="clean-list">
+              <li><strong>Before Trading or Copy Trading:</strong> Check order book liquidity, maker/taker fees, and regional rules; for Copy Trading, evaluate historical drawdowns and risk limits rather than headline returns.</li>
+              <li><strong>Before Depositing or Withdrawing:</strong> Confirm the exact blockchain network and Memo/Tag if needed, verify the destination address, and test with a small transfer first.</li>
+            </ul>
             <div class="doc-links-row">
               <a class="doc-link-pill" href="https://www.bybit.com/en" target="_blank" rel="noopener noreferrer">🌐 Visit Official Bybit →</a>
               <a class="doc-link-pill" href="https://www.bybit.com/en/learn/" target="_blank" rel="noopener noreferrer">🎓 Explore Bybit Learn →</a>
@@ -1335,13 +1407,13 @@
           </article>
 
           <!-- 10. FAQ -->
-          <article class="info-card" id="faq">
+          <article class="editorial-section" id="faq">
             <h2 class="card-heading">
               <span class="card-heading-icon">❓</span>
               10. FAQ
             </h2>
             <div class="faq-list">
-              <details class="faq-item" open>
+              <details class="faq-item important-faq" open>
                 <summary>1. Is Bybit a wallet or an exchange?</summary>
                 <div class="faq-body">
                   <p><strong>What it is:</strong> This page covers Bybit Exchange, a centralized exchange (CEX). The separate Bybit Wallet product has different custody and access characteristics.</p>
@@ -1373,7 +1445,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>5. Is Copy Trading guaranteed to make profit?</summary>
                 <div class="faq-body">
                   <p><strong>What to know:</strong> No—Copy Trading can lose money, and a lead trader's past results do not guarantee future performance.</p>
@@ -1415,7 +1487,7 @@
 
   <script>
     function goBackToList() {
-      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
+      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname) && window.history.length > 1) {
         window.history.back();
       } else {
         window.location.href = '../exchange-pages/exchanges.html';
@@ -1451,7 +1523,7 @@
     function initScrollSpyTabs() {
       const tabs = Array.from(document.querySelectorAll('.jump-tab'));
       const jumpInner = document.getElementById('jumpInner');
-      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      const sections = Array.from(document.querySelectorAll('.editorial-flow > article[id]'));
       if (!tabs.length || !sections.length) return;
 
       const tabById = new Map();
