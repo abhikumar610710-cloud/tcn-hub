@@ -398,7 +398,7 @@
       padding: 22px clamp(16px, 2.4vw, 32px) 42px;
     }
 
-    /* HERO BOX: LEFT LINKS/BUTTONS + RIGHT LARGE LOGO ORB */
+    /* HERO BANNER: LEFT LINKS/BUTTONS + RIGHT LARGE LOGO ORB */
     .project-hero {
       position: relative;
       overflow: hidden;
@@ -509,23 +509,24 @@
     [data-theme="dark"] .btn-hero-secondary { border-color: #245f4d; }
     .btn-hero-primary:hover, .btn-hero-secondary:hover { transform: translateY(-2px); }
 
-    /* RIGHT SIDE LARGE LOGO ORB */
+    /* RIGHT SIDE LARGE LOGO ORB + FLOATING/BLINKING POPULAR COINS */
     .hero-art {
       position: relative;
       z-index: 1;
       display: grid;
       place-items: center;
-      min-height: 220px;
+      min-height: 235px;
     }
     .fox-orb {
-      width: 210px;
-      height: 210px;
+      width: 205px;
+      height: 205px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: radial-gradient(circle at 35% 28%, #ffffff, #c9fff0 55%, #71ddbd);
       box-shadow: 0 18px 35px rgba(8, 168, 107, .25);
       border: 2px solid #8be5c7;
+      animation: orbGentleFloat 4.2s ease-in-out infinite;
     }
     [data-theme="dark"] .fox-orb {
       background: radial-gradient(circle at 35% 28%, #1a473f, #11322c 65%, #0c2420);
@@ -537,6 +538,36 @@
       object-fit: contain;
       filter: drop-shadow(0 12px 10px rgba(23, 77, 60, .25));
     }
+
+    @keyframes orbGentleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes coinFloatBlink {
+      0%, 100% {
+        transform: translateY(0px) scale(1);
+        opacity: 1;
+        box-shadow: 0 6px 16px rgba(8, 168, 107, .22);
+      }
+      50% {
+        transform: translateY(-7px) scale(1.06);
+        opacity: .72;
+        box-shadow: 0 10px 22px rgba(8, 168, 107, .38);
+      }
+    }
+
+    @keyframes pillBlinkWiggle {
+      0%, 100% {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-3px);
+        opacity: .78;
+      }
+    }
+
     .float-coin {
       position: absolute;
       border-radius: 50%;
@@ -544,34 +575,41 @@
       height: 46px;
       display: grid;
       place-items: center;
-      font-size: 22px;
+      font-size: 13px;
       font-weight: 900;
-      box-shadow: 0 6px 15px rgba(23, 77, 60, .2);
+      letter-spacing: -.3px;
+      border: 1.5px solid rgba(8, 168, 107, .35);
+      animation: coinFloatBlink 2.8s ease-in-out infinite;
     }
-    .eth { top: 14px; left: 6%; background: #e7e2ff; color: #7155d9; }
-    .btc { right: 4%; top: 44px; background: #fff0cc; color: #e99a12; }
+    .coin-btc { top: 8px; left: 4%; background: #fff0cc; color: #c97d00; animation-delay: 0s; }
+    .coin-sol { top: 14px; right: 2%; background: #e6fff7; color: #058a63; animation-delay: .55s; }
+    .coin-eth { bottom: 14px; left: 5%; background: #e7e2ff; color: #6346cf; animation-delay: 1.1s; }
+    .coin-base { bottom: 8px; right: 4%; background: #e3fff3; color: #008556; animation-delay: 1.65s; }
 
-    /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
-    .single-column-stack {
+    /* EDITORIAL FLOW (BOX-FREE CLEAN SECTIONS LIKE MAJOR WEBSITES) */
+    .editorial-flow {
       display: grid;
-      gap: 18px;
-      margin-top: 20px;
+      gap: 28px;
+      margin-top: 24px;
     }
 
-    .info-card {
-      padding: 22px 24px;
-      border-radius: 20px;
+    .editorial-section {
+      padding: 24px 28px;
+      border-radius: 22px;
       background: var(--surface);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .05);
     }
+
     .card-heading {
       display: flex;
       align-items: center;
       gap: 10px;
       margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
       color: var(--heading);
-      font-size: 17.5px;
+      font-size: 18px;
       font-weight: 800;
       letter-spacing: -.3px;
     }
@@ -589,14 +627,14 @@
     }
     [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
 
-    .info-card p {
-      margin: 0 0 11px;
-      font-size: 13px;
-      line-height: 1.75;
+    .editorial-section p {
+      margin: 0 0 12px;
+      font-size: 13.5px;
+      line-height: 1.8;
       color: var(--body);
     }
-    .info-card p:last-child { margin-bottom: 0; }
-    .info-card code {
+    .editorial-section p:last-child { margin-bottom: 0; }
+    .editorial-section code {
       background: var(--surface-soft);
       padding: 2px 6px;
       border-radius: 5px;
@@ -606,27 +644,51 @@
       overflow-wrap: anywhere;
     }
 
-    .notice-box {
-      margin-top: 14px;
-      padding: 13px 16px;
-      border-radius: 14px;
-      border: 1px solid #f3d38b;
-      background: #fff8e8;
-      color: #704d0b;
-      font-size: 12.2px;
-      line-height: 1.68;
+    .sub-heading {
+      margin: 18px 0 8px;
+      color: var(--heading);
+      font-size: 14.5px;
+      font-weight: 800;
     }
-    [data-theme="dark"] .notice-box {
-      background: #3c321d;
-      color: #f8df9f;
-      border-color: #78602b;
+
+    .clean-list {
+      margin: 8px 0 14px;
+      padding-left: 20px;
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--body);
+    }
+    .clean-list li strong { color: var(--heading); }
+
+    /* WEBSITE GREEN THEME — ONLY FOR IMPORTANT / KEY INFORMATION */
+    .important-callout {
+      margin: 16px 0;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border-left: 4px solid var(--green);
+      background: linear-gradient(110deg, var(--green-soft), color-mix(in srgb, var(--green-soft) 45%, var(--surface)));
+      color: var(--heading);
+      font-size: 12.8px;
+      line-height: 1.72;
+    }
+    [data-theme="dark"] .important-callout {
+      background: linear-gradient(110deg, var(--green-soft), var(--surface-soft));
+      color: var(--heading);
+    }
+    .important-callout strong {
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .important-callout strong {
+      color: var(--green-light);
     }
 
     .doc-links-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 16px;
     }
     .doc-link-pill {
       display: inline-flex;
@@ -648,74 +710,70 @@
       color: #ffffff;
     }
 
-    /* STRUCTURED INNER BOXES */
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-    .mini-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-    .mini-box {
-      padding: 16px 18px;
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
-    }
-    [data-theme="dark"] .mini-box { border-color: #23654e; }
-    .mini-box h3 {
-      margin: 0 0 8px;
-      font-size: 13.5px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .mini-box p {
-      margin: 0 0 6px;
-      font-size: 12.2px;
-      line-height: 1.68;
-      color: var(--body);
-    }
-    .mini-box p:last-child { margin-bottom: 0; }
-    .box-list {
-      margin: 0;
-      padding-left: 18px;
-      display: grid;
-      gap: 6px;
-      font-size: 12.2px;
-      line-height: 1.62;
-      color: var(--body);
-    }
-
     .stats-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 12px;
-      background: var(--surface-soft);
+      background: var(--surface);
       border-radius: 14px;
       overflow: hidden;
-      border: 1px solid #b8f2d7;
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .stats-table { border-color: #23654e; }
     .stats-table th, .stats-table td {
       padding: 12px 16px;
       text-align: left;
       border-bottom: 1px solid var(--border);
-      font-size: 12.5px;
-      line-height: 1.65;
+      font-size: 12.8px;
+      line-height: 1.7;
     }
     .stats-table th {
-      background: var(--green-soft);
+      background: var(--surface-soft);
       color: var(--heading);
       font-weight: 800;
       width: 28%;
     }
     .stats-table td { color: var(--body); }
+    .stats-table tr.important-row th,
+    .stats-table tr.important-row td {
+      background: color-mix(in srgb, var(--green-soft) 55%, var(--surface));
+      color: var(--heading);
+    }
+    .stats-table tr.important-row th {
+      color: var(--green-dark);
+      border-left: 3px solid var(--green);
+    }
+    [data-theme="dark"] .stats-table tr.important-row th { color: var(--green-light); }
     .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+    /* POPULAR COINS & NETWORKS WITH SUBTLE BLINK / MOTION */
+    .coin-stream {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 12px 0 16px;
+    }
+    .coin-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
+      animation: pillBlinkWiggle 3.2s ease-in-out infinite;
+    }
+    .coin-chip.featured-coin {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-color: var(--green);
+    }
+    [data-theme="dark"] .coin-chip.featured-coin { color: var(--green-light); }
+    .coin-chip:nth-child(2n) { animation-delay: .45s; }
+    .coin-chip:nth-child(3n) { animation-delay: .9s; }
+    .coin-chip:nth-child(4n) { animation-delay: 1.35s; }
 
     .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .perm-pill {
@@ -723,56 +781,56 @@
       border-radius: 999px;
       font-size: 11px;
       font-weight: 800;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      border: 1px solid #b4edd6;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
 
-    /* STEP-BY-STEP BOXES */
-    .steps-list {
-      display: grid;
-      gap: 12px;
+    /* CLEAN STEP FLOW (NO HEAVY BOXES) */
+    .steps-flow {
       margin-top: 12px;
+      display: grid;
+      gap: 14px;
     }
-    .step-row {
+    .step-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 15px 18px;
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--border);
     }
-    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
     .step-num {
-      width: 30px;
-      height: 30px;
-      flex: 0 0 30px;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--green), var(--green-dark));
       color: #ffffff;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 800;
+      margin-top: 2px;
     }
-    .step-body h4 { margin: 0 0 5px; font-size: 13.5px; font-weight: 800; color: var(--heading); }
-    .step-body p { margin: 0; font-size: 12.3px; line-height: 1.68; color: var(--body); }
+    .step-body h4 { margin: 0 0 4px; font-size: 13.5px; font-weight: 800; color: var(--heading); }
+    .step-body p { margin: 0; font-size: 12.8px; line-height: 1.75; color: var(--body); }
 
-    /* RICH FAQ ACCORDION */
-    .faq-list { display: grid; gap: 11px; }
+    /* CLEAN FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; margin-top: 10px; }
     .faq-item {
-      border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
-      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 13px 16px;
       transition: .18s ease;
     }
-    [data-theme="dark"] .faq-item { border-color: #23654e; }
-    .faq-item[open] {
-      background: var(--surface);
-      box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
+    .faq-item.important-faq {
+      border-left: 3.5px solid var(--green);
+      background: color-mix(in srgb, var(--green-soft) 35%, var(--surface));
     }
     .faq-item summary {
       font-size: 13.5px;
@@ -803,8 +861,8 @@
     }
     .faq-body p {
       margin: 0;
-      font-size: 12.3px;
-      line-height: 1.72;
+      font-size: 12.6px;
+      line-height: 1.75;
       color: var(--body);
     }
 
@@ -840,6 +898,12 @@
 
     .mobile-overlay { display: none; }
 
+    @media (prefers-reduced-motion: reduce) {
+      .fox-orb, .float-coin, .coin-chip {
+        animation: none !important;
+      }
+    }
+
     @media(max-width: 1250px) {
       :root { --sidebar-width: 235px; }
       .header-brand { min-width: 185px; }
@@ -847,9 +911,8 @@
     }
     @media(max-width: 1020px) {
       .project-hero { grid-template-columns: 1fr; padding: 26px; }
-      .hero-art { min-height: 185px; }
+      .hero-art { min-height: 195px; }
       .fox-orb { width: 175px; height: 175px; }
-      .mini-grid-3 { grid-template-columns: 1fr 1fr; }
     }
     @media(max-width: 760px) {
       :root { --sidebar-width: 258px; --sponsor-height: 56px; }
@@ -877,7 +940,8 @@
 
       main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
       .project-hero { padding: 20px 18px; }
-      .mini-grid, .mini-grid-3 { grid-template-columns: 1fr; }
+      .editorial-section { padding: 18px 18px; }
+      .float-coin { width: 40px; height: 40px; font-size: 11px; }
     }
     @media(max-width: 480px) {
       .header-brand-subtitle, .slot-megaphone { display: none; }
@@ -1007,12 +1071,12 @@
       </nav>
 
       <main>
-        <!-- HERO BANNER: LEFT LINKS/BUTTONS + RIGHT LARGE LOGO ORB -->
+        <!-- HERO BANNER: LEFT LINKS/BUTTONS + RIGHT LARGE LOGO ORB WITH FLOATING/BLINKING POPULAR COINS -->
         <section class="project-hero" aria-labelledby="walletTitle">
           <div>
             <span class="hero-eyebrow">✦ Web3 Wallet Guide · Total Crypto Hub</span>
             <h1 id="walletTitle" class="notranslate" translate="no">MetaMask <span>Wallet</span></h1>
-            <p>Your gateway to Web3 — explore a self-custody wallet for managing supported crypto assets, tokens, NFTs, and connecting to decentralized applications.</p>
+            <p>Your gateway to Web3 — explore a self-custody wallet for managing supported crypto assets, popular tokens, NFTs, and connecting to decentralized applications.</p>
             <div class="hero-pills">
               <span class="hero-pill">✓ Self-Custody</span>
               <span class="hero-pill">🌐 Multi-Network</span>
@@ -1025,264 +1089,244 @@
             </div>
           </div>
 
-          <div class="hero-art" aria-label="MetaMask wallet illustration">
-            <span class="float-coin eth" aria-hidden="true">◆</span>
-            <span class="float-coin btc" aria-hidden="true">₿</span>
+          <div class="hero-art" aria-label="MetaMask wallet and popular coins">
+            <span class="float-coin coin-btc" aria-hidden="true">₿ BTC</span>
+            <span class="float-coin coin-sol" aria-hidden="true">◎ SOL</span>
+            <span class="float-coin coin-eth" aria-hidden="true">◆ ETH</span>
+            <span class="float-coin coin-base" aria-hidden="true">● BASE</span>
             <div class="fox-orb">
               <img src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" alt="MetaMask fox logo" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;font-size:100px&quot;>🦊</span>')">
             </div>
           </div>
         </section>
 
-        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES -->
-        <div class="single-column-stack">
+        <!-- CLEAN EDITORIAL FLOW (10 SECTIONS WITHOUT HEAVY BOX CLUTTER) -->
+        <div class="editorial-flow">
           <!-- 1. OVERVIEW -->
-          <article class="info-card" id="overview">
+          <article class="editorial-section" id="overview">
             <h2 class="card-heading">
               <span class="card-heading-icon">🦊</span>
               1. Overview — What is MetaMask?
             </h2>
             <p><strong>MetaMask</strong> is a widely used <strong>self-custody (non-custodial) cryptocurrency wallet</strong> designed for managing digital assets and connecting to decentralized applications (DApps) across Ethereum and EVM-compatible blockchains. Available both as a browser extension and a mobile app, it lets you hold tokens, view NFTs, swap assets, and sign Web3 transactions.</p>
-            <p>Because MetaMask is non-custodial, you generate and hold your own 12-word Secret Recovery Phrase. Neither MetaMask nor any third party stores your funds—your assets live directly on the blockchain, while MetaMask acts as your secure key manager and Web3 interface.</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>✅ Key Advantages</h3>
-                <ul class="box-list">
-                  <li>Full self-custody control over your private keys and wallet accounts.</li>
-                  <li>Seamless one-click connection with thousands of DeFi, NFT, and Web3 DApps.</li>
-                  <li>Available across both desktop browsers and iOS/Android mobile devices.</li>
-                  <li>Supports multiple EVM networks, custom RPCs, and hardware wallet pairing.</li>
-                </ul>
-              </div>
-              <div class="mini-box">
-                <h3>⚠️ Things to Consider</h3>
-                <ul class="box-list">
-                  <li>You are 100% responsible for backing up your 12-word Secret Recovery Phrase offline.</li>
-                  <li>Phishing websites and fake browser extensions often imitate MetaMask.</li>
-                  <li>On-chain blockchain transfers are irreversible once confirmed.</li>
-                  <li>Every on-chain transaction requires native gas fees (e.g., ETH, POL, BNB).</li>
-                </ul>
-              </div>
-            </div>
-            <div class="notice-box">
-              <strong>💡 Quick Fact:</strong> MetaMask is a wallet interface, not a bank account. Your coins and tokens are recorded on the public blockchain ledger, while your wallet stores the cryptographic keys needed to authorize transfers.
+            <p>Because MetaMask is non-custodial, you generate and hold your own 12-word Secret Recovery Phrase. Neither MetaMask nor any third party stores your funds—your assets live directly on the public blockchain, while MetaMask acts as your key manager and Web3 interface.</p>
+
+            <h3 class="sub-heading">Why Users Choose MetaMask</h3>
+            <ul class="clean-list">
+              <li><strong>Direct Self-Custody:</strong> You maintain ownership of your private keys and wallet accounts rather than relying on a centralized exchange.</li>
+              <li><strong>Broad DApp Compatibility:</strong> Connect smoothly to DeFi platforms, NFT marketplaces, and Web3 apps across Ethereum and EVM networks.</li>
+              <li><strong>Cross-Device Access:</strong> Use MetaMask across supported desktop browsers as well as Android and iOS mobile devices.</li>
+              <li><strong>Flexible Network &amp; Hardware Support:</strong> Switch between built-in networks, add custom EVM RPCs, and pair hardware wallets like Ledger or Trezor.</li>
+            </ul>
+
+            <h3 class="sub-heading">Practical Limitations to Keep in Mind</h3>
+            <ul class="clean-list">
+              <li><strong>Backup Responsibility:</strong> Losing your 12-word Secret Recovery Phrase means losing access to wallet recovery—no support team can reset it.</li>
+              <li><strong>Phishing &amp; Impersonation Risks:</strong> Fake extensions and lookalike websites frequently target wallet users.</li>
+              <li><strong>Irreversible On-Chain Transfers:</strong> Once a blockchain transaction confirms on-chain, it cannot simply be reversed.</li>
+            </ul>
+
+            <div class="important-callout">
+              <strong>Key Fact:</strong> MetaMask is a non-custodial wallet interface, not a bank account. Your coins and tokens live on the blockchain ledger, while your device holds the cryptographic keys needed to authorize transactions.
             </div>
           </article>
 
           <!-- 2. KEY FEATURES -->
-          <article class="info-card" id="key-features">
+          <article class="editorial-section" id="key-features">
             <h2 class="card-heading">
               <span class="card-heading-icon">⭐</span>
               2. Key Features
             </h2>
-            <p>MetaMask combines everyday crypto storage with built-in Web3 interaction and portfolio management tools:</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>🛡️ Self-Custody Key Vault</h3>
-                <p>Your private keys are encrypted locally on your device with your wallet password. You can create multiple accounts under one Secret Recovery Phrase or import existing private keys.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🌐 Multi-Network &amp; Custom RPC</h3>
-                <p>Switch effortlessly between Ethereum Mainnet, Layer-2 rollups, and sidechains—or add any custom EVM-compatible blockchain using its Network Name, RPC URL, and Chain ID.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🔁 Built-In Swaps &amp; Bridge</h3>
-                <p>Compare quotes across decentralized exchanges (DEXs) directly inside MetaMask to swap tokens or bridge assets across supported networks without manually hunting for liquidity pools.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🧩 DApp Connect &amp; Snaps</h3>
-                <p>Connect safely to DeFi protocols, Web3 games, and NFT marketplaces, review human-readable signature prompts, and extend wallet features via MetaMask Snaps.</p>
-              </div>
-              <div class="mini-box">
-                <h3>📊 MetaMask Portfolio</h3>
-                <p>Track token balances, multi-chain holdings, staking options, and transaction history across multiple accounts from a single dashboard view.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🔒 Hardware Wallet Pairing</h3>
-                <p>Connect cold storage devices such as Ledger, Trezor, Keystone, or Lattice1 so private keys stay offline while using MetaMask's Web3 interface.</p>
-              </div>
-            </div>
+            <p>MetaMask brings together account management, network switching, token swaps, and Web3 security checks inside one workspace:</p>
+            <ul class="clean-list">
+              <li><strong>Self-Custody Key Vault:</strong> Keys are encrypted locally with your wallet password, allowing you to manage multiple accounts or import private keys.</li>
+              <li><strong>Multi-Network &amp; Custom RPC:</strong> Switch across Ethereum and EVM networks or add custom RPC endpoints with Network Name, RPC URL, and Chain ID.</li>
+              <li><strong>Built-In Swaps &amp; Cross-Chain Bridge:</strong> Compare swap routes or bridge supported assets directly within the wallet interface with transparent quotes.</li>
+              <li><strong>DApp Connectivity &amp; Snaps:</strong> Connect to Web3 applications, inspect transaction details before signing, and extend functionality through MetaMask Snaps.</li>
+              <li><strong>Portfolio &amp; Hardware Pairing:</strong> Track balances across accounts and connect hardware wallets such as Ledger, Trezor, Keystone, or Lattice1 for extra signing security.</li>
+            </ul>
           </article>
 
           <!-- 3. FEE -->
-          <article class="info-card" id="fee">
+          <article class="editorial-section" id="fee">
             <h2 class="card-heading">
               <span class="card-heading-icon">💸</span>
               3. Fee &amp; Gas Structure
             </h2>
-            <p>Downloading and creating a MetaMask wallet is completely free, while blockchain transactions and optional built-in services carry network or provider fees:</p>
+            <p>Downloading and creating a MetaMask wallet is free, while on-chain transactions and optional swap/on-ramp features involve network or service costs:</p>
             <table class="stats-table">
               <tbody>
                 <tr>
-                  <th>Wallet Download &amp; Setup</th>
-                  <td><strong>Free (0 Fee)</strong> — Creating unlimited wallet accounts and receiving crypto transfers incurs no MetaMask charge.</td>
+                  <th>Wallet Setup &amp; Receiving</th>
+                  <td><strong>Free (0 Fee)</strong> — Installing MetaMask, creating wallet accounts, and receiving supported transfers carry no wallet fee.</td>
+                </tr>
+                <tr class="important-row">
+                  <th>Network Gas Fees</th>
+                  <td>Every on-chain transfer, approval, or contract interaction requires gas paid in that chain's native coin (such as ETH, POL, BNB, or AVAX). Always keep native gas available before sending tokens.</td>
                 </tr>
                 <tr>
-                  <th>Blockchain Network Gas Fees</th>
-                  <td>Every on-chain send, token approval, or smart-contract call requires gas paid in the network's native coin (e.g., ETH on Ethereum, POL on Polygon, BNB on BNB Chain). You can adjust gas speed (Low, Market, Aggressive) before confirming.</td>
+                  <th>Swaps &amp; Bridge Quotes</th>
+                  <td>Built-in swaps and bridges display quotes, estimated gas, and any applicable service/provider fees before you confirm.</td>
                 </tr>
                 <tr>
-                  <th>MetaMask Swaps &amp; Bridge</th>
-                  <td>Using the built-in Swap or Cross-Chain Bridge aggregator includes a transparent service fee (typically around 0.875% on Swaps) shown clearly in the quote preview alongside estimated gas.</td>
-                </tr>
-                <tr>
-                  <th>Fiat Buy / Sell On-Ramps</th>
-                  <td>Buying crypto with cards, UPI/bank transfers, or local payment providers routes through third-party partners whose processing fees and exchange spreads are displayed prior to checkout.</td>
+                  <th>Buy / Sell On-Ramps</th>
+                  <td>Third-party payment or fiat on-ramp providers show their own processing rates and spreads during checkout.</td>
                 </tr>
               </tbody>
             </table>
           </article>
 
           <!-- 4. NETWORK SUPPORT -->
-          <article class="info-card" id="network-support">
+          <article class="editorial-section" id="network-support">
             <h2 class="card-heading">
               <span class="card-heading-icon">🌐</span>
-              4. Network Support &amp; Token Standards
+              4. Network Support &amp; Popular Coins
             </h2>
-            <p>MetaMask natively supports Ethereum and all <strong>EVM (Ethereum Virtual Machine)</strong> blockchains, including ERC-20 fungible tokens and ERC-721 / ERC-1155 NFTs:</p>
+            <p>MetaMask is built primarily around <strong>Ethereum and EVM-compatible blockchains</strong> (ERC-20 tokens and ERC-721 / ERC-1155 NFTs), while also supporting broader ecosystem tokens/assets across major chains and optional extensions or wraps/bridges where applicable. Below are key networks and widely tracked major coins to keep on your radar:</p>
+
+            <h3 class="sub-heading">Popular Coins &amp; Major Ecosystems</h3>
+            <div class="coin-stream" aria-label="Popular cryptocurrencies and networks">
+              <span class="coin-chip featured-coin">₿ Bitcoin (BTC)</span>
+              <span class="coin-chip featured-coin">◆ Ethereum (ETH)</span>
+              <span class="coin-chip featured-coin">◎ Solana (SOL)</span>
+              <span class="coin-chip featured-coin">● Base (ETH / Base)</span>
+              <span class="coin-chip">🟡 BNB Chain (BNB)</span>
+              <span class="coin-chip">🟣 Polygon (POL)</span>
+              <span class="coin-chip">🔵 Arbitrum (ARB)</span>
+              <span class="coin-chip">🔴 Optimism (OP)</span>
+              <span class="coin-chip">🔺 Avalanche (AVAX)</span>
+              <span class="coin-chip">💵 USDT &amp; USDC</span>
+            </div>
+
+            <p><strong>Important Chain &amp; Asset Note:</strong> Native <strong>Bitcoin (BTC)</strong> and native <strong>Solana (SOL)</strong> operate on non-EVM blockchains—so verify exact chain compatibility, wrapped/bridged token representations, or supported Snap/multi-chain features before transferring assets, and always match the exact network on both sender and receiver.</p>
+
+            <h3 class="sub-heading">EVM Networks &amp; Standards</h3>
             <div class="perm-pills">
               <span class="perm-pill">Ethereum Mainnet (ERC-20)</span>
-              <span class="perm-pill">Polygon PoS</span>
-              <span class="perm-pill">BNB Smart Chain (BEP-20)</span>
+              <span class="perm-pill">Base</span>
               <span class="perm-pill">Arbitrum One</span>
               <span class="perm-pill">Optimism (OP Mainnet)</span>
-              <span class="perm-pill">Base</span>
+              <span class="perm-pill">BNB Smart Chain (BEP-20)</span>
+              <span class="perm-pill">Polygon PoS</span>
               <span class="perm-pill">Avalanche C-Chain</span>
               <span class="perm-pill">Linea</span>
               <span class="perm-pill">zkSync Era</span>
               <span class="perm-pill">Scroll</span>
-              <span class="perm-pill">Sepolia &amp; Testnets</span>
-              <span class="perm-pill">Custom EVM RPC Networks</span>
-            </div>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>🪙 Token Standards Supported</h3>
-                <p>Hold and transfer native gas coins (ETH, POL, BNB, AVAX), ERC-20 tokens (USDT, USDC, LINK, UNI), and NFT collectibles across supported EVM chains.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🔌 Non-EVM Networks via Snaps</h3>
-                <p>While MetaMask is built primarily for EVM chains, optional MetaMask Snaps extensions allow interoperability with select non-EVM ecosystems.</p>
-              </div>
+              <span class="perm-pill">Custom EVM RPC</span>
             </div>
           </article>
 
           <!-- 5. CUSTODY & CONTROL -->
-          <article class="info-card" id="custody-control">
+          <article class="editorial-section" id="custody-control">
             <h2 class="card-heading">
               <span class="card-heading-icon">🗝️</span>
               5. Custody &amp; Control Model
             </h2>
-            <p>MetaMask follows a strict <strong>non-custodial (self-custody)</strong> architecture. Understanding how your keys, password, and recovery phrase work is essential for protecting your funds:</p>
-            <div class="mini-grid-3">
-              <div class="mini-box">
-                <h3>1️⃣ Secret Recovery Phrase</h3>
-                <p>A 12-word master backup generated when you create your wallet. Anyone with these 12 words can restore and control all accounts derived from it on any device.</p>
-              </div>
-              <div class="mini-box">
-                <h3>2️⃣ Local Wallet Password</h3>
-                <p>Unlocks the MetaMask app or extension on your current device only. If you forget your password, you can reset it using your 12-word Secret Recovery Phrase.</p>
-              </div>
-              <div class="mini-box">
-                <h3>3️⃣ Account Private Keys</h3>
-                <p>Each individual wallet address (Account 1, Account 2, etc.) has its own unique cryptographic private key used to sign transactions on-chain.</p>
-              </div>
+            <p>Because MetaMask is non-custodial, control stays directly with your wallet credentials:</p>
+            <ul class="clean-list">
+              <li><strong>12-Word Secret Recovery Phrase:</strong> The master backup that restores all accounts derived from your wallet. Anyone holding these words can access those accounts.</li>
+              <li><strong>Local Wallet Password:</strong> Unlocks MetaMask on your current device; if forgotten, you can reset it using your 12-word Secret Recovery Phrase.</li>
+              <li><strong>Individual Account Private Keys:</strong> Each account address has cryptographic keys used to sign blockchain transactions.</li>
+            </ul>
+            <div class="important-callout">
+              <strong>Important Custody Rule:</strong> Never store your Secret Recovery Phrase in cloud notes, screenshots, email drafts, or chat apps, and never share it with anyone claiming to offer help.
             </div>
           </article>
 
           <!-- 6. HOW TO USE -->
-          <article class="info-card" id="how-to-use">
+          <article class="editorial-section" id="how-to-use">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛠️</span>
-              6. How to Set Up &amp; Use MetaMask (Step-by-Step)
+              6. How to Set Up &amp; Use MetaMask
             </h2>
-            <p>Follow these step-by-step instructions to create your MetaMask wallet, back it up properly, and start interacting with Web3 safely:</p>
-            <div class="steps-list">
-              <div class="step-row">
+            <p>Follow these steps from official sources to set up your wallet and begin transacting safely:</p>
+            <div class="steps-flow">
+              <div class="step-item">
                 <span class="step-num">1</span>
                 <div class="step-body">
-                  <h4>Step 1: Open the Official MetaMask Website</h4>
-                  <p>Type <code>https://metamask.io</code> directly into your browser address bar. Avoid clicking sponsored search ads to protect yourself from clone websites.</p>
+                  <h4>Open the Official Website</h4>
+                  <p>Type <code>https://metamask.io</code> directly into your browser rather than clicking unverified ads or links.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">2</span>
                 <div class="step-body">
-                  <h4>Step 2: Install the Official Extension or Mobile App</h4>
-                  <p>Click <strong>Download</strong> and select your browser (Chrome, Brave, Firefox, Edge) or mobile store (Google Play / Apple App Store), then pin the extension for quick access.</p>
+                  <h4>Install the Official Extension or Mobile App</h4>
+                  <p>Choose your browser or mobile store from the official download page and verify the publisher before installing.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">3</span>
                 <div class="step-body">
-                  <h4>Step 3: Create a New Wallet &amp; Strong Password</h4>
-                  <p>Select <strong>Create a new wallet</strong>, review the terms, and set a strong, unique device password (at least 12+ characters) that you do not use anywhere else.</p>
+                  <h4>Create a Wallet &amp; Set a Strong Password</h4>
+                  <p>Select <strong>Create a new wallet</strong> and choose a strong, unique password for local device access.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">4</span>
                 <div class="step-body">
-                  <h4>Step 4: Write Down Your 12-Word Secret Recovery Phrase Offline</h4>
-                  <p>Reveal your 12 words in exact numbered order, write them neatly on paper (or a metal backup plate), complete the confirmation quiz, and store the backup in a locked physical location—never in screenshots, email, or cloud notes.</p>
+                  <h4>Record Your 12-Word Secret Recovery Phrase Offline</h4>
+                  <p>Write down all 12 words in exact numbered order on paper (or metal backup) and keep them in a safe physical place.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">5</span>
                 <div class="step-body">
-                  <h4>Step 5: Receive Funds, Switch Networks &amp; Connect Safely</h4>
-                  <p>Copy your public wallet address (<code>0x...</code>) to receive supported tokens, ensure you hold a small amount of the network's native gas token, and test with a small amount before making larger transfers or connecting to DApps.</p>
+                  <h4>Verify Network, Gas &amp; Test with a Small Amount</h4>
+                  <p>Check the active network and native gas token balance, verify the recipient address, and test with a small transfer first.</p>
                 </div>
               </div>
             </div>
           </article>
 
           <!-- 7. SECURITY -->
-          <article class="info-card" id="security">
+          <article class="editorial-section" id="security">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛡️</span>
               7. Security Best Practices
             </h2>
-            <p>Because self-custody gives you complete ownership, following strong security habits prevents the most common Web3 losses:</p>
+            <p>Consistent verification habits protect your wallet against phishing, malicious approvals, and accidental network mistakes:</p>
             <table class="stats-table">
               <tbody>
-                <tr>
-                  <th>Never Share Your 12 Words</th>
-                  <td>No legitimate MetaMask team member, moderator, or DApp will ever ask for your Secret Recovery Phrase or private key—never enter it into any website form or support chat.</td>
+                <tr class="important-row">
+                  <th>Never Share Recovery Phrase</th>
+                  <td>No legitimate support team or DApp will ever ask for your 12-word Secret Recovery Phrase or private key.</td>
                 </tr>
                 <tr>
-                  <th>Verify Every URL &amp; Bookmark</th>
-                  <td>Bookmark official DApps and <code>metamask.io</code>. Double-check domain spelling before clicking <strong>Connect Wallet</strong>.</td>
+                  <th>Bookmark Official URLs</th>
+                  <td>Access <code>metamask.io</code> and trusted DApps via saved bookmarks and verify spelling before connecting.</td>
                 </tr>
                 <tr>
                   <th>Inspect Signatures &amp; Approvals</th>
-                  <td>Read transaction simulation details carefully. Avoid signing blind messages or granting unlimited token spending approvals to unverified smart contracts.</td>
+                  <td>Review transaction prompts carefully and avoid granting unnecessary or unlimited token approvals to unfamiliar contracts.</td>
                 </tr>
                 <tr>
-                  <th>Use Burner &amp; Vault Wallets</th>
-                  <td>Keep long-term savings in a separate hardware-backed vault wallet, and use a dedicated daily wallet with limited funds for minting, airdrops, or testing new DApps.</td>
+                  <th>Separate Main &amp; Testing Wallets</th>
+                  <td>Keep long-term holdings separate from a secondary/burner wallet used for experimenting with new DApps or links.</td>
                 </tr>
                 <tr>
-                  <th>Keep Device &amp; Browser Clean</th>
-                  <td>Install only trusted browser extensions, keep your OS and MetaMask version updated, and lock your wallet when stepping away from your PC or phone.</td>
+                  <th>Lock When Idle &amp; Update</th>
+                  <td>Keep your browser, mobile OS, and wallet updated, and lock your wallet when stepping away from your device.</td>
                 </tr>
               </tbody>
             </table>
           </article>
 
           <!-- 8. PLATFORMS -->
-          <article class="info-card" id="platforms">
+          <article class="editorial-section" id="platforms">
             <h2 class="card-heading">
               <span class="card-heading-icon">📱</span>
               8. Supported Platforms &amp; Browsers
             </h2>
-            <p>MetaMask is available across leading desktop web browsers and mobile operating systems:</p>
+            <p>MetaMask is available across major desktop browsers and mobile platforms:</p>
             <div class="perm-pills">
               <span class="perm-pill">Google Chrome</span>
               <span class="perm-pill">Brave Browser</span>
               <span class="perm-pill">Mozilla Firefox</span>
               <span class="perm-pill">Microsoft Edge</span>
               <span class="perm-pill">Opera</span>
-              <span class="perm-pill">Android App (Google Play)</span>
-              <span class="perm-pill">iOS App (Apple App Store)</span>
+              <span class="perm-pill">Android App</span>
+              <span class="perm-pill">iOS App</span>
             </div>
             <div class="doc-links-row">
               <a class="doc-link-pill" href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer">⬇️ Official Download Page →</a>
@@ -1290,32 +1334,18 @@
           </article>
 
           <!-- 9. GUIDE CHECKLIST -->
-          <article class="info-card" id="guide-checklist">
+          <article class="editorial-section" id="guide-checklist">
             <h2 class="card-heading">
               <span class="card-heading-icon">✅</span>
               9. Beginner Readiness Checklist
             </h2>
-            <p>Review this quick verification checklist before funding your wallet or interacting with decentralized applications:</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>✔ Setup &amp; Backup Verification</h3>
-                <ul class="box-list">
-                  <li>Installed directly from <code>metamask.io/download</code>.</li>
-                  <li>12-word Secret Recovery Phrase written offline in exact order (1–12).</li>
-                  <li>Zero digital photos, screenshots, or cloud copies of the recovery phrase.</li>
-                  <li>Strong unique wallet password and device screen lock enabled.</li>
-                </ul>
-              </div>
-              <div class="mini-box">
-                <h3>✔ Transfer &amp; DApp Safety Check</h3>
-                <ul class="box-list">
-                  <li>Confirmed sender and receiver are on the exact same blockchain network.</li>
-                  <li>Verified recipient address first and last 6 characters before sending.</li>
-                  <li>Kept native gas coin (ETH, POL, BNB, etc.) ready for transaction fees.</li>
-                  <li>Tested with a small amount first before moving larger balances.</li>
-                </ul>
-              </div>
-            </div>
+            <p>Go through these quick checks before sending funds or connecting to a decentralized application:</p>
+            <ul class="clean-list">
+              <li><strong>Official Source Check:</strong> Installed only from <code>metamask.io/download</code>.</li>
+              <li><strong>Offline Backup Complete:</strong> 12-word Secret Recovery Phrase written offline in exact order (1–12), with no screenshots or cloud storage.</li>
+              <li><strong>Network &amp; Gas Ready:</strong> Confirmed matching sender/receiver networks and available native gas token (ETH, POL, BNB, etc.).</li>
+              <li><strong>Small Test First:</strong> Verified recipient address characters and tested with a small amount before larger transfers.</li>
+            </ul>
             <div class="doc-links-row">
               <a class="doc-link-pill" href="https://metamask.io/" target="_blank" rel="noopener noreferrer">🌐 Official MetaMask Website →</a>
               <a class="doc-link-pill" href="https://support.metamask.io/" target="_blank" rel="noopener noreferrer">🛟 MetaMask Help Center →</a>
@@ -1323,74 +1353,62 @@
             </div>
           </article>
 
-          <!-- 10. FAQ (DETAILED KNOWLEDGE BASE) -->
-          <article class="info-card" id="faq">
+          <!-- 10. FAQ -->
+          <article class="editorial-section" id="faq">
             <h2 class="card-heading">
               <span class="card-heading-icon">❓</span>
-              10. Frequently Asked Questions (Detailed Guide)
+              10. Frequently Asked Questions
             </h2>
             <div class="faq-list">
               <details class="faq-item" open>
                 <summary>1. Is MetaMask free to download and use?</summary>
                 <div class="faq-body">
-                  <p><strong>Yes:</strong> Downloading the MetaMask extension or mobile app, creating wallets, and receiving crypto are completely free.</p>
-                  <p><strong>When fees apply:</strong> Sending crypto, interacting with smart contracts, or swapping tokens requires blockchain network gas fees paid to validators, plus an optional service fee if you use MetaMask's built-in Swap or Bridge aggregator.</p>
+                  <p><strong>Yes:</strong> Downloading MetaMask, creating accounts, and receiving supported crypto are free.</p>
+                  <p><strong>When fees apply:</strong> Blockchain gas fees apply to on-chain transactions, and optional swap/bridge/on-ramp features may carry service or provider charges.</p>
+                </div>
+              </details>
+
+              <details class="faq-item important-faq">
+                <summary>2. What is the difference between a Public Address, Private Key, and Secret Recovery Phrase?</summary>
+                <div class="faq-body">
+                  <p><strong>Public Address (0x...):</strong> Safe to share to receive funds.</p>
+                  <p><strong>Private Key:</strong> Controls a specific account; never share it.</p>
+                  <p><strong>Secret Recovery Phrase (12 words):</strong> Master backup for restoring all derived accounts—anyone with it controls those accounts.</p>
                 </div>
               </details>
 
               <details class="faq-item">
-                <summary>2. What is the difference between my Public Address, Private Key, and Secret Recovery Phrase?</summary>
+                <summary>3. Does MetaMask hold my crypto on its servers?</summary>
                 <div class="faq-body">
-                  <p><strong>Public Address (0x...):</strong> Safe to share with others so they can send you tokens—similar to an email address or UPI ID.</p>
-                  <p><strong>Private Key:</strong> Controls a single specific account inside your wallet; never share it with anyone.</p>
-                  <p><strong>Secret Recovery Phrase (12 words):</strong> The master key that generates and restores all accounts inside your wallet. Anyone who gets your 12 words gains full control of all funds across every derived account.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>3. Does MetaMask store my crypto on its servers?</summary>
-                <div class="faq-body">
-                  <p><strong>No:</strong> MetaMask is a non-custodial wallet interface. Your tokens and NFTs always remain recorded on the public blockchain (such as Ethereum or Polygon).</p>
-                  <p><strong>What MetaMask stores:</strong> Your encrypted cryptographic keys locally on your device so you can view balances and sign transactions.</p>
+                  <p><strong>No:</strong> Assets stay on the blockchain ledger; MetaMask manages your encrypted keys locally on your device so you can sign transactions.</p>
                 </div>
               </details>
 
               <details class="faq-item">
                 <summary>4. Can I use the same MetaMask wallet on both PC and mobile?</summary>
                 <div class="faq-body">
-                  <p><strong>Yes:</strong> During setup on your second device, select <strong>Import an existing wallet</strong> and carefully enter your 12-word Secret Recovery Phrase.</p>
-                  <p><strong>Important note:</strong> Always download the mobile app or browser extension only from official links on <code>metamask.io/download</code>, and remember that custom networks or imported tokens may need to be re-enabled on the new device.</p>
+                  <p><strong>Yes:</strong> Choose <strong>Import an existing wallet</strong> on your second device and enter your 12-word Secret Recovery Phrase from an official download.</p>
                 </div>
               </details>
 
               <details class="faq-item">
                 <summary>5. Why are my tokens not showing up after a transfer?</summary>
                 <div class="faq-body">
-                  <p><strong>Check the active network:</strong> Make sure MetaMask is switched to the exact blockchain network used for the transfer (for example, Polygon, Arbitrum, or BNB Chain instead of Ethereum Mainnet).</p>
-                  <p><strong>Import custom token:</strong> Some ERC-20 tokens do not appear automatically until you click <strong>Import tokens</strong> and paste the official token contract address verified on a block explorer like Etherscan.</p>
+                  <p>Check that you are viewing the exact blockchain network used for the transfer, or import the official token contract address if it is not listed automatically.</p>
+                </div>
+              </details>
+
+              <details class="faq-item important-faq">
+                <summary>6. What if I lose my 12-word Secret Recovery Phrase?</summary>
+                <div class="faq-body">
+                  <p>Because MetaMask is non-custodial and does not store your recovery phrase, neither MetaMask nor anyone else can recover a wallet without your backup credentials.</p>
                 </div>
               </details>
 
               <details class="faq-item">
-                <summary>6. What happens if I lose my Secret Recovery Phrase or forget my password?</summary>
+                <summary>7. How do I manage or revoke old DApp permissions?</summary>
                 <div class="faq-body">
-                  <p><strong>Forgot password (still have 12 words):</strong> You can reinstall or reset MetaMask and restore full access using your 12-word Secret Recovery Phrase.</p>
-                  <p><strong>Lost 12 words (and locked out):</strong> Because MetaMask does not store your keys, nobody—including MetaMask Support—can recover or reset a wallet without the Secret Recovery Phrase.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>7. How do I revoke old DApp permissions and token approvals?</summary>
-                <div class="faq-body">
-                  <p><strong>Why it matters:</strong> When you interact with DeFi protocols or DEXs, you often grant smart contracts permission to spend a specific token.</p>
-                  <p><strong>How to manage:</strong> You can review connected sites inside MetaMask's <strong>Connected sites</strong> menu and use reputable token-approval checkers (such as Etherscan's Token Approval Checker or Revoke.cash) to revoke unused allowances.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>8. Can MetaMask support ever DM me or ask for my recovery phrase?</summary>
-                <div class="faq-body">
-                  <p><strong>Never:</strong> Legitimate MetaMask support agents will never DM you first on Telegram, WhatsApp, Discord, or X, and will never ask for your 12-word phrase, private key, or remote screen access. Treat any such message as a scam immediately.</p>
+                  <p>Review connected sites in MetaMask and use reputable token-approval tools to check or revoke unused token allowances.</p>
                 </div>
               </details>
             </div>
@@ -1456,7 +1474,7 @@
     function initScrollSpyTabs() {
       const tabs = Array.from(document.querySelectorAll('.jump-tab'));
       const jumpInner = document.getElementById('jumpInner');
-      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      const sections = Array.from(document.querySelectorAll('.editorial-flow > article[id]'));
       if (!tabs.length || !sections.length) return;
 
       const tabById = new Map();
