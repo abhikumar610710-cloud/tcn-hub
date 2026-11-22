@@ -3,329 +3,1567 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#effcf7">
+  <meta name="theme-color" content="#08a86b">
   <meta name="description" content="Trezor Safe hardware wallet guide by Total Crypto Hub. Compare Trezor Safe 3, Safe 5 and Safe 7, learn setup, Trezor Suite, recovery backups and wallet security.">
   <meta name="robots" content="index,follow">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <title>Trezor Safe Wallet Guide | Total Crypto Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Instant Anti-Flash Theme Script -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('tch-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
-    :root{
-      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
-      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;
-      --line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;
-      --purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b;
+    :root {
+      color-scheme: light;
+      --bg: #f3fbf9;
+      --surface: #ffffff;
+      --surface-soft: #effcf8;
+      --border: #c8eee1;
+      --heading: #102344;
+      --body: #29415c;
+      --muted: #6c8299;
+      --green: #08a86b;
+      --green-dark: #008556;
+      --green-light: #39e7a7;
+      --green-soft: #e3fff3;
+      --banner-start: #c9ffea;
+      --banner-mid: #f2fff9;
+      --banner-end: #c4fcef;
+      --sidebar-width: 258px;
+      --sponsor-height: 74px;
+      --shadow: 0 12px 32px rgba(8, 168, 107, .09);
     }
-    body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--mint-2:#205b4d;--shadow:0 12px 30px rgba(0,0,0,.2)}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:92px}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    .sponsor{min-height:56px;padding:10px 24px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
-    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:19px;color:#fff;box-shadow:0 3px 12px #0004}
-    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
-    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
-    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
-    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,42px);position:sticky;top:0;z-index:20}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
-    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
-    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
-    .top-actions{display:flex;gap:10px;align-items:center}
-    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
-    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
-    .wrap{width:min(1380px,calc(100% - 48px));margin:28px auto 60px}
-    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:38px 44px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:24px}
-    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
-    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
-    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
-    .hero h1 span{color:#00a875}
-    .hero p{max-width:650px;color:#315a63;margin:0 0 17px;font-size:15px}
-    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
-    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
-    .actions{display:flex;flex-wrap:wrap;gap:10px}
-    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
-    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
-    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
-    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
-    .device-showcase{width:min(100%,340px);height:270px;display:flex;align-items:center;justify-content:center;gap:0;position:relative}
-    .device-showcase img{height:235px;width:48%;object-fit:contain;filter:drop-shadow(0 14px 12px #10233f35)}
-    .device-showcase img:first-child{transform:rotate(-8deg) translateX(18px)}
-    .device-showcase img:last-child{transform:rotate(8deg) translateX(-8px)}
-    .device-label{position:absolute;bottom:2px;right:0;background:#fff;color:#17364b;padding:8px 12px;border-radius:30px;font-size:11px;font-weight:850;box-shadow:0 7px 18px #174d3c25}
 
-    .quicknav{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
-    .quicknav a{white-space:nowrap;padding:10px 16px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
-    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
-    .section{margin-top:26px}
-    .section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
-    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
-    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:18px}
-    .panel,.feature,.step,.video-card,.faq-item,.model-card{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:22px;box-shadow:0 5px 18px #183b5b06}
-    .panel p{color:var(--muted);margin:0}
-    .panel p+p{margin-top:12px}
-    .fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
-    .fact-icon{font-size:30px}
-    .fact h3{margin:0 0 5px;font-size:16px}
-    .fact p{font-size:13px}
-    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-    .feature{text-align:center;padding:24px 16px;transition:.2s}
-    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-    .feature .emoji{font-size:30px;display:block;margin-bottom:8px}
-    .feature h3{font-size:15px;margin:0 0 5px}
-    .feature p{font-size:12px;color:var(--muted);margin:0}
-    .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-    .model-card{padding:22px;display:flex;flex-direction:column;gap:10px}
-    .model-card img{height:155px;width:100%;object-fit:contain;background:#f5f8fb;border-radius:12px}
-    .model-card h3{margin:3px 0 0;font-size:17px}
-    .model-card p{font-size:12px;color:var(--muted);margin:0}
-    .model-card ul{padding-left:18px;margin:6px 0;color:var(--muted);font-size:12px}
-    .model-card a{color:var(--green-dark);font-size:12px;font-weight:850;margin-top:auto}
-    .model-note{margin-top:12px;font-size:12px;color:var(--muted)}
-    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-    .step{padding:18px 15px;position:relative}
-    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
-    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}
-    .step p{font-size:11px;color:var(--muted);margin:0}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .mini-list{border-radius:14px;padding:15px;background:#e8fbf3;color:#14553f}
-    .mini-list.bad{background:#fff0ef;color:#873d3d}
-    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
-    .mini-list h3{font-size:13px;margin:0 0 9px}
-    .mini-list ul,.security-list{list-style:none;padding:0;margin:0}
-    .mini-list li{font-size:12px;margin:7px 0}
-    .security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
-    .security-list b{color:var(--text)}
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #081a20;
+      --surface: #10272c;
+      --surface-soft: #143139;
+      --border: #254b4b;
+      --heading: #f0fff9;
+      --body: #d4eee5;
+      --muted: #91b3ad;
+      --green: #20d99a;
+      --green-dark: #0cad78;
+      --green-light: #5df0bd;
+      --green-soft: #123e34;
+      --banner-start: #0b2b27;
+      --banner-mid: #0f3530;
+      --banner-end: #0b2b27;
+      --shadow: 0 14px 34px rgba(0, 0, 0, .24);
+    }
 
-    .market-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .market{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
-    .market strong{font-size:13px}
-    .market .price{font-weight:850;font-size:22px;letter-spacing:-.02em;margin:6px 0}
-    .market small{font-size:11px;color:var(--muted)}
-    .market-status{font-size:11px;color:var(--muted);margin-top:10px}
-    .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#00a875;margin-right:6px}
-    .note{font-size:12px;color:var(--muted);margin-top:10px}
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    article[id] { scroll-margin-top: calc(var(--sponsor-height) + 124px); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--body);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
 
-    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:15px;align-items:stretch}
-    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
-    .video-thumb:before{content:"▰";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}
-    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
-    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
-    .video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
-    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}
-    body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
+    /* TOP SPONSOR & BRAND BAR */
+    .sponsor-strip {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      min-height: var(--sponsor-height);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: var(--heading);
+      background:
+        radial-gradient(circle at 8% 50%, rgba(8, 168, 107, .22), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(8, 168, 107, .18), transparent 24%),
+        linear-gradient(95deg, var(--banner-start) 0%, var(--banner-mid) 48%, var(--banner-end) 100%);
+      border-bottom: 1px solid #96ecd0;
+      box-shadow: 0 4px 18px rgba(8, 168, 107, .09);
+      isolation: isolate;
+    }
+    [data-theme="dark"] .sponsor-strip { border-bottom: 1px solid #245f4d; }
+    .sponsor-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1800px;
+      min-height: var(--sponsor-height);
+      margin: auto;
+      padding: 7px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-brand {
+      min-width: 210px;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: radial-gradient(circle at 30% 25%, #5bffc8, var(--green) 65%, var(--green-dark));
+      box-shadow: 0 3px 12px rgba(8, 168, 107, .25);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .header-brand-name { display: block; color: var(--heading); font-size: 17px; font-weight: 800; line-height: 1.15; letter-spacing: -.45px; }
+    .header-brand-subtitle { display: block; margin-top: 2px; color: var(--green-dark); font-size: 10px; font-weight: 800; }
+    .header-brand-subtitle b { color: var(--green-dark); }
+    [data-theme="dark"] .header-brand-subtitle, [data-theme="dark"] .header-brand-subtitle b { color: var(--green-light); }
 
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .faq-item{padding:0;overflow:hidden}
-    .faq-q{width:100%;padding:15px 18px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
-    .faq-a{display:none;padding:0 18px 16px;color:var(--muted);font-size:12px}
-    .faq-item.open .faq-a{display:block}
-    .cta{margin-top:28px;border-radius:20px;padding:26px 32px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
-    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}
-    .cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
-    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}
-    .source-list{margin-top:14px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:11px;text-align:center}
-    .source-list a{color:var(--green-dark);font-weight:750}
-    footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
+    .header-v-sep {
+      width: 1.5px;
+      height: 36px;
+      flex: 0 0 1.5px;
+      background: rgba(16, 35, 68, .2);
+    }
+    [data-theme="dark"] .header-v-sep { background: rgba(240, 255, 249, .2); }
 
-    @media(max-width:850px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.device-showcase{height:220px}.device-showcase img{height:190px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}.model-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.market-grid{grid-template-columns:1fr}.sponsor{gap:7px;padding:9px 12px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 14px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 12px;font-size:11px}.wrap{width:calc(100% - 24px);margin:14px auto 36px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:clamp(28px,8vw,35px)}.hero p{font-size:13px}.hero-art{min-height:160px}.device-showcase{height:170px}.device-showcase img{height:155px}.section-heading{font-size:19px}.features{gap:10px}.feature{padding:16px 10px}.steps{gap:10px}.step{padding:14px 12px}.two-col,.good-bad,.faq-grid,.video-layout,.model-grid{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}.market{padding:14px}.market .price{font-size:20px}}
-    @media(max-width:400px){.features,.steps,.model-grid,.market-grid{grid-template-columns:1fr}}
+    .sponsor-slot-box {
+      flex: 1 1 auto;
+      max-width: 970px;
+      min-width: 280px;
+      height: 58px;
+      padding: 6px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1.8px dashed var(--green);
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(201, 255, 234, .75), rgba(242, 255, 249, .95) 50%, rgba(196, 252, 239, .75));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .75), 0 3px 12px rgba(8, 168, 107, .08);
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .sponsor-slot-box:hover {
+      transform: translateY(-1px);
+      border-color: var(--green-dark);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .16);
+    }
+    [data-theme="dark"] .sponsor-slot-box {
+      border-color: var(--green-light);
+      background: linear-gradient(90deg, rgba(18, 62, 50, .85), rgba(16, 39, 44, .95) 50%, rgba(18, 62, 50, .85));
+      box-shadow: none;
+    }
+    .slot-megaphone { font-size: 27px; line-height: 1; flex: 0 0 auto; }
+    .slot-arrow { flex: 1 1 60px; max-width: 130px; height: 16px; display: flex; align-items: center; color: var(--green); }
+    [data-theme="dark"] .slot-arrow { color: var(--green-light); }
+    .slot-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
+    .slot-center-text { text-align: center; flex: 0 0 auto; }
+    .slot-center-text strong { display: block; color: var(--heading); font-size: 17px; line-height: 1.15; font-weight: 800; letter-spacing: -.35px; }
+    .slot-center-text span { display: block; margin-top: 2px; color: var(--body); font-size: 12px; font-weight: 700; }
+
+    .sponsor-right-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+    .sponsor-cta {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: 1.5px solid var(--green);
+      color: var(--heading);
+      background: linear-gradient(135deg, #b6ffdf, #58f0ad);
+      box-shadow: 0 4px 14px rgba(8, 168, 107, .22), inset 0 1px 1px rgba(255, 255, 255, .75);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .sponsor-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(8, 168, 107, .34); }
+    .sponsor-orb-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid var(--green);
+      color: #ffffff;
+      background: linear-gradient(145deg, var(--green), var(--green-dark));
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .25);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* LEFT WORKSPACE SIDEBAR */
+    .sidebar {
+      position: fixed;
+      z-index: 150;
+      inset: var(--sponsor-height) auto 0 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--sponsor-height));
+      height: calc(100dvh - var(--sponsor-height));
+      display: flex;
+      flex-direction: column;
+      padding: 20px 16px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      box-shadow: 8px 0 28px rgba(8, 168, 107, .03);
+      transition: transform .25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    .side-label { padding: 14px 13px 10px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+    .side-nav { display: grid; gap: 7px; flex-shrink: 0; }
+    .side-link {
+      min-height: 47px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
+    .side-link.active { color: var(--green-dark); background: linear-gradient(100deg, var(--green-soft), #f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8, 168, 107, .11); }
+    [data-theme="dark"] .side-link.active { color: var(--green-light); background: var(--green-soft); border-color: #23654e; }
+    .nav-icon { width: 36px; height: 36px; flex: 0 0 36px; display: grid; place-items: center; border-radius: 12px; font-size: 17px; color: var(--green-dark); background: var(--green-soft); border: 1px solid var(--border); }
+    [data-theme="dark"] .nav-icon { color: var(--green-light); }
+    .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sidebar-spacer { flex: 1 0 18px; min-height: 18px; }
+    .side-promo {
+      margin: 18px 6px 13px;
+      padding: 19px 14px;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 23px;
+      border: 1px solid #c7f5df;
+      background: radial-gradient(circle at 90% 10%, rgba(8, 168, 107, .18), transparent 34%), linear-gradient(145deg, var(--green-soft), var(--surface) 72%);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .10);
+    }
+    [data-theme="dark"] .side-promo { background: linear-gradient(145deg, var(--surface-soft), var(--surface)); border-color: #255c49; }
+    .promo-gift { margin-bottom: 8px; font-size: 34px; }
+    .side-promo h3 { margin: 0 0 8px; color: var(--heading); font-size: 13px; line-height: 1.5; font-weight: 800; }
+    .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .promo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 19px; border-radius: 999px; color: #ffffff; background: linear-gradient(135deg, var(--green), var(--green-dark)); text-decoration: none; font-size: 11px; font-weight: 800; box-shadow: 0 6px 14px rgba(8, 168, 107, .2); }
+    .support-card { display: flex; align-items: center; gap: 10px; margin: 0 6px; padding: 13px; flex-shrink: 0; border-radius: 17px; border: 1px solid var(--border); background: var(--surface-soft); text-decoration: none; }
+    .support-icon { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 18px; }
+    [data-theme="dark"] .support-icon { color: var(--green-light); }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
+
+    /* MAIN COLUMN + TOPBAR */
+    .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
+    .topbar {
+      position: sticky;
+      top: var(--sponsor-height);
+      z-index: 100;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 28px;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .mobile-menu-btn { display: none; width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 12px; color: var(--heading); background: var(--surface); }
+    .btn-back-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 35px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .btn-back-pill { color: var(--green-light); }
+    .btn-back-pill:hover { background: var(--green); color: #ffffff; }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: var(--green-dark);
+      transition: color .18s;
+    }
+    [data-theme="dark"] .breadcrumb a { color: var(--green-light); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span.current { color: var(--heading); font-weight: 800; }
+
+    .topbar-spacer { flex: 1; }
+    .icon-btn {
+      min-height: 38px;
+      width: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 16px;
+      box-shadow: 0 3px 9px rgba(8, 168, 107, .05);
+    }
+    .icon-btn:hover { border-color: var(--green); color: var(--green); }
+
+    /* SHORTCUT JUMP BAR (10 SECTIONS) */
+    .jump-strip {
+      position: sticky;
+      top: calc(var(--sponsor-height) + 60px);
+      z-index: 95;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .jump-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 8px clamp(16px, 2.4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-inner::-webkit-scrollbar { display: none; }
+    .jump-tab {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .16s ease;
+    }
+    .jump-tab:hover, .jump-tab.active {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-color: var(--green);
+      color: #ffffff;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 20px clamp(16px, 2.4vw, 32px) 42px;
+    }
+
+    /* COMPACT HERO BANNER: LEFT LINKS/BUTTONS + RIGHT COMPACT DEVICE SHOWCASE WITH CLOSE SUBTLE BLINK COINS */
+    .project-hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.38fr .62fr;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 26px;
+      border: 1px solid #96ecd0;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .18) 0 11%, transparent 11.2%),
+        linear-gradient(115deg, var(--banner-start) 0%, var(--banner-mid) 56%, var(--banner-end) 100%);
+      box-shadow: var(--shadow);
+    }
+    [data-theme="dark"] .project-hero { border-color: #215d4c; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #8ce0c1;
+      background: var(--surface);
+      border-radius: 999px;
+      padding: 5px 11px;
+      color: var(--green-dark);
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    [data-theme="dark"] .hero-eyebrow { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
+
+    .project-hero h1 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+      margin: 10px 0 8px;
+      color: var(--heading);
+      font-weight: 800;
+    }
+    .project-hero h1 span { color: var(--green); }
+
+    .project-hero p {
+      max-width: 640px;
+      color: var(--body);
+      margin: 0 0 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0 14px;
+    }
+    .hero-pill {
+      background: var(--surface);
+      color: var(--heading);
+      border: 1px solid #b8f2d7;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .hero-pill { border-color: #23654e; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .btn-hero-primary, .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      border-radius: 999px;
+      padding: 10px 17px;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-hero-primary {
+      background: linear-gradient(110deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      box-shadow: 0 6px 14px rgba(8, 168, 107, .22);
+    }
+    .btn-hero-secondary {
+      background: var(--surface);
+      color: var(--heading);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .btn-hero-secondary { border-color: #245f4d; }
+    .btn-hero-primary:hover, .btn-hero-secondary:hover { transform: translateY(-1px); }
+
+    /* RIGHT SIDE COMPACT DEVICE SHOWCASE + CLOSE SUBTLE BLINK COINS */
+    .hero-art {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      min-height: 164px;
+    }
+    .device-cluster {
+      position: relative;
+      width: 214px;
+      height: 162px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .device-showcase {
+      width: 166px;
+      height: 134px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 35% 28%, #ffffff, #c9fff0 62%, #7be6bc);
+      border: 2px solid #8be5c7;
+      box-shadow: 0 10px 22px rgba(8, 168, 107, .2);
+      padding: 8px;
+    }
+    [data-theme="dark"] .device-showcase {
+      background: radial-gradient(circle at 35% 28%, #1a473f, #11322c 65%, #0c2420);
+      border-color: #297a60;
+    }
+    .device-showcase img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 8px rgba(16, 35, 68, .22));
+    }
+
+    @keyframes subtleCoinBlink {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+      50% {
+        opacity: .68;
+        transform: translateY(-2px);
+      }
+    }
+
+    .near-coin {
+      position: absolute;
+      z-index: 2;
+      min-width: 38px;
+      height: 23px;
+      padding: 0 7px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+      border: 1px solid rgba(8, 168, 107, .35);
+      box-shadow: 0 3px 8px rgba(8, 168, 107, .14);
+      animation: subtleCoinBlink 3.4s ease-in-out infinite;
+    }
+    .near-btc { top: 0px; left: 0px; background: #fff0cc; color: #c97d00; animation-delay: 0s; }
+    .near-eth { top: 0px; right: 0px; background: #e7e2ff; color: #6346cf; animation-delay: .65s; }
+    .near-sol { bottom: 0px; left: 0px; background: #fff5d6; color: #a86b00; animation-delay: 1.3s; }
+    .near-xrp { bottom: 0px; right: 0px; background: #e3fff3; color: #008556; animation-delay: 1.95s; }
+
+    /* CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) */
+    .editorial-flow {
+      display: grid;
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .editorial-section {
+      padding: 22px 26px;
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .05);
+    }
+
+    .card-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--heading);
+      font-size: 17.5px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+    .card-heading-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+      font-size: 16px;
+      flex: 0 0 32px;
+    }
+    [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
+
+    .editorial-section p {
+      margin: 0 0 11px;
+      font-size: 13px;
+      line-height: 1.78;
+      color: var(--body);
+    }
+    .editorial-section p:last-child { margin-bottom: 0; }
+    .editorial-section code {
+      background: var(--surface-soft);
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      font-family: monospace;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .sub-heading {
+      margin: 16px 0 8px;
+      color: var(--heading);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .clean-list {
+      margin: 6px 0 12px;
+      padding-left: 20px;
+      display: grid;
+      gap: 7px;
+      font-size: 12.8px;
+      line-height: 1.72;
+      color: var(--body);
+    }
+    .clean-list li strong { color: var(--heading); }
+
+    /* MODEL CARDS ROW */
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 10px 0 10px;
+    }
+    .model-card {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .model-badge-box {
+      height: 120px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--heading);
+    }
+    .model-card h3 { margin: 2px 0 0; font-size: 15px; font-weight: 800; color: var(--heading); }
+    .model-card p { font-size: 12px; color: var(--body); margin: 0; line-height: 1.6; }
+    .model-card ul { padding-left: 16px; margin: 2px 0; color: var(--body); font-size: 11.8px; line-height: 1.65; }
+    .model-card a { color: var(--green-dark); font-size: 11.8px; font-weight: 800; margin-top: auto; text-decoration: underline; }
+    [data-theme="dark"] .model-card a { color: var(--green-light); }
+
+    /* WEBSITE GREEN THEME — ONLY FOR IMPORTANT / KEY INFORMATION */
+    .important-callout {
+      margin: 14px 0;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border-left: 4px solid var(--green);
+      background: linear-gradient(110deg, var(--green-soft), color-mix(in srgb, var(--green-soft) 45%, var(--surface)));
+      color: var(--heading);
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+    .important-callout strong { color: var(--green-dark); }
+    [data-theme="dark"] .important-callout strong { color: var(--green-light); }
+    .important-callout a { color: var(--green-dark); font-weight: 800; text-decoration: underline; }
+    [data-theme="dark"] .important-callout a { color: var(--green-light); }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      background: var(--surface);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .stats-table th, .stats-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+      line-height: 1.68;
+    }
+    .stats-table th {
+      background: var(--surface-soft);
+      color: var(--heading);
+      font-weight: 800;
+      width: 28%;
+    }
+    .stats-table td { color: var(--body); }
+    .stats-table tr.important-row th,
+    .stats-table tr.important-row td {
+      background: color-mix(in srgb, var(--green-soft) 55%, var(--surface));
+      color: var(--heading);
+    }
+    .stats-table tr.important-row th {
+      color: var(--green-dark);
+      border-left: 3px solid var(--green);
+    }
+    [data-theme="dark"] .stats-table tr.important-row th { color: var(--green-light); }
+    .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+    /* POPULAR COINS WITH SUBTLE BLINK */
+    .coin-stream {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .coin-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
+      animation: subtleCoinBlink 3.6s ease-in-out infinite;
+    }
+    .coin-chip.featured-coin {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-color: var(--green);
+    }
+    [data-theme="dark"] .coin-chip.featured-coin { color: var(--green-light); }
+    .coin-chip:nth-child(2n) { animation-delay: .5s; }
+    .coin-chip:nth-child(3n) { animation-delay: 1s; }
+    .coin-chip:nth-child(4n) { animation-delay: 1.5s; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .perm-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
+    }
+
+    /* LIVE MARKET REFERENCE GRID */
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 10px 0 10px;
+    }
+    .market-card {
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      border-radius: 16px;
+      padding: 15px 16px;
+    }
+    [data-theme="dark"] .market-card { border-color: #23654e; }
+    .market-card strong {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .market-card .price {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -.02em;
+      margin: 6px 0 4px;
+      color: var(--heading);
+      font-variant-numeric: tabular-nums;
+    }
+    .market-card small { font-size: 11px; color: var(--muted); font-weight: 600; }
+    .market-status {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 8px;
+      font-weight: 700;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #08a86b;
+      margin-right: 6px;
+    }
+    .source-note {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin: 6px 0 0;
+      line-height: 1.65;
+    }
+    .source-note a { color: var(--green-dark); font-weight: 700; text-decoration: underline; }
+    [data-theme="dark"] .source-note a { color: var(--green-light); }
+
+    /* CLEAN STEP FLOW (NO HEAVY BOXES) */
+    .steps-flow {
+      margin-top: 10px;
+      display: grid;
+      gap: 12px;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding-bottom: 11px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .step-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+    .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-body p { margin: 0; font-size: 12.4px; line-height: 1.7; color: var(--body); }
+
+    .doc-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .doc-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid var(--green);
+      font-size: 11.5px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .doc-link-pill { color: var(--green-light); }
+    .doc-link-pill:hover {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+    }
+
+    /* CLEAN FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; margin-top: 10px; }
+    .faq-item {
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 13px 16px;
+      transition: .18s ease;
+    }
+    .faq-item.important-faq {
+      border-left: 3.5px solid var(--green);
+      background: color-mix(in srgb, var(--green-soft) 35%, var(--surface));
+    }
+    .faq-item summary {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--heading);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-item summary::after {
+      content: "+";
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--green-dark);
+      flex: 0 0 auto;
+    }
+    [data-theme="dark"] .faq-item summary::after { color: var(--green-light); }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-body {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      display: grid;
+      gap: 7px;
+    }
+    .faq-body p {
+      margin: 0;
+      font-size: 12.2px;
+      line-height: 1.7;
+      color: var(--body);
+    }
+
+    .disclaimer {
+      margin: 24px 0 0;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 10.5px;
+      line-height: 1.72;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 28px;
+      padding: 24px 0 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .footer-brand { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+    .footer-brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); background: #ffffff; }
+    .footer-brand span { color: var(--heading); font-size: 14px; font-weight: 800; }
+    .footer-copy { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 2px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .footer-links a:hover { color: var(--green); }
+
+    .mobile-overlay { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .near-coin, .coin-chip {
+        animation: none !important;
+      }
+    }
+
+    @media(max-width: 1250px) {
+      :root { --sidebar-width: 235px; }
+      .header-brand { min-width: 185px; }
+      .slot-arrow { display: none; }
+      .market-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media(max-width: 1020px) {
+      .project-hero { grid-template-columns: 1fr; padding: 20px 22px; }
+      .hero-art { min-height: 152px; }
+      .model-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 760px) {
+      :root { --sidebar-width: 258px; --sponsor-height: 56px; }
+      article[id] { scroll-margin-top: calc(var(--sponsor-height) + 106px); }
+      .jump-strip { top: calc(var(--sponsor-height) + 56px); }
+      .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
+      .header-brand { min-width: auto; gap: 7px; }
+      .header-logo { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
+      .header-brand-name { font-size: 11px; }
+      .header-brand-subtitle { font-size: 8px; }
+      .header-v-sep, .sponsor-orb-btn { display: none; }
+      .sponsor-slot-box { min-width: 0; height: 42px; padding: 4px 10px; justify-content: center; gap: 8px; }
+      .slot-megaphone { font-size: 17px; }
+      .slot-center-text strong { font-size: 11px; }
+      .slot-center-text span { font-size: 8px; }
+      .sponsor-cta { padding: 8px 11px; font-size: 9px; }
+
+      .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0,0,0,.13); }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4,14,27,.42); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; }
+      .topbar { min-height: 56px; padding: 8px 14px; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
+
+      main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
+      .project-hero { padding: 18px; }
+      .editorial-section { padding: 18px 18px; }
+      .market-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 480px) {
+      .header-brand-subtitle, .slot-megaphone { display: none; }
+    }
   </style>
 </head>
-<body>
-  <div class="sponsor">
-    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
-    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
-    <small>Grow Your Brand in the Crypto Community</small>
-    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
-  </div>
-  <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="Total Crypto Hub home"><span class="brand-mark">TCN</span><span>Total Crypto Hub<small>by Total Crypto Network</small></span></a>
-    <div class="top-actions"><button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button><a class="back-btn" id="backBtn" href="wallets.html">← Back to Wallets</a></div>
-  </header>
-  <main class="wrap">
-    <section class="hero" id="overview">
-      <div>
-        <span class="eyebrow">✦ Hardware Wallet Guide · Total Crypto Hub</span>
-        <h1>Trezor Safe <span>Wallet</span></h1>
-        <p>Explore Trezor Safe hardware wallets for protecting private keys and approving crypto transactions on-device. Compare Safe 3, Safe 5 and Safe 7, and learn how to manage supported assets with Trezor Suite.</p>
-        <div class="pills"><span class="pill">✓ Self-Custody</span><span class="pill">🔐 Secure Element</span><span class="pill">🧾 Wallet Backup</span><span class="pill">🌐 Multi-Asset Support</span></div>
-        <div class="actions"><a class="primary" href="https://trezor.io/store" target="_blank" rel="noopener noreferrer">Explore Official Trezor Store ↗</a><a class="secondary" href="https://trezor.io/trezor-suite" target="_blank" rel="noopener noreferrer">Get Trezor Suite ↗</a></div>
-      </div>
-      <div class="hero-art" aria-label="Trezor Safe hardware wallet"><div class="device-showcase" style="height:270px"><img style="width:74%;height:245px;transform:none" src="https://imagedelivery.net/dvYzklbs_b5YaLRtI16Mnw/b3c831b9-61ba-477d-2586-aab5d2178f00/public" alt="Trezor Safe 7 hardware wallet" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div style=&quot;font-size:100px&quot;>🔐</div>')"><span class="device-label">Trezor Safe Series</span></div></div>
-    </section>
-    <nav class="quicknav" aria-label="Page sections"><a class="active" href="#overview">⌂ Overview</a><a href="#models">▣ Models</a><a href="#features">⭐ Features</a><a href="#how-to">How to Use</a><a href="#security">🛡 Security</a><a href="#prices">₿ Market</a><a href="#guides">Guides</a><a href="#faq">ⓘ FAQ</a></nav>
 
-    <section class="section">
-      <div class="intro-grid">
-        <article class="panel"><h2 class="section-heading"><span class="num">1</span> What is Trezor Safe?</h2><p>Trezor Safe is a family of hardware wallets that protects the private keys used to access supported crypto assets. Your coins and tokens remain recorded on their respective blockchains; the hardware wallet keeps signing keys under your control and lets you verify and approve supported transactions on the device.</p><p>Trezor Suite is Trezor's companion app for managing accounts, checking balances and transaction history, and accessing supported send, receive, buy, sell, swap and staking features. Availability varies by asset, device, app version, provider and region.</p></article>
-        <aside class="panel fact"><div class="fact-icon">💡</div><div><h3>Quick Fact</h3><p>A Trezor is not an exchange account or a place where blockchain assets physically sit. You are responsible for your device PIN, wallet backup and transaction approvals. Never type your wallet backup into a website, chat, phone or computer.</p></div></aside>
-      </div>
-    </section>
+<body data-theme="light">
+  <!-- TOP SPONSOR & BRAND BAR -->
+  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
+    <div class="sponsor-inner">
+      <a href="../index.html" class="header-brand" translate="no">
+        <span class="header-logo">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+        </span>
+        <span>
+          <span class="header-brand-name">Total Crypto Hub</span>
+          <span class="header-brand-subtitle">by <b>Total Crypto Network</b></span>
+        </span>
+      </a>
 
-    <section class="section" id="models">
-      <h2 class="section-heading"><span class="num">2</span> Trezor Safe Models</h2>
-      <div class="model-grid">
-        <article class="model-card">
-          <div style="height:155px;border-radius:12px;background:linear-gradient(145deg,#eff3f7,#dce5ed);display:grid;place-items:center;color:#152a3c"><div style="width:80px;height:132px;border-radius:18px;background:linear-gradient(160deg,#202b36,#070b11);box-shadow:0 12px 18px #10233f35;display:grid;place-items:center;color:#c9d5df;font-size:28px">▣</div></div>
-          <h3>Trezor Safe 3</h3><p>Compact model with a monochrome display and two-button controls.</p>
-          <ul><li>0.96-inch monochrome OLED</li><li>USB-C connection</li><li>CC EAL6+ Secure Element</li><li>PIN and passphrase protection</li></ul>
-          <a href="https://trezor.io/trezor-safe-3" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
-        </article>
-        <article class="model-card">
-          <div style="height:155px;border-radius:12px;background:linear-gradient(145deg,#eff3f7,#dce5ed);display:grid;place-items:center;color:#152a3c"><div style="width:92px;height:137px;border-radius:18px;background:linear-gradient(160deg,#252b33,#05080c);box-shadow:0 12px 18px #10233f35;display:grid;place-items:center;color:#8df0c4;font-size:24px">◉</div></div>
-          <h3>Trezor Safe 5</h3><p>Touchscreen model designed for more visual and tactile interaction.</p>
-          <ul><li>1.54-inch color touchscreen</li><li>Haptic feedback and Gorilla Glass 3</li><li>CC EAL6+ Secure Element</li><li>PIN, passphrase and MicroSD slot</li></ul>
-          <a href="https://trezor.io/trezor-safe-5" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
-        </article>
-        <article class="model-card">
-          <div style="height:155px;border-radius:12px;background:linear-gradient(145deg,#eff3f7,#dce5ed);display:grid;place-items:center;color:#152a3c"><div style="width:100px;height:140px;border-radius:22px;background:linear-gradient(160deg,#3a424b,#090d13);border:2px solid #59636d;box-shadow:0 12px 18px #10233f35;display:grid;place-items:center;color:#c8d8e8;font-size:25px">▰</div></div>
-          <h3>Trezor Safe 7</h3><p>Advanced model with a large display, wireless connectivity and layered hardware security.</p>
-          <ul><li>2.5-inch high-resolution color touchscreen</li><li>Bluetooth and Qi2-compatible wireless charging</li><li>Three independent security chips</li><li>IP54-rated dust and splash protection</li></ul>
-          <a href="https://trezor.io/trezor-safe-7" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
-        </article>
-      </div>
-      <p class="model-note">Trezor's current store lists Safe 3, Safe 5 and Safe 7 in universal and Bitcoin-only variants. Confirm the exact variant, supported assets, availability and regional price before purchase. The model specifications above are a quick summary; refer to each official product page for full details.</p>
-    </section>
+      <span class="header-v-sep" aria-hidden="true"></span>
 
-    <section class="section" id="features">
-      <h2 class="section-heading"><span class="num">3</span> Key Features</h2>
-      <div class="features">
-        <article class="feature"><span class="emoji">🔐</span><h3>Private-Key Control</h3><p>Keep signing keys protected by a dedicated hardware device and approve transactions on-device.</p></article>
-        <article class="feature"><span class="emoji">🛡️</span><h3>Secure Element</h3><p>Safe 3 and Safe 5 include an EAL6+ Secure Element; Safe 7 adds a three-chip security architecture.</p></article>
-        <article class="feature"><span class="emoji">📱</span><h3>Trezor Suite</h3><p>Manage supported assets, review portfolio activity and access supported services.</p></article>
-        <article class="feature"><span class="emoji">🧩</span><h3>Open-Source Design</h3><p>Trezor emphasizes publicly reviewable software and security transparency.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="how-to">
-      <h2 class="section-heading"><span class="num">4</span> How to Set Up a Trezor Safe</h2>
-      <div class="panel" style="margin-bottom:12px"><p>Follow the official setup flow for your exact device. Do not use a wallet backup supplied by another person, and do not enter your backup into a computer or website.</p></div>
-      <div class="steps">
-        <article class="step"><div class="circle">1</div><h3>Buy from Trezor</h3><p>Use the official Trezor Store or a reseller identified by Trezor.</p></article>
-        <article class="step"><div class="circle">2</div><h3>Open Trezor Suite</h3><p>Download the app from trezor.io or use the official web app.</p></article>
-        <article class="step"><div class="circle">3</div><h3>Connect and Initialize</h3><p>Follow the device prompts, install firmware if asked and set a PIN.</p></article>
-        <article class="step"><div class="circle">4</div><h3>Create a Wallet Backup</h3><p>Record the backup words offline and verify them on the device as instructed.</p></article>
-        <article class="step"><div class="circle">5</div><h3>Verify Before Sending</h3><p>Check the receive address and transaction details on the Trezor screen.</p></article>
-      </div>
-    </section>
-
-    <section class="section two-col">
-      <article id="pros-cons">
-        <h2 class="section-heading"><span class="num">5</span> Pros &amp; Things to Consider</h2>
-        <div class="good-bad">
-          <div class="mini-list"><h3>✓ Advantages</h3><ul><li>✓ Hardware-based private-key protection</li><li>✓ Open-source security approach</li><li>✓ Three Safe models to compare</li><li>✓ Trezor Suite and third-party wallet integrations</li></ul></div>
-          <div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✕ You must protect your wallet backup</li><li>✕ Supported assets differ by model and app</li><li>✕ iOS transaction support differs by model</li><li>✕ Buy/swap/staking services may involve fees and risks</li></ul></div>
+      <a class="sponsor-slot-box" href="../legal-pages/contact.html" aria-label="Sponsor Banner Area">
+        <span class="slot-megaphone" aria-hidden="true">📢</span>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="slot-center-text">
+          <strong>Sponsor Banner Area</strong>
+          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
         </div>
-      </article>
-      <article id="security">
-        <h2 class="section-heading"><span class="num">6</span> Security Tips</h2>
-        <div class="panel">
-          <ul class="security-list">
-            <li><span>🛡️</span><span><b>Never share your wallet backup.</b> No legitimate Trezor support agent should ask you to reveal the backup words.</span></li>
-            <li><span>🔎</span><span><b>Download Trezor Suite only from Trezor.</b> Use the official download page and verify the desktop app where applicable.</span></li>
-            <li><span>✋</span><span><b>Verify on the device screen.</b> Check addresses, amounts, networks and transaction details before confirming.</span></li>
-            <li><span>📦</span><span><b>Check the package and device.</b> Inspect tamper-evident packaging and follow Trezor's device-safety checks.</span></li>
-            <li><span>🔒</span><span><b>Keep the backup offline.</b> Do not photograph, email, cloud-store or paste backup words into any app or website.</span></li>
-          </ul>
-        </div>
-      </article>
-    </section>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
 
-    <section class="section" id="prices">
-      <h2 class="section-heading"><span class="num">7</span> Live Crypto Market Reference</h2>
-      <div class="panel" style="margin-bottom:12px"><p>Indicative INR market reference prices for popular crypto assets. These prices are not Trezor device prices, Trezor portfolio balances, or guaranteed buy/swap rates.</p></div>
-      <div class="market-grid">
-        <article class="market"><strong>₿ Bitcoin (BTC)</strong><div class="price" id="btcPrice">Loading…</div><small id="btcMeta">INR reference</small></article>
-        <article class="market"><strong>◆ Ethereum (ETH)</strong><div class="price" id="ethPrice">Loading…</div><small id="ethMeta">INR reference</small></article>
-        <article class="market"><strong>◎ Solana (SOL)</strong><div class="price" id="solPrice">Loading…</div><small id="solMeta">INR reference</small></article>
-        <article class="market"><strong>✕ XRP</strong><div class="price" id="xrpPrice">Loading…</div><small id="xrpMeta">INR reference</small></article>
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <div class="sponsor-right-actions">
+        <a href="../legal-pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
+        <a href="../legal-pages/contact.html" class="sponsor-orb-btn" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
       </div>
-      <p class="market-status" id="marketStatus"><span class="status-dot"></span>Connecting to public market data…</p>
-      <p class="note">Prices refresh automatically every 60 seconds when the public API is reachable. Data may be delayed, rate-limited or unavailable due to API/network restrictions.</p>
-    </section>
-
-    <section class="section" id="guides">
-      <h2 class="section-heading"><span class="num">8</span> Official Guides &amp; Downloads</h2>
-      <div class="video-layout">
-        <article class="video-card"><div class="video-thumb"><span class="play">↗</span></div><h3>Trezor Safe Model Comparison</h3><p>Review current Trezor Safe models, product specifications and variants.</p><a href="https://trezor.io/store" target="_blank" rel="noopener noreferrer">Open Official Trezor Store ↗</a></article>
-        <article class="video-card"><div class="video-thumb"><span class="play">↗</span></div><h3>Trezor Suite App</h3><p>Download the official desktop or mobile companion app and follow setup guidance.</p><a href="https://trezor.io/trezor-suite" target="_blank" rel="noopener noreferrer">Open Trezor Suite ↗</a></article>
-        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Important Reminder</h3><p>Wallet backup words can restore access to your assets. Never enter them into a website, app, form or support chat.</p><a href="https://trezor.io/learn/security-privacy/personal-security-standards/understanding-trezor-wallet-backups-12-20-or-24-words" target="_blank" rel="noopener noreferrer">Wallet Backup Guide ↗</a></aside>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <h2 class="section-heading"><span class="num">9</span> Frequently Asked Questions</h2>
-      <div class="faq-grid">
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">What is Trezor Safe used for? <span>＋</span></button><div class="faq-a">Trezor Safe is a hardware wallet that protects the private keys used to access supported crypto assets and allows you to approve supported transactions on the device. The assets themselves remain on their blockchains.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">What is the difference between Safe 3, Safe 5 and Safe 7? <span>＋</span></button><div class="faq-a">Safe 3 has a monochrome OLED display and two-button controls. Safe 5 adds a color touchscreen and haptic feedback. Safe 7 offers a larger color touchscreen, wireless connectivity, Qi2-compatible charging and a three-chip security design.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does Trezor support all cryptocurrencies? <span>＋</span></button><div class="faq-a">No. Trezor supports thousands of coins and tokens, but support depends on the asset, network, exact device model, Trezor Suite and compatible third-party wallet apps. Check the official supported-coins page before transferring.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can I use Trezor with an iPhone? <span>＋</span></button><div class="faq-a">Trezor Safe 7 supports full Trezor Suite functionality on iOS using Bluetooth. Safe 3 and Safe 5 have limited iOS compatibility; for signing transactions, Trezor's guidance says to use a desktop or Android device.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">How many words are in a Trezor wallet backup? <span>＋</span></button><div class="faq-a">Trezor supports 12-, 20- and 24-word backup formats, including advanced multi-share backup options. The format used depends on your device and setup choices. Follow the exact instructions shown during setup and keep every backup share safe.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">What happens if I lose my Trezor device? <span>＋</span></button><div class="faq-a">You can restore your wallet on a compatible replacement device using the correct wallet backup. If both the device and the required backup information are lost, access to the wallet may not be recoverable.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can Trezor support recover my backup words? <span>＋</span></button><div class="faq-a">No support agent should ask you to disclose the words. Anyone asking you to type them into a website, app, computer or chat is a serious scam warning.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Are swaps and staking risk-free? <span>＋</span></button><div class="faq-a">No. Third-party providers, network fees, market volatility, smart-contract risks and regional restrictions may apply. Returns are not guaranteed.</div></div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div><h2>Ready to Explore Trezor Safe?</h2><p>Compare the current models, download Trezor Suite from the official site and secure your wallet backup before transferring assets.</p></div>
-      <a class="primary" href="https://trezor.io/store" target="_blank" rel="noopener noreferrer">Visit Trezor ↗</a>
-    </section>
-    <p class="disclaimer">Educational content only. Total Crypto Hub is an independent information directory and is not affiliated with Trezor. Product specifications, supported assets, software compatibility, prices and third-party services can change. Always verify details on Trezor's official website before purchasing or making a transaction. Cryptocurrency use involves risk.</p>
-    <div class="source-list"><b>Official references checked: 9 November 2026</b><br>
-      <a href="https://trezor.io/store" target="_blank" rel="noopener noreferrer">Trezor Store</a> ·
-      <a href="https://trezor.io/trezor-safe-3" target="_blank" rel="noopener noreferrer">Trezor Safe 3</a> ·
-      <a href="https://trezor.io/trezor-safe-5" target="_blank" rel="noopener noreferrer">Trezor Safe 5</a> ·
-      <a href="https://trezor.io/trezor-safe-7" target="_blank" rel="noopener noreferrer">Trezor Safe 7</a> ·
-      <a href="https://trezor.io/trezor-suite" target="_blank" rel="noopener noreferrer">Trezor Suite</a> ·
-      <a href="https://trezor.io/coins" target="_blank" rel="noopener noreferrer">Supported Coins &amp; Tokens</a> ·
-      <a href="https://trezor.io/support/troubleshooting/device-issues/is-my-device-safe-to-use" target="_blank" rel="noopener noreferrer">Device Safety Check</a> ·
-      <a href="https://trezor.io/learn/security-privacy/personal-security-standards/understanding-trezor-wallet-backups-12-20-or-24-words" target="_blank" rel="noopener noreferrer">Wallet Backup Guide</a>
     </div>
-  </main>
-  <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
+  </section>
+
+  <div class="app-shell">
+    <!-- LEFT WORKSPACE SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="side-label">Workspace</div>
+      <nav class="side-nav">
+        <a href="../index.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home
+        </a>
+        <a href="../depin-pages/depin.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects
+        </a>
+        <a href="../mobile-pages/mobile-mining.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects
+        </a>
+        <a href="../airdrop-pages/airdrops.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops &amp; Campaigns
+        </a>
+        <a href="wallets.html" class="side-link active" aria-current="page">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets &amp; Exchanges
+        </a>
+        <a href="../token-pages/token-checker.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
+        </a>
+        <a href="../earning-pages/earning-calculator.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator
+        </a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <section class="side-promo" aria-label="Community invitation">
+        <div class="promo-gift" aria-hidden="true">🛡️</div>
+        <h3>Hardware Signer<br>&amp; Backup Safety</h3>
+        <p>Compare Safe models, verify on-device and keep backups offline.</p>
+        <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
+      </section>
+      <a class="support-card" href="../legal-pages/contact.html">
+        <span class="support-icon" aria-hidden="true">♧</span>
+        <span><strong>Need Help?</strong><span>Contact Support →</span></span>
+      </a>
+      <p class="sidebar-note">A research-led Web3 directory</p>
+    </aside>
+
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+
+    <div class="main-column">
+      <!-- TOP BACK & BREADCRUMB BAR -->
+      <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <button type="button" class="btn-back-pill" onclick="goBackToList()" aria-label="Go back to wallets list">← Back</button>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <a href="wallets.html">Wallets</a>
+          <span>/</span>
+          <span class="current notranslate" translate="no">Trezor Safe Wallet</span>
+        </nav>
+        <span class="topbar-spacer"></span>
+        <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+      </header>
+
+      <!-- SHORTCUT JUMP BAR (10 SECTIONS) -->
+      <nav class="jump-strip" aria-label="Wallet sections">
+        <div class="jump-inner" id="jumpInner">
+          <a class="jump-tab active" data-target="overview" href="#overview">1. Overview</a>
+          <a class="jump-tab" data-target="key-features" href="#key-features">2. Models &amp; Features</a>
+          <a class="jump-tab" data-target="fee" href="#fee">3. Market &amp; Fees</a>
+          <a class="jump-tab" data-target="network-support" href="#network-support">4. Network Support</a>
+          <a class="jump-tab" data-target="custody-control" href="#custody-control">5. Custody &amp; Backup</a>
+          <a class="jump-tab" data-target="how-to-use" href="#how-to-use">6. How to Use</a>
+          <a class="jump-tab" data-target="security" href="#security">7. Security</a>
+          <a class="jump-tab" data-target="platforms" href="#platforms">8. Platforms</a>
+          <a class="jump-tab" data-target="guide-checklist" href="#guide-checklist">9. Guide Checklist</a>
+          <a class="jump-tab" data-target="faq" href="#faq">10. FAQ</a>
+        </div>
+      </nav>
+
+      <main>
+        <!-- COMPACT HERO BANNER: LEFT LINKS/BUTTONS + RIGHT COMPACT DEVICE SHOWCASE WITH CLOSE SUBTLE BLINK COINS -->
+        <section class="project-hero" aria-labelledby="walletTitle">
+          <div>
+            <span class="hero-eyebrow">✦ Hardware Wallet Guide · Total Crypto Hub</span>
+            <h1 id="walletTitle" class="notranslate" translate="no">Trezor Safe <span>Wallet</span></h1>
+            <p>Explore Trezor Safe hardware wallets for protecting private keys and approving crypto transactions on-device. Compare Safe 3, Safe 5 and Safe 7, and learn how to manage supported assets with Trezor Suite.</p>
+            <div class="hero-pills">
+              <span class="hero-pill">✓ Self-Custody</span>
+              <span class="hero-pill">🔐 Secure Element</span>
+              <span class="hero-pill">🧾 Wallet Backup</span>
+              <span class="hero-pill">🌐 Multi-Asset Support</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn-hero-primary" href="https://trezor.io/store" target="_blank" rel="noopener noreferrer">Explore Official Trezor Store ↗</a>
+              <a class="btn-hero-secondary" href="https://trezor.io/trezor-suite" target="_blank" rel="noopener noreferrer">Get Trezor Suite ↗</a>
+            </div>
+          </div>
+
+          <div class="hero-art" aria-label="Trezor Safe hardware wallet and popular assets">
+            <div class="device-cluster">
+              <span class="near-coin near-btc" aria-hidden="true">₿ BTC</span>
+              <span class="near-coin near-eth" aria-hidden="true">◆ ETH</span>
+              <span class="near-coin near-sol" aria-hidden="true">◎ SOL</span>
+              <span class="near-coin near-xrp" aria-hidden="true">✕ XRP</span>
+              <div class="device-showcase">
+                <img src="https://imagedelivery.net/dvYzklbs_b5YaLRtI16Mnw/b3c831b9-61ba-477d-2586-aab5d2178f00/public" alt="Trezor Safe 7 hardware wallet" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div style=&quot;font-size:64px&quot;>🔐</div>');">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) -->
+        <div class="editorial-flow">
+          <!-- 1. OVERVIEW -->
+          <article class="editorial-section" id="overview">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🏛️</span>
+              1. Overview
+            </h2>
+            <p><strong>Trezor Safe</strong> is a family of hardware wallets that protects the private keys used to access supported crypto assets. Your coins and tokens remain recorded on their respective blockchains while the hardware wallet keeps signing keys under your control and lets you verify and approve supported transactions on the device.</p>
+            <p><strong>Trezor Suite</strong> is Trezor's companion app for managing accounts, checking balances and transaction history, and accessing supported send, receive, buy, sell, swap and staking features. Availability varies by asset, device, app version, provider and region.</p>
+
+            <div class="important-callout">
+              <strong>Self-Custody Responsibility:</strong> A Trezor is not an exchange account or a place where blockchain assets physically sit. You are responsible for your device PIN, wallet backup and transaction approvals—never type your wallet backup into a website, chat, phone or computer.
+            </div>
+          </article>
+
+          <!-- 2. MODELS & KEY FEATURES -->
+          <article class="editorial-section" id="key-features">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">⭐</span>
+              2. Safe Models &amp; Key Features
+            </h2>
+            <p>Trezor's store lists Safe 3, Safe 5 and Safe 7 in universal and Bitcoin-only variants (confirm exact variant, supported assets, availability and regional price before buying):</p>
+
+            <div class="model-grid">
+              <article class="model-card">
+                <div class="model-badge-box"><span style="font-size:28px;font-weight:900">▣</span></div>
+                <h3>Trezor Safe 3</h3>
+                <p>Compact model with a monochrome display and two-button controls.</p>
+                <ul>
+                  <li>0.96-inch monochrome OLED</li>
+                  <li>USB-C connection</li>
+                  <li>CC EAL6+ Secure Element</li>
+                  <li>PIN and passphrase protection</li>
+                </ul>
+                <a href="https://trezor.io/trezor-safe-3" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
+              </article>
+
+              <article class="model-card">
+                <div class="model-badge-box"><span style="font-size:28px;font-weight:900">◉</span></div>
+                <h3>Trezor Safe 5</h3>
+                <p>Touchscreen model designed for more visual and tactile interaction.</p>
+                <ul>
+                  <li>1.54-inch color touchscreen</li>
+                  <li>Haptic feedback and Gorilla Glass 3</li>
+                  <li>CC EAL6+ Secure Element</li>
+                  <li>PIN, passphrase and MicroSD slot</li>
+                </ul>
+                <a href="https://trezor.io/trezor-safe-5" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
+              </article>
+
+              <article class="model-card">
+                <div class="model-badge-box"><span style="font-size:28px;font-weight:900">▰</span></div>
+                <h3>Trezor Safe 7</h3>
+                <p>Advanced model with a large display, wireless connectivity and layered hardware security.</p>
+                <ul>
+                  <li>2.5-inch high-resolution color touchscreen</li>
+                  <li>Bluetooth and Qi2-compatible wireless charging</li>
+                  <li>Three independent security chips</li>
+                  <li>IP54-rated dust and splash protection</li>
+                </ul>
+                <a href="https://trezor.io/trezor-safe-7" target="_blank" rel="noopener noreferrer">Official product details ↗</a>
+              </article>
+            </div>
+          </article>
+
+          <!-- 3. MARKET & FEES -->
+          <article class="editorial-section" id="fee">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">💸</span>
+              3. Live Market Reference &amp; Service Notes
+            </h2>
+            <p>Indicative INR market reference prices for popular crypto assets (not Trezor device prices, Trezor portfolio balances, or guaranteed buy/swap rates):</p>
+
+            <div class="market-grid">
+              <div class="market-card">
+                <strong>₿ Bitcoin (BTC)</strong>
+                <div class="price" id="btcPrice">Loading…</div>
+                <small id="btcMeta">INR reference</small>
+              </div>
+              <div class="market-card">
+                <strong>◆ Ethereum (ETH)</strong>
+                <div class="price" id="ethPrice">Loading…</div>
+                <small id="ethMeta">INR reference</small>
+              </div>
+              <div class="market-card">
+                <strong>◎ Solana (SOL)</strong>
+                <div class="price" id="solPrice">Loading…</div>
+                <small id="solMeta">INR reference</small>
+              </div>
+              <div class="market-card">
+                <strong>✕ XRP</strong>
+                <div class="price" id="xrpPrice">Loading…</div>
+                <small id="xrpMeta">INR reference</small>
+              </div>
+            </div>
+            <p class="market-status" id="marketStatus"><span class="status-dot"></span>Connecting to public market data…</p>
+            <p class="source-note">Refreshes every 60 seconds when reachable; data may be delayed, rate-limited or unavailable due to API/network limits.</p>
+
+            <table class="stats-table">
+              <tbody>
+                <tr class="important-row">
+                  <th>Swaps, Staking &amp; Third-Party Services</th>
+                  <td>Third-party providers, network fees, market volatility, smart-contract risks and regional restrictions may apply; returns are not guaranteed.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- 4. NETWORK SUPPORT -->
+          <article class="editorial-section" id="network-support">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🌐</span>
+              4. Network &amp; Asset Support
+            </h2>
+            <p>Trezor supports thousands of coins and tokens, but exact support depends on the asset, network, device model, Trezor Suite and compatible third-party wallet apps:</p>
+
+            <h3 class="sub-heading">Popular Tracked Assets</h3>
+            <div class="coin-stream" aria-label="Popular crypto assets">
+              <span class="coin-chip featured-coin">₿ Bitcoin (BTC)</span>
+              <span class="coin-chip featured-coin">◆ Ethereum (ETH)</span>
+              <span class="coin-chip featured-coin">◎ Solana (SOL)</span>
+              <span class="coin-chip featured-coin">✕ XRP</span>
+              <span class="coin-chip">🌐 Multi-Asset</span>
+            </div>
+
+            <div class="important-callout">
+              <strong>Check Official Coin Support:</strong> Always check <a href="https://trezor.io/coins" target="_blank" rel="noopener noreferrer">Supported Coins &amp; Tokens ↗</a> and verify networks before transferring funds.
+            </div>
+          </article>
+
+          <!-- 5. CUSTODY & BACKUP -->
+          <article class="editorial-section" id="custody-control">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🗝️</span>
+              5. Custody &amp; Wallet Backup Formats
+            </h2>
+            <p>Trezor supports 12-, 20- and 24-word backup formats (including multi-share backup options depending on device and setup choices) so you can restore access on a compatible replacement device if your Trezor is lost.</p>
+
+            <div class="important-callout">
+              <strong>Backup &amp; Recovery Rule:</strong> If both the device and required backup information are lost, wallet access may not be recoverable. Keep every backup share strictly offline and never enter it into any website, app, computer or chat.
+            </div>
+          </article>
+
+          <!-- 6. HOW TO USE -->
+          <article class="editorial-section" id="how-to-use">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🛠️</span>
+              6. How to Set Up a Trezor Safe
+            </h2>
+            <p>General setup flow (do not use a wallet backup supplied by another person):</p>
+            <div class="steps-flow">
+              <div class="step-item">
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <h4>Step 1: Buy from Trezor</h4>
+                  <p>Purchase from the official Trezor Store or a reseller identified by Trezor.</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <h4>Step 2: Open Trezor Suite</h4>
+                  <p>Download the app from <code>trezor.io</code> or use the official web app.</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <h4>Step 3: Connect and Initialize</h4>
+                  <p>Follow device prompts, install firmware if asked and set a PIN.</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <span class="step-num">4</span>
+                <div class="step-body">
+                  <h4>Step 4: Create a Wallet Backup</h4>
+                  <p>Record backup words offline and verify them on the device as instructed.</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <span class="step-num">5</span>
+                <div class="step-body">
+                  <h4>Step 5: Verify Before Sending</h4>
+                  <p>Check the receive address and transaction details on the Trezor screen.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. SECURITY -->
+          <article class="editorial-section" id="security">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🛡️</span>
+              7. Security Best Practices
+            </h2>
+            <p>Protect your hardware wallet, backup words and signing approvals:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr class="important-row">
+                  <th>Never Share Backup Words</th>
+                  <td>No legitimate support agent should ask for your backup words; typing them into a site, app, computer or chat is a major scam warning.</td>
+                </tr>
+                <tr>
+                  <th>Official Suite &amp; Packaging</th>
+                  <td>Download Trezor Suite only from Trezor, inspect tamper-evident packaging and follow Trezor's device-safety checks.</td>
+                </tr>
+                <tr class="important-row">
+                  <th>On-Device Verification &amp; Offline Storage</th>
+                  <td>Verify addresses, amounts and networks on the device screen, and never photograph, email or cloud-store backup words.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- 8. PLATFORMS -->
+          <article class="editorial-section" id="platforms">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">📱</span>
+              8. Platforms &amp; iOS Compatibility
+            </h2>
+            <p>Use Trezor Safe with Trezor Suite across desktop and mobile (note that iOS support differs by model):</p>
+            <div class="perm-pills">
+              <span class="perm-pill">Trezor Suite (Desktop &amp; Web)</span>
+              <span class="perm-pill">Android &amp; Desktop Signing</span>
+              <span class="perm-pill">Safe 7 iOS Bluetooth Support</span>
+              <span class="perm-pill">Safe 3 &amp; 5: Use Desktop/Android to Sign</span>
+            </div>
+          </article>
+
+          <!-- 9. GUIDE CHECKLIST -->
+          <article class="editorial-section" id="guide-checklist">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">✅</span>
+              9. Guide Checklist &amp; Official References
+            </h2>
+            <p>Official resources referenced for this guide (checked 9 November 2026):</p>
+            <ul class="clean-list">
+              <li><strong>Store, Suite &amp; Coins:</strong> Visit <a href="https://trezor.io/store" target="_blank" rel="noopener noreferrer">Trezor Store ↗</a>, <a href="https://trezor.io/trezor-suite" target="_blank" rel="noopener noreferrer">Trezor Suite ↗</a> and <a href="https://trezor.io/coins" target="_blank" rel="noopener noreferrer">Supported Coins &amp; Tokens ↗</a>.</li>
+              <li><strong>Safety &amp; Backups:</strong> Read <a href="https://trezor.io/support/troubleshooting/device-issues/is-my-device-safe-to-use" target="_blank" rel="noopener noreferrer">Device Safety Check ↗</a> and <a href="https://trezor.io/learn/security-privacy/personal-security-standards/understanding-trezor-wallet-backups-12-20-or-24-words" target="_blank" rel="noopener noreferrer">Wallet Backup Guide ↗</a>.</li>
+            </ul>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://trezor.io/store" target="_blank" rel="noopener noreferrer">🛒 Trezor Store →</a>
+              <a class="doc-link-pill" href="https://trezor.io/trezor-suite" target="_blank" rel="noopener noreferrer">💻 Trezor Suite →</a>
+              <a class="doc-link-pill" href="https://trezor.io/coins" target="_blank" rel="noopener noreferrer">🪙 Supported Coins →</a>
+              <a class="doc-link-pill" href="https://trezor.io/learn/security-privacy/personal-security-standards/understanding-trezor-wallet-backups-12-20-or-24-words" target="_blank" rel="noopener noreferrer">🧾 Backup Guide →</a>
+            </div>
+          </article>
+
+          <!-- 10. FAQ -->
+          <article class="editorial-section" id="faq">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">❓</span>
+              10. FAQ
+            </h2>
+            <div class="faq-list">
+              <details class="faq-item important-faq" open>
+                <summary>1. What is the difference between Safe 3, Safe 5 and Safe 7?</summary>
+                <div class="faq-body">
+                  <p><strong>Model differences:</strong> Safe 3 has a monochrome OLED display and two buttons; Safe 5 adds a color touchscreen and haptic feedback; Safe 7 offers a larger color touchscreen, wireless connectivity, Qi2-compatible charging and a three-chip security design.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>2. Can I use Trezor with an iPhone?</summary>
+                <div class="faq-body">
+                  <p><strong>iOS note:</strong> Trezor Safe 7 supports full Trezor Suite functionality on iOS via Bluetooth, while Safe 3 and Safe 5 have limited iOS compatibility and require a desktop or Android device to sign transactions.</p>
+                </div>
+              </details>
+
+              <details class="faq-item important-faq">
+                <summary>3. How many words are in a Trezor backup, and can support recover it?</summary>
+                <div class="faq-body">
+                  <p><strong>Backups &amp; support:</strong> Trezor supports 12-, 20- and 24-word backup formats (including multi-share options depending on setup); no support agent should ask for your words, and losing both device and required backup may make recovery impossible.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>4. Are swaps and staking risk-free?</summary>
+                <div class="faq-body">
+                  <p><strong>Risk warning:</strong> No—third-party providers, network fees, market volatility, smart-contract risks and regional limits may apply with no guaranteed returns.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+
+        <p class="disclaimer"><strong>Important Disclosure:</strong> Educational content only. Total Crypto Hub is an independent information directory and is not affiliated with Trezor. Product specifications, supported assets, software compatibility, prices and third-party services can change. Always verify details on Trezor's official website before purchasing or making a transaction. Cryptocurrency use involves risk.</p>
+
+        <footer>
+          <a href="../index.html" class="footer-brand" translate="no">
+            <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
+            <span>Total Crypto Hub</span>
+          </a>
+          <p class="footer-copy">&copy; <span id="year"></span> <span class="notranslate" translate="no">Total Crypto Network</span>. All rights reserved.</p>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="../index.html">Home</a>
+            <a href="../legal-pages/about.html">About Us</a>
+            <a href="../legal-pages/contact.html">Contact Us</a>
+            <a href="../legal-pages/privacy.html">Privacy Policy</a>
+            <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
+            <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+          </nav>
+        </footer>
+      </main>
+    </div>
+  </div>
 
   <script>
-    const themeButton = document.getElementById('themeToggle');
-    try { if (localStorage.getItem('tch-theme') === 'dark') document.body.classList.add('dark'); } catch(e) {}
-    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    themeButton.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const dark = document.body.classList.contains('dark');
-      themeButton.textContent = dark ? '☀️' : '🌙';
-      try { localStorage.setItem('tch-theme', dark ? 'dark' : 'light'); } catch(e) {}
-    });
-
-    const backBtn = document.getElementById('backBtn');
-    if (backBtn) {
-      backBtn.addEventListener('click', (e) => {
-        if (document.referrer && window.history.length > 1) {
-          try {
-            const refUrl = new URL(document.referrer);
-            const isLocal = window.location.protocol === 'file:' && refUrl.protocol === 'file:';
-            const isSameSite = refUrl.origin === window.location.origin;
-            if (isLocal || isSameSite) {
-              e.preventDefault();
-              window.history.back();
-            }
-          } catch (err) {}
-        }
-      });
+    function goBackToList() {
+      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname) && window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'wallets.html';
+      }
     }
 
-    document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => {
-      const item = button.closest('.faq-item');
-      item.classList.toggle('open');
-      button.setAttribute('aria-expanded', item.classList.contains('open'));
-      button.querySelector('span').textContent = item.classList.contains('open') ? '−' : '＋';
-    }));
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const navLinks = document.querySelectorAll('.quicknav a');
-    navLinks.forEach(link => link.addEventListener('click', () => {
-      navLinks.forEach(item => item.classList.remove('active'));
-      link.classList.add('active');
-    }));
+    function applyTheme(theme) {
+      const safeTheme = theme === 'dark' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', safeTheme);
+      document.documentElement.setAttribute('data-theme', safeTheme);
+      const toggle = document.getElementById('themeToggle');
+      if (toggle) {
+        toggle.textContent = safeTheme === 'light' ? '🌙' : '☀️';
+        toggle.setAttribute('aria-label', safeTheme === 'light' ? 'Enable dark mode' : 'Enable light mode');
+      }
+      try {
+        localStorage.setItem('theme', safeTheme);
+        localStorage.setItem('tch-theme', safeTheme);
+      } catch (e) {}
+    }
+
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    }
+
+    function closeMobileMenu() {
+      document.body.classList.remove('menu-open');
+      const button = document.getElementById('mobileMenuBtn');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    }
+
+    function initScrollSpyTabs() {
+      const tabs = Array.from(document.querySelectorAll('.jump-tab'));
+      const jumpInner = document.getElementById('jumpInner');
+      const sections = Array.from(document.querySelectorAll('.editorial-flow > article[id]'));
+      if (!tabs.length || !sections.length) return;
+
+      const tabById = new Map();
+      tabs.forEach(tab => {
+        const targetId = tab.getAttribute('data-target');
+        if (targetId) tabById.set(targetId, tab);
+      });
+
+      function setActiveTab(sectionId) {
+        const activeTab = tabById.get(sectionId);
+        if (!activeTab) return;
+        tabs.forEach(t => t.classList.remove('active'));
+        activeTab.classList.add('active');
+
+        if (jumpInner) {
+          const tabLeft = activeTab.offsetLeft;
+          const tabWidth = activeTab.offsetWidth;
+          const containerWidth = jumpInner.clientWidth;
+          const desiredScroll = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+          jumpInner.scrollTo({ left: Math.max(0, desiredScroll), behavior: 'smooth' });
+        }
+      }
+
+      let scrollTicking = false;
+      function updateOnScroll() {
+        scrollTicking = false;
+        const headerOffset = 155;
+        let currentId = sections[0].id;
+
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= headerOffset) {
+            currentId = section.id;
+          } else {
+            break;
+          }
+        }
+
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+        if (nearBottom) {
+          currentId = sections[sections.length - 1].id;
+        }
+
+        setActiveTab(currentId);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          window.requestAnimationFrame(updateOnScroll);
+        }
+      }, { passive: true });
+
+      updateOnScroll();
+    }
 
     const money = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
     async function loadMarket() {
@@ -338,17 +1576,52 @@
         for (const [short, id] of rows) {
           const value = data?.[id]?.inr;
           if (typeof value !== 'number') throw new Error('Price not available for ' + id);
-          document.getElementById(short + 'Price').textContent = money.format(value);
-          document.getElementById(short + 'Meta').textContent = 'INR reference · Updated ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+          const priceEl = document.getElementById(short + 'Price');
+          const metaEl = document.getElementById(short + 'Meta');
+          if (priceEl) priceEl.textContent = money.format(value);
+          if (metaEl) metaEl.textContent = 'INR reference · Updated ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         }
-        status.innerHTML = '<span class="status-dot"></span>Market reference prices refreshed at ' + new Date().toLocaleTimeString('en-IN') + '.';
+        if (status) status.innerHTML = '<span class="status-dot"></span>Market reference prices refreshed at ' + new Date().toLocaleTimeString('en-IN') + '.';
       } catch (error) {
-        status.textContent = 'Market prices are temporarily unavailable. Check again later; the educational wallet guide remains available.';
-        console.warn('Trezor Safe page market data:', error);
+        if (status) status.textContent = 'Market prices are temporarily unavailable. Check again later; the educational wallet guide remains available.';
       }
     }
-    loadMarket();
-    setInterval(loadMarket, 60000);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollSpyTabs();
+
+      let savedTheme = 'light';
+      try {
+        savedTheme = localStorage.getItem('theme') || localStorage.getItem('tch-theme') || 'light';
+      } catch (e) {}
+      applyTheme(savedTheme);
+
+      const menuButton = document.getElementById('mobileMenuBtn');
+      const overlay = document.getElementById('mobileOverlay');
+      if (menuButton) {
+        menuButton.addEventListener('click', function () {
+          const isOpen = document.body.classList.toggle('menu-open');
+          this.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+      if (overlay) overlay.addEventListener('click', closeMobileMenu);
+      document.querySelectorAll('.side-link').forEach(link => link.addEventListener('click', closeMobileMenu));
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      loadMarket();
+      setInterval(loadMarket, 60000);
+    });
   </script>
+
+  <script src="../ai-assistant/assistant.js" defer></script>
+  <script src="../ai-assistant/robot-animation.js" defer></script>
 </body>
 </html>
