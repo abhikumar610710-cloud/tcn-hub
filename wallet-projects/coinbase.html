@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08a86b">
-  <meta name="description" content="Complete Coinbase Wallet & Base App guide by Total Crypto Hub: overview, key features, fees and network costs, wallet types and network support, self-custody, how to use, security, platforms, guide checklist, and detailed FAQ.">
+  <meta name="description" content="Complete Rabby Wallet guide by Total Crypto Hub: overview, key features, 0.25% swap fee and gas, EVM network support, self-custody, how to use, security, platforms, guide checklist, and detailed FAQ.">
   <meta name="robots" content="index,follow">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
-  <title>Coinbase Wallet Guide | Total Crypto Hub</title>
+  <title>Rabby Wallet Guide | Total Crypto Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -398,155 +398,207 @@
       padding: 22px clamp(16px, 2.4vw, 32px) 42px;
     }
 
-    /* MINT-GREEN & WHITE HERO BANNER */
+    /* HERO BANNER: LEFT LINKS/BUTTONS + RIGHT LARGE LOGO ORB WITH CLOSE SUBTLE BLINK COINS */
     .project-hero {
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(305px, .82fr);
+      grid-template-columns: 1.3fr .7fr;
       align-items: center;
-      gap: 22px;
-      padding: 24px 28px;
+      gap: 24px;
+      padding: 32px 38px;
       border: 1px solid #96ecd0;
-      border-radius: 22px;
+      border-radius: 26px;
       background:
-        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
-        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+        radial-gradient(circle at 88% 18%, rgba(8, 168, 107, .22) 0 13%, transparent 13.2%),
+        linear-gradient(115deg, var(--banner-start) 0%, var(--banner-mid) 56%, var(--banner-end) 100%);
       box-shadow: var(--shadow);
     }
+    .project-hero::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(8, 168, 107, .35);
+      border-radius: 50%;
+      right: 5%;
+      top: 4%;
+      pointer-events: none;
+    }
     [data-theme="dark"] .project-hero { border-color: #215d4c; }
-    .hero-identity {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .hero-logo-box {
-      width: 72px;
-      height: 72px;
-      flex: 0 0 72px;
-      border-radius: 20px;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, var(--green), var(--green-dark));
-      border: 2px solid var(--green);
-      box-shadow: 0 8px 20px rgba(8, 168, 107, .22);
-      color: #ffffff;
-      font-size: 30px;
-      font-weight: 800;
-    }
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .badge-pill {
+
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
+      gap: 7px;
+      border: 1px solid #8ce0c1;
+      background: var(--surface);
       border-radius: 999px;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: .3px;
-      background: var(--surface);
+      padding: 6px 13px;
       color: var(--green-dark);
-      border: 1px solid #96ecd0;
-    }
-    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
-
-    .hero-title-group h1 {
-      margin: 0 0 6px;
-      color: var(--heading);
-      font-size: clamp(24px, 2.7vw, 35px);
-      line-height: 1.14;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: -.8px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
-    .hero-title-group p {
-      margin: 0;
+    [data-theme="dark"] .hero-eyebrow { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
+
+    .project-hero h1 {
+      font-size: clamp(32px, 4.2vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      margin: 14px 0 10px;
+      color: var(--heading);
+      font-weight: 800;
+    }
+    .project-hero h1 span { color: var(--green); }
+
+    .project-hero p {
+      max-width: 650px;
       color: var(--body);
-      font-size: 13px;
-      line-height: 1.62;
+      margin: 0 0 16px;
+      font-size: 14.5px;
+      line-height: 1.65;
       font-weight: 600;
-      max-width: 720px;
     }
 
-    /* PORTAL ACTION CARD */
-    .portal-action-card {
-      padding: 16px 18px;
-      border-radius: 18px;
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 20px;
+    }
+    .hero-pill {
       background: var(--surface);
-      border: 1px solid #96ecd0;
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
-      display: grid;
+      color: var(--heading);
+      border: 1px solid #b8f2d7;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .hero-pill { border-color: #23654e; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
     }
-    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
-
-    .portal-meta-box {
-      padding: 10px 13px;
-      border-radius: 13px;
-      background: var(--green-soft);
-      border: 1px solid #8ce0c1;
-    }
-    [data-theme="dark"] .portal-meta-box { border-color: #267358; }
-    .portal-meta-label {
-      display: block;
-      font-size: 9.5px;
-      font-weight: 800;
-      color: var(--green-dark);
-      text-transform: uppercase;
-      letter-spacing: .45px;
-      margin-bottom: 2px;
-    }
-    [data-theme="dark"] .portal-meta-label { color: var(--green-light); }
-    .portal-meta-value {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--heading);
-      overflow-wrap: anywhere;
-    }
-
-    .btn-launch-primary {
-      width: 100%;
+    .btn-hero-primary, .btn-hero-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 16px;
       border-radius: 999px;
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
-      text-decoration: none;
+      padding: 12px 20px;
       font-size: 12.5px;
       font-weight: 800;
-      transition: transform .2s ease;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
-    .btn-launch-primary:hover { transform: translateY(-1px); }
+    .btn-hero-primary {
+      background: linear-gradient(110deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      box-shadow: 0 7px 16px rgba(8, 168, 107, .24);
+    }
+    .btn-hero-secondary {
+      background: var(--surface);
+      color: var(--heading);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .btn-hero-secondary { border-color: #245f4d; }
+    .btn-hero-primary:hover, .btn-hero-secondary:hover { transform: translateY(-2px); }
 
-    /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
-    .single-column-stack {
+    /* RIGHT SIDE LARGE LOGO ORB + CLOSE SUBTLE BLINK POPULAR COINS */
+    .hero-art {
+      position: relative;
+      z-index: 1;
       display: grid;
-      gap: 18px;
-      margin-top: 20px;
+      place-items: center;
+      min-height: 220px;
+    }
+    .orb-cluster {
+      position: relative;
+      width: 224px;
+      height: 224px;
+      display: grid;
+      place-items: center;
+    }
+    .rabbit-orb {
+      width: 196px;
+      height: 196px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 35% 28%, #ffffff, #c9fff0 55%, #71ddbd);
+      box-shadow: 0 18px 35px rgba(8, 168, 107, .25);
+      border: 2px solid #8be5c7;
+    }
+    [data-theme="dark"] .rabbit-orb {
+      background: radial-gradient(circle at 35% 28%, #1a473f, #11322c 65%, #0c2420);
+      border-color: #297a60;
+    }
+    .rabbit-orb img {
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 10px rgba(23, 77, 60, .25));
     }
 
-    .info-card {
-      padding: 22px 24px;
+    @keyframes subtleCoinBlink {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+      50% {
+        opacity: .68;
+        transform: translateY(-2px);
+      }
+    }
+
+    .near-coin {
+      position: absolute;
+      z-index: 2;
+      min-width: 44px;
+      height: 28px;
+      padding: 0 8px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+      border: 1px solid rgba(8, 168, 107, .35);
+      box-shadow: 0 4px 10px rgba(8, 168, 107, .14);
+      animation: subtleCoinBlink 3.4s ease-in-out infinite;
+    }
+    .near-eth { top: 4px; left: 4px; background: #e7e2ff; color: #6346cf; animation-delay: 0s; }
+    .near-evm { top: 10px; right: 2px; background: #fff0cc; color: #c97d00; animation-delay: .65s; }
+    .near-base { bottom: 10px; left: 2px; background: #e3fff3; color: #008556; animation-delay: 1.3s; }
+    .near-arb { bottom: 4px; right: 4px; background: #e5f3ff; color: #1b65a8; animation-delay: 1.95s; }
+
+    /* CLEAN EDITORIAL SECTIONS (1 TO 10 WITHOUT HEAVY BOXES) */
+    .editorial-flow {
+      display: grid;
+      gap: 24px;
+      margin-top: 22px;
+    }
+
+    .editorial-section {
+      padding: 22px 26px;
       border-radius: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .05);
     }
+
     .card-heading {
       display: flex;
       align-items: center;
       gap: 10px;
       margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
       color: var(--heading);
       font-size: 17.5px;
       font-weight: 800;
@@ -566,14 +618,14 @@
     }
     [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
 
-    .info-card p {
+    .editorial-section p {
       margin: 0 0 11px;
       font-size: 13px;
-      line-height: 1.75;
+      line-height: 1.78;
       color: var(--body);
     }
-    .info-card p:last-child { margin-bottom: 0; }
-    .info-card code {
+    .editorial-section p:last-child { margin-bottom: 0; }
+    .editorial-section code {
       background: var(--surface-soft);
       padding: 2px 6px;
       border-radius: 5px;
@@ -583,32 +635,37 @@
       overflow-wrap: anywhere;
     }
 
-    /* WEBSITE GREEN THEME FOR IMPORTANT INFO BOXES */
-    .highlight-box,
-    .notice-box {
-      margin-top: 12px;
-      padding: 14px 16px;
-      border-radius: 15px;
-      border: 1.5px solid #4bd69f;
+    .sub-heading {
+      margin: 16px 0 8px;
+      color: var(--heading);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .clean-list {
+      margin: 6px 0 12px;
+      padding-left: 20px;
+      display: grid;
+      gap: 7px;
+      font-size: 12.8px;
+      line-height: 1.72;
+      color: var(--body);
+    }
+    .clean-list li strong { color: var(--heading); }
+
+    /* WEBSITE GREEN THEME — ONLY FOR IMPORTANT / KEY INFORMATION */
+    .important-callout {
+      margin: 14px 0;
+      padding: 13px 16px;
+      border-radius: 14px;
       border-left: 4px solid var(--green);
-      background: linear-gradient(120deg, var(--green-soft), #f2fff9);
+      background: linear-gradient(110deg, var(--green-soft), color-mix(in srgb, var(--green-soft) 45%, var(--surface)));
       color: var(--heading);
-      font-size: 12.2px;
-      line-height: 1.68;
-      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
+      font-size: 12.5px;
+      line-height: 1.7;
     }
-    [data-theme="dark"] .highlight-box,
-    [data-theme="dark"] .notice-box {
-      background: linear-gradient(120deg, var(--green-soft), #10322c);
-      color: var(--heading);
-      border-color: #287a5e;
-      border-left-color: var(--green);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
-    }
-    .highlight-box strong,
-    .notice-box strong { color: var(--green-dark); }
-    [data-theme="dark"] .highlight-box strong,
-    [data-theme="dark"] .notice-box strong { color: var(--green-light); }
+    .important-callout strong { color: var(--green-dark); }
+    [data-theme="dark"] .important-callout strong { color: var(--green-light); }
 
     .doc-links-row {
       display: flex;
@@ -636,53 +693,6 @@
       color: #ffffff;
     }
 
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-
-    /* STANDARD BOX (SUBTLE/NEUTRAL FOR GENERAL INFO) */
-    .mini-box {
-      padding: 15px 16px;
-      border-radius: 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-    .mini-box h3 {
-      margin: 0 0 6px;
-      font-size: 13.5px;
-      font-weight: 800;
-      color: var(--heading);
-    }
-    .mini-box p {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.68;
-      color: var(--body);
-    }
-
-    /* IMPORTANT INFO BOX IN WEBSITE GREEN THEME */
-    .mini-box.important-box {
-      background: linear-gradient(135deg, var(--green-soft) 0%, #f4fff9 100%);
-      border: 1.5px solid #59d9a4;
-      border-top: 3px solid var(--green);
-      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
-    }
-    [data-theme="dark"] .mini-box.important-box {
-      background: linear-gradient(135deg, var(--green-soft) 0%, #11302a 100%);
-      border: 1.5px solid #2b8264;
-      border-top: 3px solid var(--green);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
-    }
-    .mini-box.important-box h3 {
-      color: var(--green-dark);
-    }
-    [data-theme="dark"] .mini-box.important-box h3 {
-      color: var(--green-light);
-    }
-
     .stats-table {
       width: 100%;
       border-collapse: collapse;
@@ -697,7 +707,7 @@
       text-align: left;
       border-bottom: 1px solid var(--border);
       font-size: 12.5px;
-      line-height: 1.65;
+      line-height: 1.68;
     }
     .stats-table th {
       background: var(--surface-soft);
@@ -706,55 +716,75 @@
       width: 28%;
     }
     .stats-table td { color: var(--body); }
+    .stats-table tr.important-row th,
+    .stats-table tr.important-row td {
+      background: color-mix(in srgb, var(--green-soft) 55%, var(--surface));
+      color: var(--heading);
+    }
     .stats-table tr.important-row th {
-      background: var(--green-soft);
       color: var(--green-dark);
       border-left: 3px solid var(--green);
     }
-    [data-theme="dark"] .stats-table tr.important-row th {
-      color: var(--green-light);
-    }
-    .stats-table tr.important-row td {
-      background: color-mix(in srgb, var(--green-soft) 38%, var(--surface));
-      color: var(--heading);
-      font-weight: 600;
-    }
+    [data-theme="dark"] .stats-table tr.important-row th { color: var(--green-light); }
     .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
-    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    /* POPULAR COINS / NETWORKS WITH SUBTLE BLINK */
+    .coin-stream {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .coin-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
+      animation: subtleCoinBlink 3.6s ease-in-out infinite;
+    }
+    .coin-chip.featured-coin {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-color: var(--green);
+    }
+    [data-theme="dark"] .coin-chip.featured-coin { color: var(--green-light); }
+    .coin-chip:nth-child(2n) { animation-delay: .5s; }
+    .coin-chip:nth-child(3n) { animation-delay: 1s; }
+    .coin-chip:nth-child(4n) { animation-delay: 1.5s; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .perm-pill {
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 800;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      border: 1px solid #b4edd6;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
 
-    .steps-list {
-      display: grid;
-      gap: 11px;
+    /* CLEAN STEP FLOW (NO HEAVY BOXES) */
+    .steps-flow {
       margin-top: 10px;
+      display: grid;
+      gap: 12px;
     }
-    .step-row {
+    .step-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      padding-bottom: 11px;
+      border-bottom: 1px dashed var(--border);
     }
-    .step-row.important-step {
-      background: linear-gradient(125deg, var(--green-soft), #f4fff9);
-      border: 1.5px solid #59d9a4;
-      box-shadow: 0 6px 14px rgba(8, 168, 107, .07);
-    }
-    [data-theme="dark"] .step-row.important-step {
-      background: linear-gradient(125deg, var(--green-soft), #11302a);
-      border-color: #2b8264;
+    .step-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
     }
     .step-num {
       width: 28px;
@@ -767,35 +797,23 @@
       color: #ffffff;
       font-size: 12px;
       font-weight: 800;
+      margin-top: 2px;
     }
     .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
-    .step-row.important-step .step-body h4 { color: var(--green-dark); }
-    [data-theme="dark"] .step-row.important-step .step-body h4 { color: var(--green-light); }
-    .step-body p { margin: 0; font-size: 12px; line-height: 1.68; color: var(--body); }
+    .step-body p { margin: 0; font-size: 12.4px; line-height: 1.7; color: var(--body); }
 
-    /* RICH FAQ ACCORDION */
-    .faq-list { display: grid; gap: 11px; }
+    /* CLEAN FAQ ACCORDION */
+    .faq-list { display: grid; gap: 10px; margin-top: 10px; }
     .faq-item {
-      border-radius: 16px;
+      border-radius: 14px;
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 14px 18px;
+      padding: 13px 16px;
       transition: .18s ease;
     }
     .faq-item.important-faq {
-      background: linear-gradient(130deg, var(--green-soft) 0%, #f6fffb 100%);
-      border: 1.5px solid #59d9a4;
-    }
-    [data-theme="dark"] .faq-item.important-faq {
-      background: linear-gradient(130deg, var(--green-soft) 0%, #11302a 100%);
-      border-color: #2b8264;
-    }
-    .faq-item[open] {
-      background: var(--surface);
-      box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
-    }
-    .faq-item.important-faq[open] {
-      background: linear-gradient(180deg, var(--green-soft) 0%, var(--surface) 45%);
+      border-left: 3.5px solid var(--green);
+      background: color-mix(in srgb, var(--green-soft) 35%, var(--surface));
     }
     .faq-item summary {
       font-size: 13.5px;
@@ -863,13 +881,22 @@
 
     .mobile-overlay { display: none; }
 
+    @media (prefers-reduced-motion: reduce) {
+      .near-coin, .coin-chip {
+        animation: none !important;
+      }
+    }
+
     @media(max-width: 1250px) {
       :root { --sidebar-width: 235px; }
       .header-brand { min-width: 185px; }
       .slot-arrow { display: none; }
     }
     @media(max-width: 1020px) {
-      .project-hero { grid-template-columns: 1fr; }
+      .project-hero { grid-template-columns: 1fr; padding: 26px; }
+      .hero-art { min-height: 195px; }
+      .orb-cluster { width: 196px; height: 196px; }
+      .rabbit-orb { width: 168px; height: 168px; }
     }
     @media(max-width: 760px) {
       :root { --sidebar-width: 258px; --sponsor-height: 56px; }
@@ -896,12 +923,13 @@
       .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
 
       main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
-      .project-hero { padding: 18px; }
-      .hero-identity { flex-direction: column; gap: 12px; }
-      .mini-grid { grid-template-columns: 1fr; }
+      .project-hero { padding: 20px 18px; }
+      .editorial-section { padding: 18px 18px; }
     }
     @media(max-width: 480px) {
       .header-brand-subtitle, .slot-megaphone { display: none; }
+      .orb-cluster { width: 174px; height: 174px; }
+      .rabbit-orb { width: 146px; height: 146px; }
     }
   </style>
 </head>
@@ -980,8 +1008,8 @@
       </nav>
       <div class="sidebar-spacer"></div>
       <section class="side-promo" aria-label="Community invitation">
-        <div class="promo-gift" aria-hidden="true">🔵</div>
-        <h3>Explore Onchain Wallets<br>&amp; Stay Safe</h3>
+        <div class="promo-gift" aria-hidden="true">🐰</div>
+        <h3>Explore EVM Wallets<br>&amp; Stay Safe</h3>
         <p>Follow setup guides, security checklists and community announcements.</p>
         <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
       </section>
@@ -1004,7 +1032,7 @@
           <span>/</span>
           <a href="../wallet-pages/wallets.html">Wallets &amp; Exchanges</a>
           <span>/</span>
-          <span class="current notranslate" translate="no">Coinbase Wallet</span>
+          <span class="current notranslate" translate="no">Rabby Wallet</span>
         </nav>
         <span class="topbar-spacer"></span>
         <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
@@ -1027,352 +1055,362 @@
       </nav>
 
       <main>
-        <!-- MINT-GREEN & WHITE HERO BANNER -->
+        <!-- HERO BANNER: LEFT LINKS/BUTTONS + RIGHT LARGE LOGO ORB WITH CLOSE SUBTLE BLINK COINS -->
         <section class="project-hero" aria-labelledby="walletTitle">
-          <div class="hero-identity">
-            <div class="hero-logo-box" aria-label="Coinbase Wallet emblem">●</div>
-            <div class="hero-title-group">
-              <div class="hero-badges">
-                <span class="badge-pill">🔵 Self-Custody Wallet</span>
-                <span class="badge-pill">🌐 EVM + Base App</span>
-                <span class="badge-pill">🔎 Transaction Previews</span>
-                <span class="badge-pill">🛡️ Approval &amp; Risk Alerts</span>
-              </div>
-              <h1 id="walletTitle" class="notranslate" translate="no">Coinbase Wallet</h1>
-              <p>Complete guide explaining what Coinbase Wallet is, how it relates to Base App and exchange accounts, its key features, fees, network support by wallet type, self-custody control, setup steps, and safety practices.</p>
+          <div>
+            <span class="hero-eyebrow">✦ Self-Custody EVM Wallet · Total Crypto Hub</span>
+            <h1 id="walletTitle" class="notranslate" translate="no">Rabby <span>Wallet</span></h1>
+            <p>Complete guide explaining what Rabby Wallet is, how it works, its benefits and trade-offs, 140+ EVM network support, 0.25% swap fee and gas rules, self-custody control, setup steps, and practical safety rules.</p>
+            <div class="hero-pills">
+              <span class="hero-pill">✓ Self-Custody EVM</span>
+              <span class="hero-pill">🌐 140+ EVM Chains</span>
+              <span class="hero-pill">🔍 Tx Simulation</span>
+              <span class="hero-pill">🛡️ Risk Alerts</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn-hero-primary" href="https://rabby.io/" target="_blank" rel="noopener noreferrer">Visit Official Rabby ↗</a>
+              <a class="btn-hero-secondary" href="https://support.rabby.io/" target="_blank" rel="noopener noreferrer">Official Support ↗</a>
             </div>
           </div>
 
-          <!-- COMPACT PORTAL ACTION CARD -->
-          <div class="portal-action-card">
-            <div class="portal-meta-box">
-              <span class="portal-meta-label">OFFICIAL DOWNLOADS &amp; WALLET MODEL</span>
-              <span class="portal-meta-value notranslate" translate="no">coinbase.com/wallet/downloads • Self-Custody</span>
+          <div class="hero-art" aria-label="Rabby Wallet logo and popular EVM networks">
+            <div class="orb-cluster">
+              <span class="near-coin near-eth" aria-hidden="true">◆ ETH</span>
+              <span class="near-coin near-evm" aria-hidden="true">EVM</span>
+              <span class="near-coin near-base" aria-hidden="true">● BASE</span>
+              <span class="near-coin near-arb" aria-hidden="true">◈ ARB</span>
+              <div class="rabbit-orb">
+                <img src="https://raw.githubusercontent.com/RabbyHub/Rabby/master/src/ui/assets/logo-rabby.svg" alt="Rabby Wallet logo" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;font-size:96px&quot;>🐰</span>')">
+              </div>
             </div>
-
-            <a class="btn-launch-primary" href="https://www.coinbase.com/wallet/downloads" target="_blank" rel="noopener noreferrer">
-              🌐 Official Coinbase Wallet Download →
-            </a>
           </div>
         </section>
 
-        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES -->
-        <div class="single-column-stack">
+        <!-- CLEAN EDITORIAL FLOW (10 SECTIONS WITHOUT HEAVY BOXES) -->
+        <div class="editorial-flow">
           <!-- 1. OVERVIEW -->
-          <article class="info-card" id="overview">
+          <article class="editorial-section" id="overview">
             <h2 class="card-heading">
-              <span class="card-heading-icon">🔵</span>
+              <span class="card-heading-icon">🐰</span>
               1. Overview
             </h2>
-            <p><strong>Coinbase Wallet</strong> is a <strong>self-custody (non-custodial)</strong> wallet where you control your wallet keys or recovery credentials rather than keeping funds inside a custodial exchange account. It lets you manage supported digital assets and NFTs and interact with onchain applications without requiring a Coinbase.com exchange account.</p>
-            <p>Do not confuse Coinbase Wallet with a regular Coinbase exchange account. In Coinbase's product lineup, the mobile wallet experience is branded as <strong>Base App</strong>, while the browser extension continues to be listed as <strong>Coinbase Wallet</strong>. Always check Coinbase's official download page for current app and extension details.</p>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <h3>✅ What It Helps You Do</h3>
-                <p>Manage supported tokens and collectibles, connect to onchain apps, view estimated transaction previews, and control your wallet access directly.</p>
-              </div>
-              <div class="mini-box important-box">
-                <h3>⚡ Key Distinction &amp; Responsibility</h3>
-                <p>Self-custody means full responsibility for backups, network checks, and approvals—and supported networks vary by wallet type and recent platform updates.</p>
-              </div>
-            </div>
-            <div class="highlight-box">
-              <strong>📌 Network-Support Update (15 August 2026):</strong> Coinbase states that its Classic Wallet closed on 15 August 2026 and lists several older networks as unsupported in the current wallet. Sending funds on an unsupported network can result in loss—always verify current supported networks and migration guidance before moving assets.
+            <p><strong>Rabby Wallet</strong> (developed by the DeBank team) is a <strong>self-custody (non-custodial)</strong> cryptocurrency wallet built specifically for Ethereum and EVM-compatible DeFi and Web3 workflows. It focuses on giving users clear pre-signing transaction previews, automatic chain switching, and multi-chain EVM asset visibility.</p>
+            <p>Why use a wallet like Rabby? For multi-chain EVM users, it helps inspect balance changes before signing and reduces manual chain-switching mistakes—while keeping full key control in your hands.</p>
+
+            <h3 class="sub-heading">What It Helps You Do</h3>
+            <ul class="clean-list">
+              <li><strong>Pre-Sign Balance Previews:</strong> Inspect estimated asset and balance changes before signing a supported transaction.</li>
+              <li><strong>Automatic Chain Switching:</strong> Smoothly switches to the EVM network required by a connected dApp.</li>
+              <li><strong>Approval &amp; Portfolio Management:</strong> Review token approvals and view multi-chain EVM balances in one place.</li>
+            </ul>
+
+            <h3 class="sub-heading">What to Keep in Mind</h3>
+            <ul class="clean-list">
+              <li><strong>Estimates vs. Guarantees:</strong> Simulation previews are helpful aids rather than a guarantee against all smart contract or phishing risks.</li>
+              <li><strong>Self-Custody Responsibility:</strong> Full backup and key protection responsibility stays with you.</li>
+            </ul>
+
+            <div class="important-callout">
+              <strong>Key Fact:</strong> Rabby is a non-custodial wallet interface for Ethereum and EVM networks—your assets stay on the blockchain ledger while your keys remain under your control.
             </div>
           </article>
 
           <!-- 2. KEY FEATURES -->
-          <article class="info-card" id="key-features">
+          <article class="editorial-section" id="key-features">
             <h2 class="card-heading">
               <span class="card-heading-icon">⭐</span>
               2. Key Features
             </h2>
-            <p>Coinbase Wallet offers core features for self-custody asset management and onchain interaction:</p>
-            <div class="mini-grid">
-              <div class="mini-box important-box">
-                <h3>🔎 Transaction Preview &amp; Approval Alerts</h3>
-                <p>Displays estimated token balance changes and token-approval details before confirming supported dApp transactions (noted by Coinbase as supported on Ethereum and Polygon; previews are estimates, not a safety guarantee).</p>
-              </div>
-              <div class="mini-box important-box">
-                <h3>🛡️ dApp Blocklist &amp; Permission Control</h3>
-                <p>Can display warnings for applications flagged as potentially malicious and lets you review and manage connected dApp permissions.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🖼️ NFT &amp; Multi-Network Asset Support</h3>
-                <p>Supports holding and viewing supported tokens and NFTs across compatible networks depending on your selected wallet type.</p>
-              </div>
-              <div class="mini-box">
-                <h3>🔒 Hardware Wallet Support</h3>
-                <p>The browser extension supports connecting hardware signers such as Ledger for additional signing protection.</p>
-              </div>
-            </div>
+            <p>Rabby Wallet provides practical tools tailored for multi-chain EVM users and DeFi activity:</p>
+            <ul class="clean-list">
+              <li><strong>Transaction Simulation &amp; Previews:</strong> Shows estimated asset and balance changes before you sign a supported transaction so you can verify what is leaving and arriving.</li>
+              <li><strong>Automatic Network Switching:</strong> Detects the EVM network required by a connected dApp and helps switch smoothly instead of manual network toggling errors.</li>
+              <li><strong>Risk Alerts &amp; Approval Manager:</strong> Flags potential contract or approval risks before confirmation and lets you inspect or revoke token allowances/approvals.</li>
+              <li><strong>Hardware Wallet &amp; Portfolio View:</strong> Supports connecting hardware signers and viewing multi-chain EVM balances, collectibles, and swaps within one interface.</li>
+            </ul>
           </article>
 
           <!-- 3. FEE -->
-          <article class="info-card" id="fee">
+          <article class="editorial-section" id="fee">
             <h2 class="card-heading">
               <span class="card-heading-icon">💸</span>
               3. Fee
             </h2>
-            <p>Understanding fee components before transacting helps avoid failed transfers or unexpected costs:</p>
+            <p>Understanding fee components on Rabby Wallet helps you plan transactions and avoid unexpected costs:</p>
             <table class="stats-table">
               <tbody>
                 <tr>
                   <th>Wallet Setup &amp; Viewing</th>
-                  <td>Downloading and creating or viewing a self-custody wallet is free; you do not pay a recurring fee just to hold a wallet.</td>
+                  <td>Installing Rabby and viewing wallet addresses or balances is free. Onchain actions carry network gas and applicable service charges.</td>
                 </tr>
                 <tr class="important-row">
                   <th>Network / Gas Fees</th>
-                  <td>Onchain transfers, token approvals, and contract actions require network gas paid in the active chain's native token (such as ETH on Ethereum or Base).</td>
+                  <td>Every onchain transfer, swap, or contract approval requires gas paid in the active EVM network's native gas token (such as ETH, POL, BNB, or AVAX).</td>
                 </tr>
                 <tr>
-                  <th>Swaps, Bridges &amp; dApp Fees</th>
-                  <td>Any built-in trade/swap quotes, bridges, or third-party dApps may involve network gas, spread/slippage, or protocol fees—always check the exact quote before confirming.</td>
+                  <th>Rabby Built-In Swap Fee</th>
+                  <td>Rabby's built-in swap charges a <strong>0.25%</strong> Rabby swap fee (subject to specific pair/stablecoin terms where applicable), alongside underlying gas fees, route/liquidity costs, and slippage.</td>
                 </tr>
-                <tr class="important-row">
-                  <th>Unsupported Network Risk</th>
-                  <td>Sending funds on an unsupported network or wrong chain can lead to permanent loss or extra recovery complexity—always verify compatibility first.</td>
+                <tr>
+                  <th>Third-Party dApps &amp; Bridges</th>
+                  <td>External dApps, bridges, or liquidity protocols may apply their own protocol fees or price impact—always check the full summary before signing.</td>
                 </tr>
               </tbody>
             </table>
           </article>
 
           <!-- 4. NETWORK SUPPORT -->
-          <article class="info-card" id="network-support">
+          <article class="editorial-section" id="network-support">
             <h2 class="card-heading">
               <span class="card-heading-icon">🌐</span>
-              4. Network Support
+              4. Network Support &amp; Popular Coins
             </h2>
-            <p>Network availability depends on which type of wallet you create or use. Do not assume every wallet type supports every chain:</p>
+            <p>Rabby Wallet is built around Ethereum and a broad selection of EVM-compatible networks (140+ EVM chains) plus custom EVM networks. Below are key networks and widely tracked major coins across these ecosystems:</p>
+
+            <h3 class="sub-heading">Popular Coins &amp; Major Ecosystems</h3>
+            <div class="coin-stream" aria-label="Popular cryptocurrencies and EVM networks">
+              <span class="coin-chip featured-coin">◆ Ethereum (ETH)</span>
+              <span class="coin-chip featured-coin">● Base</span>
+              <span class="coin-chip featured-coin">◈ Arbitrum (ARB)</span>
+              <span class="coin-chip featured-coin">🔴 Optimism (OP)</span>
+              <span class="coin-chip">🟡 BNB Chain (BNB)</span>
+              <span class="coin-chip">🟣 Polygon (POL)</span>
+              <span class="coin-chip">🔺 Avalanche (AVAX)</span>
+              <span class="coin-chip">💵 USDT &amp; USDC</span>
+              <span class="coin-chip">₿ Wrapped BTC (WBTC)</span>
+              <span class="coin-chip">◎ Solana (Via Multi-Wallet)</span>
+            </div>
+
+            <div class="important-callout">
+              <strong>Important Chain Note:</strong> Rabby focuses on EVM-compatible networks (140+ EVM chains). For native non-EVM ecosystems such as native Bitcoin or Solana, use a compatible wallet for those chains and always verify exact network and token details before sending or bridging.
+            </div>
+
+            <div class="perm-pills">
+              <span class="perm-pill">Ethereum Mainnet</span>
+              <span class="perm-pill">Arbitrum</span>
+              <span class="perm-pill">Optimism</span>
+              <span class="perm-pill">Base</span>
+              <span class="perm-pill">Polygon</span>
+              <span class="perm-pill">BNB Smart Chain</span>
+              <span class="perm-pill">Avalanche</span>
+              <span class="perm-pill">140+ EVM Networks</span>
+              <span class="perm-pill">Custom EVM RPC</span>
+            </div>
+
             <table class="stats-table">
               <tbody>
-                <tr class="important-row">
-                  <th>Smart Wallet (Passkey)</th>
-                  <td>Supports EVM-compatible networks; does not support Bitcoin or Solana.</td>
+                <tr>
+                  <th>Ethereum &amp; EVM Mainnets</th>
+                  <td>Supports Ethereum mainnet and a wide range of EVM Layer 1 and Layer 2 networks (such as Arbitrum, Optimism, Base, Polygon, BNB Chain, Avalanche, and many other EVM chains—140+ EVM networks).</td>
                 </tr>
                 <tr>
-                  <th>Email / Social Login Wallet</th>
-                  <td>Supports EVM-compatible networks, Solana, and Bitcoin (Bitcoin uses a separate address from the primary EVM address).</td>
+                  <th>Custom &amp; Testnet Networks</th>
+                  <td>Allows adding supported custom RPC/EVM networks when needed; always verify RPC URLs and chain details from official sources.</td>
                 </tr>
                 <tr>
-                  <th>Mnemonic Wallet</th>
-                  <td>Supports EVM-compatible networks, Solana, and Bitcoin; back up the recovery phrase securely for each wallet.</td>
-                </tr>
-                <tr class="important-row">
-                  <th>Preconfigured Networks &amp; Legacy Note</th>
-                  <td>Examples include Ethereum, Base, Arbitrum, Optimism, Polygon, Avalanche C-Chain, BNB Chain, Monad, Robinhood Chain, and Zora (plus Bitcoin/Solana where supported by wallet type). Always check official docs for current support and post-15 August 2026 network changes.</td>
+                  <th>Chain &amp; Asset Verification</th>
+                  <td>Always confirm the active network and token contract before sending or bridging funds so assets are not sent to an unsupported chain or address.</td>
                 </tr>
               </tbody>
             </table>
           </article>
 
           <!-- 5. CUSTODY & CONTROL -->
-          <article class="info-card" id="custody-control">
+          <article class="editorial-section" id="custody-control">
             <h2 class="card-heading">
               <span class="card-heading-icon">🗝️</span>
               5. Custody &amp; Control
             </h2>
-            <p>Coinbase Wallet is a <strong>self-custody</strong> wallet, meaning you control your wallet access rather than a custodial exchange holding your keys:</p>
-            <div class="mini-grid">
-              <div class="mini-box important-box">
-                <h3>📜 Recovery Phrase &amp; Backup Access</h3>
-                <p>Your recovery phrase or backup credentials control access to your self-custody wallet. Keep backups private and offline where required.</p>
-              </div>
-              <div class="mini-box important-box">
-                <h3>🚫 No Exchange-Style Recovery by Support</h3>
-                <p>Coinbase does not have access to your self-custody recovery phrase and cannot reverse blockchain transfers once confirmed.</p>
-              </div>
-            </div>
+            <p>Rabby Wallet operates as a <strong>self-custody</strong> wallet where full control and backup responsibility stay with you:</p>
+            <ul class="clean-list">
+              <li><strong>Secret Recovery Phrase &amp; Keys:</strong> Your Secret Recovery Phrase or private keys control access to your funds. Anyone who obtains them can transfer your assets, and losing them without a backup is permanent.</li>
+              <li><strong>No Custodial Recovery by Support:</strong> Wallet support cannot access your keys, reset a lost Secret Recovery Phrase, or reverse confirmed blockchain transactions.</li>
+            </ul>
           </article>
 
           <!-- 6. HOW TO USE -->
-          <article class="info-card" id="how-to-use">
+          <article class="editorial-section" id="how-to-use">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛠️</span>
               6. How to Use
             </h2>
-            <p>Because app naming and onboarding flows evolve, follow these steps starting from official sources:</p>
-            <div class="steps-list">
-              <div class="step-row">
+            <p>Follow these steps when setting up and using Rabby Wallet:</p>
+            <div class="steps-flow">
+              <div class="step-item">
                 <span class="step-num">1</span>
                 <div class="step-body">
-                  <h4>Open the Official Download Page</h4>
-                  <p>Visit <code>coinbase.com/wallet/downloads</code> directly instead of clicking unverified links or ads.</p>
+                  <h4>Step 1: Visit the Official Website Only</h4>
+                  <p>Go directly to <code>rabby.io</code> or official verified app stores—avoid sponsored search ads or unverified links.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">2</span>
                 <div class="step-body">
-                  <h4>Choose Your Device &amp; Current Option</h4>
-                  <p>Select Base App for mobile or the Coinbase Wallet browser extension for desktop browsers as listed on the official page.</p>
+                  <h4>Step 2: Create, Import, or Connect a Hardware Wallet</h4>
+                  <p>Set a strong wallet password, create a new wallet, import an existing wallet, or connect a supported hardware wallet.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-item">
                 <span class="step-num">3</span>
                 <div class="step-body">
-                  <h4>Create or Import Your Wallet</h4>
-                  <p>Follow the setup flow for your chosen wallet type and configure a strong local lock/passcode.</p>
+                  <h4>Step 3: Back Up Your Secret Recovery Phrase Offline</h4>
+                  <p>Write your recovery words on paper in exact order and keep them offline in a secure place. Never take screenshots or store them in cloud notes or chats.</p>
                 </div>
               </div>
-              <div class="step-row important-step">
+              <div class="step-item">
                 <span class="step-num">4</span>
                 <div class="step-body">
-                  <h4>Secure Your Backup Credentials</h4>
-                  <p>Complete the backup step for your wallet type and store recovery details safely—never share them or paste them into websites or chats.</p>
+                  <h4>Step 4: Inspect Transaction Simulation &amp; Send a Test Amount</h4>
+                  <p>Review the simulation preview, network, recipient address, and gas cost, and test with a small amount first before larger transfers.</p>
                 </div>
               </div>
-              <div class="step-row important-step">
+              <div class="step-item">
                 <span class="step-num">5</span>
                 <div class="step-body">
-                  <h4>Verify Network, Address &amp; Test First</h4>
-                  <p>Confirm the network, address format, and transaction preview, and start with a small test transfer before moving larger amounts.</p>
+                  <h4>Step 5: Check Risk Warnings &amp; Manage Approvals</h4>
+                  <p>Pause on any risk warning, review token approvals carefully, and revoke unneeded permissions or disconnect unused dApps.</p>
                 </div>
               </div>
             </div>
           </article>
 
           <!-- 7. SECURITY -->
-          <article class="info-card" id="security">
+          <article class="editorial-section" id="security">
             <h2 class="card-heading">
               <span class="card-heading-icon">🛡️</span>
               7. Security
             </h2>
-            <p>Protect your funds by combining official downloads and careful checks with disciplined habits:</p>
+            <p>Even with helpful simulation and risk alerts, safe habits are essential in DeFi and Web3:</p>
             <table class="stats-table">
               <tbody>
                 <tr class="important-row">
+                  <th>Never Share Recovery Phrase or Keys</th>
+                  <td>Never share your <strong>Secret Recovery Phrase, private keys, or password</strong> with anyone—including anyone claiming to be Rabby/DeBank support or community moderators.</td>
+                </tr>
+                <tr>
                   <th>Use a Secondary Wallet</th>
-                  <td>Use a <strong>secondary wallet</strong> with limited funds when testing new dApps, claims, or unfamiliar links so your main wallet stays isolated.</td>
-                </tr>
-                <tr class="important-row">
-                  <th>Never Share Recovery Phrase</th>
-                  <td>Never share your <strong>recovery phrase</strong> or keys with anyone—including anyone claiming to be support. Never type it into a website or chat.</td>
+                  <td>Use a <strong>secondary wallet</strong> with limited funds when exploring new dApps, mints, or unfamiliar links, keeping main funds separate.</td>
                 </tr>
                 <tr>
-                  <th>Check Previews &amp; Token Approvals</th>
-                  <td>Review token approvals and treat transaction previews as estimates rather than a guarantee; verify network and recipient details independently.</td>
+                  <th>Treat Simulations as Aid, Not a Guarantee</th>
+                  <td>Review transaction previews, token approvals, and destination addresses yourself; automated simulations can miss novel drainers or phishing sites.</td>
                 </tr>
                 <tr>
-                  <th>Confirm Network Compatibility</th>
-                  <td>Verify both wallet type and supported network before sending or bridging assets so funds are not sent to unsupported chains.</td>
+                  <th>Verify URLs &amp; Keep Native Gas Ready</th>
+                  <td>Always check exact domains, avoid phishing popups, and ensure you have enough native gas token on the target EVM network.</td>
                 </tr>
               </tbody>
             </table>
           </article>
 
           <!-- 8. PLATFORMS -->
-          <article class="info-card" id="platforms">
+          <article class="editorial-section" id="platforms">
             <h2 class="card-heading">
               <span class="card-heading-icon">📱</span>
               8. Platforms
             </h2>
-            <p>Coinbase's wallet tools span mobile, desktop browser extensions, and hardware wallet pairing:</p>
+            <p>Rabby Wallet supports desktop browsers, mobile devices, and hardware wallet integrations:</p>
             <div class="perm-pills">
-              <span class="perm-pill">Mobile Wallet Experience (Base App)</span>
-              <span class="perm-pill">Browser Extension (Coinbase Wallet for Chrome, etc.)</span>
-              <span class="perm-pill">Hardware Wallet Connection (Ledger on Extension)</span>
+              <span class="perm-pill">Browser Extension (Chrome, Brave, Edge, etc.)</span>
+              <span class="perm-pill">Desktop App</span>
+              <span class="perm-pill">iOS Mobile App</span>
+              <span class="perm-pill">Android Mobile App</span>
+              <span class="perm-pill">Hardware Wallet Support (Ledger, Trezor, Keystone, OneKey, etc.)</span>
             </div>
           </article>
 
           <!-- 9. GUIDE CHECKLIST -->
-          <article class="info-card" id="guide-checklist">
+          <article class="editorial-section" id="guide-checklist">
             <h2 class="card-heading">
               <span class="card-heading-icon">✅</span>
               9. Guide Checklist
             </h2>
-            <p>Use this quick text checklist (no video needed) before signing a transaction, swapping, or connecting to a dApp:</p>
-            <div class="mini-grid">
-              <div class="mini-box important-box">
-                <h3>✔ Before Sending or Swapping</h3>
-                <p>Confirm your wallet type supports the target network, check native gas balance, verify the recipient/contract address, and test with a small amount first.</p>
-              </div>
-              <div class="mini-box important-box">
-                <h3>✔ Before Connecting to New dApps</h3>
-                <p>Open official URLs directly, use a secondary wallet for exploration, inspect token approval requests, and never share recovery details.</p>
-              </div>
-            </div>
+            <p>Use this quick checklist before signing a transaction, swapping, or connecting to a dApp:</p>
+            <ul class="clean-list">
+              <li><strong>Before Signing or Swapping:</strong> Check the EVM network, simulation preview, balance changes, gas token balance, 0.25% swap fee/slippage, and recipient/contract address.</li>
+              <li><strong>Before Connecting to New dApps:</strong> Verify the official website URL, use a secondary wallet for testing, inspect approval amounts, and never enter your Secret Recovery Phrase online.</li>
+            </ul>
             <div class="doc-links-row">
-              <a class="doc-link-pill" href="https://www.coinbase.com/wallet/downloads" target="_blank" rel="noopener noreferrer">🌐 Official Downloads →</a>
-              <a class="doc-link-pill" href="https://help.coinbase.com/en/wallet" target="_blank" rel="noopener noreferrer">🛟 Wallet Help Center →</a>
-              <a class="doc-link-pill" href="https://www.coinbase.com/en-in/security/wallet-security" target="_blank" rel="noopener noreferrer">🛡️ Wallet Security →</a>
+              <a class="doc-link-pill" href="https://rabby.io/" target="_blank" rel="noopener noreferrer">🌐 Official Rabby Site →</a>
+              <a class="doc-link-pill" href="https://support.rabby.io/" target="_blank" rel="noopener noreferrer">🛟 Official Rabby Support →</a>
             </div>
           </article>
 
           <!-- 10. FAQ -->
-          <article class="info-card" id="faq">
+          <article class="editorial-section" id="faq">
             <h2 class="card-heading">
               <span class="card-heading-icon">❓</span>
               10. FAQ
             </h2>
             <div class="faq-list">
-              <details class="faq-item important-faq" open>
-                <summary>1. Is Coinbase Wallet the same as a Coinbase exchange account?</summary>
+              <details class="faq-item" open>
+                <summary>1. What is Rabby Wallet and how do you use it safely?</summary>
                 <div class="faq-body">
-                  <p><strong>What it is:</strong> No—Coinbase Wallet is a <strong>self-custody</strong> wallet, whereas a regular Coinbase.com account is a custodial exchange account with a different custody model.</p>
-                  <p><strong>How to use it:</strong> Keep in mind how assets are held in each and follow official download and security steps when using the wallet.</p>
+                  <p><strong>What it is:</strong> Rabby Wallet is a <strong>self-custody</strong> wallet built for Ethereum and EVM-compatible networks with transaction simulation, automatic network switching, and risk alerts.</p>
+                  <p><strong>How to use it:</strong> Install only from <code>rabby.io</code> or official app stores, back up your Secret Recovery Phrase offline, verify simulation previews and addresses, and test with a small transfer first.</p>
                 </div>
               </details>
 
               <details class="faq-item">
-                <summary>2. Do I need a Coinbase.com account to use Coinbase Wallet?</summary>
+                <summary>2. Which networks does Rabby Wallet support?</summary>
                 <div class="faq-body">
-                  <p><strong>What it is:</strong> No—Coinbase's help documentation notes that you do not need a Coinbase.com account to use a self-custody wallet.</p>
-                  <p><strong>How to use it:</strong> Start from <code>coinbase.com/wallet/downloads</code> and set up your chosen wallet type directly.</p>
+                  <p><strong>What it supports:</strong> Rabby supports Ethereum and a broad range of EVM-compatible networks (140+ EVM chains) plus custom EVM networks, while focusing on the EVM ecosystem rather than native non-EVM chains like Bitcoin or Solana.</p>
+                  <p><strong>How to use it:</strong> Confirm the network matches your asset and dApp, and check official documentation when adding custom networks or bridging assets.</p>
+                </div>
+              </details>
+
+              <details class="faq-item important-faq">
+                <summary>3. What fees apply on Rabby Wallet (gas, 0.25% swap fee, and network costs)?</summary>
+                <div class="faq-body">
+                  <p><strong>What fees apply:</strong> Basic wallet use is free, while onchain transactions require blockchain gas fees and Rabby's built-in swap charges a <strong>0.25%</strong> Rabby swap fee (subject to applicable pair terms) alongside gas, route/liquidity costs, and slippage.</p>
+                  <p><strong>How to check:</strong> Always inspect the estimated gas, fee breakdown, and output amount on screen before approving a transaction or swap.</p>
                 </div>
               </details>
 
               <details class="faq-item">
-                <summary>3. Is Coinbase Wallet now called Base App?</summary>
+                <summary>4. How does Transaction Simulation work and why isn't it a 100% safety guarantee?</summary>
                 <div class="faq-body">
-                  <p><strong>What it is:</strong> Coinbase's current downloads page brands its mobile experience as <strong>Base App</strong> while listing the browser extension as <strong>Coinbase Wallet</strong>.</p>
-                  <p><strong>How to use it:</strong> Check the official downloads page to confirm current app and extension options before installing.</p>
-                </div>
-              </details>
-
-              <details class="faq-item important-faq">
-                <summary>4. Which networks are supported across different wallet types?</summary>
-                <div class="faq-body">
-                  <p><strong>What is supported:</strong> Smart wallets (passkey) support EVM-compatible networks (not Bitcoin or Solana), while email/social login and mnemonic wallets also support Bitcoin and Solana per Coinbase's current network guide.</p>
-                  <p><strong>How to check:</strong> Verify your wallet type and check the official supported network list before sending or receiving funds.</p>
-                </div>
-              </details>
-
-              <details class="faq-item important-faq">
-                <summary>5. What happened on 15 August 2026 regarding network support?</summary>
-                <div class="faq-body">
-                  <p><strong>What happened:</strong> Coinbase states that its Classic Wallet closed on 15 August 2026 and lists several older networks as unsupported in the current wallet.</p>
-                  <p><strong>How to handle it:</strong> Check Coinbase's official migration guidance and current supported network list before attempting transfers on older networks.</p>
+                  <p><strong>What it is:</strong> Transaction simulation previews expected balance changes and flags potential risks before you sign, helping you spot unexpected outflows or risky approvals.</p>
+                  <p><strong>How to use it:</strong> Read the preview carefully before signing, but never rely on it alone—always verify the website URL, contract, and approval scope yourself.</p>
                 </div>
               </details>
 
               <details class="faq-item">
-                <summary>6. What fees apply when using Coinbase Wallet?</summary>
+                <summary>5. Why should I use a secondary wallet with Rabby?</summary>
                 <div class="faq-body">
-                  <p><strong>What fees apply:</strong> Wallet setup is free, while onchain actions require network gas fees and any swaps, bridges, or dApp actions may involve gas, spread/slippage, or protocol charges.</p>
-                  <p><strong>How to check:</strong> Review the fee, network, and output details shown before confirming a transaction.</p>
+                  <p><strong>What it is:</strong> A <strong>secondary wallet</strong> holds a small balance for testing new dApps, claims, or unfamiliar links while keeping your main holdings separate.</p>
+                  <p><strong>How to use it:</strong> Connect your secondary wallet first on new or experimental sites so a malicious approval or phishing link cannot drain your primary funds.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>6. How do token approvals work and how should I manage them?</summary>
+                <div class="faq-body">
+                  <p><strong>What it is:</strong> Token approvals let a smart contract spend a specified amount of a token on your behalf—unlimited or high approvals stay active until changed or revoked.</p>
+                  <p><strong>How to manage them:</strong> Check approval amounts during signing, avoid unnecessary unlimited approvals on untrusted contracts, and revoke old or unused approvals when no longer needed.</p>
                 </div>
               </details>
 
               <details class="faq-item important-faq">
-                <summary>7. Why should I use a secondary wallet and check token approvals?</summary>
+                <summary>7. Can Rabby support recover my Secret Recovery Phrase or reverse a transaction?</summary>
                 <div class="faq-body">
-                  <p><strong>What it is:</strong> A <strong>secondary wallet</strong> keeps limited funds separate for testing new dApps or links, and token approvals control what a smart contract can access.</p>
-                  <p><strong>How to stay safe:</strong> Use a secondary wallet on unfamiliar sites, check token approval prompts carefully, and review/revoke unused permissions.</p>
+                  <p><strong>What to know:</strong> Because Rabby is self-custody and blockchain transactions are final once confirmed, support cannot recover a lost Secret Recovery Phrase or undo an onchain transfer.</p>
+                  <p><strong>How to stay safe:</strong> Keep your recovery phrase offline, never share it with anyone claiming to be support, and use official channels from <code>rabby.io</code>.</p>
                 </div>
               </details>
 
-              <details class="faq-item important-faq">
-                <summary>8. Can Coinbase support recover my recovery phrase or reverse a transfer?</summary>
+              <details class="faq-item">
+                <summary>8. Can I use Rabby across browser, mobile, and hardware wallets?</summary>
                 <div class="faq-body">
-                  <p><strong>What to know:</strong> Coinbase states it does not have access to your self-custody recovery phrase, and confirmed blockchain transfers cannot simply be undone.</p>
-                  <p><strong>How to stay safe:</strong> Never share your recovery phrase with anyone claiming to be support and always double-check network and address details first.</p>
+                  <p><strong>What is available:</strong> Rabby is available across browser extensions, desktop/mobile apps, and hardware wallet connections such as Ledger, Trezor, Keystone, and OneKey.</p>
+                  <p><strong>How to use it:</strong> Download only from official sources on each device, keep your software updated, and protect your recovery phrase offline.</p>
                 </div>
               </details>
             </div>
           </article>
         </div>
 
-        <p class="disclaimer"><strong>Important Disclosure:</strong> Total Crypto Hub provides educational guides only (NFA / DYOR). Nothing on this page is financial, investment, or legal advice, nor a guarantee of rewards or returns. Total Crypto Hub is an independent directory and is not affiliated with Coinbase. Always verify official URLs, check fees and network details before transacting, never share private keys, seed phrases, or passwords, and use a secondary wallet when interacting with dApps or unfamiliar links.</p>
+        <p class="disclaimer"><strong>Important Disclosure:</strong> Total Crypto Hub provides educational guides only (NFA / DYOR). Nothing on this page is financial, investment, or legal advice, nor a guarantee of rewards or returns. Always verify official URLs, check fees and network details before transacting, never share private keys, seed phrases, or passwords, and use a secondary wallet when interacting with dApps or unfamiliar links.</p>
 
         <footer>
           <a href="../index.html" class="footer-brand" translate="no">
@@ -1431,7 +1469,7 @@
     function initScrollSpyTabs() {
       const tabs = Array.from(document.querySelectorAll('.jump-tab'));
       const jumpInner = document.getElementById('jumpInner');
-      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      const sections = Array.from(document.querySelectorAll('.editorial-flow > article[id]'));
       if (!tabs.length || !sections.length) return;
 
       const tabById = new Map();
