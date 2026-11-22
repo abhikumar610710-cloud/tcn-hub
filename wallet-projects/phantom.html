@@ -487,19 +487,20 @@
     .portal-meta-box {
       padding: 10px 13px;
       border-radius: 13px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      background: var(--green-soft);
+      border: 1px solid #8ce0c1;
     }
-    [data-theme="dark"] .portal-meta-box { border-color: #23654e; }
+    [data-theme="dark"] .portal-meta-box { border-color: #267358; }
     .portal-meta-label {
       display: block;
       font-size: 9.5px;
       font-weight: 800;
-      color: var(--muted);
+      color: var(--green-dark);
       text-transform: uppercase;
       letter-spacing: .45px;
       margin-bottom: 2px;
     }
+    [data-theme="dark"] .portal-meta-label { color: var(--green-light); }
     .portal-meta-value {
       display: block;
       font-size: 13px;
@@ -581,21 +582,32 @@
       overflow-wrap: anywhere;
     }
 
+    /* WEBSITE GREEN THEME FOR IMPORTANT INFO BOXES */
+    .highlight-box,
     .notice-box {
       margin-top: 12px;
       padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid #f3d38b;
-      background: #fff8e8;
-      color: #704d0b;
+      border-radius: 15px;
+      border: 1.5px solid #4bd69f;
+      border-left: 4px solid var(--green);
+      background: linear-gradient(120deg, var(--green-soft), #f2fff9);
+      color: var(--heading);
       font-size: 12.2px;
       line-height: 1.68;
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
     }
+    [data-theme="dark"] .highlight-box,
     [data-theme="dark"] .notice-box {
-      background: #3c321d;
-      color: #f8df9f;
-      border-color: #78602b;
+      background: linear-gradient(120deg, var(--green-soft), #10322c);
+      color: var(--heading);
+      border-color: #287a5e;
+      border-left-color: var(--green);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
     }
+    .highlight-box strong,
+    .notice-box strong { color: var(--green-dark); }
+    [data-theme="dark"] .highlight-box strong,
+    [data-theme="dark"] .notice-box strong { color: var(--green-light); }
 
     .doc-links-row {
       display: flex;
@@ -629,13 +641,14 @@
       gap: 14px;
       margin-top: 12px;
     }
+
+    /* STANDARD BOX (SUBTLE/NEUTRAL FOR GENERAL INFO) */
     .mini-box {
       padding: 15px 16px;
       border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      background: var(--surface);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .mini-box { border-color: #23654e; }
     .mini-box h3 {
       margin: 0 0 6px;
       font-size: 13.5px;
@@ -649,16 +662,35 @@
       color: var(--body);
     }
 
+    /* IMPORTANT INFO BOX IN WEBSITE GREEN THEME */
+    .mini-box.important-box {
+      background: linear-gradient(135deg, var(--green-soft) 0%, #f4fff9 100%);
+      border: 1.5px solid #59d9a4;
+      border-top: 3px solid var(--green);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
+    }
+    [data-theme="dark"] .mini-box.important-box {
+      background: linear-gradient(135deg, var(--green-soft) 0%, #11302a 100%);
+      border: 1.5px solid #2b8264;
+      border-top: 3px solid var(--green);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
+    }
+    .mini-box.important-box h3 {
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .mini-box.important-box h3 {
+      color: var(--green-light);
+    }
+
     .stats-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 12px;
-      background: var(--surface-soft);
+      background: var(--surface);
       border-radius: 14px;
       overflow: hidden;
-      border: 1px solid #b8f2d7;
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .stats-table { border-color: #23654e; }
     .stats-table th, .stats-table td {
       padding: 12px 16px;
       text-align: left;
@@ -667,12 +699,25 @@
       line-height: 1.65;
     }
     .stats-table th {
-      background: var(--green-soft);
+      background: var(--surface-soft);
       color: var(--heading);
       font-weight: 800;
       width: 28%;
     }
     .stats-table td { color: var(--body); }
+    .stats-table tr.important-row th {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-left: 3px solid var(--green);
+    }
+    [data-theme="dark"] .stats-table tr.important-row th {
+      color: var(--green-light);
+    }
+    .stats-table tr.important-row td {
+      background: color-mix(in srgb, var(--green-soft) 38%, var(--surface));
+      color: var(--heading);
+      font-weight: 600;
+    }
     .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
     .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
@@ -698,10 +743,18 @@
       gap: 14px;
       padding: 14px 16px;
       border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      background: var(--surface);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-row.important-step {
+      background: linear-gradient(125deg, var(--green-soft), #f4fff9);
+      border: 1.5px solid #59d9a4;
+      box-shadow: 0 6px 14px rgba(8, 168, 107, .07);
+    }
+    [data-theme="dark"] .step-row.important-step {
+      background: linear-gradient(125deg, var(--green-soft), #11302a);
+      border-color: #2b8264;
+    }
     .step-num {
       width: 28px;
       height: 28px;
@@ -715,21 +768,33 @@
       font-weight: 800;
     }
     .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-row.important-step .step-body h4 { color: var(--green-dark); }
+    [data-theme="dark"] .step-row.important-step .step-body h4 { color: var(--green-light); }
     .step-body p { margin: 0; font-size: 12px; line-height: 1.68; color: var(--body); }
 
     /* RICH FAQ ACCORDION */
     .faq-list { display: grid; gap: 11px; }
     .faq-item {
       border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      background: var(--surface);
+      border: 1px solid var(--border);
       padding: 14px 18px;
       transition: .18s ease;
     }
-    [data-theme="dark"] .faq-item { border-color: #23654e; }
+    .faq-item.important-faq {
+      background: linear-gradient(130deg, var(--green-soft) 0%, #f6fffb 100%);
+      border: 1.5px solid #59d9a4;
+    }
+    [data-theme="dark"] .faq-item.important-faq {
+      background: linear-gradient(130deg, var(--green-soft) 0%, #11302a 100%);
+      border-color: #2b8264;
+    }
     .faq-item[open] {
       background: var(--surface);
       box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
+    }
+    .faq-item.important-faq[open] {
+      background: linear-gradient(180deg, var(--green-soft) 0%, var(--surface) 45%);
     }
     .faq-item summary {
       font-size: 13.5px;
@@ -1005,8 +1070,8 @@
                 <h3>✅ What It Helps You Do</h3>
                 <p>View and manage supported tokens and NFTs across enabled networks, interact with dApps, and access built-in swap or staking features where available.</p>
               </div>
-              <div class="mini-box">
-                <h3>⚠️ What to Keep in Mind</h3>
+              <div class="mini-box important-box">
+                <h3>⚡ What to Keep in Mind</h3>
                 <p>Network balances stay separate on each chain, each network needs its own native gas token for transactions, and unsupported network transfers risk loss.</p>
               </div>
             </div>
@@ -1020,11 +1085,11 @@
             </h2>
             <p>Phantom brings multi-chain asset viewing, dApp connectivity, and transaction checks into one wallet interface:</p>
             <div class="mini-grid">
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>🌐 Multi-Chain &amp; Cross-Network View</h3>
                 <p>Supports Solana, Ethereum, Bitcoin, and selected EVM networks, showing assets across enabled chains without manually switching wallets each time.</p>
               </div>
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>🔎 Transaction Insights &amp; Security Alerts</h3>
                 <p>Provides transaction details and available security warnings before you sign requests or connect to applications.</p>
               </div>
@@ -1052,7 +1117,7 @@
                   <th>Wallet Download &amp; Creation</th>
                   <td>Downloading Phantom and creating or importing a wallet is free; there is no recurring subscription fee just to hold a wallet.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Network / Gas Fees</th>
                   <td>Sending tokens, interacting with smart contracts, or submitting transactions requires network fees paid in the active network's native asset (such as SOL on Solana or ETH on Ethereum).</td>
                 </tr>
@@ -1060,7 +1125,7 @@
                   <th>Swap, Trade &amp; Bridge Fees</th>
                   <td>Using swap, trading, or cross-chain features may include network gas, provider/swap fees, or slippage/spread—always review the exact quote before confirming.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Network-Specific Gas Balances</th>
                   <td>Each chain has its own separate balance and fee token; having gas on one network does not pay gas on another.</td>
                 </tr>
@@ -1087,7 +1152,7 @@
               <span class="perm-pill">HyperEVM</span>
             </div>
             <div class="notice-box">
-              <strong>⚠️ Unsupported Network Warning:</strong> Phantom's help guide lists <strong>Arbitrum, Optimism, Avalanche, Unichain, and Linea</strong> as unsupported. Do not send assets on an unsupported network to a Phantom address, and verify the exact network before every transfer.
+              <strong>📌 Unsupported Network Warning:</strong> Phantom's help guide lists <strong>Arbitrum, Optimism, Avalanche, Unichain, and Linea</strong> as unsupported. Do not send assets on an unsupported network to a Phantom address, and verify the exact network before every transfer.
             </div>
           </article>
 
@@ -1099,11 +1164,11 @@
             </h2>
             <p>Phantom is a <strong>self-custody</strong> wallet, giving you direct control over your wallet credentials rather than relying on a custodial exchange:</p>
             <div class="mini-grid">
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>📜 Secret Recovery Phrase &amp; Sign-In Recovery</h3>
                 <p>Whether you set up with a Secret Recovery Phrase or a supported Google/Apple sign-in flow, safeguarding your recovery credentials is essential.</p>
               </div>
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>🚫 No Custodial Recovery by Support</h3>
                 <p>Phantom cannot access your funds or restore a wallet if you lose the credentials required to recover it, and confirmed transactions cannot simply be reversed.</p>
               </div>
@@ -1139,14 +1204,14 @@
                   <p>Create a new wallet or import an existing wallet you already control, and set up strong local device protection.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-row important-step">
                 <span class="step-num">4</span>
                 <div class="step-body">
                   <h4>Back Up Recovery Credentials</h4>
                   <p>Store your Secret Recovery Phrase safely offline—or secure your sign-in recovery method—and never share it or enter it on websites or chats.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-row important-step">
                 <span class="step-num">5</span>
                 <div class="step-body">
                   <h4>Check Active Networks &amp; Test First</h4>
@@ -1165,11 +1230,11 @@
             <p>Strong self-custody security combines safe wallet habits with careful verification on every transaction:</p>
             <table class="stats-table">
               <tbody>
-                <tr>
+                <tr class="important-row">
                   <th>Use a Secondary Wallet</th>
                   <td>Use a <strong>secondary wallet</strong> with limited funds when trying new dApps, mints, or unfamiliar links so your main holdings stay isolated.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Never Share Recovery Phrase</th>
                   <td>Never share your <strong>Secret Recovery Phrase</strong> or recovery credentials with anyone—Phantom will not ask you to send them to support or enter them on a website.</td>
                 </tr>
@@ -1208,11 +1273,11 @@
             </h2>
             <p>Use this quick text checklist (no video needed) before transferring funds, swapping tokens, or connecting to a dApp:</p>
             <div class="mini-grid">
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>✔ Before Sending or Swapping</h3>
                 <p>Verify the network is supported by Phantom and matches the recipient/chain, ensure you have that chain's native gas token, and test with a small transfer first.</p>
               </div>
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>✔ Before Connecting to dApps</h3>
                 <p>Use a secondary wallet for testing new apps, double-check the site URL and signature details, and never share your recovery phrase.</p>
               </div>
@@ -1232,7 +1297,7 @@
               10. FAQ
             </h2>
             <div class="faq-list">
-              <details class="faq-item" open>
+              <details class="faq-item important-faq" open>
                 <summary>1. Is Phantom Wallet free to download?</summary>
                 <div class="faq-body">
                   <p><strong>What it is:</strong> Yes—downloading Phantom from its official website is free, while blockchain transactions, swaps, and third-party services can involve network or protocol fees.</p>
@@ -1248,7 +1313,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>3. Which networks are unsupported on Phantom?</summary>
                 <div class="faq-body">
                   <p><strong>What to know:</strong> Phantom's help guide lists Arbitrum, Optimism, Avalanche, Unichain, and Linea as unsupported.</p>
@@ -1272,7 +1337,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>6. Why should I use a secondary wallet and verify signatures?</summary>
                 <div class="faq-body">
                   <p><strong>What it is:</strong> A <strong>secondary wallet</strong> separates experimental dApp activity from your main funds, and signature prompts authorize contract actions or token permissions.</p>
@@ -1280,7 +1345,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>7. Can Phantom support recover my funds or Secret Recovery Phrase?</summary>
                 <div class="faq-body">
                   <p><strong>What to know:</strong> Because Phantom is self-custodial, it cannot access your funds or restore a wallet if you lose the required recovery credentials.</p>
