@@ -3,382 +3,1560 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#effcf7">
-  <meta name="description" content="KuCoin exchange guide by Total Crypto Hub. Explore Spot, Margin, Futures, Earn, KCS, live market prices, account setup and security.">
+  <meta name="theme-color" content="#08a86b">
+  <meta name="description" content="Complete KuCoin Exchange guide by Total Crypto Hub: overview, key features, trading fees, live BTC/ETH/KCS Spot prices, Proof of Reserves, services, custody model, how to use, account security, platforms, guide checklist, and FAQ.">
   <meta name="robots" content="index,follow">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <title>KuCoin Exchange Guide | Total Crypto Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Instant Anti-Flash Theme Script -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('tch-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
-    :root{
-      --bg:#f4f8fc;--surface:#fff;--surface-2:#f7fbff;--text:#10233f;--muted:#62748f;
-      --green:#00a875;--green-dark:#008b65;--mint:#dffcf1;--mint-2:#baf5df;
-      --line:#dce7f1;--shadow:0 12px 30px rgba(17,55,83,.08);--radius:20px;
-      --purple:#8b5cf6;--orange:#f59e0b;--red:#e35b5b;
+    :root {
+      color-scheme: light;
+      --bg: #f3fbf9;
+      --surface: #ffffff;
+      --surface-soft: #effcf8;
+      --border: #c8eee1;
+      --heading: #102344;
+      --body: #29415c;
+      --muted: #6c8299;
+      --green: #08a86b;
+      --green-dark: #008556;
+      --green-light: #39e7a7;
+      --green-soft: #e3fff3;
+      --banner-start: #c9ffea;
+      --banner-mid: #f2fff9;
+      --banner-end: #c4fcef;
+      --sidebar-width: 258px;
+      --sponsor-height: 74px;
+      --shadow: 0 12px 32px rgba(8, 168, 107, .09);
     }
-    body.dark{--bg:#0b1422;--surface:#111f31;--surface-2:#17283d;--text:#edf5ff;--muted:#a8b8cc;--line:#2b4058;--mint:#153c36;--mint-2:#205b4d;--shadow:0 12px 30px rgba(0,0,0,.2)}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:92px}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    .sponsor{min-height:56px;padding:10px 24px;background:linear-gradient(105deg,#032d29,#061c27 65%,#073e34);color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
-    .coin{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffd56a,#e99416);font-size:20px;color:#fff;box-shadow:0 3px 12px #0004}
-    .sponsor-tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#a8f2d3;border:1px solid #2c8b71;border-radius:30px;padding:4px 9px}
-    .sponsor strong{font-size:17px}.sponsor strong span{color:#4ce0a8}.sponsor small{color:#c1d5d0;font-size:11px}
-    .sponsor-btn{background:#8ff2c4;color:#06382d;border-radius:30px;padding:9px 17px;font-size:11px;font-weight:800}
-    .topbar{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,42px);position:sticky;top:0;z-index:20}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:18px;line-height:1.15}
-    .brand-mark{width:42px;height:42px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:900}
-    .brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;margin-top:4px}
-    .top-actions{display:flex;gap:10px;align-items:center}
-    .icon-btn,.back-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:30px;padding:10px 15px;font-weight:750;cursor:pointer}
-    .back-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border:0;box-shadow:0 5px 14px #00a87530}
-    .wrap{width:min(1380px,calc(100% - 48px));margin:28px auto 60px}
-    .hero{position:relative;overflow:hidden;border:1px solid #b8f0dc;border-radius:26px;padding:38px 44px;background:radial-gradient(circle at 88% 18%,#9af0d6 0 12%,transparent 12.2%),linear-gradient(115deg,#e2fff3,#c8f9eb 58%,#a9f2dd);box-shadow:var(--shadow);display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:24px}
-    .hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #72dcb9;border-radius:50%;right:6%;top:4%;opacity:.45}
-    .eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid #8ce0c1;background:#ffffffa8;border-radius:30px;padding:6px 12px;color:#007e5c;font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
-    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.045em;margin:15px 0 10px;color:#0c2541}
-    .hero h1 span{color:#00a875}
-    .hero p{max-width:650px;color:#315a63;margin:0 0 17px;font-size:15px}
-    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
-    .pill{background:#fff;color:#17364b;border:1px solid #d9eee7;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:750}
-    .actions{display:flex;flex-wrap:wrap;gap:10px}
-    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:30px;padding:12px 19px;font-size:12px;font-weight:850}
-    .primary{background:linear-gradient(110deg,#00b77b,#008d68);color:#fff;box-shadow:0 7px 16px #009b6c30}
-    .secondary{background:#fff;color:#12304b;border:1px solid #a8dece}
-    .hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:230px}
-    .wallet-orb{width:220px;height:220px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#fff,#c9fff0 55%,#71ddbd);box-shadow:0 18px 35px #2c9c8050;border:1px solid #8be5c7}
-    .wallet-orb img{width:82%;height:82%;object-fit:contain;filter:drop-shadow(0 12px 10px #174d3c35)}
 
-    .live-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 18px #183b5b08}
-    .stat-chip{text-align:center;padding:8px;border-right:1px solid var(--line)}.stat-chip:last-child{border-right:0}
-    .stat-chip strong{display:block;color:var(--green-dark);font-size:25px;line-height:1.2}.stat-chip span{display:block;color:var(--muted);font-size:11px;font-weight:750;margin-top:4px}
-    .source-note{font-size:11px;color:var(--muted);margin:9px 2px 0;line-height:1.55}
-    .market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}.market-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 5px 18px #183b5b08}.market-card .symbol{font-size:11px;font-weight:850;color:var(--muted);letter-spacing:.04em}.market-card strong{display:block;font-size:24px;line-height:1.25;margin:7px 0;color:var(--text);font-variant-numeric:tabular-nums}.market-card .change{font-size:12px;font-weight:850}.market-card .change.up{color:#009b6c}.market-card .change.down{color:#d64d4d}.market-card .change.neutral{color:var(--muted)}.market-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.refresh-btn:disabled{opacity:.6;cursor:wait}.refresh-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 13px;border-radius:24px;font-size:11px;font-weight:800;cursor:pointer}.network-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.network-pill{background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:7px 11px;font-size:11px;font-weight:750;color:var(--text)}
-    .live-label{display:inline-flex;align-items:center;gap:7px;color:var(--green-dark);font-size:11px;font-weight:850}.live-dot{width:8px;height:8px;border-radius:50%;background:#00b77b;box-shadow:0 0 0 4px #00b77b20}
-    .float-coin{position:absolute;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:25px;font-weight:900;box-shadow:0 6px 15px #174d3c30}
-    .eth{top:18px;left:4%;background:#e7e2ff;color:#7155d9}.btc{right:2%;top:50px;background:#fff0cc;color:#e99a12}
-    .quicknav{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:8px;margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:50px;box-shadow:0 5px 18px #183b5b08;scrollbar-width:thin}
-    .quicknav a{white-space:nowrap;padding:10px 16px;border-radius:30px;font-size:12px;font-weight:750;color:var(--muted)}
-    .quicknav a:hover,.quicknav a.active{background:linear-gradient(110deg,#00b77b,#008e68);color:#fff}
-    .section{margin-top:26px}
-    .section-heading{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:22px;letter-spacing:-.025em}
-    .num{width:29px;height:29px;flex:0 0 29px;border-radius:9px;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
-    .intro-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:18px}
-    .panel,.feature,.step,.video-card,.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:22px;box-shadow:0 5px 18px #183b5b06}
-    .panel p{color:var(--muted);margin:0}
-    .fact{background:linear-gradient(120deg,var(--mint),var(--surface));border-color:#b8f0dc;display:flex;gap:13px;align-items:flex-start}
-    .fact-icon{font-size:30px}
-    .fact h3{margin:0 0 5px;font-size:16px}
-    .fact p{font-size:13px}
-    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-    .feature{text-align:center;padding:24px 16px;transition:.2s}
-    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-    .feature .emoji{font-size:30px;display:block;margin-bottom:8px}
-    .feature h3{font-size:15px;margin:0 0 5px}
-    .feature p{font-size:12px;color:var(--muted);margin:0}
-    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-    .step{padding:18px 15px;position:relative}
-    .step .circle{width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#00bd80,#008e67);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:10px}
-    .step h3{font-size:13px;line-height:1.35;margin:0 0 6px}
-    .step p{font-size:11px;color:var(--muted);margin:0}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .mini-list{border-radius:14px;padding:15px;background:#e8fbf3;color:#14553f}
-    .mini-list.bad{background:#fff0ef;color:#873d3d}
-    body.dark .mini-list{background:#153c32;color:#c6f6df}body.dark .mini-list.bad{background:#42272c;color:#ffd2d2}
-    .mini-list h3{font-size:13px;margin:0 0 9px}
-    .mini-list ul,.security-list{list-style:none;padding:0;margin:0}
-    .mini-list li{font-size:12px;margin:7px 0}
-    .security-list li{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:13px}
-    .security-list b{color:var(--text)}
-    .video-layout{display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:15px;align-items:stretch}
-    .video-thumb{aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#102d4d,#243c71 55%,#00a875);display:grid;place-items:center;color:#fff;font-size:40px;margin-bottom:10px;position:relative;overflow:hidden}
-    .video-thumb:before{content:"◆";font-size:75px;position:absolute;opacity:.24;left:12px;bottom:-15px}
-    .play{width:58px;height:42px;border-radius:12px;background:#f22;color:#fff;display:grid;place-items:center;font-size:22px;z-index:1}
-    .video-card h3{font-size:14px;margin:0 0 6px}.video-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
-    .video-card a{font-size:12px;font-weight:800;color:var(--green-dark)}
-    .tip{background:linear-gradient(140deg,#fff4d9,#fff);border-color:#f7dfaa}
-    body.dark .tip{background:linear-gradient(140deg,#45351b,#1b2634)}
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .faq-item{padding:0;overflow:hidden}
-    .faq-q{width:100%;padding:15px 18px;background:transparent;color:var(--text);border:0;display:flex;justify-content:space-between;gap:15px;text-align:left;font-weight:800;font-size:13px;cursor:pointer}
-    .faq-a{display:none;padding:0 18px 16px;color:var(--muted);font-size:12px}
-    .faq-item.open .faq-a{display:block}
-    .cta{margin-top:28px;border-radius:20px;padding:26px 32px;background:linear-gradient(105deg,#063c34,#006d58 65%,#14bd8a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;box-shadow:0 12px 25px #007b5b30}
-    .cta h2{margin:0 0 5px;font-size:23px}.cta p{margin:0;color:#c7f8e5;font-size:13px}
-    .cta .primary{background:#a3f3c9;color:#063c34;white-space:nowrap}
-    .disclaimer{margin-top:20px;color:var(--muted);font-size:11px;text-align:center}
-    footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:11px}
-  
-    .kucoin-mark{width:118px;height:118px;border-radius:28px;background:#111;color:#f4c400;display:grid;place-items:center;font-size:88px;font-weight:950;line-height:1;box-shadow:0 14px 30px #1113;transform:rotate(0deg)}
-    .snapshot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
-    .reserve-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
-    .reserve-card strong{display:block;font-size:22px;color:var(--green-dark);font-variant-numeric:tabular-nums}
-    .reserve-card span{font-size:11px;color:var(--muted);font-weight:750}
-    .notice-panel{background:linear-gradient(120deg,#fff5da,#fff);border-color:#f2dfa9}
-    body.dark .notice-panel{background:linear-gradient(120deg,#46391d,#1b2634);border-color:#6c5730}
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #081a20;
+      --surface: #10272c;
+      --surface-soft: #143139;
+      --border: #254b4b;
+      --heading: #f0fff9;
+      --body: #d4eee5;
+      --muted: #91b3ad;
+      --green: #20d99a;
+      --green-dark: #0cad78;
+      --green-light: #5df0bd;
+      --green-soft: #123e34;
+      --banner-start: #0b2b27;
+      --banner-mid: #0f3530;
+      --banner-end: #0b2b27;
+      --shadow: 0 14px 34px rgba(0, 0, 0, .24);
+    }
 
-    @media(max-width:850px){.market-grid{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.wallet-orb{width:175px;height:175px}.features{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.video-layout{grid-template-columns:1fr 1fr}.video-layout .tip{grid-column:1/-1}.intro-grid{grid-template-columns:1fr}.snapshot-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.market-grid{grid-template-columns:1fr}.market-card{padding:14px}.market-card strong{font-size:22px}.sponsor{gap:7px;padding:9px 12px}.sponsor small{display:none}.sponsor strong{font-size:13px}.topbar{height:62px;padding:0 14px}.brand{font-size:15px}.brand-mark{width:36px;height:36px}.icon-btn{padding:8px 10px}.back-btn{padding:9px 12px;font-size:11px}.wrap{width:calc(100% - 24px);margin:14px auto 36px}.hero{padding:22px 18px;border-radius:19px}.hero h1{font-size:clamp(28px,8vw,35px)}.hero p{font-size:13px}.hero-art{min-height:160px}.wallet-orb{width:150px;height:150px}.section-heading{font-size:19px}.features{gap:10px}.feature{padding:16px 10px}.steps{gap:10px}.step{padding:14px 12px}.two-col,.good-bad,.faq-grid,.video-layout{grid-template-columns:1fr}.video-layout .tip{grid-column:auto}.cta{padding:21px;display:block}.cta h2{font-size:20px}.cta .primary{margin-top:15px}.quicknav{border-radius:15px}.quicknav a{padding:9px 12px}.live-strip{grid-template-columns:1fr}.stat-chip{border-right:0;border-bottom:1px solid var(--line);padding:10px}.stat-chip:last-child{border-bottom:0}}
-    @media(max-width:400px){.features,.steps,.snapshot-grid{grid-template-columns:1fr}}
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    article[id] { scroll-margin-top: calc(var(--sponsor-height) + 124px); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--body);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    /* TOP SPONSOR & BRAND BAR */
+    .sponsor-strip {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      min-height: var(--sponsor-height);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: var(--heading);
+      background:
+        radial-gradient(circle at 8% 50%, rgba(8, 168, 107, .22), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(8, 168, 107, .18), transparent 24%),
+        linear-gradient(95deg, var(--banner-start) 0%, var(--banner-mid) 48%, var(--banner-end) 100%);
+      border-bottom: 1px solid #96ecd0;
+      box-shadow: 0 4px 18px rgba(8, 168, 107, .09);
+      isolation: isolate;
+    }
+    [data-theme="dark"] .sponsor-strip { border-bottom: 1px solid #245f4d; }
+    .sponsor-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1800px;
+      min-height: var(--sponsor-height);
+      margin: auto;
+      padding: 7px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-brand {
+      min-width: 210px;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: radial-gradient(circle at 30% 25%, #5bffc8, var(--green) 65%, var(--green-dark));
+      box-shadow: 0 3px 12px rgba(8, 168, 107, .25);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .header-brand-name { display: block; color: var(--heading); font-size: 17px; font-weight: 800; line-height: 1.15; letter-spacing: -.45px; }
+    .header-brand-subtitle { display: block; margin-top: 2px; color: var(--green-dark); font-size: 10px; font-weight: 800; }
+    .header-brand-subtitle b { color: var(--green-dark); }
+    [data-theme="dark"] .header-brand-subtitle, [data-theme="dark"] .header-brand-subtitle b { color: var(--green-light); }
+
+    .header-v-sep {
+      width: 1.5px;
+      height: 36px;
+      flex: 0 0 1.5px;
+      background: rgba(16, 35, 68, .2);
+    }
+    [data-theme="dark"] .header-v-sep { background: rgba(240, 255, 249, .2); }
+
+    .sponsor-slot-box {
+      flex: 1 1 auto;
+      max-width: 970px;
+      min-width: 280px;
+      height: 58px;
+      padding: 6px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1.8px dashed var(--green);
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(201, 255, 234, .75), rgba(242, 255, 249, .95) 50%, rgba(196, 252, 239, .75));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .75), 0 3px 12px rgba(8, 168, 107, .08);
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .sponsor-slot-box:hover {
+      transform: translateY(-1px);
+      border-color: var(--green-dark);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .16);
+    }
+    [data-theme="dark"] .sponsor-slot-box {
+      border-color: var(--green-light);
+      background: linear-gradient(90deg, rgba(18, 62, 50, .85), rgba(16, 39, 44, .95) 50%, rgba(18, 62, 50, .85));
+      box-shadow: none;
+    }
+    .slot-megaphone { font-size: 27px; line-height: 1; flex: 0 0 auto; }
+    .slot-arrow { flex: 1 1 60px; max-width: 130px; height: 16px; display: flex; align-items: center; color: var(--green); }
+    [data-theme="dark"] .slot-arrow { color: var(--green-light); }
+    .slot-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
+    .slot-center-text { text-align: center; flex: 0 0 auto; }
+    .slot-center-text strong { display: block; color: var(--heading); font-size: 17px; line-height: 1.15; font-weight: 800; letter-spacing: -.35px; }
+    .slot-center-text span { display: block; margin-top: 2px; color: var(--body); font-size: 12px; font-weight: 700; }
+
+    .sponsor-right-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+    .sponsor-cta {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: 1.5px solid var(--green);
+      color: var(--heading);
+      background: linear-gradient(135deg, #b6ffdf, #58f0ad);
+      box-shadow: 0 4px 14px rgba(8, 168, 107, .22), inset 0 1px 1px rgba(255, 255, 255, .75);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .sponsor-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(8, 168, 107, .34); }
+    .sponsor-orb-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid var(--green);
+      color: #ffffff;
+      background: linear-gradient(145deg, var(--green), var(--green-dark));
+      box-shadow: 0 4px 12px rgba(8, 168, 107, .25);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* LEFT WORKSPACE SIDEBAR */
+    .sidebar {
+      position: fixed;
+      z-index: 150;
+      inset: var(--sponsor-height) auto 0 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--sponsor-height));
+      height: calc(100dvh - var(--sponsor-height));
+      display: flex;
+      flex-direction: column;
+      padding: 20px 16px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      box-shadow: 8px 0 28px rgba(8, 168, 107, .03);
+      transition: transform .25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    .side-label { padding: 14px 13px 10px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+    .side-nav { display: grid; gap: 7px; flex-shrink: 0; }
+    .side-link {
+      min-height: 47px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
+    .side-link.active { color: var(--green-dark); background: linear-gradient(100deg, var(--green-soft), #f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8, 168, 107, .11); }
+    [data-theme="dark"] .side-link.active { color: var(--green-light); background: var(--green-soft); border-color: #23654e; }
+    .nav-icon { width: 36px; height: 36px; flex: 0 0 36px; display: grid; place-items: center; border-radius: 12px; font-size: 17px; color: var(--green-dark); background: var(--green-soft); border: 1px solid var(--border); }
+    [data-theme="dark"] .nav-icon { color: var(--green-light); }
+    .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sidebar-spacer { flex: 1 0 18px; min-height: 18px; }
+    .side-promo {
+      margin: 18px 6px 13px;
+      padding: 19px 14px;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 23px;
+      border: 1px solid #c7f5df;
+      background: radial-gradient(circle at 90% 10%, rgba(8, 168, 107, .18), transparent 34%), linear-gradient(145deg, var(--green-soft), var(--surface) 72%);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .10);
+    }
+    [data-theme="dark"] .side-promo { background: linear-gradient(145deg, var(--surface-soft), var(--surface)); border-color: #255c49; }
+    .promo-gift { margin-bottom: 8px; font-size: 34px; }
+    .side-promo h3 { margin: 0 0 8px; color: var(--heading); font-size: 13px; line-height: 1.5; font-weight: 800; }
+    .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .promo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 19px; border-radius: 999px; color: #ffffff; background: linear-gradient(135deg, var(--green), var(--green-dark)); text-decoration: none; font-size: 11px; font-weight: 800; box-shadow: 0 6px 14px rgba(8, 168, 107, .2); }
+    .support-card { display: flex; align-items: center; gap: 10px; margin: 0 6px; padding: 13px; flex-shrink: 0; border-radius: 17px; border: 1px solid var(--border); background: var(--surface-soft); text-decoration: none; }
+    .support-icon { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 18px; }
+    [data-theme="dark"] .support-icon { color: var(--green-light); }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
+
+    /* MAIN COLUMN + TOPBAR */
+    .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
+    .topbar {
+      position: sticky;
+      top: var(--sponsor-height);
+      z-index: 100;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 28px;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .mobile-menu-btn { display: none; width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 12px; color: var(--heading); background: var(--surface); }
+    .btn-back-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 35px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .btn-back-pill { color: var(--green-light); }
+    .btn-back-pill:hover { background: var(--green); color: #ffffff; }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: var(--green-dark);
+      transition: color .18s;
+    }
+    [data-theme="dark"] .breadcrumb a { color: var(--green-light); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span.current { color: var(--heading); font-weight: 800; }
+
+    .topbar-spacer { flex: 1; }
+    .icon-btn {
+      min-height: 38px;
+      width: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 16px;
+      box-shadow: 0 3px 9px rgba(8, 168, 107, .05);
+    }
+    .icon-btn:hover { border-color: var(--green); color: var(--green); }
+
+    /* SHORTCUT JUMP BAR (10 SECTIONS) */
+    .jump-strip {
+      position: sticky;
+      top: calc(var(--sponsor-height) + 60px);
+      z-index: 95;
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .jump-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 8px clamp(16px, 2.4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-inner::-webkit-scrollbar { display: none; }
+    .jump-tab {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .16s ease;
+    }
+    .jump-tab:hover, .jump-tab.active {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-color: var(--green);
+      color: #ffffff;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 22px clamp(16px, 2.4vw, 32px) 42px;
+    }
+
+    /* MINT-GREEN & WHITE HERO BANNER */
+    .project-hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(305px, .82fr);
+      align-items: center;
+      gap: 22px;
+      padding: 24px 28px;
+      border: 1px solid #96ecd0;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(8, 168, 107, .22), transparent 34%),
+        linear-gradient(110deg, var(--banner-start) 0%, var(--banner-mid) 52%, var(--banner-end) 100%);
+      box-shadow: var(--shadow);
+    }
+    [data-theme="dark"] .project-hero { border-color: #215d4c; }
+    .hero-identity {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .hero-logo-box {
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #16181d, #0f1115);
+      border: 2px solid var(--green);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
+      color: #24ae8f;
+      font-size: 40px;
+      font-weight: 900;
+    }
+    .hero-logo-box img { width: 72%; height: 72%; object-fit: contain; display: block; }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      background: var(--surface);
+      color: var(--green-dark);
+      border: 1px solid #96ecd0;
+    }
+    [data-theme="dark"] .badge-pill { background: var(--green-soft); color: var(--green-light); border-color: #256f55; }
+
+    .hero-title-group h1 {
+      margin: 0 0 6px;
+      color: var(--heading);
+      font-size: clamp(24px, 2.7vw, 35px);
+      line-height: 1.14;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+    .hero-title-group p {
+      margin: 0;
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.62;
+      font-weight: 600;
+      max-width: 720px;
+    }
+
+    /* PORTAL ACTION CARD */
+    .portal-action-card {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: var(--surface);
+      border: 1px solid #96ecd0;
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .08);
+      display: grid;
+      gap: 10px;
+    }
+    [data-theme="dark"] .portal-action-card { border-color: #245f4d; }
+
+    .portal-meta-box {
+      padding: 10px 13px;
+      border-radius: 13px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .portal-meta-box { border-color: #23654e; }
+    .portal-meta-label {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .45px;
+      margin-bottom: 2px;
+    }
+    .portal-meta-value {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--heading);
+      overflow-wrap: anywhere;
+    }
+
+    .btn-launch-primary {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      box-shadow: 0 8px 18px rgba(8, 168, 107, .24);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 800;
+      transition: transform .2s ease;
+    }
+    .btn-launch-primary:hover { transform: translateY(-1px); }
+
+    /* FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES */
+    .single-column-stack {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .info-card {
+      padding: 22px 24px;
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, .06);
+    }
+    .card-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--heading);
+      font-size: 17.5px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+    }
+    .card-heading-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+      font-size: 16px;
+      flex: 0 0 32px;
+    }
+    [data-theme="dark"] .card-heading-icon { color: var(--green-light); border-color: #256650; }
+
+    .info-card p {
+      margin: 0 0 11px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--body);
+    }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card code {
+      background: var(--surface-soft);
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      font-family: monospace;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .notice-box {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid #f3d38b;
+      background: #fff8e8;
+      color: #704d0b;
+      font-size: 12.2px;
+      line-height: 1.68;
+    }
+    [data-theme="dark"] .notice-box {
+      background: #3c321d;
+      color: #f8df9f;
+      border-color: #78602b;
+    }
+    .notice-box a { color: inherit; font-weight: 800; text-decoration: underline; }
+
+    /* LIVE MARKET TICKER GRID */
+    .market-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .live-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green-dark);
+      font-size: 11.5px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .live-label { color: var(--green-light); }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #08a86b;
+      box-shadow: 0 0 0 4px rgba(8, 168, 107, .2);
+    }
+    .refresh-btn {
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .refresh-btn { color: var(--green-light); }
+    .refresh-btn:hover { background: var(--green); color: #ffffff; }
+    .refresh-btn:disabled { opacity: .6; cursor: wait; }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 10px 0 12px;
+    }
+    .market-card {
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      border-radius: 16px;
+      padding: 15px 16px;
+    }
+    [data-theme="dark"] .market-card { border-color: #23654e; }
+    .market-card .symbol {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+    .market-card strong {
+      display: block;
+      font-size: 21px;
+      line-height: 1.25;
+      margin: 6px 0;
+      color: var(--heading);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+    .market-card .change { font-size: 11.5px; font-weight: 800; }
+    .market-card .change.up { color: #08a86b; }
+    .market-card .change.down { color: #d64d4d; }
+    .market-card .change.neutral { color: var(--muted); }
+    .source-note {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin: 6px 0 0;
+      line-height: 1.65;
+    }
+    .source-note a { color: var(--green-dark); font-weight: 700; text-decoration: underline; }
+    [data-theme="dark"] .source-note a { color: var(--green-light); }
+
+    /* PROOF OF RESERVES & PROFILE SNAPSHOT GRIDS */
+    .por-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 10px 0 6px;
+    }
+    .por-card {
+      background: var(--surface);
+      border: 1px solid #e4c67a;
+      border-radius: 14px;
+      padding: 13px 12px;
+      text-align: center;
+    }
+    [data-theme="dark"] .por-card { border-color: #6b5626; }
+    .por-card strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--green-dark);
+      font-variant-numeric: tabular-nums;
+    }
+    [data-theme="dark"] .por-card strong { color: var(--green-light); }
+    .por-card span {
+      display: block;
+      margin-top: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .doc-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .doc-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid var(--green);
+      font-size: 11.5px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .doc-link-pill { color: var(--green-light); }
+    .doc-link-pill:hover {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .mini-box {
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .mini-box { border-color: #23654e; }
+    .mini-box h3 {
+      margin: 0 0 6px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .mini-box p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.68;
+      color: var(--body);
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      background: var(--surface-soft);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .stats-table { border-color: #23654e; }
+    .stats-table th, .stats-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+      line-height: 1.65;
+    }
+    .stats-table th {
+      background: var(--green-soft);
+      color: var(--heading);
+      font-weight: 800;
+      width: 28%;
+    }
+    .stats-table td { color: var(--body); }
+    .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
+
+    .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .perm-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b4edd6;
+    }
+    [data-theme="dark"] .perm-pill { color: var(--green-light); border-color: #256650; }
+
+    .steps-list {
+      display: grid;
+      gap: 11px;
+      margin-top: 10px;
+    }
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+    }
+    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-body p { margin: 0; font-size: 12px; line-height: 1.68; color: var(--body); }
+
+    /* RICH FAQ ACCORDION */
+    .faq-list { display: grid; gap: 11px; }
+    .faq-item {
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid #b8f2d7;
+      padding: 14px 18px;
+      transition: .18s ease;
+    }
+    [data-theme="dark"] .faq-item { border-color: #23654e; }
+    .faq-item[open] {
+      background: var(--surface);
+      box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
+    }
+    .faq-item summary {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--heading);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-item summary::after {
+      content: "+";
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--green-dark);
+      flex: 0 0 auto;
+    }
+    [data-theme="dark"] .faq-item summary::after { color: var(--green-light); }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-body {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      display: grid;
+      gap: 7px;
+    }
+    .faq-body p {
+      margin: 0;
+      font-size: 12.2px;
+      line-height: 1.7;
+      color: var(--body);
+    }
+
+    .disclaimer {
+      margin: 24px 0 0;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 10.5px;
+      line-height: 1.72;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 28px;
+      padding: 24px 0 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .footer-brand { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+    .footer-brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--green); background: #ffffff; }
+    .footer-brand span { color: var(--heading); font-size: 14px; font-weight: 800; }
+    .footer-copy { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 2px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .footer-links a:hover { color: var(--green); }
+
+    .mobile-overlay { display: none; }
+
+    @media(max-width: 1250px) {
+      :root { --sidebar-width: 235px; }
+      .header-brand { min-width: 185px; }
+      .slot-arrow { display: none; }
+    }
+    @media(max-width: 1020px) {
+      .project-hero { grid-template-columns: 1fr; }
+      .por-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media(max-width: 760px) {
+      :root { --sidebar-width: 258px; --sponsor-height: 56px; }
+      article[id] { scroll-margin-top: calc(var(--sponsor-height) + 106px); }
+      .jump-strip { top: calc(var(--sponsor-height) + 56px); }
+      .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
+      .header-brand { min-width: auto; gap: 7px; }
+      .header-logo { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
+      .header-brand-name { font-size: 11px; }
+      .header-brand-subtitle { font-size: 8px; }
+      .header-v-sep, .sponsor-orb-btn { display: none; }
+      .sponsor-slot-box { min-width: 0; height: 42px; padding: 4px 10px; justify-content: center; gap: 8px; }
+      .slot-megaphone { font-size: 17px; }
+      .slot-center-text strong { font-size: 11px; }
+      .slot-center-text span { font-size: 8px; }
+      .sponsor-cta { padding: 8px 11px; font-size: 9px; }
+
+      .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0,0,0,.13); }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; background: rgba(4,14,27,.42); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; }
+      .topbar { min-height: 56px; padding: 8px 14px; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
+
+      main { padding: 18px clamp(14px, 3vw, 24px) 36px; }
+      .project-hero { padding: 18px; }
+      .hero-identity { flex-direction: column; gap: 12px; }
+      .mini-grid, .market-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 480px) {
+      .header-brand-subtitle, .slot-megaphone { display: none; }
+      .por-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-<body>
-  <div class="sponsor">
-    <div class="coin">₿</div><span class="sponsor-tag">SPONSORSHIP OPPORTUNITY</span>
-    <strong>Sponsor with Us on <span>Total Crypto Hub</span></strong>
-    <small>Grow Your Brand in the Crypto Community</small>
-    <a class="sponsor-btn" href="mailto:partnerships@totalcryptohub.com?subject=Sponsorship%20Enquiry">Become a Sponsor →</a>
+
+<body data-theme="light">
+  <!-- TOP SPONSOR & BRAND BAR -->
+  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
+    <div class="sponsor-inner">
+      <a href="../index.html" class="header-brand" translate="no">
+        <span class="header-logo">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+        </span>
+        <span>
+          <span class="header-brand-name">Total Crypto Hub</span>
+          <span class="header-brand-subtitle">by <b>Total Crypto Network</b></span>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <a class="sponsor-slot-box" href="../legal-pages/contact.html" aria-label="Sponsor Banner Area">
+        <span class="slot-megaphone" aria-hidden="true">📢</span>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="slot-center-text">
+          <strong>Sponsor Banner Area</strong>
+          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
+        </div>
+        <span class="slot-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 16" fill="none">
+            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <span class="header-v-sep" aria-hidden="true"></span>
+
+      <div class="sponsor-right-actions">
+        <a href="../legal-pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
+        <a href="../legal-pages/contact.html" class="sponsor-orb-btn" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell">
+    <!-- LEFT WORKSPACE SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="side-label">Workspace</div>
+      <nav class="side-nav">
+        <a href="../index.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home
+        </a>
+        <a href="../depin-pages/depin.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects
+        </a>
+        <a href="../mobile-pages/mobile-mining.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects
+        </a>
+        <a href="../airdrop-pages/airdrops.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops &amp; Campaigns
+        </a>
+        <a href="../wallet-pages/wallets.html" class="side-link active" aria-current="page">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets &amp; Exchanges
+        </a>
+        <a href="../token-pages/token-checker.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
+        </a>
+        <a href="../earning-pages/earning-calculator.html" class="side-link">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator
+        </a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <section class="side-promo" aria-label="Community invitation">
+        <div class="promo-gift" aria-hidden="true">🛡️</div>
+        <h3>Explore Exchanges<br>&amp; Stay Safe</h3>
+        <p>Follow setup guides, security checklists and community announcements.</p>
+        <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
+      </section>
+      <a class="support-card" href="../legal-pages/contact.html">
+        <span class="support-icon" aria-hidden="true">♧</span>
+        <span><strong>Need Help?</strong><span>Contact Support →</span></span>
+      </a>
+      <p class="sidebar-note">A research-led Web3 directory</p>
+    </aside>
+
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+
+    <div class="main-column">
+      <!-- TOP BACK & BREADCRUMB BAR -->
+      <header class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <button type="button" class="btn-back-pill" onclick="goBackToList()" aria-label="Go back to previous page">← Back</button>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <a href="../exchange-pages/exchanges.html">Exchanges</a>
+          <span>/</span>
+          <span class="current notranslate" translate="no">KuCoin</span>
+        </nav>
+        <span class="topbar-spacer"></span>
+        <button class="icon-btn" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+      </header>
+
+      <!-- SHORTCUT JUMP BAR (10 SECTIONS) -->
+      <nav class="jump-strip" aria-label="Exchange sections">
+        <div class="jump-inner" id="jumpInner">
+          <a class="jump-tab active" data-target="overview" href="#overview">1. Overview</a>
+          <a class="jump-tab" data-target="key-features" href="#key-features">2. Key Features</a>
+          <a class="jump-tab" data-target="fee" href="#fee">3. Fee &amp; Live Markets</a>
+          <a class="jump-tab" data-target="network-support" href="#network-support">4. Services &amp; Networks</a>
+          <a class="jump-tab" data-target="custody-control" href="#custody-control">5. Custody &amp; PoR</a>
+          <a class="jump-tab" data-target="how-to-use" href="#how-to-use">6. How to Use</a>
+          <a class="jump-tab" data-target="security" href="#security">7. Security</a>
+          <a class="jump-tab" data-target="platforms" href="#platforms">8. Platforms</a>
+          <a class="jump-tab" data-target="guide-checklist" href="#guide-checklist">9. Guide Checklist</a>
+          <a class="jump-tab" data-target="faq" href="#faq">10. FAQ</a>
+        </div>
+      </nav>
+
+      <main>
+        <!-- MINT-GREEN & WHITE HERO BANNER -->
+        <section class="project-hero" aria-labelledby="exchangeTitle">
+          <div class="hero-identity">
+            <div class="hero-logo-box" aria-label="KuCoin emblem">K</div>
+            <div class="hero-title-group">
+              <div class="hero-badges">
+                <span class="badge-pill">📊 Spot &amp; Margin</span>
+                <span class="badge-pill">⚡ Futures</span>
+                <span class="badge-pill">🌱 KuCoin Earn</span>
+                <span class="badge-pill">🛡️ Proof of Reserves</span>
+              </div>
+              <h1 id="exchangeTitle" class="notranslate" translate="no">KuCoin Exchange</h1>
+              <p>Explore KuCoin's centralized crypto platform, including Spot and Margin markets, Futures, Convert, KuCoin Earn, Trading Bot, live public Spot quotes, and the KCS ecosystem.</p>
+            </div>
+          </div>
+
+          <!-- COMPACT PORTAL ACTION CARD -->
+          <div class="portal-action-card">
+            <div class="portal-meta-box">
+              <span class="portal-meta-label">OFFICIAL WEBSITE &amp; CUSTODY MODEL</span>
+              <span class="portal-meta-value notranslate" translate="no">kucoin.com • Centralized Exchange (CEX)</span>
+            </div>
+
+            <a class="btn-launch-primary" href="https://www.kucoin.com/" target="_blank" rel="noopener noreferrer">
+              🌐 Visit Official KuCoin →
+            </a>
+          </div>
+        </section>
+
+        <!-- FULL-PAGE SINGLE-COLUMN STACK OF 10 SECTION BOXES -->
+        <div class="single-column-stack">
+          <!-- 1. OVERVIEW -->
+          <article class="info-card" id="overview">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🏛️</span>
+              1. Overview
+            </h2>
+            <p><strong>KuCoin</strong> is a <strong>centralized cryptocurrency exchange (CEX)</strong> that offers Spot trading, Margin trading, Futures, Convert, KuCoin Earn, Trading Bot, ETFs, KuCoin Pay, and related products. Its exchange account is a custodial platform account, which differs from holding assets in a self-custody wallet.</p>
+            <p>KuCoin's About Us page reports <strong>45M global users</strong>, <strong>1,000+ listed tokens</strong>, and presence across <strong>200+ countries &amp; regions</strong> (company-published figures that may change). Verify details at <a href="https://www.kucoin.com/about-us" target="_blank" rel="noopener noreferrer">kucoin.com/about-us</a>.</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>✅ Potential Advantages</h3>
+                <p>Multiple trading and conversion products, public Spot market-data API, KCS ecosystem fee features, and published Proof of Reserves reports.</p>
+              </div>
+              <div class="mini-box">
+                <h3>⚠️ Things to Consider</h3>
+                <p>Exchange custody and platform risk, variable fees by pair/tier, geographic restrictions, and magnified liquidation risk on Margin and Futures.</p>
+              </div>
+            </div>
+            <div class="notice-box">
+              <strong>🌏 Important for Users in India &amp; Other Regions:</strong> KuCoin's terms state that access to platform services may be restricted or prohibited based on geographic location. This guide does not confirm that every KuCoin service is available in India. Check the current terms, account-specific notices, and applicable Indian laws and tax requirements before registering, depositing, or trading. <a href="https://www.kucoin.com/legal/terms-of-use" target="_blank" rel="noopener noreferrer">KuCoin Terms of Use ↗</a>
+            </div>
+          </article>
+
+          <!-- 2. KEY FEATURES -->
+          <article class="info-card" id="key-features">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">⭐</span>
+              2. Key Features
+            </h2>
+            <p>KuCoin offers Spot, derivatives, automated bot tools, and passive savings options across its platform:</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>📈 Spot &amp; Convert</h3>
+                <p>Trade supported crypto pairs or use Convert where available—always review quote, spread, minimum size, and fees before confirming.</p>
+              </div>
+              <div class="mini-box">
+                <h3>⚖️ Margin &amp; Futures</h3>
+                <p>Explore leverage-based contracts only after understanding collateral requirements, funding rates, liquidation rules, and contract risks.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🤖 Trading Bot</h3>
+                <p>KuCoin lists automated bot tools for supported strategies—a bot does not guarantee profit and can lose funds in volatile markets.</p>
+              </div>
+              <div class="mini-box">
+                <h3>🌱 KuCoin Earn</h3>
+                <p>Review each product's rate, lock-up period, redemption terms, counterparty, and asset risks carefully; yields are not guaranteed.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. FEE & LIVE MARKETS -->
+          <article class="info-card" id="fee">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">💸</span>
+              3. Fee &amp; Live Public Markets
+            </h2>
+            <div class="market-controls">
+              <div>
+                <div class="live-label"><span class="live-dot"></span> Live public market feed (BTC, ETH, KCS / USDT)</div>
+                <p class="source-note" style="margin-top:2px">Indicative public Spot ticker snapshots · Auto-refreshes about every 30 seconds · No API key required</p>
+              </div>
+              <button class="refresh-btn" id="refreshMarketPrices" type="button">↻ Refresh prices</button>
+            </div>
+            <div class="market-grid">
+              <div class="market-card"><span class="symbol">BTC / USDT</span><strong id="price-BTC-USDT">Loading…</strong><span class="change neutral" id="change-BTC-USDT">Fetching 24h change</span></div>
+              <div class="market-card"><span class="symbol">ETH / USDT</span><strong id="price-ETH-USDT">Loading…</strong><span class="change neutral" id="change-ETH-USDT">Fetching 24h change</span></div>
+              <div class="market-card"><span class="symbol">KCS / USDT</span><strong id="price-KCS-USDT">Loading…</strong><span class="change neutral" id="change-KCS-USDT">Fetching 24h change</span></div>
+            </div>
+            <p class="source-note" id="marketUpdatedAt" aria-live="polite">Connecting to KuCoin public market-data API…</p>
+            <p class="source-note">These are indicative public Spot ticker snapshots in USDT, not guaranteed tick-by-tick prices or a buy/sell recommendation. USDT is a crypto asset and is not identical to a bank-held US dollar. Check <a href="https://www.kucoin.com/markets" target="_blank" rel="noopener noreferrer">KuCoin Markets ↗</a> or <a href="https://www.kucoin.com/docs-new/rest/spot-trading/market-data/get-all-tickers" target="_blank" rel="noopener noreferrer">Official Ticker API Docs ↗</a>.</p>
+
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>Spot Trading Fees</th>
+                  <td>Fees vary by trading pair class, maker/taker role, VIP tier, and applicable discounts such as paying fees with KCS.</td>
+                </tr>
+                <tr>
+                  <th>Margin &amp; Futures Fees</th>
+                  <td>Margin borrowing incurs hourly interest; Futures contracts involve maker/taker fees and periodic funding settlements.</td>
+                </tr>
+                <tr>
+                  <th>Deposit &amp; Withdrawal Fees</th>
+                  <td>Crypto deposits are generally free on supported chains, while withdrawals incur dynamic network fees depending on the selected blockchain.</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.kucoin.com/support/360015188494" target="_blank" rel="noopener noreferrer">📊 Official Trading Fees Guide →</a>
+            </div>
+          </article>
+
+          <!-- 4. SERVICES & NETWORKS -->
+          <article class="info-card" id="network-support">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🌐</span>
+              4. Services &amp; Deposit/Withdrawal Networks
+            </h2>
+            <p>KuCoin lists a wide ecosystem of exchange and Web3 services—confirm regional eligibility and exact deposit/withdrawal networks on the official site before transferring assets:</p>
+            <div class="perm-pills">
+              <span class="perm-pill">Spot Trading</span>
+              <span class="perm-pill">Margin Trading</span>
+              <span class="perm-pill">Futures Trading</span>
+              <span class="perm-pill">Convert</span>
+              <span class="perm-pill">KuCoin Earn</span>
+              <span class="perm-pill">Trading Bot</span>
+              <span class="perm-pill">ETFs</span>
+              <span class="perm-pill">KuCoin Pay</span>
+              <span class="perm-pill">KuCard</span>
+              <span class="perm-pill">KCS Ecosystem</span>
+              <span class="perm-pill">OTC</span>
+              <span class="perm-pill">GemSPACE</span>
+            </div>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.kucoin.com/learn" target="_blank" rel="noopener noreferrer">🎓 Explore KuCoin Learn →</a>
+            </div>
+          </article>
+
+          <!-- 5. CUSTODY & PROOF OF RESERVES -->
+          <article class="info-card" id="custody-control">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🗝️</span>
+              5. Custody &amp; Proof of Reserves
+            </h2>
+            <p>A KuCoin exchange account is <strong>custodial</strong> and differs from a self-custody wallet where you hold private keys. Assets held on the platform are governed by KuCoin's custody, KYC, and withdrawal rules.</p>
+            <div class="notice-box">
+              <strong>🛡️ Proof of Reserves — Dated Official Snapshot (31 October 2026, 23:59:59 UTC+8):</strong> KuCoin's Proof of Reserves page reports the following company-published reserve ratios (read the full audit methodology before drawing conclusions):
+              <div class="por-grid">
+                <div class="por-card"><strong>112%</strong><span>BTC reserve ratio</span></div>
+                <div class="por-card"><strong>115%</strong><span>ETH reserve ratio</span></div>
+                <div class="por-card"><strong>110%</strong><span>USDT reserve ratio</span></div>
+                <div class="por-card"><strong>127%</strong><span>USDC reserve ratio</span></div>
+              </div>
+              <a href="https://www.kucoin.com/proof-of-reserves" target="_blank" rel="noopener noreferrer">View KuCoin Proof of Reserves &amp; Audit ↗</a>
+            </div>
+          </article>
+
+          <!-- 6. HOW TO USE -->
+          <article class="info-card" id="how-to-use">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🛠️</span>
+              6. How to Use
+            </h2>
+            <p>KuCoin states that new users must complete identity verification (KYC) to use its products and services. Follow these general educational steps:</p>
+            <div class="steps-list">
+              <div class="step-row">
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <h4>Open Official Website</h4>
+                  <p>Type <code>kucoin.com</code> directly into your browser and verify the domain carefully.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <h4>Check Regional Access</h4>
+                  <p>Read the terms of use and country-specific eligibility notices for your location.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <h4>Register &amp; Complete KYC</h4>
+                  <p>Create your account with a strong unique password and follow the current identity-verification instructions.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">4</span>
+                <div class="step-body">
+                  <h4>Secure Your Account</h4>
+                  <p>Enable Google 2FA or a passkey and set an anti-phishing safety phrase.</p>
+                </div>
+              </div>
+              <div class="step-row">
+                <span class="step-num">5</span>
+                <div class="step-body">
+                  <h4>Learn Before Trading</h4>
+                  <p>Understand supported deposit/withdrawal networks, fees, and risks; avoid leverage until fully understood.</p>
+                </div>
+              </div>
+            </div>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.kucoin.com/support/360015102254" target="_blank" rel="noopener noreferrer">📘 Identity Verification Guide →</a>
+            </div>
+          </article>
+
+          <!-- 7. SECURITY -->
+          <article class="info-card" id="security">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">🛡️</span>
+              7. Security
+            </h2>
+            <p>Apply KuCoin's recommended account-security controls and protect your primary email and devices:</p>
+            <table class="stats-table">
+              <tbody>
+                <tr>
+                  <th>Enable Google 2FA or Passkey</th>
+                  <td>Activate authenticator-app 2FA or hardware/biometric passkeys, and secure your email account with strong 2FA too.</td>
+                </tr>
+                <tr>
+                  <th>Set Anti-Phishing Safety Phrase</th>
+                  <td>Configure a safety phrase and verify it appears in genuine KuCoin messages and login screens; stop if missing or altered.</td>
+                </tr>
+                <tr>
+                  <th>Official Verification Center</th>
+                  <td>Verify any website URL, email sender, or social media handle on KuCoin's official verification tool before trusting it.</td>
+                </tr>
+                <tr>
+                  <th>Login, Withdrawal &amp; Secret Controls</th>
+                  <td>Review IP login restrictions and withdrawal safeguards, and never share passwords, OTPs, 2FA codes, API secrets, or remote access.</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.kucoin.com/support/360015207473" target="_blank" rel="noopener noreferrer">🛡️ KuCoin Security Notice →</a>
+              <a class="doc-link-pill" href="https://www.kucoin.com/support/360014897913" target="_blank" rel="noopener noreferrer">🔐 Google 2FA Guide →</a>
+              <a class="doc-link-pill" href="https://www.kucoin.com/support/36658009244057" target="_blank" rel="noopener noreferrer">🔑 Passkeys Guide →</a>
+            </div>
+          </article>
+
+          <!-- 8. PLATFORMS -->
+          <article class="info-card" id="platforms">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">📱</span>
+              8. Platforms
+            </h2>
+            <p>KuCoin is accessible across web browsers, mobile applications, and public/private trading APIs:</p>
+            <div class="perm-pills">
+              <span class="perm-pill">Web Exchange (kucoin.com)</span>
+              <span class="perm-pill">iOS App</span>
+              <span class="perm-pill">Android App</span>
+              <span class="perm-pill">REST &amp; WebSocket APIs</span>
+            </div>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.kucoin.com/Download" target="_blank" rel="noopener noreferrer">⬇️ Official App Download →</a>
+            </div>
+          </article>
+
+          <!-- 9. GUIDE CHECKLIST -->
+          <article class="info-card" id="guide-checklist">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">✅</span>
+              9. Guide Checklist
+            </h2>
+            <p>Use this quick checklist and official support links before trading, running bots, or transferring assets on KuCoin:</p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h3>✔ Before Trading or Running Bots</h3>
+                <p>Check order-book liquidity, maker/taker fees, KCS discount settings, and regional rules; remember that Trading Bots can still incur losses in volatile markets.</p>
+              </div>
+              <div class="mini-box">
+                <h3>✔ Before Depositing or Withdrawing</h3>
+                <p>Match the exact blockchain network and Memo/Tag where required, verify the destination address, and test with a small transfer first.</p>
+              </div>
+            </div>
+            <div class="doc-links-row">
+              <a class="doc-link-pill" href="https://www.kucoin.com/" target="_blank" rel="noopener noreferrer">🌐 Visit Official KuCoin →</a>
+              <a class="doc-link-pill" href="https://www.kucoin.com/learn" target="_blank" rel="noopener noreferrer">🎓 Explore KuCoin Learn →</a>
+              <a class="doc-link-pill" href="https://www.kucoin.com/support" target="_blank" rel="noopener noreferrer">🛟 KuCoin Support Center →</a>
+            </div>
+          </article>
+
+          <!-- 10. FAQ -->
+          <article class="info-card" id="faq">
+            <h2 class="card-heading">
+              <span class="card-heading-icon">❓</span>
+              10. FAQ
+            </h2>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>1. Is KuCoin a wallet or an exchange?</summary>
+                <div class="faq-body">
+                  <p><strong>What it is:</strong> This page covers KuCoin Exchange, a centralized exchange (CEX). Exchange accounts and self-custody wallets have different custody and access arrangements.</p>
+                  <p><strong>How to stay safe:</strong> Confirm which product you are using before depositing or storing assets.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>2. Does KuCoin require identity verification?</summary>
+                <div class="faq-body">
+                  <p><strong>What to know:</strong> KuCoin states that new users must complete Identity Verification (KYC) to use its products and services, while older accounts may have different restrictions.</p>
+                  <p><strong>How to check:</strong> Review the current official KYC guide and your account verification status.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>3. Are BTC, ETH, and KCS prices on this page live?</summary>
+                <div class="faq-body">
+                  <p><strong>What it is:</strong> The market cards request KuCoin public Spot ticker snapshots and refresh about every 30 seconds.</p>
+                  <p><strong>How to check:</strong> They are indicative quotes in USDT rather than a guaranteed tick-by-tick feed; check KuCoin Markets for the live trading screen.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>4. How much are KuCoin trading fees?</summary>
+                <div class="faq-body">
+                  <p><strong>What to know:</strong> Fees depend on trading pair, maker/taker role, VIP fee level, and applicable discounts such as KCS fee payment.</p>
+                  <p><strong>How to check:</strong> Review the exact fee displayed on the official trading page before placing an order.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>5. Does Proof of Reserves remove all risk?</summary>
+                <div class="faq-body">
+                  <p><strong>What to know:</strong> No—Proof of Reserves is a transparency measure and does not remove exchange, custody, operational, market, or regulatory risks.</p>
+                  <p><strong>How to check:</strong> Read the full report, snapshot date, and audit methodology on KuCoin's official Proof of Reserves page.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>6. Can everyone use KuCoin in every country?</summary>
+                <div class="faq-body">
+                  <p><strong>What to know:</strong> No—KuCoin's terms allow geographic restrictions and service limitations depending on local regulations.</p>
+                  <p><strong>How to check:</strong> Check the current Terms of Use and your account-specific eligibility for your location before using the platform.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+
+        <p class="disclaimer"><strong>Important Disclosure:</strong> Educational information only (NFA / DYOR). Total Crypto Hub is an independent information directory and is not affiliated with KuCoin. BTC, ETH, and KCS cards request public KuCoin Spot ticker snapshots about every 30 seconds; the feed may be delayed, blocked, or unavailable. Quotes are shown in USDT and are not investment advice. Company figures and Proof of Reserves ratios are dated KuCoin-published snapshots, not live guarantees. Product availability, fees, payment methods, identity checks, and legal requirements vary by region and can change. Check KuCoin's current terms and follow applicable local laws and tax rules. Crypto assets are volatile and involve risk.</p>
+
+        <footer>
+          <a href="../index.html" class="footer-brand" translate="no">
+            <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
+            <span>Total Crypto Hub</span>
+          </a>
+          <p class="footer-copy">&copy; <span class="notranslate" translate="no">Total Crypto Network</span>. All rights reserved.</p>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="../index.html">Home</a>
+            <a href="../legal-pages/about.html">About Us</a>
+            <a href="../legal-pages/contact.html">Contact Us</a>
+            <a href="../legal-pages/privacy.html">Privacy Policy</a>
+            <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
+            <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+          </nav>
+        </footer>
+      </main>
+    </div>
   </div>
 
-  <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="Total Crypto Hub home">
-      <span class="brand-mark">TCN</span>
-      <span>Total Crypto Hub<small>by Total Crypto Network</small></span>
-    </a>
-    <div class="top-actions">
-      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-      <a class="back-btn" id="backBtn" href="../exchange-pages/exchanges.html">← Back to Exchanges</a>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="hero" id="overview">
-      <div>
-        <span class="eyebrow">✦ Centralized Exchange Guide · Total Crypto Hub</span>
-        <h1>KuCoin <span>Exchange</span></h1>
-        <p>Explore KuCoin’s centralized crypto platform, including Spot and Margin markets, Futures, Convert, KuCoin Earn, Trading Bot and KCS ecosystem features. Product availability, verification rules and services can vary by jurisdiction and account.</p>
-        <div class="pills">
-          <span class="pill">📊 Spot &amp; Margin</span><span class="pill">⚡ Futures</span>
-          <span class="pill">🌱 KuCoin Earn</span><span class="pill">🛡️ Proof of Reserves</span>
-        </div>
-        <div class="actions">
-          <a class="primary" href="https://www.kucoin.com/" target="_blank" rel="noopener noreferrer">Visit Official KuCoin ↗</a>
-          <a class="secondary" href="https://www.kucoin.com/Download" target="_blank" rel="noopener noreferrer">Official App Download ↗</a>
-        </div>
-      </div>
-      <div class="hero-art" aria-label="KuCoin logo illustration">
-        <span class="float-coin eth">◆</span><span class="float-coin btc">₿</span>
-        <div class="wallet-orb"><span class="kucoin-mark" aria-hidden="true">K</span></div>
-      </div>
-    </section>
-
-    <nav class="quicknav" aria-label="Page sections">
-      <a class="active" href="#overview">⌂ Overview</a><a href="#live-info">● Live Markets</a><a href="#features">⭐ Features</a><a href="#how-to">▣ How to Use</a>
-      <a href="#security">🛡 Security</a><a href="#videos">▶ Learning</a><a href="#faq">ⓘ FAQ</a>
-    </nav>
-
-    <section id="live-info" aria-label="Live KuCoin market data">
-      <div class="market-controls">
-        <div>
-          <div class="live-label"><span class="live-dot"></span> Live public market feed</div>
-          <p class="source-note" style="margin-top:3px">BTC, ETH and KCS Spot pairs against USDT · Auto-refreshes about every 30 seconds</p>
-        </div>
-        <button class="refresh-btn" id="refreshMarketPrices" type="button">↻ Refresh prices</button>
-      </div>
-      <div class="market-grid">
-        <article class="market-card"><span class="symbol">BTC / USDT</span><strong id="price-BTC-USDT">Loading…</strong><span class="change neutral" id="change-BTC-USDT">Fetching 24h change</span></article>
-        <article class="market-card"><span class="symbol">ETH / USDT</span><strong id="price-ETH-USDT">Loading…</strong><span class="change neutral" id="change-ETH-USDT">Fetching 24h change</span></article>
-        <article class="market-card"><span class="symbol">KCS / USDT</span><strong id="price-KCS-USDT">Loading…</strong><span class="change neutral" id="change-KCS-USDT">Fetching 24h change</span></article>
-      </div>
-      <p class="source-note" id="marketUpdatedAt" aria-live="polite">Connecting to KuCoin public market-data API…</p>
-      <p class="source-note">These are indicative public Spot ticker snapshots in USDT, not guaranteed tick-by-tick prices or a buy/sell recommendation. USDT is a crypto asset and is not identical to a bank-held US dollar. Quotes can move between refreshes. If the API is unavailable, check KuCoin's official Markets and do not rely on a stale quote.</p>
-      <div class="live-strip">
-        <div class="stat-chip"><strong>Public</strong><span>Market-data endpoint</span></div>
-        <div class="stat-chip"><strong>~30 sec</strong><span>Page refresh interval</span></div>
-        <div class="stat-chip"><strong>No key</strong><span>Public ticker data needs no private API key</span></div>
-      </div>
-      <p class="source-note">The cards use KuCoin's public Get All Tickers endpoint. It returns market ticker snapshots, including last traded price and 24-hour change data. It is separate from account access and cannot place trades. <a href="https://www.kucoin.com/markets" target="_blank" rel="noopener noreferrer">KuCoin Markets ↗</a> · <a href="https://www.kucoin.com/docs-new/rest/spot-trading/market-data/get-all-tickers" target="_blank" rel="noopener noreferrer">Official ticker API documentation ↗</a></p>
-      <div class="actions" style="margin-top:12px">
-        <a class="secondary" href="https://www.kucoin.com/Download" target="_blank" rel="noopener noreferrer">Official App ↗</a>
-        <a class="secondary" href="https://www.kucoin.com/support/360015188494" target="_blank" rel="noopener noreferrer">Trading Fees ↗</a>
-        <a class="secondary" href="https://www.kucoin.com/support" target="_blank" rel="noopener noreferrer">Help Center ↗</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="intro-grid">
-        <article class="panel">
-          <h2 class="section-heading"><span class="num">1</span> What is KuCoin?</h2>
-          <p>KuCoin is a centralized cryptocurrency exchange (CEX) that offers services such as Spot trading, Margin trading, Futures, Convert, KuCoin Earn, Trading Bot, ETFs, KuCoin Pay and other products. Its exchange account is a custodial platform account, which is different from holding assets in a self-custody wallet.</p>
-          <p style="margin-top:12px">The company's About Us page currently states 45 million global users and more than 1,000 listed tokens. These are figures published by KuCoin and may change; check the official page for the latest company profile. Review the terms, supported assets, networks, fees and risks before depositing or trading.</p>
-          <p class="source-note"><a href="https://www.kucoin.com/about-us" target="_blank" rel="noopener noreferrer">KuCoin About Us ↗</a> · <a href="https://www.kucoin.com/" target="_blank" rel="noopener noreferrer">Official KuCoin platform ↗</a></p>
-        </article>
-        <aside class="panel fact">
-          <div class="fact-icon">💡</div><div><h3>Beginner Note</h3><p>Start by learning Spot orders, fees, custody and account security. Margin and Futures involve leverage and liquidation risk; they can cause rapid losses. Product access depends on your account and jurisdiction.</p></div>
-        </aside>
-      </div>
-      <div class="panel" style="margin-top:14px">
-        <h3 style="margin:0 0 5px;font-size:15px">KuCoin-published profile snapshot</h3>
-        <div class="live-strip" style="margin:10px 0 0">
-          <div class="stat-chip"><strong>45M</strong><span>Global users (KuCoin-reported)</span></div>
-          <div class="stat-chip"><strong>1,000+</strong><span>Listed tokens (KuCoin-reported)</span></div>
-          <div class="stat-chip"><strong>200+</strong><span>Countries &amp; regions (KuCoin-reported)</span></div>
-        </div>
-        <p class="source-note">These are company-published headline figures from KuCoin's About Us page, not independent measurements or a live counter. They may change. <a href="https://www.kucoin.com/about-us" target="_blank" rel="noopener noreferrer">View the current company profile ↗</a></p>
-      </div>
-      <div class="panel notice-panel" style="margin-top:14px">
-        <h3 style="margin:0 0 5px;font-size:15px">Proof of Reserves — dated official snapshot</h3>
-        <p style="font-size:12px;color:var(--muted);margin:0">KuCoin's Proof of Reserves page reports the following reserve ratios for its 31 October 2026 snapshot (23:59:59 UTC+8). These figures are published by KuCoin; read the full report and its methodology before drawing conclusions.</p>
-        <div class="snapshot-grid">
-          <div class="reserve-card"><strong>112%</strong><span>BTC reserve ratio</span></div>
-          <div class="reserve-card"><strong>115%</strong><span>ETH reserve ratio</span></div>
-          <div class="reserve-card"><strong>110%</strong><span>USDT reserve ratio</span></div>
-          <div class="reserve-card"><strong>127%</strong><span>USDC reserve ratio</span></div>
-        </div>
-        <p class="source-note"><a href="https://www.kucoin.com/proof-of-reserves" target="_blank" rel="noopener noreferrer">KuCoin Proof of Reserves &amp; Audit ↗</a></p>
-      </div>
-      <div class="panel" style="margin-top:14px">
-        <h3 style="margin:0 0 5px;font-size:15px">Main services to explore</h3>
-        <p style="font-size:12px;color:var(--muted);margin:0">Availability, eligibility, payment methods and product terms vary by country and account. Confirm access on KuCoin's official website before using any service.</p>
-        <div class="network-pills"><span class="network-pill">Spot Trading</span><span class="network-pill">Margin Trading</span><span class="network-pill">Futures Trading</span><span class="network-pill">Convert</span><span class="network-pill">KuCoin Earn</span><span class="network-pill">Trading Bot</span><span class="network-pill">ETFs</span><span class="network-pill">KuCoin Pay</span><span class="network-pill">KuCard</span><span class="network-pill">KCS Ecosystem</span><span class="network-pill">OTC</span><span class="network-pill">GemSPACE</span></div>
-        <p class="source-note"><a href="https://www.kucoin.com/" target="_blank" rel="noopener noreferrer">Official product menu ↗</a> · <a href="https://www.kucoin.com/learn" target="_blank" rel="noopener noreferrer">KuCoin Learn ↗</a></p>
-      </div>
-      <div class="panel" style="margin-top:14px">
-        <h3 style="margin:0 0 5px;font-size:15px">Important for users in India and other regions</h3>
-        <p style="font-size:12px;color:var(--muted)">KuCoin's terms state that access to platform services may be restricted or prohibited based on geographic location. This page does not confirm that every KuCoin service is available in India. Check the current terms, account-specific notices and applicable Indian laws and tax requirements before registering, depositing or trading. This is educational information, not legal or tax advice.</p>
-        <p class="source-note"><a href="https://www.kucoin.com/legal/terms-of-use" target="_blank" rel="noopener noreferrer">KuCoin Terms of Use — geographic restrictions ↗</a></p>
-      </div>
-    </section>
-
-    <section class="section" id="features">
-      <h2 class="section-heading"><span class="num">2</span> Key Features</h2>
-      <div class="features">
-        <article class="feature"><span class="emoji">📈</span><h3>Spot &amp; Convert</h3><p>Trade supported crypto pairs or use Convert where available. Check quote, spread, minimum size and fees before confirming.</p></article>
-        <article class="feature"><span class="emoji">⚖️</span><h3>Margin &amp; Futures</h3><p>Explore leverage-based products only after understanding collateral, funding, liquidation and contract risks.</p></article>
-        <article class="feature"><span class="emoji">🤖</span><h3>Trading Bot</h3><p>KuCoin lists bot tools for supported strategies. A bot does not guarantee profit and can lose money in volatile markets.</p></article>
-        <article class="feature"><span class="emoji">🌱</span><h3>KuCoin Earn</h3><p>Review each product's rate, lock-up, redemption, counterparty and asset risks. Returns are not guaranteed.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="how-to">
-      <h2 class="section-heading"><span class="num">3</span> How to Get Started with KuCoin</h2>
-      <div class="panel" style="margin-bottom:12px"><p>These are general educational steps. KuCoin says new users must complete identity verification to use its products and services. Regional eligibility and verification options can change, so follow the current instructions shown on the official website.</p></div>
-      <div class="steps">
-        <article class="step"><div class="circle">1</div><h3>Open Official Website</h3><p>Type kucoin.com yourself and verify the domain carefully.</p></article>
-        <article class="step"><div class="circle">2</div><h3>Check Regional Access</h3><p>Read the terms and country-specific notices for your location.</p></article>
-        <article class="step"><div class="circle">3</div><h3>Register &amp; Complete KYC</h3><p>Follow the current identity-verification instructions if eligible.</p></article>
-        <article class="step"><div class="circle">4</div><h3>Secure Your Account</h3><p>Enable Google 2FA or a passkey and set an anti-phishing safety phrase.</p></article>
-        <article class="step"><div class="circle">5</div><h3>Learn Before Trading</h3><p>Understand supported networks, fees and risks. Avoid leverage until fully understood.</p></article>
-      </div>
-      <p class="source-note">Official setup resources: <a href="https://www.kucoin.com/support/360015102254" target="_blank" rel="noopener noreferrer">Identity Verification Guide ↗</a> · <a href="https://www.kucoin.com/Download" target="_blank" rel="noopener noreferrer">Official app download ↗</a></p>
-    </section>
-
-    <section class="section two-col">
-      <article id="pros-cons">
-        <h2 class="section-heading"><span class="num">4</span> Pros &amp; Things to Consider</h2>
-        <div class="good-bad">
-          <div class="mini-list"><h3>✓ Potential Advantages</h3><ul><li>✓ Multiple trading and conversion products</li><li>✓ Public Spot market-data API</li><li>✓ KCS ecosystem features</li><li>✓ Published Proof of Reserves information</li></ul></div>
-          <div class="mini-list bad"><h3>✕ Things to Consider</h3><ul><li>✓ Exchange custody and platform risk</li><li>✓ Fees vary by pair and fee level</li><li>✓ Geographic restrictions may apply</li><li>✓ Margin and Futures can magnify losses</li></ul></div>
-        </div>
-      </article>
-      <article id="security">
-        <h2 class="section-heading"><span class="num">5</span> Account Security Tips</h2>
-        <div class="panel">
-          <ul class="security-list">
-            <li><span>🔐</span><span><b>Enable Google 2FA or a passkey.</b> Secure your email and device as well as your exchange account.</span></li>
-            <li><span>📩</span><span><b>Set an anti-phishing safety phrase.</b> Check it in genuine KuCoin messages and login pages; stop if it is missing or incorrect.</span></li>
-            <li><span>🌐</span><span><b>Use the Official Verification Center.</b> Verify a website, email or social account before trusting it.</span></li>
-            <li><span>📍</span><span><b>Review login and withdrawal protections.</b> Use available IP restrictions and withdrawal safeguards where appropriate.</span></li>
-            <li><span>✋</span><span><b>Never share secrets or codes.</b> Do not disclose passwords, OTPs, 2FA codes, API secrets or remote-access permissions to anyone.</span></li>
-          </ul>
-          <p class="source-note">See KuCoin's current security guidance for account protection settings and scam warnings. Security features cannot remove every risk. <a href="https://www.kucoin.com/support/360015207473" target="_blank" rel="noopener noreferrer">KuCoin Security Notice ↗</a> · <a href="https://www.kucoin.com/support/360014897913" target="_blank" rel="noopener noreferrer">Google 2FA guide ↗</a> · <a href="https://www.kucoin.com/support/36658009244057" target="_blank" rel="noopener noreferrer">Passkeys guide ↗</a></p>
-        </div>
-      </article>
-    </section>
-
-    <section class="section" id="videos">
-      <h2 class="section-heading"><span class="num">6</span> Video Tutorials &amp; Learning</h2>
-      <div class="video-layout">
-        <article class="video-card">
-          <div class="video-thumb"><span class="play">▶</span></div>
-          <h3>KuCoin Beginner Guide</h3><p>Find walkthroughs for registration, identity verification, account navigation and first steps.</p>
-          <a href="https://www.youtube.com/results?search_query=KuCoin+official+beginner+guide" target="_blank" rel="noopener noreferrer">Find Beginner Videos ↗</a>
-        </article>
-        <article class="video-card">
-          <div class="video-thumb"><span class="play">▶</span></div>
-          <h3>Spot Trading Basics</h3><p>Learn about trading pairs, order books, limit orders and market orders before placing a trade.</p>
-          <a href="https://www.kucoin.com/learn" target="_blank" rel="noopener noreferrer">Explore KuCoin Learn ↗</a>
-        </article>
-        <aside class="video-card tip"><div style="font-size:28px">⭐</div><h3>Official Help Center</h3><p>Use KuCoin's official support and verification resources. Never share passwords, OTPs or 2FA codes with anyone claiming to be support.</p><a href="https://www.kucoin.com/support" target="_blank" rel="noopener noreferrer">KuCoin Support ↗</a></aside>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <h2 class="section-heading"><span class="num">7</span> Frequently Asked Questions</h2>
-      <div class="faq-grid">
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Is KuCoin a wallet or an exchange? <span>＋</span></button><div class="faq-a">This page covers KuCoin Exchange, a centralized exchange. Exchange accounts and self-custody wallets have different custody and access arrangements. Confirm which product you are using.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does KuCoin require identity verification? <span>＋</span></button><div class="faq-a">KuCoin states that new users must complete Identity Verification to use its products and services. Older accounts may have different restrictions. Check the current official KYC guide and your account status.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Are BTC, ETH and KCS prices live? <span>＋</span></button><div class="faq-a">The cards request KuCoin public Spot ticker snapshots and refresh about every 30 seconds. They are not a guaranteed tick-by-tick feed. Check KuCoin Markets for the current trading screen.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">How much are KuCoin trading fees? <span>＋</span></button><div class="faq-a">Fees depend on trading pair, maker/taker role, fee level and applicable discounts such as KCS fee payment. Check the current fee shown on the official trading page before placing an order.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Does Proof of Reserves remove all risk? <span>＋</span></button><div class="faq-a">No. Proof of Reserves is a transparency measure and does not remove exchange, custody, operational, market or regulatory risks. Read the report, snapshot date and methodology on KuCoin's official PoR page.</div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can everyone use KuCoin in every country? <span>＋</span></button><div class="faq-a">No. KuCoin's terms allow geographic restrictions and service limitations. Check the current terms and your account-specific eligibility for your location before using the platform.</div></div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div><h2>Ready to Explore KuCoin?</h2><p>Read the official guidance, check regional availability, understand fees and risks, and secure your account before using exchange services.</p></div>
-      <a class="primary" href="https://www.kucoin.com/" target="_blank" rel="noopener noreferrer">Visit KuCoin ↗</a>
-    </section>
-
-    <p class="disclaimer">Educational information only. Total Crypto Hub is an independent information directory and is not affiliated with KuCoin. BTC, ETH and KCS cards request public KuCoin Spot ticker snapshots about every 30 seconds; the feed may be delayed, blocked or unavailable. Quotes are shown in USDT and are not investment advice. Company figures and Proof of Reserves ratios are dated KuCoin-published snapshots, not live guarantees. Product availability, fees, payment methods, identity checks and legal requirements vary by region and can change. Check KuCoin's current terms and follow applicable local laws and tax rules. Crypto assets are volatile and involve risk.</p>
-  </main>
-  <footer>© <span id="year"></span> Total Crypto Hub · by Total Crypto Network</footer>
-
   <script>
-    const themeButton = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('tch-theme');
-    if (savedTheme === 'dark') document.body.classList.add('dark');
-    themeButton.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    themeButton.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const dark = document.body.classList.contains('dark');
-      themeButton.textContent = dark ? '☀️' : '🌙';
-      localStorage.setItem('tch-theme', dark ? 'dark' : 'light');
-    });
-
-    const backBtn = document.getElementById('backBtn');
-    if (backBtn) {
-      backBtn.addEventListener('click', (e) => {
-        if (document.referrer && window.history.length > 1) {
-          try {
-            const refUrl = new URL(document.referrer);
-            const isLocal = window.location.protocol === 'file:' && refUrl.protocol === 'file:';
-            const isSameSite = refUrl.origin === window.location.origin;
-            if (isLocal || isSameSite) {
-              e.preventDefault();
-              window.history.back();
-            }
-          } catch (err) {}
-        }
-      });
+    function goBackToList() {
+      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
+        window.history.back();
+      } else {
+        window.location.href = '../exchange-pages/exchanges.html';
+      }
     }
 
-    document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => {
-      const item = button.closest('.faq-item');
-      item.classList.toggle('open');
-      button.setAttribute('aria-expanded', item.classList.contains('open'));
-      button.querySelector('span').textContent = item.classList.contains('open') ? '−' : '＋';
-    }));
+    function applyTheme(theme) {
+      const safeTheme = theme === 'dark' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', safeTheme);
+      document.documentElement.setAttribute('data-theme', safeTheme);
+      const toggle = document.getElementById('themeToggle');
+      if (toggle) {
+        toggle.textContent = safeTheme === 'light' ? '🌙' : '☀️';
+        toggle.setAttribute('aria-label', safeTheme === 'light' ? 'Enable dark mode' : 'Enable light mode');
+      }
+      try {
+        localStorage.setItem('theme', safeTheme);
+        localStorage.setItem('tch-theme', safeTheme);
+      } catch (e) {}
+    }
 
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const navLinks = document.querySelectorAll('.quicknav a');
-    navLinks.forEach(link => link.addEventListener('click', () => {
-      navLinks.forEach(item => item.classList.remove('active'));
-      link.classList.add('active');
-    }));
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    }
 
+    function closeMobileMenu() {
+      document.body.classList.remove('menu-open');
+      const button = document.getElementById('mobileMenuBtn');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    }
+
+    function initScrollSpyTabs() {
+      const tabs = Array.from(document.querySelectorAll('.jump-tab'));
+      const jumpInner = document.getElementById('jumpInner');
+      const sections = Array.from(document.querySelectorAll('.single-column-stack > article[id]'));
+      if (!tabs.length || !sections.length) return;
+
+      const tabById = new Map();
+      tabs.forEach(tab => {
+        const targetId = tab.getAttribute('data-target');
+        if (targetId) tabById.set(targetId, tab);
+      });
+
+      function setActiveTab(sectionId) {
+        const activeTab = tabById.get(sectionId);
+        if (!activeTab) return;
+        tabs.forEach(t => t.classList.remove('active'));
+        activeTab.classList.add('active');
+
+        if (jumpInner) {
+          const tabLeft = activeTab.offsetLeft;
+          const tabWidth = activeTab.offsetWidth;
+          const containerWidth = jumpInner.clientWidth;
+          const desiredScroll = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+          jumpInner.scrollTo({ left: Math.max(0, desiredScroll), behavior: 'smooth' });
+        }
+      }
+
+      let scrollTicking = false;
+      function updateOnScroll() {
+        scrollTicking = false;
+        const headerOffset = 155;
+        let currentId = sections[0].id;
+
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= headerOffset) {
+            currentId = section.id;
+          } else {
+            break;
+          }
+        }
+
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+        if (nearBottom) {
+          currentId = sections[sections.length - 1].id;
+        }
+
+        setActiveTab(currentId);
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          window.requestAnimationFrame(updateOnScroll);
+        }
+      }, { passive: true });
+
+      updateOnScroll();
+    }
+
+    /* LIVE PUBLIC KUCOIN SPOT TICKER */
     const marketSymbols = ['BTC-USDT', 'ETH-USDT', 'KCS-USDT'];
-    const marketUpdatedAt = document.getElementById('marketUpdatedAt');
     const formatPrice = value => {
       const number = Number(value);
       if (!Number.isFinite(number)) throw new Error('Invalid market price');
       const digits = number >= 1000 ? 2 : number >= 1 ? 4 : 6;
       return number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: digits }) + ' USDT';
     };
+
     async function refreshMarkets() {
       const button = document.getElementById('refreshMarketPrices');
-      if (refreshMarkets.running) return;
+      const marketUpdatedAt = document.getElementById('marketUpdatedAt');
+      if (refreshMarkets.running || !button || !marketUpdatedAt) return;
       refreshMarkets.running = true;
       button.disabled = true;
       marketUpdatedAt.textContent = 'Refreshing public KuCoin Spot market data…';
@@ -394,13 +1572,15 @@
         marketSymbols.forEach(symbol => {
           const ticker = tickers.find(item => item.symbol === symbol);
           if (!ticker || ticker.last == null) throw new Error('Ticker not available for ' + symbol);
-          const id = symbol;
-          document.getElementById('price-' + id).textContent = formatPrice(ticker.last);
+          const priceEl = document.getElementById('price-' + symbol);
+          const changeEl = document.getElementById('change-' + symbol);
+          if (priceEl) priceEl.textContent = formatPrice(ticker.last);
           const change = Number(ticker.changeRate) * 100;
           if (!Number.isFinite(change)) throw new Error('Invalid 24-hour change for ' + symbol);
-          const changeEl = document.getElementById('change-' + id);
-          changeEl.textContent = (change > 0 ? '+' : '') + change.toFixed(2) + '% · 24h';
-          changeEl.className = 'change ' + (change > 0 ? 'up' : change < 0 ? 'down' : 'neutral');
+          if (changeEl) {
+            changeEl.textContent = (change > 0 ? '+' : '') + change.toFixed(2) + '% · 24h';
+            changeEl.className = 'change ' + (change > 0 ? 'up' : change < 0 ? 'down' : 'neutral');
+          }
         });
         const latest = Number(payload.data.time || Date.now());
         marketUpdatedAt.textContent = 'Last successful update: ' + new Date(latest).toLocaleString() + ' · Source: KuCoin public Spot market-data API';
@@ -408,18 +1588,49 @@
         marketUpdatedAt.textContent = 'Live market data is temporarily unavailable. Open KuCoin Markets or try Refresh prices again.';
         marketSymbols.forEach(symbol => {
           const priceEl = document.getElementById('price-' + symbol);
-          if (priceEl.textContent === 'Loading…') priceEl.textContent = 'Unavailable';
+          if (priceEl && priceEl.textContent === 'Loading…') priceEl.textContent = 'Unavailable';
         });
-        console.warn('KuCoin market data:', error);
       } finally {
         refreshMarkets.running = false;
         button.disabled = false;
       }
     }
-    document.getElementById('refreshMarketPrices').addEventListener('click', refreshMarkets);
-    refreshMarkets();
-    setInterval(() => { if (!document.hidden) refreshMarkets(); }, 30000);
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshMarkets(); });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollSpyTabs();
+
+      let savedTheme = 'light';
+      try {
+        savedTheme = localStorage.getItem('theme') || localStorage.getItem('tch-theme') || 'light';
+      } catch (e) {}
+      applyTheme(savedTheme);
+
+      const menuButton = document.getElementById('mobileMenuBtn');
+      const overlay = document.getElementById('mobileOverlay');
+      if (menuButton) {
+        menuButton.addEventListener('click', function () {
+          const isOpen = document.body.classList.toggle('menu-open');
+          this.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+      if (overlay) overlay.addEventListener('click', closeMobileMenu);
+      document.querySelectorAll('.side-link').forEach(link => link.addEventListener('click', closeMobileMenu));
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      const refreshBtn = document.getElementById('refreshMarketPrices');
+      if (refreshBtn) refreshBtn.addEventListener('click', refreshMarkets);
+      refreshMarkets();
+      setInterval(() => { if (!document.hidden) refreshMarkets(); }, 30000);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshMarkets(); });
+    });
   </script>
+
+  <script src="../ai-assistant/assistant.js" defer></script>
+  <script src="../ai-assistant/robot-animation.js" defer></script>
 </body>
 </html>
