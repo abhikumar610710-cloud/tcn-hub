@@ -978,7 +978,7 @@
       <!-- TOP BACK & BREADCRUMB BAR -->
       <header class="topbar">
         <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-        <button type="button" class="btn-back-pill" onclick="goBackToList()" aria-label="Go back to previous page">← Back to Wallets</button>
+        <button type="button" class="btn-back-pill" onclick="goBackToList()" aria-label="Go back">← Back</button>
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="../index.html">Home</a>
           <span>/</span>
@@ -1420,7 +1420,7 @@
 
   <script>
     function goBackToList() {
-      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname)) {
+      if (document.referrer && document.referrer.trim() !== "" && !document.referrer.includes(window.location.pathname) && window.history.length > 1) {
         window.history.back();
       } else {
         window.location.href = '../wallet-pages/wallets.html';
