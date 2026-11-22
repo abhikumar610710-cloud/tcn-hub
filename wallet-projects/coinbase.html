@@ -428,11 +428,11 @@
       overflow: hidden;
       display: grid;
       place-items: center;
-      background: #1652f0;
+      background: linear-gradient(145deg, var(--green), var(--green-dark));
       border: 2px solid var(--green);
-      box-shadow: 0 8px 20px rgba(8, 168, 107, .18);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, .22);
       color: #ffffff;
-      font-size: 38px;
+      font-size: 30px;
       font-weight: 800;
     }
     .hero-badges {
@@ -488,19 +488,20 @@
     .portal-meta-box {
       padding: 10px 13px;
       border-radius: 13px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      background: var(--green-soft);
+      border: 1px solid #8ce0c1;
     }
-    [data-theme="dark"] .portal-meta-box { border-color: #23654e; }
+    [data-theme="dark"] .portal-meta-box { border-color: #267358; }
     .portal-meta-label {
       display: block;
       font-size: 9.5px;
       font-weight: 800;
-      color: var(--muted);
+      color: var(--green-dark);
       text-transform: uppercase;
       letter-spacing: .45px;
       margin-bottom: 2px;
     }
+    [data-theme="dark"] .portal-meta-label { color: var(--green-light); }
     .portal-meta-value {
       display: block;
       font-size: 13px;
@@ -582,21 +583,32 @@
       overflow-wrap: anywhere;
     }
 
+    /* WEBSITE GREEN THEME FOR IMPORTANT INFO BOXES */
+    .highlight-box,
     .notice-box {
       margin-top: 12px;
       padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid #f3d38b;
-      background: #fff8e8;
-      color: #704d0b;
+      border-radius: 15px;
+      border: 1.5px solid #4bd69f;
+      border-left: 4px solid var(--green);
+      background: linear-gradient(120deg, var(--green-soft), #f2fff9);
+      color: var(--heading);
       font-size: 12.2px;
       line-height: 1.68;
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
     }
+    [data-theme="dark"] .highlight-box,
     [data-theme="dark"] .notice-box {
-      background: #3c321d;
-      color: #f8df9f;
-      border-color: #78602b;
+      background: linear-gradient(120deg, var(--green-soft), #10322c);
+      color: var(--heading);
+      border-color: #287a5e;
+      border-left-color: var(--green);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
     }
+    .highlight-box strong,
+    .notice-box strong { color: var(--green-dark); }
+    [data-theme="dark"] .highlight-box strong,
+    [data-theme="dark"] .notice-box strong { color: var(--green-light); }
 
     .doc-links-row {
       display: flex;
@@ -630,13 +642,14 @@
       gap: 14px;
       margin-top: 12px;
     }
+
+    /* STANDARD BOX (SUBTLE/NEUTRAL FOR GENERAL INFO) */
     .mini-box {
       padding: 15px 16px;
       border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      background: var(--surface);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .mini-box { border-color: #23654e; }
     .mini-box h3 {
       margin: 0 0 6px;
       font-size: 13.5px;
@@ -650,16 +663,35 @@
       color: var(--body);
     }
 
+    /* IMPORTANT INFO BOX IN WEBSITE GREEN THEME */
+    .mini-box.important-box {
+      background: linear-gradient(135deg, var(--green-soft) 0%, #f4fff9 100%);
+      border: 1.5px solid #59d9a4;
+      border-top: 3px solid var(--green);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, .08);
+    }
+    [data-theme="dark"] .mini-box.important-box {
+      background: linear-gradient(135deg, var(--green-soft) 0%, #11302a 100%);
+      border: 1.5px solid #2b8264;
+      border-top: 3px solid var(--green);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
+    }
+    .mini-box.important-box h3 {
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .mini-box.important-box h3 {
+      color: var(--green-light);
+    }
+
     .stats-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 12px;
-      background: var(--surface-soft);
+      background: var(--surface);
       border-radius: 14px;
       overflow: hidden;
-      border: 1px solid #b8f2d7;
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .stats-table { border-color: #23654e; }
     .stats-table th, .stats-table td {
       padding: 12px 16px;
       text-align: left;
@@ -668,12 +700,25 @@
       line-height: 1.65;
     }
     .stats-table th {
-      background: var(--green-soft);
+      background: var(--surface-soft);
       color: var(--heading);
       font-weight: 800;
       width: 28%;
     }
     .stats-table td { color: var(--body); }
+    .stats-table tr.important-row th {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border-left: 3px solid var(--green);
+    }
+    [data-theme="dark"] .stats-table tr.important-row th {
+      color: var(--green-light);
+    }
+    .stats-table tr.important-row td {
+      background: color-mix(in srgb, var(--green-soft) 38%, var(--surface));
+      color: var(--heading);
+      font-weight: 600;
+    }
     .stats-table tr:last-child td, .stats-table tr:last-child th { border-bottom: none; }
 
     .perm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
@@ -699,10 +744,18 @@
       gap: 14px;
       padding: 14px 16px;
       border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      background: var(--surface);
+      border: 1px solid var(--border);
     }
-    [data-theme="dark"] .step-row { border-color: #23654e; }
+    .step-row.important-step {
+      background: linear-gradient(125deg, var(--green-soft), #f4fff9);
+      border: 1.5px solid #59d9a4;
+      box-shadow: 0 6px 14px rgba(8, 168, 107, .07);
+    }
+    [data-theme="dark"] .step-row.important-step {
+      background: linear-gradient(125deg, var(--green-soft), #11302a);
+      border-color: #2b8264;
+    }
     .step-num {
       width: 28px;
       height: 28px;
@@ -716,21 +769,33 @@
       font-weight: 800;
     }
     .step-body h4 { margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--heading); }
+    .step-row.important-step .step-body h4 { color: var(--green-dark); }
+    [data-theme="dark"] .step-row.important-step .step-body h4 { color: var(--green-light); }
     .step-body p { margin: 0; font-size: 12px; line-height: 1.68; color: var(--body); }
 
     /* RICH FAQ ACCORDION */
     .faq-list { display: grid; gap: 11px; }
     .faq-item {
       border-radius: 16px;
-      background: var(--surface-soft);
-      border: 1px solid #b8f2d7;
+      background: var(--surface);
+      border: 1px solid var(--border);
       padding: 14px 18px;
       transition: .18s ease;
     }
-    [data-theme="dark"] .faq-item { border-color: #23654e; }
+    .faq-item.important-faq {
+      background: linear-gradient(130deg, var(--green-soft) 0%, #f6fffb 100%);
+      border: 1.5px solid #59d9a4;
+    }
+    [data-theme="dark"] .faq-item.important-faq {
+      background: linear-gradient(130deg, var(--green-soft) 0%, #11302a 100%);
+      border-color: #2b8264;
+    }
     .faq-item[open] {
       background: var(--surface);
       box-shadow: 0 6px 18px rgba(8, 168, 107, .07);
+    }
+    .faq-item.important-faq[open] {
+      background: linear-gradient(180deg, var(--green-soft) 0%, var(--surface) 45%);
     }
     .faq-item summary {
       font-size: 13.5px;
@@ -1006,13 +1071,13 @@
                 <h3>✅ What It Helps You Do</h3>
                 <p>Manage supported tokens and collectibles, connect to onchain apps, view estimated transaction previews, and control your wallet access directly.</p>
               </div>
-              <div class="mini-box">
-                <h3>⚠️ What to Keep in Mind</h3>
+              <div class="mini-box important-box">
+                <h3>⚡ Key Distinction &amp; Responsibility</h3>
                 <p>Self-custody means full responsibility for backups, network checks, and approvals—and supported networks vary by wallet type and recent platform updates.</p>
               </div>
             </div>
-            <div class="notice-box">
-              <strong>⚠️ Network-Support Update (15 August 2026):</strong> Coinbase states that its Classic Wallet closed on 15 August 2026 and lists several older networks as unsupported in the current wallet. Sending funds on an unsupported network can result in loss—always verify current supported networks and migration guidance before moving assets.
+            <div class="highlight-box">
+              <strong>📌 Network-Support Update (15 August 2026):</strong> Coinbase states that its Classic Wallet closed on 15 August 2026 and lists several older networks as unsupported in the current wallet. Sending funds on an unsupported network can result in loss—always verify current supported networks and migration guidance before moving assets.
             </div>
           </article>
 
@@ -1024,12 +1089,12 @@
             </h2>
             <p>Coinbase Wallet offers core features for self-custody asset management and onchain interaction:</p>
             <div class="mini-grid">
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>🔎 Transaction Preview &amp; Approval Alerts</h3>
                 <p>Displays estimated token balance changes and token-approval details before confirming supported dApp transactions (noted by Coinbase as supported on Ethereum and Polygon; previews are estimates, not a safety guarantee).</p>
               </div>
-              <div class="mini-box">
-                <h3>🚫 dApp Blocklist &amp; Permission Control</h3>
+              <div class="mini-box important-box">
+                <h3>🛡️ dApp Blocklist &amp; Permission Control</h3>
                 <p>Can display warnings for applications flagged as potentially malicious and lets you review and manage connected dApp permissions.</p>
               </div>
               <div class="mini-box">
@@ -1056,7 +1121,7 @@
                   <th>Wallet Setup &amp; Viewing</th>
                   <td>Downloading and creating or viewing a self-custody wallet is free; you do not pay a recurring fee just to hold a wallet.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Network / Gas Fees</th>
                   <td>Onchain transfers, token approvals, and contract actions require network gas paid in the active chain's native token (such as ETH on Ethereum or Base).</td>
                 </tr>
@@ -1064,7 +1129,7 @@
                   <th>Swaps, Bridges &amp; dApp Fees</th>
                   <td>Any built-in trade/swap quotes, bridges, or third-party dApps may involve network gas, spread/slippage, or protocol fees—always check the exact quote before confirming.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Unsupported Network Risk</th>
                   <td>Sending funds on an unsupported network or wrong chain can lead to permanent loss or extra recovery complexity—always verify compatibility first.</td>
                 </tr>
@@ -1081,7 +1146,7 @@
             <p>Network availability depends on which type of wallet you create or use. Do not assume every wallet type supports every chain:</p>
             <table class="stats-table">
               <tbody>
-                <tr>
+                <tr class="important-row">
                   <th>Smart Wallet (Passkey)</th>
                   <td>Supports EVM-compatible networks; does not support Bitcoin or Solana.</td>
                 </tr>
@@ -1093,7 +1158,7 @@
                   <th>Mnemonic Wallet</th>
                   <td>Supports EVM-compatible networks, Solana, and Bitcoin; back up the recovery phrase securely for each wallet.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Preconfigured Networks &amp; Legacy Note</th>
                   <td>Examples include Ethereum, Base, Arbitrum, Optimism, Polygon, Avalanche C-Chain, BNB Chain, Monad, Robinhood Chain, and Zora (plus Bitcoin/Solana where supported by wallet type). Always check official docs for current support and post-15 August 2026 network changes.</td>
                 </tr>
@@ -1109,11 +1174,11 @@
             </h2>
             <p>Coinbase Wallet is a <strong>self-custody</strong> wallet, meaning you control your wallet access rather than a custodial exchange holding your keys:</p>
             <div class="mini-grid">
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>📜 Recovery Phrase &amp; Backup Access</h3>
                 <p>Your recovery phrase or backup credentials control access to your self-custody wallet. Keep backups private and offline where required.</p>
               </div>
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>🚫 No Exchange-Style Recovery by Support</h3>
                 <p>Coinbase does not have access to your self-custody recovery phrase and cannot reverse blockchain transfers once confirmed.</p>
               </div>
@@ -1149,14 +1214,14 @@
                   <p>Follow the setup flow for your chosen wallet type and configure a strong local lock/passcode.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-row important-step">
                 <span class="step-num">4</span>
                 <div class="step-body">
                   <h4>Secure Your Backup Credentials</h4>
                   <p>Complete the backup step for your wallet type and store recovery details safely—never share them or paste them into websites or chats.</p>
                 </div>
               </div>
-              <div class="step-row">
+              <div class="step-row important-step">
                 <span class="step-num">5</span>
                 <div class="step-body">
                   <h4>Verify Network, Address &amp; Test First</h4>
@@ -1175,11 +1240,11 @@
             <p>Protect your funds by combining official downloads and careful checks with disciplined habits:</p>
             <table class="stats-table">
               <tbody>
-                <tr>
+                <tr class="important-row">
                   <th>Use a Secondary Wallet</th>
                   <td>Use a <strong>secondary wallet</strong> with limited funds when testing new dApps, claims, or unfamiliar links so your main wallet stays isolated.</td>
                 </tr>
-                <tr>
+                <tr class="important-row">
                   <th>Never Share Recovery Phrase</th>
                   <td>Never share your <strong>recovery phrase</strong> or keys with anyone—including anyone claiming to be support. Never type it into a website or chat.</td>
                 </tr>
@@ -1217,11 +1282,11 @@
             </h2>
             <p>Use this quick text checklist (no video needed) before signing a transaction, swapping, or connecting to a dApp:</p>
             <div class="mini-grid">
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>✔ Before Sending or Swapping</h3>
                 <p>Confirm your wallet type supports the target network, check native gas balance, verify the recipient/contract address, and test with a small amount first.</p>
               </div>
-              <div class="mini-box">
+              <div class="mini-box important-box">
                 <h3>✔ Before Connecting to New dApps</h3>
                 <p>Open official URLs directly, use a secondary wallet for exploration, inspect token approval requests, and never share recovery details.</p>
               </div>
@@ -1240,7 +1305,7 @@
               10. FAQ
             </h2>
             <div class="faq-list">
-              <details class="faq-item" open>
+              <details class="faq-item important-faq" open>
                 <summary>1. Is Coinbase Wallet the same as a Coinbase exchange account?</summary>
                 <div class="faq-body">
                   <p><strong>What it is:</strong> No—Coinbase Wallet is a <strong>self-custody</strong> wallet, whereas a regular Coinbase.com account is a custodial exchange account with a different custody model.</p>
@@ -1264,7 +1329,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>4. Which networks are supported across different wallet types?</summary>
                 <div class="faq-body">
                   <p><strong>What is supported:</strong> Smart wallets (passkey) support EVM-compatible networks (not Bitcoin or Solana), while email/social login and mnemonic wallets also support Bitcoin and Solana per Coinbase's current network guide.</p>
@@ -1272,7 +1337,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>5. What happened on 15 August 2026 regarding network support?</summary>
                 <div class="faq-body">
                   <p><strong>What happened:</strong> Coinbase states that its Classic Wallet closed on 15 August 2026 and lists several older networks as unsupported in the current wallet.</p>
@@ -1288,7 +1353,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>7. Why should I use a secondary wallet and check token approvals?</summary>
                 <div class="faq-body">
                   <p><strong>What it is:</strong> A <strong>secondary wallet</strong> keeps limited funds separate for testing new dApps or links, and token approvals control what a smart contract can access.</p>
@@ -1296,7 +1361,7 @@
                 </div>
               </details>
 
-              <details class="faq-item">
+              <details class="faq-item important-faq">
                 <summary>8. Can Coinbase support recover my recovery phrase or reverse a transfer?</summary>
                 <div class="faq-body">
                   <p><strong>What to know:</strong> Coinbase states it does not have access to your self-custody recovery phrase, and confirmed blockchain transfers cannot simply be undone.</p>
