@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Smart Token Finder by Total Crypto Hub - Search real crypto tokens, DeFi protocols, and explore 20 major blockchains with live verified USD & INR market data.">
-  <meta name="keywords" content="Smart Token Finder, Total Crypto Hub, Major Blockchains, Live Crypto Price, DeFi Protocol Finder, CoinGecko, DefiLlama">
+  <meta name="description" content="Smart Token Finder by Total Crypto Hub - Search real crypto tokens, blockchain coins, and DeFi projects with live market data.">
+  <meta name="keywords" content="Smart Token Finder, Total Crypto Hub, Live Token Search, CoinGecko, DefiLlama, DEX Screener">
   <meta name="theme-color" content="#c9ffea">
   <title>Smart Token Finder | Total Crypto Hub</title>
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
@@ -94,11 +94,7 @@
       justify-content: space-between;
       gap: 14px;
     }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .header-left { display: flex; align-items: center; gap: 12px; }
     .mobile-menu-btn {
       display: none;
       width: 38px;
@@ -111,12 +107,7 @@
     html[data-theme="dark"] .mobile-menu-btn, body[data-theme="dark"] .mobile-menu-btn {
       background: rgba(16, 39, 44, 0.85);
     }
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      text-decoration: none;
-    }
+    .header-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
     .header-logo {
       width: 42px;
       height: 42px;
@@ -150,11 +141,7 @@
     }
     html[data-theme="dark"] .header-brand-subtitle, body[data-theme="dark"] .header-brand-subtitle { color: #4ef2b1; }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .header-right { display: flex; align-items: center; gap: 10px; }
     .community-dropdown { position: relative; }
     .community-btn, .icon-btn {
       min-height: 38px;
@@ -349,235 +336,278 @@
     .main-column { min-height: calc(100vh - var(--header-height)); margin-left: var(--sidebar-width); }
     main {
       width: 100%;
-      max-width: 1500px;
+      max-width: 1520px;
       margin: 0 auto;
       padding: 20px 26px 40px;
     }
 
-    /* 1. SMART TOKEN FINDER CARD (TITLE LEFT, SEARCH RIGHT) */
-    .finder-mint-card {
+    /* 1. SMART TOKEN FINDER HERO + SEARCH (FIRST NUMBER) */
+    .finder-hero-box {
       position: relative;
       overflow: hidden;
       padding: 24px 28px;
       border-radius: 22px;
       border: 1.5px solid #96ecd0;
       background:
-        radial-gradient(circle at 86% 18%, rgba(44, 226, 174, 0.32), transparent 36%),
-        radial-gradient(circle at 12% 85%, rgba(8, 181, 160, 0.16), transparent 36%),
-        linear-gradient(125deg, #dbfff1 0%, #f1fff9 52%, #c6f9e8 100%);
+        radial-gradient(circle at 86% 26%, rgba(16, 214, 145, 0.28), transparent 38%),
+        radial-gradient(circle at 10% 85%, rgba(8, 181, 160, 0.14), transparent 36%),
+        linear-gradient(125deg, #ddfff2 0%, #f3fff9 50%, #c4fae8 100%);
       box-shadow: 0 12px 30px rgba(8, 168, 107, 0.09);
     }
-    html[data-theme="dark"] .finder-mint-card, body[data-theme="dark"] .finder-mint-card {
+    html[data-theme="dark"] .finder-hero-box, body[data-theme="dark"] .finder-hero-box {
       border-color: #23614e;
       background:
-        radial-gradient(circle at 86% 18%, rgba(32, 217, 154, 0.2), transparent 36%),
+        radial-gradient(circle at 86% 26%, rgba(32, 217, 154, 0.22), transparent 38%),
         linear-gradient(125deg, #0d2c29 0%, #123b35 55%, #144d43 100%);
     }
-    .finder-top-flex {
+    .hero-top-grid {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 18px;
+      gap: 20px;
     }
-    .finder-title-group {
+    .hero-copy { flex: 1; min-width: 0; }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(8, 168, 107, 0.3);
+      color: var(--green-dark);
+      font-size: 10.5px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    html[data-theme="dark"] .hero-kicker, body[data-theme="dark"] .hero-kicker {
+      background: rgba(10, 42, 36, 0.85);
+      color: var(--green-light);
+    }
+    .hero-kicker-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #08a86b;
+    }
+    .hero-copy h1 {
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+    }
+    .hero-copy h1 span { color: var(--green-dark); }
+    html[data-theme="dark"] .hero-copy h1 span, body[data-theme="dark"] .hero-copy h1 span { color: var(--green-light); }
+    .hero-copy p {
+      margin: 8px 0 12px;
+      color: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .hero-badges {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: 14px;
-      flex: 0 1 auto;
+      color: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
     }
-    .finder-circle-icon {
-      width: 50px;
-      height: 50px;
-      flex: 0 0 50px;
+    .hero-badges span { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* RIGHT LENS VISUAL IN HERO (INSPIRED BY REFERENCE IMAGE) */
+    .hero-lens-visual {
+      position: relative;
+      width: 170px;
+      height: 120px;
+      flex: 0 0 170px;
+      display: grid;
+      place-items: center;
+    }
+    .lens-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ffffff, #d9fff0 62%, #8ef0c8 100%);
+      border: 4px solid #08a86b;
+      box-shadow: 0 12px 26px rgba(8, 168, 107, 0.25), inset 0 0 16px rgba(255, 255, 255, 0.9);
+      display: grid;
+      place-items: center;
+      font-size: 36px;
+      font-weight: 900;
+      color: #d97706;
+    }
+    .lens-handle {
+      position: absolute;
+      right: 18px;
+      bottom: 8px;
+      width: 34px;
+      height: 11px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #067d50, #12c480);
+      transform: rotate(38deg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    }
+    .mini-orb {
+      position: absolute;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: linear-gradient(145deg, #10c983, #067d50);
-      color: #ffffff;
-      box-shadow: 0 8px 18px rgba(8, 168, 107, 0.28);
-    }
-    .finder-circle-icon svg {
-      width: 22px;
-      height: 22px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .finder-title-group h1 {
-      margin: 0;
-      color: var(--heading);
-      font-size: clamp(21px, 2.1vw, 27px);
+      font-size: 12px;
       font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.6px;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
-    .finder-title-group p {
-      margin: 4px 0 0;
-      color: var(--body);
-      font-size: 11.5px;
-      font-weight: 600;
-    }
+    .orb-1 { top: 4px; left: 16px; background: #4f46e5; }
+    .orb-2 { top: 6px; right: 14px; background: #0d9488; }
+    .orb-3 { bottom: 10px; left: 12px; background: #059669; }
 
-    /* RIGHT-ALIGNED SEARCH BAR */
-    .right-search-form {
-      flex: 1 1 420px;
-      max-width: 560px;
+    /* SEARCH BAR INSIDE HERO */
+    .hero-search-form {
+      margin-top: 18px;
       display: flex;
       align-items: center;
       background: var(--surface);
       border: 2px solid #96ecd0;
       border-radius: 999px;
-      padding: 4px 5px 4px 16px;
+      padding: 5px 6px 5px 18px;
       box-shadow: 0 8px 22px rgba(8, 120, 82, 0.08);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .right-search-form:focus-within {
+    .hero-search-form:focus-within {
       border-color: var(--green);
       box-shadow: 0 10px 26px rgba(8, 168, 107, 0.16);
     }
-    .big-search-prefix {
-      color: var(--muted);
-      font-size: 16px;
-      margin-right: 8px;
-      display: inline-flex;
-      align-items: center;
-    }
-    .big-search-input {
+    .search-icon-prefix { color: var(--muted); font-size: 17px; margin-right: 10px; }
+    .hero-search-input {
       flex: 1;
       min-width: 0;
-      height: 40px;
+      height: 44px;
       border: 0;
       outline: none;
       background: transparent;
       color: var(--heading);
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
     }
-    .big-search-input::placeholder { color: var(--muted); font-weight: 500; }
+    .hero-search-input::placeholder { color: var(--muted); font-weight: 500; }
     .clear-search-btn {
       display: none;
-      width: 26px;
-      height: 26px;
-      margin-right: 6px;
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
       border: 0;
       border-radius: 50%;
       background: var(--surface-soft);
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 800;
     }
     .clear-search-btn.show { display: inline-grid; place-items: center; }
-    .big-search-btn {
-      height: 40px;
-      padding: 0 22px;
+    .hero-search-btn {
+      height: 44px;
+      padding: 0 26px;
       border: 0;
       border-radius: 999px;
       background: linear-gradient(135deg, #08a86b, #057a4e);
       color: #ffffff;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 800;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       box-shadow: 0 5px 15px rgba(8, 168, 107, 0.26);
       white-space: nowrap;
       transition: transform 0.15s ease, filter 0.15s ease;
     }
-    .big-search-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-    .big-search-btn:disabled { opacity: 0.7; cursor: wait; }
+    .hero-search-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    .hero-search-btn:disabled { opacity: 0.7; cursor: wait; }
 
-    .search-sub-note {
-      margin: 12px 2px 0;
-      color: var(--body);
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    /* 2. SPONSOR BANNER RIGHT BELOW SMART TOKEN FINDER */
-    .focal-sponsor-bar {
-      width: 100%;
-      min-height: 76px;
-      margin-top: 16px;
-      padding: 12px 24px;
+    /* 2. BITGET BANNER IN PLACE OF FILTER PILLS */
+    .bitget-banner-strip {
+      margin-top: 15px;
+      padding: 13px 22px;
+      border-radius: 16px;
+      border: 1px solid #134e3f;
+      background:
+        radial-gradient(circle at 82% 50%, rgba(16, 214, 145, 0.24), transparent 36%),
+        linear-gradient(95deg, #081d22 0%, #0d3236 52%, #0a4236 100%);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      border: 1.8px dashed #08a86b;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 12% 50%, rgba(16, 214, 145, 0.2), transparent 30%),
-        radial-gradient(circle at 88% 50%, rgba(8, 181, 160, 0.18), transparent 30%),
-        linear-gradient(95deg, #d7ffef 0%, #f5fffb 50%, #d2fced 100%);
-      box-shadow: 0 6px 20px rgba(8, 168, 107, 0.08);
+      flex-wrap: wrap;
+      gap: 14px;
+      box-shadow: 0 8px 22px rgba(8, 29, 34, 0.14);
       text-decoration: none;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
     }
-    .focal-sponsor-bar:hover {
+    .bitget-banner-strip:hover {
       transform: translateY(-1px);
-      border-color: #067c50;
-      box-shadow: 0 10px 24px rgba(8, 168, 107, 0.14);
+      box-shadow: 0 12px 26px rgba(8, 168, 107, 0.2);
     }
-    html[data-theme="dark"] .focal-sponsor-bar, body[data-theme="dark"] .focal-sponsor-bar {
-      border-color: #32e5a1;
-      background: linear-gradient(95deg, #0d2f2b 0%, #123b35 50%, #0d2f2b 100%);
-    }
-    .sponsor-left-info {
+    .bitget-left {
       display: flex;
       align-items: center;
-      gap: 13px;
+      flex-wrap: wrap;
+      gap: 14px;
     }
-    .sponsor-megaphone {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 44px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(8, 168, 107, 0.25);
-      font-size: 22px;
-    }
-    html[data-theme="dark"] .sponsor-megaphone, body[data-theme="dark"] .sponsor-megaphone {
-      background: rgba(10, 42, 36, 0.85);
-    }
-    .sponsor-left-info strong {
-      display: block;
-      color: var(--heading);
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-    }
-    .sponsor-left-info span {
-      display: block;
-      margin-top: 2px;
-      color: var(--body);
-      font-size: 11.5px;
-      font-weight: 700;
-    }
-    .focal-sponsor-btn {
-      flex: 0 0 auto;
+    .bitget-brand-mark {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 11px 22px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+    .bitget-chevrons {
+      color: #20d99a;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .bitget-divider {
+      width: 1px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+    .bitget-copy strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+    .bitget-copy strong em {
+      font-style: normal;
+      color: #32e5a1;
+    }
+    .bitget-copy span {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #c2e5dc;
+    }
+    .bitget-join-btn {
+      padding: 10px 22px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #08a86b, #068957);
+      background: linear-gradient(135deg, #0eb878, #088c5b);
       color: #ffffff;
       font-size: 12px;
       font-weight: 800;
-      box-shadow: 0 6px 16px rgba(8, 168, 107, 0.25);
+      box-shadow: 0 5px 15px rgba(14, 184, 120, 0.35);
       white-space: nowrap;
     }
 
-    /* 3. RESULTS / 20 MAJOR CHAINS LIST SECTION */
-    .results-section {
-      margin-top: 22px;
-    }
-    .results-header {
+    /* 3. LIVE TOKEN SEARCH RESULTS SECTION */
+    .results-section { margin-top: 20px; }
+    .results-top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -585,380 +615,211 @@
       gap: 10px;
       margin-bottom: 12px;
     }
-    .results-header h2 {
+    .results-heading-wrap {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .results-heading-wrap h2 {
       margin: 0;
       color: var(--heading);
       font-size: 17px;
       font-weight: 800;
     }
-    .results-header small {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    /* CLEAN VERTICAL LIST FOR 20 MAJOR CHAINS */
-    .chains-list-panel {
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .chain-list-row {
-      width: 100%;
-      padding: 14px 20px;
-      border: 0;
-      border-bottom: 1px solid var(--border);
-      background: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      text-align: left;
-      transition: background 0.15s ease;
-    }
-    .chain-list-row:last-child { border-bottom: 0; }
-    .chain-list-row:hover {
-      background: var(--surface-soft);
-    }
-    .chain-row-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-      flex: 1;
-    }
-    .chain-row-num {
-      width: 28px;
-      flex: 0 0 28px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .chain-row-symbol {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 44px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      border: 1px solid rgba(8, 168, 107, 0.22);
-      font-size: 11px;
-      font-weight: 800;
-    }
-    html[data-theme="dark"] .chain-row-symbol, body[data-theme="dark"] .chain-row-symbol { color: var(--green-light); }
-    .chain-row-info { min-width: 0; flex: 1; }
-    .chain-row-title-line {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .chain-row-title-line strong {
-      color: var(--heading);
-      font-size: 14px;
-      font-weight: 800;
-    }
-    .chain-layer-pill {
-      padding: 2px 9px;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      color: var(--body);
-      font-size: 10px;
-      font-weight: 800;
-    }
-    .chain-row-desc {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 11.5px;
-      line-height: 1.4;
-    }
-    .chain-row-action {
-      flex: 0 0 auto;
-      color: var(--green-dark);
-      font-size: 11.5px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-    html[data-theme="dark"] .chain-row-action, body[data-theme="dark"] .chain-row-action { color: var(--green-light); }
-
-    /* PRIMARY GOOGLE-STYLE INSTANT ANSWER CARD */
-    .instant-answer-card {
-      margin-bottom: 16px;
-      padding: 20px 24px;
-      border-radius: 20px;
-      border: 2px solid var(--green);
-      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
-      box-shadow: 0 12px 30px rgba(8, 168, 107, 0.12);
-    }
-    .instant-tag {
+    .live-updated-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 11px;
-      border-radius: 999px;
-      background: var(--green-soft);
       color: var(--green-dark);
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
-      margin-bottom: 14px;
     }
-    html[data-theme="dark"] .instant-tag, body[data-theme="dark"] .instant-tag { color: var(--green-light); }
+    html[data-theme="dark"] .live-updated-tag, body[data-theme="dark"] .live-updated-tag { color: var(--green-light); }
+    .live-updated-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #08a86b;
+    }
+
+    /* INSTANT HIGHLIGHT CARD WHEN SEARCHING */
+    .instant-highlight-card {
+      display: none;
+      margin-bottom: 14px;
+      padding: 18px 22px;
+      border-radius: 18px;
+      border: 2px solid var(--green);
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
+      box-shadow: 0 10px 26px rgba(8, 168, 107, 0.12);
+    }
+    .instant-highlight-card.show { display: block; animation: fadeIn 0.18s ease-out; }
     .instant-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 16px;
     }
-    .instant-coin {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .coin-logo {
-      width: 52px;
-      height: 52px;
-      flex: 0 0 52px;
+    .instant-left { display: flex; align-items: center; gap: 13px; }
+    .instant-avatar {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
       border-radius: 50%;
       overflow: hidden;
       display: grid;
       place-items: center;
-      background: var(--surface);
-      border: 1.5px solid #96ecd0;
-      color: var(--green);
-      font-size: 18px;
-      font-weight: 800;
-    }
-    .coin-logo img { width: 100%; height: 100%; object-fit: cover; }
-    .instant-coin h3 {
-      margin: 0;
-      color: var(--heading);
-      font-size: 20px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .ticker-pill {
-      padding: 2px 9px;
-      border-radius: 999px;
       background: var(--green-soft);
       color: var(--green-dark);
-      font-size: 11px;
+      font-size: 17px;
+      font-weight: 800;
+      border: 1.5px solid #96ecd0;
+    }
+    .instant-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .instant-left h3 {
+      margin: 0;
+      color: var(--heading);
+      font-size: 19px;
       font-weight: 800;
     }
-    html[data-theme="dark"] .ticker-pill, body[data-theme="dark"] .ticker-pill { color: var(--green-light); }
-    .instant-coin p {
-      margin: 4px 0 0;
+    .instant-left p {
+      margin: 3px 0 0;
       color: var(--muted);
       font-size: 11.5px;
       font-weight: 700;
     }
-    .instant-metrics {
+    .instant-stats {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       gap: 20px;
     }
-    .metric-box span {
+    .instant-stat span {
       display: block;
       color: var(--muted);
       font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
     }
-    .metric-box strong {
+    .instant-stat strong {
       display: block;
       margin-top: 2px;
       color: var(--heading);
-      font-size: 21px;
+      font-size: 19px;
       font-weight: 800;
     }
-    .change-up { color: #08a86b !important; }
-    .change-down { color: #e11d48 !important; }
-
-    .instant-links {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 9px;
-    }
-    .ext-btn {
+    .instant-actions { display: flex; align-items: center; gap: 8px; }
+    .action-view-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 10px 16px;
+      gap: 5px;
+      padding: 8px 16px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #08a86b, #067c50);
+      background: var(--green-soft);
+      border: 1px solid #9be8cd;
+      color: var(--green-dark);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      transition: 0.15s ease;
+    }
+    html[data-theme="dark"] .action-view-btn, body[data-theme="dark"] .action-view-btn {
+      color: var(--green-light);
+      border-color: #266b54;
+    }
+    .action-view-btn:hover {
+      background: var(--green);
       color: #ffffff;
-      text-decoration: none;
-      font-size: 11.5px;
-      font-weight: 800;
+      border-color: var(--green);
     }
-    .ext-btn-soft {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 9px 15px;
+    .close-instant-btn {
+      padding: 8px 13px;
       border-radius: 999px;
-      border: 1.5px solid var(--border);
+      border: 1px solid var(--border);
       background: var(--surface);
-      color: var(--heading);
-      text-decoration: none;
+      color: var(--muted);
       font-size: 11.5px;
       font-weight: 800;
     }
-    .ext-btn-soft:hover { border-color: var(--green); color: var(--green); }
 
-    /* SECONDARY MATCH CARDS GRID */
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .result-card {
-      padding: 18px;
+    /* LIVE TOKEN SEARCH RESULTS TABLE */
+    .table-card {
       border-radius: 18px;
       border: 1px solid var(--border);
       background: var(--surface);
-      box-shadow: 0 6px 20px rgba(20, 76, 66, 0.04);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
-    .rc-top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .table-wrap { width: 100%; overflow-x: auto; }
+    .live-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+      text-align: left;
     }
-    .rc-avatar {
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
+    .live-table th {
+      padding: 13px 16px;
+      background: #e9fbf4;
+      color: #46617a;
+      font-size: 11.5px;
+      font-weight: 800;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    html[data-theme="dark"] .live-table th, body[data-theme="dark"] .live-table th {
+      background: var(--surface-soft);
+      color: var(--muted);
+    }
+    .live-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--heading);
+      vertical-align: middle;
+    }
+    .live-table tbody tr {
+      cursor: pointer;
+      transition: background 0.14s ease;
+    }
+    .live-table tbody tr:hover { background: var(--surface-soft); }
+    .live-table tbody tr:last-child td { border-bottom: 0; }
+
+    .td-rank { width: 44px; color: var(--muted) !important; font-weight: 800 !important; }
+    .token-cell { display: flex; align-items: center; gap: 11px; }
+    .tbl-logo {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
       border-radius: 50%;
       overflow: hidden;
       display: grid;
       place-items: center;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      color: var(--green);
-      font-weight: 800;
-    }
-    .rc-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .rc-title { flex: 1; min-width: 0; }
-    .rc-title h4 {
-      margin: 0;
-      color: var(--heading);
-      font-size: 14px;
-      font-weight: 800;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .rc-title small {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 10.5px;
-      font-weight: 700;
-    }
-    .rc-badge {
-      padding: 4px 10px;
-      border-radius: 999px;
       background: var(--green-soft);
       color: var(--green-dark);
-      font-size: 9.5px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-    html[data-theme="dark"] .rc-badge, body[data-theme="dark"] .rc-badge { color: var(--green-light); }
-    .rc-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-      margin: 14px 0 12px;
-    }
-    .rc-stat {
-      padding: 9px 10px;
-      border-radius: 12px;
-      background: var(--surface-soft);
-    }
-    .rc-stat span {
-      display: block;
-      color: var(--muted);
-      font-size: 9px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-    .rc-stat strong {
-      display: block;
-      margin-top: 3px;
-      color: var(--heading);
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .rc-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .rc-meta-tag {
-      font-size: 10.5px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-    .rc-link {
-      color: var(--green-dark);
-      font-size: 11px;
-      font-weight: 800;
-      text-decoration: none;
-    }
-    html[data-theme="dark"] .rc-link, body[data-theme="dark"] .rc-link { color: var(--green-light); }
-    .rc-link:hover { text-decoration: underline; }
-
-    .empty-box {
-      padding: 34px 22px;
-      text-align: center;
-      border-radius: 20px;
-      border: 1.5px dashed var(--border);
-      background: var(--surface);
-    }
-    .empty-box-icon { font-size: 32px; margin-bottom: 8px; }
-    .empty-box h3 { margin: 0 0 6px; color: var(--heading); font-size: 16px; font-weight: 800; }
-    .empty-box p { margin: 0 auto; max-width: 600px; color: var(--muted); font-size: 12px; line-height: 1.65; }
-
-    /* INFO & FOOTER */
-    .info-cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 13px;
-      margin-top: 22px;
-    }
-    .info-card {
-      padding: 16px 18px;
-      border-radius: 17px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .info-card strong {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--heading);
       font-size: 13px;
       font-weight: 800;
+      border: 1px solid rgba(8, 168, 107, 0.25);
     }
-    .info-card p {
-      margin: 0;
+    .tbl-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .td-symbol { color: var(--muted) !important; font-size: 12px !important; font-weight: 800 !important; }
+    .td-chain { color: var(--body) !important; font-weight: 700 !important; }
+    .td-price { white-space: nowrap; }
+    .price-main { color: var(--heading); font-weight: 800; }
+    .price-sub { color: var(--muted); font-size: 11.5px; font-weight: 700; margin-left: 4px; }
+    .chg-up { color: #08a86b; font-weight: 800; white-space: nowrap; }
+    .chg-down { color: #e11d48; font-weight: 800; white-space: nowrap; }
+    .chg-flat { color: var(--muted); font-weight: 700; white-space: nowrap; }
+
+    .status-box {
+      padding: 36px 20px;
+      text-align: center;
       color: var(--muted);
-      font-size: 11px;
-      line-height: 1.6;
     }
+    .status-box h3 { margin: 8px 0 5px; color: var(--heading); font-size: 15px; font-weight: 800; }
+    .status-box p { margin: 0; font-size: 12px; }
+
+    /* DISCLAIMER & FOOTER */
     .disclaimer-note {
       margin-top: 16px;
       padding: 13px 16px;
@@ -1000,12 +861,10 @@
 
     @media (max-width: 1100px) {
       :root { --sidebar-width: 235px; }
-      .info-cards { grid-template-columns: 1fr; }
     }
-    @media (max-width: 860px) {
-      .focal-sponsor-bar { flex-direction: column; align-items: flex-start; padding: 14px 16px; }
-      .focal-sponsor-btn { width: 100%; justify-content: center; }
-      .results-grid { grid-template-columns: 1fr; }
+    @media (max-width: 820px) {
+      .hero-lens-visual { display: none; }
+      .bitget-divider { display: none; }
     }
     @media (max-width: 760px) {
       .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0, 0, 0, 0.16); }
@@ -1020,13 +879,12 @@
       .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
       .community-btn::first-letter { font-size: 15px; }
       main { padding: 15px 12px 30px; }
-      .finder-mint-card { padding: 18px 15px; }
-      .finder-circle-icon { width: 44px; height: 44px; flex-basis: 44px; }
-      .right-search-form { flex: 1 1 100%; max-width: 100%; padding: 4px 5px 4px 13px; }
-      .big-search-input { height: 38px; font-size: 12.5px; }
-      .big-search-btn { height: 38px; padding: 0 16px; font-size: 12px; }
-      .chain-list-row { flex-direction: column; align-items: flex-start; gap: 8px; padding: 13px 15px; }
-      .chain-row-action { padding-left: 42px; }
+      .finder-hero-box { padding: 18px 15px; }
+      .hero-search-form { padding: 4px 5px 4px 13px; }
+      .hero-search-input { height: 40px; font-size: 12.5px; }
+      .hero-search-btn { height: 40px; padding: 0 16px; font-size: 12px; }
+      .bitget-banner-strip { padding: 12px 15px; }
+      .bitget-join-btn { width: 100%; text-align: center; }
     }
   </style>
 </head>
@@ -1090,76 +948,104 @@
 
   <div class="main-column">
     <main>
-      <!-- 1. SMART TOKEN FINDER CARD (TITLE LEFT, SEARCH RIGHT) -->
-      <section class="finder-mint-card" aria-labelledby="finderHeading">
-        <div class="finder-top-flex">
-          <div class="finder-title-group">
-            <div class="finder-circle-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-            </div>
-            <div>
-              <h1 id="finderHeading">Smart Token Finder</h1>
-              <p>Real-time USD &amp; INR token &amp; protocol lookup</p>
+      <!-- 1. SMART TOKEN FINDER HERO + SEARCH (FIRST NUMBER) -->
+      <section class="finder-hero-box" aria-labelledby="finderHeading">
+        <div class="hero-top-grid">
+          <div class="hero-copy">
+            <div class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span> Find · Verify · Explore</div>
+            <h1 id="finderHeading">Smart Token <span>Finder</span></h1>
+            <p>Search any crypto token, blockchain coin, or DeFi project with real-time data</p>
+            <div class="hero-badges">
+              <span>⚡ Real-Time Data</span>
+              <span>🛡️ Verified Info</span>
+              <span>📊 Market Insights</span>
+              <span>🌐 Multi-Chain Support</span>
             </div>
           </div>
 
-          <form class="right-search-form" id="tokenSearchForm">
-            <span class="big-search-prefix" aria-hidden="true">🔍</span>
-            <input
-              class="big-search-input"
-              id="projectSearchInput"
-              type="search"
-              placeholder="Search token or chain (e.g. Bitcoin, Solana, Theta, Grass)..."
-              autocomplete="off"
-              required
-            >
-            <button class="clear-search-btn" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
-            <button class="big-search-btn" id="searchSubmitBtn" type="submit">→ Search</button>
-          </form>
+          <div class="hero-lens-visual" aria-hidden="true">
+            <span class="mini-orb orb-1">◆</span>
+            <span class="mini-orb orb-2">◈</span>
+            <span class="mini-orb orb-3">●</span>
+            <div class="lens-circle">₿</div>
+            <div class="lens-handle"></div>
+          </div>
         </div>
-        <p class="search-sub-note">Click any chain in the list below or search on the right for live market prices — zero hardcoded or fake prices.</p>
+
+        <form class="hero-search-form" id="tokenSearchForm">
+          <span class="search-icon-prefix" aria-hidden="true">🔍</span>
+          <input
+            class="hero-search-input"
+            id="tokenSearchInput"
+            type="search"
+            placeholder="Enter token name (e.g. Bitcoin, Ethereum, Solana, Theta, Grass, Aave)..."
+            autocomplete="off"
+          >
+          <button class="clear-search-btn" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
+          <button class="hero-search-btn" id="searchSubmitBtn" type="submit">Search →</button>
+        </form>
       </section>
 
-      <!-- 2. SPONSOR BANNER RIGHT BELOW SMART TOKEN FINDER -->
-      <a class="focal-sponsor-bar" href="../legal-pages/contact.html?subject=Smart%20Token%20Finder%20Sponsorship" aria-label="Sponsor Banner Area 728 by 90">
-        <div class="sponsor-left-info">
-          <span class="sponsor-megaphone" aria-hidden="true">📢</span>
-          <div>
-            <strong>Sponsor Banner Area — 728 &times; 90 px (or 970 &times; 90 px)</strong>
-            <span>Feature your Web3 project, token, or exchange right below Smart Token Finder</span>
+      <!-- 2. BITGET BANNER IN PLACE OF FILTER PILLS -->
+      <a class="bitget-banner-strip" href="../wallet-pages/wallets.html" aria-label="Bitget Trade Smarter Grow Bigger">
+        <div class="bitget-left">
+          <span class="bitget-brand-mark"><span class="bitget-chevrons">»</span> Bitget</span>
+          <span class="bitget-divider" aria-hidden="true"></span>
+          <div class="bitget-copy">
+            <strong>Trade Smarter, <em>Grow Bigger</em></strong>
+            <span>Join Bitget — Explore Exchanges &amp; Wallets on Total Crypto Hub</span>
           </div>
         </div>
-        <span class="focal-sponsor-btn">Become a Sponsor →</span>
+        <span class="bitget-join-btn">Join Now →</span>
       </a>
 
-      <!-- 3. 20 MAJOR CHAINS CLEAN LIST / LIVE SEARCH RESULTS -->
+      <!-- 3. LIVE TOKEN SEARCH RESULTS -->
       <section class="results-section" aria-live="polite">
-        <div class="results-header">
-          <h2 id="resultsTitle">20 Major Blockchains List</h2>
-          <small id="resultsSubtitle">Click any chain row to check live market data</small>
+        <div class="results-top-bar">
+          <div class="results-heading-wrap">
+            <span>📈</span>
+            <h2 id="resultsTitle">Live Token Search Results</h2>
+          </div>
+          <span class="live-updated-tag"><span class="live-updated-dot" aria-hidden="true"></span> <span id="liveStatusText">Live Updated</span></span>
         </div>
 
-        <div id="resultsContainer"></div>
-      </section>
+        <!-- INSTANT CARD WHEN USER SEARCHES A SPECIFIC TOKEN -->
+        <div class="instant-highlight-card" id="instantHighlightCard"></div>
 
-      <!-- 4. HOW IT WORKS -->
-      <section class="info-cards" aria-label="Smart Token Finder highlights">
-        <div class="info-card">
-          <strong>📊 Live USD &amp; INR Pricing</strong>
-          <p>Fetches real-time market prices, 24-hour percentage changes, and market capitalization directly from live data providers.</p>
-        </div>
-        <div class="info-card">
-          <strong>🛡️ Anti-Clone Ranking Filter</strong>
-          <p>Automatically filters out unranked copycat tokens and dead liquidity pools so fake tokens do not mislead your research.</p>
-        </div>
-        <div class="info-card">
-          <strong>🏛️ Protocol &amp; TVL Lookup</strong>
-          <p>Checks DeFiLlama alongside market listings to display protocol categories, chains, and Total Value Locked (TVL).</p>
+        <!-- LIVE MARKET TABLE (100% REAL-TIME API DATA — ZERO FAKE/HARDCODED PRICES) -->
+        <div class="table-card">
+          <div class="table-wrap">
+            <table class="live-table">
+              <thead>
+                <tr>
+                  <th class="td-rank">#</th>
+                  <th>Token Name</th>
+                  <th>Symbol</th>
+                  <th>Rank / Network</th>
+                  <th>Price (USD &amp; INR)</th>
+                  <th>24h Change</th>
+                  <th>Market Cap</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="liveTableBody">
+                <tr>
+                  <td colspan="8">
+                    <div class="status-box">
+                      <div style="font-size:26px;">⏳</div>
+                      <h3>Loading live market prices…</h3>
+                      <p>Fetching real-time data from CoinGecko.</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
       <div class="disclaimer-note">
-        <strong>Disclaimer:</strong> All prices, market caps, and protocol metrics are fetched directly from third-party public APIs (CoinGecko, DefiLlama, DEX Screener). The 20-chain list shows major Layer-1 and Layer-2 networks without hardcoded prices. Always verify official project channels before interacting.
+        <strong>Disclaimer:</strong> All token prices, 24-hour changes, and market capitalizations shown on this page come directly from live market APIs (CoinGecko &amp; DEX Screener). No static or estimated prices are hardcoded. Always do your own research (DYOR) before trading.
       </div>
 
       <footer>
@@ -1184,29 +1070,7 @@
     (() => {
       "use strict";
 
-      /* 20 MAJOR BLOCKCHAINS LIST (NO HARDCODED PRICES — CLICK TO FETCH 100% LIVE DATA) */
-      const MAJOR_CHAINS = [
-        { name: "Bitcoin", symbol: "BTC", query: "Bitcoin", layer: "Layer-1", desc: "Largest decentralized crypto network and digital store of value." },
-        { name: "Ethereum", symbol: "ETH", query: "Ethereum", layer: "Layer-1", desc: "Leading smart contract and DeFi ecosystem." },
-        { name: "Solana", symbol: "SOL", query: "Solana", layer: "Layer-1", desc: "High-speed low-fee network for DeFi, DePIN, and consumer apps." },
-        { name: "BNB Smart Chain", symbol: "BNB", query: "BNB", layer: "Layer-1", desc: "Fast EVM-compatible network with broad app and swap liquidity." },
-        { name: "TRON", symbol: "TRX", query: "TRON", layer: "Layer-1", desc: "Widely used settlement network for stablecoin transfers." },
-        { name: "Avalanche", symbol: "AVAX", query: "Avalanche", layer: "Layer-1", desc: "Sub-second finality network supporting custom subnets and DeFi." },
-        { name: "Sui", symbol: "SUI", query: "Sui", layer: "Layer-1", desc: "Move-based Layer-1 with parallel transaction execution." },
-        { name: "Aptos", symbol: "APT", query: "Aptos", layer: "Layer-1", desc: "High-throughput Move smart contract network." },
-        { name: "TON", symbol: "TON", query: "Toncoin", layer: "Layer-1", desc: "Open Network connected with Telegram mini-apps and payments." },
-        { name: "NEAR Protocol", symbol: "NEAR", query: "NEAR Protocol", layer: "Layer-1", desc: "Sharded blockchain built for scalable Web3 and AI apps." },
-        { name: "Cardano", symbol: "ADA", query: "Cardano", layer: "Layer-1", desc: "Proof-of-stake blockchain built on peer-reviewed research." },
-        { name: "Polkadot", symbol: "DOT", query: "Polkadot", layer: "Layer-1", desc: "Multi-chain network enabling cross-chain interoperability." },
-        { name: "XRP Ledger", symbol: "XRP", query: "XRP", layer: "Layer-1", desc: "Fast cross-border payment and settlement ledger." },
-        { name: "Hyperliquid L1", symbol: "HYPE", query: "Hyperliquid", layer: "Layer-1", desc: "High-performance Layer-1 focused on on-chain trading and DeFi." },
-        { name: "Base", symbol: "ETH", query: "Ethereum", layer: "Layer-2", desc: "Major Ethereum Layer-2 rollup network." },
-        { name: "Arbitrum One", symbol: "ARB", query: "Arbitrum", layer: "Layer-2", desc: "Leading Ethereum Layer-2 scaling rollup for DeFi." },
-        { name: "OP Mainnet", symbol: "OP", query: "Optimism", layer: "Layer-2", desc: "Optimistic rollup and core Superchain Layer-2 network." },
-        { name: "Polygon PoS", symbol: "POL", query: "Polygon", layer: "Layer-2", desc: "Low-cost scaling network for payments and Web3 apps." },
-        { name: "Mantle", symbol: "MNT", query: "Mantle", layer: "Layer-2", desc: "Modular Ethereum Layer-2 network." },
-        { name: "Starknet", symbol: "STRK", query: "Starknet", layer: "Layer-2", desc: "Validity ZK-STARK rollup scaling network on Ethereum." }
-      ];
+      let liveMarketRows = [];
 
       const $ = (sel, root = document) => root.querySelector(sel);
       const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -1237,20 +1101,29 @@
 
       function formatInr(val) {
         const n = Number(val);
-        if (!Number.isFinite(n) || n <= 0) return "—";
+        if (!Number.isFinite(n) || n <= 0) return "";
         if (n >= 1000) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         if (n >= 1) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         if (n >= 0.01) return "₹" + n.toFixed(4);
         return "₹" + n.toPrecision(4);
       }
 
-      function formatCompactMoney(val) {
+      function formatMcap(val) {
         const n = Number(val);
         if (!Number.isFinite(n) || n <= 0) return "—";
+        if (n >= 1e12) return "$" + (n / 1e12).toFixed(2) + "T";
         if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
         if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
         if (n >= 1e3) return "$" + (n / 1e3).toFixed(2) + "K";
         return "$" + n.toFixed(2);
+      }
+
+      function formatChange(val) {
+        const n = Number(val);
+        if (!Number.isFinite(n)) return `<span class="chg-flat">—</span>`;
+        if (n > 0) return `<span class="chg-up">▲ +${n.toFixed(2)}%</span>`;
+        if (n < 0) return `<span class="chg-down">▼ ${n.toFixed(2)}%</span>`;
+        return `<span class="chg-flat">0.00%</span>`;
       }
 
       function isContractAddress(q) {
@@ -1269,322 +1142,246 @@
         }
       }
 
-      function renderChainsList() {
-        $("#resultsTitle").textContent = "20 Major Blockchains List";
-        $("#resultsSubtitle").textContent = "Click any chain row to check live market data";
-        $("#resultsContainer").innerHTML = `
-          <div class="chains-list-panel">
-            ${MAJOR_CHAINS.map((ch, i) => `
-              <button type="button" class="chain-list-row" data-chain-query="${escapeHTML(ch.query)}">
-                <div class="chain-row-left">
-                  <span class="chain-row-num">${i + 1}</span>
-                  <span class="chain-row-symbol">${escapeHTML(ch.symbol)}</span>
-                  <div class="chain-row-info">
-                    <div class="chain-row-title-line">
-                      <strong>${escapeHTML(ch.name)}</strong>
-                      <span class="chain-layer-pill">${escapeHTML(ch.layer)}</span>
-                    </div>
-                    <p class="chain-row-desc">${escapeHTML(ch.desc)}</p>
-                  </div>
-                </div>
-                <span class="chain-row-action">Check Live Price →</span>
-              </button>`).join("")}
-          </div>`;
+      function showInstantCard(item) {
+        const card = $("#instantHighlightCard");
+        const usdStr = formatUsd(item.usd);
+        const inrStr = formatInr(item.inr);
+        const initial = escapeHTML((item.symbol || item.name || "T").charAt(0).toUpperCase());
 
-        $$(".chain-list-row[data-chain-query]").forEach(btn => {
-          btn.addEventListener("click", () => {
-            const q = btn.dataset.chainQuery || "";
-            const input = $("#projectSearchInput");
-            input.value = q;
-            $("#clearSearchBtn").classList.toggle("show", q.length > 0);
-            performLiveSearch(q);
-            $("#finderHeading").scrollIntoView({ behavior: "smooth", block: "start" });
+        card.innerHTML = `
+          <div class="instant-row">
+            <div class="instant-left">
+              <div class="instant-avatar">
+                ${item.image ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" onerror="this.remove()">` : initial}
+              </div>
+              <div>
+                <h3>${escapeHTML(item.name)} <span class="td-symbol">(${escapeHTML(item.symbol)})</span></h3>
+                <p>${escapeHTML(item.networkLabel || "")}</p>
+              </div>
+            </div>
+            <div class="instant-stats">
+              <div class="instant-stat">
+                <span>Price (USD)</span>
+                <strong>${escapeHTML(usdStr)}</strong>
+              </div>
+              ${inrStr ? `<div class="instant-stat"><span>Price (INR)</span><strong>${escapeHTML(inrStr)}</strong></div>` : ""}
+              <div class="instant-stat">
+                <span>24h Change</span>
+                <strong style="font-size:16px;">${formatChange(item.change24h)}</strong>
+              </div>
+              <div class="instant-stat">
+                <span>Market Cap</span>
+                <strong style="font-size:16px;">${escapeHTML(formatMcap(item.marketCap))}</strong>
+              </div>
+            </div>
+            <div class="instant-actions">
+              ${item.url ? `<a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="action-view-btn">View →</a>` : ""}
+              <button type="button" class="close-instant-btn" id="closeInstantBtn">✕</button>
+            </div>
+          </div>`;
+        card.classList.add("show");
+        $("#closeInstantBtn").addEventListener("click", () => card.classList.remove("show"));
+      }
+
+      function renderTableRows(rows, emptyMessageTitle = "No matching token found", emptyMessageDesc = "Try another token or coin name.") {
+        const tbody = $("#liveTableBody");
+        if (!rows.length) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="8">
+                <div class="status-box">
+                  <div style="font-size:26px;">🔎</div>
+                  <h3>${escapeHTML(emptyMessageTitle)}</h3>
+                  <p>${escapeHTML(emptyMessageDesc)}</p>
+                </div>
+              </td>
+            </tr>`;
+          return;
+        }
+
+        tbody.innerHTML = rows.map((item, idx) => {
+          const usdStr = formatUsd(item.usd);
+          const inrStr = formatInr(item.inr);
+          const initial = escapeHTML((item.symbol || item.name || "T").charAt(0).toUpperCase());
+
+          return `
+            <tr data-row-index="${idx}">
+              <td class="td-rank">${idx + 1}</td>
+              <td>
+                <div class="token-cell">
+                  <span class="tbl-logo">
+                    ${item.image ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy" onerror="this.remove()">` : initial}
+                  </span>
+                  <span>${escapeHTML(item.name)}</span>
+                </div>
+              </td>
+              <td class="td-symbol">${escapeHTML(item.symbol)}</td>
+              <td class="td-chain">${escapeHTML(item.networkLabel)}</td>
+              <td class="td-price">
+                <span class="price-main">${escapeHTML(usdStr)}</span>
+                ${inrStr ? `<span class="price-sub">/ ${escapeHTML(inrStr)}</span>` : ""}
+              </td>
+              <td>${formatChange(item.change24h)}</td>
+              <td>${escapeHTML(formatMcap(item.marketCap))}</td>
+              <td>
+                ${item.url
+                  ? `<a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="action-view-btn" onclick="event.stopPropagation()">View →</a>`
+                  : `<span class="chg-flat">—</span>`}
+              </td>
+            </tr>`;
+        }).join("");
+
+        $$("tr[data-row-index]", tbody).forEach(tr => {
+          tr.addEventListener("click", () => {
+            const idx = Number(tr.dataset.rowIndex);
+            if (rows[idx]) showInstantCard(rows[idx]);
           });
         });
       }
 
-      async function queryCoinGeckoLive(query) {
-        const searchData = await fetchWithTimeout(
-          "https://api.coingecko.com/api/v3/search?query=" + encodeURIComponent(query)
-        );
-        const rawCoins = Array.isArray(searchData.coins) ? searchData.coins : [];
-        const qLower = query.toLowerCase();
+      /* DEFAULT LIVE TOP MARKET COINS FROM COINGECKO */
+      async function loadTopLiveMarkets() {
+        $("#liveStatusText").textContent = "Syncing live feed…";
+        try {
+          const data = await fetchWithTimeout(
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h"
+          );
+          if (!Array.isArray(data) || !data.length) throw new Error("Empty feed");
 
-        const rankedCoins = rawCoins
-          .filter(c => Number.isInteger(c.market_cap_rank) && c.market_cap_rank > 0)
-          .sort((a, b) => {
-            const aExact = a.name.toLowerCase() === qLower || String(a.symbol || "").toLowerCase() === qLower ? 0 : 1;
-            const bExact = b.name.toLowerCase() === qLower || String(b.symbol || "").toLowerCase() === qLower ? 0 : 1;
-            if (aExact !== bExact) return aExact - bExact;
-            return a.market_cap_rank - b.market_cap_rank;
-          })
-          .slice(0, 8);
+          // Also fetch INR prices for these coins so USD & INR both show live values
+          const ids = data.map(c => c.id).join(",");
+          let inrMap = {};
+          try {
+            const inrData = await fetchWithTimeout(
+              `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=inr`
+            );
+            inrMap = inrData || {};
+          } catch (_) { /* optional */ }
 
-        if (!rankedCoins.length) return [];
-
-        const ids = rankedCoins.map(c => c.id).join(",");
-        const prices = await fetchWithTimeout(
-          `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
-        );
-
-        return rankedCoins.map(coin => {
-          const p = prices[coin.id] || {};
-          return {
-            id: coin.id,
+          liveMarketRows = data.map(coin => ({
             name: coin.name,
             symbol: String(coin.symbol || "").toUpperCase(),
-            rank: coin.market_cap_rank,
-            image: safeURL(coin.large || coin.thumb || ""),
-            usd: p.usd ?? null,
-            inr: p.inr ?? null,
-            change24h: p.usd_24h_change ?? null,
-            marketCap: p.usd_market_cap ?? null,
+            networkLabel: `Rank #${coin.market_cap_rank || ""}`,
+            image: safeURL(coin.image || ""),
+            usd: coin.current_price,
+            inr: inrMap[coin.id]?.inr ?? null,
+            change24h: coin.price_change_percentage_24h,
+            marketCap: coin.market_cap,
             url: "https://www.coingecko.com/en/coins/" + encodeURIComponent(coin.id)
-          };
-        }).filter(item => item.usd !== null && item.usd > 0);
-      }
-
-      async function queryDefiLlamaLive(query) {
-        const protocols = await fetchWithTimeout("https://api.llama.fi/protocols", 14000);
-        const qLower = query.toLowerCase();
-        return (Array.isArray(protocols) ? protocols : [])
-          .filter(p =>
-            String(p.name || "").toLowerCase().includes(qLower) ||
-            String(p.symbol || "").toLowerCase() === qLower
-          )
-          .sort((a, b) => (Number(b.tvl) || 0) - (Number(a.tvl) || 0))
-          .slice(0, 4)
-          .map(p => ({
-            name: p.name,
-            symbol: String(p.symbol || "").toUpperCase(),
-            category: p.category || "DeFi Protocol",
-            chains: Array.isArray(p.chains) ? p.chains.slice(0, 3).join(", ") : "Multi-chain",
-            tvl: p.tvl,
-            logo: safeURL(p.logo || ""),
-            url: safeURL(p.url || "") || ("https://defillama.com/protocol/" + encodeURIComponent(p.slug || ""))
           }));
+
+          $("#resultsTitle").textContent = "Live Token Search Results";
+          $("#liveStatusText").textContent = "Live Updated";
+          renderTableRows(liveMarketRows);
+        } catch (_) {
+          $("#liveStatusText").textContent = "Live feed offline";
+          renderTableRows(
+            [],
+            "Live market feed temporarily unavailable",
+            "Please enter a token name in the search bar above or try again shortly."
+          );
+        }
       }
 
-      async function queryDexLive(query) {
-        const data = await fetchWithTimeout(
-          "https://api.dexscreener.com/latest/dex/search?q=" + encodeURIComponent(query)
-        );
-        const pairs = Array.isArray(data.pairs) ? data.pairs : [];
-        const isAddr = isContractAddress(query);
-        return pairs
-          .filter(pair => {
-            const liq = Number(pair.liquidity?.usd) || 0;
-            return isAddr ? liq > 1000 : liq >= 50000;
-          })
-          .sort((a, b) => (Number(b.liquidity?.usd) || 0) - (Number(a.liquidity?.usd) || 0))
-          .slice(0, 4)
-          .map(pair => {
-            const base = pair.baseToken || {};
-            return {
-              name: base.name || "DEX Token",
-              symbol: base.symbol || "",
-              chain: pair.chainId || "DEX",
-              priceUsd: pair.priceUsd,
-              liquidity: pair.liquidity?.usd,
-              volume24h: pair.volume?.h24,
-              url: safeURL(pair.url || "")
-            };
-          });
-      }
-
-      async function performLiveSearch(rawQuery) {
+      /* LIVE SEARCH ACROSS COINGECKO (RANKED FILTERED) & DEX SCREENER */
+      async function runLiveTokenSearch(rawQuery) {
         const query = String(rawQuery || "").trim();
-        if (!query) return;
+        if (!query) {
+          $("#instantHighlightCard").classList.remove("show");
+          $("#resultsTitle").textContent = "Live Token Search Results";
+          renderTableRows(liveMarketRows);
+          return;
+        }
 
-        const submitBtn = $("#searchSubmitBtn");
-        const container = $("#resultsContainer");
-        const titleEl = $("#resultsTitle");
-        const subEl = $("#resultsSubtitle");
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Searching…";
-        titleEl.textContent = `Searching live markets for “${query}”…`;
-        subEl.textContent = "Fetching real-time data";
-        container.innerHTML = `
-          <div class="empty-box">
-            <div class="empty-box-icon">⏳</div>
-            <h3>Checking live market feeds…</h3>
-            <p>Fetching real-time prices and protocol records for <strong>${escapeHTML(query)}</strong>.</p>
-          </div>`;
+        const btn = $("#searchSubmitBtn");
+        btn.disabled = true;
+        btn.textContent = "Searching…";
+        $("#liveStatusText").textContent = "Searching…";
 
         try {
-          const [cgRes, llamaRes, dexRes] = await Promise.allSettled([
-            isContractAddress(query) ? Promise.resolve([]) : queryCoinGeckoLive(query),
-            isContractAddress(query) ? Promise.resolve([]) : queryDefiLlamaLive(query),
-            queryDexLive(query)
-          ]);
+          if (isContractAddress(query)) {
+            const dex = await fetchWithTimeout(
+              "https://api.dexscreener.com/latest/dex/search?q=" + encodeURIComponent(query)
+            );
+            const pairs = (Array.isArray(dex.pairs) ? dex.pairs : [])
+              .filter(p => (Number(p.liquidity?.usd) || 0) > 1000)
+              .sort((a, b) => (Number(b.liquidity?.usd) || 0) - (Number(a.liquidity?.usd) || 0))
+              .slice(0, 12)
+              .map(p => ({
+                name: p.baseToken?.name || "Token",
+                symbol: String(p.baseToken?.symbol || "").toUpperCase(),
+                networkLabel: String(p.chainId || "DEX").toUpperCase(),
+                image: "",
+                usd: p.priceUsd,
+                inr: null,
+                change24h: p.priceChange?.h24 ?? null,
+                marketCap: p.fdv || p.marketCap || null,
+                url: safeURL(p.url || "")
+              }));
 
-          const cgCoins = cgRes.status === "fulfilled" ? cgRes.value : [];
-          const llamaProtocols = llamaRes.status === "fulfilled" ? llamaRes.value : [];
-          const dexPairs = dexRes.status === "fulfilled" ? dexRes.value : [];
-          const totalCount = cgCoins.length + llamaProtocols.length + dexPairs.length;
-
-          if (!totalCount) {
-            titleEl.textContent = `No tradable token found for “${query}”`;
-            subEl.textContent = "0 verified market listings";
-            container.innerHTML = `
-              <div class="empty-box">
-                <div class="empty-box-icon">🛡️</div>
-                <h3>No verified tradable token found for “${escapeHTML(query)}”</h3>
-                <p>If <strong>${escapeHTML(query)}</strong> is a points-only app, voucher platform, or pre-launch project, it does not have an official listed crypto token yet. We never display unverified clone tokens or estimated prices.</p>
-              </div>`;
+            $("#resultsTitle").textContent = `Search Results for “${query}”`;
+            $("#liveStatusText").textContent = "Live Updated";
+            renderTableRows(pairs, "No active pool found for this address", "Check the contract address and try again.");
+            if (pairs.length) showInstantCard(pairs[0]);
             return;
           }
 
-          titleEl.textContent = `Live Results for “${query}”`;
-          subEl.textContent = `${totalCount} verified result${totalCount === 1 ? "" : "s"} from live APIs`;
+          const searchData = await fetchWithTimeout(
+            "https://api.coingecko.com/api/v3/search?query=" + encodeURIComponent(query)
+          );
+          const qLower = query.toLowerCase();
+          const ranked = (Array.isArray(searchData.coins) ? searchData.coins : [])
+            .filter(c => Number.isInteger(c.market_cap_rank) && c.market_cap_rank > 0)
+            .sort((a, b) => {
+              const aExact = a.name.toLowerCase() === qLower || String(a.symbol || "").toLowerCase() === qLower ? 0 : 1;
+              const bExact = b.name.toLowerCase() === qLower || String(b.symbol || "").toLowerCase() === qLower ? 0 : 1;
+              if (aExact !== bExact) return aExact - bExact;
+              return a.market_cap_rank - b.market_cap_rank;
+            })
+            .slice(0, 12);
 
-          let html = `
-            <div style="margin-bottom:12px;">
-              <button type="button" class="ext-btn-soft" id="backToChainsBtn">← Back to 20 Major Chains</button>
-            </div>`;
-
-          if (cgCoins.length > 0) {
-            const top = cgCoins[0];
-            const chg = Number(top.change24h);
-            const chgClass = Number.isFinite(chg) ? (chg >= 0 ? "change-up" : "change-down") : "";
-            const chgText = Number.isFinite(chg) ? `${chg >= 0 ? "▲ +" : "▼ "}${chg.toFixed(2)}%` : "—";
-
-            html += `
-              <div class="instant-answer-card">
-                <div class="instant-tag">⚡ Live Market Price · Rank #${top.rank} · Verified CoinGecko Feed</div>
-                <div class="instant-row">
-                  <div class="instant-coin">
-                    <div class="coin-logo">
-                      ${top.image ? `<img src="${escapeHTML(top.image)}" alt="${escapeHTML(top.name)}" onerror="this.remove()">` : escapeHTML(top.symbol.charAt(0) || "◈")}
-                    </div>
-                    <div>
-                      <h3>${escapeHTML(top.name)} <span class="ticker-pill">${escapeHTML(top.symbol)}</span></h3>
-                      <p>Global Market Cap Rank #${top.rank}</p>
-                    </div>
-                  </div>
-                  <div class="instant-metrics">
-                    <div class="metric-box">
-                      <span>Live Price (USD)</span>
-                      <strong>${escapeHTML(formatUsd(top.usd))}</strong>
-                    </div>
-                    <div class="metric-box">
-                      <span>Live Price (INR)</span>
-                      <strong>${escapeHTML(formatInr(top.inr))}</strong>
-                    </div>
-                    <div class="metric-box">
-                      <span>24h Change</span>
-                      <strong class="${chgClass}" style="font-size:17px;">${escapeHTML(chgText)}</strong>
-                    </div>
-                    <div class="metric-box">
-                      <span>Market Cap</span>
-                      <strong style="font-size:17px;">${escapeHTML(formatCompactMoney(top.marketCap))}</strong>
-                    </div>
-                  </div>
-                  <div class="instant-links">
-                    <a href="${escapeHTML(top.url)}" target="_blank" rel="noopener noreferrer" class="ext-btn">View Live Chart ↗</a>
-                  </div>
-                </div>
-              </div>`;
+          if (!ranked.length) {
+            $("#instantHighlightCard").classList.remove("show");
+            $("#resultsTitle").textContent = `Search Results for “${query}”`;
+            $("#liveStatusText").textContent = "0 ranked matches";
+            renderTableRows(
+              [],
+              `No verified ranked token found for “${query}”`,
+              "Unranked clone tokens are filtered out automatically."
+            );
+            return;
           }
 
-          const cards = [];
-          cgCoins.slice(1).forEach(coin => {
-            const chg = Number(coin.change24h);
-            const chgStr = Number.isFinite(chg) ? `${chg >= 0 ? "+" : ""}${chg.toFixed(2)}%` : "—";
-            cards.push(`
-              <article class="result-card">
-                <div class="rc-top">
-                  <div class="rc-avatar">${coin.image ? `<img src="${escapeHTML(coin.image)}" alt="" onerror="this.remove()">` : escapeHTML(coin.symbol.charAt(0))}</div>
-                  <div class="rc-title">
-                    <h4>${escapeHTML(coin.name)} (${escapeHTML(coin.symbol)})</h4>
-                    <small>Rank #${coin.rank} · CoinGecko Live</small>
-                  </div>
-                  <span class="rc-badge">LISTED TOKEN</span>
-                </div>
-                <div class="rc-stats">
-                  <div class="rc-stat"><span>USD Price</span><strong>${escapeHTML(formatUsd(coin.usd))}</strong></div>
-                  <div class="rc-stat"><span>INR Price</span><strong>${escapeHTML(formatInr(coin.inr))}</strong></div>
-                  <div class="rc-stat"><span>24h Change</span><strong>${escapeHTML(chgStr)}</strong></div>
-                </div>
-                <div class="rc-footer">
-                  <span class="rc-meta-tag">MCap: ${escapeHTML(formatCompactMoney(coin.marketCap))}</span>
-                  <a href="${escapeHTML(coin.url)}" target="_blank" rel="noopener noreferrer" class="rc-link">CoinGecko Details ↗</a>
-                </div>
-              </article>`);
-          });
+          const ids = ranked.map(c => c.id).join(",");
+          const priceData = await fetchWithTimeout(
+            `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true`
+          );
 
-          llamaProtocols.forEach(proto => {
-            cards.push(`
-              <article class="result-card">
-                <div class="rc-top">
-                  <div class="rc-avatar">${proto.logo ? `<img src="${escapeHTML(proto.logo)}" alt="" onerror="this.remove()">` : "🏛️"}</div>
-                  <div class="rc-title">
-                    <h4>${escapeHTML(proto.name)} ${proto.symbol ? `(${escapeHTML(proto.symbol)})` : ""}</h4>
-                    <small>${escapeHTML(proto.category)} · DefiLlama</small>
-                  </div>
-                  <span class="rc-badge">PROTOCOL</span>
-                </div>
-                <div class="rc-stats">
-                  <div class="rc-stat"><span>Total Value Locked</span><strong>${escapeHTML(formatCompactMoney(proto.tvl))}</strong></div>
-                  <div class="rc-stat"><span>Category</span><strong>${escapeHTML(proto.category)}</strong></div>
-                  <div class="rc-stat"><span>Chains</span><strong>${escapeHTML(proto.chains)}</strong></div>
-                </div>
-                <div class="rc-footer">
-                  <span class="rc-meta-tag">Verified Protocol Directory</span>
-                  <a href="${escapeHTML(proto.url)}" target="_blank" rel="noopener noreferrer" class="rc-link">Open Protocol ↗</a>
-                </div>
-              </article>`);
-          });
+          const matchedRows = ranked.map(c => {
+            const p = priceData[c.id] || {};
+            return {
+              name: c.name,
+              symbol: String(c.symbol || "").toUpperCase(),
+              networkLabel: `Rank #${c.market_cap_rank}`,
+              image: safeURL(c.large || c.thumb || ""),
+              usd: p.usd ?? null,
+              inr: p.inr ?? null,
+              change24h: p.usd_24h_change ?? null,
+              marketCap: p.usd_market_cap ?? null,
+              url: "https://www.coingecko.com/en/coins/" + encodeURIComponent(c.id)
+            };
+          }).filter(r => r.usd !== null && r.usd > 0);
 
-          dexPairs.forEach(pair => {
-            cards.push(`
-              <article class="result-card">
-                <div class="rc-top">
-                  <div class="rc-avatar">⇄</div>
-                  <div class="rc-title">
-                    <h4>${escapeHTML(pair.name)} (${escapeHTML(pair.symbol)})</h4>
-                    <small>Chain: ${escapeHTML(pair.chain)} · DEX Screener</small>
-                  </div>
-                  <span class="rc-badge">DEX POOL</span>
-                </div>
-                <div class="rc-stats">
-                  <div class="rc-stat"><span>DEX Price</span><strong>${escapeHTML(formatUsd(pair.priceUsd))}</strong></div>
-                  <div class="rc-stat"><span>Liquidity</span><strong>${escapeHTML(formatCompactMoney(pair.liquidity))}</strong></div>
-                  <div class="rc-stat"><span>24h Volume</span><strong>${escapeHTML(formatCompactMoney(pair.volume24h))}</strong></div>
-                </div>
-                <div class="rc-footer">
-                  <span class="rc-meta-tag">High-Liquidity Pool ($50K+)</span>
-                  ${pair.url ? `<a href="${escapeHTML(pair.url)}" target="_blank" rel="noopener noreferrer" class="rc-link">View DEX Chart ↗</a>` : ""}
-                </div>
-              </article>`);
-          });
-
-          if (cards.length) {
-            html += `<div class="results-grid">${cards.join("")}</div>`;
-          }
-
-          container.innerHTML = html;
-          const backBtn = $("#backToChainsBtn");
-          if (backBtn) {
-            backBtn.addEventListener("click", () => {
-              $("#projectSearchInput").value = "";
-              $("#clearSearchBtn").classList.remove("show");
-              renderChainsList();
-            });
-          }
+          $("#resultsTitle").textContent = `Live Results for “${query}”`;
+          $("#liveStatusText").textContent = "Live Updated";
+          renderTableRows(matchedRows);
+          if (matchedRows.length) showInstantCard(matchedRows[0]);
         } catch (_) {
-          titleEl.textContent = "Unable to reach live price feed";
-          subEl.textContent = "Connection error";
-          container.innerHTML = `
-            <div class="empty-box">
-              <div class="empty-box-icon">⚠️</div>
-              <h3>Live market feed temporarily busy</h3>
-              <p>Please check your internet connection or try searching again in a few seconds.</p>
-            </div>`;
+          $("#liveStatusText").textContent = "Search error";
+          renderTableRows([], "Unable to fetch live search results", "Please try again in a few moments.");
         } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "→ Search";
+          btn.disabled = false;
+          btn.textContent = "Search →";
         }
       }
 
@@ -1638,25 +1435,32 @@
           });
         }
 
-        renderChainsList();
-
-        const input = $("#projectSearchInput");
+        const input = $("#tokenSearchInput");
         const clearBtn = $("#clearSearchBtn");
         input.addEventListener("input", () => {
           clearBtn.classList.toggle("show", input.value.trim().length > 0);
+          if (!input.value.trim()) {
+            $("#instantHighlightCard").classList.remove("show");
+            $("#resultsTitle").textContent = "Live Token Search Results";
+            renderTableRows(liveMarketRows);
+          }
         });
 
         clearBtn.addEventListener("click", () => {
           input.value = "";
           clearBtn.classList.remove("show");
-          renderChainsList();
+          $("#instantHighlightCard").classList.remove("show");
+          $("#resultsTitle").textContent = "Live Token Search Results";
+          renderTableRows(liveMarketRows);
           input.focus();
         });
 
         $("#tokenSearchForm").addEventListener("submit", e => {
           e.preventDefault();
-          performLiveSearch(input.value);
+          runLiveTokenSearch(input.value);
         });
+
+        loadTopLiveMarkets();
       });
     })();
   </script>
