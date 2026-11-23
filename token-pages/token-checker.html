@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Smart Token Finder by Total Crypto Hub - Check live crypto prices, market stats, and quick daily earning estimates.">
-  <meta name="keywords" content="Smart Token Finder, Total Crypto Hub, Bitcoin, Ethereum, Tether, BNB, USDC">
+  <meta name="description" content="Smart Token Finder by Total Crypto Hub - Check token prices, blockchain network, market cap, and project details.">
+  <meta name="keywords" content="Smart Token Finder, Total Crypto Hub, Bitcoin, Ethereum, Grass, Helium, Nodepay, Acurast, Pi Network">
   <meta name="theme-color" content="#c9ffea">
   <title>Smart Token Finder | Total Crypto Hub</title>
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
@@ -341,7 +341,7 @@
       padding: 18px 24px 38px;
     }
 
-    /* 1. COMPACT SMART TOKEN FINDER BOX */
+    /* 1. SMART TOKEN FINDER BOX */
     .finder-compact-box {
       position: relative;
       overflow: hidden;
@@ -383,12 +383,7 @@
       background: rgba(10, 42, 36, 0.9);
       color: var(--green-light);
     }
-    .hero-kicker-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #08a86b;
-    }
+    .hero-kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: #08a86b; }
     .finder-compact-box h1 {
       margin: 0;
       color: var(--heading);
@@ -399,12 +394,7 @@
     }
     .finder-compact-box h1 span { color: var(--green-dark); }
     html[data-theme="dark"] .finder-compact-box h1 span, body[data-theme="dark"] .finder-compact-box h1 span { color: var(--green-light); }
-    .finder-subline {
-      margin: 4px 0 0;
-      color: var(--body);
-      font-size: 12px;
-      font-weight: 600;
-    }
+    .finder-subline { margin: 4px 0 0; color: var(--body); font-size: 12px; font-weight: 600; }
     .hero-badges {
       display: flex;
       align-items: center;
@@ -470,21 +460,15 @@
     }
     .clear-search-btn.show { display: inline-grid; place-items: center; }
 
-    /* QUICK CORE COINS BAR (BTC, ETH, USDT, BNB, USDC) */
-    .core-coins-bar {
+    /* FILTER CHIPS */
+    .filter-chips-bar {
       margin-top: 10px;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       gap: 7px;
     }
-    .core-coins-label {
-      color: var(--heading);
-      font-size: 11px;
-      font-weight: 800;
-      margin-right: 2px;
-    }
-    .core-coin-chip {
+    .filter-chip {
       padding: 5px 12px;
       border-radius: 999px;
       border: 1px solid rgba(8, 168, 107, 0.35);
@@ -494,11 +478,11 @@
       font-weight: 800;
       transition: 0.15s ease;
     }
-    html[data-theme="dark"] .core-coin-chip, body[data-theme="dark"] .core-coin-chip {
+    html[data-theme="dark"] .filter-chip, body[data-theme="dark"] .filter-chip {
       background: rgba(16, 39, 44, 0.85);
       border-color: #2b6656;
     }
-    .core-coin-chip:hover {
+    .filter-chip.active, .filter-chip:hover {
       background: var(--green);
       color: #ffffff;
       border-color: var(--green);
@@ -595,8 +579,8 @@
     .slot-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .slot-coin-info h3 { margin: 0; color: var(--heading); font-size: 18px; font-weight: 800; }
     .slot-coin-info small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; font-weight: 700; }
-    .slot-actions { display: flex; align-items: center; gap: 8px; }
-    .slot-calc-link {
+    .slot-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .slot-join-btn {
       padding: 8px 15px;
       border-radius: 999px;
       background: linear-gradient(135deg, #08a86b, #057a4e);
@@ -606,6 +590,18 @@
       font-weight: 800;
       white-space: nowrap;
     }
+    .slot-calc-btn {
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    html[data-theme="dark"] .slot-calc-btn, body[data-theme="dark"] .slot-calc-btn { color: var(--green-light); }
     .slot-close-btn {
       padding: 7px 13px;
       border-radius: 999px;
@@ -637,50 +633,11 @@
       display: block;
       margin-top: 5px;
       color: var(--heading);
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 800;
     }
 
-    /* QUICK DAILY / MULTI-DEVICE ESTIMATE BAR INSIDE SLOT */
-    .quick-estimate-box {
-      margin-top: 12px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .qe-inputs {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--heading);
-    }
-    .qe-inputs label { display: inline-flex; align-items: center; gap: 6px; }
-    .qe-inputs input {
-      width: 84px;
-      padding: 6px 9px;
-      border-radius: 9px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--heading);
-      font-weight: 800;
-    }
-    .qe-result {
-      font-size: 12.5px;
-      font-weight: 800;
-      color: var(--green-dark);
-    }
-    html[data-theme="dark"] .qe-result, body[data-theme="dark"] .qe-result { color: var(--green-light); }
-
-    /* 4. LIVE TOKEN SEARCH RESULTS TABLE */
+    /* 4. TOKEN & PROJECT LIST TABLE */
     .results-section { margin-top: 18px; }
     .results-top-bar {
       display: flex;
@@ -714,7 +671,7 @@
     .live-table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 640px;
+      min-width: 720px;
       text-align: left;
     }
     .live-table th {
@@ -761,13 +718,23 @@
     }
     .tbl-logo img { width: 100%; height: 100%; object-fit: cover; }
     .td-symbol { color: var(--muted) !important; font-size: 12px !important; font-weight: 800 !important; }
-    .td-chain { color: var(--body) !important; font-weight: 700 !important; }
+    .td-chain { color: var(--body) !important; font-size: 12px !important; font-weight: 700 !important; }
     .td-price { white-space: nowrap; }
     .price-main { color: var(--heading); font-weight: 800; }
     .price-sub { color: var(--muted); font-size: 11.5px; font-weight: 700; margin-left: 4px; }
-    .chg-up { color: #08a86b; font-weight: 800; white-space: nowrap; }
-    .chg-down { color: #e11d48; font-weight: 800; white-space: nowrap; }
-    .chg-flat { color: var(--muted); font-weight: 700; white-space: nowrap; }
+    .view-detail-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(8, 168, 107, 0.35);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: 0.15s ease;
+    }
+    html[data-theme="dark"] .view-detail-btn, body[data-theme="dark"] .view-detail-btn { color: var(--green-light); }
+    .view-detail-btn:hover { background: var(--green); color: #ffffff; border-color: var(--green); }
 
     .status-box { padding: 34px 20px; text-align: center; color: var(--muted); }
     .status-box h3 { margin: 8px 0 5px; color: var(--heading); font-size: 15px; font-weight: 800; }
@@ -888,13 +855,13 @@
 
   <div class="main-column">
     <main>
-      <!-- 1. COMPACT SMART TOKEN FINDER BOX -->
+      <!-- 1. SMART TOKEN FINDER BOX -->
       <section class="finder-compact-box" aria-labelledby="finderHeading">
         <div class="finder-header-row">
           <div>
             <div class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span> Find · Verify · Explore</div>
             <h1 id="finderHeading">Smart Token <span>Finder</span></h1>
-            <p class="finder-subline">Check live crypto rates, market stats, and quick daily earning estimates</p>
+            <p class="finder-subline">Browse core tokens, DePIN &amp; mining projects, or search live market tokens</p>
           </div>
           <div class="hero-badges">
             <span>⚡ Real-Time Data</span>
@@ -910,20 +877,17 @@
             class="hero-search-input"
             id="tokenSearchInput"
             type="search"
-            placeholder="Search token name or symbol (e.g. Bitcoin, Ethereum, Tether, BNB, USDC, Grass)..."
+            placeholder="Search token or project name (e.g. Bitcoin, Ethereum, Grass, Nodepay, Acurast, Helium, Pi)..."
             autocomplete="off"
           >
           <button class="clear-search-btn" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
         </form>
 
-        <!-- CORE BLOCKCHAIN COINS QUICK CHIPS -->
-        <div class="core-coins-bar" role="group" aria-label="Core coins">
-          <span class="core-coins-label">Core Coins:</span>
-          <button type="button" class="core-coin-chip" data-coin="bitcoin">Bitcoin (BTC)</button>
-          <button type="button" class="core-coin-chip" data-coin="ethereum">Ethereum (ETH)</button>
-          <button type="button" class="core-coin-chip" data-coin="tether">Tether (USDT)</button>
-          <button type="button" class="core-coin-chip" data-coin="binancecoin">BNB</button>
-          <button type="button" class="core-coin-chip" data-coin="usd-coin">USDC</button>
+        <div class="filter-chips-bar" role="group" aria-label="Token filters">
+          <button type="button" class="filter-chip active" data-filter="all">All Listed</button>
+          <button type="button" class="filter-chip" data-filter="core">Core Coins</button>
+          <button type="button" class="filter-chip" data-filter="depin">DePIN &amp; Mining</button>
+          <button type="button" class="filter-chip" data-filter="community">Community &amp; Points</button>
         </div>
       </section>
 
@@ -933,14 +897,14 @@
       <!-- 3. IN-PAGE DETAIL SLOT DIRECTLY BELOW SPONSORSHIP -->
       <section class="inline-token-slot" id="inlineTokenSlot" aria-live="polite"></section>
 
-      <!-- 4. LIVE TOKEN SEARCH RESULTS -->
+      <!-- 4. TOKEN & PROJECT LIST TABLE -->
       <section class="results-section" aria-live="polite">
         <div class="results-top-bar">
           <div class="results-heading-wrap">
             <span>📈</span>
-            <h2 id="resultsTitle">Live Token Search Results</h2>
+            <h2 id="resultsTitle">Token &amp; Project Directory</h2>
           </div>
-          <span class="live-updated-tag"><span class="live-updated-dot" aria-hidden="true"></span> <span id="liveStatusText">Live Updated</span></span>
+          <span class="live-updated-tag"><span class="live-updated-dot" aria-hidden="true"></span> <span id="liveStatusText">Ready</span></span>
         </div>
 
         <div class="table-card">
@@ -949,32 +913,22 @@
               <thead>
                 <tr>
                   <th class="td-rank">#</th>
-                  <th>Token Name</th>
+                  <th>Token / Project</th>
                   <th>Symbol</th>
-                  <th>Rank / Network</th>
+                  <th>Blockchain / Type</th>
                   <th>Price (USD &amp; INR)</th>
-                  <th>24h Change</th>
                   <th>Market Cap</th>
+                  <th>Action</th>
                 </tr>
               </thead>
-              <tbody id="liveTableBody">
-                <tr>
-                  <td colspan="7">
-                    <div class="status-box">
-                      <div style="font-size:26px;">⏳</div>
-                      <h3>Loading live market prices…</h3>
-                      <p>Fetching real-time data from CoinGecko.</p>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
+              <tbody id="liveTableBody"></tbody>
             </table>
           </div>
         </div>
       </section>
 
       <div class="disclaimer-note">
-        <strong>Disclaimer:</strong> Live market data is fetched from CoinGecko / DEX Screener. Quick daily estimates are for informational reference only. Always do your own research (DYOR).
+        <strong>Disclaimer:</strong> Market prices and market cap data are fetched for listed tokens via CoinGecko / DEX Screener. Unlisted or points-based projects do not have a public market price yet. Always do your own research (DYOR).
       </div>
 
       <footer>
@@ -1009,11 +963,54 @@
         url: "../legal-pages/contact.html"
       });
 
-      /* PRIORITY CORE COINS ALWAYS KEPT AT THE TOP */
-      const PRIORITY_COIN_IDS = ["bitcoin", "ethereum", "tether", "binancecoin", "usd-coin"];
+      /* COMPLETE CURATED LIST OF CORE COINS + DEPIN + MINING + COMMUNITY PROJECTS */
+      const CURATED_LIST = [
+        { name: "Bitcoin", symbol: "BTC", group: "core", chainLabel: "Bitcoin Network", coingeckoId: "bitcoin", joinUrl: "../wallet-pages/wallets.html" },
+        { name: "Ethereum", symbol: "ETH", group: "core", chainLabel: "Ethereum Network", coingeckoId: "ethereum", joinUrl: "../wallet-pages/wallets.html" },
+        { name: "Tether", symbol: "USDT", group: "core", chainLabel: "Multi-Chain", coingeckoId: "tether", joinUrl: "../wallet-pages/wallets.html" },
+        { name: "BNB", symbol: "BNB", group: "core", chainLabel: "BNB Chain", coingeckoId: "binancecoin", joinUrl: "../wallet-pages/wallets.html" },
+        { name: "USD Coin", symbol: "USDC", group: "core", chainLabel: "Multi-Chain", coingeckoId: "usd-coin", joinUrl: "../wallet-pages/wallets.html" },
 
-      let liveMarketRows = [];
+        { name: "Grass", symbol: "GRASS", group: "depin", chainLabel: "Solana (DePIN)", coingeckoId: "grass", joinUrl: "../depin-pages/depin.html" },
+        { name: "Helium", symbol: "HNT", group: "depin", chainLabel: "Solana (DePIN)", coingeckoId: "helium", joinUrl: "../depin-pages/depin.html" },
+        { name: "Theta Network", symbol: "THETA", group: "depin", chainLabel: "Theta / Edge", coingeckoId: "theta-token", joinUrl: "../depin-pages/depin.html" },
+        { name: "Nodepay", symbol: "NC", group: "depin", chainLabel: "Solana (DePIN)", coingeckoId: "nodecoin", joinUrl: "../depin-pages/depin.html" },
+        { name: "Acurast", symbol: "ACU", group: "depin", chainLabel: "DePIN Compute", coingeckoId: null, statusNote: "Unlisted / Compute", joinUrl: "../depin-pages/depin.html" },
+        { name: "Mysterium Network", symbol: "MYST", group: "depin", chainLabel: "Polygon / DePIN", coingeckoId: "mysterium", joinUrl: "../depin-pages/depin.html" },
+        { name: "Roam", symbol: "ROAM", group: "depin", chainLabel: "DePIN WiFi", coingeckoId: null, statusNote: "Points / App", joinUrl: "../depin-pages/depin.html" },
+        { name: "Chirp Network", symbol: "CHIRP", group: "depin", chainLabel: "Sui / DePIN", coingeckoId: null, statusNote: "DePIN / IoT", joinUrl: "../depin-pages/depin.html" },
+        { name: "NATIX Network", symbol: "NATIX", group: "depin", chainLabel: "Solana (DePIN)", coingeckoId: null, statusNote: "DePIN / Mapping", joinUrl: "../depin-pages/depin.html" },
+        { name: "Silencio", symbol: "SLC", group: "depin", chainLabel: "DePIN Noise", coingeckoId: null, statusNote: "Points / App", joinUrl: "../depin-pages/depin.html" },
+        { name: "Over The Reality", symbol: "OVR", group: "depin", chainLabel: "Ethereum / AR", coingeckoId: "ovr", joinUrl: "../depin-pages/depin.html" },
+        { name: "UpRock", symbol: "UPT", group: "depin", chainLabel: "Solana (AI / Mining)", coingeckoId: null, statusNote: "Unlisted / App", joinUrl: "../depin-pages/depin.html" },
+        { name: "Gradient Network", symbol: "GRAY", group: "depin", chainLabel: "Solana (Edge Node)", coingeckoId: null, statusNote: "Edge / Points", joinUrl: "../depin-pages/depin.html" },
+        { name: "GagaNode", symbol: "GAGA", group: "depin", chainLabel: "DePIN Node", coingeckoId: null, statusNote: "Node / Low Vol", joinUrl: "../depin-pages/depin.html" },
+        { name: "Uplink", symbol: "ULX", group: "depin", chainLabel: "DePIN Network", coingeckoId: null, statusNote: "Community / Node", joinUrl: "../depin-pages/depin.html" },
+        { name: "MapMetrics", symbol: "MMAPS", group: "depin", chainLabel: "DePIN Mapping", coingeckoId: null, statusNote: "Mapping / Low Vol", joinUrl: "../depin-pages/depin.html" },
+        { name: "U2U Network", symbol: "U2U", group: "depin", chainLabel: "U2U Subnet", coingeckoId: null, statusNote: "Mobile / Subnet", joinUrl: "../depin-pages/depin.html" },
+
+        { name: "COIN App", symbol: "XYO", group: "community", chainLabel: "Geo / XYO", coingeckoId: "xyo-network", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "Sweatcoin", symbol: "SWEAT", group: "community", chainLabel: "NEAR (Move-to-Earn)", coingeckoId: "sweatcoin", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "Pi Network", symbol: "PI", group: "community", chainLabel: "Pi Mainnet / App", coingeckoId: null, statusNote: "Mobile Mining", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "Omega Network", symbol: "OMN", group: "community", chainLabel: "BNB / Mobile", coingeckoId: "omega-network", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "TTcoin", symbol: "TC", group: "community", chainLabel: "Multi-Chain App", coingeckoId: null, statusNote: "Mobile Mining", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "Marina Protocol", symbol: "BAY", group: "community", chainLabel: "BNB / Quests", coingeckoId: null, statusNote: "Community / App", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "Swash", symbol: "SWASH", group: "community", chainLabel: "Data / Browser", coingeckoId: "swash", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "B Network", symbol: "BNET", group: "community", chainLabel: "Mobile Mining", coingeckoId: null, statusNote: "Community / App", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "Interlink Network", symbol: "ITLG", group: "community", chainLabel: "Mobile Mining", coingeckoId: null, statusNote: "Community / App", joinUrl: "../mobile-pages/mobile-mining.html" },
+        { name: "Ruby Network", symbol: "RUBY", group: "community", chainLabel: "Mobile / Node", coingeckoId: null, statusNote: "Community / App", joinUrl: "../mobile-pages/mobile-mining.html" }
+      ];
+
+      let enrichedCuratedRows = CURATED_LIST.map(item => ({
+        ...item,
+        image: "",
+        usd: null,
+        inr: null,
+        marketCap: null
+      }));
+
       let activeRows = [];
+      let activeFilter = "all";
       let selectedIndex = -1;
 
       const $ = (sel, root = document) => root.querySelector(sel);
@@ -1051,9 +1048,9 @@
           <span class="sponsor-cta-btn">${escapeHTML(cfg.ctaText)}</span>`;
       }
 
-      function formatUsd(val) {
+      function formatUsd(val, fallback = "Unlisted") {
         const n = Number(val);
-        if (!Number.isFinite(n) || n <= 0) return "—";
+        if (!Number.isFinite(n) || n <= 0) return fallback;
         if (n >= 1000) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         if (n >= 1) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 4 });
         if (n >= 0.01) return "$" + n.toFixed(4);
@@ -1062,7 +1059,7 @@
 
       function formatInr(val) {
         const n = Number(val);
-        if (!Number.isFinite(n) || n <= 0) return "—";
+        if (!Number.isFinite(n) || n <= 0) return "";
         if (n >= 1000) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         if (n >= 1) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         if (n >= 0.01) return "₹" + n.toFixed(4);
@@ -1077,14 +1074,6 @@
         if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
         if (n >= 1e3) return "$" + (n / 1e3).toFixed(2) + "K";
         return "$" + n.toFixed(2);
-      }
-
-      function formatChange(val) {
-        const n = Number(val);
-        if (!Number.isFinite(n)) return `<span class="chg-flat">—</span>`;
-        if (n > 0) return `<span class="chg-up">▲ +${n.toFixed(2)}%</span>`;
-        if (n < 0) return `<span class="chg-down">▼ ${n.toFixed(2)}%</span>`;
-        return `<span class="chg-flat">0.00%</span>`;
       }
 
       function isContractAddress(q) {
@@ -1103,40 +1092,12 @@
         }
       }
 
-      function orderWithPriorityCoins(coins) {
-        const byId = new Map(coins.map(c => [c.id, c]));
-        const priority = PRIORITY_COIN_IDS.map(id => byId.get(id)).filter(Boolean);
-        const rest = coins.filter(c => !PRIORITY_COIN_IDS.includes(c.id));
-        return [...priority, ...rest];
-      }
-
       function closeInlineSlot() {
         selectedIndex = -1;
         const slot = $("#inlineTokenSlot");
         slot.classList.remove("show");
         slot.innerHTML = "";
         $$("tr[data-row-index]").forEach(tr => tr.classList.remove("selected-row"));
-      }
-
-      function updateQuickEstimate(usdPrice, inrPrice) {
-        const tokensPerDay = Math.max(0, Number($("#qeTokens")?.value) || 0);
-        const devices = Math.max(1, Number($("#qeDevices")?.value) || 1);
-        const totalDailyTokens = tokensPerDay * devices;
-        const usdVal = Number(usdPrice);
-        const inrVal = Number(inrPrice);
-        const out = $("#qeOutput");
-        if (!out) return;
-
-        if (!Number.isFinite(usdVal) || usdVal <= 0) {
-          out.textContent = `Daily: ${totalDailyTokens} ${$("#qeOutput")?.dataset.sym || ""}`;
-          return;
-        }
-        const dailyUsd = totalDailyTokens * usdVal;
-        const monthlyUsd = dailyUsd * 30;
-        const inrPart = Number.isFinite(inrVal) && inrVal > 0
-          ? ` (${formatInr(dailyUsd * inrVal)}/day)`
-          : "";
-        out.textContent = `Est. Daily: ${formatUsd(dailyUsd)}${inrPart} · Monthly: ${formatUsd(monthlyUsd)}`;
       }
 
       function openInlineSlotAndJump(item, rowIdx = -1) {
@@ -1148,7 +1109,9 @@
 
         const slot = $("#inlineTokenSlot");
         const initial = escapeHTML((item.symbol || item.name || "T").charAt(0).toUpperCase());
-        const calcUrl = `../earning-pages/earning-calculator.html?coin=${encodeURIComponent(item.symbol || item.name)}&usd=${encodeURIComponent(item.usd ?? "")}`;
+        const fallbackLabel = item.statusNote || "Unlisted";
+        const joinHref = item.joinUrl || "../depin-pages/depin.html";
+        const calcHref = `../earning-pages/earning-calculator.html?token=${encodeURIComponent(item.symbol || item.name)}&usd=${encodeURIComponent(item.usd ?? "")}`;
 
         slot.innerHTML = `
           <div class="slot-header">
@@ -1158,11 +1121,12 @@
               </div>
               <div>
                 <h3>${escapeHTML(item.name)} (${escapeHTML(item.symbol)})</h3>
-                <small>${escapeHTML(item.networkLabel || "Live Market Asset")}</small>
+                <small>${escapeHTML(item.chainLabel || "Token / Project")}</small>
               </div>
             </div>
             <div class="slot-actions">
-              <a href="${calcUrl}" class="slot-calc-link">Earning Calculator →</a>
+              <a href="${escapeHTML(joinHref)}" class="slot-join-btn">Join Project Now</a>
+              <a href="${escapeHTML(calcHref)}" class="slot-calc-btn">Earning Calculator</a>
               <button type="button" class="slot-close-btn" id="slotCloseBtn">Hide ✕</button>
             </div>
           </div>
@@ -1170,42 +1134,31 @@
           <div class="slot-metrics-grid">
             <div class="slot-metric-card">
               <span>Price (USD)</span>
-              <strong>${escapeHTML(formatUsd(item.usd))}</strong>
+              <strong>${escapeHTML(formatUsd(item.usd, fallbackLabel))}</strong>
             </div>
             <div class="slot-metric-card">
               <span>Price (INR)</span>
-              <strong>${escapeHTML(formatInr(item.inr))}</strong>
-            </div>
-            <div class="slot-metric-card">
-              <span>24h Change</span>
-              <strong style="font-size:15px;">${formatChange(item.change24h)}</strong>
+              <strong>${escapeHTML(formatInr(item.inr) || fallbackLabel)}</strong>
             </div>
             <div class="slot-metric-card">
               <span>Market Cap</span>
               <strong>${escapeHTML(formatMcap(item.marketCap))}</strong>
             </div>
-          </div>
-
-          <div class="quick-estimate-box">
-            <div class="qe-inputs">
-              <label>Tokens/Day <input type="number" id="qeTokens" min="0" step="any" value="1"></label>
-              <label>Devices/Phones <input type="number" id="qeDevices" min="1" step="1" value="1"></label>
+            <div class="slot-metric-card">
+              <span>Blockchain / Type</span>
+              <strong>${escapeHTML(item.chainLabel || "—")}</strong>
             </div>
-            <div class="qe-result" id="qeOutput" data-sym="${escapeHTML(item.symbol)}"></div>
           </div>`;
 
         slot.classList.add("show");
         $("#slotCloseBtn").addEventListener("click", closeInlineSlot);
-        $("#qeTokens").addEventListener("input", () => updateQuickEstimate(item.usd, item.inr));
-        $("#qeDevices").addEventListener("input", () => updateQuickEstimate(item.usd, item.inr));
-        updateQuickEstimate(item.usd, item.inr);
 
         requestAnimationFrame(() => {
           slot.scrollIntoView({ behavior: "smooth", block: "nearest" });
         });
       }
 
-      function renderTableRows(rows, emptyMessageTitle = "No matching token found", emptyMessageDesc = "Try another token or coin name.") {
+      function renderTableRows(rows, emptyTitle = "No matching token found", emptyDesc = "Try searching another token or project name.") {
         activeRows = Array.isArray(rows) ? rows : [];
         const tbody = $("#liveTableBody");
         if (!activeRows.length) {
@@ -1214,8 +1167,8 @@
               <td colspan="7">
                 <div class="status-box">
                   <div style="font-size:26px;">🔎</div>
-                  <h3>${escapeHTML(emptyMessageTitle)}</h3>
-                  <p>${escapeHTML(emptyMessageDesc)}</p>
+                  <h3>${escapeHTML(emptyTitle)}</h3>
+                  <p>${escapeHTML(emptyDesc)}</p>
                 </div>
               </td>
             </tr>`;
@@ -1223,9 +1176,9 @@
         }
 
         tbody.innerHTML = activeRows.map((item, idx) => {
-          const usdStr = formatUsd(item.usd);
-          const inrVal = formatInr(item.inr);
-          const hasInr = inrVal !== "—";
+          const fallbackLabel = item.statusNote || "Unlisted";
+          const usdStr = formatUsd(item.usd, fallbackLabel);
+          const inrStr = formatInr(item.inr);
           const initial = escapeHTML((item.symbol || item.name || "T").charAt(0).toUpperCase());
           const selClass = idx === selectedIndex ? "selected-row" : "";
 
@@ -1241,88 +1194,94 @@
                 </div>
               </td>
               <td class="td-symbol">${escapeHTML(item.symbol)}</td>
-              <td class="td-chain">${escapeHTML(item.networkLabel)}</td>
+              <td class="td-chain">${escapeHTML(item.chainLabel)}</td>
               <td class="td-price">
                 <span class="price-main">${escapeHTML(usdStr)}</span>
-                ${hasInr ? `<span class="price-sub">/ ${escapeHTML(inrVal)}</span>` : ""}
+                ${inrStr ? `<span class="price-sub">/ ${escapeHTML(inrStr)}</span>` : ""}
               </td>
-              <td>${formatChange(item.change24h)}</td>
               <td>${escapeHTML(formatMcap(item.marketCap))}</td>
+              <td><button type="button" class="view-detail-btn" data-detail-idx="${idx}">View Detail</button></td>
             </tr>`;
         }).join("");
 
         $$("tr[data-row-index]", tbody).forEach(tr => {
-          tr.addEventListener("click", () => {
+          tr.addEventListener("click", e => {
+            if (e.target.closest("a")) return;
             const idx = Number(tr.dataset.rowIndex);
             if (activeRows[idx]) openInlineSlotAndJump(activeRows[idx], idx);
           });
         });
       }
 
-      /* LOAD TOP COINS WITH BTC, ETH, USDT, BNB, USDC INCLUDED */
-      async function loadTopLiveMarkets() {
-        $("#liveStatusText").textContent = "Syncing live feed…";
+      async function hydrateCuratedPrices() {
+        const cgIds = CURATED_LIST.map(x => x.coingeckoId).filter(Boolean);
+        if (!cgIds.length) return;
+
+        $("#liveStatusText").textContent = "Syncing live prices…";
         try {
-          const [topData, coreData] = await Promise.all([
-            fetchWithTimeout("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h"),
-            fetchWithTimeout(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${PRIORITY_COIN_IDS.join(",")}&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`)
+          const idsParam = encodeURIComponent(cgIds.join(","));
+          const [marketsData, inrData] = await Promise.all([
+            fetchWithTimeout(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${idsParam}&sparkline=false`),
+            fetchWithTimeout(`https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=inr`).catch(() => ({}))
           ]);
 
-          const mergedMap = new Map();
-          [...(Array.isArray(coreData) ? coreData : []), ...(Array.isArray(topData) ? topData : [])].forEach(c => {
-            if (c && c.id && !mergedMap.has(c.id)) mergedMap.set(c.id, c);
+          const marketById = new Map((Array.isArray(marketsData) ? marketsData : []).map(c => [c.id, c]));
+
+          enrichedCuratedRows = CURATED_LIST.map(item => {
+            const m = item.coingeckoId ? marketById.get(item.coingeckoId) : null;
+            return {
+              ...item,
+              image: m ? safeURL(m.image || "") : "",
+              usd: m ? m.current_price : null,
+              inr: item.coingeckoId ? (inrData[item.coingeckoId]?.inr ?? null) : null,
+              marketCap: m ? m.market_cap : null
+            };
           });
 
-          const orderedCoins = orderWithPriorityCoins(Array.from(mergedMap.values()));
-          if (!orderedCoins.length) throw new Error("Empty feed");
-
-          const ids = orderedCoins.map(c => c.id).join(",");
-          let inrMap = {};
-          try {
-            const inrData = await fetchWithTimeout(
-              `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=inr`
-            );
-            inrMap = inrData || {};
-          } catch (_) { /* optional */ }
-
-          liveMarketRows = orderedCoins.map(coin => ({
-            id: coin.id,
-            name: coin.name,
-            symbol: String(coin.symbol || "").toUpperCase(),
-            networkLabel: `Rank #${coin.market_cap_rank || ""}`,
-            image: safeURL(coin.image || ""),
-            usd: coin.current_price,
-            inr: inrMap[coin.id]?.inr ?? null,
-            change24h: coin.price_change_percentage_24h,
-            marketCap: coin.market_cap
-          }));
-
-          $("#resultsTitle").textContent = "Live Token Search Results";
           $("#liveStatusText").textContent = "Live Updated";
-          renderTableRows(liveMarketRows);
+          applyCurrentFilter();
         } catch (_) {
-          $("#liveStatusText").textContent = "Live feed offline";
-          renderTableRows(
-            [],
-            "Live market feed temporarily unavailable",
-            "Please enter a token name in the search bar above or try again shortly."
-          );
+          $("#liveStatusText").textContent = "Directory Ready";
+          applyCurrentFilter();
         }
       }
 
-      /* LIVE SEARCH ACROSS COINGECKO (RANKED FILTERED) & DEX SCREENER */
-      async function runLiveTokenSearch(rawQuery) {
+      function applyCurrentFilter() {
+        const list = activeFilter === "all"
+          ? enrichedCuratedRows
+          : enrichedCuratedRows.filter(item => item.group === activeFilter);
+        $("#resultsTitle").textContent = activeFilter === "all"
+          ? "Token & Project Directory"
+          : `Filtered Directory (${activeFilter.toUpperCase()})`;
+        renderTableRows(list);
+      }
+
+      async function runTokenSearch(rawQuery) {
         const query = String(rawQuery || "").trim();
         if (!query) {
-          $("#resultsTitle").textContent = "Live Token Search Results";
-          renderTableRows(liveMarketRows);
+          applyCurrentFilter();
+          return;
+        }
+
+        const qLower = query.toLowerCase();
+        const localMatches = enrichedCuratedRows.filter(item =>
+          item.name.toLowerCase().includes(qLower) ||
+          item.symbol.toLowerCase().includes(qLower) ||
+          item.chainLabel.toLowerCase().includes(qLower)
+        );
+
+        if (localMatches.length) {
+          $("#resultsTitle").textContent = `Directory Matches for “${query}”`;
+          $("#liveStatusText").textContent = "From Listed Projects";
+          renderTableRows(localMatches);
+          openInlineSlotAndJump(localMatches[0], 0);
           return;
         }
 
         const btn = $("#searchSubmitBtn");
         btn.disabled = true;
         btn.textContent = "🔍 Searching…";
-        $("#liveStatusText").textContent = "Searching…";
+        $("#liveStatusText").textContent = "Searching live market…";
 
         try {
           if (isContractAddress(query)) {
@@ -1336,17 +1295,17 @@
               .map(p => ({
                 name: p.baseToken?.name || "Token",
                 symbol: String(p.baseToken?.symbol || "").toUpperCase(),
-                networkLabel: String(p.chainId || "DEX").toUpperCase(),
+                chainLabel: String(p.chainId || "DEX").toUpperCase(),
                 image: "",
                 usd: p.priceUsd,
                 inr: null,
-                change24h: p.priceChange?.h24 ?? null,
-                marketCap: p.fdv || p.marketCap || null
+                marketCap: p.fdv || p.marketCap || null,
+                joinUrl: "../depin-pages/depin.html"
               }));
 
-            $("#resultsTitle").textContent = `Search Results for “${query}”`;
+            $("#resultsTitle").textContent = `Live Market Search for “${query}”`;
             $("#liveStatusText").textContent = "Live Updated";
-            renderTableRows(pairs, "No active pool found for this address", "Check the contract address and try again.");
+            renderTableRows(pairs, "No active market pair found", "Try another token name or address.");
             if (pairs.length) openInlineSlotAndJump(pairs[0], 0);
             return;
           }
@@ -1354,7 +1313,6 @@
           const searchData = await fetchWithTimeout(
             "https://api.coingecko.com/api/v3/search?query=" + encodeURIComponent(query)
           );
-          const qLower = query.toLowerCase();
           const ranked = (Array.isArray(searchData.coins) ? searchData.coins : [])
             .filter(c => Number.isInteger(c.market_cap_rank) && c.market_cap_rank > 0)
             .sort((a, b) => {
@@ -1367,42 +1325,41 @@
 
           if (!ranked.length) {
             $("#resultsTitle").textContent = `Search Results for “${query}”`;
-            $("#liveStatusText").textContent = "0 ranked matches";
+            $("#liveStatusText").textContent = "Not listed yet";
             renderTableRows(
               [],
-              `No verified ranked token found for “${query}”`,
-              "Unranked clone tokens are filtered out automatically."
+              `“${query}” is not in the listed or live ranked feed`,
+              "This project may be pre-TGE, points-based, or unlisted."
             );
             return;
           }
 
           const ids = ranked.map(c => c.id).join(",");
           const priceData = await fetchWithTimeout(
-            `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true`
+            `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=usd,inr&include_market_cap=true`
           );
 
           const matchedRows = ranked.map(c => {
             const p = priceData[c.id] || {};
             return {
-              id: c.id,
               name: c.name,
               symbol: String(c.symbol || "").toUpperCase(),
-              networkLabel: `Rank #${c.market_cap_rank}`,
+              chainLabel: `Rank #${c.market_cap_rank}`,
               image: safeURL(c.large || c.thumb || ""),
               usd: p.usd ?? null,
               inr: p.inr ?? null,
-              change24h: p.usd_24h_change ?? null,
-              marketCap: p.usd_market_cap ?? null
+              marketCap: p.usd_market_cap ?? null,
+              joinUrl: "../depin-pages/depin.html"
             };
           }).filter(r => r.usd !== null && r.usd > 0);
 
-          $("#resultsTitle").textContent = `Live Results for “${query}”`;
+          $("#resultsTitle").textContent = `Live Market Results for “${query}”`;
           $("#liveStatusText").textContent = "Live Updated";
           renderTableRows(matchedRows);
           if (matchedRows.length) openInlineSlotAndJump(matchedRows[0], 0);
         } catch (_) {
           $("#liveStatusText").textContent = "Search error";
-          renderTableRows([], "Unable to fetch live search results", "Please try again in a few moments.");
+          renderTableRows([], "Unable to fetch live search results", "Please try again in a moment.");
         } finally {
           btn.disabled = false;
           btn.textContent = "🔍 Search";
@@ -1461,44 +1418,36 @@
           });
         }
 
+        $$(".filter-chip").forEach(chip => {
+          chip.addEventListener("click", () => {
+            $$(".filter-chip").forEach(c => c.classList.remove("active"));
+            chip.classList.add("active");
+            activeFilter = chip.dataset.filter || "all";
+            applyCurrentFilter();
+          });
+        });
+
         const input = $("#tokenSearchInput");
         const clearBtn = $("#clearSearchBtn");
         input.addEventListener("input", () => {
           clearBtn.classList.toggle("show", input.value.trim().length > 0);
-          if (!input.value.trim()) {
-            $("#resultsTitle").textContent = "Live Token Search Results";
-            renderTableRows(liveMarketRows);
-          }
+          if (!input.value.trim()) applyCurrentFilter();
         });
 
         clearBtn.addEventListener("click", () => {
           input.value = "";
           clearBtn.classList.remove("show");
-          $("#resultsTitle").textContent = "Live Token Search Results";
-          renderTableRows(liveMarketRows);
+          applyCurrentFilter();
           input.focus();
         });
 
         $("#tokenSearchForm").addEventListener("submit", e => {
           e.preventDefault();
-          runLiveTokenSearch(input.value);
+          runTokenSearch(input.value);
         });
 
-        $$(".core-coin-chip").forEach(chip => {
-          chip.addEventListener("click", () => {
-            const coinId = chip.dataset.coin;
-            const foundIdx = activeRows.findIndex(r => r.id === coinId);
-            if (foundIdx >= 0) {
-              openInlineSlotAndJump(activeRows[foundIdx], foundIdx);
-            } else {
-              input.value = chip.textContent.split(" (")[0];
-              clearBtn.classList.add("show");
-              runLiveTokenSearch(input.value);
-            }
-          });
-        });
-
-        loadTopLiveMarkets();
+        renderTableRows(enrichedCuratedRows);
+        hydrateCuratedPrices();
       });
     })();
   </script>
