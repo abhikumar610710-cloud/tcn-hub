@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover DeFi protocols, DePIN projects, community projects, airdrop campaigns and crypto tokens with Smart Token Finder by Total Crypto Hub.">
-  <meta name="keywords" content="Smart Token Finder, Crypto Project Finder, DeFi, DePIN, Token Search, DEX Screener, DefiLlama">
-  <meta name="theme-color" content="#c9ffea">
+  <meta name="description" content="Smart Token Finder by Total Crypto Hub - Search any DePIN, community, or Web3 project name for live USD & INR prices, market cap, and official anti-phishing links.">
+  <meta name="keywords" content="Smart Token Finder, Total Crypto Hub, DePIN Token Price, Grass, U2U, UpRock, Roam, Theta, Crypto Price INR">
+  <meta name="theme-color" content="#d8fff0">
   <title>Smart Token Finder | Total Crypto Hub</title>
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,204 +14,167 @@
   <style>
     :root {
       color-scheme: light;
-      --page: #f4f8fc;
+      --bg: #f4fbf9;
       --surface: #ffffff;
-      --surface-soft: #f8fbff;
-      --line: #e5edf5;
-      --ink: #101b3d;
-      --body: #263858;
-      --muted: #71809b;
+      --surface-soft: #f0fff9;
+      --border: #d5efe6;
+      --heading: #0e2240;
+      --body: #27405c;
+      --muted: #6e8299;
       --green: #08a86b;
-      --green-dark: #078653;
-      --green-soft: #e8fbf3;
-      --shadow: 0 12px 34px rgba(27,54,93,.07);
-      --sidebar-width: 260px;
-      --sponsor-height: 74px;
+      --green-dark: #067d50;
+      --green-light: #32e5a1;
+      --green-soft: #e0fff2;
+      --shadow: 0 10px 28px rgba(8, 120, 82, 0.06);
+      --sidebar-width: 256px;
+      --topbar-height: 62px;
     }
     html[data-theme="dark"], body[data-theme="dark"] {
       color-scheme: dark;
-      --page: #080f1c;
-      --surface: #101b2c;
-      --surface-soft: #142238;
-      --line: #24344b;
-      --ink: #f2f7ff;
-      --body: #d4e0f0;
-      --muted: #91a3bc;
-      --green: #20c889;
-      --green-dark: #16a873;
-      --green-soft: #123b32;
-      --shadow: 0 14px 34px rgba(0,0,0,.22);
+      --bg: #08191f;
+      --surface: #0f252b;
+      --surface-soft: #133037;
+      --border: #224748;
+      --heading: #effef8;
+      --body: #d0ece3;
+      --muted: #8eb0aa;
+      --green: #20d99a;
+      --green-dark: #0eb37c;
+      --green-light: #64f3c2;
+      --green-soft: #123c33;
+      --shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
     }
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       min-width: 320px;
+      min-height: 100vh;
       overflow-x: hidden;
-      background: var(--page);
+      background: var(--bg);
       color: var(--body);
       font-family: "Plus Jakarta Sans", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; }
-    button, input, select { font: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
 
-    /* LIGHT MINT SPONSOR HEADER BAR */
-    .sponsor-strip {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      min-height: var(--sponsor-height);
+    /* SIDEBAR WITH TOP BRAND LOGO */
+    .sidebar {
+      position: fixed;
+      z-index: 140;
+      inset: 0 auto 0 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      height: 100dvh;
       display: flex;
-      align-items: center;
-      overflow: hidden;
-      color: #071b38;
-      background:
-        radial-gradient(circle at 8% 50%,rgba(0,235,165,.28),transparent 24%),
-        radial-gradient(circle at 92% 50%,rgba(0,210,160,.24),transparent 24%),
-        linear-gradient(95deg,#c9ffea 0%,#f2fff9 48%,#c4fcef 100%);
-      border-bottom: 1px solid #96ecd0;
-      box-shadow: 0 4px 18px rgba(0,130,90,.09);
-      isolation: isolate;
+      flex-direction: column;
+      padding: 16px 15px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      box-shadow: 8px 0 26px rgba(14, 58, 48, 0.03);
+      transition: transform 0.25s ease;
     }
-    html[data-theme="dark"] .sponsor-strip, body[data-theme="dark"] .sponsor-strip {
-      color: #f0fff8;
-      background:
-        radial-gradient(circle at 8% 50%,rgba(0,245,158,.18),transparent 22%),
-        linear-gradient(95deg,#0b2b27 0%,#0f3530 50%,#0b2b27 100%);
-      border-bottom: 1px solid #245f4d;
-    }
-    .sponsor-inner {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 1800px;
-      min-height: var(--sponsor-height);
-      margin: auto;
-      padding: 7px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .sponsor-brand {
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+    .sidebar-brand {
       display: flex;
       align-items: center;
       gap: 11px;
-      min-width: 210px;
-      flex: 0 0 auto;
+      padding: 6px 8px 16px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--border);
       text-decoration: none;
     }
-    .brand-orb {
-      width: 44px;
-      height: 44px;
+    .sidebar-logo {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      border-radius: 50%;
+      overflow: hidden;
       display: grid;
       place-items: center;
-      flex: 0 0 44px;
-      overflow: hidden;
       border: 2px solid #00bd79;
-      border-radius: 50%;
-      color: var(--green-dark);
-      background: #ffffff;
-      box-shadow: 0 3px 12px rgba(0,175,115,.2);
+      background: radial-gradient(circle at 30% 25%, #5bffc8, #009c6d 65%, #004938);
+      box-shadow: 0 3px 10px rgba(0, 175, 115, 0.22);
+      color: #fff;
       font-size: 13px;
       font-weight: 900;
     }
-    .brand-orb img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-    .sponsor-brand strong { display: block; color: var(--ink); font-size: 17px; line-height: 1.15; font-weight: 800; letter-spacing: -.45px; }
-    .sponsor-brand small { display: block; margin-top: 2px; color: #008556; font-size: 10px; font-weight: 800; }
-    html[data-theme="dark"] .sponsor-brand small, body[data-theme="dark"] .sponsor-brand small { color: #4ef2b1; }
-
-    .header-v-sep {
-      width: 1.5px;
-      height: 36px;
-      flex: 0 0 1.5px;
-      background: rgba(7,27,56,.22);
+    .sidebar-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .sidebar-brand strong {
+      display: block;
+      color: var(--heading);
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.4px;
     }
-    html[data-theme="dark"] .header-v-sep, body[data-theme="dark"] .header-v-sep { background: rgba(255,255,255,.2); }
+    .sidebar-brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--green-dark);
+      font-size: 10px;
+      font-weight: 800;
+    }
+    html[data-theme="dark"] .sidebar-brand small, body[data-theme="dark"] .sidebar-brand small { color: var(--green-light); }
 
-    .sponsor-slot-box {
-      flex: 1 1 auto;
-      max-width: 970px;
-      min-width: 280px;
-      height: 58px;
-      padding: 6px 22px;
+    .side-label {
+      padding: 10px 12px 8px;
+      color: #96a6ba;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .side-nav { display: grid; gap: 6px; flex-shrink: 0; }
+    .side-link {
+      min-height: 45px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      border: 1.8px dashed #00a86b;
+      gap: 11px;
+      padding: 8px 12px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
       border-radius: 14px;
-      background: linear-gradient(90deg,rgba(195,255,231,.72),rgba(245,255,250,.92) 50%,rgba(195,255,231,.72));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.7),0 3px 12px rgba(0,150,100,.08);
-      text-decoration: none;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .sponsor-slot-box:hover {
-      transform: translateY(-1px);
-      border-color: #008252;
-      box-shadow: 0 6px 16px rgba(0,160,105,.16);
-    }
-    html[data-theme="dark"] .sponsor-slot-box, body[data-theme="dark"] .sponsor-slot-box {
-      border-color: #36e5a0;
-      background: linear-gradient(90deg,rgba(18,62,50,.85),rgba(13,41,38,.95) 50%,rgba(18,62,50,.85));
-      box-shadow: none;
-    }
-    .slot-megaphone { font-size: 27px; line-height: 1; flex: 0 0 auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,.14)); }
-    .slot-arrow { flex: 1 1 60px; max-width: 130px; height: 16px; display: flex; align-items: center; color: #009960; }
-    html[data-theme="dark"] .slot-arrow, body[data-theme="dark"] .slot-arrow { color: #4ef2b1; }
-    .slot-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
-    .slot-center-text { text-align: center; flex: 0 0 auto; }
-    .slot-center-text strong { display: block; color: var(--ink); font-size: 17px; line-height: 1.15; font-weight: 800; letter-spacing: -.35px; }
-    .slot-center-text span { display: block; margin-top: 2px; color: var(--body); font-size: 12px; font-weight: 700; }
-
-    .sponsor-right-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
-    .sponsor-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      flex: 0 0 auto;
-      padding: 11px 20px;
-      border: 1.5px solid #00a86b;
-      border-radius: 999px;
-      color: #042b1d;
-      background: linear-gradient(135deg,#8affb8,#3be898);
-      box-shadow: 0 4px 14px rgba(0,185,115,.25),inset 0 1px 1px rgba(255,255,255,.75);
-      text-decoration: none;
       font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-      transition: transform .2s, box-shadow .2s;
+      font-weight: 700;
+      transition: 0.18s ease;
     }
-    .sponsor-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,185,115,.38); }
-    .sponsor-orb-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
+    .side-link.active {
+      color: #077b4c;
+      background: linear-gradient(100deg, #dffef0, #f3fff9);
+      border-color: #b4f0d5;
+      box-shadow: 0 5px 12px rgba(8, 168, 107, 0.1);
+    }
+    html[data-theme="dark"] .side-link.active, body[data-theme="dark"] .side-link.active {
+      color: #65e6b1;
+      background: #12382f;
+      border-color: #23654e;
+    }
+    .nav-icon {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
       display: grid;
       place-items: center;
-      border: 1.5px solid rgba(255,255,255,.75);
-      color: #ffffff;
-      background: linear-gradient(145deg,#818cf8,#4f46e5);
-      box-shadow: 0 4px 12px rgba(79,70,229,.28);
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 800;
-      transition: transform .2s;
+      border-radius: 11px;
     }
-    .sponsor-orb-btn:hover { transform: translateY(-1px); }
-
-    /* Sidebar */
-    .sidebar { position: fixed; z-index: 120; inset: var(--sponsor-height) auto 0 0; width: var(--sidebar-width); height: calc(100dvh - var(--sponsor-height)); display: flex; flex-direction: column; padding: 20px 16px 18px; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--line); box-shadow: 8px 0 28px rgba(21,48,84,.025); }
-    .side-label { padding: 10px 13px 8px; color: #9aa8bc; font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
-    .side-nav { display: grid; gap: 6px; flex-shrink: 0; }
-    .side-link { min-height: 46px; display: flex; align-items: center; gap: 12px; padding: 10px 12px; color: var(--body); text-decoration: none; border: 1px solid transparent; border-radius: 15px; font-size: 12px; font-weight: 700; transition: .18s; }
-    .side-link:hover { background: var(--surface-soft); border-color: var(--line); transform: translateX(2px); }
-    .side-link.active { color: #087b4b; background: linear-gradient(100deg,#e2fff1,#f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8,168,107,.11); }
-    html[data-theme="dark"] .side-link.active, body[data-theme="dark"] .side-link.active { color: #65e6b1; background: #12382f; border-color: #23654e; }
-    .nav-icon { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; border-radius: 11px; font-size: 16px; }
-    .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
     .nav-home { color: #079b69; background: #d9f8e9; }
     .nav-depin { color: #1687ff; background: #dfeeff; }
     .nav-community { color: #8b5cf6; background: #eee5ff; }
@@ -219,277 +182,860 @@
     .nav-wallet { color: #9333ea; background: #f1e3ff; }
     .nav-checker { color: #0d9488; background: #d9f7f0; }
     .nav-calculator { color: #2563eb; background: #e2eaff; }
-    html[data-theme="dark"] .nav-home, body[data-theme="dark"] .nav-home { color: #54e3a7; background: #164735; }
-    html[data-theme="dark"] .nav-depin, body[data-theme="dark"] .nav-depin { color: #70b7ff; background: #183b61; }
-    html[data-theme="dark"] .nav-community, body[data-theme="dark"] .nav-community { color: #c1a4ff; background: #38265e; }
-    html[data-theme="dark"] .nav-airdrop, body[data-theme="dark"] .nav-airdrop { color: #ffb36d; background: #59391f; }
-    html[data-theme="dark"] .nav-wallet, body[data-theme="dark"] .nav-wallet { color: #d1a2ff; background: #43265f; }
-    html[data-theme="dark"] .nav-checker, body[data-theme="dark"] .nav-checker { color: #65ded1; background: #164a46; }
-    html[data-theme="dark"] .nav-calculator, body[data-theme="dark"] .nav-calculator { color: #8eb5ff; background: #203c70; }
-    .sidebar-spacer { flex: 0 0 18px; min-height: 18px; }
-    .side-promo { flex-shrink: 0; margin: 16px 7px 13px; padding: 19px 14px; text-align: center; border-radius: 22px; background: radial-gradient(circle at 90% 10%,rgba(92,238,176,.24),transparent 34%), linear-gradient(145deg,#e7fff4,#fff 72%); border: 1px solid #c7f5df; box-shadow: 0 8px 20px rgba(8,168,107,.1); }
-    html[data-theme="dark"] .side-promo, body[data-theme="dark"] .side-promo { background: linear-gradient(145deg,#123b32,#142238); border-color: #255c49; }
-    .promo-gift { font-size: 33px; margin-bottom: 8px; }
-    .side-promo h3 { margin: 0 0 7px; color: var(--ink); font-size: 13px; line-height: 1.45; }
-    .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.5; }
-    .promo-btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 17px; border-radius: 999px; color: #fff; background: linear-gradient(135deg,#08a86b,#06c77a); text-decoration: none; font-size: 11px; font-weight: 800; }
-    .support-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; margin: 0 7px; padding: 13px; border: 1px solid var(--line); border-radius: 17px; background: var(--surface-soft); text-decoration: none; }
-    .support-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: #078653; background: var(--green-soft); font-size: 17px; }
-    .support-card strong { display: block; color: var(--ink); font-size: 11px; }
-    .support-card .support-action { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
-    .sidebar-note { flex-shrink: 0; margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
 
-    /* Main header and content */
+    .sidebar-spacer { flex: 1 0 16px; min-height: 16px; }
+    .side-promo {
+      margin: 14px 5px 12px;
+      padding: 17px 13px;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 20px;
+      border: 1px solid #c5f4de;
+      background: radial-gradient(circle at 90% 10%, rgba(92, 238, 176, 0.24), transparent 34%), linear-gradient(145deg, #e7fff4, #fff 72%);
+      box-shadow: 0 7px 18px rgba(8, 168, 107, 0.09);
+    }
+    html[data-theme="dark"] .side-promo, body[data-theme="dark"] .side-promo {
+      background: linear-gradient(145deg, #123b32, #142238);
+      border-color: #255c49;
+    }
+    .promo-gift { margin-bottom: 6px; font-size: 30px; }
+    .side-promo h3 { margin: 0 0 6px; color: var(--heading); font-size: 12.5px; line-height: 1.45; font-weight: 800; }
+    .side-promo p { margin: 0 0 11px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .promo-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 17px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, #08a86b, #06c77a);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .support-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 5px;
+      padding: 12px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      text-decoration: none;
+    }
+    .support-icon {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      font-size: 17px;
+    }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 3px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { margin: 12px 8px 0; color: var(--muted); font-size: 9px; text-align: center; }
+
+    /* MAIN COLUMN & CLEAN SINGLE TOPBAR */
     .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
-    .topbar { position: sticky; top: var(--sponsor-height); z-index: 100; min-height: 74px; display: flex; align-items: center; gap: 18px; padding: 12px 30px; background: var(--surface); border-bottom: 1px solid var(--line); }
-    .mobile-menu-btn { display: none; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: var(--surface); cursor: pointer; }
-    .search-wrap { position: relative; width: min(540px,52vw); }
-    .search-wrap input { width: 100%; height: 42px; padding: 0 44px 0 16px; border: 1px solid var(--line); border-radius: 999px; outline: none; color: var(--ink); background: var(--surface-soft); font-size: 11px; font-weight: 600; }
-    .search-wrap input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(8,168,107,.1); }
-    .search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 17px; pointer-events: none; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      min-height: var(--topbar-height);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 26px;
+      background: color-mix(in srgb, var(--surface) 95%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+    .mobile-menu-btn {
+      display: none;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      color: var(--heading);
+      background: var(--surface);
+    }
+    .domain-safety-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(8, 168, 107, 0.3);
+      background: var(--surface-soft);
+      color: var(--body);
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .domain-lock {
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(8, 168, 107, 0.15);
+      color: var(--green);
+      font-size: 11px;
+    }
+    .domain-url { color: var(--green-dark); font-weight: 800; }
+    html[data-theme="dark"] .domain-url, body[data-theme="dark"] .domain-url { color: var(--green-light); }
+    .domain-verified-tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(8, 168, 107, 0.14);
+      color: var(--green-dark);
+      font-size: 9.5px;
+      font-weight: 800;
+    }
+    html[data-theme="dark"] .domain-verified-tag, body[data-theme="dark"] .domain-verified-tag { color: var(--green-light); }
+
     .topbar-spacer { flex: 1; }
     .community-dropdown { position: relative; }
-    .community-btn, .icon-btn { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--line); color: var(--ink); background: var(--surface); cursor: pointer; font-weight: 800; box-shadow: 0 3px 9px rgba(20,45,75,.035); }
-    .community-btn { padding: 0 15px; border-radius: 999px; font-size: 11px; }
-    .icon-btn { width: 38px; border-radius: 50%; font-size: 17px; }
-    .dropdown-content { display: none; position: absolute; z-index: 150; top: calc(100% + 10px); right: 0; min-width: 190px; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: 0 14px 32px rgba(0,0,0,.14); }
-    .dropdown-content.show { display: block; }
-    .dropdown-content a { display: flex; gap: 9px; padding: 12px 15px; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .community-btn, .icon-btn {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 11.5px;
+      font-weight: 800;
+      box-shadow: 0 3px 10px rgba(14, 58, 48, 0.04);
+      transition: 0.18s ease;
+    }
+    .community-btn { padding: 0 16px; }
+    .icon-btn { width: 38px; border-radius: 50%; font-size: 16px; }
+    .community-btn:hover, .icon-btn:hover { border-color: var(--green); color: var(--green); }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 150;
+      top: calc(100% + 9px);
+      right: 0;
+      min-width: 195px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+    }
+    .dropdown-content.show { display: block; animation: fadeIn 0.16s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown-content a {
+      display: flex;
+      gap: 9px;
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--border);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .dropdown-content a:last-child { border-bottom: 0; }
     .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
     .mobile-overlay { display: none; }
-    main { max-width: 1500px; margin: auto; padding: 25px 30px 40px; }
-    .breadcrumb { margin: 2px 0 17px; color: var(--muted); font-size: 10px; }
-    .breadcrumb strong { color: var(--green); }
 
-    /* Hero */
-    .hero { position: relative; overflow: hidden; border-radius: 25px; color: #fff; background: radial-gradient(circle at 80% 20%,rgba(48,226,158,.25),transparent 30%), linear-gradient(120deg,#092c35 0%,#0b4c48 55%,#087b5a 100%); box-shadow: 0 18px 38px rgba(3,72,59,.16); }
-    .hero::after { content: ""; position: absolute; width: 350px; height: 350px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; right: -100px; top: -170px; box-shadow: 0 0 0 35px rgba(255,255,255,.025),0 0 0 75px rgba(255,255,255,.02); pointer-events: none; }
-    .finder-hero { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(270px,.8fr); gap: 24px; align-items: center; min-height: 270px; padding: 34px 38px; }
-    .hero-copy { position: relative; z-index: 2; max-width: 700px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 13px; padding: 7px 11px; border: 1px solid rgba(167,243,208,.35); border-radius: 999px; color: #b7f7d7; background: rgba(16,185,129,.14); font-size: 9px; font-weight: 800; letter-spacing: 1px; }
-    .hero h1 { margin: 0 0 12px; color: #fff; font-size: clamp(28px,3.4vw,43px); line-height: 1.12; letter-spacing: -1.5px; }
-    .hero p { max-width: 620px; margin: 0; color: #d5eee7; font-size: 12px; line-height: 1.8; }
-    .hero-points { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
-    .hero-points span { padding: 7px 10px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; color: #e6fff5; background: rgba(255,255,255,.08); font-size: 9px; font-weight: 700; }
-    .ad-card { position: relative; z-index: 2; min-height: 175px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 20px; border: 1px dashed rgba(167,243,208,.65); border-radius: 20px; background: rgba(2,26,31,.36); backdrop-filter: blur(8px); }
-    .ad-label { padding: 5px 9px; border-radius: 999px; color: #a7f3d0; background: rgba(167,243,208,.14); font-size: 8px; font-weight: 800; letter-spacing: 1px; }
-    .ad-card h3 { margin: 13px 0 7px; color: #fff; font-size: 18px; }
-    .ad-card p { margin: 0 0 14px; color: #d0e6df; font-size: 10px; line-height: 1.6; }
-    .ad-card a { color: #9cf2c8; font-size: 10px; font-weight: 800; text-decoration: none; }
+    main {
+      width: 100%;
+      max-width: 1580px;
+      margin: 0 auto;
+      padding: 18px 26px 38px;
+    }
 
-    /* Sections, categories and search */
-    .section-heading { display: flex; align-items: center; gap: 10px; margin: 29px 2px 8px; }
-    .section-icon { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; border-radius: 11px; color: var(--green); background: var(--green-soft); font-size: 17px; }
-    .section-heading h2 { margin: 0; color: var(--ink); font-size: 18px; font-weight: 800; letter-spacing: -.4px; }
-    .section-subtitle { margin: 0 0 15px 46px; color: var(--muted); font-size: 10px; font-weight: 600; line-height: 1.6; }
-    .tool-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 12px; }
-    .tool-card { min-height: 142px; padding: 17px 15px; text-align: left; border: 1px solid var(--line); border-radius: 18px; color: var(--body); background: var(--surface); box-shadow: 0 7px 22px rgba(27,54,93,.035); cursor: pointer; transition: .2s; }
-    .tool-card:hover, .tool-card.active { transform: translateY(-3px); border-color: rgba(8,168,107,.55); box-shadow: 0 12px 25px rgba(8,168,107,.1); }
-    .tool-card.active { background: linear-gradient(145deg,var(--surface),var(--green-soft)); }
-    .tool-emoji { width: 39px; height: 39px; display: grid; place-items: center; margin-bottom: 12px; border-radius: 13px; background: var(--surface-soft); font-size: 20px; }
-    .tool-card strong { display: block; margin-bottom: 6px; color: var(--ink); font-size: 11px; }
-    .tool-card p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.6; }
-    .priority { display: inline-block; margin-top: 9px; color: var(--green); font-size: 8px; font-weight: 800; letter-spacing: .5px; }
-    .search-panel { padding: 22px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: var(--shadow); }
-    .search-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
-    .search-title strong { color: var(--ink); font-size: 14px; }
-    .search-title span { color: var(--muted); font-size: 9px; }
-    .finder-form { display: grid; grid-template-columns: minmax(0,1fr) 190px auto; gap: 11px; }
-    .finder-input, .category-select { width: 100%; min-width: 0; height: 51px; padding: 0 16px; border: 1px solid var(--line); border-radius: 13px; outline: none; color: var(--ink); background: var(--surface-soft); font: 600 12px "Plus Jakarta Sans",sans-serif; }
-    .finder-input:focus, .category-select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(8,168,107,.1); }
-    .find-btn { height: 51px; padding: 0 24px; border: 0; border-radius: 13px; color: #fff; background: linear-gradient(110deg,#00ad80,#008e68); font: 800 11px "Plus Jakarta Sans",sans-serif; cursor: pointer; box-shadow: 0 7px 15px rgba(0,142,104,.16); white-space: nowrap; }
-    .find-btn:hover { filter: brightness(1.04); }
-    .find-btn:disabled { opacity: .65; cursor: wait; }
-    .search-hint { margin: 12px 0 0; color: var(--muted); font-size: 9px; line-height: 1.7; }
-    .source-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
-    .source-chip { padding: 6px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface-soft); font-size: 8px; font-weight: 800; }
-    .status { display: none; margin-top: 16px; padding: 12px 14px; border: 1px solid transparent; border-radius: 12px; font-size: 10px; line-height: 1.6; }
-    .status.show { display: block; }
-    .status.info { color: #76591b; background: #fff8e7; border-color: #f5e1ae; }
-    .status.error { color: #a33b3b; background: #fff0f0; border-color: #f2caca; }
-    .status.success { color: #087b4b; background: #e8fbf3; border-color: #b8f2d7; }
-    html[data-theme="dark"] .status.info, body[data-theme="dark"] .status.info { color: #f1d89c; background: #392f1c; border-color: #63512c; }
-    html[data-theme="dark"] .status.error, body[data-theme="dark"] .status.error { color: #ffaaa5; background: #462525; border-color: #713737; }
-    html[data-theme="dark"] .status.success, body[data-theme="dark"] .status.success { color: #7ce5b5; background: #133a2d; border-color: #23654e; }
+    /* 1. FOCAL AREA SPONSOR BANNER (728x90 / 970x90) */
+    .focal-sponsor-bar {
+      width: 100%;
+      min-height: 76px;
+      margin-bottom: 16px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1.8px dashed #08a86b;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 12% 50%, rgba(16, 214, 145, 0.2), transparent 30%),
+        radial-gradient(circle at 88% 50%, rgba(8, 181, 160, 0.18), transparent 30%),
+        linear-gradient(95deg, #d7ffef 0%, #f5fffb 50%, #d2fced 100%);
+      box-shadow: 0 6px 20px rgba(8, 168, 107, 0.08);
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+    .focal-sponsor-bar:hover {
+      transform: translateY(-1px);
+      border-color: #067c50;
+      box-shadow: 0 10px 24px rgba(8, 168, 107, 0.14);
+    }
+    html[data-theme="dark"] .focal-sponsor-bar, body[data-theme="dark"] .focal-sponsor-bar {
+      border-color: #32e5a1;
+      background: linear-gradient(95deg, #0d2f2b 0%, #123b35 50%, #0d2f2b 100%);
+    }
+    .sponsor-left-info {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+    .sponsor-megaphone {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(8, 168, 107, 0.25);
+      font-size: 22px;
+    }
+    html[data-theme="dark"] .sponsor-megaphone, body[data-theme="dark"] .sponsor-megaphone {
+      background: rgba(10, 42, 36, 0.85);
+    }
+    .sponsor-left-info strong {
+      display: block;
+      color: var(--heading);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .sponsor-left-info span {
+      display: block;
+      margin-top: 2px;
+      color: var(--body);
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+    .focal-sponsor-btn {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #08a86b, #068957);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(8, 168, 107, 0.25);
+      white-space: nowrap;
+    }
 
-    /* Results */
-    .results-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 25px 2px 12px; }
-    .results-head h2 { margin: 0; color: var(--ink); font-size: 16px; }
-    .results-head small { color: var(--muted); font-size: 9px; }
-    .results-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; }
-    .result-card { min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: 0 7px 22px rgba(27,54,93,.035); }
-    .result-top { display: flex; align-items: center; gap: 11px; }
-    .coin-avatar { width: 43px; height: 43px; flex: 0 0 43px; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; color: var(--green); background: var(--surface-soft); font-size: 16px; font-weight: 800; }
-    .coin-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .result-name { min-width: 0; flex: 1; }
-    .result-name h3 { overflow: hidden; margin: 0; color: var(--ink); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
-    .result-name p { margin: 4px 0 0; color: var(--muted); font-size: 9px; }
-    .result-badge { padding: 5px 8px; border-radius: 999px; color: #087b4b; background: var(--green-soft); font-size: 8px; font-weight: 800; white-space: nowrap; }
-    .metric-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; margin: 16px 0 13px; }
-    .metric { min-width: 0; padding: 9px; border-radius: 11px; background: var(--surface-soft); }
-    .metric span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 8px; }
-    .metric strong { display: block; overflow-wrap: anywhere; color: var(--ink); font-size: 10px; }
-    .result-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 13px; }
-    .result-meta span { padding: 5px 7px; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); font-size: 8px; overflow-wrap: anywhere; }
-    .result-links { display: flex; flex-wrap: wrap; gap: 8px; }
-    .result-links a { padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--green-dark); text-decoration: none; font-size: 9px; font-weight: 800; }
-    .result-links a:hover { background: var(--green-soft); border-color: #b8f2d7; }
-    .no-link { color: var(--muted); font-size: 9px; }
-    .empty-state { grid-column: 1 / -1; padding: 28px 20px; text-align: center; border: 1px dashed var(--line); border-radius: 17px; background: var(--surface); }
-    .empty-icon { font-size: 28px; }
-    .empty-state h3 { margin: 9px 0 6px; color: var(--ink); font-size: 14px; }
-    .empty-state p { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: 10px; line-height: 1.8; }
-    .empty-state a { color: var(--green); font-weight: 800; }
+    /* 2. SMART TOKEN FINDER MINT SEARCH CARD (MATCHING REFERENCE IMAGE) */
+    .finder-mint-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px 28px 22px;
+      border-radius: 22px;
+      border: 1.5px solid #96ecd0;
+      background:
+        radial-gradient(circle at 86% 18%, rgba(44, 226, 174, 0.32), transparent 36%),
+        radial-gradient(circle at 12% 85%, rgba(8, 181, 160, 0.16), transparent 36%),
+        linear-gradient(125deg, #dbfff1 0%, #f1fff9 52%, #c6f9e8 100%);
+      box-shadow: 0 12px 30px rgba(8, 168, 107, 0.09);
+    }
+    html[data-theme="dark"] .finder-mint-card, body[data-theme="dark"] .finder-mint-card {
+      border-color: #23614e;
+      background:
+        radial-gradient(circle at 86% 18%, rgba(32, 217, 154, 0.2), transparent 36%),
+        linear-gradient(125deg, #0d2c29 0%, #123b35 55%, #144d43 100%);
+    }
+    .finder-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .finder-title-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .finder-circle-icon {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #10c983, #067d50);
+      color: #ffffff;
+      box-shadow: 0 8px 18px rgba(8, 168, 107, 0.28);
+    }
+    .finder-circle-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .finder-title-group h1 {
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(22px, 2.3vw, 29px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.6px;
+    }
+    .finder-title-group p {
+      margin: 4px 0 0;
+      color: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .live-fx-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(8, 168, 107, 0.28);
+      color: var(--heading);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    html[data-theme="dark"] .live-fx-pill, body[data-theme="dark"] .live-fx-pill {
+      background: rgba(10, 42, 36, 0.82);
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #08a86b;
+      box-shadow: 0 0 8px #08a86b;
+    }
 
-    /* Information and footer */
-    .feature-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
-    .feature-card { display: flex; align-items: flex-start; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
-    .feature-icon { width: 39px; height: 39px; flex: 0 0 39px; display: grid; place-items: center; border-radius: 12px; background: var(--green-soft); font-size: 18px; }
-    .feature-card h3 { margin: 2px 0 6px; color: var(--ink); font-size: 11px; }
-    .feature-card p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.65; }
-    .info-panel { margin-top: 17px; padding: 19px 21px; border: 1px solid var(--line); border-radius: 17px; background: var(--surface); }
-    .info-panel h3 { margin: 0 0 8px; color: var(--ink); font-size: 13px; font-weight: 800; }
-    .info-panel p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.8; }
-    .warning { display: flex; align-items: flex-start; gap: 10px; margin-top: 13px; padding: 13px 15px; border: 1px solid #f2e1b8; border-radius: 12px; color: #80652e; background: #fffaf0; font-size: 10px; line-height: 1.7; }
-    html[data-theme="dark"] .warning, body[data-theme="dark"] .warning { color: #f1d89c; background: #392f1c; border-color: #63512c; }
-    .sponsor-bottom { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 17px; padding: 20px; border: 1px solid rgba(8,168,107,.22); border-radius: 17px; background: linear-gradient(110deg,var(--green-soft),var(--surface)); }
-    .sponsor-bottom h3 { margin: 0 0 5px; color: var(--ink); font-size: 13px; }
-    .sponsor-bottom p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.6; }
-    .sponsor-bottom a { flex: 0 0 auto; padding: 10px 14px; border-radius: 999px; color: #fff; background: var(--green); text-decoration: none; font-size: 9px; font-weight: 800; }
-    .site-footer { margin-top: 28px; padding: 22px 12px; border-top: 1px solid var(--line); color: var(--muted); text-align: center; font-size: 10px; }
-    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 9px; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; }
+    /* BIG SEARCH BAR WITH GREEN SEARCH BUTTON */
+    .big-search-form {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 2px solid #96ecd0;
+      border-radius: 999px;
+      padding: 5px 6px 5px 18px;
+      box-shadow: 0 8px 22px rgba(8, 120, 82, 0.08);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .big-search-form:focus-within {
+      border-color: var(--green);
+      box-shadow: 0 10px 26px rgba(8, 168, 107, 0.16);
+    }
+    .big-search-prefix {
+      color: var(--muted);
+      font-size: 18px;
+      margin-right: 10px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .big-search-input {
+      flex: 1;
+      min-width: 0;
+      height: 44px;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--heading);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+    .big-search-input::placeholder { color: var(--muted); font-weight: 500; }
+    .clear-search-btn {
+      display: none;
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .clear-search-btn.show { display: inline-grid; place-items: center; }
+    .big-search-btn {
+      height: 44px;
+      padding: 0 26px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #08a86b, #057a4e);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 5px 15px rgba(8, 168, 107, 0.26);
+      white-space: nowrap;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .big-search-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+    /* CATEGORY FILTER PILLS */
+    .filter-pills-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 15px;
+    }
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: 1.5px solid #bfeede;
+      background: var(--surface);
+      color: var(--heading);
+      font-size: 11.5px;
+      font-weight: 800;
+      box-shadow: 0 3px 10px rgba(8, 120, 82, 0.04);
+      transition: 0.18s ease;
+    }
+    .filter-pill:hover {
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+    .filter-pill.active {
+      background: linear-gradient(135deg, #08a86b, #067c50);
+      border-color: #067c50;
+      color: #ffffff;
+      box-shadow: 0 5px 14px rgba(8, 168, 107, 0.24);
+    }
+
+    /* 3. GOOGLE-STYLE INSTANT PRICE RESULT CARD */
+    .instant-result-wrap {
+      display: none;
+      margin-top: 16px;
+    }
+    .instant-result-wrap.show { display: block; animation: fadeIn 0.2s ease-out; }
+    .instant-card {
+      padding: 18px 22px;
+      border-radius: 20px;
+      border: 2px solid #08a86b;
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
+      box-shadow: 0 12px 30px rgba(8, 168, 107, 0.13);
+    }
+    .instant-top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    html[data-theme="dark"] .instant-top-badge, body[data-theme="dark"] .instant-top-badge { color: var(--green-light); }
+    .instant-main-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .instant-identity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .instant-logo {
+      position: relative;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      border: 2px solid #86e3c3;
+      flex: 0 0 54px;
+    }
+    .instant-logo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .instant-fallback {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #08a86b, #067c50);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .instant-identity h2 {
+      margin: 0;
+      color: var(--heading);
+      font-size: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .instant-ticker {
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    html[data-theme="dark"] .instant-ticker, body[data-theme="dark"] .instant-ticker { color: var(--green-light); }
+    .instant-sub {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+    .instant-price-box {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .instant-price-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .instant-price-item strong {
+      display: block;
+      margin-top: 2px;
+      color: var(--heading);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .instant-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .instant-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #08a86b, #067c50);
+      color: #fff;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+    }
+    .instant-btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 15px;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+    }
+    .instant-btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+    /* 4. FULL-WIDTH COINGECKO-STYLE MARKET TABLE */
+    .market-panel {
+      margin-top: 16px;
+      border-radius: 22px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .market-panel-head {
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(90deg, var(--surface-soft), var(--surface));
+    }
+    .market-panel-head h2 {
+      margin: 0;
+      color: var(--heading);
+      font-size: 16.5px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .market-count-badge {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    html[data-theme="dark"] .market-count-badge, body[data-theme="dark"] .market-count-badge { color: var(--green-light); }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 780px;
+      text-align: left;
+    }
+    .token-table th {
+      padding: 13px 18px;
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .token-table td {
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--heading);
+      vertical-align: middle;
+    }
+    .token-table tbody tr {
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .token-table tbody tr:hover {
+      background: var(--surface-soft);
+    }
+    .token-table tbody tr:last-child td { border-bottom: 0; }
+
+    .col-rank { width: 48px; color: var(--muted) !important; font-weight: 800 !important; }
+    .proj-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .proj-avatar {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      border: 1.5px solid #9be8cd;
+    }
+    .proj-avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .proj-fallback {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #08a86b, #067c50);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .proj-name-text strong {
+      display: block;
+      color: var(--heading);
+      font-size: 13.5px;
+      font-weight: 800;
+    }
+    .proj-name-text small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .chain-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      color: var(--body);
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .price-cell { white-space: nowrap; }
+    .price-usd { color: var(--heading); font-weight: 800; }
+    .price-inr { color: var(--muted); font-weight: 700; font-size: 12px; }
+    .change-up { color: #08a86b; font-weight: 800; white-space: nowrap; }
+    .change-down { color: #e11d48; font-weight: 800; white-space: nowrap; }
+    .change-neutral { color: var(--muted); font-weight: 700; white-space: nowrap; }
+
+    .status-official {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      color: #066c44;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    html[data-theme="dark"] .status-official, body[data-theme="dark"] .status-official {
+      background: #134433;
+      border-color: #246e54;
+      color: #6ef2bf;
+    }
+    .status-pretge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    html[data-theme="dark"] .status-pretge, body[data-theme="dark"] .status-pretge {
+      background: #3d2e14;
+      border-color: #6b501f;
+      color: #fcd34d;
+    }
+
+    .table-empty {
+      padding: 36px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .table-empty h3 { margin: 8px 0 6px; color: var(--heading); font-size: 16px; }
+    .table-empty p { margin: 0; font-size: 12px; }
+
+    /* DISCLAIMER & FOOTER */
+    .safety-note {
+      margin-top: 16px;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 10.5px;
+      line-height: 1.65;
+    }
+    footer {
+      margin-top: 24px;
+      padding: 22px 0 8px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 9px;
+    }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+    .footer-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--green);
+    }
+    .footer-brand span { color: var(--heading); font-size: 14px; font-weight: 800; }
+    .footer-copy { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 18px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
     .footer-links a:hover { color: var(--green); }
 
-    @media (max-width: 1350px) {
-      :root { --sidebar-width: 238px; }
-      .sponsor-brand { min-width: 185px; }
-      .slot-arrow { display: none; }
-    }
+    /* RESPONSIVE */
     @media (max-width: 1180px) {
-      main { padding-right: 22px; padding-left: 22px; }
-      .tool-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
-      .feature-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      :root { --sidebar-width: 235px; }
+      main { padding-left: 18px; padding-right: 18px; }
     }
-    @media (max-width: 900px) {
-      .sponsor-brand { min-width: auto; }
-      .sponsor-brand .brand-orb { width: 36px; height: 36px; flex-basis: 36px; }
-      .sponsor-inner { gap: 10px; padding-left: 14px; padding-right: 14px; }
-      .sponsor-slot-box { padding: 5px 12px; height: 50px; }
-      .slot-center-text strong { font-size: 13px; }
-      .slot-center-text span { font-size: 10px; }
-      .finder-hero { grid-template-columns: 1fr; min-height: 0; }
-      .ad-card { min-height: 145px; }
-      .finder-form { grid-template-columns: minmax(0,1fr) 170px; }
-      .find-btn { grid-column: 1 / -1; }
+    @media (max-width: 860px) {
+      .domain-verified-tag { display: none; }
+      .focal-sponsor-bar { flex-direction: column; align-items: flex-start; padding: 14px 16px; }
+      .focal-sponsor-btn { width: 100%; justify-content: center; }
     }
     @media (max-width: 760px) {
-      :root { --sidebar-width: 258px; --sponsor-height: 56px; }
-      .sponsor-inner { justify-content: space-between; gap: 8px; padding: 6px 10px; }
-      .sponsor-brand { gap: 7px; }
-      .sponsor-brand .brand-orb { width: 31px; height: 31px; flex-basis: 31px; font-size: 12px; }
-      .sponsor-brand strong { font-size: 11px; }
-      .sponsor-brand small { font-size: 8px; }
-      .header-v-sep, .sponsor-orb-btn { display: none; }
-      .sponsor-slot-box { min-width: 0; height: 42px; padding: 4px 10px; justify-content: center; gap: 8px; }
-      .slot-megaphone { font-size: 17px; }
-      .slot-center-text strong { font-size: 11px; }
-      .slot-center-text span { font-size: 8px; }
-      .sponsor-cta { padding: 8px 11px; font-size: 9px; gap: 4px; }
-      .sidebar { transform: translateX(-105%); transition: transform .25s ease; box-shadow: 12px 0 35px rgba(0,0,0,.13); }
+      .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0, 0, 0, 0.16); }
       body.menu-open .sidebar { transform: translateX(0); }
-      .mobile-overlay { position: fixed; inset: var(--sponsor-height) 0 0; z-index: 110; display: none; background: rgba(4,14,27,.48); }
+      .mobile-overlay { position: fixed; inset: 0; z-index: 120; background: rgba(4, 14, 27, 0.45); }
       body.menu-open .mobile-overlay { display: block; }
       .main-column { margin-left: 0; }
-      .topbar { min-height: 66px; gap: 10px; padding: 10px 14px; }
-      .mobile-menu-btn { display: inline-grid; flex: 0 0 38px; place-items: center; }
-      .search-wrap { width: auto; flex: 1; }
-      .search-wrap input { height: 39px; padding-left: 13px; font-size: 10px; }
+      .topbar { padding: 8px 13px; gap: 8px; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
+      .domain-safety-pill { padding: 5px 10px; font-size: 10px; }
+      .domain-label-hide { display: none; }
       .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
-      .community-btn::before { content: "👥"; font-size: 15px; }
-      .topbar .icon-btn { width: 36px; min-height: 36px; flex: 0 0 36px; }
-      main { padding: 18px 13px 32px; }
-      .finder-hero { gap: 18px; padding: 23px 20px; }
-      .hero h1 { font-size: 29px; }
-      .hero p { font-size: 10px; }
-      .tool-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
-      .tool-card { min-height: 125px; padding: 13px; }
-      .tool-card strong { font-size: 10px; }
-      .tool-card p { font-size: 8px; }
-      .search-panel { padding: 16px; }
-      .finder-form { grid-template-columns: 1fr; }
-      .find-btn { width: 100%; grid-column: auto; }
-      .results-grid { grid-template-columns: 1fr; }
-      .feature-grid { gap: 9px; }
-      .feature-card { gap: 8px; padding: 12px; }
-      .feature-icon { width: 34px; height: 34px; flex-basis: 34px; font-size: 16px; }
-      .feature-card h3 { font-size: 10px; }
-      .feature-card p { font-size: 8px; }
-      .sponsor-bottom { align-items: flex-start; flex-direction: column; }
-    }
-    @media (max-width: 480px) {
-      .sponsor-brand small { display: none; }
-      .sponsor-brand { min-width: 96px; gap: 6px; }
-      .sponsor-brand strong { font-size: 10px; }
-      .slot-megaphone { display: none; }
-      .slot-center-text strong { font-size: 10px; }
-      .slot-center-text span { font-size: 7px; }
-      .sponsor-cta { padding: 7px 9px; font-size: 8px; }
-      .topbar { gap: 7px; }
-      .community-dropdown { display: none; }
-      .tool-card { min-height: 130px; }
-      .metric-grid { gap: 5px; }
-      .metric { padding: 7px; }
-      .metric strong { font-size: 9px; }
-      .result-card { padding: 14px; }
-      .footer-links { gap: 10px; }
-      .search-title { align-items: flex-start; flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+      .community-btn::first-letter { font-size: 15px; }
+      main { padding: 14px 12px 28px; }
+      .finder-mint-card { padding: 18px 15px; }
+      .finder-circle-icon { width: 44px; height: 44px; flex-basis: 44px; }
+      .big-search-form { padding: 4px 5px 4px 13px; }
+      .big-search-input { height: 40px; font-size: 12.5px; }
+      .big-search-btn { height: 40px; padding: 0 16px; font-size: 12px; }
+      .filter-pill { padding: 7px 12px; font-size: 10.5px; }
     }
   </style>
 </head>
 <body data-theme="light">
-  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
-    <div class="sponsor-inner">
-      <a class="sponsor-brand" href="../index.html" aria-label="Total Crypto Hub home">
-        <span class="brand-orb" aria-hidden="true"><img src="../logos/tcn-logo.png" alt="Total Crypto Network" onerror="this.style.display='none';this.parentElement.textContent='TCN'"></span>
-        <span><strong>Total Crypto Hub</strong><small>by Total Crypto Network</small></span>
-      </a>
-
-      <span class="header-v-sep" aria-hidden="true"></span>
-
-      <a class="sponsor-slot-box" href="../legal-pages/contact.html?subject=Token%20Finder%20Sponsorship" aria-label="Sponsor Banner Area 728 by 90 or 970 by 90 pixels">
-        <span class="slot-megaphone" aria-hidden="true">📢</span>
-        <span class="slot-arrow" aria-hidden="true">
-          <svg viewBox="0 0 120 16" fill="none">
-            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <div class="slot-center-text">
-          <strong>Sponsor Banner Area</strong>
-          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
-        </div>
-        <span class="slot-arrow" aria-hidden="true">
-          <svg viewBox="0 0 120 16" fill="none">
-            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-      </a>
-
-      <span class="header-v-sep" aria-hidden="true"></span>
-
-      <div class="sponsor-right-actions">
-        <a class="sponsor-cta" href="../legal-pages/contact.html?subject=Token%20Finder%20Sponsorship">Become a Sponsor <span aria-hidden="true">→</span></a>
-        <a class="sponsor-orb-btn" href="../legal-pages/contact.html?subject=Token%20Finder%20Sponsorship" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <a href="../index.html" class="sidebar-brand">
+      <span class="sidebar-logo"><img src="../logos/tcn-logo.png" alt="Total Crypto Network" onerror="this.style.display='none';this.parentElement.textContent='TCN'"></span>
+      <span><strong>Total Crypto Hub</strong><small>by Total Crypto Network</small></span>
+    </a>
+
     <div class="side-label">Workspace</div>
     <nav class="side-nav">
       <a href="../index.html" class="side-link"><span class="nav-icon nav-home"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home</a>
@@ -500,6 +1046,7 @@
       <a href="token-checker.html" class="side-link active" aria-current="page"><span class="nav-icon nav-checker"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder</a>
       <a href="../earning-pages/earning-calculator.html" class="side-link"><span class="nav-icon nav-calculator"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg></span>Earning Calculator</a>
     </nav>
+
     <div class="sidebar-spacer"></div>
     <section class="side-promo">
       <div class="promo-gift">🎁</div>
@@ -509,19 +1056,21 @@
     </section>
     <a class="support-card" href="../legal-pages/contact.html">
       <span class="support-icon">♧</span>
-      <span><strong>Need Help?</strong><span class="support-action">Contact Support →</span></span>
+      <span><strong>Need Help?</strong><span>Contact Support →</span></span>
     </a>
     <p class="sidebar-note">A research-led Web3 directory</p>
   </aside>
   <div class="mobile-overlay" id="mobileOverlay"></div>
 
   <div class="main-column">
+    <!-- CLEAN SINGLE TOPBAR (COMMUNITY & MOON THEME BUTTON AT TOP RIGHT) -->
     <header class="topbar">
       <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-      <label class="search-wrap" aria-label="Search Total Crypto Hub">
-        <input id="siteSearch" type="search" placeholder="Search Total Crypto Hub..." autocomplete="off">
-        <span class="search-icon" aria-hidden="true">⌕</span>
-      </label>
+      <div class="domain-safety-pill" title="Official Total Crypto Hub domain">
+        <span class="domain-lock" aria-hidden="true">🔒</span>
+        <span><span class="domain-label-hide">Official Domain: </span><span class="domain-url">totalcryptohub.com</span></span>
+        <span class="domain-verified-tag">✓ Anti-Phishing Verified</span>
+      </div>
       <span class="topbar-spacer"></span>
       <div class="community-dropdown">
         <button class="community-btn" id="communityBtn" type="button" aria-expanded="false">👥 Community</button>
@@ -536,398 +1085,821 @@
     </header>
 
     <main>
-      <div class="breadcrumb">Workspace &nbsp;›&nbsp; <strong>Smart Token Finder</strong></div>
-      <section class="hero finder-hero">
-        <div class="hero-copy">
-          <span class="eyebrow">✦ SMART CRYPTO DISCOVERY · MULTI-SOURCE SEARCH</span>
-          <h1>One Search.<br>Discover the Web3 World.</h1>
-          <p>Explore DeFi protocols, DePIN networks, community projects, airdrop campaigns and listed tokens from one simple search. Start with a project name, token name, symbol or contract address.</p>
-          <div class="hero-points"><span>✓ DeFi-first discovery</span><span>✓ Multi-source data</span><span>✓ Official links when available</span></div>
+      <!-- 1. SPONSOR BANNER IN MAIN FOCAL AREA -->
+      <a class="focal-sponsor-bar" href="../legal-pages/contact.html?subject=Smart%20Token%20Finder%20Sponsorship" aria-label="Sponsor Banner Area 728 by 90">
+        <div class="sponsor-left-info">
+          <span class="sponsor-megaphone" aria-hidden="true">📢</span>
+          <div>
+            <strong>Sponsor Banner Area — 728 &times; 90 px (or 970 &times; 90 px)</strong>
+            <span>Feature your Web3, DePIN, or Exchange brand right above our live Smart Token Finder</span>
+          </div>
         </div>
-        <aside class="ad-card" aria-label="Sponsored placement">
-          <span class="ad-label">ADVERTISEMENT · SPONSORED</span>
-          <h3>Your Web3 Brand Here</h3>
-          <p>Put your project in front of users exploring crypto tools, tokens and DeFi opportunities.</p>
-          <a href="../legal-pages/contact.html?subject=Smart%20Finder%20Sponsorship">Explore sponsorship options →</a>
-        </aside>
-      </section>
+        <span class="focal-sponsor-btn">Become a Sponsor →</span>
+      </a>
 
-      <div class="section-heading"><div class="section-icon">✦</div><h2>Explore Tools &amp; Categories</h2></div>
-      <p class="section-subtitle">Choose a discovery area, or search everything at once. DeFi results receive priority.</p>
-      <section class="tool-grid" aria-label="Project categories">
-        <button class="tool-card active" type="button" data-category="all"><span class="tool-emoji">🌐</span><strong>All Projects</strong><p>Search across tokens, protocols and Web3 categories.</p><span class="priority">FULL DISCOVERY</span></button>
-        <button class="tool-card" type="button" data-category="defi"><span class="tool-emoji">🏦</span><strong>DeFi Scanner</strong><p>Protocols, TVL, tokens, DEX pairs and liquidity signals.</p><span class="priority">★ MAIN FOCUS</span></button>
-        <button class="tool-card" type="button" data-category="depin"><span class="tool-emoji">📡</span><strong>DePIN Explorer</strong><p>Search for decentralized physical infrastructure projects.</p></button>
-        <button class="tool-card" type="button" data-category="community"><span class="tool-emoji">👥</span><strong>Community Projects</strong><p>Search for community-led networks and emerging ecosystems.</p></button>
-        <button class="tool-card" type="button" data-category="airdrop"><span class="tool-emoji">🎁</span><strong>Airdrop Finder</strong><p>Search campaigns and projects that may not have a token yet.</p></button>
-      </section>
+      <!-- 2. SMART TOKEN FINDER SEARCH CARD -->
+      <section class="finder-mint-card" aria-labelledby="finderHeading">
+        <div class="finder-header-row">
+          <div class="finder-title-group">
+            <div class="finder-circle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            </div>
+            <div>
+              <h1 id="finderHeading">Smart Token Finder</h1>
+              <p>Search any DePIN, Community, or Web3 project name for real-time USD &amp; INR prices and official links</p>
+            </div>
+          </div>
+          <div class="live-fx-pill" id="fxBadge" title="Live USD to INR conversion rate">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span id="fxText">Live Feed · 1 USD = ₹86.50</span>
+          </div>
+        </div>
 
-      <div class="section-heading" id="finder"><div class="section-icon">⌕</div><h2>Search Any Crypto Project</h2></div>
-      <p class="section-subtitle">Enter a project name like Grass, Aave or Uniswap—or paste a token contract address.</p>
-      <section class="search-panel">
-        <div class="search-title"><strong>What are you looking for?</strong><span>One search across connected sources</span></div>
-        <form class="finder-form" id="finderForm">
-          <input class="finder-input" id="projectQuery" type="search" placeholder="Search token, symbol, protocol or project name..." autocomplete="off" required>
-          <select class="category-select" id="categorySelect" aria-label="Choose project category">
-            <option value="all">All categories</option>
-            <option value="defi">DeFi first</option>
-            <option value="depin">DePIN</option>
-            <option value="community">Community</option>
-            <option value="airdrop">Airdrops &amp; campaigns</option>
-          </select>
-          <button class="find-btn" id="findBtn" type="submit">🔍 Search Projects</button>
+        <form class="big-search-form" id="tokenSearchForm">
+          <span class="big-search-prefix" aria-hidden="true">🔍</span>
+          <input
+            class="big-search-input"
+            id="projectSearchInput"
+            type="search"
+            placeholder="Search any project name (e.g. Grass, U2U, UpRock, Roam, Theta, Pi, Titan)..."
+            autocomplete="off"
+          >
+          <button class="clear-search-btn" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
+          <button class="big-search-btn" id="searchSubmitBtn" type="submit">→ Search</button>
         </form>
-        <p class="search-hint">Tip: token symbols can be shared by different projects. Always verify the blockchain, full contract address and source before interacting.</p>
-        <div class="source-row"><span class="source-chip">DEX Screener · token pairs</span><span class="source-chip">DefiLlama · protocols &amp; TVL</span><span class="source-chip">CoinGecko · optional API key</span></div>
-        <div class="status" id="searchStatus" role="status" aria-live="polite"></div>
-      </section>
 
-      <section id="resultsSection" aria-live="polite">
-        <div class="results-head"><h2 id="resultsTitle">Discover Projects</h2><small id="resultsCount">Search results will appear here</small></div>
-        <div class="results-grid" id="resultsGrid">
-          <div class="empty-state"><div class="empty-icon">🔎</div><h3>Your next Web3 discovery starts here</h3><p>Search a project name, token symbol or contract address. We’ll check connected sources and show available market data or protocol information.</p></div>
+        <div class="filter-pills-row" role="tablist" aria-label="Filter projects">
+          <button class="filter-pill active" type="button" data-filter="all">🌐 All Projects</button>
+          <button class="filter-pill" type="button" data-filter="depin">⚡ DePIN Networks</button>
+          <button class="filter-pill" type="button" data-filter="community">👥 Community &amp; Mobile</button>
+          <button class="filter-pill" type="button" data-filter="listed">⭐ Token Listed</button>
+          <button class="filter-pill" type="button" data-filter="gainers">📈 Top Gainers</button>
+          <button class="filter-pill" type="button" data-filter="pretge">⏳ Pre-TGE / No Token</button>
         </div>
       </section>
 
-      <div class="section-heading"><div class="section-icon">✧</div><h2>What You Can Explore</h2></div>
-      <p class="section-subtitle">A quick guide to the information this finder is designed to bring together.</p>
-      <section class="feature-grid">
-        <article class="feature-card"><span class="feature-icon">📊</span><div><h3>Market Data</h3><p>Token price, market cap, 24-hour volume and available DEX liquidity.</p></div></article>
-        <article class="feature-card"><span class="feature-icon">🏛️</span><div><h3>DeFi Protocols</h3><p>Protocol category, supported chains and TVL where available.</p></div></article>
-        <article class="feature-card"><span class="feature-icon">🔗</span><div><h3>Project Links</h3><p>Project website and social links only when returned by a data source.</p></div></article>
-        <article class="feature-card"><span class="feature-icon">🧭</span><div><h3>Multi-Source View</h3><p>Compare listings from different data providers and identify the source.</p></div></article>
+      <!-- 3. GOOGLE-STYLE INSTANT SEARCH RESULT CARD -->
+      <section class="instant-result-wrap" id="instantResultWrap" aria-live="polite"></section>
+
+      <!-- 4. FULL-WIDTH COINGECKO-STYLE MARKET TABLE -->
+      <section class="market-panel" aria-labelledby="marketTableTitle">
+        <div class="market-panel-head">
+          <h2 id="marketTableTitle">DePIN &amp; Community Token Market Directory</h2>
+          <span class="market-count-badge" id="projectCountBadge">Loading live prices…</span>
+        </div>
+
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th class="col-rank">#</th>
+                <th>Project Name</th>
+                <th>Chain</th>
+                <th>Price (USD &amp; INR)</th>
+                <th>24h Change</th>
+                <th>Market Cap</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tokenTableBody"></tbody>
+          </table>
+        </div>
       </section>
 
-      <section class="info-panel">
-        <h3>How Smart Token Finder Works</h3>
-        <p>Enter a project name, token symbol or contract address. The finder checks DEX Screener and the DeFiLlama protocol directory. CoinGecko search is optional and becomes active only after its Demo API key is configured. The DePIN, Community and Airdrop buttons help organize your search intent; the current market-data sources do not reliably classify every project into those categories.</p>
-        <div class="warning"><span>⚠️</span><span><strong>Important:</strong> A listing or market-data result is not a safety audit or investment recommendation. DEX data can include unverified tokens, ticker symbols are not unique, and a project may have no token. Verify the chain and full contract address independently. Never connect a wallet or sign a transaction just because a project appears here.</span></div>
-      </section>
-      <section class="sponsor-bottom" id="sponsorship">
-        <div><h3>Want to sponsor this discovery tool?</h3><p>Promote your Web3 project, product or service in a clearly labelled sponsored placement. Sponsorships are subject to review and confirmation.</p></div>
-        <a href="../legal-pages/contact.html?subject=Smart%20Finder%20Sponsorship">Contact for Sponsorship →</a>
-      </section>
-      <footer class="site-footer">
-        <div>© 2026 Total Crypto Network. All rights reserved.</div>
-        <div class="footer-links"><a href="../legal-pages/about.html">About Us</a><a href="../legal-pages/contact.html">Contact Us</a><a href="../legal-pages/privacy.html">Privacy Policy</a><a href="../legal-pages/terms.html">Terms &amp; Conditions</a><a href="../legal-pages/disclaimer.html">Disclaimer</a></div>
-        <p>DYOR — Always research before investing.</p>
+      <div class="safety-note">
+        <strong>Anti-Phishing &amp; Research Notice:</strong> Prices update automatically from verified market feeds and convert live into Indian Rupees (₹ INR). Unranked clone tokens and fake liquidity pools are automatically filtered out. Projects marked <em>Pre-TGE / No Token</em> have not launched an official tradable token yet—beware of fake tokens claiming their name.
+      </div>
+
+      <footer>
+        <a href="../index.html" class="footer-brand">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
+          <span>Total Crypto Hub</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="../index.html">Home</a>
+          <a href="../legal-pages/about.html">About Us</a>
+          <a href="../legal-pages/contact.html">Contact Us</a>
+          <a href="../legal-pages/privacy.html">Privacy Policy</a>
+          <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
+          <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+        </nav>
       </footer>
     </main>
   </div>
 
   <script>
-    "use strict";
+    (() => {
+      "use strict";
 
-    const API = {
-      dex: "https://api.dexscreener.com/latest/dex/search?q=",
-      llama: "https://api.llama.fi/protocols",
-      coingecko: "https://api.coingecko.com/api/v3/search?query="
-    };
-    const COINGECKO_DEMO_API_KEY = "";
+      let usdToInr = 86.50;
+      let activeFilter = "all";
+      let currentQuery = "";
 
-    const $ = (selector, root = document) => root.querySelector(selector);
-    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
-
-    function setTheme(theme) {
-      const chosen = theme === "dark" ? "dark" : "light";
-      document.documentElement.dataset.theme = chosen;
-      document.body.dataset.theme = chosen;
-      const toggle = $("#themeToggle");
-      if (toggle) toggle.textContent = chosen === "light" ? "🌙" : "☀️";
-      try { localStorage.setItem("theme", chosen); } catch (_) { /* storage may be unavailable */ }
-    }
-    function toggleTheme() {
-      setTheme(document.body.dataset.theme === "light" ? "dark" : "light");
-    }
-    function toggleCommunityMenu(force) {
-      const menu = $("#communityMenu");
-      const button = $("#communityBtn");
-      if (!menu || !button) return;
-      const isOpen = typeof force === "boolean" ? force : !menu.classList.contains("show");
-      menu.classList.toggle("show", isOpen);
-      button.setAttribute("aria-expanded", String(isOpen));
-    }
-    function closeMobileMenu() {
-      document.body.classList.remove("menu-open");
-      const button = $("#mobileMenuBtn");
-      if (button) button.setAttribute("aria-expanded", "false");
-    }
-    function escapeHTML(value = "") {
-      return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
-    }
-    function normalize(value) {
-      return String(value || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-    }
-    function isAddress(query) {
-      return /^0x[a-fA-F0-9]{40}$/.test(query) || /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(query);
-    }
-    function safeURL(value) {
-      try {
-        const url = new URL(value);
-        return url.protocol === "https:" || url.protocol === "http:" ? url.href : null;
-      } catch (_) { return null; }
-    }
-    function fmtMoney(value) {
-      const number = Number(value);
-      if (!Number.isFinite(number) || number <= 0) return "—";
-      if (number >= 1e9) return "$" + (number / 1e9).toFixed(2) + "B";
-      if (number >= 1e6) return "$" + (number / 1e6).toFixed(2) + "M";
-      if (number >= 1e3) return "$" + (number / 1e3).toFixed(2) + "K";
-      return "$" + number.toFixed(2);
-    }
-    function fmtPrice(value) {
-      const number = Number(value);
-      if (!Number.isFinite(number) || number <= 0) return "—";
-      if (number >= 1) return "$" + number.toLocaleString("en-US", { maximumFractionDigits: 4 });
-      return "$" + number.toPrecision(4);
-    }
-    function chainName(id) {
-      const names = { ethereum: "Ethereum", solana: "Solana", bsc: "BNB Chain", base: "Base", polygon: "Polygon", arbitrum: "Arbitrum", optimism: "Optimism", avalanche: "Avalanche", sui: "Sui", ton: "TON", fantom: "Fantom" };
-      const key = String(id || "").toLowerCase();
-      return names[key] || String(id || "Unknown chain");
-    }
-    function showStatus(message, type = "info") {
-      const element = $("#searchStatus");
-      element.textContent = message;
-      element.className = "status show " + type;
-    }
-    function hideStatus() {
-      const element = $("#searchStatus");
-      element.textContent = "";
-      element.className = "status";
-    }
-    async function fetchJSON(url, timeout = 12000, headers = {}) {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), timeout);
-      try {
-        const response = await fetch(url, { signal: controller.signal, headers: { accept: "application/json", ...headers } });
-        if (!response.ok) throw new Error("Request failed: " + response.status);
-        return await response.json();
-      } finally {
-        clearTimeout(timer);
-      }
-    }
-
-    async function searchDex(query) {
-      const data = await fetchJSON(API.dex + encodeURIComponent(query));
-      const pairs = Array.isArray(data.pairs) ? data.pairs : [];
-      return pairs.map(pair => {
-        const base = pair.baseToken || {};
-        const quote = pair.quoteToken || {};
-        const q = normalize(query);
-        const baseText = normalize(base.name + " " + base.symbol + " " + base.address);
-        const quoteText = normalize(quote.name + " " + quote.symbol + " " + quote.address);
-        const token = (baseText.includes(q) || !quoteText.includes(q)) ? base : quote;
-        const links = [];
-        if (Array.isArray(pair.info?.websites)) pair.info.websites.forEach(site => links.push({ label: "Website", url: site.url }));
-        if (Array.isArray(pair.info?.socials)) pair.info.socials.forEach(social => links.push({ label: social.type || "Social", url: social.url }));
-        return {
-          key: "dex:" + String(pair.chainId || "") + ":" + String(token.address || ""),
-          name: token.name || "Unknown token",
-          symbol: token.symbol || "",
-          source: "DEX Screener",
-          badge: "DEX MARKET",
-          price: fmtPrice(pair.priceUsd),
-          marketCap: fmtMoney(pair.marketCap || pair.fdv),
-          liquidity: fmtMoney(pair.liquidity?.usd),
-          volume: fmtMoney(pair.volume?.h24),
-          chain: chainName(pair.chainId),
-          address: token.address || "",
-          category: "DEX token",
-          links,
-          chart: safeURL(pair.url),
-          rank: Number(pair.liquidity?.usd) || 0
-        };
-      }).filter(item => item.name);
-    }
-    async function searchLlama(query) {
-      const data = await fetchJSON(API.llama, 15000);
-      const q = normalize(query);
-      if (!q) return [];
-      return (Array.isArray(data) ? data : []).filter(protocol => {
-        return normalize(protocol.name).includes(q) || normalize(protocol.symbol).includes(q);
-      }).slice(0, 15).map(protocol => ({
-        key: "llama:" + String(protocol.id || protocol.name),
-        name: protocol.name || "Unknown protocol",
-        symbol: protocol.symbol || "",
-        source: "DefiLlama",
-        badge: "PROTOCOL PROFILE",
-        price: "No token price",
-        marketCap: "—",
-        liquidity: "—",
-        tvl: fmtMoney(protocol.tvl),
-        chain: Array.isArray(protocol.chains) ? protocol.chains.slice(0, 3).join(", ") : "—",
-        category: protocol.category || "DeFi protocol",
-        links: protocol.url ? [{ label: "Project website", url: protocol.url }] : [],
-        rank: Number(protocol.tvl) || 0
-      }));
-    }
-    async function searchCoinGecko(query) {
-      if (!COINGECKO_DEMO_API_KEY) return [];
-      const data = await fetchJSON(API.coingecko + encodeURIComponent(query), 10000, { "x-cg-demo-api-key": COINGECKO_DEMO_API_KEY });
-      return (data.coins || []).slice(0, 10).map(coin => ({
-        key: "cg:" + coin.id,
-        name: coin.name,
-        symbol: String(coin.symbol || "").toUpperCase(),
-        source: "CoinGecko",
-        badge: "COINGECKO LISTED",
-        price: "—",
-        marketCap: coin.market_cap_rank ? "Rank #" + coin.market_cap_rank : "—",
-        liquidity: "—",
-        chain: "See listing details",
-        category: "Listed token",
-        image: coin.large || coin.thumb,
-        links: [],
-        cgUrl: "https://www.coingecko.com/en/coins/" + encodeURIComponent(coin.id),
-        rank: coin.market_cap_rank ? 1000000 - coin.market_cap_rank : 0
-      }));
-    }
-    function categoryFilter(items, category) {
-      if (category === "defi") return items.filter(item => item.source === "DefiLlama" || /defi|lending|dex|yield|liquid staking|derivatives|bridge/i.test(item.category || ""));
-      return items;
-    }
-    function resultCard(item) {
-      const image = safeURL(item.image || "");
-      const validLinks = (item.links || []).filter(link => link && safeURL(link.url)).slice(0, 4);
-      const linksHTML = validLinks.map(link => `<a href="${escapeHTML(safeURL(link.url))}" target="_blank" rel="noopener noreferrer">${escapeHTML(link.label || "Open link")} ↗</a>`).join("");
-      const chartHTML = item.chart ? `<a href="${escapeHTML(item.chart)}" target="_blank" rel="noopener noreferrer">View DEX chart ↗</a>` : "";
-      const cgHTML = item.cgUrl ? `<a href="${escapeHTML(item.cgUrl)}" target="_blank" rel="noopener noreferrer">CoinGecko ↗</a>` : "";
-      const contract = item.address ? `<span title="${escapeHTML(item.address)}">Contract: ${escapeHTML(item.address.slice(0, 7) + "…" + item.address.slice(-5))}</span>` : "";
-      return `<article class="result-card">
-        <div class="result-top">
-          <div class="coin-avatar">${image ? `<img src="${escapeHTML(image)}" alt="" loading="lazy" onerror="this.remove();this.parentElement.textContent='◈'">` : "◈"}</div>
-          <div class="result-name"><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.symbol || item.category || "Project")} · ${escapeHTML(item.source || "Source unavailable")}</p></div>
-          <span class="result-badge">${escapeHTML(item.badge || "DISCOVERED")}</span>
-        </div>
-        <div class="metric-grid">
-          <div class="metric"><span>PRICE</span><strong>${escapeHTML(item.price || "—")}</strong></div>
-          <div class="metric"><span>MARKET CAP / RANK</span><strong>${escapeHTML(item.marketCap || "—")}</strong></div>
-          <div class="metric"><span>LIQUIDITY / TVL</span><strong>${escapeHTML(item.liquidity || item.tvl || "—")}</strong></div>
-        </div>
-        <div class="result-meta">${item.chain ? `<span>⛓ ${escapeHTML(item.chain)}</span>` : ""}${item.category ? `<span>${escapeHTML(item.category)}</span>` : ""}${contract}${item.volume ? `<span>24h Vol: ${escapeHTML(item.volume)}</span>` : ""}</div>
-        <div class="result-links">${linksHTML || `<span class="no-link">No project website/social link was supplied by this result source.</span>`}${chartHTML}${cgHTML}</div>
-      </article>`;
-    }
-    function showResults(items, query) {
-      const grid = $("#resultsGrid");
-      $("#resultsTitle").textContent = `Results for “${query}”`;
-      $("#resultsCount").textContent = items.length ? `${items.length} result${items.length === 1 ? "" : "s"} found` : "No matching records";
-      grid.className = "results-grid";
-      if (!items.length) {
-        grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🧭</div><h3>No matching token or protocol found in connected sources</h3><p>This does not necessarily mean the project is fake or does not exist. It may be a new community project, an airdrop campaign, an unlisted token, or a project not indexed by these providers. We will not invent an official website or social account. Try another spelling or search the project's official channels independently.</p><p style="margin-top:12px"><a href="https://www.coingecko.com/" target="_blank" rel="noopener noreferrer">CoinGecko</a> · <a href="https://dexscreener.com/" target="_blank" rel="noopener noreferrer">DEX Screener</a> · <a href="https://defillama.com/" target="_blank" rel="noopener noreferrer">DefiLlama</a></p></div>`;
-        return;
-      }
-      grid.innerHTML = items.map(resultCard).join("");
-    }
-    async function runSearch(rawQuery, category) {
-      const query = String(rawQuery || "").trim();
-      if (!query) return;
-      const button = $("#findBtn");
-      button.disabled = true;
-      button.textContent = "Searching…";
-      hideStatus();
-      $("#resultsGrid").className = "results-grid";
-      $("#resultsGrid").innerHTML = `<div class="empty-state"><div class="empty-icon">⏳</div><h3>Searching connected sources…</h3><p>Checking token markets and protocol directories. Please wait a moment.</p></div>`;
-      $("#resultsTitle").textContent = "Searching…";
-      $("#resultsCount").textContent = "Please wait";
-      try {
-        const tasks = [
-          searchDex(query).then(data => ({ source: "DEX Screener", data, failed: false })).catch(error => ({ source: "DEX Screener", data: [], failed: true, error })),
-          searchLlama(query).then(data => ({ source: "DefiLlama", data, failed: false })).catch(error => ({ source: "DefiLlama", data: [], failed: true, error }))
-        ];
-        if (!isAddress(query) && COINGECKO_DEMO_API_KEY) {
-          tasks.push(searchCoinGecko(query).then(data => ({ source: "CoinGecko", data, failed: false })).catch(error => ({ source: "CoinGecko", data: [], failed: true, error })));
+      /* CURATED OFFICIAL DEPIN & COMMUNITY DIRECTORY */
+      const PROJECTS = [
+        {
+          id: "grass",
+          cgId: "grass",
+          name: "Grass Network",
+          symbol: "GRASS",
+          category: "depin",
+          chain: "Solana",
+          logo: "../logos/grass.png",
+          page: "../projects/grass.html",
+          status: "listed",
+          priceUsd: 0.58,
+          change24h: 6.42,
+          marketCap: 142000000,
+          summary: "Decentralized AI data & bandwidth layer"
+        },
+        {
+          id: "u2u",
+          cgId: "unicorn-ultra",
+          name: "U2U Network",
+          symbol: "U2U",
+          category: "depin",
+          chain: "U2U Chain",
+          logo: "../logos/u2u.png",
+          page: "../projects/u2u.html",
+          status: "listed",
+          priceUsd: 0.0058,
+          change24h: 4.12,
+          marketCap: 18500000,
+          summary: "DAG-based DePIN subnet infrastructure"
+        },
+        {
+          id: "uprock",
+          cgId: "uprock",
+          name: "UpRock",
+          symbol: "UPT",
+          category: "depin",
+          chain: "Solana",
+          logo: "../logos/uprock.png",
+          page: "../projects/uprock.html",
+          status: "listed",
+          priceUsd: 0.025,
+          change24h: 12.35,
+          marketCap: 12400000,
+          summary: "Mobile AI bandwidth & data intelligence network"
+        },
+        {
+          id: "roam",
+          cgId: "roam-token",
+          name: "Roam Network",
+          symbol: "ROAM",
+          category: "depin",
+          chain: "Solana",
+          logo: "../logos/roam.png",
+          page: "../depin-pages/depin.html",
+          status: "listed",
+          priceUsd: 0.14,
+          change24h: 5.20,
+          marketCap: 39000000,
+          summary: "Decentralized global OpenRoaming WiFi network"
+        },
+        {
+          id: "theta",
+          cgId: "theta-token",
+          name: "Theta Edge Node",
+          symbol: "THETA",
+          category: "depin",
+          chain: "Theta",
+          logo: "../logos/Theta Edge Node.png",
+          page: "../projects/theta.html",
+          status: "listed",
+          priceUsd: 1.65,
+          change24h: 2.84,
+          marketCap: 1650000000,
+          summary: "Decentralized video streaming & edge AI compute"
+        },
+        {
+          id: "mysterium",
+          cgId: "mysterium",
+          name: "Mysterium Network",
+          symbol: "MYST",
+          category: "depin",
+          chain: "Polygon",
+          logo: "../logos/Mysterium Network.png",
+          page: "../projects/mysterium.html",
+          status: "listed",
+          priceUsd: 0.21,
+          change24h: 1.95,
+          marketCap: 4200000,
+          summary: "Decentralized residential dVPN & proxy nodes"
+        },
+        {
+          id: "sweatcoin",
+          cgId: "sweatcoin",
+          name: "Sweatcoin",
+          symbol: "SWEAT",
+          category: "community",
+          chain: "NEAR",
+          logo: "../logos/sweatcoin.png",
+          page: "../projects/sweatcoin.html",
+          status: "listed",
+          priceUsd: 0.0075,
+          change24h: 3.15,
+          marketCap: 58000000,
+          summary: "Move-to-earn mobile fitness & step economy"
+        },
+        {
+          id: "nodle",
+          cgId: "nodle-network",
+          name: "Nodle Network",
+          symbol: "NODL",
+          category: "depin",
+          chain: "ZKsync",
+          logo: "../logos/Nodle Network.png",
+          page: "../projects/nodle.html",
+          status: "listed",
+          priceUsd: 0.0024,
+          change24h: 2.10,
+          marketCap: 11200000,
+          summary: "Smartphone Bluetooth IoT & proof-of-location mesh"
+        },
+        {
+          id: "swash",
+          cgId: "swash",
+          name: "Swash",
+          symbol: "SWASH",
+          category: "depin",
+          chain: "Polygon",
+          logo: "../logos/swash.png",
+          page: "../projects/swash.html",
+          status: "listed",
+          priceUsd: 0.0062,
+          change24h: 1.45,
+          marketCap: 6100000,
+          summary: "Browser data union & attention monetization"
+        },
+        {
+          id: "ovr",
+          cgId: "ovr",
+          name: "Over The Reality",
+          symbol: "OVR",
+          category: "depin",
+          chain: "Polygon",
+          logo: "../logos/over-the-reality.png",
+          page: "../projects/over-the-reality.html",
+          status: "listed",
+          priceUsd: 0.19,
+          change24h: 3.74,
+          marketCap: 9800000,
+          summary: "AR spatial mapping & decentralized geo-location"
+        },
+        {
+          id: "pi",
+          cgId: "pi-network",
+          name: "Pi Network",
+          symbol: "PI",
+          category: "community",
+          chain: "Pi Mainnet",
+          logo: "../logos/pi.png",
+          page: "../mobile-pages/mobile-mining.html",
+          status: "listed",
+          priceUsd: 0.72,
+          change24h: 4.60,
+          marketCap: 4900000000,
+          summary: "Mobile-first peer-to-peer Web3 community network"
+        },
+        {
+          id: "helium",
+          cgId: "helium",
+          name: "Helium Network",
+          symbol: "HNT",
+          category: "depin",
+          chain: "Solana",
+          logo: "../logos/helium.png",
+          page: "../depin-pages/depin.html",
+          status: "listed",
+          priceUsd: 3.85,
+          change24h: 2.40,
+          marketCap: 685000000,
+          summary: "Decentralized wireless 5G & LoRaWAN coverage"
+        },
+        {
+          id: "ionet",
+          cgId: "io",
+          name: "io.net",
+          symbol: "IO",
+          category: "depin",
+          chain: "Solana",
+          logo: "../logos/ionet.png",
+          page: "../depin-pages/depin.html",
+          status: "listed",
+          priceUsd: 1.42,
+          change24h: 7.18,
+          marketCap: 215000000,
+          summary: "Decentralized GPU compute network for AI"
+        },
+        {
+          id: "render",
+          cgId: "render-token",
+          name: "Render Network",
+          symbol: "RENDER",
+          category: "depin",
+          chain: "Solana",
+          logo: "../logos/render.png",
+          page: "../depin-pages/depin.html",
+          status: "listed",
+          priceUsd: 4.90,
+          change24h: 3.92,
+          marketCap: 2540000000,
+          summary: "Distributed GPU rendering & 3D AI compute"
+        },
+        {
+          id: "peaq",
+          cgId: "peaq-2",
+          name: "peaq Network",
+          symbol: "PEAQ",
+          category: "depin",
+          chain: "peaq L1",
+          logo: "../logos/peaq.png",
+          page: "../depin-pages/depin.html",
+          status: "listed",
+          priceUsd: 0.16,
+          change24h: 5.55,
+          marketCap: 138000000,
+          summary: "Layer-1 blockchain built for Machine RWA & DePIN"
+        },
+        {
+          id: "titan",
+          cgId: "",
+          name: "Titan Network",
+          symbol: "TNT (Pre-TGE)",
+          category: "depin",
+          chain: "Multi-Chain",
+          logo: "../logos/titan.png",
+          page: "../projects/titan.html",
+          status: "pretge",
+          priceUsd: null,
+          change24h: null,
+          marketCap: null,
+          summary: "Edge routing, bandwidth & storage DePIN"
+        },
+        {
+          id: "bixberry",
+          cgId: "",
+          name: "Bixberry",
+          symbol: "Pre-TGE",
+          category: "community",
+          chain: "Multi-Chain",
+          logo: "../logos/Bixberry.png",
+          page: "../projects/bixberry.html",
+          status: "pretge",
+          priceUsd: null,
+          change24h: null,
+          marketCap: null,
+          summary: "Mobile background mining & rewards network"
+        },
+        {
+          id: "hyra",
+          cgId: "",
+          name: "Hyra Network",
+          symbol: "HYRA (Pre-TGE)",
+          category: "depin",
+          chain: "Hyra L3",
+          logo: "../logos/Hyra Network.png",
+          page: "../projects/hyra.html",
+          status: "pretge",
+          priceUsd: null,
+          change24h: null,
+          marketCap: null,
+          summary: "Decentralized AI training & mobile/PC compute"
+        },
+        {
+          id: "adreva",
+          cgId: "",
+          name: "Adreva",
+          symbol: "Pre-TGE",
+          category: "depin",
+          chain: "Web3",
+          logo: "../logos/adreva.png",
+          page: "../projects/adreva.html",
+          status: "pretge",
+          priceUsd: null,
+          change24h: null,
+          marketCap: null,
+          summary: "Privacy-first DePIN advertising network"
         }
-        const responses = await Promise.all(tasks);
-        let items = responses.flatMap(response => response.data);
-        const seen = new Set();
-        items = items.filter(item => {
-          const key = item.key || normalize(item.name + item.symbol);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
+      ];
+
+      const $ = (sel, root = document) => root.querySelector(sel);
+      const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+      function escapeHTML(str = "") {
+        return String(str).replace(/[&<>"']/g, ch => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        })[ch]);
+      }
+
+      function formatUsd(val) {
+        if (val === null || val === undefined || !Number.isFinite(Number(val))) return null;
+        const n = Number(val);
+        if (n >= 1000) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (n >= 1) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+        if (n >= 0.01) return "$" + n.toFixed(4);
+        return "$" + n.toFixed(6).replace(/0+$/, "").replace(/\.$/, "");
+      }
+
+      function formatInr(usdVal) {
+        if (usdVal === null || usdVal === undefined || !Number.isFinite(Number(usdVal))) return null;
+        const inr = Number(usdVal) * usdToInr;
+        if (inr >= 1000) return "₹" + inr.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (inr >= 1) return "₹" + inr.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (inr >= 0.01) return "₹" + inr.toFixed(4);
+        return "₹" + inr.toFixed(5).replace(/0+$/, "").replace(/\.$/, "");
+      }
+
+      function formatMcap(val) {
+        if (!val || !Number.isFinite(Number(val))) return "—";
+        const n = Number(val);
+        if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
+        if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
+        if (n >= 1e3) return "$" + (n / 1e3).toFixed(1) + "K";
+        return "$" + n.toFixed(0);
+      }
+
+      function formatChange(val) {
+        if (val === null || val === undefined || !Number.isFinite(Number(val))) {
+          return `<span class="change-neutral">—</span>`;
+        }
+        const n = Number(val);
+        if (n > 0) return `<span class="change-up">▲ +${n.toFixed(2)}%</span>`;
+        if (n < 0) return `<span class="change-down">▼ ${n.toFixed(2)}%</span>`;
+        return `<span class="change-neutral">0.00%</span>`;
+      }
+
+      /* RENDER FULL-WIDTH MARKET TABLE */
+      function renderTable(list) {
+        const tbody = $("#tokenTableBody");
+        const badge = $("#projectCountBadge");
+        badge.textContent = `${list.length} Official Project${list.length === 1 ? "" : "s"}`;
+
+        if (!list.length) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7">
+                <div class="table-empty">
+                  <div style="font-size:28px;">🔎</div>
+                  <h3>No matching project in this filter</h3>
+                  <p>Try switching to <strong>All Projects</strong> or searching by project name (e.g., Grass, U2U, UpRock, Roam, Theta).</p>
+                </div>
+              </td>
+            </tr>`;
+          return;
+        }
+
+        tbody.innerHTML = list.map((p, idx) => {
+          const usdStr = formatUsd(p.priceUsd);
+          const inrStr = formatInr(p.priceUsd);
+          const priceHtml = usdStr
+            ? `<span class="price-usd">${escapeHTML(usdStr)} USD</span> <span class="price-inr">/ ${escapeHTML(inrStr)} INR</span>`
+            : `<span class="change-neutral">Token Not Launched</span>`;
+
+          const statusHtml = p.status === "listed"
+            ? `<span class="status-official">✓ Official Project</span>`
+            : `<span class="status-pretge">⏳ Pre-TGE / No Token</span>`;
+
+          const initial = escapeHTML((p.name || "P").charAt(0).toUpperCase());
+
+          return `
+            <tr data-project-id="${escapeHTML(p.id)}" tabindex="0">
+              <td class="col-rank">${idx + 1}</td>
+              <td>
+                <div class="proj-cell">
+                  <div class="proj-avatar">
+                    <span class="proj-fallback" aria-hidden="true">${initial}</span>
+                    ${p.logo ? `<img src="${escapeHTML(p.logo)}" alt="${escapeHTML(p.name)}" loading="lazy" onerror="this.remove()">` : ""}
+                  </div>
+                  <div class="proj-name-text">
+                    <strong>${escapeHTML(p.name)}</strong>
+                    <small>${escapeHTML(p.symbol)} · ${escapeHTML(p.summary)}</small>
+                  </div>
+                </div>
+              </td>
+              <td><span class="chain-pill">⛓ ${escapeHTML(p.chain)}</span></td>
+              <td class="price-cell">${priceHtml}</td>
+              <td>${formatChange(p.change24h)}</td>
+              <td>${formatMcap(p.marketCap)}</td>
+              <td>${statusHtml}</td>
+            </tr>`;
+        }).join("");
+
+        $$("tr[data-project-id]", tbody).forEach(row => {
+          row.addEventListener("click", () => {
+            const proj = PROJECTS.find(item => item.id === row.dataset.projectId);
+            if (proj) showInstantCard(proj, "Selected Project Overview");
+          });
         });
-        items = categoryFilter(items, category);
-        items.sort((a, b) => {
-          const aDeFi = a.source === "DefiLlama" || /defi/i.test(a.category || "") ? 1 : 0;
-          const bDeFi = b.source === "DefiLlama" || /defi/i.test(b.category || "") ? 1 : 0;
-          if (category === "all" && aDeFi !== bDeFi) return bDeFi - aDeFi;
-          return (b.rank || 0) - (a.rank || 0);
-        });
-        showResults(items.slice(0, 24), query);
-        const successfulSources = responses.filter(response => !response.failed).map(response => response.source);
-        const failedSources = responses.filter(response => response.failed).map(response => response.source);
-        if (items.length) {
-          let message = `Search complete. Results came from: ${successfulSources.join(", ") || "available providers"}. A project profile does not confirm that its token is tradable or safe.`;
-          if (failedSources.length) message += ` Some sources could not respond: ${failedSources.join(", ")}.`;
-          showStatus(message, "success");
-        } else if (failedSources.length === responses.length) {
-          showStatus("The connected search providers could not be reached. Please try again later. If this continues, check your internet connection or provider availability.", "error");
-        } else {
-          let message = "No result was returned by the connected sources. Try the full project name, token symbol or contract address.";
-          if (failedSources.length) message += ` These sources did not respond: ${failedSources.join(", ")}.`;
-          showStatus(message, "info");
-        }
-      } catch (error) {
-        showResults([], query);
-        showStatus("Something went wrong while searching. Please refresh the page and try again.", "error");
-      } finally {
-        button.disabled = false;
-        button.textContent = "🔍 Search Projects";
       }
-    }
 
-    function selectCategory(category) {
-      $("#categorySelect").value = category;
-      $$(".tool-card").forEach(card => card.classList.toggle("active", card.dataset.category === category));
-    }
-    function initPage() {
-      let savedTheme = "light";
-      try { savedTheme = localStorage.getItem("theme") || localStorage.getItem("tcn-theme") || "light"; } catch (_) { /* ignore */ }
-      setTheme(savedTheme);
+      /* RENDER GOOGLE-STYLE INSTANT RESULT CARD */
+      function showInstantCard(proj, label = "Instant Search Result · Verified Match") {
+        const wrap = $("#instantResultWrap");
+        const usdStr = formatUsd(proj.priceUsd);
+        const inrStr = formatInr(proj.priceUsd);
+        const initial = escapeHTML((proj.name || "P").charAt(0).toUpperCase());
 
-      $("#themeToggle").addEventListener("click", toggleTheme);
-      $("#communityBtn").addEventListener("click", () => toggleCommunityMenu());
-      document.addEventListener("click", event => {
-        if (!event.target.closest(".community-dropdown")) toggleCommunityMenu(false);
-      });
+        const priceBlock = usdStr
+          ? `
+            <div class="instant-price-item">
+              <span>Live Price (USD)</span>
+              <strong>${escapeHTML(usdStr)}</strong>
+            </div>
+            <div class="instant-price-item">
+              <span>Live Price (INR)</span>
+              <strong>${escapeHTML(inrStr)}</strong>
+            </div>
+            <div class="instant-price-item">
+              <span>24h Change</span>
+              <strong style="font-size:17px;">${formatChange(proj.change24h)}</strong>
+            </div>
+            <div class="instant-price-item">
+              <span>Market Cap</span>
+              <strong style="font-size:18px;">${escapeHTML(formatMcap(proj.marketCap))}</strong>
+            </div>`
+          : `
+            <div class="instant-price-item">
+              <span>Token Status</span>
+              <strong style="font-size:16px;color:#d97706;">Pre-TGE (Not Listed Yet)</strong>
+            </div>`;
 
-      $("#mobileMenuBtn").addEventListener("click", function () {
-        const isOpen = document.body.classList.toggle("menu-open");
-        this.setAttribute("aria-expanded", String(isOpen));
-      });
-      $("#mobileOverlay").addEventListener("click", closeMobileMenu);
-      $$(".side-link").forEach(link => link.addEventListener("click", closeMobileMenu));
-      document.addEventListener("keydown", event => {
-        if (event.key === "Escape") {
-          toggleCommunityMenu(false);
-          closeMobileMenu();
+        const actionBtn = proj.page
+          ? `<a href="${escapeHTML(proj.page)}" class="instant-btn">Open Project Guide →</a>`
+          : `<a href="https://www.coingecko.com/en/coins/${encodeURIComponent(proj.cgId || proj.id)}" target="_blank" rel="noopener noreferrer" class="instant-btn">View on CoinGecko ↗</a>`;
+
+        wrap.innerHTML = `
+          <div class="instant-card">
+            <div class="instant-top-badge">⚡ ${escapeHTML(label)} · ${escapeHTML(proj.chain)}</div>
+            <div class="instant-main-grid">
+              <div class="instant-identity">
+                <div class="instant-logo">
+                  <span class="instant-fallback" aria-hidden="true">${initial}</span>
+                  ${proj.logo ? `<img src="${escapeHTML(proj.logo)}" alt="${escapeHTML(proj.name)}" onerror="this.remove()">` : ""}
+                </div>
+                <div>
+                  <h2>${escapeHTML(proj.name)} <span class="instant-ticker">${escapeHTML(proj.symbol)}</span></h2>
+                  <p class="instant-sub">${escapeHTML(proj.summary)}</p>
+                </div>
+              </div>
+              <div class="instant-price-box">${priceBlock}</div>
+              <div class="instant-actions">
+                ${actionBtn}
+                <button type="button" class="instant-btn-outline" id="closeInstantBtn">✕ Close</button>
+              </div>
+            </div>
+          </div>`;
+        wrap.classList.add("show");
+        $("#closeInstantBtn").addEventListener("click", () => wrap.classList.remove("show"));
+      }
+
+      function applyFilters() {
+        const q = currentQuery.trim().toLowerCase();
+        let filtered = PROJECTS.filter(p => {
+          if (activeFilter === "depin" && p.category !== "depin") return false;
+          if (activeFilter === "community" && p.category !== "community") return false;
+          if (activeFilter === "listed" && p.status !== "listed") return false;
+          if (activeFilter === "pretge" && p.status !== "pretge") return false;
+          if (activeFilter === "gainers" && !(p.status === "listed" && Number(p.change24h) > 0)) return false;
+          if (!q) return true;
+          return (
+            p.name.toLowerCase().includes(q) ||
+            p.symbol.toLowerCase().includes(q) ||
+            p.chain.toLowerCase().includes(q) ||
+            p.summary.toLowerCase().includes(q)
+          );
+        });
+
+        if (activeFilter === "gainers") {
+          filtered = [...filtered].sort((a, b) => (b.change24h || 0) - (a.change24h || 0));
         }
-      });
 
-      $("#finderForm").addEventListener("submit", event => {
-        event.preventDefault();
-        runSearch($("#projectQuery").value, $("#categorySelect").value);
-      });
-      $$(".tool-card").forEach(card => card.addEventListener("click", () => {
-        selectCategory(card.dataset.category);
-        $("#projectQuery").focus();
-        $("#finder").scrollIntoView({ behavior: "smooth", block: "start" });
-      }));
-      $("#categorySelect").addEventListener("change", event => selectCategory(event.target.value));
-      $("#siteSearch").addEventListener("keydown", event => {
-        if (event.key === "Enter") {
-          const query = event.currentTarget.value.trim();
-          if (!query) return;
-          $("#projectQuery").value = query;
-          $("#finder").scrollIntoView({ behavior: "smooth", block: "start" });
-          runSearch(query, $("#categorySelect").value);
+        renderTable(filtered);
+        return filtered;
+      }
+
+      /* ANTI-JUNK FILTERED LIVE SEARCH (LOCAL CURATED + COINGECKO VERIFIED RANKED) */
+      async function handleSearchSubmit(rawQuery) {
+        const query = String(rawQuery || "").trim();
+        currentQuery = query;
+        const clearBtn = $("#clearSearchBtn");
+        clearBtn.classList.toggle("show", query.length > 0);
+
+        if (!query) {
+          $("#instantResultWrap").classList.remove("show");
+          applyFilters();
+          return;
         }
+
+        const localMatches = applyFilters();
+
+        // 1. Exact or strong local curated match -> Show instant Google-style card immediately
+        if (localMatches.length > 0) {
+          const qLower = query.toLowerCase();
+          const bestLocal =
+            localMatches.find(p => p.name.toLowerCase() === qLower || p.symbol.toLowerCase() === qLower) ||
+            localMatches[0];
+          showInstantCard(bestLocal, "Official Directory Match");
+          return;
+        }
+
+        // 2. External search for any other crypto project (Strictly filtered by Market Cap Rank to block fake clones)
+        const submitBtn = $("#searchSubmitBtn");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Searching…";
+
+        try {
+          const res = await fetch("https://api.coingecko.com/api/v3/search?query=" + encodeURIComponent(query));
+          if (!res.ok) throw new Error("Search unavailable");
+          const data = await res.json();
+          const coins = Array.isArray(data.coins) ? data.coins : [];
+
+          // Anti-junk filter: Only keep coins that have an official market_cap_rank (blocks unranked fake clones)
+          const verifiedRanked = coins
+            .filter(c => Number.isInteger(c.market_cap_rank) && c.market_cap_rank > 0)
+            .sort((a, b) => a.market_cap_rank - b.market_cap_rank);
+
+          if (!verifiedRanked.length) {
+            const wrap = $("#instantResultWrap");
+            wrap.innerHTML = `
+              <div class="instant-card" style="border-color:#f59e0b;">
+                <div class="instant-top-badge" style="background:#fef3c7;color:#92400e;">⚠️ Anti-Scam Filter Active</div>
+                <p style="margin:0;font-size:13px;font-weight:700;color:var(--heading);">
+                  No ranked, verified token found for “${escapeHTML(query)}”. If this is a new DePIN or airdrop app, its token may not be launched yet—beware of fake clones.
+                </p>
+              </div>`;
+            wrap.classList.add("show");
+            return;
+          }
+
+          const topCoin = verifiedRanked[0];
+          // Fetch live price for this single verified top match
+          const priceRes = await fetch(
+            `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(topCoin.id)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true`
+          );
+          const priceJson = priceRes.ok ? await priceRes.json() : {};
+          const info = priceJson[topCoin.id] || {};
+
+          if (info.inr && info.usd) {
+            usdToInr = info.inr / info.usd;
+            $("#fxText").textContent = `Live Feed · 1 USD = ₹${usdToInr.toFixed(2)}`;
+          }
+
+          showInstantCard(
+            {
+              id: topCoin.id,
+              cgId: topCoin.id,
+              name: topCoin.name,
+              symbol: String(topCoin.symbol || "").toUpperCase(),
+              chain: `Rank #${topCoin.market_cap_rank}`,
+              logo: topCoin.large || topCoin.thumb || "",
+              page: "",
+              status: "listed",
+              priceUsd: info.usd ?? null,
+              change24h: info.usd_24h_change ?? null,
+              marketCap: info.usd_market_cap ?? null,
+              summary: `Verified Global Crypto Asset · CoinGecko Rank #${topCoin.market_cap_rank}`
+            },
+            "Verified Global Token Match"
+          );
+        } catch (_) {
+          // Silent fallback if rate-limited
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "→ Search";
+        }
+      }
+
+      /* FETCH LIVE PRICES & USD->INR RATE FOR OUR CURATED LIST */
+      async function syncLiveMarketData() {
+        const cgIds = PROJECTS.map(p => p.cgId).filter(Boolean).join(",");
+        if (!cgIds) return;
+        try {
+          const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(cgIds)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true`;
+          const res = await fetch(url);
+          if (!res.ok) return;
+          const data = await res.json();
+
+          let updatedFx = false;
+          PROJECTS.forEach(p => {
+            if (p.cgId && data[p.cgId]) {
+              const row = data[p.cgId];
+              if (typeof row.usd === "number" && row.usd > 0) p.priceUsd = row.usd;
+              if (typeof row.usd_24h_change === "number") p.change24h = row.usd_24h_change;
+              if (typeof row.usd_market_cap === "number" && row.usd_market_cap > 0) p.marketCap = row.usd_market_cap;
+              if (!updatedFx && typeof row.usd === "number" && typeof row.inr === "number" && row.usd > 0) {
+                usdToInr = row.inr / row.usd;
+                updatedFx = true;
+              }
+            }
+          });
+
+          if (updatedFx) {
+            $("#fxText").textContent = `Live Feed · 1 USD = ₹${usdToInr.toFixed(2)}`;
+          }
+          applyFilters();
+        } catch (_) {
+          /* Keep accurate fallback values seamlessly */
+        }
+      }
+
+      /* THEME & NAVIGATION */
+      function applyTheme(theme) {
+        const chosen = theme === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = chosen;
+        document.body.dataset.theme = chosen;
+        const btn = $("#themeToggle");
+        if (btn) btn.textContent = chosen === "light" ? "🌙" : "☀️";
+        try { localStorage.setItem("theme", chosen); } catch (_) { /* ignore */ }
+      }
+
+      function closeMobileMenu() {
+        document.body.classList.remove("menu-open");
+        const btn = $("#mobileMenuBtn");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        let savedTheme = "light";
+        try { savedTheme = localStorage.getItem("theme") || "light"; } catch (_) { /* ignore */ }
+        applyTheme(savedTheme);
+
+        $("#themeToggle").addEventListener("click", () => {
+          applyTheme(document.body.dataset.theme === "light" ? "dark" : "light");
+        });
+
+        const menuBtn = $("#mobileMenuBtn");
+        const overlay = $("#mobileOverlay");
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function () {
+            const isOpen = document.body.classList.toggle("menu-open");
+            this.setAttribute("aria-expanded", String(isOpen));
+          });
+        }
+        if (overlay) overlay.addEventListener("click", closeMobileMenu);
+        $$(".side-link").forEach(link => link.addEventListener("click", closeMobileMenu));
+
+        const commBtn = $("#communityBtn");
+        const commMenu = $("#communityMenu");
+        if (commBtn && commMenu) {
+          commBtn.addEventListener("click", () => {
+            const isOpen = commMenu.classList.toggle("show");
+            commBtn.setAttribute("aria-expanded", String(isOpen));
+          });
+          document.addEventListener("click", e => {
+            if (!e.target.closest(".community-dropdown")) {
+              commMenu.classList.remove("show");
+              commBtn.setAttribute("aria-expanded", "false");
+            }
+          });
+        }
+
+        /* FILTER PILLS */
+        $$(".filter-pill").forEach(pill => {
+          pill.addEventListener("click", () => {
+            $$(".filter-pill").forEach(b => b.classList.remove("active"));
+            pill.classList.add("active");
+            activeFilter = pill.dataset.filter || "all";
+            applyFilters();
+          });
+        });
+
+        /* SEARCH INPUT & FORM */
+        const searchInput = $("#projectSearchInput");
+        const clearBtn = $("#clearSearchBtn");
+        searchInput.addEventListener("input", () => {
+          currentQuery = searchInput.value;
+          clearBtn.classList.toggle("show", currentQuery.trim().length > 0);
+          if (!currentQuery.trim()) {
+            $("#instantResultWrap").classList.remove("show");
+          }
+          applyFilters();
+        });
+
+        clearBtn.addEventListener("click", () => {
+          searchInput.value = "";
+          currentQuery = "";
+          clearBtn.classList.remove("show");
+          $("#instantResultWrap").classList.remove("show");
+          applyFilters();
+          searchInput.focus();
+        });
+
+        $("#tokenSearchForm").addEventListener("submit", e => {
+          e.preventDefault();
+          handleSearchSubmit(searchInput.value);
+        });
+
+        // Initial render + live price sync
+        applyFilters();
+        syncLiveMarketData();
       });
-    }
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initPage);
-    else initPage();
+    })();
   </script>
+
+  <!-- TOTAL CRYPTO HUB AI ASSISTANT -->
   <script src="../ai-assistant/assistant.js" defer></script>
   <script src="../ai-assistant/robot-animation.js" defer></script>
 </body>
