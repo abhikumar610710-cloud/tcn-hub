@@ -354,11 +354,11 @@
       padding: 20px 26px 40px;
     }
 
-    /* 1. SMART TOKEN FINDER SEARCH BOX AT TOP */
+    /* 1. SMART TOKEN FINDER CARD (TITLE LEFT, SEARCH RIGHT) */
     .finder-mint-card {
       position: relative;
       overflow: hidden;
-      padding: 26px 28px;
+      padding: 24px 28px;
       border-radius: 22px;
       border: 1.5px solid #96ecd0;
       background:
@@ -373,23 +373,23 @@
         radial-gradient(circle at 86% 18%, rgba(32, 217, 154, 0.2), transparent 36%),
         linear-gradient(125deg, #0d2c29 0%, #123b35 55%, #144d43 100%);
     }
-    .finder-header-row {
+    .finder-top-flex {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 18px;
     }
     .finder-title-group {
       display: flex;
       align-items: center;
       gap: 14px;
+      flex: 0 1 auto;
     }
     .finder-circle-icon {
-      width: 52px;
-      height: 52px;
-      flex: 0 0 52px;
+      width: 50px;
+      height: 50px;
+      flex: 0 0 50px;
       border-radius: 50%;
       display: grid;
       place-items: center;
@@ -398,8 +398,8 @@
       box-shadow: 0 8px 18px rgba(8, 168, 107, 0.28);
     }
     .finder-circle-icon svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2.5;
@@ -409,7 +409,7 @@
     .finder-title-group h1 {
       margin: 0;
       color: var(--heading);
-      font-size: clamp(22px, 2.3vw, 29px);
+      font-size: clamp(21px, 2.1vw, 27px);
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.6px;
@@ -417,92 +417,71 @@
     .finder-title-group p {
       margin: 4px 0 0;
       color: var(--body);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
     }
-    .live-source-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(8, 168, 107, 0.28);
-      color: var(--heading);
-      font-size: 11px;
-      font-weight: 800;
-    }
-    html[data-theme="dark"] .live-source-pill, body[data-theme="dark"] .live-source-pill {
-      background: rgba(10, 42, 36, 0.85);
-    }
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #08a86b;
-      box-shadow: 0 0 8px #08a86b;
-    }
 
-    /* BIG SEARCH BAR */
-    .big-search-form {
-      position: relative;
+    /* RIGHT-ALIGNED SEARCH BAR */
+    .right-search-form {
+      flex: 1 1 420px;
+      max-width: 560px;
       display: flex;
       align-items: center;
       background: var(--surface);
       border: 2px solid #96ecd0;
       border-radius: 999px;
-      padding: 5px 6px 5px 18px;
+      padding: 4px 5px 4px 16px;
       box-shadow: 0 8px 22px rgba(8, 120, 82, 0.08);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .big-search-form:focus-within {
+    .right-search-form:focus-within {
       border-color: var(--green);
       box-shadow: 0 10px 26px rgba(8, 168, 107, 0.16);
     }
     .big-search-prefix {
       color: var(--muted);
-      font-size: 18px;
-      margin-right: 10px;
+      font-size: 16px;
+      margin-right: 8px;
       display: inline-flex;
       align-items: center;
     }
     .big-search-input {
       flex: 1;
       min-width: 0;
-      height: 44px;
+      height: 40px;
       border: 0;
       outline: none;
       background: transparent;
       color: var(--heading);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
     }
     .big-search-input::placeholder { color: var(--muted); font-weight: 500; }
     .clear-search-btn {
       display: none;
-      width: 28px;
-      height: 28px;
-      margin-right: 8px;
+      width: 26px;
+      height: 26px;
+      margin-right: 6px;
       border: 0;
       border-radius: 50%;
       background: var(--surface-soft);
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
     }
     .clear-search-btn.show { display: inline-grid; place-items: center; }
     .big-search-btn {
-      height: 44px;
-      padding: 0 26px;
+      height: 40px;
+      padding: 0 22px;
       border: 0;
       border-radius: 999px;
       background: linear-gradient(135deg, #08a86b, #057a4e);
       color: #ffffff;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 800;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       box-shadow: 0 5px 15px rgba(8, 168, 107, 0.26);
       white-space: nowrap;
       transition: transform 0.15s ease, filter 0.15s ease;
@@ -511,7 +490,7 @@
     .big-search-btn:disabled { opacity: 0.7; cursor: wait; }
 
     .search-sub-note {
-      margin: 12px 4px 0;
+      margin: 12px 2px 0;
       color: var(--body);
       font-size: 11px;
       font-weight: 600;
@@ -520,7 +499,7 @@
     /* 2. SPONSOR BANNER RIGHT BELOW SMART TOKEN FINDER */
     .focal-sponsor-bar {
       width: 100%;
-      min-height: 78px;
+      min-height: 76px;
       margin-top: 16px;
       padding: 12px 24px;
       display: flex;
@@ -594,7 +573,7 @@
       white-space: nowrap;
     }
 
-    /* 3. RESULTS / 20 MAJOR CHAINS SECTION */
+    /* 3. RESULTS / 20 MAJOR CHAINS LIST SECTION */
     .results-section {
       margin-top: 22px;
     }
@@ -604,7 +583,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .results-header h2 {
       margin: 0;
@@ -618,94 +597,94 @@
       font-weight: 700;
     }
 
-    /* 20 MAJOR CHAINS GRID (NO FAKE/HARDCODED PRICES) */
-    .chains-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 13px;
-    }
-    .chain-card {
-      padding: 15px 16px;
-      border-radius: 17px;
+    /* CLEAN VERTICAL LIST FOR 20 MAJOR CHAINS */
+    .chains-list-panel {
+      border-radius: 20px;
       border: 1px solid var(--border);
       background: var(--surface);
-      box-shadow: 0 6px 18px rgba(20, 76, 66, 0.04);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .chain-list-row {
+      width: 100%;
+      padding: 14px 20px;
+      border: 0;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 16px;
       text-align: left;
-      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+      transition: background 0.15s ease;
     }
-    .chain-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--green);
-      box-shadow: 0 10px 22px rgba(8, 168, 107, 0.1);
+    .chain-list-row:last-child { border-bottom: 0; }
+    .chain-list-row:hover {
+      background: var(--surface-soft);
     }
-    .chain-top {
+    .chain-row-left {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    .chain-name-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      gap: 14px;
       min-width: 0;
+      flex: 1;
     }
-    .chain-badge-icon {
-      width: 36px;
-      height: 36px;
-      flex: 0 0 36px;
-      border-radius: 11px;
+    .chain-row-num {
+      width: 28px;
+      flex: 0 0 28px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .chain-row-symbol {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 12px;
       display: grid;
       place-items: center;
       background: var(--green-soft);
       color: var(--green-dark);
-      font-size: 12px;
-      font-weight: 800;
       border: 1px solid rgba(8, 168, 107, 0.22);
-    }
-    html[data-theme="dark"] .chain-badge-icon, body[data-theme="dark"] .chain-badge-icon { color: var(--green-light); }
-    .chain-card strong {
-      display: block;
-      color: var(--heading);
-      font-size: 13.5px;
+      font-size: 11px;
       font-weight: 800;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
-    .chain-card small {
-      display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 700;
+    html[data-theme="dark"] .chain-row-symbol, body[data-theme="dark"] .chain-row-symbol { color: var(--green-light); }
+    .chain-row-info { min-width: 0; flex: 1; }
+    .chain-row-title-line {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .chain-layer-tag {
-      padding: 3px 8px;
+    .chain-row-title-line strong {
+      color: var(--heading);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .chain-layer-pill {
+      padding: 2px 9px;
       border-radius: 999px;
       background: var(--surface-soft);
       border: 1px solid var(--border);
       color: var(--body);
-      font-size: 9.5px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .chain-row-desc {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
+    .chain-row-action {
+      flex: 0 0 auto;
+      color: var(--green-dark);
+      font-size: 11.5px;
       font-weight: 800;
       white-space: nowrap;
     }
-    .chain-desc {
-      margin: 0;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.45;
-    }
-    .chain-check-hint {
-      color: var(--green-dark);
-      font-size: 10.5px;
-      font-weight: 800;
-    }
-    html[data-theme="dark"] .chain-check-hint, body[data-theme="dark"] .chain-check-hint { color: var(--green-light); }
+    html[data-theme="dark"] .chain-row-action, body[data-theme="dark"] .chain-row-action { color: var(--green-light); }
 
     /* PRIMARY GOOGLE-STYLE INSTANT ANSWER CARD */
     .instant-answer-card {
@@ -1019,15 +998,9 @@
     .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
     .footer-links a:hover { color: var(--green); }
 
-    @media (max-width: 1280px) {
-      .chains-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
     @media (max-width: 1100px) {
       :root { --sidebar-width: 235px; }
       .info-cards { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 920px) {
-      .chains-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 860px) {
       .focal-sponsor-bar { flex-direction: column; align-items: flex-start; padding: 14px 16px; }
@@ -1049,10 +1022,11 @@
       main { padding: 15px 12px 30px; }
       .finder-mint-card { padding: 18px 15px; }
       .finder-circle-icon { width: 44px; height: 44px; flex-basis: 44px; }
-      .big-search-form { padding: 4px 5px 4px 13px; }
-      .big-search-input { height: 40px; font-size: 12.5px; }
-      .big-search-btn { height: 40px; padding: 0 16px; font-size: 12px; }
-      .chains-grid { grid-template-columns: 1fr; }
+      .right-search-form { flex: 1 1 100%; max-width: 100%; padding: 4px 5px 4px 13px; }
+      .big-search-input { height: 38px; font-size: 12.5px; }
+      .big-search-btn { height: 38px; padding: 0 16px; font-size: 12px; }
+      .chain-list-row { flex-direction: column; align-items: flex-start; gap: 8px; padding: 13px 15px; }
+      .chain-row-action { padding-left: 42px; }
     }
   </style>
 </head>
@@ -1116,38 +1090,34 @@
 
   <div class="main-column">
     <main>
-      <!-- 1. SMART TOKEN FINDER SEARCH BOX AT TOP -->
+      <!-- 1. SMART TOKEN FINDER CARD (TITLE LEFT, SEARCH RIGHT) -->
       <section class="finder-mint-card" aria-labelledby="finderHeading">
-        <div class="finder-header-row">
+        <div class="finder-top-flex">
           <div class="finder-title-group">
             <div class="finder-circle-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
             </div>
             <div>
               <h1 id="finderHeading">Smart Token Finder</h1>
-              <p>Search any crypto token, blockchain coin, or DeFi protocol for 100% live USD &amp; INR market data</p>
+              <p>Real-time USD &amp; INR token &amp; protocol lookup</p>
             </div>
           </div>
-          <div class="live-source-pill">
-            <span class="live-dot" aria-hidden="true"></span>
-            <span>Real-Time CoinGecko &amp; DefiLlama Feed</span>
-          </div>
-        </div>
 
-        <form class="big-search-form" id="tokenSearchForm">
-          <span class="big-search-prefix" aria-hidden="true">🔍</span>
-          <input
-            class="big-search-input"
-            id="projectSearchInput"
-            type="search"
-            placeholder="Enter token or chain name (e.g. Bitcoin, Ethereum, Solana, Theta, Grass, Aave)..."
-            autocomplete="off"
-            required
-          >
-          <button class="clear-search-btn" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
-          <button class="big-search-btn" id="searchSubmitBtn" type="submit">→ Search</button>
-        </form>
-        <p class="search-sub-note">Click any of the 20 major chains below or type any token name above for live market prices — zero hardcoded or fake prices.</p>
+          <form class="right-search-form" id="tokenSearchForm">
+            <span class="big-search-prefix" aria-hidden="true">🔍</span>
+            <input
+              class="big-search-input"
+              id="projectSearchInput"
+              type="search"
+              placeholder="Search token or chain (e.g. Bitcoin, Solana, Theta, Grass)..."
+              autocomplete="off"
+              required
+            >
+            <button class="clear-search-btn" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
+            <button class="big-search-btn" id="searchSubmitBtn" type="submit">→ Search</button>
+          </form>
+        </div>
+        <p class="search-sub-note">Click any chain in the list below or search on the right for live market prices — zero hardcoded or fake prices.</p>
       </section>
 
       <!-- 2. SPONSOR BANNER RIGHT BELOW SMART TOKEN FINDER -->
@@ -1162,11 +1132,11 @@
         <span class="focal-sponsor-btn">Become a Sponsor →</span>
       </a>
 
-      <!-- 3. 20 MAJOR CHAINS OVERVIEW / LIVE SEARCH RESULTS -->
+      <!-- 3. 20 MAJOR CHAINS CLEAN LIST / LIVE SEARCH RESULTS -->
       <section class="results-section" aria-live="polite">
         <div class="results-header">
-          <h2 id="resultsTitle">20 Major Blockchains Overview</h2>
-          <small id="resultsSubtitle">Click any chain to check live market data or search any token above</small>
+          <h2 id="resultsTitle">20 Major Blockchains List</h2>
+          <small id="resultsSubtitle">Click any chain row to check live market data</small>
         </div>
 
         <div id="resultsContainer"></div>
@@ -1189,7 +1159,7 @@
       </section>
 
       <div class="disclaimer-note">
-        <strong>Disclaimer:</strong> All prices, market caps, and protocol metrics are fetched directly from third-party public APIs (CoinGecko, DefiLlama, DEX Screener). The 20-chain overview lists major Layer-1 and Layer-2 networks without hardcoded prices. Always verify official project channels before interacting.
+        <strong>Disclaimer:</strong> All prices, market caps, and protocol metrics are fetched directly from third-party public APIs (CoinGecko, DefiLlama, DEX Screener). The 20-chain list shows major Layer-1 and Layer-2 networks without hardcoded prices. Always verify official project channels before interacting.
       </div>
 
       <footer>
@@ -1214,7 +1184,7 @@
     (() => {
       "use strict";
 
-      /* 20 MAJOR BLOCKCHAINS (NO HARDCODED PRICES — CLICK TO FETCH 100% LIVE DATA) */
+      /* 20 MAJOR BLOCKCHAINS LIST (NO HARDCODED PRICES — CLICK TO FETCH 100% LIVE DATA) */
       const MAJOR_CHAINS = [
         { name: "Bitcoin", symbol: "BTC", query: "Bitcoin", layer: "Layer-1", desc: "Largest decentralized crypto network and digital store of value." },
         { name: "Ethereum", symbol: "ETH", query: "Ethereum", layer: "Layer-1", desc: "Leading smart contract and DeFi ecosystem." },
@@ -1299,31 +1269,29 @@
         }
       }
 
-      function renderChainsOverview() {
-        $("#resultsTitle").textContent = "20 Major Blockchains Overview";
-        $("#resultsSubtitle").textContent = "Click any chain to check live market data or search any token above";
+      function renderChainsList() {
+        $("#resultsTitle").textContent = "20 Major Blockchains List";
+        $("#resultsSubtitle").textContent = "Click any chain row to check live market data";
         $("#resultsContainer").innerHTML = `
-          <div class="chains-grid">
+          <div class="chains-list-panel">
             ${MAJOR_CHAINS.map((ch, i) => `
-              <button type="button" class="chain-card" data-chain-query="${escapeHTML(ch.query)}">
-                <div>
-                  <div class="chain-top">
-                    <div class="chain-name-wrap">
-                      <span class="chain-badge-icon">${i + 1}</span>
-                      <div>
-                        <strong>${escapeHTML(ch.name)}</strong>
-                        <small>${escapeHTML(ch.symbol)}</small>
-                      </div>
+              <button type="button" class="chain-list-row" data-chain-query="${escapeHTML(ch.query)}">
+                <div class="chain-row-left">
+                  <span class="chain-row-num">${i + 1}</span>
+                  <span class="chain-row-symbol">${escapeHTML(ch.symbol)}</span>
+                  <div class="chain-row-info">
+                    <div class="chain-row-title-line">
+                      <strong>${escapeHTML(ch.name)}</strong>
+                      <span class="chain-layer-pill">${escapeHTML(ch.layer)}</span>
                     </div>
-                    <span class="chain-layer-tag">${escapeHTML(ch.layer)}</span>
+                    <p class="chain-row-desc">${escapeHTML(ch.desc)}</p>
                   </div>
-                  <p class="chain-desc" style="margin-top:10px;">${escapeHTML(ch.desc)}</p>
                 </div>
-                <span class="chain-check-hint">Check Live Price →</span>
+                <span class="chain-row-action">Check Live Price →</span>
               </button>`).join("")}
           </div>`;
 
-        $$(".chain-card[data-chain-query]").forEach(btn => {
+        $$(".chain-list-row[data-chain-query]").forEach(btn => {
           btn.addEventListener("click", () => {
             const q = btn.dataset.chainQuery || "";
             const input = $("#projectSearchInput");
@@ -1602,7 +1570,7 @@
             backBtn.addEventListener("click", () => {
               $("#projectSearchInput").value = "";
               $("#clearSearchBtn").classList.remove("show");
-              renderChainsOverview();
+              renderChainsList();
             });
           }
         } catch (_) {
@@ -1670,7 +1638,7 @@
           });
         }
 
-        renderChainsOverview();
+        renderChainsList();
 
         const input = $("#projectSearchInput");
         const clearBtn = $("#clearSearchBtn");
@@ -1681,7 +1649,7 @@
         clearBtn.addEventListener("click", () => {
           input.value = "";
           clearBtn.classList.remove("show");
-          renderChainsOverview();
+          renderChainsList();
           input.focus();
         });
 
