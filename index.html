@@ -11,13 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:74px;--sticky-offset:74px;--shadow:0 12px 32px rgba(20,76,66,.07)}
+    :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:74px;--shadow:0 12px 32px rgba(20,76,66,.07)}
     [data-theme="dark"]{color-scheme:dark;--bg:#081a20;--surface:#10272c;--surface-soft:#143139;--border:#254b4b;--heading:#f0fff9;--body:#d4eee5;--muted:#91b3ad;--green:#20d99a;--green-dark:#0cad78;--green-light:#5df0bd;--green-soft:#123e34;--teal:#22cbbb;--navy:#061c24;--shadow:0 14px 34px rgba(0,0,0,.22)}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}
 
-    /* LIGHT MINT SPONSOR HEADER BAR (SCROLLS NATURALLY SO SCREEN STAYS OPEN) */
+    /* LIGHT MINT SPONSOR HEADER BAR (STICKY AT TOP JUST LIKE ORIGINAL) */
     .sponsor-strip{
-      position:relative;
+      position:sticky;
+      top:0;
       z-index:200;
       min-height:var(--sponsor-height);
       display:flex;
@@ -199,13 +200,13 @@
     .sponsor-orb-btn:hover{transform:translateY(-1px)}
 
     /* SIDEBAR */
-    .sidebar{position:fixed;z-index:150;inset:var(--sticky-offset) auto 0 0;width:var(--sidebar-width);height:calc(100vh - var(--sticky-offset));height:calc(100dvh - var(--sticky-offset));display:flex;flex-direction:column;padding:18px 16px 18px;overflow-y:auto;overflow-x:hidden;background:var(--surface);border-right:1px solid var(--border);box-shadow:8px 0 28px rgba(21,48,84,.025);transition:transform .25s ease}.sidebar::-webkit-scrollbar{width:5px}.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
+    .sidebar{position:fixed;z-index:150;inset:var(--sponsor-height) auto 0 0;width:var(--sidebar-width);height:calc(100vh - var(--sponsor-height));height:calc(100dvh - var(--sponsor-height));display:flex;flex-direction:column;padding:18px 16px 18px;overflow-y:auto;overflow-x:hidden;background:var(--surface);border-right:1px solid var(--border);box-shadow:8px 0 28px rgba(21,48,84,.025);transition:transform .25s ease}.sidebar::-webkit-scrollbar{width:5px}.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
     .side-label{padding:12px 13px 10px;color:#9aa8bc;font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}.side-nav{display:grid;gap:7px;flex-shrink:0}.side-link{min-height:48px;display:flex;align-items:center;gap:12px;padding:9px 12px;color:var(--body);text-decoration:none;border:1px solid transparent;border-radius:15px;font-size:12px;font-weight:700;transition:.2s ease}.side-link:hover{background:var(--surface-soft);border-color:var(--border);transform:translateX(2px)}.side-link.active{color:#087b4b;background:linear-gradient(100deg,#e2fff1,#f4fff9);border-color:#b8f2d7;box-shadow:0 5px 13px rgba(8,168,107,.11)}[data-theme="dark"] .side-link.active{color:#65e6b1;background:#12382f;border-color:#23654e}
     .nav-icon{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:12px;font-size:17px}.nav-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.nav-home{color:#079b69;background:#d9f8e9}.nav-depin{color:#1687ff;background:#dfeeff}.nav-community{color:#8b5cf6;background:#eee5ff}.nav-airdrop{color:#f07819;background:#fff0d9}.nav-wallet{color:#9333ea;background:#f1e3ff}.nav-checker{color:#0d9488;background:#d9f7f0}.nav-calculator{color:#2563eb;background:#e2eaff}
     .sidebar-spacer{flex:1 0 18px;min-height:18px}.side-promo{margin:18px 6px 13px;padding:19px 14px;flex-shrink:0;text-align:center;border-radius:23px;border:1px solid #c7f5df;background:radial-gradient(circle at 90% 10%,rgba(92,238,176,.25),transparent 34%),linear-gradient(145deg,#e7fff4,#fff 72%);box-shadow:0 8px 20px rgba(8,168,107,.1)}[data-theme="dark"] .side-promo{background:linear-gradient(145deg,#123b32,#142238);border-color:#255c49}.promo-gift{margin-bottom:8px;font-size:34px}.side-promo h3{margin:0 0 8px;color:var(--heading);font-size:13px;line-height:1.5;font-weight:800}.side-promo p{margin:0 0 12px;color:var(--muted);font-size:10px;line-height:1.55}.promo-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 19px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#08a86b,#06c77a);text-decoration:none;font-size:11px;font-weight:800;box-shadow:0 6px 14px rgba(8,168,107,.2)}.support-card{display:flex;align-items:center;gap:10px;margin:0 6px;padding:13px;flex-shrink:0;border-radius:17px;border:1px solid var(--border);background:var(--surface-soft);text-decoration:none}.support-icon{width:37px;height:37px;display:grid;place-items:center;border-radius:50%;color:var(--green-dark);background:var(--green-soft);font-size:18px}.support-card strong{display:block;color:var(--heading);font-size:11px}.support-card span:last-child{display:block;margin-top:4px;color:var(--green);font-size:10px;font-weight:800}.sidebar-note{margin:14px 8px 0;padding-bottom:3px;color:var(--muted);font-size:9px;text-align:center}
 
-    /* MAIN AREA & SLIM STICKY TOPBAR WITH OFFICIAL DOMAIN SAFETY BAR */
-    .main-column{min-height:100vh;margin-left:var(--sidebar-width)}.mobile-menu-btn{display:none;width:36px;height:36px;border:1px solid var(--border);border-radius:11px;color:var(--heading);background:var(--surface)}.topbar{position:sticky;top:0;z-index:100;min-height:52px;display:flex;align-items:center;gap:12px;padding:7px 26px;background:color-mix(in srgb,var(--surface) 95%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
+    /* MAIN AREA & TOPBAR WITH OFFICIAL DOMAIN SAFETY BAR */
+    .main-column{min-height:100vh;margin-left:var(--sidebar-width)}.mobile-menu-btn{display:none;width:36px;height:36px;border:1px solid var(--border);border-radius:11px;color:var(--heading);background:var(--surface)}.topbar{position:sticky;top:var(--sponsor-height);z-index:100;min-height:54px;display:flex;align-items:center;gap:12px;padding:8px 26px;background:color-mix(in srgb,var(--surface) 95%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
     .domain-safety-pill{display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;border:1px solid rgba(8,168,107,.3);background:var(--surface-soft);color:var(--body);font-size:11px;font-weight:700;white-space:nowrap}
     .domain-lock{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(8,168,107,.15);color:var(--green);font-size:11px}
     .domain-url{color:var(--green-dark);font-weight:800;letter-spacing:.1px}
@@ -454,7 +455,7 @@
     .t-tnt{background:linear-gradient(135deg,#14b8a6,#115e59)}
 
     /* =====================================================================
-       2. TRENDING PROJECTS SECTION
+       2. TRENDING PROJECTS SECTION (21 VERIFIED PROJECTS WITH DIRECT LINKS)
        ===================================================================== */
     .trending-box{
       margin-top:15px;
@@ -515,30 +516,7 @@
       box-shadow:0 8px 18px rgba(8,168,107,.3);
     }
 
-    .trending-slider-wrap{
-      position:relative;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .trend-nav-btn{
-      width:32px;
-      height:32px;
-      flex:0 0 32px;
-      border-radius:50%;
-      border:1px solid var(--border);
-      background:linear-gradient(135deg,#08a86b,#067c50);
-      color:#ffffff;
-      display:grid;
-      place-items:center;
-      font-size:14px;
-      font-weight:800;
-      box-shadow:0 4px 12px rgba(8,168,107,.2);
-      transition:transform .16s ease;
-    }
-    .trend-nav-btn:hover{transform:scale(1.07)}
-    .trending-track{
-      flex:1 1 auto;
+    .trending-grid{
       display:grid;
       grid-template-columns:repeat(5,minmax(0,1fr));
       gap:12px;
@@ -549,7 +527,7 @@
       flex-direction:column;
       align-items:center;
       text-align:center;
-      padding:16px 12px 14px;
+      padding:15px 11px 13px;
       border-radius:17px;
       border:1px solid var(--border);
       background:linear-gradient(180deg,var(--surface) 0%,var(--surface-soft) 100%);
@@ -563,52 +541,50 @@
     }
     .trend-rank{
       position:absolute;
-      top:10px;
-      left:10px;
-      padding:3px 8px;
+      top:9px;
+      left:9px;
+      padding:2.5px 7.5px;
       border-radius:999px;
-      font-size:10px;
+      background:var(--green-soft);
+      color:var(--green-dark);
+      font-size:9.5px;
       font-weight:800;
       line-height:1.1;
     }
-    .rank-1{background:#ffe58f;color:#7a4f00}
-    .rank-2{background:#ffd666;color:#734800}
-    .rank-3{background:#ffccc7;color:#821c1c}
-    .rank-4{background:#d9e2ec;color:#243b53}
-    .rank-5{background:#d3f9d8;color:#0b5e36}
-    [data-theme="dark"] .rank-4{background:#243b53;color:#e6f1ff}
-    [data-theme="dark"] .rank-5{background:#154738;color:#8cf5c6}
+    [data-theme="dark"] .trend-rank{color:var(--green-light)}
+    .rank-top{background:#ffe58f;color:#7a4f00}
+    [data-theme="dark"] .rank-top{background:#ffe58f;color:#7a4f00}
 
     .trend-logo{
-      width:48px;
-      height:48px;
-      margin:6px 0 10px;
-      border-radius:15px;
+      width:44px;
+      height:44px;
+      margin:6px 0 9px;
+      border-radius:14px;
       display:grid;
       place-items:center;
-      font-size:22px;
+      font-size:20px;
       font-weight:800;
       border:1px solid var(--border);
-      box-shadow:0 5px 12px rgba(8,168,107,.1);
+      box-shadow:0 5px 12px rgba(8,168,107,.09);
     }
-    .tl-grass{background:linear-gradient(145deg,#dcffe9,#a9f5c8);color:#067a48}
-    .tl-dawn{background:linear-gradient(145deg,#fff0d6,#ffd599);color:#b85d00}
-    .tl-wallet{background:linear-gradient(145deg,#efe3ff,#d7bdff);color:#6b21a8}
-    .tl-token{background:linear-gradient(145deg,#d8f8f2,#a7ede1);color:#0d7a6e}
-    .tl-airdrop{background:linear-gradient(145deg,#e0ebff,#bdd4ff);color:#1d4ed8}
+    .tl-mint{background:linear-gradient(145deg,#dcffe9,#a9f5c8);color:#067a48}
+    .tl-blue{background:linear-gradient(145deg,#e0ebff,#bdd4ff);color:#1d4ed8}
+    .tl-purple{background:linear-gradient(145deg,#efe3ff,#d7bdff);color:#6b21a8}
+    .tl-amber{background:linear-gradient(145deg,#fff0d6,#ffd599);color:#b85d00}
+    .tl-teal{background:linear-gradient(145deg,#d8f8f2,#a7ede1);color:#0d7a6e}
 
     .trend-card strong{
       display:block;
       color:var(--heading);
-      font-size:13.5px;
+      font-size:13px;
       font-weight:800;
       line-height:1.25;
     }
     .trend-card span.trend-desc{
       display:block;
-      margin:3px 0 11px;
+      margin:3px 0 10px;
       color:var(--muted);
-      font-size:10px;
+      font-size:9.8px;
       font-weight:700;
       line-height:1.35;
     }
@@ -618,11 +594,11 @@
       align-items:center;
       justify-content:center;
       gap:5px;
-      padding:6px 15px;
+      padding:5.5px 14px;
       border-radius:999px;
       background:linear-gradient(135deg,#08a86b,#067c50);
       color:#ffffff;
-      font-size:10.5px;
+      font-size:10px;
       font-weight:800;
       box-shadow:0 4px 10px rgba(8,168,107,.2);
     }
@@ -873,16 +849,17 @@
 
     /* ACCESSIBILITY & RESPONSIVE */
     .side-link:focus-visible,.mint-btn-primary:focus-visible,.mint-btn-secondary:focus-visible,.trend-card:focus-visible,.eco-btn:focus-visible,.eco-btn-ghost:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible{outline:3px solid var(--green);outline-offset:3px}
-    @media(max-width:1280px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.mint-hero{grid-template-columns:1fr}.mint-art{max-width:450px;margin:0 auto}.trending-track{grid-template-columns:repeat(3,minmax(0,1fr))}.ecosystem-split,.hub-bottom-band{grid-template-columns:1fr}}
-    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.domain-verified-tag{display:none}.mint-hero{padding:18px}.trending-track{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sticky-offset) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:50px;gap:8px;padding:6px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 36px}.domain-safety-pill{padding:4px 9px;font-size:9.5px;gap:5px}.domain-lock{width:17px;height:17px;font-size:9.5px}.domain-label-hide{display:none}.community-btn{width:36px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:35px;min-height:35px;flex:0 0 35px}main{padding:15px 13px 25px}.mint-art{min-height:215px}.em-globe-svg{width:195px}.orbit-token{padding:3px 6px;font-size:8px}.tok-dot{width:13px;height:13px;font-size:7.5px;flex-basis:13px}.trending-box{padding:15px 13px}.trend-nav-btn{display:none}.trending-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:4px;scrollbar-width:none}.trending-track::-webkit-scrollbar{display:none}.trend-card{flex:0 0 165px;scroll-snap-align:start}.eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:18px}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
+    @media(max-width:1280px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.mint-hero{grid-template-columns:1fr}.mint-art{max-width:450px;margin:0 auto}.trending-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.ecosystem-split,.hub-bottom-band{grid-template-columns:1fr}}
+    @media(max-width:980px){.trending-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.domain-verified-tag{display:none}.mint-hero{padding:18px}}
+    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:50px;gap:8px;padding:6px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 36px}.domain-safety-pill{padding:4px 9px;font-size:9.5px;gap:5px}.domain-lock{width:17px;height:17px;font-size:9.5px}.domain-label-hide{display:none}.community-btn{width:36px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:35px;min-height:35px;flex:0 0 35px}main{padding:15px 13px 25px}.mint-art{min-height:215px}.em-globe-svg{width:195px}.orbit-token{padding:3px 6px;font-size:8px}.tok-dot{width:13px;height:13px;font-size:7.5px;flex-basis:13px}.trending-box{padding:15px 13px}.trending-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:18px}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
     @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slot-megaphone{display:none}.slot-center-text strong{font-size:10px}.slot-center-text span{font-size:7px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:6px}.domain-safety-pill{font-size:9px;padding:4px 8px}.mint-art{min-height:195px}.em-globe-svg{width:170px}.orbit-token{padding:2.5px 5px;font-size:7.2px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body data-theme="light">
   <!-- TOP SPONSORSHIP HEADER -->
-  <section class="sponsor-strip" id="sponsorStrip" aria-label="Sponsorship opportunity">
+  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
     <div class="sponsor-inner">
       <a href="index.html" class="header-brand">
         <span class="header-logo"><img src="logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';"></span>
@@ -1059,62 +1036,186 @@
           </div>
         </section>
 
-        <!-- 2. TRENDING PROJECTS SECTION -->
+        <!-- 2. TRENDING PROJECTS SECTION (21 VERIFIED PROJECTS WITH DIRECT DETAIL PAGE LINKS) -->
         <section class="trending-box" id="dashboardGrid" aria-labelledby="trendingTitle">
           <div class="trending-head">
             <div class="trending-title-wrap">
               <span class="trending-badge" id="trendingTitle">🔥 Trending Projects</span>
-              <span class="trending-sub">Top verified projects &amp; essential guides in the crypto space.</span>
+              <span class="trending-sub">Explore verified DePIN &amp; Web3 projects in our research directory.</span>
             </div>
             <a href="depin-pages/depin.html" class="view-all-btn">View All Projects →</a>
           </div>
 
-          <div class="trending-slider-wrap">
-            <button class="trend-nav-btn" type="button" id="trendPrev" aria-label="Scroll left">‹</button>
+          <div class="trending-grid">
+            <!-- TOP 13 PRIORITY PROJECTS -->
+            <a href="projects/titan.html" class="trend-card">
+              <span class="trend-rank rank-top">#1</span>
+              <div class="trend-logo tl-mint" aria-hidden="true">🌐</div>
+              <strong>Titan Network</strong>
+              <span class="trend-desc">DePIN Resource &amp; Edge Cloud</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
 
-            <div class="trending-track" id="trendingTrack">
-              <a href="depin-pages/depin.html" class="trend-card">
-                <span class="trend-rank rank-1">#1</span>
-                <div class="trend-logo tl-grass" aria-hidden="true">🌿</div>
-                <strong>Grass Network</strong>
-                <span class="trend-desc">AI Data &amp; Bandwidth DePIN</span>
-                <span class="trend-explore-pill">Explore →</span>
-              </a>
+            <a href="airdrop-pages/axis-robotics.html" class="trend-card">
+              <span class="trend-rank rank-top">#2</span>
+              <div class="trend-logo tl-blue" aria-hidden="true">🤖</div>
+              <strong>Axis Robotics</strong>
+              <span class="trend-desc">AI Robotics &amp; Web3 Ecosystem</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
 
-              <a href="depin-pages/depin.html" class="trend-card">
-                <span class="trend-rank rank-2">#2</span>
-                <div class="trend-logo tl-dawn" aria-hidden="true">☀️</div>
-                <strong>DAWN Protocol</strong>
-                <span class="trend-desc">Decentralized Wireless Node</span>
-                <span class="trend-explore-pill">Explore →</span>
-              </a>
+            <a href="projects/bixberry.html" class="trend-card">
+              <span class="trend-rank rank-top">#3</span>
+              <div class="trend-logo tl-purple" aria-hidden="true">🫐</div>
+              <strong>Bixberry</strong>
+              <span class="trend-desc">Decentralized Node &amp; Rewards</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
 
-              <a href="wallet-pages/wallets.html" class="trend-card">
-                <span class="trend-rank rank-3">#3</span>
-                <div class="trend-logo tl-wallet" aria-hidden="true">🔐</div>
-                <strong>Hardware Wallets</strong>
-                <span class="trend-desc">Trezor, Ledger &amp; SafePal Guides</span>
-                <span class="trend-explore-pill">Explore →</span>
-              </a>
+            <a href="projects/u2u.html" class="trend-card">
+              <span class="trend-rank rank-top">#4</span>
+              <div class="trend-logo tl-teal" aria-hidden="true">⚡</div>
+              <strong>U2U Network</strong>
+              <span class="trend-desc">DAG Layer-1 &amp; DePIN Subnet</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
 
-              <a href="token-pages/token-checker.html" class="trend-card">
-                <span class="trend-rank rank-4">#4</span>
-                <div class="trend-logo tl-token" aria-hidden="true">🛡️</div>
-                <strong>Token Finder</strong>
-                <span class="trend-desc">Verify Contracts &amp; Scam Safety</span>
-                <span class="trend-explore-pill">Explore →</span>
-              </a>
+            <a href="projects/grass.html" class="trend-card">
+              <span class="trend-rank rank-top">#5</span>
+              <div class="trend-logo tl-mint" aria-hidden="true">🌿</div>
+              <strong>Grass Network</strong>
+              <span class="trend-desc">AI Data &amp; Bandwidth DePIN</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
 
-              <a href="airdrop-pages/airdrops.html" class="trend-card">
-                <span class="trend-rank rank-5">#5</span>
-                <div class="trend-logo tl-airdrop" aria-hidden="true">🪂</div>
-                <strong>Active Airdrops</strong>
-                <span class="trend-desc">Verified Early Web3 Campaigns</span>
-                <span class="trend-explore-pill">Explore →</span>
-              </a>
-            </div>
+            <a href="projects/uprock.html" class="trend-card">
+              <span class="trend-rank">#6</span>
+              <div class="trend-logo tl-amber" aria-hidden="true">🚀</div>
+              <strong>UpRock Mining</strong>
+              <span class="trend-desc">Mobile AI Bandwidth Network</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
 
-            <button class="trend-nav-btn" type="button" id="trendNext" aria-label="Scroll right">›</button>
+            <a href="projects/375ai.html" class="trend-card">
+              <span class="trend-rank">#7</span>
+              <div class="trend-logo tl-blue" aria-hidden="true">📡</div>
+              <strong>375ai</strong>
+              <span class="trend-desc">Edge Data &amp; AI Oracle DePIN</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="projects/mysterium.html" class="trend-card">
+              <span class="trend-rank">#8</span>
+              <div class="trend-logo tl-purple" aria-hidden="true">🛡️</div>
+              <strong>Mysterium Node</strong>
+              <span class="trend-desc">Decentralized VPN &amp; IP Node</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="projects/silencio.html" class="trend-card">
+              <span class="trend-rank">#9</span>
+              <div class="trend-logo tl-teal" aria-hidden="true">🔇</div>
+              <strong>Silencio</strong>
+              <span class="trend-desc">Noise Pollution Data DePIN</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="airdrop-pages/titan-exchange.html" class="trend-card">
+              <span class="trend-rank">#10</span>
+              <div class="trend-logo tl-blue" aria-hidden="true">📊</div>
+              <strong>Titan Exchange</strong>
+              <span class="trend-desc">Decentralized Trading &amp; Liquidity</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="airdrop-pages/dow-protocol.html" class="trend-card">
+              <span class="trend-rank">#11</span>
+              <div class="trend-logo tl-mint" aria-hidden="true">💠</div>
+              <strong>DOW Protocol</strong>
+              <span class="trend-desc">Decentralized Web3 Protocol</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="airdrop-pages/arch-prime.html" class="trend-card">
+              <span class="trend-rank">#12</span>
+              <div class="trend-logo tl-amber" aria-hidden="true">🏛️</div>
+              <strong>Arch Prime</strong>
+              <span class="trend-desc">Web3 Infrastructure &amp; Campaign</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="airdrop-pages/sweep-finance.html" class="trend-card">
+              <span class="trend-rank">#13</span>
+              <div class="trend-logo tl-teal" aria-hidden="true">🌊</div>
+              <strong>Sweep Finance</strong>
+              <span class="trend-desc">DeFi Protocol &amp; Ecosystem</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <!-- REMAINING 8 VERIFIED PROJECTS -->
+            <a href="projects/hyra.html" class="trend-card">
+              <span class="trend-rank">#14</span>
+              <div class="trend-logo tl-purple" aria-hidden="true">🧠</div>
+              <strong>Hyra Network</strong>
+              <span class="trend-desc">Decentralized AI Compute DePIN</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="projects/over-the-reality.html" class="trend-card">
+              <span class="trend-rank">#15</span>
+              <div class="trend-logo tl-blue" aria-hidden="true">🗺️</div>
+              <strong>Over the Reality</strong>
+              <span class="trend-desc">AR Metaverse &amp; Spatial Mapping</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="projects/qualoo.html" class="trend-card">
+              <span class="trend-rank">#16</span>
+              <div class="trend-logo tl-mint" aria-hidden="true">📶</div>
+              <strong>Qualoo Network</strong>
+              <span class="trend-desc">Global Internet Quality DePIN</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="projects/scannit.html" class="trend-card">
+              <span class="trend-rank">#17</span>
+              <div class="trend-logo tl-amber" aria-hidden="true">🧾</div>
+              <strong>Scannit Network</strong>
+              <span class="trend-desc">Consumer Data &amp; Rewards DePIN</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="projects/sweatcoin.html" class="trend-card">
+              <span class="trend-rank">#18</span>
+              <div class="trend-logo tl-teal" aria-hidden="true">👟</div>
+              <strong>Sweatcoin</strong>
+              <span class="trend-desc">Move-to-Earn Fitness Ecosystem</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="projects/roam.html" class="trend-card">
+              <span class="trend-rank">#19</span>
+              <div class="trend-logo tl-purple" aria-hidden="true">📡</div>
+              <strong>Roam Network</strong>
+              <span class="trend-desc">Decentralized OpenRoaming WiFi</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="airdrop-pages/sleepagotchi.html" class="trend-card">
+              <span class="trend-rank">#20</span>
+              <div class="trend-logo tl-blue" aria-hidden="true">🌙</div>
+              <strong>Sleepagotchi</strong>
+              <span class="trend-desc">Gamified Sleep &amp; Web3 App</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
+
+            <a href="airdrop-pages/asend.html" class="trend-card">
+              <span class="trend-rank">#21</span>
+              <div class="trend-logo tl-mint" aria-hidden="true">✨</div>
+              <strong>Asend</strong>
+              <span class="trend-desc">Verified Web3 Community Campaign</span>
+              <span class="trend-explore-pill">Explore →</span>
+            </a>
           </div>
         </section>
 
@@ -1298,37 +1399,13 @@
         if (menuButton) menuButton.setAttribute("aria-expanded", "false");
       }
 
-      function updateSidebarOffset() {
-        const strip = document.getElementById("sponsorStrip");
-        if (!strip) return;
-        const remaining = Math.max(0, strip.getBoundingClientRect().bottom);
-        document.documentElement.style.setProperty("--sticky-offset", remaining + "px");
-      }
-
       window.addEventListener("DOMContentLoaded", () => {
         let savedTheme = "light";
         try { savedTheme = localStorage.getItem("theme") || "light"; } catch (_) { /* Use light theme. */ }
         applyTheme(savedTheme);
 
-        updateSidebarOffset();
-        window.addEventListener("scroll", updateSidebarOffset, { passive: true });
-        window.addEventListener("resize", updateSidebarOffset, { passive: true });
-
         const themeToggle = document.getElementById("themeToggle");
         if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
-
-        /* TRENDING PROJECTS HORIZONTAL SCROLL BUTTONS */
-        const trendTrack = document.getElementById("trendingTrack");
-        const trendPrev = document.getElementById("trendPrev");
-        const trendNext = document.getElementById("trendNext");
-        if (trendTrack && trendPrev && trendNext) {
-          trendPrev.addEventListener("click", () => {
-            trendTrack.scrollBy({ left: -240, behavior: "smooth" });
-          });
-          trendNext.addEventListener("click", () => {
-            trendTrack.scrollBy({ left: 240, behavior: "smooth" });
-          });
-        }
 
         /* MOBILE SIDEBAR */
         const menuButton = document.getElementById("mobileMenuBtn");
