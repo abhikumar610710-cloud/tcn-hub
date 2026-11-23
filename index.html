@@ -11,14 +11,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:74px;--shadow:0 12px 32px rgba(20,76,66,.07)}
+    :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:74px;--sticky-offset:74px;--shadow:0 12px 32px rgba(20,76,66,.07)}
     [data-theme="dark"]{color-scheme:dark;--bg:#081a20;--surface:#10272c;--surface-soft:#143139;--border:#254b4b;--heading:#f0fff9;--body:#d4eee5;--muted:#91b3ad;--green:#20d99a;--green-dark:#0cad78;--green-light:#5df0bd;--green-soft:#123e34;--teal:#22cbbb;--navy:#061c24;--shadow:0 14px 34px rgba(0,0,0,.22)}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}
 
-    /* LIGHT MINT SPONSOR HEADER BAR */
+    /* LIGHT MINT SPONSOR HEADER BAR (SCROLLS NATURALLY SO SCREEN STAYS OPEN) */
     .sponsor-strip{
-      position:sticky;
-      top:0;
+      position:relative;
       z-index:200;
       min-height:var(--sponsor-height);
       display:flex;
@@ -200,28 +199,35 @@
     .sponsor-orb-btn:hover{transform:translateY(-1px)}
 
     /* SIDEBAR */
-    .sidebar{position:fixed;z-index:150;inset:var(--sponsor-height) auto 0 0;width:var(--sidebar-width);height:calc(100vh - var(--sponsor-height));height:calc(100dvh - var(--sponsor-height));display:flex;flex-direction:column;padding:20px 16px 18px;overflow-y:auto;overflow-x:hidden;background:var(--surface);border-right:1px solid var(--border);box-shadow:8px 0 28px rgba(21,48,84,.025);transition:transform .25s ease}.sidebar::-webkit-scrollbar{width:5px}.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
-    .side-label{padding:14px 13px 10px;color:#9aa8bc;font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}.side-nav{display:grid;gap:7px;flex-shrink:0}.side-link{min-height:48px;display:flex;align-items:center;gap:12px;padding:9px 12px;color:var(--body);text-decoration:none;border:1px solid transparent;border-radius:15px;font-size:12px;font-weight:700;transition:.2s ease}.side-link:hover{background:var(--surface-soft);border-color:var(--border);transform:translateX(2px)}.side-link.active{color:#087b4b;background:linear-gradient(100deg,#e2fff1,#f4fff9);border-color:#b8f2d7;box-shadow:0 5px 13px rgba(8,168,107,.11)}[data-theme="dark"] .side-link.active{color:#65e6b1;background:#12382f;border-color:#23654e}
+    .sidebar{position:fixed;z-index:150;inset:var(--sticky-offset) auto 0 0;width:var(--sidebar-width);height:calc(100vh - var(--sticky-offset));height:calc(100dvh - var(--sticky-offset));display:flex;flex-direction:column;padding:18px 16px 18px;overflow-y:auto;overflow-x:hidden;background:var(--surface);border-right:1px solid var(--border);box-shadow:8px 0 28px rgba(21,48,84,.025);transition:transform .25s ease}.sidebar::-webkit-scrollbar{width:5px}.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
+    .side-label{padding:12px 13px 10px;color:#9aa8bc;font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}.side-nav{display:grid;gap:7px;flex-shrink:0}.side-link{min-height:48px;display:flex;align-items:center;gap:12px;padding:9px 12px;color:var(--body);text-decoration:none;border:1px solid transparent;border-radius:15px;font-size:12px;font-weight:700;transition:.2s ease}.side-link:hover{background:var(--surface-soft);border-color:var(--border);transform:translateX(2px)}.side-link.active{color:#087b4b;background:linear-gradient(100deg,#e2fff1,#f4fff9);border-color:#b8f2d7;box-shadow:0 5px 13px rgba(8,168,107,.11)}[data-theme="dark"] .side-link.active{color:#65e6b1;background:#12382f;border-color:#23654e}
     .nav-icon{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:12px;font-size:17px}.nav-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.nav-home{color:#079b69;background:#d9f8e9}.nav-depin{color:#1687ff;background:#dfeeff}.nav-community{color:#8b5cf6;background:#eee5ff}.nav-airdrop{color:#f07819;background:#fff0d9}.nav-wallet{color:#9333ea;background:#f1e3ff}.nav-checker{color:#0d9488;background:#d9f7f0}.nav-calculator{color:#2563eb;background:#e2eaff}
     .sidebar-spacer{flex:1 0 18px;min-height:18px}.side-promo{margin:18px 6px 13px;padding:19px 14px;flex-shrink:0;text-align:center;border-radius:23px;border:1px solid #c7f5df;background:radial-gradient(circle at 90% 10%,rgba(92,238,176,.25),transparent 34%),linear-gradient(145deg,#e7fff4,#fff 72%);box-shadow:0 8px 20px rgba(8,168,107,.1)}[data-theme="dark"] .side-promo{background:linear-gradient(145deg,#123b32,#142238);border-color:#255c49}.promo-gift{margin-bottom:8px;font-size:34px}.side-promo h3{margin:0 0 8px;color:var(--heading);font-size:13px;line-height:1.5;font-weight:800}.side-promo p{margin:0 0 12px;color:var(--muted);font-size:10px;line-height:1.55}.promo-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 19px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#08a86b,#06c77a);text-decoration:none;font-size:11px;font-weight:800;box-shadow:0 6px 14px rgba(8,168,107,.2)}.support-card{display:flex;align-items:center;gap:10px;margin:0 6px;padding:13px;flex-shrink:0;border-radius:17px;border:1px solid var(--border);background:var(--surface-soft);text-decoration:none}.support-icon{width:37px;height:37px;display:grid;place-items:center;border-radius:50%;color:var(--green-dark);background:var(--green-soft);font-size:18px}.support-card strong{display:block;color:var(--heading);font-size:11px}.support-card span:last-child{display:block;margin-top:4px;color:var(--green);font-size:10px;font-weight:800}.sidebar-note{margin:14px 8px 0;padding-bottom:3px;color:var(--muted);font-size:9px;text-align:center}
 
-    /* MAIN AREA & TOPBAR */
-    .main-column{min-height:100vh;margin-left:var(--sidebar-width)}.mobile-menu-btn{display:none;width:38px;height:38px;border:1px solid var(--border);border-radius:12px;color:var(--heading);background:var(--surface)}.topbar{position:sticky;top:var(--sponsor-height);z-index:100;min-height:66px;display:flex;align-items:center;gap:14px;padding:10px 30px;background:color-mix(in srgb,var(--surface) 95%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}.topbar-spacer{flex:1}.community-dropdown{position:relative}.community-btn,.icon-btn{min-height:39px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--border);border-radius:999px;color:var(--heading);background:var(--surface);font-size:11px;font-weight:800;box-shadow:0 3px 9px rgba(20,45,75,.035)}.community-btn{padding:0 16px}.icon-btn{width:39px;border-radius:50%;font-size:17px}.community-btn:hover,.icon-btn:hover{border-color:var(--green);color:var(--green)}.dropdown-content{display:none;position:absolute;z-index:150;top:calc(100% + 10px);right:0;min-width:195px;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--surface);box-shadow:0 14px 32px rgba(0,0,0,.14)}.dropdown-content.show{display:block;animation:fadeIn .18s ease-out}@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.dropdown-content a{display:flex;gap:9px;padding:13px 15px;border-bottom:1px solid var(--border);color:var(--heading);text-decoration:none;font-size:11px;font-weight:700}.dropdown-content a:last-child{border-bottom:0}.dropdown-content a:hover{color:var(--green);background:var(--green-soft)}.mobile-overlay{display:none}
-    main{width:100%;max-width:1600px;margin:0 auto;padding:18px 25px 35px}
+    /* MAIN AREA & SLIM STICKY TOPBAR WITH OFFICIAL DOMAIN SAFETY BAR */
+    .main-column{min-height:100vh;margin-left:var(--sidebar-width)}.mobile-menu-btn{display:none;width:36px;height:36px;border:1px solid var(--border);border-radius:11px;color:var(--heading);background:var(--surface)}.topbar{position:sticky;top:0;z-index:100;min-height:52px;display:flex;align-items:center;gap:12px;padding:7px 26px;background:color-mix(in srgb,var(--surface) 95%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
+    .domain-safety-pill{display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;border:1px solid rgba(8,168,107,.3);background:var(--surface-soft);color:var(--body);font-size:11px;font-weight:700;white-space:nowrap}
+    .domain-lock{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(8,168,107,.15);color:var(--green);font-size:11px}
+    .domain-url{color:var(--green-dark);font-weight:800;letter-spacing:.1px}
+    [data-theme="dark"] .domain-url{color:var(--green-light)}
+    .domain-verified-tag{padding:2px 8px;border-radius:999px;background:rgba(8,168,107,.14);color:var(--green-dark);font-size:9.5px;font-weight:800}
+    [data-theme="dark"] .domain-verified-tag{color:var(--green-light)}
+    .topbar-spacer{flex:1}.community-dropdown{position:relative}.community-btn,.icon-btn{min-height:36px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--border);border-radius:999px;color:var(--heading);background:var(--surface);font-size:11px;font-weight:800;box-shadow:0 3px 9px rgba(20,45,75,.035)}.community-btn{padding:0 15px}.icon-btn{width:36px;border-radius:50%;font-size:16px}.community-btn:hover,.icon-btn:hover{border-color:var(--green);color:var(--green)}.dropdown-content{display:none;position:absolute;z-index:150;top:calc(100% + 10px);right:0;min-width:195px;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--surface);box-shadow:0 14px 32px rgba(0,0,0,.14)}.dropdown-content.show{display:block;animation:fadeIn .18s ease-out}@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.dropdown-content a{display:flex;gap:9px;padding:13px 15px;border-bottom:1px solid var(--border);color:var(--heading);text-decoration:none;font-size:11px;font-weight:700}.dropdown-content a:last-child{border-bottom:0}.dropdown-content a:hover{color:var(--green);background:var(--green-soft)}.mobile-overlay{display:none}
+    main{width:100%;max-width:1600px;margin:0 auto;padding:16px 25px 35px}
 
     /* =====================================================================
-       1. MINT-THEME HERO BANNER (EARTH GLOBE + 20 ORBITING CRYPTO/DEPIN TOKENS)
+       1. COMPACT MINT-THEME HERO BANNER (LARGER CENTER EARTH + 20 TOKENS)
        ===================================================================== */
     .mint-hero{
       position:relative;
       isolation:isolate;
       overflow:hidden;
-      min-height:275px;
+      min-height:230px;
       display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(320px,.95fr);
+      grid-template-columns:minmax(0,1.16fr) minmax(320px,.94fr);
       align-items:center;
-      gap:18px;
-      padding:26px 30px;
+      gap:14px;
+      padding:18px 26px;
       border-radius:22px;
       border:1px solid #96ecd0;
       background:
@@ -247,18 +253,18 @@
       opacity:.5;
       pointer-events:none;
     }
-    .mint-copy{position:relative;z-index:2;max-width:660px}
+    .mint-copy{position:relative;z-index:2;max-width:650px}
     .mint-pill{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      margin-bottom:10px;
-      padding:6px 13px;
+      gap:7px;
+      margin-bottom:7px;
+      padding:5px 12px;
       border-radius:999px;
       background:rgba(255,255,255,.86);
       border:1px solid rgba(8,168,107,.32);
       color:#06744a;
-      font-size:10px;
+      font-size:9.5px;
       font-weight:800;
       letter-spacing:.25px;
     }
@@ -269,19 +275,19 @@
     }
     .mint-pill::before{
       content:"";
-      width:8px;
-      height:8px;
+      width:7px;
+      height:7px;
       border-radius:50%;
       background:#08a86b;
       box-shadow:0 0 8px rgba(8,168,107,.75);
     }
     .mint-copy h1{
-      margin:0 0 9px;
+      margin:0 0 7px;
       color:var(--heading);
-      font-size:clamp(24px,2.8vw,36px);
-      line-height:1.14;
+      font-size:clamp(22px,2.55vw,33px);
+      line-height:1.13;
       font-weight:800;
-      letter-spacing:-.9px;
+      letter-spacing:-.85px;
     }
     .mint-copy h1 span{
       display:block;
@@ -289,28 +295,28 @@
     }
     .mint-copy p{
       margin:0;
-      max-width:620px;
+      max-width:610px;
       color:var(--body);
-      font-size:12.5px;
-      line-height:1.65;
+      font-size:12px;
+      line-height:1.55;
       font-weight:600;
     }
     .mint-trust-tags{
       display:flex;
       flex-wrap:wrap;
-      gap:7px;
-      margin-top:12px;
+      gap:6px;
+      margin-top:9px;
     }
     .mint-trust-tag{
       display:inline-flex;
       align-items:center;
       gap:5px;
-      padding:4px 10px;
+      padding:3.5px 9px;
       border-radius:999px;
       background:rgba(255,255,255,.78);
       border:1px solid rgba(8,168,107,.24);
       color:var(--heading);
-      font-size:10px;
+      font-size:9.5px;
       font-weight:800;
     }
     [data-theme="dark"] .mint-trust-tag{
@@ -321,35 +327,35 @@
       display:flex;
       flex-wrap:wrap;
       align-items:center;
-      gap:10px;
-      margin-top:15px;
+      gap:9px;
+      margin-top:11px;
     }
     .mint-btn-primary{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:10px 19px;
+      gap:7px;
+      padding:9px 17px;
       border-radius:999px;
       background:linear-gradient(135deg,#08a86b,#068e5a);
       color:#ffffff;
       text-decoration:none;
-      font-size:11.5px;
+      font-size:11px;
       font-weight:800;
-      box-shadow:0 7px 18px rgba(8,168,107,.28);
+      box-shadow:0 6px 16px rgba(8,168,107,.28);
       transition:transform .2s ease,box-shadow .2s ease;
     }
-    .mint-btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(8,168,107,.38)}
+    .mint-btn-primary:hover{transform:translateY(-2px);box-shadow:0 9px 20px rgba(8,168,107,.38)}
     .mint-btn-secondary{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:10px 18px;
+      gap:7px;
+      padding:9px 16px;
       border-radius:999px;
       border:1px solid #19c995;
       background:rgba(255,255,255,.82);
       color:#087f55;
       text-decoration:none;
-      font-size:11.5px;
+      font-size:11px;
       font-weight:800;
       transition:background .2s ease,transform .2s ease;
     }
@@ -359,45 +365,45 @@
       color:#8af0c5;
     }
 
-    /* EARTH GLOBE + 20 SURROUNDING TOKENS STAGE */
+    /* LARGER CENTER EARTH GLOBE + 20 FLOATING TOKENS STAGE */
     .mint-art{
       position:relative;
       width:100%;
-      min-height:265px;
+      min-height:232px;
       display:flex;
       align-items:center;
       justify-content:center;
     }
-    @keyframes globeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+    @keyframes globeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
     @keyframes tokenFloat{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-4px)}}
     .em-globe-svg{
       position:relative;
       z-index:2;
-      width:215px;
+      width:248px;
       height:auto;
       display:block;
-      filter:drop-shadow(0 12px 20px rgba(8,168,107,.25));
+      filter:drop-shadow(0 12px 22px rgba(8,168,107,.28));
       animation:globeFloat 5.5s ease-in-out infinite;
     }
     .orbit-token{
       position:absolute;
-      z-index:3;
+      z-index:4;
       left:var(--x);
       top:var(--y);
       transform:translate(-50%,-50%);
       display:inline-flex;
       align-items:center;
       gap:4px;
-      padding:4px 8px;
+      padding:3.5px 7.5px;
       border-radius:999px;
-      background:rgba(255,255,255,.94);
-      border:1.4px solid rgba(8,168,107,.34);
+      background:rgba(255,255,255,.95);
+      border:1.4px solid rgba(8,168,107,.36);
       color:#0d223c;
-      font-size:9.5px;
+      font-size:9px;
       font-weight:800;
       letter-spacing:.15px;
       white-space:nowrap;
-      box-shadow:0 4px 12px rgba(7,58,45,.13);
+      box-shadow:0 4px 12px rgba(7,58,45,.15);
       animation:tokenFloat 4.8s ease-in-out infinite;
       animation-delay:var(--d,0s);
       transition:transform .18s ease,border-color .18s ease;
@@ -408,21 +414,21 @@
       transform:translate(-50%,-50%) scale(1.1);
     }
     [data-theme="dark"] .orbit-token{
-      background:rgba(13,38,34,.92);
-      border-color:rgba(72,240,180,.36);
+      background:rgba(13,38,34,.93);
+      border-color:rgba(72,240,180,.38);
       color:#ecfff8;
-      box-shadow:0 5px 14px rgba(0,0,0,.35);
+      box-shadow:0 5px 14px rgba(0,0,0,.38);
     }
     .tok-dot{
-      width:16px;
-      height:16px;
+      width:15px;
+      height:15px;
       border-radius:50%;
       display:grid;
       place-items:center;
       color:#ffffff;
-      font-size:9px;
+      font-size:8.5px;
       font-weight:900;
-      flex:0 0 16px;
+      flex:0 0 15px;
     }
     /* Major Chains Colors */
     .t-btc{background:linear-gradient(135deg,#f7931a,#d47000)}
@@ -451,7 +457,7 @@
        2. TRENDING PROJECTS SECTION
        ===================================================================== */
     .trending-box{
-      margin-top:16px;
+      margin-top:15px;
       padding:18px 20px 20px;
       border-radius:21px;
       border:1px solid var(--border);
@@ -867,16 +873,16 @@
 
     /* ACCESSIBILITY & RESPONSIVE */
     .side-link:focus-visible,.mint-btn-primary:focus-visible,.mint-btn-secondary:focus-visible,.trend-card:focus-visible,.eco-btn:focus-visible,.eco-btn-ghost:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible{outline:3px solid var(--green);outline-offset:3px}
-    @media(max-width:1280px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.mint-hero{grid-template-columns:1fr}.mint-art{max-width:440px;margin:0 auto}.trending-track{grid-template-columns:repeat(3,minmax(0,1fr))}.ecosystem-split,.hub-bottom-band{grid-template-columns:1fr}}
-    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.mint-hero{padding:22px 20px}.trending-track{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:60px;gap:9px;padding:8px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 38px}.community-btn{width:38px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:36px;min-height:36px;flex:0 0 36px}main{padding:15px 13px 25px}.mint-art{min-height:230px}.em-globe-svg{width:170px}.orbit-token{padding:3px 6px;font-size:8px}.tok-dot{width:13px;height:13px;font-size:7.5px;flex-basis:13px}.trending-box{padding:15px 13px}.trend-nav-btn{display:none}.trending-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:4px;scrollbar-width:none}.trending-track::-webkit-scrollbar{display:none}.trend-card{flex:0 0 165px;scroll-snap-align:start}.eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:18px}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
-    @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slot-megaphone{display:none}.slot-center-text strong{font-size:10px}.slot-center-text span{font-size:7px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:7px}.mint-art{min-height:210px}.em-globe-svg{width:148px}.orbit-token{padding:2.5px 5px;font-size:7.2px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}}
+    @media(max-width:1280px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.mint-hero{grid-template-columns:1fr}.mint-art{max-width:450px;margin:0 auto}.trending-track{grid-template-columns:repeat(3,minmax(0,1fr))}.ecosystem-split,.hub-bottom-band{grid-template-columns:1fr}}
+    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.domain-verified-tag{display:none}.mint-hero{padding:18px}.trending-track{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sticky-offset) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:50px;gap:8px;padding:6px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 36px}.domain-safety-pill{padding:4px 9px;font-size:9.5px;gap:5px}.domain-lock{width:17px;height:17px;font-size:9.5px}.domain-label-hide{display:none}.community-btn{width:36px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:35px;min-height:35px;flex:0 0 35px}main{padding:15px 13px 25px}.mint-art{min-height:215px}.em-globe-svg{width:195px}.orbit-token{padding:3px 6px;font-size:8px}.tok-dot{width:13px;height:13px;font-size:7.5px;flex-basis:13px}.trending-box{padding:15px 13px}.trend-nav-btn{display:none}.trending-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:4px;scrollbar-width:none}.trending-track::-webkit-scrollbar{display:none}.trend-card{flex:0 0 165px;scroll-snap-align:start}.eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:18px}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
+    @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slot-megaphone{display:none}.slot-center-text strong{font-size:10px}.slot-center-text span{font-size:7px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:6px}.domain-safety-pill{font-size:9px;padding:4px 8px}.mint-art{min-height:195px}.em-globe-svg{width:170px}.orbit-token{padding:2.5px 5px;font-size:7.2px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body data-theme="light">
   <!-- TOP SPONSORSHIP HEADER -->
-  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
+  <section class="sponsor-strip" id="sponsorStrip" aria-label="Sponsorship opportunity">
     <div class="sponsor-inner">
       <a href="index.html" class="header-brand">
         <span class="header-logo"><img src="logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';"></span>
@@ -935,16 +941,21 @@
     <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
 
     <div class="main-column">
-      <!-- TOPBAR -->
+      <!-- TOPBAR WITH OFFICIAL DOMAIN SAFETY BAR -->
       <header class="topbar">
         <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <div class="domain-safety-pill" title="Always verify you are on the official Total Crypto Hub domain">
+          <span class="domain-lock" aria-hidden="true">🔒</span>
+          <span><span class="domain-label-hide">Official Domain: </span><span class="domain-url">totalcryptohub.com</span></span>
+          <span class="domain-verified-tag">✓ Anti-Phishing Verified</span>
+        </div>
         <span class="topbar-spacer"></span>
         <div class="community-dropdown"><button class="community-btn" type="button" id="communityButton" aria-expanded="false">👥 Community</button><div class="dropdown-content" id="communityMenu"><a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a><a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a><a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a><a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a></div></div>
         <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
       </header>
 
       <main>
-        <!-- 1. UPGRADED MINT-GREEN HERO BANNER (EARTH GLOBE + 20 CRYPTO & DEPIN TOKENS) -->
+        <!-- 1. COMPACT MINT-THEME HERO BANNER (LARGER CENTER EARTH + 20 CRYPTO & DEPIN TOKENS) -->
         <section class="mint-hero" aria-labelledby="heroTitle">
           <div class="mint-copy">
             <span class="mint-pill">🛡️ Verified Web3 Directory · Powered by Total Crypto Network</span>
@@ -961,40 +972,40 @@
             </div>
           </div>
 
-          <!-- Glowing Earth Globe Surrounded by 20 Major Chains & DePIN Tokens -->
+          <!-- Larger Glowing Earth Globe Surrounded by 20 Major Chains & DePIN Tokens -->
           <div class="mint-art" aria-hidden="true">
             <!-- Top Row (4 Tokens) -->
-            <span class="orbit-token" style="--x:18%;--y:8%;--d:0s"><span class="tok-dot t-btc">₿</span>BTC</span>
-            <span class="orbit-token" style="--x:40%;--y:6%;--d:.4s"><span class="tok-dot t-eth">Ξ</span>ETH</span>
-            <span class="orbit-token" style="--x:62%;--y:6%;--d:.8s"><span class="tok-dot t-sol">◎</span>SOL</span>
-            <span class="orbit-token" style="--x:84%;--y:9%;--d:1.2s"><span class="tok-dot t-bnb">❖</span>BNB</span>
+            <span class="orbit-token" style="--x:18%;--y:7%;--d:0s"><span class="tok-dot t-btc">₿</span>BTC</span>
+            <span class="orbit-token" style="--x:40%;--y:5%;--d:.4s"><span class="tok-dot t-eth">Ξ</span>ETH</span>
+            <span class="orbit-token" style="--x:62%;--y:5%;--d:.8s"><span class="tok-dot t-sol">◎</span>SOL</span>
+            <span class="orbit-token" style="--x:84%;--y:8%;--d:1.2s"><span class="tok-dot t-bnb">❖</span>BNB</span>
 
             <!-- Upper-Mid Sides (4 Tokens) -->
-            <span class="orbit-token" style="--x:11%;--y:24%;--d:.3s"><span class="tok-dot t-grass">🌿</span>GRASS</span>
-            <span class="orbit-token" style="--x:28%;--y:22%;--d:.9s"><span class="tok-dot t-upt">⚡</span>UPT</span>
-            <span class="orbit-token" style="--x:73%;--y:22%;--d:.5s"><span class="tok-dot t-nc">💠</span>NC</span>
-            <span class="orbit-token" style="--x:90%;--y:25%;--d:1.4s"><span class="tok-dot t-hg">🍯</span>HG</span>
+            <span class="orbit-token" style="--x:10%;--y:24%;--d:.3s"><span class="tok-dot t-grass">🌿</span>GRASS</span>
+            <span class="orbit-token" style="--x:26%;--y:21%;--d:.9s"><span class="tok-dot t-upt">⚡</span>UPT</span>
+            <span class="orbit-token" style="--x:75%;--y:21%;--d:.5s"><span class="tok-dot t-nc">💠</span>NC</span>
+            <span class="orbit-token" style="--x:91%;--y:25%;--d:1.4s"><span class="tok-dot t-hg">🍯</span>HG</span>
 
             <!-- Center-Left & Center-Right Flanking Earth (4 Tokens) -->
-            <span class="orbit-token" style="--x:9%;--y:46%;--d:.7s"><span class="tok-dot t-dawn">☀️</span>DAWN</span>
-            <span class="orbit-token" style="--x:23%;--y:56%;--d:1.5s"><span class="tok-dot t-usdt">₮</span>USDT</span>
-            <span class="orbit-token" style="--x:78%;--y:45%;--d:.2s"><span class="tok-dot t-roam">📡</span>ROAM</span>
-            <span class="orbit-token" style="--x:91%;--y:56%;--d:1.1s"><span class="tok-dot t-hnt">🎈</span>HNT</span>
+            <span class="orbit-token" style="--x:8%;--y:46%;--d:.7s"><span class="tok-dot t-dawn">☀️</span>DAWN</span>
+            <span class="orbit-token" style="--x:22%;--y:56%;--d:1.5s"><span class="tok-dot t-usdt">₮</span>USDT</span>
+            <span class="orbit-token" style="--x:79%;--y:45%;--d:.2s"><span class="tok-dot t-roam">📡</span>ROAM</span>
+            <span class="orbit-token" style="--x:92%;--y:56%;--d:1.1s"><span class="tok-dot t-hnt">🎈</span>HNT</span>
 
             <!-- Lower-Mid Sides (4 Tokens) -->
-            <span class="orbit-token" style="--x:11%;--y:72%;--d:1.6s"><span class="tok-dot t-io">🖥️</span>IO</span>
-            <span class="orbit-token" style="--x:27%;--y:78%;--d:.6s"><span class="tok-dot t-rndr">🎨</span>RNDR</span>
-            <span class="orbit-token" style="--x:74%;--y:78%;--d:1.3s"><span class="tok-dot t-theta">▶</span>THETA</span>
-            <span class="orbit-token" style="--x:90%;--y:72%;--d:.4s"><span class="tok-dot t-peaq">🔗</span>PEAQ</span>
+            <span class="orbit-token" style="--x:10%;--y:73%;--d:1.6s"><span class="tok-dot t-io">🖥️</span>IO</span>
+            <span class="orbit-token" style="--x:26%;--y:79%;--d:.6s"><span class="tok-dot t-rndr">🎨</span>RNDR</span>
+            <span class="orbit-token" style="--x:75%;--y:79%;--d:1.3s"><span class="tok-dot t-theta">▶</span>THETA</span>
+            <span class="orbit-token" style="--x:91%;--y:73%;--d:.4s"><span class="tok-dot t-peaq">🔗</span>PEAQ</span>
 
             <!-- Bottom Row (4 Tokens) -->
-            <span class="orbit-token" style="--x:18%;--y:92%;--d:.9s"><span class="tok-dot t-slc">🔇</span>SLC</span>
-            <span class="orbit-token" style="--x:40%;--y:94%;--d:1.7s"><span class="tok-dot t-acu">📱</span>ACU</span>
-            <span class="orbit-token" style="--x:61%;--y:94%;--d:.5s"><span class="tok-dot t-pi">π</span>PI</span>
-            <span class="orbit-token" style="--x:83%;--y:92%;--d:1.2s"><span class="tok-dot t-tnt">🌐</span>TNT</span>
+            <span class="orbit-token" style="--x:18%;--y:93%;--d:.9s"><span class="tok-dot t-slc">🔇</span>SLC</span>
+            <span class="orbit-token" style="--x:40%;--y:95%;--d:1.7s"><span class="tok-dot t-acu">📱</span>ACU</span>
+            <span class="orbit-token" style="--x:61%;--y:95%;--d:.5s"><span class="tok-dot t-pi">π</span>PI</span>
+            <span class="orbit-token" style="--x:83%;--y:93%;--d:1.2s"><span class="tok-dot t-tnt">🌐</span>TNT</span>
 
             <!-- Central Glowing Earth Globe SVG -->
-            <svg class="em-globe-svg" viewBox="0 0 320 270" xmlns="http://www.w3.org/2000/svg">
+            <svg class="em-globe-svg" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <radialGradient id="emSphere" cx="35%" cy="28%" r="75%">
                   <stop offset="0" stop-color="#c4ffea"/>
@@ -1006,42 +1017,42 @@
                   <stop offset="1" stop-color="#08a86b" stop-opacity="0.02"/>
                 </radialGradient>
                 <clipPath id="emGlobeClip">
-                  <circle cx="160" cy="126" r="76"/>
+                  <circle cx="160" cy="122" r="82"/>
                 </clipPath>
               </defs>
 
               <!-- Pedestal Rings -->
-              <ellipse cx="160" cy="224" rx="126" ry="20" fill="url(#emPedestal)"/>
-              <ellipse cx="160" cy="222" rx="98" ry="14" fill="none" stroke="#08a86b" stroke-width="1.8" opacity="0.55"/>
-              <ellipse cx="160" cy="220" rx="70" ry="10" fill="#b7ffe6" stroke="#08a86b" stroke-width="1.8"/>
+              <ellipse cx="160" cy="226" rx="130" ry="19" fill="url(#emPedestal)"/>
+              <ellipse cx="160" cy="224" rx="102" ry="13" fill="none" stroke="#08a86b" stroke-width="1.8" opacity="0.55"/>
+              <ellipse cx="160" cy="222" rx="74" ry="9.5" fill="#b7ffe6" stroke="#08a86b" stroke-width="1.8"/>
 
               <!-- Orbit Network Rings -->
-              <ellipse cx="160" cy="126" rx="142" ry="52" transform="rotate(-15 160 126)" fill="none" stroke="#08a86b" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.5"/>
-              <ellipse cx="160" cy="126" rx="122" ry="44" transform="rotate(20 160 126)" fill="none" stroke="#08a86b" stroke-width="1.3" opacity="0.42"/>
+              <ellipse cx="160" cy="122" rx="146" ry="54" transform="rotate(-15 160 122)" fill="none" stroke="#08a86b" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.5"/>
+              <ellipse cx="160" cy="122" rx="126" ry="46" transform="rotate(20 160 122)" fill="none" stroke="#08a86b" stroke-width="1.3" opacity="0.42"/>
 
               <!-- Main Glowing Earth -->
-              <circle cx="160" cy="126" r="78" fill="url(#emSphere)" stroke="#8affd4" stroke-width="2.5"/>
+              <circle cx="160" cy="122" r="84" fill="url(#emSphere)" stroke="#8affd4" stroke-width="2.5"/>
               <g clip-path="url(#emGlobeClip)">
                 <!-- Continents -->
-                <path d="M106 80 126 70 144 79 139 98 122 106 104 96Z" fill="#e2fff5" opacity="0.86"/>
-                <path d="M164 73 192 68 213 84 206 108 181 113 161 99Z" fill="#e2fff5" opacity="0.88"/>
-                <path d="M129 120 156 115 172 135 160 167 137 161 125 139Z" fill="#e2fff5" opacity="0.82"/>
-                <path d="M187 127 218 122 230 146 209 168 187 158Z" fill="#e2fff5" opacity="0.86"/>
+                <path d="M102 74 124 63 144 73 138 93 120 102 100 91Z" fill="#e2fff5" opacity="0.86"/>
+                <path d="M164 67 195 61 217 79 210 105 183 110 161 95Z" fill="#e2fff5" opacity="0.88"/>
+                <path d="M126 116 156 111 173 133 160 168 135 161 122 137Z" fill="#e2fff5" opacity="0.82"/>
+                <path d="M189 124 222 119 235 145 213 169 189 158Z" fill="#e2fff5" opacity="0.86"/>
                 <!-- Mesh Grid & Connected Nodes -->
-                <g stroke="#ffffff" stroke-width="1" opacity="0.6" fill="none">
-                  <ellipse cx="160" cy="126" rx="31" ry="76"/>
-                  <ellipse cx="160" cy="126" rx="57" ry="76"/>
-                  <path d="M84 126h152M92 98h136M92 154h136"/>
-                  <line x1="122" y1="91" x2="181" y2="91"/>
-                  <line x1="181" y1="91" x2="151" y2="140"/>
-                  <line x1="122" y1="91" x2="151" y2="140"/>
-                  <line x1="151" y1="140" x2="208" y2="144"/>
+                <g stroke="#ffffff" stroke-width="1.05" opacity="0.62" fill="none">
+                  <ellipse cx="160" cy="122" rx="34" ry="82"/>
+                  <ellipse cx="160" cy="122" rx="62" ry="82"/>
+                  <path d="M78 122h164M87 92h146M87 152h146"/>
+                  <line x1="120" y1="86" x2="183" y2="86"/>
+                  <line x1="183" y1="86" x2="150" y2="138"/>
+                  <line x1="120" y1="86" x2="150" y2="138"/>
+                  <line x1="150" y1="138" x2="212" y2="142"/>
                 </g>
                 <g fill="#ffffff">
-                  <circle cx="122" cy="91" r="2.8"/>
-                  <circle cx="181" cy="91" r="3.2"/>
-                  <circle cx="151" cy="140" r="2.8"/>
-                  <circle cx="208" cy="144" r="2.8"/>
+                  <circle cx="120" cy="86" r="3"/>
+                  <circle cx="183" cy="86" r="3.4"/>
+                  <circle cx="150" cy="138" r="3"/>
+                  <circle cx="212" cy="142" r="3"/>
                 </g>
               </g>
             </svg>
@@ -1287,10 +1298,21 @@
         if (menuButton) menuButton.setAttribute("aria-expanded", "false");
       }
 
+      function updateSidebarOffset() {
+        const strip = document.getElementById("sponsorStrip");
+        if (!strip) return;
+        const remaining = Math.max(0, strip.getBoundingClientRect().bottom);
+        document.documentElement.style.setProperty("--sticky-offset", remaining + "px");
+      }
+
       window.addEventListener("DOMContentLoaded", () => {
         let savedTheme = "light";
         try { savedTheme = localStorage.getItem("theme") || "light"; } catch (_) { /* Use light theme. */ }
         applyTheme(savedTheme);
+
+        updateSidebarOffset();
+        window.addEventListener("scroll", updateSidebarOffset, { passive: true });
+        window.addEventListener("resize", updateSidebarOffset, { passive: true });
 
         const themeToggle = document.getElementById("themeToggle");
         if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
