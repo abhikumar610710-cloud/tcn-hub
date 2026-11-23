@@ -11,2382 +11,927 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-  :root {
-    color-scheme: light;
-    --bg: #f2faf8;
-    --surface: #ffffff;
-    --surface-soft: #f0fbf7;
-    --border: #d8eee7;
-    --heading: #102344;
-    --body: #304960;
-    --muted: #71869a;
-    --green: #08a86b;
-    --green-dark: #05794f;
-    --green-bright: #22e39a;
-    --green-soft: #e2fff2;
-    --navy: #071d28;
-    --navy-2: #0c3434;
-    --shadow: 0 12px 34px rgba(14, 75, 62, .075);
-    --sidebar-width: 246px;
-    --header-height: 76px;
-  }
-
-  html[data-theme="dark"], body[data-theme="dark"] {
-    color-scheme: dark;
-    --bg: #07171d;
-    --surface: #10262d;
-    --surface-soft: #15343a;
-    --border: #244b4a;
-    --heading: #effff8;
-    --body: #cce5dc;
-    --muted: #8eada6;
-    --green: #28dda0;
-    --green-dark: #13a875;
-    --green-bright: #5cf3bd;
-    --green-soft: #123d32;
-    --navy: #06151d;
-    --navy-2: #0a302d;
-    --shadow: 0 16px 38px rgba(0, 0, 0, .22);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--header-height) + 20px);
-  }
-
-  body {
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-    overflow-x: hidden;
-    background: var(--bg);
-    color: var(--body);
-    font-family: "Plus Jakarta Sans", sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  a { color: inherit; }
-  button, input { font: inherit; }
-  button { cursor: pointer; }
-
-  /* =========================
-     PREMIUM TOP HEADER
-  ========================= */
-
-  .top-header {
-    position: sticky;
-    top: 0;
-    z-index: 300;
-    min-height: var(--header-height);
-    display: flex;
-    align-items: center;
-    background: color-mix(in srgb, var(--surface) 94%, transparent);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(18px);
-    box-shadow: 0 5px 22px rgba(5, 86, 62, .055);
-  }
-
-  .header-inner {
-    width: 100%;
-    max-width: 1900px;
-    min-height: var(--header-height);
-    margin: auto;
-    padding: 9px 24px;
-    display: flex;
-    align-items: center;
-    gap: 22px;
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 0 0 auto;
-  }
-
-  .mobile-menu-btn {
-    display: none;
-    width: 39px;
-    height: 39px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--heading);
-    background: var(--surface);
-    font-size: 18px;
-  }
-
-  .header-brand {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .header-logo {
-    width: 43px;
-    height: 43px;
-    flex: 0 0 43px;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    border: 2px solid #0bc889;
-    background: radial-gradient(circle at 30% 25%, #7dffd0, #08a86b 62%, #04543c);
-    box-shadow: 0 4px 14px rgba(8, 168, 107, .24);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 900;
-  }
-
-  .header-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  .header-brand-name {
-    display: block;
-    color: var(--heading);
-    font-size: 16px;
-    line-height: 1.15;
-    font-weight: 800;
-    letter-spacing: -.45px;
-  }
-
-  .header-brand-subtitle {
-    display: block;
-    margin-top: 3px;
-    color: var(--green-dark);
-    font-size: 9.5px;
-    font-weight: 800;
-  }
-
-  .top-nav {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-left: 8px;
-  }
-
-  .top-nav a {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 10px 12px;
-    border-radius: 999px;
-    color: var(--body);
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 800;
-    white-space: nowrap;
-    transition: .18s ease;
-  }
-
-  .top-nav a:hover,
-  .top-nav a.current {
-    color: var(--green-dark);
-    background: var(--green-soft);
-  }
-
-  .top-nav a.current {
-    box-shadow: inset 0 0 0 1px rgba(8, 168, 107, .12);
-  }
-
-  .header-spacer {
-    flex: 1 1 auto;
-  }
-
-  .header-search-shortcut {
-    min-width: 185px;
-    max-width: 270px;
-    flex: 0 1 270px;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--surface);
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 600;
-    box-shadow: 0 4px 13px rgba(15, 65, 60, .045);
-  }
-
-  .header-tools {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 0 0 auto;
-  }
-
-  .community-dropdown {
-    position: relative;
-  }
-
-  .community-btn,
-  .icon-btn {
-    min-height: 39px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    color: var(--heading);
-    background: var(--surface);
-    font-size: 11px;
-    font-weight: 800;
-    box-shadow: 0 3px 11px rgba(8, 130, 90, .06);
-    transition: .18s ease;
-  }
-
-  .community-btn { padding: 0 14px; }
-
-  .icon-btn {
-    width: 39px;
-    border-radius: 50%;
-    font-size: 16px;
-  }
-
-  .community-btn:hover,
-  .icon-btn:hover {
-    border-color: var(--green);
-    color: var(--green);
-    transform: translateY(-1px);
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    z-index: 350;
-    top: calc(100% + 9px);
-    right: 0;
-    min-width: 195px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    background: var(--surface);
-    box-shadow: 0 16px 34px rgba(0, 0, 0, .15);
-  }
-
-  .dropdown-content.show {
-    display: block;
-    animation: fadeIn .16s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .dropdown-content a {
-    display: flex;
-    gap: 9px;
-    padding: 12px 15px;
-    border-bottom: 1px solid var(--border);
-    color: var(--heading);
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-  }
-
-  .dropdown-content a:last-child { border-bottom: 0; }
-
-  .dropdown-content a:hover {
-    color: var(--green);
-    background: var(--green-soft);
-  }
-
-  /* =========================
-     SIDEBAR NAVIGATION
-  ========================= */
-
-  .sidebar {
-    position: fixed;
-    z-index: 220;
-    inset: var(--header-height) auto 0 0;
-    width: var(--sidebar-width);
-    height: calc(100vh - var(--header-height));
-    height: calc(100dvh - var(--header-height));
-    display: flex;
-    flex-direction: column;
-    padding: 19px 15px 17px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    box-shadow: 8px 0 28px rgba(21, 48, 84, .025);
-    transition: transform .25s ease;
-  }
-
-  .sidebar::-webkit-scrollbar { width: 5px; }
-  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-
-  .side-label {
-    padding: 10px 13px 9px;
-    color: var(--muted);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1.25px;
-    text-transform: uppercase;
-  }
-
-  .side-nav {
-    display: grid;
-    gap: 6px;
-    flex-shrink: 0;
-  }
-
-  .side-link {
-    min-height: 47px;
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    padding: 7px 11px;
-    color: var(--body);
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 14px;
-    font-size: 11.5px;
-    font-weight: 750;
-    transition: .18s ease;
-  }
-
-  .side-link:hover {
-    background: var(--surface-soft);
-    border-color: var(--border);
-    transform: translateX(2px);
-  }
-
-  .side-link.active {
-    color: var(--green-dark);
-    background: linear-gradient(100deg, var(--green-soft), var(--surface));
-    border-color: #b8f2d7;
-    box-shadow: 0 5px 14px rgba(8, 168, 107, .09);
-  }
-
-  html[data-theme="dark"] .side-link.active,
-  body[data-theme="dark"] .side-link.active {
-    color: var(--green-bright);
-    border-color: #23654e;
-  }
-
-  .nav-icon {
-    width: 35px;
-    height: 35px;
-    flex: 0 0 35px;
-    display: grid;
-    place-items: center;
-    border-radius: 11px;
-    font-size: 16px;
-  }
-
-  .nav-icon svg {
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .nav-home { color: #079b69; background: #d9f8e9; }
-  .nav-depin { color: #1687ff; background: #dfeeff; }
-  .nav-community { color: #8b5cf6; background: #eee5ff; }
-  .nav-airdrop { color: #f07819; background: #fff0d9; }
-  .nav-wallet { color: #9333ea; background: #f1e3ff; }
-  .nav-checker { color: #0d9488; background: #d9f7f0; }
-  .nav-calculator { color: #2563eb; background: #e2eaff; }
-
-  .sidebar-spacer {
-    flex: 1 0 18px;
-    min-height: 18px;
-  }
-
-  .side-promo {
-    margin: 16px 5px 12px;
-    padding: 17px 13px;
-    flex-shrink: 0;
-    text-align: center;
-    border-radius: 21px;
-    border: 1px solid #bdeed9;
-    background:
-      radial-gradient(circle at 90% 10%, rgba(92, 238, 176, .25), transparent 34%),
-      linear-gradient(145deg, #e7fff4, #fff 72%);
-    box-shadow: 0 8px 20px rgba(8, 168, 107, .09);
-  }
-
-  html[data-theme="dark"] .side-promo,
-  body[data-theme="dark"] .side-promo {
-    background: linear-gradient(145deg, #123b32, #142238);
-    border-color: #255c49;
-  }
-
-  .promo-gift { margin-bottom: 7px; font-size: 30px; }
-
-  .side-promo h3 {
-    margin: 0 0 7px;
-    color: var(--heading);
-    font-size: 12px;
-    line-height: 1.45;
-    font-weight: 800;
-  }
-
-  .side-promo p {
-    margin: 0 0 11px;
-    color: var(--muted);
-    font-size: 9.5px;
-    line-height: 1.55;
-  }
-
-  .promo-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    padding: 9px 18px;
-    border-radius: 999px;
-    color: #fff;
-    background: linear-gradient(135deg, #08a86b, #06c77a);
-    text-decoration: none;
-    font-size: 10.5px;
-    font-weight: 800;
-    box-shadow: 0 6px 14px rgba(8, 168, 107, .2);
-  }
-
-  .support-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 5px;
-    padding: 11px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    border: 1px solid var(--border);
-    background: var(--surface-soft);
-    text-decoration: none;
-  }
-
-  .support-icon {
-    width: 35px;
-    height: 35px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    color: var(--green-dark);
-    background: var(--green-soft);
-    font-size: 17px;
-  }
-
-  .support-card strong {
-    display: block;
-    color: var(--heading);
-    font-size: 10.5px;
-  }
-
-  .support-card span:last-child {
-    display: block;
-    margin-top: 3px;
-    color: var(--green);
-    font-size: 9.5px;
-    font-weight: 800;
-  }
-
-  .sidebar-note {
-    margin: 12px 7px 0;
-    color: var(--muted);
-    font-size: 8.5px;
-    text-align: center;
-  }
-
-  .mobile-overlay { display: none; }
-
-  /* =========================
-     MAIN PAGE CONTAINER
-  ========================= */
-
-  .main-column {
-    min-height: calc(100vh - var(--header-height));
-    margin-left: var(--sidebar-width);
-  }
-
-  main {
-    width: 100%;
-    max-width: 1780px;
-    margin: 0 auto;
-    padding: 18px clamp(16px, 2vw, 28px) 38px;
-  }
-
-  /* =========================
-     PREMIUM SMART TOKEN HERO
-  ========================= */
-
-  .finder-hero-box {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    padding: 27px 30px 22px;
-    border-radius: 24px;
-    border: 1px solid rgba(38, 222, 165, .42);
-    background:
-      radial-gradient(circle at 80% 35%, rgba(5, 222, 163, .25), transparent 29%),
-      radial-gradient(circle at 12% 100%, rgba(0, 198, 132, .3), transparent 35%),
-      linear-gradient(112deg, #061f28 0%, #0a3937 56%, #075b46 100%);
-    box-shadow: 0 16px 36px rgba(3, 75, 56, .18);
-    color: #fff;
-  }
-
-  .finder-hero-box::before,
-  .finder-hero-box::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    border: 1px solid rgba(67, 255, 194, .12);
-    border-radius: 50%;
-    transform: rotate(-18deg);
-  }
-
-  .finder-hero-box::before {
-    width: 470px;
-    height: 190px;
-    right: 5%;
-    top: 12px;
-  }
-
-  .finder-hero-box::after {
-    width: 360px;
-    height: 145px;
-    right: 9%;
-    top: 35px;
-  }
-
-  .hero-top-grid {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-
-  .hero-copy { flex: 1; min-width: 0; }
-
-  .hero-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(160,255,222,.3);
-    color: #a9ffdf;
-    font-size: 10px;
-    font-weight: 800;
-    margin-bottom: 10px;
-  }
-
-  .hero-kicker-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #20e8a0;
-    box-shadow: 0 0 12px #20e8a0;
-  }
-
-  .hero-copy h1 {
-    margin: 0;
-    color: #fff;
-    font-size: clamp(30px, 3.1vw, 43px);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -1.3px;
-  }
-
-  .hero-copy h1 span { color: #36e7a8; }
-
-  .hero-copy p {
-    margin: 8px 0 14px;
-    color: #d8f7ed;
-    font-size: 13px;
-    line-height: 1.55;
-    font-weight: 600;
-  }
-
-  .hero-badges {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 9px 17px;
-    color: #e5fff5;
-    font-size: 10.5px;
-    font-weight: 700;
-  }
-
-  .hero-badges span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .badge-check {
-    width: 17px;
-    height: 17px;
-    display: inline-grid;
-    place-items: center;
-    border-radius: 50%;
-    background: #16cb83;
-    color: #053b2b;
-    font-size: 10px;
-    font-weight: 900;
-  }
-
-  /* BITCOIN MAGNIFYING GLASS */
-
-  .btc-lens-showcase {
-    position: relative;
-    width: 255px;
-    height: 160px;
-    flex: 0 0 255px;
-    display: grid;
-    place-items: center;
-  }
-
-  .lens-pedestal {
-    position: absolute;
-    bottom: 5px;
-    width: 204px;
-    height: 54px;
-    border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(16, 226, 160, .42), transparent 70%);
-    border: 1px solid rgba(39, 232, 172, .18);
-    box-shadow: 0 0 36px rgba(8, 224, 160, .2);
-  }
-
-  .glass-ring {
-    position: relative;
-    z-index: 2;
-    width: 116px;
-    height: 116px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 28% 25%, #fff 0%, #e2fff4 52%, #79e9bc 100%);
-    border: 4px solid #24e8a3;
-    box-shadow:
-      0 0 0 10px rgba(28, 226, 162, .08),
-      0 15px 32px rgba(0,0,0,.28),
-      inset 0 0 18px rgba(255,255,255,.9);
-    display: grid;
-    place-items: center;
-  }
-
-  .gold-btc-disc {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    background: linear-gradient(145deg, #ffe08a, #f6a900 65%, #b96800);
-    border: 3px solid #fff0bd;
-    box-shadow: 0 8px 18px rgba(180,83,9,.36);
-    display: grid;
-    place-items: center;
-    color: #fff;
-    font-size: 43px;
-    font-weight: 900;
-    text-shadow: 0 2px 4px rgba(0,0,0,.25);
-  }
-
-  .glass-handle {
-    position: absolute;
-    z-index: 3;
-    right: 39px;
-    bottom: 13px;
-    width: 49px;
-    height: 14px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #087b53, #28efad);
-    transform: rotate(42deg);
-    box-shadow: 0 5px 12px rgba(0,0,0,.24);
-  }
-
-  .orbit-coin {
-    position: absolute;
-    z-index: 4;
-    width: 37px;
-    height: 37px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 800;
-    border: 2px solid rgba(255,255,255,.9);
-    box-shadow: 0 6px 14px rgba(0,0,0,.2);
-  }
-
-  .oc-usdt {
-    bottom: 17px;
-    left: 12px;
-    background: linear-gradient(135deg,#14b8a6,#0f766e);
-  }
-
-  .oc-eth-left {
-    top: 12px;
-    left: 39px;
-    background: linear-gradient(135deg,#6366f1,#3730a3);
-  }
-
-  .oc-sol {
-    top: 7px;
-    right: 25px;
-    background: linear-gradient(135deg,#10b981,#047857);
-  }
-
-  .oc-eth-right {
-    bottom: 18px;
-    right: 8px;
-    background: linear-gradient(135deg,#3b82f6,#1d4ed8);
-  }
-
-  /* PREMIUM SEARCH BAR */
-
-  .hero-search-form {
-    position: relative;
-    z-index: 4;
-    margin-top: 19px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #fff;
-    border: 2px solid rgba(155,255,218,.9);
-    border-radius: 999px;
-    padding: 5px 12px 5px 6px;
-    box-shadow: 0 10px 26px rgba(0,0,0,.17);
-    transition: border-color .2s, box-shadow .2s;
-  }
-
-  .hero-search-form:focus-within {
-    border-color: #2de9a6;
-    box-shadow: 0 0 0 4px rgba(45,233,166,.15), 0 10px 26px rgba(0,0,0,.17);
-  }
-
-  .hero-search-btn-left {
-    height: 45px;
-    padding: 0 23px;
-    border: 0;
-    border-radius: 999px;
-    background: linear-gradient(135deg,#09b97a,#04794f);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 800;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    box-shadow: 0 5px 15px rgba(8,168,107,.25);
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: .15s ease;
-  }
-
-  .hero-search-btn-left:hover {
-    filter: brightness(1.07);
-    transform: translateY(-1px);
-  }
-
-  .hero-search-btn-left:disabled {
-    opacity: .7;
-    cursor: wait;
-  }
-
-  .hero-search-input {
-    flex: 1;
-    min-width: 0;
-    height: 45px;
-    border: 0;
-    outline: none;
-    background: transparent;
-    color: #102344;
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  .hero-search-input::placeholder {
-    color: #7b8da0;
-    font-weight: 500;
-  }
-
-  .clear-search-btn {
-    display: none;
-    width: 29px;
-    height: 29px;
-    border: 0;
-    border-radius: 50%;
-    background: #eef8f4;
-    color: #647b8a;
-    font-size: 12px;
-    font-weight: 800;
-    flex-shrink: 0;
-  }
-
-  .clear-search-btn.show {
-    display: inline-grid;
-    place-items: center;
-  }
-
-  /* =========================
-     SPONSORSHIP BANNER
-  ========================= */
-
-  .sponsorship-banner {
-    position: relative;
-    overflow: hidden;
-    margin-top: 15px;
-    padding: 15px 22px;
-    border-radius: 17px;
-    border: 1px solid #0ebf82;
-    background:
-      radial-gradient(circle at 85% 50%, rgba(16,214,145,.24), transparent 32%),
-      linear-gradient(95deg,#061e26 0%,#0d3738 55%,#07513e 100%);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 14px;
-    box-shadow: 0 10px 24px rgba(8,29,34,.13);
-    text-decoration: none;
-    transition: .16s ease;
-  }
-
-  .sponsorship-banner:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 14px 28px rgba(8,168,107,.22);
-  }
-
-  .sponsor-left {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-
-  .sponsor-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 13px;
-    border-radius: 999px;
-    background: rgba(50,229,161,.15);
-    border: 1px solid rgba(50,229,161,.42);
-    color: #67f3c0;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-  }
-
-  .sponsor-copy strong {
-    display: block;
-    font-size: 15px;
-    font-weight: 800;
-    line-height: 1.25;
-    color: #fff;
-  }
-
-  .sponsor-copy span {
-    display: block;
-    margin-top: 3px;
-    font-size: 10.5px;
-    font-weight: 600;
-    color: #c8ebe2;
-  }
-
-  .sponsor-cta-btn {
-    padding: 10px 21px;
-    border-radius: 999px;
-    background: linear-gradient(135deg,#10d28b,#078e5d);
-    color: #052b21;
-    font-size: 11px;
-    font-weight: 900;
-    box-shadow: 0 6px 16px rgba(16,196,127,.28);
-    white-space: nowrap;
-  }
-
-  /* =========================
-     TOKEN DETAIL BOX
-  ========================= */
-
-  .inline-token-slot {
-    display: none;
-    margin-top: 15px;
-    padding: 20px 22px;
-    border-radius: 20px;
-    border: 1.5px solid #96ecd0;
-    background: var(--surface);
-    box-shadow: 0 14px 34px rgba(8,168,107,.11);
-    scroll-margin-top: 88px;
-  }
-
-  html[data-theme="dark"] .inline-token-slot,
-  body[data-theme="dark"] .inline-token-slot {
-    border-color: #266b54;
-  }
-
-  .inline-token-slot.show {
-    display: block;
-    animation: slotReveal .22s ease-out;
-  }
-
-  @keyframes slotReveal {
-    from { opacity: 0; transform: translateY(-6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .slot-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 16px;
-  }
-
-  .slot-coin-info {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-  }
-
-  .slot-avatar {
-    width: 48px;
-    height: 48px;
-    flex: 0 0 48px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    background: var(--green-soft);
-    color: var(--green-dark);
-    font-size: 18px;
-    font-weight: 800;
-    border: 1.5px solid #96ecd0;
-  }
-
-  .slot-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .slot-coin-info h3 {
-    margin: 0;
-    color: var(--heading);
-    font-size: 19px;
-    font-weight: 800;
-  }
-
-  .slot-coin-info small {
-    display: block;
-    margin-top: 2px;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 700;
-  }
-
-  .slot-actions {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-  }
-
-  .slot-chart-btn {
-    padding: 9px 17px;
-    border-radius: 999px;
-    background: linear-gradient(135deg,#08a86b,#057a4e);
-    color: #fff;
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 800;
-    white-space: nowrap;
-  }
-
-  .slot-close-btn {
-    padding: 8px 13px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--surface-soft);
-    color: var(--heading);
-    font-size: 11px;
-    font-weight: 800;
-  }
-
-  .slot-metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 11px;
-  }
-
-  .slot-metric-card {
-    padding: 14px 15px;
-    border-radius: 15px;
-    background: var(--surface-soft);
-    border: 1px solid var(--border);
-  }
-
-  .slot-metric-card span {
-    display: block;
-    color: var(--muted);
-    font-size: 9.5px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-  }
-
-  .slot-metric-card strong {
-    display: block;
-    margin-top: 6px;
-    color: var(--heading);
-    font-size: 16px;
-    font-weight: 800;
-  }
-
-  /* =========================
-     MAIN ANALYTICS GRID
-  ========================= */
-
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: minmax(0,1fr) 286px;
-    gap: 17px;
-    align-items: start;
-    margin-top: 18px;
-  }
-
-  .dashboard-main { min-width: 0; }
-  .results-section { margin-top: 0; }
-
-  .results-top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 11px;
-    padding: 0 2px;
-  }
-
-  .results-heading-wrap {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-  }
-
-  .results-heading-icon {
-    width: 30px;
-    height: 30px;
-    display: grid;
-    place-items: center;
-    border-radius: 10px;
-    background: var(--green-soft);
-    color: var(--green-dark);
-    font-size: 15px;
-  }
-
-  .results-heading-wrap h2 {
-    margin: 0;
-    color: var(--heading);
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: -.25px;
-  }
-
-  .live-updated-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--green-dark);
-    font-size: 10px;
-    font-weight: 800;
-  }
-
-  html[data-theme="dark"] .live-updated-tag,
-  body[data-theme="dark"] .live-updated-tag {
-    color: var(--green-bright);
-  }
-
-  .live-updated-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #08c981;
-    box-shadow: 0 0 0 4px rgba(8,201,129,.1);
-  }
-
-  .table-card {
-    border-radius: 18px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-
-  .table-card-head {
-    padding: 13px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(90deg,var(--surface),var(--surface-soft));
-  }
-
-  .table-card-head strong {
-    color: var(--heading);
-    font-size: 11px;
-    font-weight: 800;
-  }
-
-  .table-card-head span {
-    color: var(--muted);
-    font-size: 9.5px;
-    font-weight: 700;
-  }
-
-  .table-wrap {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .live-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 790px;
-    text-align: left;
-  }
-
-  .live-table th {
-    padding: 12px 13px;
-    background: #edf9f4;
-    color: #506a7b;
-    font-size: 10px;
-    font-weight: 800;
-    border-bottom: 1px solid var(--border);
-    white-space: nowrap;
-  }
-
-  html[data-theme="dark"] .live-table th,
-  body[data-theme="dark"] .live-table th {
-    background: var(--surface-soft);
-    color: var(--muted);
-  }
-
-  .live-table td {
-    padding: 12px 13px;
-    border-bottom: 1px solid var(--border);
-    font-size: 11.5px;
-    font-weight: 700;
-    color: var(--heading);
-    vertical-align: middle;
-  }
-
-  .live-table tbody tr {
-    cursor: pointer;
-    transition: background .14s ease;
-  }
-
-  .live-table tbody tr:hover { background: var(--surface-soft); }
-  .live-table tbody tr.selected-row { background: var(--green-soft); }
-  .live-table tbody tr:last-child td { border-bottom: 0; }
-
-  .td-rank {
-    width: 40px;
-    color: var(--muted) !important;
-    font-weight: 800 !important;
-  }
-
-  .token-cell {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    min-width: 130px;
-  }
-
-  .tbl-logo {
-    width: 31px;
-    height: 31px;
-    flex: 0 0 31px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    background: var(--green-soft);
-    color: var(--green-dark);
-    font-size: 12px;
-    font-weight: 800;
-    border: 1px solid rgba(8,168,107,.22);
-  }
-
-  .tbl-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .td-symbol {
-    color: var(--muted) !important;
-    font-size: 10.5px !important;
-    font-weight: 800 !important;
-  }
-
-  .td-chain {
-    color: var(--body) !important;
-    font-weight: 700 !important;
-    white-space: nowrap;
-  }
-
-  .td-price { white-space: nowrap; }
-  .price-main { color: var(--heading); font-weight: 800; }
-  .price-sub { color: var(--muted); font-size: 10px; font-weight: 700; margin-left: 3px; }
-  .chg-up { color: #079c62; font-weight: 800; white-space: nowrap; }
-  .chg-down { color: #e11d48; font-weight: 800; white-space: nowrap; }
-  .chg-flat { color: var(--muted); font-weight: 700; white-space: nowrap; }
-
-  .view-row-btn {
-    border: 1px solid rgba(8,168,107,.18);
-    border-radius: 999px;
-    padding: 6px 11px;
-    background: var(--green-soft);
-    color: var(--green-dark);
-    font-size: 9.5px;
-    font-weight: 900;
-    white-space: nowrap;
-  }
-
-  .view-row-btn:hover {
-    background: var(--green);
-    color: #fff;
-  }
-
-  .status-box {
-    padding: 35px 20px;
-    text-align: center;
-    color: var(--muted);
-  }
-
-  .status-box h3 {
-    margin: 8px 0 5px;
-    color: var(--heading);
-    font-size: 14px;
-    font-weight: 800;
-  }
-
-  .status-box p {
-    margin: 0;
-    font-size: 11px;
-  }
-
-  /* =========================
-     RIGHT MARKET SIDEBAR
-  ========================= */
-
-  .dashboard-aside {
-    display: grid;
-    gap: 14px;
-    min-width: 0;
-  }
-
-  .insight-card {
-    overflow: hidden;
-    border-radius: 18px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
-
-  .insight-card-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 14px 15px;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(100deg,var(--surface-soft),var(--surface));
-  }
-
-  .insight-card-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--heading);
-    font-size: 12px;
-    font-weight: 800;
-  }
-
-  .insight-icon {
-    width: 28px;
-    height: 28px;
-    display: grid;
-    place-items: center;
-    border-radius: 9px;
-    background: var(--green-soft);
-    color: var(--green-dark);
-    font-size: 14px;
-  }
-
-  .live-chip {
-    padding: 5px 9px;
-    border-radius: 999px;
-    color: #078653;
-    background: #e0fff1;
-    font-size: 9px;
-    font-weight: 900;
-  }
-
-  html[data-theme="dark"] .live-chip,
-  body[data-theme="dark"] .live-chip {
-    color: #5df0bd;
-    background: #123e34;
-  }
-
-  .pulse-body { padding: 14px; }
-
-  .pulse-grid {
-    display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 9px;
-  }
-
-  .pulse-stat {
-    padding: 12px 11px;
-    border-radius: 13px;
-    background: var(--surface-soft);
-    border: 1px solid var(--border);
-  }
-
-  .pulse-stat span {
-    display: block;
-    color: var(--muted);
-    font-size: 9px;
-    font-weight: 800;
-  }
-
-  .pulse-stat strong {
-    display: block;
-    margin-top: 6px;
-    color: var(--heading);
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: -.5px;
-  }
-
-  .pulse-stat small {
-    display: block;
-    margin-top: 3px;
-    color: var(--muted);
-    font-size: 8px;
-    font-weight: 700;
-  }
-
-  .pulse-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    margin-top: 11px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 9px;
-    font-weight: 700;
-  }
-
-  .movers-list {
-    display: grid;
-    padding: 5px 14px 10px;
-  }
-
-  .mover-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 9px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mover-item:last-child { border-bottom: 0; }
-
-  .mover-identity {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    min-width: 0;
-  }
-
-  .mover-avatar {
-    width: 30px;
-    height: 30px;
-    flex: 0 0 30px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--green-soft);
-    color: var(--green-dark);
-    font-size: 10px;
-    font-weight: 900;
-  }
-
-  .mover-name { min-width: 0; }
-
-  .mover-name strong {
-    display: block;
-    overflow: hidden;
-    color: var(--heading);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 10px;
-    font-weight: 800;
-  }
-
-  .mover-name small {
-    display: block;
-    margin-top: 2px;
-    color: var(--muted);
-    font-size: 8.5px;
-    font-weight: 700;
-  }
-
-  .mover-change {
-    flex: 0 0 auto;
-    color: #079c62;
-    font-size: 9px;
-    font-weight: 900;
-    white-space: nowrap;
-  }
-
-  .mover-empty {
-    padding: 17px 4px;
-    color: var(--muted);
-    text-align: center;
-    font-size: 10px;
-    line-height: 1.5;
-  }
-
-  .search-tip {
-    padding: 14px 15px;
-    border-radius: 17px;
-    border: 1px solid rgba(8,168,107,.22);
-    background: linear-gradient(145deg,var(--green-soft),var(--surface));
-  }
-
-  .search-tip strong {
-    display: block;
-    color: var(--heading);
-    font-size: 11px;
-    font-weight: 900;
-  }
-
-  .search-tip p {
-    margin: 6px 0 0;
-    color: var(--muted);
-    font-size: 9.5px;
-    line-height: 1.6;
-  }
-
-  .search-tip code {
-    color: var(--green-dark);
-    font-weight: 800;
-  }
-
-  /* =========================
-     BOTTOM FEATURE CARDS
-  ========================= */
-
-  .feature-strip {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 11px;
-    margin-top: 16px;
-  }
-
-  .feature-card {
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 13px;
-    border-radius: 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    box-shadow: 0 7px 20px rgba(8,168,107,.045);
-  }
-
-  .feature-card:nth-child(2) {
-    background: linear-gradient(125deg,#f1edff,var(--surface));
-    border-color: #ded4ff;
-  }
-
-  .feature-card:nth-child(3) {
-    background: linear-gradient(125deg,#eaf5ff,var(--surface));
-    border-color: #cce4ff;
-  }
-
-  .feature-card:nth-child(4) {
-    background: linear-gradient(125deg,#fff5e8,var(--surface));
-    border-color: #ffe0b9;
-  }
-
-  .feature-icon {
-    width: 39px;
-    height: 39px;
-    flex: 0 0 39px;
-    display: grid;
-    place-items: center;
-    border-radius: 13px;
-    background: var(--green-soft);
-    color: var(--green-dark);
-    font-size: 19px;
-  }
-
-  .feature-card:nth-child(2) .feature-icon {
-    background: #e4dcff;
-    color: #7045da;
-  }
-
-  .feature-card:nth-child(3) .feature-icon {
-    background: #d9ecff;
-    color: #2478d6;
-  }
-
-  .feature-card:nth-child(4) .feature-icon {
-    background: #ffe9c8;
-    color: #c47710;
-  }
-
-  .feature-card strong {
-    display: block;
-    color: var(--heading);
-    font-size: 10.5px;
-    font-weight: 900;
-  }
-
-  .feature-card p {
-    margin: 3px 0 0;
-    color: var(--muted);
-    font-size: 8.5px;
-    line-height: 1.45;
-  }
-
-  /* =========================
-     DISCLAIMER AND FOOTER
-  ========================= */
-
-  .disclaimer-note {
-    margin-top: 16px;
-    padding: 13px 15px;
-    border-radius: 13px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--muted);
-    font-size: 9.5px;
-    line-height: 1.65;
-  }
-
-  footer {
-    margin-top: 24px;
-    padding: 21px 0 8px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 9px;
-  }
-
-  .footer-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    text-decoration: none;
-  }
-
-  .footer-brand img {
-    width: 31px;
-    height: 31px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1.5px solid var(--green);
-  }
-
-  .footer-brand span {
-    color: var(--heading);
-    font-size: 13px;
-    font-weight: 800;
-  }
-
-  .footer-copy {
-    margin: 0;
-    color: var(--muted);
-    font-size: 10px;
-    font-weight: 600;
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px 17px;
-  }
-
-  .footer-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 10px;
-    font-weight: 700;
-  }
-
-  .footer-links a:hover { color: var(--green); }
-
-  /* =========================
-     RESPONSIVE DESIGN
-  ========================= */
-
-  @media (max-width: 1320px) {
-    :root { --sidebar-width: 224px; }
-
-    .header-inner {
-      gap: 12px;
-      padding-inline: 16px;
-    }
-
-    .top-nav a { padding-inline: 9px; }
-    .header-brand-name { font-size: 14px; }
-
-    .dashboard-grid {
-      grid-template-columns: minmax(0,1fr) 265px;
-    }
-  }
-
-  @media (max-width: 1080px) {
-    .top-nav { display: none; }
-
-    .dashboard-grid {
-      grid-template-columns: minmax(0,1fr) 250px;
-    }
-
-    .feature-strip {
-      grid-template-columns: repeat(2,minmax(0,1fr));
-    }
-  }
-
-  @media (max-width: 900px) {
-    .dashboard-grid { grid-template-columns: 1fr; }
-
-    .dashboard-aside {
-      grid-template-columns: repeat(2,minmax(0,1fr));
-      align-items: start;
-    }
-
-    .search-tip { grid-column: 1 / -1; }
-
-    .btc-lens-showcase {
-      width: 205px;
-      flex-basis: 205px;
-    }
-  }
-
-  @media (max-width: 760px) {
     :root {
+      color-scheme: light;
+      --bg: #f4fbf9;
+      --surface: #ffffff;
+      --surface-soft: #f1fffb;
+      --border: #d9f0e9;
+      --heading: #102344;
+      --body: #29415c;
+      --muted: #74869b;
+      --green: #08a86b;
+      --green-dark: #078653;
+      --green-light: #32e5a1;
+      --green-soft: #e3fff3;
+      --shadow: 0 12px 32px rgba(20, 76, 66, 0.07);
       --sidebar-width: 258px;
-      --header-height: 62px;
+      --header-height: 66px;
     }
-
-    .sidebar {
-      transform: translateX(-105%);
-      box-shadow: 12px 0 35px rgba(0,0,0,.16);
+    html[data-theme="dark"], body[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #081a20;
+      --surface: #10272c;
+      --surface-soft: #143139;
+      --border: #254b4b;
+      --heading: #f0fff9;
+      --body: #d4eee5;
+      --muted: #91b3ad;
+      --green: #20d99a;
+      --green-dark: #0cad78;
+      --green-light: #5df0bd;
+      --green-soft: #123e34;
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
     }
-
-    body.menu-open .sidebar { transform: translateX(0); }
-
-    .mobile-overlay {
-      position: fixed;
-      inset: var(--header-height) 0 0;
-      z-index: 210;
-      background: rgba(4,14,27,.45);
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--body);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
 
-    body.menu-open .mobile-overlay { display: block; }
-    .main-column { margin-left: 0; }
-
-    .mobile-menu-btn {
-      display: inline-grid;
-      place-items: center;
-      flex: 0 0 39px;
+    /* ORIGINAL WEBSITE MINT HEADER BAR */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      min-height: var(--header-height);
+      display: flex;
+      align-items: center;
+      color: #071b38;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(0, 235, 165, 0.28), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(0, 210, 160, 0.24), transparent 24%),
+        linear-gradient(95deg, #c9ffea 0%, #f2fff9 48%, #c4fcef 100%);
+      border-bottom: 1px solid #96ecd0;
+      box-shadow: 0 4px 18px rgba(0, 130, 90, 0.08);
     }
-
+    html[data-theme="dark"] .top-header, body[data-theme="dark"] .top-header {
+      color: #f0fff8;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(0, 245, 158, 0.18), transparent 22%),
+        linear-gradient(95deg, #0b2b27 0%, #0f3530 50%, #0b2b27 100%);
+      border-bottom: 1px solid #245f4d;
+    }
     .header-inner {
-      padding: 7px 11px;
-      gap: 9px;
+      width: 100%;
+      max-width: 1800px;
+      min-height: var(--header-height);
+      margin: auto;
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
     }
-
-    .header-brand { gap: 8px; }
-
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .mobile-menu-btn {
+      display: none;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(8, 168, 107, 0.35);
+      border-radius: 11px;
+      color: var(--heading);
+      background: rgba(255, 255, 255, 0.85);
+    }
+    html[data-theme="dark"] .mobile-menu-btn, body[data-theme="dark"] .mobile-menu-btn {
+      background: rgba(16, 39, 44, 0.85);
+    }
+    .header-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
     .header-logo {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid #00bd79;
+      background: radial-gradient(circle at 30% 25%, #5bffc8, #009c6d 65%, #004938);
+      box-shadow: 0 3px 12px rgba(0, 175, 115, 0.22);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .header-brand-name {
+      display: block;
+      color: var(--heading);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.45px;
+    }
+    .header-brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: #008556;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    html[data-theme="dark"] .header-brand-subtitle, body[data-theme="dark"] .header-brand-subtitle { color: #4ef2b1; }
+
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .community-dropdown { position: relative; }
+    .community-btn, .icon-btn {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      border: 1px solid rgba(8, 168, 107, 0.35);
+      border-radius: 999px;
+      color: var(--heading);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 11.5px;
+      font-weight: 800;
+      box-shadow: 0 3px 10px rgba(8, 130, 90, 0.08);
+      transition: 0.18s ease;
+    }
+    html[data-theme="dark"] .community-btn, body[data-theme="dark"] .community-btn,
+    html[data-theme="dark"] .icon-btn, body[data-theme="dark"] .icon-btn {
+      background: rgba(16, 39, 44, 0.9);
+      border-color: #2b6656;
+    }
+    .community-btn { padding: 0 16px; }
+    .icon-btn { width: 38px; border-radius: 50%; font-size: 16px; }
+    .community-btn:hover, .icon-btn:hover { border-color: var(--green); color: var(--green); }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 250;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 195px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+    }
+    .dropdown-content.show { display: block; animation: fadeIn 0.16s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown-content a {
+      display: flex;
+      gap: 9px;
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--border);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .dropdown-content a:last-child { border-bottom: 0; }
+    .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      z-index: 150;
+      inset: var(--header-height) auto 0 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--header-height));
+      height: calc(100dvh - var(--header-height));
+      display: flex;
+      flex-direction: column;
+      padding: 18px 16px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      box-shadow: 8px 0 28px rgba(21, 48, 84, 0.025);
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    .side-label {
+      padding: 10px 13px 8px;
+      color: #9aa8bc;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .side-nav { display: grid; gap: 7px; flex-shrink: 0; }
+    .side-link {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
+    .side-link.active {
+      color: #087b4b;
+      background: linear-gradient(100deg, #e2fff1, #f4fff9);
+      border-color: #b8f2d7;
+      box-shadow: 0 5px 13px rgba(8, 168, 107, 0.11);
+    }
+    html[data-theme="dark"] .side-link.active, body[data-theme="dark"] .side-link.active {
+      color: #65e6b1;
+      background: #12382f;
+      border-color: #23654e;
+    }
+    .nav-icon {
+      width: 35px;
+      height: 35px;
+      flex: 0 0 35px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+    }
+    .nav-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav-home { color: #079b69; background: #d9f8e9; }
+    .nav-depin { color: #1687ff; background: #dfeeff; }
+    .nav-community { color: #8b5cf6; background: #eee5ff; }
+    .nav-airdrop { color: #f07819; background: #fff0d9; }
+    .nav-wallet { color: #9333ea; background: #f1e3ff; }
+    .nav-checker { color: #0d9488; background: #d9f7f0; }
+    .nav-calculator { color: #2563eb; background: #e2eaff; }
+
+    .sidebar-spacer { flex: 1 0 18px; min-height: 18px; }
+    .side-promo {
+      margin: 16px 6px 13px;
+      padding: 18px 14px;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 22px;
+      border: 1px solid #c7f5df;
+      background: radial-gradient(circle at 90% 10%, rgba(92, 238, 176, 0.25), transparent 34%), linear-gradient(145deg, #e7fff4, #fff 72%);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, 0.1);
+    }
+    html[data-theme="dark"] .side-promo, body[data-theme="dark"] .side-promo {
+      background: linear-gradient(145deg, #123b32, #142238);
+      border-color: #255c49;
+    }
+    .promo-gift { margin-bottom: 7px; font-size: 32px; }
+    .side-promo h3 { margin: 0 0 7px; color: var(--heading); font-size: 13px; line-height: 1.45; font-weight: 800; }
+    .side-promo p { margin: 0 0 11px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .promo-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, #08a86b, #06c77a);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .support-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 6px;
+      padding: 12px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      text-decoration: none;
+    }
+    .support-icon {
       width: 36px;
       height: 36px;
-      flex-basis: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      font-size: 17px;
+    }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 3px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { margin: 13px 8px 0; color: var(--muted); font-size: 9px; text-align: center; }
+    .mobile-overlay { display: none; }
+
+    /* MAIN CONTENT */
+    .main-column { min-height: calc(100vh - var(--header-height)); margin-left: var(--sidebar-width); }
+    main {
+      width: 100%;
+      max-width: 1520px;
+      margin: 0 auto;
+      padding: 18px 24px 38px;
     }
 
-    .header-brand-name { font-size: 12px; }
-    .header-brand-subtitle { display: none; }
-    .header-spacer { flex: 1; }
-    .header-search-shortcut { display: none; }
-
-    .header-tools { gap: 6px; }
-
-    .community-btn {
-      width: 38px;
-      padding: 0;
+    /* 1. COMPACT SMART TOKEN FINDER BOX (CLEAN & EXACT TO YOUR DESIGN) */
+    .finder-compact-box {
+      position: relative;
       overflow: hidden;
-      font-size: 0;
+      padding: 16px 20px 14px;
+      border-radius: 18px;
+      border: 1.5px solid #96ecd0;
+      background:
+        radial-gradient(circle at 86% 45%, rgba(16, 214, 145, 0.24), transparent 40%),
+        linear-gradient(120deg, #e3fff4 0%, #f5fff9 52%, #c6fae8 100%);
+      box-shadow: 0 8px 22px rgba(8, 168, 107, 0.08);
     }
-
-    .community-btn::first-letter { font-size: 15px; }
-
-    main { padding: 13px 11px 26px; }
-
-    .finder-hero-box {
-      padding: 19px 16px 16px;
-      border-radius: 19px;
+    html[data-theme="dark"] .finder-compact-box, body[data-theme="dark"] .finder-compact-box {
+      border-color: #23614e;
+      background:
+        radial-gradient(circle at 86% 45%, rgba(32, 217, 154, 0.18), transparent 40%),
+        linear-gradient(120deg, #0d2c29 0%, #123b35 55%, #144d43 100%);
     }
+    .finder-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(8, 168, 107, 0.3);
+      color: var(--green-dark);
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    html[data-theme="dark"] .hero-kicker, body[data-theme="dark"] .hero-kicker {
+      background: rgba(10, 42, 36, 0.9);
+      color: var(--green-light);
+    }
+    .hero-kicker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #08a86b;
+    }
+    .finder-compact-box h1 {
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.6px;
+    }
+    .finder-compact-box h1 span { color: var(--green-dark); }
+    html[data-theme="dark"] .finder-compact-box h1 span, body[data-theme="dark"] .finder-compact-box h1 span { color: var(--green-light); }
+    .finder-subline {
+      margin: 4px 0 0;
+      color: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .hero-badges {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--heading);
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .hero-badges span { display: inline-flex; align-items: center; gap: 4px; }
 
-    .hero-copy h1 { font-size: clamp(27px,7vw,35px); }
-    .hero-copy p { font-size: 11.5px; }
-    .hero-badges { gap: 8px 12px; font-size: 9px; }
-    .btc-lens-showcase { display: none; }
-
+    /* SEARCH BAR WITH SEARCH BUTTON ON LEFT */
     .hero-search-form {
-      padding: 4px 8px 4px 5px;
-      gap: 5px;
-      margin-top: 15px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1.5px solid #96ecd0;
+      border-radius: 999px;
+      padding: 4px 12px 4px 5px;
+      box-shadow: 0 6px 16px rgba(8, 120, 82, 0.06);
+      transition: border-color 0.2s ease;
     }
-
+    .hero-search-form:focus-within { border-color: var(--green); }
     .hero-search-btn-left {
-      height: 40px;
-      padding: 0 14px;
-      font-size: 11px;
+      height: 38px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #08a86b, #057a4e);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-
+    .hero-search-btn-left:disabled { opacity: 0.7; cursor: wait; }
     .hero-search-input {
-      height: 40px;
-      font-size: 11px;
-    }
-
-    .sponsorship-banner { padding: 13px 14px; }
-    .sponsor-copy strong { font-size: 12px; }
-    .sponsor-copy span { font-size: 9px; }
-    .sponsor-cta-btn { width: 100%; text-align: center; }
-
-    .slot-metrics-grid {
-      grid-template-columns: repeat(2,minmax(0,1fr));
-    }
-
-    .dashboard-aside { grid-template-columns: 1fr; }
-    .search-tip { grid-column: auto; }
-    .feature-strip { grid-template-columns: 1fr 1fr; }
-
-    .table-card-head {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 4px;
-    }
-  }
-
-  @media (max-width: 430px) {
-    .community-dropdown { display: none; }
-
-    .hero-search-btn-left { padding: 0 11px; }
-    .hero-search-input::placeholder { font-size: 10px; }
-
-    .feature-strip { grid-template-columns: 1fr; }
-
-    .slot-header { align-items: flex-start; }
-
-    .slot-actions { width: 100%; }
-
-    .slot-chart-btn,
-    .slot-close-btn {
       flex: 1;
-      text-align: center;
+      min-width: 0;
+      height: 38px;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--heading);
+      font-size: 13px;
+      font-weight: 600;
     }
-  }
+    .hero-search-input::placeholder { color: var(--muted); font-weight: 500; }
+    .clear-search-btn {
+      display: none;
+      width: 26px;
+      height: 26px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .clear-search-btn.show { display: inline-grid; place-items: center; }
+
+    /* 2. SPONSORSHIP BANNER (PLACED RIGHT BELOW SEARCH BAR & ABOVE TABLE) */
+    .sponsorship-banner {
+      margin-top: 13px;
+      padding: 12px 18px;
+      border-radius: 15px;
+      border: 1.5px solid #10b981;
+      background:
+        radial-gradient(circle at 88% 50%, rgba(16, 214, 145, 0.22), transparent 36%),
+        linear-gradient(95deg, #081e24 0%, #0d3538 52%, #094538 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 8px 20px rgba(8, 29, 34, 0.14);
+      text-decoration: none;
+    }
+    .sponsor-left { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .sponsor-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: rgba(50, 229, 161, 0.16);
+      border: 1px solid rgba(50, 229, 161, 0.45);
+      color: #5df0bd;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .sponsor-copy strong {
+      display: block;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .sponsor-copy span {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #c8ebe2;
+    }
+    .sponsor-cta-btn {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #10c47f, #078c5a);
+      color: #ffffff;
+      font-size: 11.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* 3. LARGE IN-PAGE DETAIL SLOT DIRECTLY BELOW SPONSORSHIP (SMOOTH JUMP TARGET) */
+    .inline-token-slot {
+      display: none;
+      margin-top: 13px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      border: 1.5px solid #96ecd0;
+      background: var(--surface);
+      box-shadow: 0 12px 28px rgba(8, 168, 107, 0.12);
+      scroll-margin-top: 84px;
+    }
+    html[data-theme="dark"] .inline-token-slot, body[data-theme="dark"] .inline-token-slot {
+      border-color: #266b54;
+    }
+    .inline-token-slot.show { display: block; animation: slotReveal 0.2s ease-out; }
+    @keyframes slotReveal {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slot-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+    .slot-coin-info { display: flex; align-items: center; gap: 12px; }
+    .slot-avatar {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 16px;
+      font-weight: 800;
+      border: 1.5px solid #96ecd0;
+    }
+    .slot-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .slot-coin-info h3 { margin: 0; color: var(--heading); font-size: 18px; font-weight: 800; }
+    .slot-coin-info small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; font-weight: 700; }
+    .slot-actions { display: flex; align-items: center; gap: 8px; }
+    .slot-chart-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #08a86b, #057a4e);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .slot-close-btn {
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--heading);
+      font-size: 11.5px;
+      font-weight: 800;
+    }
+    .slot-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .slot-metric-card {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+    .slot-metric-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .slot-metric-card strong {
+      display: block;
+      margin-top: 5px;
+      color: var(--heading);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    /* 4. LIVE TOKEN SEARCH RESULTS TABLE */
+    .results-section { margin-top: 18px; }
+    .results-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .results-heading-wrap { display: flex; align-items: center; gap: 8px; }
+    .results-heading-wrap h2 { margin: 0; color: var(--heading); font-size: 16.5px; font-weight: 800; }
+    .live-updated-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    html[data-theme="dark"] .live-updated-tag, body[data-theme="dark"] .live-updated-tag { color: var(--green-light); }
+    .live-updated-dot { width: 8px; height: 8px; border-radius: 50%; background: #08a86b; }
+
+    .table-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .table-wrap { width: 100%; overflow-x: auto; }
+    .live-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      text-align: left;
+    }
+    .live-table th {
+      padding: 12px 16px;
+      background: #e9fbf4;
+      color: #46617a;
+      font-size: 11.5px;
+      font-weight: 800;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    html[data-theme="dark"] .live-table th, body[data-theme="dark"] .live-table th {
+      background: var(--surface-soft);
+      color: var(--muted);
+    }
+    .live-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--heading);
+      vertical-align: middle;
+    }
+    .live-table tbody tr {
+      cursor: pointer;
+      transition: background 0.14s ease;
+    }
+    .live-table tbody tr:hover { background: var(--surface-soft); }
+    .live-table tbody tr.selected-row { background: var(--green-soft); }
+    .live-table tbody tr:last-child td { border-bottom: 0; }
+
+    .td-rank { width: 46px; color: var(--muted) !important; font-weight: 800 !important; }
+    .token-cell { display: flex; align-items: center; gap: 11px; }
+    .tbl-logo {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 12.5px;
+      font-weight: 800;
+      border: 1px solid rgba(8, 168, 107, 0.25);
+    }
+    .tbl-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .td-symbol { color: var(--muted) !important; font-size: 12px !important; font-weight: 800 !important; }
+    .td-chain { color: var(--body) !important; font-weight: 700 !important; }
+    .td-price { white-space: nowrap; }
+    .price-main { color: var(--heading); font-weight: 800; }
+    .price-sub { color: var(--muted); font-size: 11.5px; font-weight: 700; margin-left: 4px; }
+    .chg-up { color: #08a86b; font-weight: 800; white-space: nowrap; }
+    .chg-down { color: #e11d48; font-weight: 800; white-space: nowrap; }
+    .chg-flat { color: var(--muted); font-weight: 700; white-space: nowrap; }
+
+    .status-box {
+      padding: 34px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .status-box h3 { margin: 8px 0 5px; color: var(--heading); font-size: 15px; font-weight: 800; }
+    .status-box p { margin: 0; font-size: 12px; }
+
+    /* DISCLAIMER & FOOTER */
+    .disclaimer-note {
+      margin-top: 16px;
+      padding: 13px 16px;
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.65;
+    }
+    footer {
+      margin-top: 24px;
+      padding: 22px 0 8px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 9px;
+    }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+    .footer-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--green);
+    }
+    .footer-brand span { color: var(--heading); font-size: 14px; font-weight: 800; }
+    .footer-copy { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 18px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .footer-links a:hover { color: var(--green); }
+
+    @media (max-width: 1100px) {
+      :root { --sidebar-width: 235px; }
+      .slot-metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0, 0, 0, 0.16); }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: var(--header-height) 0 0; z-index: 120; background: rgba(4, 14, 27, 0.45); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; }
+      .header-inner { padding: 8px 13px; }
+      .header-brand-name { font-size: 14px; }
+      .header-brand-subtitle { display: none; }
+      .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
+      .community-btn::first-letter { font-size: 15px; }
+      main { padding: 14px 12px 30px; }
+      .finder-compact-box { padding: 14px 14px 12px; }
+      .hero-search-form { padding: 4px 10px 4px 5px; gap: 6px; }
+      .hero-search-btn-left { height: 36px; padding: 0 14px; font-size: 11.5px; }
+      .hero-search-input { height: 36px; font-size: 12.5px; }
+      .sponsorship-banner { padding: 12px 14px; }
+      .sponsor-cta-btn { width: 100%; text-align: center; }
+      .slot-metrics-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-
 <body data-theme="light">
-
-  <!-- =========================
-       HEADER
-  ========================= -->
-
+  <!-- ORIGINAL MINT HEADER BAR -->
   <header class="top-header">
     <div class="header-inner">
-
       <div class="header-left">
-
-        <button
-          class="mobile-menu-btn"
-          id="mobileMenuBtn"
-          type="button"
-          aria-label="Open navigation"
-          aria-expanded="false"
-        >☰</button>
-
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
         <a href="../index.html" class="header-brand">
-
-          <span class="header-logo">
-            <img
-              src="../logos/tcn-logo.png"
-              alt="Total Crypto Network Logo"
-              onerror="this.style.display='none';this.parentElement.textContent='TCN';"
-            >
-          </span>
-
+          <span class="header-logo"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';"></span>
           <span>
             <span class="header-brand-name">Total Crypto Hub</span>
             <span class="header-brand-subtitle">by Total Crypto Network</span>
           </span>
-
         </a>
       </div>
 
-      <nav class="top-nav" aria-label="Main sections">
-        <a href="../index.html">⌂ Home</a>
-        <a href="../depin-pages/depin.html">⬡ DePIN Projects</a>
-        <a href="../airdrop-pages/airdrops.html">🎁 Airdrops</a>
-        <a href="../wallet-pages/wallets.html">▣ Wallets</a>
-        <a href="../earning-pages/earning-calculator.html">⚙ Tools</a>
-      </nav>
-
-      <span class="header-spacer"></span>
-
-      <a
-        class="header-search-shortcut"
-        href="#tokenSearchInput"
-        aria-label="Jump to token search"
-      >⌕ <span>Search projects, tokens...</span></a>
-
-      <div class="header-tools">
-
+      <div class="header-right">
         <div class="community-dropdown">
-
-          <button
-            class="community-btn"
-            id="communityBtn"
-            type="button"
-            aria-expanded="false"
-          >👥 Community</button>
-
+          <button class="community-btn" id="communityBtn" type="button" aria-expanded="false">👥 Community</button>
           <div class="dropdown-content" id="communityMenu">
-
-            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">
-              ▶️ YouTube
-            </a>
-
-            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">
-              💬 WhatsApp
-            </a>
-
-            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">
-              ✖️ Twitter (X)
-            </a>
-
-            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">
-              📘 Facebook
-            </a>
-
+            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
+            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
           </div>
         </div>
-
-        <button
-          class="icon-btn"
-          id="themeToggle"
-          type="button"
-          aria-label="Toggle dark mode"
-        >🌙</button>
-
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
       </div>
     </div>
   </header>
 
-  <!-- =========================
-       LEFT SIDEBAR
-  ========================= -->
-
+  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-
     <div class="side-label">Workspace</div>
-
     <nav class="side-nav">
-
-      <a href="../index.html" class="side-link">
-        <span class="nav-icon nav-home">
-          <svg viewBox="0 0 24 24">
-            <path d="m3 10 9-7 9 7"/>
-            <path d="M5 9v11h14V9"/>
-            <path d="M9 20v-7h6v7"/>
-          </svg>
-        </span>
-        Home
-      </a>
-
-      <a href="../depin-pages/depin.html" class="side-link">
-        <span class="nav-icon nav-depin">
-          <svg viewBox="0 0 24 24">
-            <path d="M13 2 4 13h7l-1 9 10-13h-7z"/>
-          </svg>
-        </span>
-        DePIN Projects
-      </a>
-
-      <a href="../mobile-pages/mobile-mining.html" class="side-link">
-        <span class="nav-icon nav-community">
-          <svg viewBox="0 0 24 24">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </span>
-        Community Projects
-      </a>
-
-      <a href="../airdrop-pages/airdrops.html" class="side-link">
-        <span class="nav-icon nav-airdrop">
-          <svg viewBox="0 0 24 24">
-            <rect x="3" y="8" width="18" height="13" rx="2"/>
-            <path d="M12 8v13M3 12h18"/>
-            <path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/>
-            <path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/>
-          </svg>
-        </span>
-        Airdrops &amp; Campaigns
-      </a>
-
-      <a href="../wallet-pages/wallets.html" class="side-link">
-        <span class="nav-icon nav-wallet">
-          <svg viewBox="0 0 24 24">
-            <rect x="3" y="5" width="18" height="15" rx="2"/>
-            <path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/>
-          </svg>
-        </span>
-        Wallets &amp; Exchanges
-      </a>
-
-      <a href="token-checker.html" class="side-link active" aria-current="page">
-        <span class="nav-icon nav-checker">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
-            <path d="m9 12 2 2 4-4"/>
-          </svg>
-        </span>
-        Smart Token Finder
-      </a>
-
-      <a href="../earning-pages/earning-calculator.html" class="side-link">
-        <span class="nav-icon nav-calculator">
-          <svg viewBox="0 0 24 24">
-            <rect x="4" y="2" width="16" height="20" rx="2"/>
-            <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/>
-          </svg>
-        </span>
-        Earning Calculator
-      </a>
-
+      <a href="../index.html" class="side-link"><span class="nav-icon nav-home"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home</a>
+      <a href="../depin-pages/depin.html" class="side-link"><span class="nav-icon nav-depin"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects</a>
+      <a href="../mobile-pages/mobile-mining.html" class="side-link"><span class="nav-icon nav-community"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects</a>
+      <a href="../airdrop-pages/airdrops.html" class="side-link"><span class="nav-icon nav-airdrop"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/></svg></span>Airdrops &amp; Campaigns</a>
+      <a href="../wallet-pages/wallets.html" class="side-link"><span class="nav-icon nav-wallet"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01"/></svg></span>Wallets &amp; Exchanges</a>
+      <a href="token-checker.html" class="side-link active" aria-current="page"><span class="nav-icon nav-checker"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder</a>
+      <a href="../earning-pages/earning-calculator.html" class="side-link"><span class="nav-icon nav-calculator"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg></span>Earning Calculator</a>
     </nav>
 
     <div class="sidebar-spacer"></div>
-
-    <section class="side-promo" aria-label="Community invitation">
-
-      <div class="promo-gift" aria-hidden="true">🎁</div>
-
+    <section class="side-promo">
+      <div class="promo-gift">🎁</div>
       <h3>Join the Community<br>&amp; Earn Together</h3>
-
       <p>Follow project updates, guides and community announcements.</p>
-
-      <a
-        class="promo-btn"
-        href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Join Now →</a>
-
+      <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
     </section>
-
     <a class="support-card" href="../legal-pages/contact.html">
       <span class="support-icon">♧</span>
-      <span>
-        <strong>Need Help?</strong>
-        <span>Contact Support →</span>
-      </span>
+      <span><strong>Need Help?</strong><span>Contact Support →</span></span>
     </a>
-
     <p class="sidebar-note">A research-led Web3 directory</p>
-
   </aside>
-
-  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
-
-  <!-- =========================
-       MAIN CONTENT
-  ========================= -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
 
   <div class="main-column">
-
     <main>
-
-      <!-- PREMIUM HERO SECTION -->
-
-      <section class="finder-hero-box" aria-labelledby="finderHeading">
-
-        <div class="hero-top-grid">
-
-          <div class="hero-copy">
-
-            <div class="hero-kicker">
-              <span class="hero-kicker-dot" aria-hidden="true"></span>
-              Find · Verify · Explore
-            </div>
-
-            <h1 id="finderHeading">
-              Smart Token <span>Finder</span>
-            </h1>
-
-            <p>
-              Search crypto tokens, blockchain coins and DeFi projects with live market data.
-            </p>
-
-            <div class="hero-badges">
-              <span><i class="badge-check">✓</i> Real-Time Data</span>
-              <span><i class="badge-check">✓</i> Verified Info</span>
-              <span><i class="badge-check">✓</i> Market Insights</span>
-              <span><i class="badge-check">✓</i> Multi-Chain Search</span>
-            </div>
-
+      <!-- 1. COMPACT SMART TOKEN FINDER BOX -->
+      <section class="finder-compact-box" aria-labelledby="finderHeading">
+        <div class="finder-header-row">
+          <div>
+            <div class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span> Find · Verify · Explore</div>
+            <h1 id="finderHeading">Smart Token <span>Finder</span></h1>
+            <p class="finder-subline">Search any crypto token, blockchain coin, or DeFi project with real-time data</p>
           </div>
-
-          <div class="btc-lens-showcase" aria-hidden="true">
-
-            <div class="lens-pedestal"></div>
-
-            <span class="orbit-coin oc-usdt">₮</span>
-            <span class="orbit-coin oc-eth-left">Ξ</span>
-            <span class="orbit-coin oc-sol">◎</span>
-            <span class="orbit-coin oc-eth-right">Ξ</span>
-
-            <div class="glass-ring">
-              <div class="gold-btc-disc">₿</div>
-            </div>
-
-            <div class="glass-handle"></div>
-
+          <div class="hero-badges">
+            <span>⚡ Real-Time Data</span>
+            <span>🛡️ Verified Info</span>
+            <span>📊 Market Insights</span>
+            <span>🌐 Multi-Chain Support</span>
           </div>
-
         </div>
 
-        <!-- SEARCH BAR -->
-
-        <form class="hero-search-form" id="tokenSearchForm" role="search">
-
-          <button
-            class="hero-search-btn-left"
-            id="searchSubmitBtn"
-            type="submit"
-          >⌕ Search</button>
-
+        <form class="hero-search-form" id="tokenSearchForm">
+          <button class="hero-search-btn-left" id="searchSubmitBtn" type="submit">🔍 Search</button>
           <input
             class="hero-search-input"
             id="tokenSearchInput"
             type="search"
-            placeholder="Enter token name, symbol or contract address (e.g. Bitcoin, ETH, Solana)..."
+            placeholder="Enter token name (e.g. Bitcoin, Ethereum, Solana, Theta, Grass, Aave)..."
             autocomplete="off"
-            aria-label="Search token name, symbol or contract address"
           >
-
-          <button
-            class="clear-search-btn"
-            id="clearSearchBtn"
-            type="button"
-            aria-label="Clear search"
-          >✕</button>
-
+          <button class="clear-search-btn" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
         </form>
-
       </section>
 
-      <!-- SPONSORSHIP BANNER -->
+      <!-- 2. SPONSORSHIP BANNER (RIGHT BELOW SEARCH BAR & ABOVE TABLE) -->
+      <a class="sponsorship-banner" id="sharedSponsorBanner" href="../legal-pages/contact.html"></a>
 
-      <a
-        class="sponsorship-banner"
-        id="sharedSponsorBanner"
-        href="../legal-pages/contact.html"
-        aria-label="Featured sponsorship opportunity"
-      ></a>
+      <!-- 3. LARGE IN-PAGE DETAIL SLOT DIRECTLY BELOW SPONSORSHIP (SMOOTH JUMP TARGET) -->
+      <section class="inline-token-slot" id="inlineTokenSlot" aria-live="polite"></section>
 
-      <!-- TOKEN DETAIL BOX -->
-
-      <section
-        class="inline-token-slot"
-        id="inlineTokenSlot"
-        aria-live="polite"
-      ></section>
-
-      <!-- MAIN DASHBOARD -->
-
-      <div class="dashboard-grid">
-
-        <div class="dashboard-main">
-
-          <!-- LIVE TOKEN TABLE -->
-
-          <section class="results-section" aria-live="polite">
-
-            <div class="results-top-bar">
-
-              <div class="results-heading-wrap">
-                <span class="results-heading-icon" aria-hidden="true">▥</span>
-                <h2 id="resultsTitle">Live Token Search Results</h2>
-              </div>
-
-              <span class="live-updated-tag">
-                <span class="live-updated-dot" aria-hidden="true"></span>
-                <span id="liveStatusText">Connecting to live market data…</span>
-              </span>
-
-            </div>
-
-            <div class="table-card">
-
-              <div class="table-card-head">
-                <strong>Market data • CoinGecko and DEX Screener</strong>
-                <span>Choose any row to view its details</span>
-              </div>
-
-              <div class="table-wrap">
-
-                <table class="live-table">
-
-                  <thead>
-                    <tr>
-                      <th class="td-rank">#</th>
-                      <th>Token Name</th>
-                      <th>Symbol</th>
-                      <th>Rank / Network</th>
-                      <th>Price (USD &amp; INR)</th>
-                      <th>24h Change</th>
-                      <th>Market Cap</th>
-                      <th>Details</th>
-                    </tr>
-                  </thead>
-
-                  <tbody id="liveTableBody">
-
-                    <tr>
-                      <td colspan="8">
-                        <div class="status-box">
-                          <div style="font-size:26px;">⏳</div>
-                          <h3>Loading live market prices…</h3>
-                          <p>Fetching the latest available market data.</p>
-                        </div>
-                      </td>
-                    </tr>
-
-                  </tbody>
-
-                </table>
-
-              </div>
-            </div>
-
-          </section>
-
-          <!-- FEATURE CARDS -->
-
-          <section class="feature-strip" aria-label="Smart Token Finder features">
-
-            <article class="feature-card">
-              <span class="feature-icon">🌐</span>
-              <div>
-                <strong>Multi-Source Data</strong>
-                <p>CoinGecko prices and DEX market search.</p>
-              </div>
-            </article>
-
-            <article class="feature-card">
-              <span class="feature-icon">🔎</span>
-              <div>
-                <strong>Token Discovery</strong>
-                <p>Search by name, symbol or contract address.</p>
-              </div>
-            </article>
-
-            <article class="feature-card">
-              <span class="feature-icon">📊</span>
-              <div>
-                <strong>Market Insights</strong>
-                <p>View price, 24-hour change and market cap.</p>
-              </div>
-            </article>
-
-            <article class="feature-card">
-              <span class="feature-icon">🛡️</span>
-              <div>
-                <strong>Research Carefully</strong>
-                <p>Check details and DYOR before trading.</p>
-              </div>
-            </article>
-
-          </section>
-
+      <!-- 4. LIVE TOKEN SEARCH RESULTS -->
+      <section class="results-section" aria-live="polite">
+        <div class="results-top-bar">
+          <div class="results-heading-wrap">
+            <span>📈</span>
+            <h2 id="resultsTitle">Live Token Search Results</h2>
+          </div>
+          <span class="live-updated-tag"><span class="live-updated-dot" aria-hidden="true"></span> <span id="liveStatusText">Live Updated</span></span>
         </div>
 
-        <!-- RIGHT SIDEBAR -->
-
-        <aside class="dashboard-aside" aria-label="Market insights and search tips">
-
-          <!-- MARKET PULSE -->
-
-          <section class="insight-card">
-
-            <div class="insight-card-head">
-
-              <div class="insight-card-title">
-                <span class="insight-icon">▥</span>
-                Market Pulse
-              </div>
-
-              <span class="live-chip">● LIVE FEED</span>
-
-            </div>
-
-            <div class="pulse-body">
-
-              <div class="pulse-grid">
-
-                <div class="pulse-stat">
-                  <span>Assets in view</span>
-                  <strong id="assetsInView">—</strong>
-                  <small>Current results</small>
-                </div>
-
-                <div class="pulse-stat">
-                  <span>24h Gainers</span>
-                  <strong id="gainerCount">—</strong>
-                  <small>Positive movement</small>
-                </div>
-
-                <div class="pulse-stat">
-                  <span>24h Decliners</span>
-                  <strong id="declinerCount">—</strong>
-                  <small>Negative movement</small>
-                </div>
-
-                <div class="pulse-stat">
-                  <span>Data sources</span>
-                  <strong>2</strong>
-                  <small>CoinGecko + DEX</small>
-                </div>
-
-              </div>
-
-              <div class="pulse-foot">
-                <span>Based on displayed results</span>
-                <span id="marketUpdatedAt">Waiting for data</span>
-              </div>
-
-            </div>
-
-          </section>
-
-          <!-- TOP MOVERS -->
-
-          <section class="insight-card">
-
-            <div class="insight-card-head">
-
-              <div class="insight-card-title">
-                <span class="insight-icon">↗</span>
-                Top 24h Movers
-              </div>
-
-              <span style="color:var(--muted);font-size:9px;font-weight:800;">IN VIEW</span>
-
-            </div>
-
-            <div class="movers-list" id="moversList">
-              <div class="mover-empty">
-                Top movers will appear when live token data loads.
-              </div>
-            </div>
-
-          </section>
-
-          <!-- SEARCH TIPS -->
-
-          <section class="search-tip">
-            <strong>💡 Search Tip</strong>
-            <p>
-              Search using a token <b>name</b> (Bitcoin),
-              <b>symbol</b> (BTC), or a supported
-              <b>contract address</b>.
-              Click a result row to open its live details.
-            </p>
-          </section>
-
-        </aside>
-
-      </div>
-
-      <!-- DISCLAIMER -->
+        <div class="table-card">
+          <div class="table-wrap">
+            <table class="live-table">
+              <thead>
+                <tr>
+                  <th class="td-rank">#</th>
+                  <th>Token Name</th>
+                  <th>Symbol</th>
+                  <th>Rank / Network</th>
+                  <th>Price (USD &amp; INR)</th>
+                  <th>24h Change</th>
+                  <th>Market Cap</th>
+                </tr>
+              </thead>
+              <tbody id="liveTableBody">
+                <tr>
+                  <td colspan="7">
+                    <div class="status-box">
+                      <div style="font-size:26px;">⏳</div>
+                      <h3>Loading live market prices…</h3>
+                      <p>Fetching real-time data from CoinGecko.</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
       <div class="disclaimer-note">
-        <strong>Disclaimer:</strong>
-        Token prices, 24-hour changes and market capitalizations are requested
-        from live market APIs (CoinGecko and DEX Screener).
-        Availability and update frequency depend on those services.
-        Some DEX results may show fully diluted valuation when market cap
-        is unavailable. Always verify token details and do your own research
-        (DYOR) before trading.
+        <strong>Disclaimer:</strong> All token prices, 24-hour changes, and market capitalizations shown on this page and inside the detail slot come directly from live market APIs (CoinGecko &amp; DEX Screener). No static or estimated prices are hardcoded. Always do your own research (DYOR) before trading.
       </div>
 
-      <!-- FOOTER -->
-
       <footer>
-
         <a href="../index.html" class="footer-brand">
-
-          <img
-            src="../logos/tcn-logo.png"
-            alt="Total Crypto Network Logo"
-            onerror="this.style.display='none';"
-          >
-
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
           <span>Total Crypto Hub</span>
-
         </a>
-
-        <p class="footer-copy">
-          &copy; 2026 Total Crypto Network. All rights reserved.
-        </p>
-
+        <p class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</p>
         <nav class="footer-links" aria-label="Footer navigation">
           <a href="../index.html">Home</a>
           <a href="../legal-pages/about.html">About Us</a>
@@ -2395,23 +940,16 @@
           <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
           <a href="../legal-pages/disclaimer.html">Disclaimer</a>
         </nav>
-
       </footer>
-
     </main>
   </div>
-
-  <!-- =========================
-       JAVASCRIPT
-       LIVE TOKEN SEARCH SYSTEM
-  ========================= -->
 
   <script>
     (() => {
       "use strict";
 
-      /* SHARED SPONSORSHIP CONFIG */
-
+      /* SHARED SPONSORSHIP CONFIG:
+         When a sponsor banner goes live on Home, set active: true and update title, subtitle, ctaText, and url. */
       const SHARED_SPONSOR_CONFIG = Object.freeze({
         active: false,
         badge: "Featured Sponsorship Slot",
@@ -2428,1031 +966,431 @@
       const $ = (sel, root = document) => root.querySelector(sel);
       const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-      /* HTML SAFE OUTPUT */
-
       function escapeHTML(str = "") {
         return String(str).replace(/[&<>"']/g, ch => ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;"
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
         })[ch]);
       }
 
       function safeURL(value) {
         try {
           const url = new URL(value);
-          return url.protocol === "https:" || url.protocol === "http:"
-            ? url.href
-            : null;
+          return url.protocol === "https:" || url.protocol === "http:" ? url.href : null;
         } catch (_) {
           return null;
         }
       }
 
-      /* SPONSOR BANNER */
-
       function renderSharedSponsorBanner() {
         const el = $("#sharedSponsorBanner");
         if (!el) return;
-
         const cfg = SHARED_SPONSOR_CONFIG;
-
-        const href = cfg.active && safeURL(cfg.url)
-          ? safeURL(cfg.url)
-          : "../legal-pages/contact.html";
-
+        const href = cfg.active && safeURL(cfg.url) ? safeURL(cfg.url) : "../legal-pages/contact.html";
         el.href = href;
-
         el.innerHTML = `
           <div class="sponsor-left">
-
-            <span class="sponsor-pill">
-              ✦ ${escapeHTML(cfg.badge)}
-            </span>
-
+            <span class="sponsor-pill">✦ ${escapeHTML(cfg.badge)}</span>
             <div class="sponsor-copy">
               <strong>${escapeHTML(cfg.title)}</strong>
               <span>${escapeHTML(cfg.subtitle)}</span>
             </div>
-
           </div>
-
-          <span class="sponsor-cta-btn">
-            ${escapeHTML(cfg.ctaText)}
-          </span>
-        `;
+          <span class="sponsor-cta-btn">${escapeHTML(cfg.ctaText)}</span>`;
       }
-
-      /* MARKET SIDEBAR UPDATES */
-
-      function updateMarketSidebar(rows) {
-
-        const list = Array.isArray(rows) ? rows : [];
-
-        const valid = list.filter(item =>
-          item.change24h !== null &&
-          item.change24h !== undefined &&
-          Number.isFinite(Number(item.change24h))
-        );
-
-        const gainers = valid.filter(
-          item => Number(item.change24h) > 0
-        ).length;
-
-        const decliners = valid.filter(
-          item => Number(item.change24h) < 0
-        ).length;
-
-        const assetsEl = $("#assetsInView");
-        const gainersEl = $("#gainerCount");
-        const declinersEl = $("#declinerCount");
-        const updatedEl = $("#marketUpdatedAt");
-
-        if (assetsEl) assetsEl.textContent = String(list.length);
-        if (gainersEl) gainersEl.textContent = String(gainers);
-        if (declinersEl) declinersEl.textContent = String(decliners);
-
-        if (updatedEl) {
-          updatedEl.textContent = list.length
-            ? new Date().toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit"
-              })
-            : "No data";
-        }
-
-        const moversEl = $("#moversList");
-        if (!moversEl) return;
-
-        const movers = valid
-          .filter(item => Number(item.change24h) > 0)
-          .sort((a, b) => Number(b.change24h) - Number(a.change24h))
-          .slice(0, 5);
-
-        if (!movers.length) {
-          moversEl.innerHTML = `
-            <div class="mover-empty">
-              No positive 24-hour movers in the current results.
-            </div>
-          `;
-          return;
-        }
-
-        moversEl.innerHTML = movers.map(item => {
-
-          const name = escapeHTML(item.name || "Token");
-          const symbol = escapeHTML(item.symbol || "—");
-
-          const initial = escapeHTML(
-            (item.symbol || item.name || "T").charAt(0).toUpperCase()
-          );
-
-          const change = Number(item.change24h);
-
-          return `
-            <div class="mover-item">
-
-              <div class="mover-identity">
-
-                <span class="mover-avatar">${initial}</span>
-
-                <span class="mover-name">
-                  <strong>${name}</strong>
-                  <small>${symbol}</small>
-                </span>
-
-              </div>
-
-              <span class="mover-change">
-                ▲ +${change.toFixed(2)}%
-              </span>
-
-            </div>
-          `;
-
-        }).join("");
-      }
-
-      /* PRICE FORMATTING */
 
       function formatUsd(val) {
-
         const n = Number(val);
-
         if (!Number.isFinite(n) || n <= 0) return "—";
-
-        if (n >= 1000) {
-          return "$" + n.toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          });
-        }
-
-        if (n >= 1) {
-          return "$" + n.toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 4
-          });
-        }
-
+        if (n >= 1000) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (n >= 1) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 4 });
         if (n >= 0.01) return "$" + n.toFixed(4);
-
         return "$" + n.toPrecision(4);
       }
 
       function formatInr(val) {
-
         const n = Number(val);
-
         if (!Number.isFinite(n) || n <= 0) return "—";
-
-        if (n >= 1000) {
-          return "₹" + n.toLocaleString("en-IN", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          });
-        }
-
-        if (n >= 1) {
-          return "₹" + n.toLocaleString("en-IN", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          });
-        }
-
+        if (n >= 1000) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (n >= 1) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         if (n >= 0.01) return "₹" + n.toFixed(4);
-
         return "₹" + n.toPrecision(4);
       }
 
       function formatMcap(val) {
-
         const n = Number(val);
-
         if (!Number.isFinite(n) || n <= 0) return "—";
-
         if (n >= 1e12) return "$" + (n / 1e12).toFixed(2) + "T";
         if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
         if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
         if (n >= 1e3) return "$" + (n / 1e3).toFixed(2) + "K";
-
         return "$" + n.toFixed(2);
       }
 
       function formatChange(val) {
-
         const n = Number(val);
-
-        if (!Number.isFinite(n)) {
-          return `<span class="chg-flat">—</span>`;
-        }
-
-        if (n > 0) {
-          return `<span class="chg-up">▲ +${n.toFixed(2)}%</span>`;
-        }
-
-        if (n < 0) {
-          return `<span class="chg-down">▼ ${n.toFixed(2)}%</span>`;
-        }
-
+        if (!Number.isFinite(n)) return `<span class="chg-flat">—</span>`;
+        if (n > 0) return `<span class="chg-up">▲ +${n.toFixed(2)}%</span>`;
+        if (n < 0) return `<span class="chg-down">▼ ${n.toFixed(2)}%</span>`;
         return `<span class="chg-flat">0.00%</span>`;
       }
 
-      /* CONTRACT ADDRESS DETECTION */
-
       function isContractAddress(q) {
-
-        return /^0x[a-fA-F0-9]{40}$/.test(q) ||
-          /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(q);
+        return /^0x[a-fA-F0-9]{40}$/.test(q) || /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(q);
       }
 
-      /* API FETCH WITH TIMEOUT */
-
       async function fetchWithTimeout(url, ms = 12000) {
-
         const ctrl = new AbortController();
-
         const timer = setTimeout(() => ctrl.abort(), ms);
-
         try {
-
-          const res = await fetch(url, {
-            signal: ctrl.signal,
-            headers: {
-              accept: "application/json"
-            }
-          });
-
-          if (!res.ok) {
-            throw new Error("HTTP " + res.status);
-          }
-
+          const res = await fetch(url, { signal: ctrl.signal, headers: { accept: "application/json" } });
+          if (!res.ok) throw new Error("HTTP " + res.status);
           return await res.json();
-
         } finally {
-
           clearTimeout(timer);
-
         }
       }
 
-      /* CLOSE TOKEN DETAILS */
-
       function closeInlineSlot() {
-
         selectedIndex = -1;
-
         const slot = $("#inlineTokenSlot");
-
         slot.classList.remove("show");
         slot.innerHTML = "";
-
-        $$("tr[data-row-index]").forEach(tr => {
-          tr.classList.remove("selected-row");
-        });
+        $$("tr[data-row-index]").forEach(tr => tr.classList.remove("selected-row"));
       }
 
-      /* OPEN TOKEN DETAILS */
-
       function openInlineSlotAndJump(item, rowIdx = -1) {
-
         if (!item) return;
-
         selectedIndex = rowIdx;
-
         $$("tr[data-row-index]").forEach(tr => {
-
-          tr.classList.toggle(
-            "selected-row",
-            Number(tr.dataset.rowIndex) === rowIdx
-          );
-
+          tr.classList.toggle("selected-row", Number(tr.dataset.rowIndex) === rowIdx);
         });
 
         const slot = $("#inlineTokenSlot");
-
-        const initial = escapeHTML(
-          (item.symbol || item.name || "T").charAt(0).toUpperCase()
-        );
+        const initial = escapeHTML((item.symbol || item.name || "T").charAt(0).toUpperCase());
 
         slot.innerHTML = `
-
           <div class="slot-header">
-
             <div class="slot-coin-info">
-
               <div class="slot-avatar">
-
-                ${
-                  item.image
-                    ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" onerror="this.remove()">`
-                    : initial
-                }
-
+                ${item.image ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" onerror="this.remove()">` : initial}
               </div>
-
               <div>
-                <h3>
-                  ${escapeHTML(item.name)} (${escapeHTML(item.symbol)})
-                </h3>
-
-                <small>
-                  ${escapeHTML(item.networkLabel || "Live Market Asset")}
-                </small>
+                <h3>${escapeHTML(item.name)} (${escapeHTML(item.symbol)})</h3>
+                <small>${escapeHTML(item.networkLabel || "Live Market Asset")}</small>
               </div>
-
             </div>
-
             <div class="slot-actions">
-
-              ${
-                item.url
-                  ? `<a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="slot-chart-btn">Open Live Chart ↗</a>`
-                  : ""
-              }
-
-              <button
-                type="button"
-                class="slot-close-btn"
-                id="slotCloseBtn"
-              >Hide ✕</button>
-
+              ${item.url ? `<a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="slot-chart-btn">Open Live Chart ↗</a>` : ""}
+              <button type="button" class="slot-close-btn" id="slotCloseBtn">Hide ✕</button>
             </div>
-
           </div>
 
           <div class="slot-metrics-grid">
-
             <div class="slot-metric-card">
               <span>Price (USD)</span>
               <strong>${escapeHTML(formatUsd(item.usd))}</strong>
             </div>
-
             <div class="slot-metric-card">
               <span>Price (INR)</span>
               <strong>${escapeHTML(formatInr(item.inr))}</strong>
             </div>
-
             <div class="slot-metric-card">
               <span>24h Change</span>
-              <strong style="font-size:16px;">
-                ${formatChange(item.change24h)}
-              </strong>
+              <strong style="font-size:15px;">${formatChange(item.change24h)}</strong>
             </div>
-
             <div class="slot-metric-card">
               <span>Market Cap</span>
               <strong>${escapeHTML(formatMcap(item.marketCap))}</strong>
             </div>
-
-          </div>
-        `;
+          </div>`;
 
         slot.classList.add("show");
-
-        $("#slotCloseBtn").addEventListener(
-          "click",
-          closeInlineSlot
-        );
+        $("#slotCloseBtn").addEventListener("click", closeInlineSlot);
 
         requestAnimationFrame(() => {
-
-          slot.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-          });
-
+          slot.scrollIntoView({ behavior: "smooth", block: "nearest" });
         });
       }
 
-      /* RENDER TOKEN TABLE */
-
-      function renderTableRows(
-        rows,
-        emptyMessageTitle = "No matching token found",
-        emptyMessageDesc = "Try another token or coin name."
-      ) {
-
+      function renderTableRows(rows, emptyMessageTitle = "No matching token found", emptyMessageDesc = "Try another token or coin name.") {
         activeRows = Array.isArray(rows) ? rows : [];
-
-        updateMarketSidebar(activeRows);
-
         const tbody = $("#liveTableBody");
-
         if (!activeRows.length) {
-
           tbody.innerHTML = `
             <tr>
-              <td colspan="8">
-
+              <td colspan="7">
                 <div class="status-box">
-
                   <div style="font-size:26px;">🔎</div>
-
                   <h3>${escapeHTML(emptyMessageTitle)}</h3>
-
                   <p>${escapeHTML(emptyMessageDesc)}</p>
-
                 </div>
-
               </td>
-            </tr>
-          `;
-
+            </tr>`;
           return;
         }
 
         tbody.innerHTML = activeRows.map((item, idx) => {
-
           const usdStr = formatUsd(item.usd);
           const inrVal = formatInr(item.inr);
           const hasInr = inrVal !== "—";
-
-          const initial = escapeHTML(
-            (item.symbol || item.name || "T").charAt(0).toUpperCase()
-          );
-
-          const selClass = idx === selectedIndex
-            ? "selected-row"
-            : "";
+          const initial = escapeHTML((item.symbol || item.name || "T").charAt(0).toUpperCase());
+          const selClass = idx === selectedIndex ? "selected-row" : "";
 
           return `
             <tr data-row-index="${idx}" class="${selClass}">
-
               <td class="td-rank">${idx + 1}</td>
-
               <td>
                 <div class="token-cell">
-
                   <span class="tbl-logo">
-
-                    ${
-                      item.image
-                        ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy" onerror="this.remove()">`
-                        : initial
-                    }
-
+                    ${item.image ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy" onerror="this.remove()">` : initial}
                   </span>
-
                   <span>${escapeHTML(item.name)}</span>
-
                 </div>
               </td>
-
-              <td class="td-symbol">
-                ${escapeHTML(item.symbol)}
-              </td>
-
-              <td class="td-chain">
-                ${escapeHTML(item.networkLabel)}
-              </td>
-
+              <td class="td-symbol">${escapeHTML(item.symbol)}</td>
+              <td class="td-chain">${escapeHTML(item.networkLabel)}</td>
               <td class="td-price">
-
-                <span class="price-main">
-                  ${escapeHTML(usdStr)}
-                </span>
-
-                ${
-                  hasInr
-                    ? `<span class="price-sub">/ ${escapeHTML(inrVal)}</span>`
-                    : ""
-                }
-
+                <span class="price-main">${escapeHTML(usdStr)}</span>
+                ${hasInr ? `<span class="price-sub">/ ${escapeHTML(inrVal)}</span>` : ""}
               </td>
-
-              <td>
-                ${formatChange(item.change24h)}
-              </td>
-
-              <td>
-                ${escapeHTML(formatMcap(item.marketCap))}
-              </td>
-
-              <td>
-                <button
-                  type="button"
-                  class="view-row-btn"
-                  aria-label="View ${escapeHTML(item.name)} details"
-                >View →</button>
-              </td>
-
-            </tr>
-          `;
-
+              <td>${formatChange(item.change24h)}</td>
+              <td>${escapeHTML(formatMcap(item.marketCap))}</td>
+            </tr>`;
         }).join("");
 
         $$("tr[data-row-index]", tbody).forEach(tr => {
-
           tr.addEventListener("click", () => {
-
             const idx = Number(tr.dataset.rowIndex);
-
-            if (activeRows[idx]) {
-              openInlineSlotAndJump(activeRows[idx], idx);
-            }
-
+            if (activeRows[idx]) openInlineSlotAndJump(activeRows[idx], idx);
           });
-
         });
       }
 
-      /* =========================
-         LOAD TOP 20 LIVE MARKETS
-         COINGECKO API
-      ========================= */
-
+      /* DEFAULT LIVE TOP MARKET COINS FROM COINGECKO */
       async function loadTopLiveMarkets() {
-
         $("#liveStatusText").textContent = "Syncing live feed…";
-
         try {
-
           const data = await fetchWithTimeout(
             "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h"
           );
-
-          if (!Array.isArray(data) || !data.length) {
-            throw new Error("Empty feed");
-          }
+          if (!Array.isArray(data) || !data.length) throw new Error("Empty feed");
 
           const ids = data.map(c => c.id).join(",");
-
           let inrMap = {};
-
           try {
-
             const inrData = await fetchWithTimeout(
               `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=inr`
             );
-
             inrMap = inrData || {};
-
-          } catch (_) {
-            /* INR price is optional */
-          }
+          } catch (_) { /* optional */ }
 
           liveMarketRows = data.map(coin => ({
-
             name: coin.name,
-
             symbol: String(coin.symbol || "").toUpperCase(),
-
             networkLabel: `Rank #${coin.market_cap_rank || ""}`,
-
             image: safeURL(coin.image || ""),
-
             usd: coin.current_price,
-
             inr: inrMap[coin.id]?.inr ?? null,
-
             change24h: coin.price_change_percentage_24h,
-
             marketCap: coin.market_cap,
-
-            url: "https://www.coingecko.com/en/coins/" +
-              encodeURIComponent(coin.id)
-
+            url: "https://www.coingecko.com/en/coins/" + encodeURIComponent(coin.id)
           }));
 
           $("#resultsTitle").textContent = "Live Token Search Results";
-
           $("#liveStatusText").textContent = "Live Updated";
-
           renderTableRows(liveMarketRows);
-
         } catch (_) {
-
           $("#liveStatusText").textContent = "Live feed offline";
-
           renderTableRows(
             [],
             "Live market feed temporarily unavailable",
             "Please enter a token name in the search bar above or try again shortly."
           );
-
         }
       }
 
-      /* =========================
-         LIVE TOKEN SEARCH
-         COINGECKO + DEX SCREENER
-      ========================= */
-
+      /* LIVE SEARCH ACROSS COINGECKO (RANKED FILTERED) & DEX SCREENER */
       async function runLiveTokenSearch(rawQuery) {
-
         const query = String(rawQuery || "").trim();
-
         if (!query) {
-
           $("#resultsTitle").textContent = "Live Token Search Results";
-
           renderTableRows(liveMarketRows);
-
           return;
         }
 
         const btn = $("#searchSubmitBtn");
-
         btn.disabled = true;
         btn.textContent = "🔍 Searching…";
-
         $("#liveStatusText").textContent = "Searching…";
 
         try {
-
-          /* CONTRACT ADDRESS SEARCH */
-
           if (isContractAddress(query)) {
-
             const dex = await fetchWithTimeout(
-              "https://api.dexscreener.com/latest/dex/search?q=" +
-              encodeURIComponent(query)
+              "https://api.dexscreener.com/latest/dex/search?q=" + encodeURIComponent(query)
             );
-
             const pairs = (Array.isArray(dex.pairs) ? dex.pairs : [])
-
               .filter(p => (Number(p.liquidity?.usd) || 0) > 1000)
-
-              .sort((a, b) =>
-                (Number(b.liquidity?.usd) || 0) -
-                (Number(a.liquidity?.usd) || 0)
-              )
-
+              .sort((a, b) => (Number(b.liquidity?.usd) || 0) - (Number(a.liquidity?.usd) || 0))
               .slice(0, 12)
-
               .map(p => ({
-
                 name: p.baseToken?.name || "Token",
-
                 symbol: String(p.baseToken?.symbol || "").toUpperCase(),
-
                 networkLabel: String(p.chainId || "DEX").toUpperCase(),
-
                 image: "",
-
                 usd: p.priceUsd,
-
                 inr: null,
-
                 change24h: p.priceChange?.h24 ?? null,
-
                 marketCap: p.fdv || p.marketCap || null,
-
                 url: safeURL(p.url || "")
-
               }));
 
-            $("#resultsTitle").textContent =
-              `Search Results for “${query}”`;
-
+            $("#resultsTitle").textContent = `Search Results for “${query}”`;
             $("#liveStatusText").textContent = "Live Updated";
-
-            renderTableRows(
-              pairs,
-              "No active pool found for this address",
-              "Check the contract address and try again."
-            );
-
-            if (pairs.length) {
-              openInlineSlotAndJump(pairs[0], 0);
-            }
-
+            renderTableRows(pairs, "No active pool found for this address", "Check the contract address and try again.");
+            if (pairs.length) openInlineSlotAndJump(pairs[0], 0);
             return;
           }
 
-          /* COINGECKO TOKEN NAME / SYMBOL SEARCH */
-
           const searchData = await fetchWithTimeout(
-            "https://api.coingecko.com/api/v3/search?query=" +
-            encodeURIComponent(query)
+            "https://api.coingecko.com/api/v3/search?query=" + encodeURIComponent(query)
           );
-
           const qLower = query.toLowerCase();
-
-          const ranked = (Array.isArray(searchData.coins)
-            ? searchData.coins
-            : [])
-
-            .filter(c =>
-              Number.isInteger(c.market_cap_rank) &&
-              c.market_cap_rank > 0
-            )
-
+          const ranked = (Array.isArray(searchData.coins) ? searchData.coins : [])
+            .filter(c => Number.isInteger(c.market_cap_rank) && c.market_cap_rank > 0)
             .sort((a, b) => {
-
-              const aExact =
-                a.name.toLowerCase() === qLower ||
-                String(a.symbol || "").toLowerCase() === qLower
-                  ? 0
-                  : 1;
-
-              const bExact =
-                b.name.toLowerCase() === qLower ||
-                String(b.symbol || "").toLowerCase() === qLower
-                  ? 0
-                  : 1;
-
-              if (aExact !== bExact) {
-                return aExact - bExact;
-              }
-
+              const aExact = a.name.toLowerCase() === qLower || String(a.symbol || "").toLowerCase() === qLower ? 0 : 1;
+              const bExact = b.name.toLowerCase() === qLower || String(b.symbol || "").toLowerCase() === qLower ? 0 : 1;
+              if (aExact !== bExact) return aExact - bExact;
               return a.market_cap_rank - b.market_cap_rank;
-
             })
-
             .slice(0, 12);
 
           if (!ranked.length) {
-
-            $("#resultsTitle").textContent =
-              `Search Results for “${query}”`;
-
-            $("#liveStatusText").textContent =
-              "0 ranked matches";
-
+            $("#resultsTitle").textContent = `Search Results for “${query}”`;
+            $("#liveStatusText").textContent = "0 ranked matches";
             renderTableRows(
               [],
               `No verified ranked token found for “${query}”`,
               "Unranked clone tokens are filtered out automatically."
             );
-
             return;
           }
 
-          /* FETCH LIVE PRICES */
-
           const ids = ranked.map(c => c.id).join(",");
-
           const priceData = await fetchWithTimeout(
             `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true`
           );
 
           const matchedRows = ranked.map(c => {
-
             const p = priceData[c.id] || {};
-
             return {
-
               name: c.name,
-
               symbol: String(c.symbol || "").toUpperCase(),
-
               networkLabel: `Rank #${c.market_cap_rank}`,
-
               image: safeURL(c.large || c.thumb || ""),
-
               usd: p.usd ?? null,
-
               inr: p.inr ?? null,
-
               change24h: p.usd_24h_change ?? null,
-
               marketCap: p.usd_market_cap ?? null,
-
-              url: "https://www.coingecko.com/en/coins/" +
-                encodeURIComponent(c.id)
-
+              url: "https://www.coingecko.com/en/coins/" + encodeURIComponent(c.id)
             };
+          }).filter(r => r.usd !== null && r.usd > 0);
 
-          }).filter(r =>
-            r.usd !== null && r.usd > 0
-          );
-
-          $("#resultsTitle").textContent =
-            `Live Results for “${query}”`;
-
+          $("#resultsTitle").textContent = `Live Results for “${query}”`;
           $("#liveStatusText").textContent = "Live Updated";
-
           renderTableRows(matchedRows);
-
-          if (matchedRows.length) {
-            openInlineSlotAndJump(matchedRows[0], 0);
-          }
-
+          if (matchedRows.length) openInlineSlotAndJump(matchedRows[0], 0);
         } catch (_) {
-
           $("#liveStatusText").textContent = "Search error";
-
-          renderTableRows(
-            [],
-            "Unable to fetch live search results",
-            "Please try again in a few moments."
-          );
-
+          renderTableRows([], "Unable to fetch live search results", "Please try again in a few moments.");
         } finally {
-
           btn.disabled = false;
-          btn.textContent = "⌕ Search";
-
+          btn.textContent = "🔍 Search";
         }
       }
-
-      /* =========================
-         DARK / LIGHT MODE
-      ========================= */
 
       function applyTheme(theme) {
-
-        const chosen = theme === "dark"
-          ? "dark"
-          : "light";
-
+        const chosen = theme === "dark" ? "dark" : "light";
         document.documentElement.dataset.theme = chosen;
         document.body.dataset.theme = chosen;
-
         const btn = $("#themeToggle");
-
-        if (btn) {
-          btn.textContent = chosen === "light"
-            ? "🌙"
-            : "☀️";
-        }
-
-        try {
-          localStorage.setItem("theme", chosen);
-        } catch (_) {
-          /* Storage may be disabled */
-        }
+        if (btn) btn.textContent = chosen === "light" ? "🌙" : "☀️";
+        try { localStorage.setItem("theme", chosen); } catch (_) { /* ignore */ }
       }
-
-      /* MOBILE MENU */
 
       function closeMobileMenu() {
-
         document.body.classList.remove("menu-open");
-
         const btn = $("#mobileMenuBtn");
-
-        if (btn) {
-          btn.setAttribute("aria-expanded", "false");
-        }
+        if (btn) btn.setAttribute("aria-expanded", "false");
       }
 
-      /* =========================
-         INITIALIZE WEBSITE
-      ========================= */
-
       window.addEventListener("DOMContentLoaded", () => {
-
-        /* Sponsor banner */
-
         renderSharedSponsorBanner();
 
-        /* Theme initialization */
-
         let savedTheme = "light";
-
-        try {
-          savedTheme = localStorage.getItem("theme") || "light";
-        } catch (_) {
-          savedTheme = "light";
-        }
-
+        try { savedTheme = localStorage.getItem("theme") || "light"; } catch (_) { /* ignore */ }
         applyTheme(savedTheme);
 
-        /* Theme button */
-
         $("#themeToggle").addEventListener("click", () => {
-
-          applyTheme(
-            document.body.dataset.theme === "light"
-              ? "dark"
-              : "light"
-          );
-
+          applyTheme(document.body.dataset.theme === "light" ? "dark" : "light");
         });
-
-        /* Mobile navigation */
 
         const menuBtn = $("#mobileMenuBtn");
         const overlay = $("#mobileOverlay");
-
         if (menuBtn) {
-
           menuBtn.addEventListener("click", function () {
-
-            const isOpen =
-              document.body.classList.toggle("menu-open");
-
-            this.setAttribute(
-              "aria-expanded",
-              String(isOpen)
-            );
-
+            const isOpen = document.body.classList.toggle("menu-open");
+            this.setAttribute("aria-expanded", String(isOpen));
           });
-
         }
-
-        if (overlay) {
-          overlay.addEventListener("click", closeMobileMenu);
-        }
-
-        $$(".side-link").forEach(link => {
-          link.addEventListener("click", closeMobileMenu);
-        });
-
-        /* Community dropdown */
+        if (overlay) overlay.addEventListener("click", closeMobileMenu);
+        $$(".side-link").forEach(link => link.addEventListener("click", closeMobileMenu));
 
         const commBtn = $("#communityBtn");
         const commMenu = $("#communityMenu");
-
         if (commBtn && commMenu) {
-
           commBtn.addEventListener("click", () => {
-
-            const isOpen =
-              commMenu.classList.toggle("show");
-
-            commBtn.setAttribute(
-              "aria-expanded",
-              String(isOpen)
-            );
-
+            const isOpen = commMenu.classList.toggle("show");
+            commBtn.setAttribute("aria-expanded", String(isOpen));
           });
-
           document.addEventListener("click", e => {
-
             if (!e.target.closest(".community-dropdown")) {
-
               commMenu.classList.remove("show");
-
-              commBtn.setAttribute(
-                "aria-expanded",
-                "false"
-              );
-
+              commBtn.setAttribute("aria-expanded", "false");
             }
-
           });
-
         }
-
-        /* Search input */
 
         const input = $("#tokenSearchInput");
         const clearBtn = $("#clearSearchBtn");
-
         input.addEventListener("input", () => {
-
-          clearBtn.classList.toggle(
-            "show",
-            input.value.trim().length > 0
-          );
-
+          clearBtn.classList.toggle("show", input.value.trim().length > 0);
           if (!input.value.trim()) {
-
-            $("#resultsTitle").textContent =
-              "Live Token Search Results";
-
+            $("#resultsTitle").textContent = "Live Token Search Results";
             renderTableRows(liveMarketRows);
-
           }
-
         });
-
-        /* Clear search */
 
         clearBtn.addEventListener("click", () => {
-
           input.value = "";
-
           clearBtn.classList.remove("show");
-
-          $("#resultsTitle").textContent =
-            "Live Token Search Results";
-
+          $("#resultsTitle").textContent = "Live Token Search Results";
           renderTableRows(liveMarketRows);
-
           input.focus();
-
         });
-
-        /* Search form submission */
 
         $("#tokenSearchForm").addEventListener("submit", e => {
-
           e.preventDefault();
-
           runLiveTokenSearch(input.value);
-
         });
 
-        /* Initial live token loading */
-
         loadTopLiveMarkets();
-
       });
-
     })();
   </script>
 
   <!-- TOTAL CRYPTO HUB AI ASSISTANT -->
-
   <script src="../ai-assistant/assistant.js" defer></script>
   <script src="../ai-assistant/robot-animation.js" defer></script>
-
 </body>
 </html>
