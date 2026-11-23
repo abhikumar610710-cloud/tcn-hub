@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Smart Token Finder by Total Crypto Hub - Search any DePIN, community, or Web3 project name for live USD & INR prices, market cap, and official anti-phishing links.">
-  <meta name="keywords" content="Smart Token Finder, Total Crypto Hub, DePIN Token Price, Grass, U2U, UpRock, Roam, Theta, Crypto Price INR">
-  <meta name="theme-color" content="#d8fff0">
+  <meta name="description" content="Smart Token Finder by Total Crypto Hub - Search real crypto tokens, DeFi protocols, and Web3 projects with live verified USD & INR market data.">
+  <meta name="keywords" content="Smart Token Finder, Total Crypto Hub, Live Crypto Price, DeFi Protocol Finder, CoinGecko, DefiLlama">
+  <meta name="theme-color" content="#c9ffea">
   <title>Smart Token Finder | Total Crypto Hub</title>
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,33 +16,33 @@
       color-scheme: light;
       --bg: #f4fbf9;
       --surface: #ffffff;
-      --surface-soft: #f0fff9;
-      --border: #d5efe6;
-      --heading: #0e2240;
-      --body: #27405c;
-      --muted: #6e8299;
+      --surface-soft: #f1fffb;
+      --border: #d9f0e9;
+      --heading: #102344;
+      --body: #29415c;
+      --muted: #74869b;
       --green: #08a86b;
-      --green-dark: #067d50;
+      --green-dark: #078653;
       --green-light: #32e5a1;
-      --green-soft: #e0fff2;
-      --shadow: 0 10px 28px rgba(8, 120, 82, 0.06);
-      --sidebar-width: 256px;
-      --topbar-height: 62px;
+      --green-soft: #e3fff3;
+      --shadow: 0 12px 32px rgba(20, 76, 66, 0.07);
+      --sidebar-width: 258px;
+      --header-height: 66px;
     }
     html[data-theme="dark"], body[data-theme="dark"] {
       color-scheme: dark;
-      --bg: #08191f;
-      --surface: #0f252b;
-      --surface-soft: #133037;
-      --border: #224748;
-      --heading: #effef8;
-      --body: #d0ece3;
-      --muted: #8eb0aa;
+      --bg: #081a20;
+      --surface: #10272c;
+      --surface-soft: #143139;
+      --border: #254b4b;
+      --heading: #f0fff9;
+      --body: #d4eee5;
+      --muted: #91b3ad;
       --green: #20d99a;
-      --green-dark: #0eb37c;
-      --green-light: #64f3c2;
-      --green-soft: #123c33;
-      --shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
+      --green-dark: #0cad78;
+      --green-light: #5df0bd;
+      --green-soft: #123e34;
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -60,246 +60,101 @@
     button, input { font: inherit; }
     button { cursor: pointer; }
 
-    /* SIDEBAR WITH TOP BRAND LOGO */
-    .sidebar {
-      position: fixed;
-      z-index: 140;
-      inset: 0 auto 0 0;
-      width: var(--sidebar-width);
-      height: 100vh;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      padding: 16px 15px 18px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      box-shadow: 8px 0 26px rgba(14, 58, 48, 0.03);
-      transition: transform 0.25s ease;
-    }
-    .sidebar::-webkit-scrollbar { width: 5px; }
-    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-
-    .sidebar-brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 6px 8px 16px;
-      margin-bottom: 6px;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-    }
-    .sidebar-logo {
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
-      border-radius: 50%;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      border: 2px solid #00bd79;
-      background: radial-gradient(circle at 30% 25%, #5bffc8, #009c6d 65%, #004938);
-      box-shadow: 0 3px 10px rgba(0, 175, 115, 0.22);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 900;
-    }
-    .sidebar-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-    .sidebar-brand strong {
-      display: block;
-      color: var(--heading);
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.4px;
-    }
-    .sidebar-brand small {
-      display: block;
-      margin-top: 2px;
-      color: var(--green-dark);
-      font-size: 10px;
-      font-weight: 800;
-    }
-    html[data-theme="dark"] .sidebar-brand small, body[data-theme="dark"] .sidebar-brand small { color: var(--green-light); }
-
-    .side-label {
-      padding: 10px 12px 8px;
-      color: #96a6ba;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
-    .side-nav { display: grid; gap: 6px; flex-shrink: 0; }
-    .side-link {
-      min-height: 45px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 8px 12px;
-      color: var(--body);
-      text-decoration: none;
-      border: 1px solid transparent;
-      border-radius: 14px;
-      font-size: 12px;
-      font-weight: 700;
-      transition: 0.18s ease;
-    }
-    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
-    .side-link.active {
-      color: #077b4c;
-      background: linear-gradient(100deg, #dffef0, #f3fff9);
-      border-color: #b4f0d5;
-      box-shadow: 0 5px 12px rgba(8, 168, 107, 0.1);
-    }
-    html[data-theme="dark"] .side-link.active, body[data-theme="dark"] .side-link.active {
-      color: #65e6b1;
-      background: #12382f;
-      border-color: #23654e;
-    }
-    .nav-icon {
-      width: 34px;
-      height: 34px;
-      flex: 0 0 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 11px;
-    }
-    .nav-icon svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .nav-home { color: #079b69; background: #d9f8e9; }
-    .nav-depin { color: #1687ff; background: #dfeeff; }
-    .nav-community { color: #8b5cf6; background: #eee5ff; }
-    .nav-airdrop { color: #f07819; background: #fff0d9; }
-    .nav-wallet { color: #9333ea; background: #f1e3ff; }
-    .nav-checker { color: #0d9488; background: #d9f7f0; }
-    .nav-calculator { color: #2563eb; background: #e2eaff; }
-
-    .sidebar-spacer { flex: 1 0 16px; min-height: 16px; }
-    .side-promo {
-      margin: 14px 5px 12px;
-      padding: 17px 13px;
-      flex-shrink: 0;
-      text-align: center;
-      border-radius: 20px;
-      border: 1px solid #c5f4de;
-      background: radial-gradient(circle at 90% 10%, rgba(92, 238, 176, 0.24), transparent 34%), linear-gradient(145deg, #e7fff4, #fff 72%);
-      box-shadow: 0 7px 18px rgba(8, 168, 107, 0.09);
-    }
-    html[data-theme="dark"] .side-promo, body[data-theme="dark"] .side-promo {
-      background: linear-gradient(145deg, #123b32, #142238);
-      border-color: #255c49;
-    }
-    .promo-gift { margin-bottom: 6px; font-size: 30px; }
-    .side-promo h3 { margin: 0 0 6px; color: var(--heading); font-size: 12.5px; line-height: 1.45; font-weight: 800; }
-    .side-promo p { margin: 0 0 11px; color: var(--muted); font-size: 10px; line-height: 1.5; }
-    .promo-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 9px 17px;
-      border-radius: 999px;
-      color: #fff;
-      background: linear-gradient(135deg, #08a86b, #06c77a);
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-    }
-    .support-card {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 5px;
-      padding: 12px;
-      flex-shrink: 0;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--surface-soft);
-      text-decoration: none;
-    }
-    .support-icon {
-      width: 35px;
-      height: 35px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--green-dark);
-      background: var(--green-soft);
-      font-size: 17px;
-    }
-    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
-    .support-card span:last-child { display: block; margin-top: 3px; color: var(--green); font-size: 10px; font-weight: 800; }
-    .sidebar-note { margin: 12px 8px 0; color: var(--muted); font-size: 9px; text-align: center; }
-
-    /* MAIN COLUMN & CLEAN SINGLE TOPBAR */
-    .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
-    .topbar {
+    /* ORIGINAL WEBSITE MINT HEADER BAR (NO SPONSORSHIP BANNER INSIDE) */
+    .top-header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      min-height: var(--topbar-height);
+      z-index: 200;
+      min-height: var(--header-height);
+      display: flex;
+      align-items: center;
+      color: #071b38;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(0, 235, 165, 0.28), transparent 24%),
+        radial-gradient(circle at 92% 50%, rgba(0, 210, 160, 0.24), transparent 24%),
+        linear-gradient(95deg, #c9ffea 0%, #f2fff9 48%, #c4fcef 100%);
+      border-bottom: 1px solid #96ecd0;
+      box-shadow: 0 4px 18px rgba(0, 130, 90, 0.08);
+    }
+    html[data-theme="dark"] .top-header, body[data-theme="dark"] .top-header {
+      color: #f0fff8;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(0, 245, 158, 0.18), transparent 22%),
+        linear-gradient(95deg, #0b2b27 0%, #0f3530 50%, #0b2b27 100%);
+      border-bottom: 1px solid #245f4d;
+    }
+    .header-inner {
+      width: 100%;
+      max-width: 1800px;
+      min-height: var(--header-height);
+      margin: auto;
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .header-left {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 10px 26px;
-      background: color-mix(in srgb, var(--surface) 95%, transparent);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(14px);
     }
     .mobile-menu-btn {
       display: none;
       width: 38px;
       height: 38px;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(8, 168, 107, 0.35);
       border-radius: 11px;
       color: var(--heading);
-      background: var(--surface);
+      background: rgba(255, 255, 255, 0.85);
     }
-    .domain-safety-pill {
-      display: inline-flex;
+    html[data-theme="dark"] .mobile-menu-btn, body[data-theme="dark"] .mobile-menu-btn {
+      background: rgba(16, 39, 44, 0.85);
+    }
+    .header-brand {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(8, 168, 107, 0.3);
-      background: var(--surface-soft);
-      color: var(--body);
-      font-size: 11px;
-      font-weight: 700;
-      white-space: nowrap;
+      gap: 11px;
+      text-decoration: none;
     }
-    .domain-lock {
-      display: inline-grid;
+    .header-logo {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      overflow: hidden;
+      display: grid;
       place-items: center;
-      width: 20px;
-      height: 20px;
       border-radius: 50%;
-      background: rgba(8, 168, 107, 0.15);
-      color: var(--green);
-      font-size: 11px;
+      border: 2px solid #00bd79;
+      background: radial-gradient(circle at 30% 25%, #5bffc8, #009c6d 65%, #004938);
+      box-shadow: 0 3px 12px rgba(0, 175, 115, 0.22);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
     }
-    .domain-url { color: var(--green-dark); font-weight: 800; }
-    html[data-theme="dark"] .domain-url, body[data-theme="dark"] .domain-url { color: var(--green-light); }
-    .domain-verified-tag {
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(8, 168, 107, 0.14);
-      color: var(--green-dark);
-      font-size: 9.5px;
+    .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .header-brand-name {
+      display: block;
+      color: var(--heading);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.45px;
+    }
+    .header-brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: #008556;
+      font-size: 10px;
       font-weight: 800;
     }
-    html[data-theme="dark"] .domain-verified-tag, body[data-theme="dark"] .domain-verified-tag { color: var(--green-light); }
+    html[data-theme="dark"] .header-brand-subtitle, body[data-theme="dark"] .header-brand-subtitle { color: #4ef2b1; }
 
-    .topbar-spacer { flex: 1; }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     .community-dropdown { position: relative; }
     .community-btn, .icon-btn {
       min-height: 38px;
@@ -307,14 +162,19 @@
       align-items: center;
       justify-content: center;
       gap: 7px;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(8, 168, 107, 0.35);
       border-radius: 999px;
       color: var(--heading);
-      background: var(--surface);
+      background: rgba(255, 255, 255, 0.9);
       font-size: 11.5px;
       font-weight: 800;
-      box-shadow: 0 3px 10px rgba(14, 58, 48, 0.04);
+      box-shadow: 0 3px 10px rgba(8, 130, 90, 0.08);
       transition: 0.18s ease;
+    }
+    html[data-theme="dark"] .community-btn, body[data-theme="dark"] .community-btn,
+    html[data-theme="dark"] .icon-btn, body[data-theme="dark"] .icon-btn {
+      background: rgba(16, 39, 44, 0.9);
+      border-color: #2b6656;
     }
     .community-btn { padding: 0 16px; }
     .icon-btn { width: 38px; border-radius: 50%; font-size: 16px; }
@@ -322,8 +182,8 @@
     .dropdown-content {
       display: none;
       position: absolute;
-      z-index: 150;
-      top: calc(100% + 9px);
+      z-index: 250;
+      top: calc(100% + 10px);
       right: 0;
       min-width: 195px;
       overflow: hidden;
@@ -346,21 +206,160 @@
     }
     .dropdown-content a:last-child { border-bottom: 0; }
     .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      z-index: 150;
+      inset: var(--header-height) auto 0 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--header-height));
+      height: calc(100dvh - var(--header-height));
+      display: flex;
+      flex-direction: column;
+      padding: 18px 16px 18px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      box-shadow: 8px 0 28px rgba(21, 48, 84, 0.025);
+      transition: transform 0.25s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    .side-label {
+      padding: 10px 13px 8px;
+      color: #9aa8bc;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .side-nav { display: grid; gap: 7px; flex-shrink: 0; }
+    .side-link {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      color: var(--body);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
+    .side-link.active {
+      color: #087b4b;
+      background: linear-gradient(100deg, #e2fff1, #f4fff9);
+      border-color: #b8f2d7;
+      box-shadow: 0 5px 13px rgba(8, 168, 107, 0.11);
+    }
+    html[data-theme="dark"] .side-link.active, body[data-theme="dark"] .side-link.active {
+      color: #65e6b1;
+      background: #12382f;
+      border-color: #23654e;
+    }
+    .nav-icon {
+      width: 35px;
+      height: 35px;
+      flex: 0 0 35px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+    }
+    .nav-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav-home { color: #079b69; background: #d9f8e9; }
+    .nav-depin { color: #1687ff; background: #dfeeff; }
+    .nav-community { color: #8b5cf6; background: #eee5ff; }
+    .nav-airdrop { color: #f07819; background: #fff0d9; }
+    .nav-wallet { color: #9333ea; background: #f1e3ff; }
+    .nav-checker { color: #0d9488; background: #d9f7f0; }
+    .nav-calculator { color: #2563eb; background: #e2eaff; }
+
+    .sidebar-spacer { flex: 1 0 18px; min-height: 18px; }
+    .side-promo {
+      margin: 16px 6px 13px;
+      padding: 18px 14px;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 22px;
+      border: 1px solid #c7f5df;
+      background: radial-gradient(circle at 90% 10%, rgba(92, 238, 176, 0.25), transparent 34%), linear-gradient(145deg, #e7fff4, #fff 72%);
+      box-shadow: 0 8px 20px rgba(8, 168, 107, 0.1);
+    }
+    html[data-theme="dark"] .side-promo, body[data-theme="dark"] .side-promo {
+      background: linear-gradient(145deg, #123b32, #142238);
+      border-color: #255c49;
+    }
+    .promo-gift { margin-bottom: 7px; font-size: 32px; }
+    .side-promo h3 { margin: 0 0 7px; color: var(--heading); font-size: 13px; line-height: 1.45; font-weight: 800; }
+    .side-promo p { margin: 0 0 11px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .promo-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, #08a86b, #06c77a);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .support-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 6px;
+      padding: 12px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      text-decoration: none;
+    }
+    .support-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      font-size: 17px;
+    }
+    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
+    .support-card span:last-child { display: block; margin-top: 3px; color: var(--green); font-size: 10px; font-weight: 800; }
+    .sidebar-note { margin: 13px 8px 0; color: var(--muted); font-size: 9px; text-align: center; }
     .mobile-overlay { display: none; }
 
+    /* MAIN CONTENT */
+    .main-column { min-height: calc(100vh - var(--header-height)); margin-left: var(--sidebar-width); }
     main {
       width: 100%;
-      max-width: 1580px;
+      max-width: 1500px;
       margin: 0 auto;
-      padding: 18px 26px 38px;
+      padding: 20px 26px 40px;
     }
 
     /* 1. FOCAL AREA SPONSOR BANNER (728x90 / 970x90) */
     .focal-sponsor-bar {
       width: 100%;
-      min-height: 76px;
-      margin-bottom: 16px;
-      padding: 10px 24px;
+      min-height: 78px;
+      margin-bottom: 18px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -396,7 +395,7 @@
       border-radius: 13px;
       display: grid;
       place-items: center;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       border: 1px solid rgba(8, 168, 107, 0.25);
       font-size: 22px;
     }
@@ -432,11 +431,11 @@
       white-space: nowrap;
     }
 
-    /* 2. SMART TOKEN FINDER MINT SEARCH CARD (MATCHING REFERENCE IMAGE) */
+    /* 2. SMART TOKEN FINDER SEARCH CARD (CLEAN — NO UNWANTED FILTER PILLS) */
     .finder-mint-card {
       position: relative;
       overflow: hidden;
-      padding: 24px 28px 22px;
+      padding: 26px 28px;
       border-radius: 22px;
       border: 1.5px solid #96ecd0;
       background:
@@ -498,20 +497,20 @@
       font-size: 12px;
       font-weight: 600;
     }
-    .live-fx-pill {
+    .live-source-pill {
       display: inline-flex;
       align-items: center;
       gap: 7px;
       padding: 7px 14px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       border: 1px solid rgba(8, 168, 107, 0.28);
       color: var(--heading);
       font-size: 11px;
       font-weight: 800;
     }
-    html[data-theme="dark"] .live-fx-pill, body[data-theme="dark"] .live-fx-pill {
-      background: rgba(10, 42, 36, 0.82);
+    html[data-theme="dark"] .live-source-pill, body[data-theme="dark"] .live-source-pill {
+      background: rgba(10, 42, 36, 0.85);
     }
     .live-dot {
       width: 8px;
@@ -521,7 +520,7 @@
       box-shadow: 0 0 8px #08a86b;
     }
 
-    /* BIG SEARCH BAR WITH GREEN SEARCH BUTTON */
+    /* BIG SEARCH BAR */
     .big-search-form {
       position: relative;
       display: flex;
@@ -586,54 +585,49 @@
       transition: transform 0.15s ease, filter 0.15s ease;
     }
     .big-search-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    .big-search-btn:disabled { opacity: 0.7; cursor: wait; }
 
-    /* CATEGORY FILTER PILLS */
-    .filter-pills-row {
+    .search-sub-note {
+      margin: 12px 4px 0;
+      color: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* 3. LIVE SEARCH RESULTS AREA (100% REAL-TIME API RESULTS ONLY) */
+    .results-section {
+      margin-top: 20px;
+    }
+    .results-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 15px;
+      gap: 10px;
+      margin-bottom: 14px;
     }
-    .filter-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 15px;
-      border-radius: 999px;
-      border: 1.5px solid #bfeede;
-      background: var(--surface);
+    .results-header h2 {
+      margin: 0;
       color: var(--heading);
-      font-size: 11.5px;
+      font-size: 17px;
       font-weight: 800;
-      box-shadow: 0 3px 10px rgba(8, 120, 82, 0.04);
-      transition: 0.18s ease;
     }
-    .filter-pill:hover {
-      border-color: var(--green);
-      transform: translateY(-1px);
-    }
-    .filter-pill.active {
-      background: linear-gradient(135deg, #08a86b, #067c50);
-      border-color: #067c50;
-      color: #ffffff;
-      box-shadow: 0 5px 14px rgba(8, 168, 107, 0.24);
+    .results-header small {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
     }
 
-    /* 3. GOOGLE-STYLE INSTANT PRICE RESULT CARD */
-    .instant-result-wrap {
-      display: none;
-      margin-top: 16px;
-    }
-    .instant-result-wrap.show { display: block; animation: fadeIn 0.2s ease-out; }
-    .instant-card {
-      padding: 18px 22px;
+    /* PRIMARY GOOGLE-STYLE INSTANT ANSWER CARD */
+    .instant-answer-card {
+      margin-bottom: 16px;
+      padding: 20px 24px;
       border-radius: 20px;
-      border: 2px solid #08a86b;
+      border: 2px solid var(--green);
       background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
-      box-shadow: 0 12px 30px rgba(8, 168, 107, 0.13);
+      box-shadow: 0 12px 30px rgba(8, 168, 107, 0.12);
     }
-    .instant-top-badge {
+    .instant-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -643,52 +637,37 @@
       color: var(--green-dark);
       font-size: 10px;
       font-weight: 800;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
-    html[data-theme="dark"] .instant-top-badge, body[data-theme="dark"] .instant-top-badge { color: var(--green-light); }
-    .instant-main-grid {
+    html[data-theme="dark"] .instant-tag, body[data-theme="dark"] .instant-tag { color: var(--green-light); }
+    .instant-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 18px;
     }
-    .instant-identity {
+    .instant-coin {
       display: flex;
       align-items: center;
       gap: 14px;
     }
-    .instant-logo {
-      position: relative;
-      width: 54px;
-      height: 54px;
+    .coin-logo {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
       border-radius: 50%;
       overflow: hidden;
       display: grid;
       place-items: center;
       background: var(--surface);
-      border: 2px solid #86e3c3;
-      flex: 0 0 54px;
-    }
-    .instant-logo img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    .instant-fallback {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #08a86b, #067c50);
-      color: #fff;
-      font-size: 20px;
+      border: 1.5px solid #96ecd0;
+      color: var(--green);
+      font-size: 18px;
       font-weight: 800;
     }
-    .instant-identity h2 {
+    .coin-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .instant-coin h3 {
       margin: 0;
       color: var(--heading);
       font-size: 20px;
@@ -698,7 +677,7 @@
       flex-wrap: wrap;
       gap: 8px;
     }
-    .instant-ticker {
+    .ticker-pill {
       padding: 2px 9px;
       border-radius: 999px;
       background: var(--green-soft);
@@ -706,20 +685,20 @@
       font-size: 11px;
       font-weight: 800;
     }
-    html[data-theme="dark"] .instant-ticker, body[data-theme="dark"] .instant-ticker { color: var(--green-light); }
-    .instant-sub {
+    html[data-theme="dark"] .ticker-pill, body[data-theme="dark"] .ticker-pill { color: var(--green-light); }
+    .instant-coin p {
       margin: 4px 0 0;
       color: var(--muted);
       font-size: 11.5px;
       font-weight: 700;
     }
-    .instant-price-box {
+    .instant-metrics {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 20px;
     }
-    .instant-price-item span {
+    .metric-box span {
       display: block;
       color: var(--muted);
       font-size: 10px;
@@ -727,33 +706,35 @@
       text-transform: uppercase;
       letter-spacing: 0.4px;
     }
-    .instant-price-item strong {
+    .metric-box strong {
       display: block;
       margin-top: 2px;
       color: var(--heading);
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 800;
-      letter-spacing: -0.5px;
     }
-    .instant-actions {
+    .change-up { color: #08a86b !important; }
+    .change-down { color: #e11d48 !important; }
+
+    .instant-links {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       gap: 9px;
     }
-    .instant-btn {
+    .ext-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 10px 16px;
       border-radius: 999px;
       background: linear-gradient(135deg, #08a86b, #067c50);
-      color: #fff;
+      color: #ffffff;
       text-decoration: none;
       font-size: 11.5px;
       font-weight: 800;
     }
-    .instant-btn-outline {
+    .ext-btn-soft {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -766,205 +747,159 @@
       font-size: 11.5px;
       font-weight: 800;
     }
-    .instant-btn-outline:hover { border-color: var(--green); color: var(--green); }
+    .ext-btn-soft:hover { border-color: var(--green); color: var(--green); }
 
-    /* 4. FULL-WIDTH COINGECKO-STYLE MARKET TABLE */
-    .market-panel {
-      margin-top: 16px;
-      border-radius: 22px;
-      border: 1.5px solid var(--border);
+    /* SECONDARY MATCH CARDS GRID */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .result-card {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
       background: var(--surface);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(20, 76, 66, 0.04);
     }
-    .market-panel-head {
-      padding: 16px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(90deg, var(--surface-soft), var(--surface));
-    }
-    .market-panel-head h2 {
-      margin: 0;
-      color: var(--heading);
-      font-size: 16.5px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-    }
-    .market-count-badge {
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      font-size: 11px;
-      font-weight: 800;
-    }
-    html[data-theme="dark"] .market-count-badge, body[data-theme="dark"] .market-count-badge { color: var(--green-light); }
-
-    .table-scroll {
-      width: 100%;
-      overflow-x: auto;
-    }
-    .token-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 780px;
-      text-align: left;
-    }
-    .token-table th {
-      padding: 13px 18px;
-      background: var(--surface-soft);
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    .token-table td {
-      padding: 13px 18px;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--heading);
-      vertical-align: middle;
-    }
-    .token-table tbody tr {
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
-    .token-table tbody tr:hover {
-      background: var(--surface-soft);
-    }
-    .token-table tbody tr:last-child td { border-bottom: 0; }
-
-    .col-rank { width: 48px; color: var(--muted) !important; font-weight: 800 !important; }
-    .proj-cell {
+    .rc-top {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .proj-avatar {
-      position: relative;
-      width: 38px;
-      height: 38px;
-      flex: 0 0 38px;
+    .rc-avatar {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
       border-radius: 50%;
       overflow: hidden;
       display: grid;
       place-items: center;
-      background: var(--surface);
-      border: 1.5px solid #9be8cd;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      color: var(--green);
+      font-weight: 800;
     }
-    .proj-avatar img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    .proj-fallback {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #08a86b, #067c50);
-      color: #fff;
+    .rc-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .rc-title { flex: 1; min-width: 0; }
+    .rc-title h4 {
+      margin: 0;
+      color: var(--heading);
       font-size: 14px;
       font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .proj-name-text strong {
+    .rc-title small {
       display: block;
-      color: var(--heading);
-      font-size: 13.5px;
-      font-weight: 800;
-    }
-    .proj-name-text small {
-      display: block;
-      margin-top: 2px;
+      margin-top: 3px;
       color: var(--muted);
       font-size: 10.5px;
       font-weight: 700;
     }
-    .chain-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .rc-badge {
       padding: 4px 10px;
       border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 9.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    html[data-theme="dark"] .rc-badge, body[data-theme="dark"] .rc-badge { color: var(--green-light); }
+    .rc-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 14px 0 12px;
+    }
+    .rc-stat {
+      padding: 9px 10px;
+      border-radius: 12px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
-      color: var(--body);
-      font-size: 11px;
-      font-weight: 800;
-      white-space: nowrap;
     }
-    .price-cell { white-space: nowrap; }
-    .price-usd { color: var(--heading); font-weight: 800; }
-    .price-inr { color: var(--muted); font-weight: 700; font-size: 12px; }
-    .change-up { color: #08a86b; font-weight: 800; white-space: nowrap; }
-    .change-down { color: #e11d48; font-weight: 800; white-space: nowrap; }
-    .change-neutral { color: var(--muted); font-weight: 700; white-space: nowrap; }
-
-    .status-official {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 11px;
-      border-radius: 999px;
-      background: #dcfce7;
-      border: 1px solid #86efac;
-      color: #066c44;
-      font-size: 11px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-    html[data-theme="dark"] .status-official, body[data-theme="dark"] .status-official {
-      background: #134433;
-      border-color: #246e54;
-      color: #6ef2bf;
-    }
-    .status-pretge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 11px;
-      border-radius: 999px;
-      background: #fef3c7;
-      border: 1px solid #fcd34d;
-      color: #92400e;
-      font-size: 11px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-    html[data-theme="dark"] .status-pretge, body[data-theme="dark"] .status-pretge {
-      background: #3d2e14;
-      border-color: #6b501f;
-      color: #fcd34d;
-    }
-
-    .table-empty {
-      padding: 36px 20px;
-      text-align: center;
+    .rc-stat span {
+      display: block;
       color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
     }
-    .table-empty h3 { margin: 8px 0 6px; color: var(--heading); font-size: 16px; }
-    .table-empty p { margin: 0; font-size: 12px; }
+    .rc-stat strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--heading);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .rc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .rc-meta-tag {
+      font-size: 10.5px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .rc-link {
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    html[data-theme="dark"] .rc-link, body[data-theme="dark"] .rc-link { color: var(--green-light); }
+    .rc-link:hover { text-decoration: underline; }
 
-    /* DISCLAIMER & FOOTER */
-    .safety-note {
+    /* CLEAN EMPTY / INITIAL STATE */
+    .empty-box {
+      padding: 34px 22px;
+      text-align: center;
+      border-radius: 20px;
+      border: 1.5px dashed var(--border);
+      background: var(--surface);
+    }
+    .empty-box-icon { font-size: 32px; margin-bottom: 8px; }
+    .empty-box h3 { margin: 0 0 6px; color: var(--heading); font-size: 16px; font-weight: 800; }
+    .empty-box p { margin: 0 auto; max-width: 600px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+
+    /* INFO & FOOTER */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 13px;
+      margin-top: 22px;
+    }
+    .info-card {
+      padding: 16px 18px;
+      border-radius: 17px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .info-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--heading);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .disclaimer-note {
       margin-top: 16px;
       padding: 13px 16px;
-      border-radius: 14px;
+      border-radius: 13px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--muted);
-      font-size: 10.5px;
+      font-size: 10px;
       line-height: 1.65;
     }
     footer {
@@ -996,46 +931,68 @@
     .footer-links a { color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 700; }
     .footer-links a:hover { color: var(--green); }
 
-    /* RESPONSIVE */
-    @media (max-width: 1180px) {
+    @media (max-width: 1100px) {
       :root { --sidebar-width: 235px; }
-      main { padding-left: 18px; padding-right: 18px; }
+      .info-cards { grid-template-columns: 1fr; }
     }
     @media (max-width: 860px) {
-      .domain-verified-tag { display: none; }
       .focal-sponsor-bar { flex-direction: column; align-items: flex-start; padding: 14px 16px; }
       .focal-sponsor-btn { width: 100%; justify-content: center; }
+      .results-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
       .sidebar { transform: translateX(-105%); box-shadow: 12px 0 35px rgba(0, 0, 0, 0.16); }
       body.menu-open .sidebar { transform: translateX(0); }
-      .mobile-overlay { position: fixed; inset: 0; z-index: 120; background: rgba(4, 14, 27, 0.45); }
+      .mobile-overlay { position: fixed; inset: var(--header-height) 0 0; z-index: 120; background: rgba(4, 14, 27, 0.45); }
       body.menu-open .mobile-overlay { display: block; }
       .main-column { margin-left: 0; }
-      .topbar { padding: 8px 13px; gap: 8px; }
-      .mobile-menu-btn { display: inline-grid; place-items: center; flex: 0 0 38px; }
-      .domain-safety-pill { padding: 5px 10px; font-size: 10px; }
-      .domain-label-hide { display: none; }
+      .mobile-menu-btn { display: inline-grid; place-items: center; }
+      .header-inner { padding: 8px 13px; }
+      .header-brand-name { font-size: 14px; }
+      .header-brand-subtitle { display: none; }
       .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
       .community-btn::first-letter { font-size: 15px; }
-      main { padding: 14px 12px 28px; }
+      main { padding: 15px 12px 30px; }
       .finder-mint-card { padding: 18px 15px; }
       .finder-circle-icon { width: 44px; height: 44px; flex-basis: 44px; }
       .big-search-form { padding: 4px 5px 4px 13px; }
       .big-search-input { height: 40px; font-size: 12.5px; }
       .big-search-btn { height: 40px; padding: 0 16px; font-size: 12px; }
-      .filter-pill { padding: 7px 12px; font-size: 10.5px; }
     }
   </style>
 </head>
 <body data-theme="light">
+  <!-- ORIGINAL MINT HEADER BAR (NO SPONSORSHIP BANNER, COMMUNITY & MOON AT TOP RIGHT) -->
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <a href="../index.html" class="header-brand">
+          <span class="header-logo"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';"></span>
+          <span>
+            <span class="header-brand-name">Total Crypto Hub</span>
+            <span class="header-brand-subtitle">by Total Crypto Network</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="header-right">
+        <div class="community-dropdown">
+          <button class="community-btn" id="communityBtn" type="button" aria-expanded="false">👥 Community</button>
+          <div class="dropdown-content" id="communityMenu">
+            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
+            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+          </div>
+        </div>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </div>
+  </header>
+
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-    <a href="../index.html" class="sidebar-brand">
-      <span class="sidebar-logo"><img src="../logos/tcn-logo.png" alt="Total Crypto Network" onerror="this.style.display='none';this.parentElement.textContent='TCN'"></span>
-      <span><strong>Total Crypto Hub</strong><small>by Total Crypto Network</small></span>
-    </a>
-
     <div class="side-label">Workspace</div>
     <nav class="side-nav">
       <a href="../index.html" class="side-link"><span class="nav-icon nav-home"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home</a>
@@ -1063,27 +1020,6 @@
   <div class="mobile-overlay" id="mobileOverlay"></div>
 
   <div class="main-column">
-    <!-- CLEAN SINGLE TOPBAR (COMMUNITY & MOON THEME BUTTON AT TOP RIGHT) -->
-    <header class="topbar">
-      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-      <div class="domain-safety-pill" title="Official Total Crypto Hub domain">
-        <span class="domain-lock" aria-hidden="true">🔒</span>
-        <span><span class="domain-label-hide">Official Domain: </span><span class="domain-url">totalcryptohub.com</span></span>
-        <span class="domain-verified-tag">✓ Anti-Phishing Verified</span>
-      </div>
-      <span class="topbar-spacer"></span>
-      <div class="community-dropdown">
-        <button class="community-btn" id="communityBtn" type="button" aria-expanded="false">👥 Community</button>
-        <div class="dropdown-content" id="communityMenu">
-          <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
-          <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-          <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
-          <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-        </div>
-      </div>
-      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
-    </header>
-
     <main>
       <!-- 1. SPONSOR BANNER IN MAIN FOCAL AREA -->
       <a class="focal-sponsor-bar" href="../legal-pages/contact.html?subject=Smart%20Token%20Finder%20Sponsorship" aria-label="Sponsor Banner Area 728 by 90">
@@ -1091,13 +1027,13 @@
           <span class="sponsor-megaphone" aria-hidden="true">📢</span>
           <div>
             <strong>Sponsor Banner Area — 728 &times; 90 px (or 970 &times; 90 px)</strong>
-            <span>Feature your Web3, DePIN, or Exchange brand right above our live Smart Token Finder</span>
+            <span>Showcase your Web3 project, token, or exchange right above Smart Token Finder</span>
           </div>
         </div>
         <span class="focal-sponsor-btn">Become a Sponsor →</span>
       </a>
 
-      <!-- 2. SMART TOKEN FINDER SEARCH CARD -->
+      <!-- 2. SMART TOKEN FINDER SEARCH BOX -->
       <section class="finder-mint-card" aria-labelledby="finderHeading">
         <div class="finder-header-row">
           <div class="finder-title-group">
@@ -1106,12 +1042,12 @@
             </div>
             <div>
               <h1 id="finderHeading">Smart Token Finder</h1>
-              <p>Search any DePIN, Community, or Web3 project name for real-time USD &amp; INR prices and official links</p>
+              <p>Search any crypto project, DeFi protocol, or listed token for 100% live USD &amp; INR market data</p>
             </div>
           </div>
-          <div class="live-fx-pill" id="fxBadge" title="Live USD to INR conversion rate">
+          <div class="live-source-pill">
             <span class="live-dot" aria-hidden="true"></span>
-            <span id="fxText">Live Feed · 1 USD = ₹86.50</span>
+            <span>Real-Time CoinGecko &amp; DefiLlama Feed</span>
           </div>
         </div>
 
@@ -1121,53 +1057,50 @@
             class="big-search-input"
             id="projectSearchInput"
             type="search"
-            placeholder="Search any project name (e.g. Grass, U2U, UpRock, Roam, Theta, Pi, Titan)..."
+            placeholder="Enter project or token name (e.g. Theta, Grass, Bitcoin, Solana, Aave, Uniswap)..."
             autocomplete="off"
+            required
           >
           <button class="clear-search-btn" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
           <button class="big-search-btn" id="searchSubmitBtn" type="submit">→ Search</button>
         </form>
+        <p class="search-sub-note">Only verified, ranked market assets and official protocols are shown — zero hardcoded or fake prices.</p>
+      </section>
 
-        <div class="filter-pills-row" role="tablist" aria-label="Filter projects">
-          <button class="filter-pill active" type="button" data-filter="all">🌐 All Projects</button>
-          <button class="filter-pill" type="button" data-filter="depin">⚡ DePIN Networks</button>
-          <button class="filter-pill" type="button" data-filter="community">👥 Community &amp; Mobile</button>
-          <button class="filter-pill" type="button" data-filter="listed">⭐ Token Listed</button>
-          <button class="filter-pill" type="button" data-filter="gainers">📈 Top Gainers</button>
-          <button class="filter-pill" type="button" data-filter="pretge">⏳ Pre-TGE / No Token</button>
+      <!-- 3. REAL-TIME SEARCH RESULTS -->
+      <section class="results-section" aria-live="polite">
+        <div class="results-header">
+          <h2 id="resultsTitle">Live Token &amp; Protocol Lookup</h2>
+          <small id="resultsSubtitle">Type a project name above and press Search</small>
+        </div>
+
+        <div id="resultsContainer">
+          <div class="empty-box">
+            <div class="empty-box-icon">🔎</div>
+            <h3>Search any real crypto project or token</h3>
+            <p>Enter a project name, ticker symbol, or contract address above. Smart Token Finder queries live market feeds in real time and filters out unranked clone tokens so you only see authentic data.</p>
+          </div>
         </div>
       </section>
 
-      <!-- 3. GOOGLE-STYLE INSTANT SEARCH RESULT CARD -->
-      <section class="instant-result-wrap" id="instantResultWrap" aria-live="polite"></section>
-
-      <!-- 4. FULL-WIDTH COINGECKO-STYLE MARKET TABLE -->
-      <section class="market-panel" aria-labelledby="marketTableTitle">
-        <div class="market-panel-head">
-          <h2 id="marketTableTitle">DePIN &amp; Community Token Market Directory</h2>
-          <span class="market-count-badge" id="projectCountBadge">Loading live prices…</span>
+      <!-- 4. HOW IT WORKS -->
+      <section class="info-cards" aria-label="Smart Token Finder highlights">
+        <div class="info-card">
+          <strong>📊 Live USD &amp; INR Pricing</strong>
+          <p>Fetches real-time market prices, 24-hour percentage changes, and market capitalization directly from live data providers.</p>
         </div>
-
-        <div class="table-scroll">
-          <table class="token-table">
-            <thead>
-              <tr>
-                <th class="col-rank">#</th>
-                <th>Project Name</th>
-                <th>Chain</th>
-                <th>Price (USD &amp; INR)</th>
-                <th>24h Change</th>
-                <th>Market Cap</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="tokenTableBody"></tbody>
-          </table>
+        <div class="info-card">
+          <strong>🛡️ Anti-Clone Ranking Filter</strong>
+          <p>Automatically filters out unranked copycat tokens and dead liquidity pools so fake tokens do not mislead your research.</p>
+        </div>
+        <div class="info-card">
+          <strong>🏛️ Protocol &amp; TVL Lookup</strong>
+          <p>Checks DeFiLlama alongside market listings to display protocol categories, chains, and Total Value Locked (TVL).</p>
         </div>
       </section>
 
-      <div class="safety-note">
-        <strong>Anti-Phishing &amp; Research Notice:</strong> Prices update automatically from verified market feeds and convert live into Indian Rupees (₹ INR). Unranked clone tokens and fake liquidity pools are automatically filtered out. Projects marked <em>Pre-TGE / No Token</em> have not launched an official tradable token yet—beware of fake tokens claiming their name.
+      <div class="disclaimer-note">
+        <strong>Disclaimer:</strong> All prices, market caps, and protocol metrics are fetched directly from third-party public APIs (CoinGecko, DefiLlama, DEX Screener). If a project is a points-only app, voucher platform, or has not launched an official tradable token yet, no token price will be displayed. Always verify official project channels before interacting.
       </div>
 
       <footer>
@@ -1192,299 +1125,6 @@
     (() => {
       "use strict";
 
-      let usdToInr = 86.50;
-      let activeFilter = "all";
-      let currentQuery = "";
-
-      /* CURATED OFFICIAL DEPIN & COMMUNITY DIRECTORY */
-      const PROJECTS = [
-        {
-          id: "grass",
-          cgId: "grass",
-          name: "Grass Network",
-          symbol: "GRASS",
-          category: "depin",
-          chain: "Solana",
-          logo: "../logos/grass.png",
-          page: "../projects/grass.html",
-          status: "listed",
-          priceUsd: 0.58,
-          change24h: 6.42,
-          marketCap: 142000000,
-          summary: "Decentralized AI data & bandwidth layer"
-        },
-        {
-          id: "u2u",
-          cgId: "unicorn-ultra",
-          name: "U2U Network",
-          symbol: "U2U",
-          category: "depin",
-          chain: "U2U Chain",
-          logo: "../logos/u2u.png",
-          page: "../projects/u2u.html",
-          status: "listed",
-          priceUsd: 0.0058,
-          change24h: 4.12,
-          marketCap: 18500000,
-          summary: "DAG-based DePIN subnet infrastructure"
-        },
-        {
-          id: "uprock",
-          cgId: "uprock",
-          name: "UpRock",
-          symbol: "UPT",
-          category: "depin",
-          chain: "Solana",
-          logo: "../logos/uprock.png",
-          page: "../projects/uprock.html",
-          status: "listed",
-          priceUsd: 0.025,
-          change24h: 12.35,
-          marketCap: 12400000,
-          summary: "Mobile AI bandwidth & data intelligence network"
-        },
-        {
-          id: "roam",
-          cgId: "roam-token",
-          name: "Roam Network",
-          symbol: "ROAM",
-          category: "depin",
-          chain: "Solana",
-          logo: "../logos/roam.png",
-          page: "../depin-pages/depin.html",
-          status: "listed",
-          priceUsd: 0.14,
-          change24h: 5.20,
-          marketCap: 39000000,
-          summary: "Decentralized global OpenRoaming WiFi network"
-        },
-        {
-          id: "theta",
-          cgId: "theta-token",
-          name: "Theta Edge Node",
-          symbol: "THETA",
-          category: "depin",
-          chain: "Theta",
-          logo: "../logos/Theta Edge Node.png",
-          page: "../projects/theta.html",
-          status: "listed",
-          priceUsd: 1.65,
-          change24h: 2.84,
-          marketCap: 1650000000,
-          summary: "Decentralized video streaming & edge AI compute"
-        },
-        {
-          id: "mysterium",
-          cgId: "mysterium",
-          name: "Mysterium Network",
-          symbol: "MYST",
-          category: "depin",
-          chain: "Polygon",
-          logo: "../logos/Mysterium Network.png",
-          page: "../projects/mysterium.html",
-          status: "listed",
-          priceUsd: 0.21,
-          change24h: 1.95,
-          marketCap: 4200000,
-          summary: "Decentralized residential dVPN & proxy nodes"
-        },
-        {
-          id: "sweatcoin",
-          cgId: "sweatcoin",
-          name: "Sweatcoin",
-          symbol: "SWEAT",
-          category: "community",
-          chain: "NEAR",
-          logo: "../logos/sweatcoin.png",
-          page: "../projects/sweatcoin.html",
-          status: "listed",
-          priceUsd: 0.0075,
-          change24h: 3.15,
-          marketCap: 58000000,
-          summary: "Move-to-earn mobile fitness & step economy"
-        },
-        {
-          id: "nodle",
-          cgId: "nodle-network",
-          name: "Nodle Network",
-          symbol: "NODL",
-          category: "depin",
-          chain: "ZKsync",
-          logo: "../logos/Nodle Network.png",
-          page: "../projects/nodle.html",
-          status: "listed",
-          priceUsd: 0.0024,
-          change24h: 2.10,
-          marketCap: 11200000,
-          summary: "Smartphone Bluetooth IoT & proof-of-location mesh"
-        },
-        {
-          id: "swash",
-          cgId: "swash",
-          name: "Swash",
-          symbol: "SWASH",
-          category: "depin",
-          chain: "Polygon",
-          logo: "../logos/swash.png",
-          page: "../projects/swash.html",
-          status: "listed",
-          priceUsd: 0.0062,
-          change24h: 1.45,
-          marketCap: 6100000,
-          summary: "Browser data union & attention monetization"
-        },
-        {
-          id: "ovr",
-          cgId: "ovr",
-          name: "Over The Reality",
-          symbol: "OVR",
-          category: "depin",
-          chain: "Polygon",
-          logo: "../logos/over-the-reality.png",
-          page: "../projects/over-the-reality.html",
-          status: "listed",
-          priceUsd: 0.19,
-          change24h: 3.74,
-          marketCap: 9800000,
-          summary: "AR spatial mapping & decentralized geo-location"
-        },
-        {
-          id: "pi",
-          cgId: "pi-network",
-          name: "Pi Network",
-          symbol: "PI",
-          category: "community",
-          chain: "Pi Mainnet",
-          logo: "../logos/pi.png",
-          page: "../mobile-pages/mobile-mining.html",
-          status: "listed",
-          priceUsd: 0.72,
-          change24h: 4.60,
-          marketCap: 4900000000,
-          summary: "Mobile-first peer-to-peer Web3 community network"
-        },
-        {
-          id: "helium",
-          cgId: "helium",
-          name: "Helium Network",
-          symbol: "HNT",
-          category: "depin",
-          chain: "Solana",
-          logo: "../logos/helium.png",
-          page: "../depin-pages/depin.html",
-          status: "listed",
-          priceUsd: 3.85,
-          change24h: 2.40,
-          marketCap: 685000000,
-          summary: "Decentralized wireless 5G & LoRaWAN coverage"
-        },
-        {
-          id: "ionet",
-          cgId: "io",
-          name: "io.net",
-          symbol: "IO",
-          category: "depin",
-          chain: "Solana",
-          logo: "../logos/ionet.png",
-          page: "../depin-pages/depin.html",
-          status: "listed",
-          priceUsd: 1.42,
-          change24h: 7.18,
-          marketCap: 215000000,
-          summary: "Decentralized GPU compute network for AI"
-        },
-        {
-          id: "render",
-          cgId: "render-token",
-          name: "Render Network",
-          symbol: "RENDER",
-          category: "depin",
-          chain: "Solana",
-          logo: "../logos/render.png",
-          page: "../depin-pages/depin.html",
-          status: "listed",
-          priceUsd: 4.90,
-          change24h: 3.92,
-          marketCap: 2540000000,
-          summary: "Distributed GPU rendering & 3D AI compute"
-        },
-        {
-          id: "peaq",
-          cgId: "peaq-2",
-          name: "peaq Network",
-          symbol: "PEAQ",
-          category: "depin",
-          chain: "peaq L1",
-          logo: "../logos/peaq.png",
-          page: "../depin-pages/depin.html",
-          status: "listed",
-          priceUsd: 0.16,
-          change24h: 5.55,
-          marketCap: 138000000,
-          summary: "Layer-1 blockchain built for Machine RWA & DePIN"
-        },
-        {
-          id: "titan",
-          cgId: "",
-          name: "Titan Network",
-          symbol: "TNT (Pre-TGE)",
-          category: "depin",
-          chain: "Multi-Chain",
-          logo: "../logos/titan.png",
-          page: "../projects/titan.html",
-          status: "pretge",
-          priceUsd: null,
-          change24h: null,
-          marketCap: null,
-          summary: "Edge routing, bandwidth & storage DePIN"
-        },
-        {
-          id: "bixberry",
-          cgId: "",
-          name: "Bixberry",
-          symbol: "Pre-TGE",
-          category: "community",
-          chain: "Multi-Chain",
-          logo: "../logos/Bixberry.png",
-          page: "../projects/bixberry.html",
-          status: "pretge",
-          priceUsd: null,
-          change24h: null,
-          marketCap: null,
-          summary: "Mobile background mining & rewards network"
-        },
-        {
-          id: "hyra",
-          cgId: "",
-          name: "Hyra Network",
-          symbol: "HYRA (Pre-TGE)",
-          category: "depin",
-          chain: "Hyra L3",
-          logo: "../logos/Hyra Network.png",
-          page: "../projects/hyra.html",
-          status: "pretge",
-          priceUsd: null,
-          change24h: null,
-          marketCap: null,
-          summary: "Decentralized AI training & mobile/PC compute"
-        },
-        {
-          id: "adreva",
-          cgId: "",
-          name: "Adreva",
-          symbol: "Pre-TGE",
-          category: "depin",
-          chain: "Web3",
-          logo: "../logos/adreva.png",
-          page: "../projects/adreva.html",
-          status: "pretge",
-          priceUsd: null,
-          change24h: null,
-          marketCap: null,
-          summary: "Privacy-first DePIN advertising network"
-        }
-      ];
-
       const $ = (sel, root = document) => root.querySelector(sel);
       const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
@@ -1494,318 +1134,347 @@
         })[ch]);
       }
 
+      function safeURL(value) {
+        try {
+          const url = new URL(value);
+          return url.protocol === "https:" || url.protocol === "http:" ? url.href : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
       function formatUsd(val) {
-        if (val === null || val === undefined || !Number.isFinite(Number(val))) return null;
         const n = Number(val);
+        if (!Number.isFinite(n) || n <= 0) return "—";
         if (n >= 1000) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         if (n >= 1) return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 4 });
         if (n >= 0.01) return "$" + n.toFixed(4);
-        return "$" + n.toFixed(6).replace(/0+$/, "").replace(/\.$/, "");
+        return "$" + n.toPrecision(4);
       }
 
-      function formatInr(usdVal) {
-        if (usdVal === null || usdVal === undefined || !Number.isFinite(Number(usdVal))) return null;
-        const inr = Number(usdVal) * usdToInr;
-        if (inr >= 1000) return "₹" + inr.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        if (inr >= 1) return "₹" + inr.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        if (inr >= 0.01) return "₹" + inr.toFixed(4);
-        return "₹" + inr.toFixed(5).replace(/0+$/, "").replace(/\.$/, "");
-      }
-
-      function formatMcap(val) {
-        if (!val || !Number.isFinite(Number(val))) return "—";
+      function formatInr(val) {
         const n = Number(val);
+        if (!Number.isFinite(n) || n <= 0) return "—";
+        if (n >= 1000) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (n >= 1) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (n >= 0.01) return "₹" + n.toFixed(4);
+        return "₹" + n.toPrecision(4);
+      }
+
+      function formatCompactMoney(val) {
+        const n = Number(val);
+        if (!Number.isFinite(n) || n <= 0) return "—";
         if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
         if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
-        if (n >= 1e3) return "$" + (n / 1e3).toFixed(1) + "K";
-        return "$" + n.toFixed(0);
+        if (n >= 1e3) return "$" + (n / 1e3).toFixed(2) + "K";
+        return "$" + n.toFixed(2);
       }
 
-      function formatChange(val) {
-        if (val === null || val === undefined || !Number.isFinite(Number(val))) {
-          return `<span class="change-neutral">—</span>`;
-        }
-        const n = Number(val);
-        if (n > 0) return `<span class="change-up">▲ +${n.toFixed(2)}%</span>`;
-        if (n < 0) return `<span class="change-down">▼ ${n.toFixed(2)}%</span>`;
-        return `<span class="change-neutral">0.00%</span>`;
+      function isContractAddress(q) {
+        return /^0x[a-fA-F0-9]{40}$/.test(q) || /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(q);
       }
 
-      /* RENDER FULL-WIDTH MARKET TABLE */
-      function renderTable(list) {
-        const tbody = $("#tokenTableBody");
-        const badge = $("#projectCountBadge");
-        badge.textContent = `${list.length} Official Project${list.length === 1 ? "" : "s"}`;
-
-        if (!list.length) {
-          tbody.innerHTML = `
-            <tr>
-              <td colspan="7">
-                <div class="table-empty">
-                  <div style="font-size:28px;">🔎</div>
-                  <h3>No matching project in this filter</h3>
-                  <p>Try switching to <strong>All Projects</strong> or searching by project name (e.g., Grass, U2U, UpRock, Roam, Theta).</p>
-                </div>
-              </td>
-            </tr>`;
-          return;
+      async function fetchWithTimeout(url, ms = 12000) {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), ms);
+        try {
+          const res = await fetch(url, { signal: ctrl.signal, headers: { accept: "application/json" } });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return await res.json();
+        } finally {
+          clearTimeout(timer);
         }
+      }
 
-        tbody.innerHTML = list.map((p, idx) => {
-          const usdStr = formatUsd(p.priceUsd);
-          const inrStr = formatInr(p.priceUsd);
-          const priceHtml = usdStr
-            ? `<span class="price-usd">${escapeHTML(usdStr)} USD</span> <span class="price-inr">/ ${escapeHTML(inrStr)} INR</span>`
-            : `<span class="change-neutral">Token Not Launched</span>`;
+      /* 1. LIVE COINGECKO SEARCH + REAL-TIME USD & INR PRICE */
+      async function queryCoinGeckoLive(query) {
+        const searchData = await fetchWithTimeout(
+          "https://api.coingecko.com/api/v3/search?query=" + encodeURIComponent(query)
+        );
+        const rawCoins = Array.isArray(searchData.coins) ? searchData.coins : [];
 
-          const statusHtml = p.status === "listed"
-            ? `<span class="status-official">✓ Official Project</span>`
-            : `<span class="status-pretge">⏳ Pre-TGE / No Token</span>`;
+        // Filter out unranked fake/clone tokens so only legitimate ranked market coins appear
+        const qLower = query.toLowerCase();
+        const rankedCoins = rawCoins
+          .filter(c => Number.isInteger(c.market_cap_rank) && c.market_cap_rank > 0)
+          .sort((a, b) => {
+            const aExact = a.name.toLowerCase() === qLower || String(a.symbol || "").toLowerCase() === qLower ? 0 : 1;
+            const bExact = b.name.toLowerCase() === qLower || String(b.symbol || "").toLowerCase() === qLower ? 0 : 1;
+            if (aExact !== bExact) return aExact - bExact;
+            return a.market_cap_rank - b.market_cap_rank;
+          })
+          .slice(0, 8);
 
-          const initial = escapeHTML((p.name || "P").charAt(0).toUpperCase());
+        if (!rankedCoins.length) return [];
 
-          return `
-            <tr data-project-id="${escapeHTML(p.id)}" tabindex="0">
-              <td class="col-rank">${idx + 1}</td>
-              <td>
-                <div class="proj-cell">
-                  <div class="proj-avatar">
-                    <span class="proj-fallback" aria-hidden="true">${initial}</span>
-                    ${p.logo ? `<img src="${escapeHTML(p.logo)}" alt="${escapeHTML(p.name)}" loading="lazy" onerror="this.remove()">` : ""}
-                  </div>
-                  <div class="proj-name-text">
-                    <strong>${escapeHTML(p.name)}</strong>
-                    <small>${escapeHTML(p.symbol)} · ${escapeHTML(p.summary)}</small>
-                  </div>
-                </div>
-              </td>
-              <td><span class="chain-pill">⛓ ${escapeHTML(p.chain)}</span></td>
-              <td class="price-cell">${priceHtml}</td>
-              <td>${formatChange(p.change24h)}</td>
-              <td>${formatMcap(p.marketCap)}</td>
-              <td>${statusHtml}</td>
-            </tr>`;
-        }).join("");
+        const ids = rankedCoins.map(c => c.id).join(",");
+        const prices = await fetchWithTimeout(
+          `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
+        );
 
-        $$("tr[data-project-id]", tbody).forEach(row => {
-          row.addEventListener("click", () => {
-            const proj = PROJECTS.find(item => item.id === row.dataset.projectId);
-            if (proj) showInstantCard(proj, "Selected Project Overview");
+        return rankedCoins.map(coin => {
+          const p = prices[coin.id] || {};
+          return {
+            source: "CoinGecko Live",
+            id: coin.id,
+            name: coin.name,
+            symbol: String(coin.symbol || "").toUpperCase(),
+            rank: coin.market_cap_rank,
+            image: safeURL(coin.large || coin.thumb || ""),
+            usd: p.usd ?? null,
+            inr: p.inr ?? null,
+            change24h: p.usd_24h_change ?? null,
+            marketCap: p.usd_market_cap ?? null,
+            volume24h: p.usd_24h_vol ?? null,
+            url: "https://www.coingecko.com/en/coins/" + encodeURIComponent(coin.id)
+          };
+        }).filter(item => item.usd !== null && item.usd > 0);
+      }
+
+      /* 2. LIVE DEFILLAMA PROTOCOL LOOKUP */
+      async function queryDefiLlamaLive(query) {
+        const protocols = await fetchWithTimeout("https://api.llama.fi/protocols", 14000);
+        const qLower = query.toLowerCase();
+        return (Array.isArray(protocols) ? protocols : [])
+          .filter(p =>
+            String(p.name || "").toLowerCase().includes(qLower) ||
+            String(p.symbol || "").toLowerCase() === qLower
+          )
+          .sort((a, b) => (Number(b.tvl) || 0) - (Number(a.tvl) || 0))
+          .slice(0, 4)
+          .map(p => ({
+            source: "DefiLlama",
+            name: p.name,
+            symbol: String(p.symbol || "").toUpperCase(),
+            category: p.category || "DeFi Protocol",
+            chains: Array.isArray(p.chains) ? p.chains.slice(0, 3).join(", ") : "Multi-chain",
+            tvl: p.tvl,
+            logo: safeURL(p.logo || ""),
+            url: safeURL(p.url || "") || ("https://defillama.com/protocol/" + encodeURIComponent(p.slug || ""))
+          }));
+      }
+
+      /* 3. LIVE DEX SCREENER (ONLY FOR CONTRACT ADDRESSES OR HIGH-LIQUIDITY VERIFIED POOLS) */
+      async function queryDexLive(query) {
+        const data = await fetchWithTimeout(
+          "https://api.dexscreener.com/latest/dex/search?q=" + encodeURIComponent(query)
+        );
+        const pairs = Array.isArray(data.pairs) ? data.pairs : [];
+        const isAddr = isContractAddress(query);
+        return pairs
+          .filter(pair => {
+            const liq = Number(pair.liquidity?.usd) || 0;
+            // Require strong liquidity ($50k+) for name searches to block fake micro-cap clones
+            return isAddr ? liq > 1000 : liq >= 50000;
+          })
+          .sort((a, b) => (Number(b.liquidity?.usd) || 0) - (Number(a.liquidity?.usd) || 0))
+          .slice(0, 4)
+          .map(pair => {
+            const base = pair.baseToken || {};
+            return {
+              source: "DEX Screener",
+              name: base.name || "DEX Token",
+              symbol: base.symbol || "",
+              chain: pair.chainId || "DEX",
+              priceUsd: pair.priceUsd,
+              liquidity: pair.liquidity?.usd,
+              volume24h: pair.volume?.h24,
+              url: safeURL(pair.url || "")
+            };
           });
-        });
       }
 
-      /* RENDER GOOGLE-STYLE INSTANT RESULT CARD */
-      function showInstantCard(proj, label = "Instant Search Result · Verified Match") {
-        const wrap = $("#instantResultWrap");
-        const usdStr = formatUsd(proj.priceUsd);
-        const inrStr = formatInr(proj.priceUsd);
-        const initial = escapeHTML((proj.name || "P").charAt(0).toUpperCase());
-
-        const priceBlock = usdStr
-          ? `
-            <div class="instant-price-item">
-              <span>Live Price (USD)</span>
-              <strong>${escapeHTML(usdStr)}</strong>
-            </div>
-            <div class="instant-price-item">
-              <span>Live Price (INR)</span>
-              <strong>${escapeHTML(inrStr)}</strong>
-            </div>
-            <div class="instant-price-item">
-              <span>24h Change</span>
-              <strong style="font-size:17px;">${formatChange(proj.change24h)}</strong>
-            </div>
-            <div class="instant-price-item">
-              <span>Market Cap</span>
-              <strong style="font-size:18px;">${escapeHTML(formatMcap(proj.marketCap))}</strong>
-            </div>`
-          : `
-            <div class="instant-price-item">
-              <span>Token Status</span>
-              <strong style="font-size:16px;color:#d97706;">Pre-TGE (Not Listed Yet)</strong>
-            </div>`;
-
-        const actionBtn = proj.page
-          ? `<a href="${escapeHTML(proj.page)}" class="instant-btn">Open Project Guide →</a>`
-          : `<a href="https://www.coingecko.com/en/coins/${encodeURIComponent(proj.cgId || proj.id)}" target="_blank" rel="noopener noreferrer" class="instant-btn">View on CoinGecko ↗</a>`;
-
-        wrap.innerHTML = `
-          <div class="instant-card">
-            <div class="instant-top-badge">⚡ ${escapeHTML(label)} · ${escapeHTML(proj.chain)}</div>
-            <div class="instant-main-grid">
-              <div class="instant-identity">
-                <div class="instant-logo">
-                  <span class="instant-fallback" aria-hidden="true">${initial}</span>
-                  ${proj.logo ? `<img src="${escapeHTML(proj.logo)}" alt="${escapeHTML(proj.name)}" onerror="this.remove()">` : ""}
-                </div>
-                <div>
-                  <h2>${escapeHTML(proj.name)} <span class="instant-ticker">${escapeHTML(proj.symbol)}</span></h2>
-                  <p class="instant-sub">${escapeHTML(proj.summary)}</p>
-                </div>
-              </div>
-              <div class="instant-price-box">${priceBlock}</div>
-              <div class="instant-actions">
-                ${actionBtn}
-                <button type="button" class="instant-btn-outline" id="closeInstantBtn">✕ Close</button>
-              </div>
-            </div>
-          </div>`;
-        wrap.classList.add("show");
-        $("#closeInstantBtn").addEventListener("click", () => wrap.classList.remove("show"));
-      }
-
-      function applyFilters() {
-        const q = currentQuery.trim().toLowerCase();
-        let filtered = PROJECTS.filter(p => {
-          if (activeFilter === "depin" && p.category !== "depin") return false;
-          if (activeFilter === "community" && p.category !== "community") return false;
-          if (activeFilter === "listed" && p.status !== "listed") return false;
-          if (activeFilter === "pretge" && p.status !== "pretge") return false;
-          if (activeFilter === "gainers" && !(p.status === "listed" && Number(p.change24h) > 0)) return false;
-          if (!q) return true;
-          return (
-            p.name.toLowerCase().includes(q) ||
-            p.symbol.toLowerCase().includes(q) ||
-            p.chain.toLowerCase().includes(q) ||
-            p.summary.toLowerCase().includes(q)
-          );
-        });
-
-        if (activeFilter === "gainers") {
-          filtered = [...filtered].sort((a, b) => (b.change24h || 0) - (a.change24h || 0));
-        }
-
-        renderTable(filtered);
-        return filtered;
-      }
-
-      /* ANTI-JUNK FILTERED LIVE SEARCH (LOCAL CURATED + COINGECKO VERIFIED RANKED) */
-      async function handleSearchSubmit(rawQuery) {
+      async function performLiveSearch(rawQuery) {
         const query = String(rawQuery || "").trim();
-        currentQuery = query;
-        const clearBtn = $("#clearSearchBtn");
-        clearBtn.classList.toggle("show", query.length > 0);
+        if (!query) return;
 
-        if (!query) {
-          $("#instantResultWrap").classList.remove("show");
-          applyFilters();
-          return;
-        }
-
-        const localMatches = applyFilters();
-
-        // 1. Exact or strong local curated match -> Show instant Google-style card immediately
-        if (localMatches.length > 0) {
-          const qLower = query.toLowerCase();
-          const bestLocal =
-            localMatches.find(p => p.name.toLowerCase() === qLower || p.symbol.toLowerCase() === qLower) ||
-            localMatches[0];
-          showInstantCard(bestLocal, "Official Directory Match");
-          return;
-        }
-
-        // 2. External search for any other crypto project (Strictly filtered by Market Cap Rank to block fake clones)
         const submitBtn = $("#searchSubmitBtn");
+        const container = $("#resultsContainer");
+        const titleEl = $("#resultsTitle");
+        const subEl = $("#resultsSubtitle");
+
         submitBtn.disabled = true;
         submitBtn.textContent = "Searching…";
+        titleEl.textContent = `Searching live markets for “${query}”…`;
+        subEl.textContent = "Fetching real-time data";
+        container.innerHTML = `
+          <div class="empty-box">
+            <div class="empty-box-icon">⏳</div>
+            <h3>Checking live market feeds…</h3>
+            <p>Fetching real-time prices and protocol records for <strong>${escapeHTML(query)}</strong>.</p>
+          </div>`;
 
         try {
-          const res = await fetch("https://api.coingecko.com/api/v3/search?query=" + encodeURIComponent(query));
-          if (!res.ok) throw new Error("Search unavailable");
-          const data = await res.json();
-          const coins = Array.isArray(data.coins) ? data.coins : [];
+          const [cgRes, llamaRes, dexRes] = await Promise.allSettled([
+            isContractAddress(query) ? Promise.resolve([]) : queryCoinGeckoLive(query),
+            isContractAddress(query) ? Promise.resolve([]) : queryDefiLlamaLive(query),
+            queryDexLive(query)
+          ]);
 
-          // Anti-junk filter: Only keep coins that have an official market_cap_rank (blocks unranked fake clones)
-          const verifiedRanked = coins
-            .filter(c => Number.isInteger(c.market_cap_rank) && c.market_cap_rank > 0)
-            .sort((a, b) => a.market_cap_rank - b.market_cap_rank);
+          const cgCoins = cgRes.status === "fulfilled" ? cgRes.value : [];
+          const llamaProtocols = llamaRes.status === "fulfilled" ? llamaRes.value : [];
+          const dexPairs = dexRes.status === "fulfilled" ? dexRes.value : [];
 
-          if (!verifiedRanked.length) {
-            const wrap = $("#instantResultWrap");
-            wrap.innerHTML = `
-              <div class="instant-card" style="border-color:#f59e0b;">
-                <div class="instant-top-badge" style="background:#fef3c7;color:#92400e;">⚠️ Anti-Scam Filter Active</div>
-                <p style="margin:0;font-size:13px;font-weight:700;color:var(--heading);">
-                  No ranked, verified token found for “${escapeHTML(query)}”. If this is a new DePIN or airdrop app, its token may not be launched yet—beware of fake clones.
-                </p>
+          const totalCount = cgCoins.length + llamaProtocols.length + dexPairs.length;
+
+          if (!totalCount) {
+            titleEl.textContent = `No tradable token found for “${query}”`;
+            subEl.textContent = "0 verified market listings";
+            container.innerHTML = `
+              <div class="empty-box">
+                <div class="empty-box-icon">🛡️</div>
+                <h3>No verified tradable token found for “${escapeHTML(query)}”</h3>
+                <p>If <strong>${escapeHTML(query)}</strong> is a rewards app, voucher platform, or pre-launch project, it does not have an official listed crypto token yet. We never display unverified clone tokens or estimated prices.</p>
               </div>`;
-            wrap.classList.add("show");
             return;
           }
 
-          const topCoin = verifiedRanked[0];
-          // Fetch live price for this single verified top match
-          const priceRes = await fetch(
-            `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(topCoin.id)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true`
-          );
-          const priceJson = priceRes.ok ? await priceRes.json() : {};
-          const info = priceJson[topCoin.id] || {};
+          titleEl.textContent = `Live Results for “${query}”`;
+          subEl.textContent = `${totalCount} verified result${totalCount === 1 ? "" : "s"} from live APIs`;
 
-          if (info.inr && info.usd) {
-            usdToInr = info.inr / info.usd;
-            $("#fxText").textContent = `Live Feed · 1 USD = ₹${usdToInr.toFixed(2)}`;
+          let html = "";
+
+          // Primary Instant Answer Card from Top Live CoinGecko Match
+          if (cgCoins.length > 0) {
+            const top = cgCoins[0];
+            const chg = Number(top.change24h);
+            const chgClass = Number.isFinite(chg) ? (chg >= 0 ? "change-up" : "change-down") : "";
+            const chgText = Number.isFinite(chg)
+              ? `${chg >= 0 ? "▲ +" : "▼ "}${chg.toFixed(2)}%`
+              : "—";
+
+            html += `
+              <div class="instant-answer-card">
+                <div class="instant-tag">⚡ Live Market Price · Rank #${top.rank} · Verified CoinGecko Feed</div>
+                <div class="instant-row">
+                  <div class="instant-coin">
+                    <div class="coin-logo">
+                      ${top.image ? `<img src="${escapeHTML(top.image)}" alt="${escapeHTML(top.name)}" onerror="this.remove()">` : escapeHTML(top.symbol.charAt(0) || "◈")}
+                    </div>
+                    <div>
+                      <h3>${escapeHTML(top.name)} <span class="ticker-pill">${escapeHTML(top.symbol)}</span></h3>
+                      <p>Global Market Cap Rank #${top.rank}</p>
+                    </div>
+                  </div>
+                  <div class="instant-metrics">
+                    <div class="metric-box">
+                      <span>Live Price (USD)</span>
+                      <strong>${escapeHTML(formatUsd(top.usd))}</strong>
+                    </div>
+                    <div class="metric-box">
+                      <span>Live Price (INR)</span>
+                      <strong>${escapeHTML(formatInr(top.inr))}</strong>
+                    </div>
+                    <div class="metric-box">
+                      <span>24h Change</span>
+                      <strong class="${chgClass}" style="font-size:17px;">${escapeHTML(chgText)}</strong>
+                    </div>
+                    <div class="metric-box">
+                      <span>Market Cap</span>
+                      <strong style="font-size:17px;">${escapeHTML(formatCompactMoney(top.marketCap))}</strong>
+                    </div>
+                  </div>
+                  <div class="instant-links">
+                    <a href="${escapeHTML(top.url)}" target="_blank" rel="noopener noreferrer" class="ext-btn">View Live Chart ↗</a>
+                  </div>
+                </div>
+              </div>`;
           }
 
-          showInstantCard(
-            {
-              id: topCoin.id,
-              cgId: topCoin.id,
-              name: topCoin.name,
-              symbol: String(topCoin.symbol || "").toUpperCase(),
-              chain: `Rank #${topCoin.market_cap_rank}`,
-              logo: topCoin.large || topCoin.thumb || "",
-              page: "",
-              status: "listed",
-              priceUsd: info.usd ?? null,
-              change24h: info.usd_24h_change ?? null,
-              marketCap: info.usd_market_cap ?? null,
-              summary: `Verified Global Crypto Asset · CoinGecko Rank #${topCoin.market_cap_rank}`
-            },
-            "Verified Global Token Match"
-          );
+          // Secondary Cards (Other Ranked Coins + DeFiLlama Protocols + High-Liquidity DEX Pairs)
+          const cards = [];
+
+          cgCoins.slice(1).forEach(coin => {
+            const chg = Number(coin.change24h);
+            const chgStr = Number.isFinite(chg) ? `${chg >= 0 ? "+" : ""}${chg.toFixed(2)}%` : "—";
+            cards.push(`
+              <article class="result-card">
+                <div class="rc-top">
+                  <div class="rc-avatar">${coin.image ? `<img src="${escapeHTML(coin.image)}" alt="" onerror="this.remove()">` : escapeHTML(coin.symbol.charAt(0))}</div>
+                  <div class="rc-title">
+                    <h4>${escapeHTML(coin.name)} (${escapeHTML(coin.symbol)})</h4>
+                    <small>Rank #${coin.rank} · CoinGecko Live</small>
+                  </div>
+                  <span class="rc-badge">LISTED TOKEN</span>
+                </div>
+                <div class="rc-stats">
+                  <div class="rc-stat"><span>USD Price</span><strong>${escapeHTML(formatUsd(coin.usd))}</strong></div>
+                  <div class="rc-stat"><span>INR Price</span><strong>${escapeHTML(formatInr(coin.inr))}</strong></div>
+                  <div class="rc-stat"><span>24h Change</span><strong>${escapeHTML(chgStr)}</strong></div>
+                </div>
+                <div class="rc-footer">
+                  <span class="rc-meta-tag">MCap: ${escapeHTML(formatCompactMoney(coin.marketCap))}</span>
+                  <a href="${escapeHTML(coin.url)}" target="_blank" rel="noopener noreferrer" class="rc-link">CoinGecko Details ↗</a>
+                </div>
+              </article>`);
+          });
+
+          llamaProtocols.forEach(proto => {
+            cards.push(`
+              <article class="result-card">
+                <div class="rc-top">
+                  <div class="rc-avatar">${proto.logo ? `<img src="${escapeHTML(proto.logo)}" alt="" onerror="this.remove()">` : "🏛️"}</div>
+                  <div class="rc-title">
+                    <h4>${escapeHTML(proto.name)} ${proto.symbol ? `(${escapeHTML(proto.symbol)})` : ""}</h4>
+                    <small>${escapeHTML(proto.category)} · DefiLlama</small>
+                  </div>
+                  <span class="rc-badge">PROTOCOL</span>
+                </div>
+                <div class="rc-stats">
+                  <div class="rc-stat"><span>Total Value Locked</span><strong>${escapeHTML(formatCompactMoney(proto.tvl))}</strong></div>
+                  <div class="rc-stat"><span>Category</span><strong>${escapeHTML(proto.category)}</strong></div>
+                  <div class="rc-stat"><span>Chains</span><strong>${escapeHTML(proto.chains)}</strong></div>
+                </div>
+                <div class="rc-footer">
+                  <span class="rc-meta-tag">Verified Protocol Directory</span>
+                  <a href="${escapeHTML(proto.url)}" target="_blank" rel="noopener noreferrer" class="rc-link">Open Protocol ↗</a>
+                </div>
+              </article>`);
+          });
+
+          dexPairs.forEach(pair => {
+            cards.push(`
+              <article class="result-card">
+                <div class="rc-top">
+                  <div class="rc-avatar">⇄</div>
+                  <div class="rc-title">
+                    <h4>${escapeHTML(pair.name)} (${escapeHTML(pair.symbol)})</h4>
+                    <small>Chain: ${escapeHTML(pair.chain)} · DEX Screener</small>
+                  </div>
+                  <span class="rc-badge">DEX POOL</span>
+                </div>
+                <div class="rc-stats">
+                  <div class="rc-stat"><span>DEX Price</span><strong>${escapeHTML(formatUsd(pair.priceUsd))}</strong></div>
+                  <div class="rc-stat"><span>Liquidity</span><strong>${escapeHTML(formatCompactMoney(pair.liquidity))}</strong></div>
+                  <div class="rc-stat"><span>24h Volume</span><strong>${escapeHTML(formatCompactMoney(pair.volume24h))}</strong></div>
+                </div>
+                <div class="rc-footer">
+                  <span class="rc-meta-tag">High-Liquidity Pool ($50K+)</span>
+                  ${pair.url ? `<a href="${escapeHTML(pair.url)}" target="_blank" rel="noopener noreferrer" class="rc-link">View DEX Chart ↗</a>` : ""}
+                </div>
+              </article>`);
+          });
+
+          if (cards.length) {
+            html += `<div class="results-grid">${cards.join("")}</div>`;
+          }
+
+          container.innerHTML = html;
         } catch (_) {
-          // Silent fallback if rate-limited
+          titleEl.textContent = "Unable to reach live price feed";
+          subEl.textContent = "Connection error";
+          container.innerHTML = `
+            <div class="empty-box">
+              <div class="empty-box-icon">⚠️</div>
+              <h3>Live market feed temporarily busy</h3>
+              <p>Please check your internet connection or try searching again in a few seconds.</p>
+            </div>`;
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = "→ Search";
         }
       }
 
-      /* FETCH LIVE PRICES & USD->INR RATE FOR OUR CURATED LIST */
-      async function syncLiveMarketData() {
-        const cgIds = PROJECTS.map(p => p.cgId).filter(Boolean).join(",");
-        if (!cgIds) return;
-        try {
-          const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(cgIds)}&vs_currencies=usd,inr&include_24hr_change=true&include_market_cap=true`;
-          const res = await fetch(url);
-          if (!res.ok) return;
-          const data = await res.json();
-
-          let updatedFx = false;
-          PROJECTS.forEach(p => {
-            if (p.cgId && data[p.cgId]) {
-              const row = data[p.cgId];
-              if (typeof row.usd === "number" && row.usd > 0) p.priceUsd = row.usd;
-              if (typeof row.usd_24h_change === "number") p.change24h = row.usd_24h_change;
-              if (typeof row.usd_market_cap === "number" && row.usd_market_cap > 0) p.marketCap = row.usd_market_cap;
-              if (!updatedFx && typeof row.usd === "number" && typeof row.inr === "number" && row.usd > 0) {
-                usdToInr = row.inr / row.usd;
-                updatedFx = true;
-              }
-            }
-          });
-
-          if (updatedFx) {
-            $("#fxText").textContent = `Live Feed · 1 USD = ₹${usdToInr.toFixed(2)}`;
-          }
-          applyFilters();
-        } catch (_) {
-          /* Keep accurate fallback values seamlessly */
-        }
-      }
-
-      /* THEME & NAVIGATION */
       function applyTheme(theme) {
         const chosen = theme === "dark" ? "dark" : "light";
         document.documentElement.dataset.theme = chosen;
@@ -1856,45 +1525,30 @@
           });
         }
 
-        /* FILTER PILLS */
-        $$(".filter-pill").forEach(pill => {
-          pill.addEventListener("click", () => {
-            $$(".filter-pill").forEach(b => b.classList.remove("active"));
-            pill.classList.add("active");
-            activeFilter = pill.dataset.filter || "all";
-            applyFilters();
-          });
-        });
-
-        /* SEARCH INPUT & FORM */
-        const searchInput = $("#projectSearchInput");
+        const input = $("#projectSearchInput");
         const clearBtn = $("#clearSearchBtn");
-        searchInput.addEventListener("input", () => {
-          currentQuery = searchInput.value;
-          clearBtn.classList.toggle("show", currentQuery.trim().length > 0);
-          if (!currentQuery.trim()) {
-            $("#instantResultWrap").classList.remove("show");
-          }
-          applyFilters();
+        input.addEventListener("input", () => {
+          clearBtn.classList.toggle("show", input.value.trim().length > 0);
         });
 
         clearBtn.addEventListener("click", () => {
-          searchInput.value = "";
-          currentQuery = "";
+          input.value = "";
           clearBtn.classList.remove("show");
-          $("#instantResultWrap").classList.remove("show");
-          applyFilters();
-          searchInput.focus();
+          $("#resultsTitle").textContent = "Live Token & Protocol Lookup";
+          $("#resultsSubtitle").textContent = "Type a project name above and press Search";
+          $("#resultsContainer").innerHTML = `
+            <div class="empty-box">
+              <div class="empty-box-icon">🔎</div>
+              <h3>Search any real crypto project or token</h3>
+              <p>Enter a project name, ticker symbol, or contract address above. Smart Token Finder queries live market feeds in real time and filters out unranked clone tokens so you only see authentic data.</p>
+            </div>`;
+          input.focus();
         });
 
         $("#tokenSearchForm").addEventListener("submit", e => {
           e.preventDefault();
-          handleSearchSubmit(searchInput.value);
+          performLiveSearch(input.value);
         });
-
-        // Initial render + live price sync
-        applyFilters();
-        syncLiveMarketData();
       });
     })();
   </script>
