@@ -90,68 +90,132 @@
     }
     [data-theme="dark"] .header-v-sep{background:rgba(255,255,255,.2)}
 
-    /* WIDE SPONSOR BANNER SLOT (728x90 / 970x90) */
+    /* =====================================================================
+      Halchul Update: Dynamic, Moving & High-Impact Promotional Ad Space
+       ===================================================================== */
     .sponsor-slot-box{
       flex:1 1 auto;
       max-width:970px;
       min-width:280px;
       height:58px;
+      overflow:hidden;
+      position:relative;
+      border:2px solid #00cf85;
+      border-radius:14px;
+      /* Dynamic shimmer wave moving background */
+      background:linear-gradient(90deg, #10272c, #0d3831 25%, #055e46 50%, #0d3831 75%, #10272c);
+      background-size:240% 100%;
+      box-shadow:0 3px 14px rgba(0,210,135,.15), inset 0 1px 0 rgba(255,255,255,.1);
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      animation: gradientShimmer 6s ease infinite;
+    }
+    .sponsor-slot-box:hover{
+      border-color:#3bffad;
+      box-shadow:0 6px 20px rgba(0,240,150,.35), inset 0 1px 0 rgba(255,255,255,.2);
+      transform:translateY(-1px);
+    }
+    [data-theme="dark"] .sponsor-slot-box{
+      border-color:#20d99a;
+      box-shadow:0 4px 18px rgba(32,217,154,.15);
+    }
+    @keyframes gradientShimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 120% 50%; }
+      100% { background-position: 240% 50%; }
+    }
+
+    /* Continuously Moving Inner Slider Track */
+    .banner-slider-track{
+      display:flex;
+      flex-direction:column;
+      width:100%;
+      height:300%; /* Keeps 3 slides stacked vertically */
+      animation:bannerSlide 15s cubic-bezier(0.85, 0, 0.15, 1) infinite;
+    }
+    /* Stop transitions on mouse hover so advertisers can focus & interact */
+    .sponsor-slot-box:hover .banner-slider-track{
+      animation-play-state:paused;
+    }
+    @keyframes bannerSlide {
+      0%, 28% { transform: translateY(0); }
+      33%, 61% { transform: translateY(-33.33%); }
+      66%, 95% { transform: translateY(-66.66%); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Individual Custom Animated Slide */
+    .banner-slide{
+      height:33.33%;
+      width:100%;
       padding:6px 22px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      border:1.8px dashed #00a86b;
-      border-radius:14px;
-      background:linear-gradient(90deg,rgba(195,255,231,.72),rgba(245,255,250,.92) 50%,rgba(195,255,231,.72));
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),0 3px 12px rgba(0,150,100,.08);
-      text-decoration:none;
-      transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+      color:#ffffff;
+      flex-shrink:0;
     }
-    .sponsor-slot-box:hover{
-      transform:translateY(-1px);
-      border-color:#008252;
-      box-shadow:0 6px 16px rgba(0,160,105,.16);
-    }
-    [data-theme="dark"] .sponsor-slot-box{
-      border-color:#36e5a0;
-      background:linear-gradient(90deg,rgba(18,62,50,.85),rgba(13,41,38,.95) 50%,rgba(18,62,50,.85));
-      box-shadow:none;
-    }
-    .slot-megaphone{
-      font-size:27px;
+    .slide-megaicon{
+      font-size:24px;
       line-height:1;
       flex:0 0 auto;
-      filter:drop-shadow(0 2px 4px rgba(0,0,0,.14));
+      filter:drop-shadow(0 0 8px rgba(0,255,165,.4));
+      animation: iconFloat 2.5s ease-in-out infinite;
     }
-    .slot-arrow{
-      flex:1 1 60px;
-      max-width:130px;
-      height:16px;
+    @keyframes iconFloat{
+      0%, 100%{ transform:translateY(0) scale(1); }
+      50%{ transform:translateY(-2.5px) scale(1.08); }
+    }
+    .slide-inner-box{
+      flex:1 1 auto;
+      min-width:0;
       display:flex;
-      align-items:center;
-      color:#009960;
+      flex-direction:column;
+      justify-content:center;
+      text-shadow:0 1.5px 3px rgba(0,0,0,.6);
     }
-    [data-theme="dark"] .slot-arrow{color:#4ef2b1}
-    .slot-arrow svg{width:100%;height:16px;display:block;overflow:visible}
-    .slot-center-text{
-      text-align:center;
-      flex:0 0 auto;
-    }
-    .slot-center-text strong{
+    .slide-inner-box strong{
       display:block;
-      color:var(--heading);
-      font-size:17px;
-      line-height:1.15;
+      color:#5affc8;
+      font-size:14.5px;
       font-weight:800;
-      letter-spacing:-.35px;
+      line-height:1.2;
+      letter-spacing:-.1px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
     }
-    .slot-center-text span{
+    .slide-inner-box span{
       display:block;
-      margin-top:2px;
-      color:var(--body);
-      font-size:12px;
+      margin-top:2.5px;
+      color:#dcfbf1;
+      font-size:10.5px;
       font-weight:700;
+      line-height:1.2;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .slide-glow-cta{
+      flex:0 0 auto;
+      padding:6px 15px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.3px;
+      color:#022c1d;
+      background:linear-gradient(135deg,#a6ffcc,#3ef59c);
+      box-shadow:0 0 10px rgba(62,245,156,.3), inset 0 1px 0 rgba(255,255,255,.5);
+      border:1px solid rgba(255,255,255,.2);
+      white-space:nowrap;
+      animation: pulsateGlow 1.8s ease-in-out infinite alternate;
+    }
+    @keyframes pulsateGlow {
+      0% { box-shadow:0 0 8px rgba(62,245,156,.3); transform: scale(1); }
+      100% { box-shadow:0 0 16px rgba(62,245,156,.7); transform: scale(1.02); }
     }
 
     .sponsor-right-actions{
@@ -994,24 +1058,37 @@
 
       <span class="header-v-sep" aria-hidden="true"></span>
 
-      <a class="sponsor-slot-box" href="legal-pages/contact.html" aria-label="Sponsor Banner Area 728 by 90 or 970 by 90 pixels">
-        <span class="slot-megaphone" aria-hidden="true">📢</span>
-        <span class="slot-arrow" aria-hidden="true">
-          <svg viewBox="0 0 120 16" fill="none">
-            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <div class="slot-center-text">
-          <strong>Sponsor Banner Area</strong>
-          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
+      <!-- HALCHUL UPGRADED: Dynamic Sliding Banner targeting project founders/advertisers -->
+      <a class="sponsor-slot-box" href="legal-pages/contact.html" aria-label="Book Ad Slot Banner">
+        <div class="banner-slider-track">
+          <!-- Slide 1 -->
+          <div class="banner-slide">
+            <span class="slide-megaicon" aria-hidden="true">🚀</span>
+            <div class="slide-inner-box">
+              <strong>PROMOTE YOUR Web3 / DePIN PROJECT HERE</strong>
+              <span>Reach 8,500+ Monthly Active Crypto &amp; Node Users · Website + YouTube Combo</span>
+            </div>
+            <span class="slide-glow-cta">MEDIA KIT &amp; CONTACT ↗</span>
+          </div>
+          <!-- Slide 2 -->
+          <div class="banner-slide">
+            <span class="slide-megaicon" aria-hidden="true">📈</span>
+            <div class="slide-inner-box">
+              <strong>WANT TARGETED DEPIN &amp; AIRDROP TRAFFIC?</strong>
+              <span>Feature Your Node, Bot, Campaign, or Web3 Spot On Our Dynamic Bar Today!</span>
+            </div>
+            <span class="slide-glow-cta">BOOK SLOT NOW ✉</span>
+          </div>
+          <!-- Slide 3 -->
+          <div class="banner-slide">
+            <span class="slide-megaicon" aria-hidden="true">👥</span>
+            <div class="slide-inner-box">
+              <strong>8,500+ MONTHLY ACTIVE VISITORS &amp; YOUTUBE</strong>
+              <span>High-Intent Node Runners, Airdrop Hunters, and Web3 Early Adopters!</span>
+            </div>
+            <span class="slide-glow-cta">PARTNER WITH US 🤝</span>
+          </div>
         </div>
-        <span class="slot-arrow" aria-hidden="true">
-          <svg viewBox="0 0 120 16" fill="none">
-            <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
       </a>
 
       <span class="header-v-sep" aria-hidden="true"></span>
@@ -1408,7 +1485,7 @@
               <span class="trend-rank">#15</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">N</span>
-                <img src="logos/Nodle Network.png" alt="Nodle Network logo" loading="lazy" onerror="this.remove()">
+                <img src="logos/nodle.png" alt="Nodle Network logo" loading="lazy" onerror="this.remove()">
               </div>
               <strong>Nodle Network</strong>
               <span class="trend-desc">BLE Smartphone IoT Mesh</span>
