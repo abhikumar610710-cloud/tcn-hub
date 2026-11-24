@@ -205,15 +205,83 @@
     .nav-icon{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:12px;font-size:17px}.nav-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.nav-home{color:#079b69;background:#d9f8e9}.nav-depin{color:#1687ff;background:#dfeeff}.nav-community{color:#8b5cf6;background:#eee5ff}.nav-airdrop{color:#f07819;background:#fff0d9}.nav-wallet{color:#9333ea;background:#f1e3ff}.nav-checker{color:#0d9488;background:#d9f7f0}.nav-calculator{color:#2563eb;background:#e2eaff}
     .sidebar-spacer{flex:1 0 18px;min-height:18px}.side-promo{margin:18px 6px 13px;padding:19px 14px;flex-shrink:0;text-align:center;border-radius:23px;border:1px solid #c7f5df;background:radial-gradient(circle at 90% 10%,rgba(92,238,176,.25),transparent 34%),linear-gradient(145deg,#e7fff4,#fff 72%);box-shadow:0 8px 20px rgba(8,168,107,.1)}[data-theme="dark"] .side-promo{background:linear-gradient(145deg,#123b32,#142238);border-color:#255c49}.promo-gift{margin-bottom:8px;font-size:34px}.side-promo h3{margin:0 0 8px;color:var(--heading);font-size:13px;line-height:1.5;font-weight:800}.side-promo p{margin:0 0 12px;color:var(--muted);font-size:10px;line-height:1.55}.promo-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 19px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#08a86b,#06c77a);text-decoration:none;font-size:11px;font-weight:800;box-shadow:0 6px 14px rgba(8,168,107,.2)}.support-card{display:flex;align-items:center;gap:10px;margin:0 6px;padding:13px;flex-shrink:0;border-radius:17px;border:1px solid var(--border);background:var(--surface-soft);text-decoration:none}.support-icon{width:37px;height:37px;display:grid;place-items:center;border-radius:50%;color:var(--green-dark);background:var(--green-soft);font-size:18px}.support-card strong{display:block;color:var(--heading);font-size:11px}.support-card span:last-child{display:block;margin-top:4px;color:var(--green);font-size:10px;font-weight:800}.sidebar-note{margin:14px 8px 0;padding-bottom:3px;color:var(--muted);font-size:9px;text-align:center}
 
-    /* MAIN AREA & TOPBAR WITH OFFICIAL DOMAIN SAFETY BAR */
+    /* MAIN AREA & TOPBAR WITH OFFICIAL DOMAIN SAFETY BAR & LIVE PROJECT TICKER */
     .main-column{min-height:100vh;margin-left:var(--sidebar-width)}.mobile-menu-btn{display:none;width:36px;height:36px;border:1px solid var(--border);border-radius:11px;color:var(--heading);background:var(--surface)}.topbar{position:sticky;top:var(--sponsor-height);z-index:100;min-height:54px;display:flex;align-items:center;gap:12px;padding:8px 26px;background:color-mix(in srgb,var(--surface) 95%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
-    .domain-safety-pill{display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;border:1px solid rgba(8,168,107,.3);background:var(--surface-soft);color:var(--body);font-size:11px;font-weight:700;white-space:nowrap}
+    .domain-safety-pill{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;border:1px solid rgba(8,168,107,.3);background:var(--surface-soft);color:var(--body);font-size:11px;font-weight:700;white-space:nowrap}
     .domain-lock{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(8,168,107,.15);color:var(--green);font-size:11px}
     .domain-url{color:var(--green-dark);font-weight:800;letter-spacing:.1px}
     [data-theme="dark"] .domain-url{color:var(--green-light)}
     .domain-verified-tag{padding:2px 8px;border-radius:999px;background:rgba(8,168,107,.14);color:var(--green-dark);font-size:9.5px;font-weight:800}
     [data-theme="dark"] .domain-verified-tag{color:var(--green-light)}
-    .topbar-spacer{flex:1}.community-dropdown{position:relative}.community-btn,.icon-btn{min-height:36px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--border);border-radius:999px;color:var(--heading);background:var(--surface);font-size:11px;font-weight:800;box-shadow:0 3px 9px rgba(20,45,75,.035)}.community-btn{padding:0 15px}.icon-btn{width:36px;border-radius:50%;font-size:16px}.community-btn:hover,.icon-btn:hover{border-color:var(--green);color:var(--green)}.dropdown-content{display:none;position:absolute;z-index:150;top:calc(100% + 10px);right:0;min-width:195px;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--surface);box-shadow:0 14px 32px rgba(0,0,0,.14)}.dropdown-content.show{display:block;animation:fadeIn .18s ease-out}@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.dropdown-content a{display:flex;gap:9px;padding:13px 15px;border-bottom:1px solid var(--border);color:var(--heading);text-decoration:none;font-size:11px;font-weight:700}.dropdown-content a:last-child{border-bottom:0}.dropdown-content a:hover{color:var(--green);background:var(--green-soft)}.mobile-overlay{display:none}
+
+    /* CONTINUOUS SCROLLING PROJECT TICKER IN TOPBAR */
+    .topbar-ticker{
+      flex:1 1 auto;
+      min-width:0;
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:center;
+      mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);
+    }
+    .ticker-track{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      width:max-content;
+      animation:tickerScroll 36s linear infinite;
+    }
+    .topbar-ticker:hover .ticker-track{animation-play-state:paused}
+    @keyframes tickerScroll{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(-50%)}
+    }
+    .ticker-item{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px 4px 5px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--surface-soft);
+      color:var(--heading);
+      text-decoration:none;
+      font-size:10.5px;
+      font-weight:700;
+      white-space:nowrap;
+      transition:border-color .18s ease,color .18s ease,transform .18s ease;
+    }
+    .ticker-item:hover{
+      border-color:var(--green);
+      color:var(--green-dark);
+      transform:translateY(-1px);
+    }
+    [data-theme="dark"] .ticker-item:hover{color:var(--green-light)}
+    .ticker-logo{
+      position:relative;
+      width:18px;
+      height:18px;
+      flex:0 0 18px;
+      border-radius:50%;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#08a86b,#067c50);
+      color:#fff;
+      font-size:9px;
+      font-weight:800;
+    }
+    .ticker-logo img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+    }
+
+    .community-dropdown{position:relative;flex:0 0 auto}.community-btn,.icon-btn{min-height:36px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--border);border-radius:999px;color:var(--heading);background:var(--surface);font-size:11px;font-weight:800;box-shadow:0 3px 9px rgba(20,45,75,.035)}.community-btn{padding:0 15px}.icon-btn{width:36px;flex:0 0 36px;border-radius:50%;font-size:16px}.community-btn:hover,.icon-btn:hover{border-color:var(--green);color:var(--green)}.dropdown-content{display:none;position:absolute;z-index:150;top:calc(100% + 10px);right:0;min-width:195px;overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--surface);box-shadow:0 14px 32px rgba(0,0,0,.14)}.dropdown-content.show{display:block;animation:fadeIn .18s ease-out}@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.dropdown-content a{display:flex;gap:9px;padding:13px 15px;border-bottom:1px solid var(--border);color:var(--heading);text-decoration:none;font-size:11px;font-weight:700}.dropdown-content a:last-child{border-bottom:0}.dropdown-content a:hover{color:var(--green);background:var(--green-soft)}.mobile-overlay{display:none}
     main{width:100%;max-width:1600px;margin:0 auto;padding:16px 25px 35px}
 
     /* =====================================================================
@@ -905,12 +973,12 @@
     .footer-links a:hover{color:var(--green)}
 
     /* ACCESSIBILITY & RESPONSIVE */
-    .side-link:focus-visible,.mint-btn-primary:focus-visible,.mint-btn-secondary:focus-visible,.trend-card:focus-visible,.eco-btn:focus-visible,.eco-btn-ghost:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+    .side-link:focus-visible,.mint-btn-primary:focus-visible,.mint-btn-secondary:focus-visible,.trend-card:focus-visible,.eco-btn:focus-visible,.eco-btn-ghost:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible,.ticker-item:focus-visible{outline:3px solid var(--green);outline-offset:3px}
     @media(max-width:1360px){.trending-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
     @media(max-width:1280px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.mint-hero{grid-template-columns:1fr}.mint-art{max-width:450px;margin:0 auto}.trending-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.ecosystem-split,.hub-bottom-band{grid-template-columns:1fr}}
     @media(max-width:980px){.trending-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
     @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.domain-verified-tag{display:none}.mint-hero{padding:18px}}
-    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:50px;gap:8px;padding:6px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 36px}.domain-safety-pill{padding:4px 9px;font-size:9.5px;gap:5px}.domain-lock{width:17px;height:17px;font-size:9.5px}.domain-label-hide{display:none}.community-btn{width:36px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:35px;min-height:35px;flex:0 0 35px}main{padding:15px 13px 25px}.mint-art{min-height:215px}.em-globe-svg{width:195px}.orbit-token{padding:2.5px 5.5px;font-size:7.6px}.tok-dot{width:12px;height:12px;font-size:7px;flex-basis:12px}.trending-box{padding:15px 13px}.trending-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:16px}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
+    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:50px;gap:8px;padding:6px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 36px}.domain-safety-pill{padding:4px 9px;font-size:9.5px;gap:5px}.domain-lock{width:17px;height:17px;font-size:9.5px}.domain-label-hide,.topbar-ticker{display:none}.community-dropdown{margin-left:auto}.community-btn{width:36px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:35px;min-height:35px;flex:0 0 35px}main{padding:15px 13px 25px}.mint-art{min-height:215px}.em-globe-svg{width:195px}.orbit-token{padding:2.5px 5.5px;font-size:7.6px}.tok-dot{width:12px;height:12px;font-size:7px;flex-basis:12px}.trending-box{padding:15px 13px}.trending-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:16px}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
     @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slot-megaphone{display:none}.slot-center-text strong{font-size:10px}.slot-center-text span{font-size:7px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:6px}.domain-safety-pill{font-size:9px;padding:4px 8px}.mint-art{min-height:195px}.em-globe-svg{width:170px}.orbit-token{padding:2px 4.5px;font-size:7px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
@@ -976,7 +1044,7 @@
     <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
 
     <div class="main-column">
-      <!-- TOPBAR WITH OFFICIAL DOMAIN SAFETY BAR -->
+      <!-- TOPBAR WITH OFFICIAL DOMAIN SAFETY BAR & LIVE PROJECT TICKER -->
       <header class="topbar">
         <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
         <div class="domain-safety-pill" title="Always verify you are on the official Total Crypto Hub domain">
@@ -984,7 +1052,51 @@
           <span><span class="domain-label-hide">Official Domain: </span><span class="domain-url">totalcryptohub.com</span></span>
           <span class="domain-verified-tag">✓ Anti-Phishing Verified</span>
         </div>
-        <span class="topbar-spacer"></span>
+
+        <!-- LIVE CONTINUOUS SCROLLING PROJECT TICKER -->
+        <div class="topbar-ticker" aria-label="Live DePIN Projects">
+          <div class="ticker-track">
+            <!-- Set 1 -->
+            <a href="projects/titan.html" class="ticker-item"><span class="ticker-logo">T<img src="logos/titan.png" alt="" loading="lazy" onerror="this.remove()"></span>Titan Network</a>
+            <a href="projects/bixberry.html" class="ticker-item"><span class="ticker-logo">B<img src="logos/Bixberry.png" alt="" loading="lazy" onerror="this.remove()"></span>Bixberry</a>
+            <a href="projects/u2u.html" class="ticker-item"><span class="ticker-logo">U<img src="logos/u2u.png" alt="" loading="lazy" onerror="this.remove()"></span>U2U Network</a>
+            <a href="projects/grass.html" class="ticker-item"><span class="ticker-logo">G<img src="logos/grass.png" alt="" loading="lazy" onerror="this.remove()"></span>Grass Network</a>
+            <a href="projects/honeygain.html" class="ticker-item"><span class="ticker-logo">H<img src="logos/Honeygain.png" alt="" loading="lazy" onerror="this.remove()"></span>Honeygain</a>
+            <a href="projects/pawns.html" class="ticker-item"><span class="ticker-logo">P<img src="logos/Pawns.app.png" alt="" loading="lazy" onerror="this.remove()"></span>Pawns.app</a>
+            <a href="projects/earnfm.html" class="ticker-item"><span class="ticker-logo">E<img src="logos/earnfm.png" alt="" loading="lazy" onerror="this.remove()"></span>Earn.fm</a>
+            <a href="projects/repocket.html" class="ticker-item"><span class="ticker-logo">R<img src="logos/Repocket.png" alt="" loading="lazy" onerror="this.remove()"></span>Repocket</a>
+            <a href="projects/uprock.html" class="ticker-item"><span class="ticker-logo">U<img src="logos/uprock.png" alt="" loading="lazy" onerror="this.remove()"></span>UpRock</a>
+            <a href="projects/sweatcoin.html" class="ticker-item"><span class="ticker-logo">S<img src="logos/sweatcoin.png" alt="" loading="lazy" onerror="this.remove()"></span>Sweatcoin</a>
+            <a href="projects/mysterium.html" class="ticker-item"><span class="ticker-logo">M<img src="logos/Mysterium Network.png" alt="" loading="lazy" onerror="this.remove()"></span>Mysterium Network</a>
+            <a href="projects/hyra.html" class="ticker-item"><span class="ticker-logo">H<img src="logos/Hyra Network.png" alt="" loading="lazy" onerror="this.remove()"></span>Hyra Network</a>
+            <a href="projects/theta.html" class="ticker-item"><span class="ticker-logo">T<img src="logos/Theta Edge Node.png" alt="" loading="lazy" onerror="this.remove()"></span>Theta Edge Node</a>
+            <a href="projects/slice.html" class="ticker-item"><span class="ticker-logo">S<img src="logos/Slice.png" alt="" loading="lazy" onerror="this.remove()"></span>Slice</a>
+            <a href="projects/nodle.html" class="ticker-item"><span class="ticker-logo">N<img src="logos/Nodle Network.png" alt="" loading="lazy" onerror="this.remove()"></span>Nodle Network</a>
+            <a href="projects/swash.html" class="ticker-item"><span class="ticker-logo">S<img src="logos/swash.png" alt="" loading="lazy" onerror="this.remove()"></span>Swash</a>
+            <a href="projects/over-the-reality.html" class="ticker-item"><span class="ticker-logo">O<img src="logos/over-the-reality.png" alt="" loading="lazy" onerror="this.remove()"></span>Over The Reality</a>
+            <a href="projects/adreva.html" class="ticker-item"><span class="ticker-logo">A<img src="logos/adreva.png" alt="" loading="lazy" onerror="this.remove()"></span>Adreva</a>
+            <!-- Set 2 (Seamless Loop Duplicate) -->
+            <a href="projects/titan.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">T<img src="logos/titan.png" alt="" loading="lazy" onerror="this.remove()"></span>Titan Network</a>
+            <a href="projects/bixberry.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">B<img src="logos/Bixberry.png" alt="" loading="lazy" onerror="this.remove()"></span>Bixberry</a>
+            <a href="projects/u2u.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">U<img src="logos/u2u.png" alt="" loading="lazy" onerror="this.remove()"></span>U2U Network</a>
+            <a href="projects/grass.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">G<img src="logos/grass.png" alt="" loading="lazy" onerror="this.remove()"></span>Grass Network</a>
+            <a href="projects/honeygain.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">H<img src="logos/Honeygain.png" alt="" loading="lazy" onerror="this.remove()"></span>Honeygain</a>
+            <a href="projects/pawns.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">P<img src="logos/Pawns.app.png" alt="" loading="lazy" onerror="this.remove()"></span>Pawns.app</a>
+            <a href="projects/earnfm.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">E<img src="logos/earnfm.png" alt="" loading="lazy" onerror="this.remove()"></span>Earn.fm</a>
+            <a href="projects/repocket.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">R<img src="logos/Repocket.png" alt="" loading="lazy" onerror="this.remove()"></span>Repocket</a>
+            <a href="projects/uprock.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">U<img src="logos/uprock.png" alt="" loading="lazy" onerror="this.remove()"></span>UpRock</a>
+            <a href="projects/sweatcoin.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">S<img src="logos/sweatcoin.png" alt="" loading="lazy" onerror="this.remove()"></span>Sweatcoin</a>
+            <a href="projects/mysterium.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">M<img src="logos/Mysterium Network.png" alt="" loading="lazy" onerror="this.remove()"></span>Mysterium Network</a>
+            <a href="projects/hyra.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">H<img src="logos/Hyra Network.png" alt="" loading="lazy" onerror="this.remove()"></span>Hyra Network</a>
+            <a href="projects/theta.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">T<img src="logos/Theta Edge Node.png" alt="" loading="lazy" onerror="this.remove()"></span>Theta Edge Node</a>
+            <a href="projects/slice.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">S<img src="logos/Slice.png" alt="" loading="lazy" onerror="this.remove()"></span>Slice</a>
+            <a href="projects/nodle.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">N<img src="logos/Nodle Network.png" alt="" loading="lazy" onerror="this.remove()"></span>Nodle Network</a>
+            <a href="projects/swash.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">S<img src="logos/swash.png" alt="" loading="lazy" onerror="this.remove()"></span>Swash</a>
+            <a href="projects/over-the-reality.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">O<img src="logos/over-the-reality.png" alt="" loading="lazy" onerror="this.remove()"></span>Over The Reality</a>
+            <a href="projects/adreva.html" class="ticker-item" aria-hidden="true" tabindex="-1"><span class="ticker-logo">A<img src="logos/adreva.png" alt="" loading="lazy" onerror="this.remove()"></span>Adreva</a>
+          </div>
+        </div>
+
         <div class="community-dropdown"><button class="community-btn" type="button" id="communityButton" aria-expanded="false">👥 Community</button><div class="dropdown-content" id="communityMenu"><a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a><a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a><a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a><a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a></div></div>
         <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
       </header>
