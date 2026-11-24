@@ -13,9 +13,9 @@
   <style>
     :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:74px;--shadow:0 12px 32px rgba(20,76,66,.07)}
     [data-theme="dark"]{color-scheme:dark;--bg:#081a20;--surface:#10272c;--surface-soft:#143139;--border:#254b4b;--heading:#f0fff9;--body:#d4eee5;--muted:#91b3ad;--green:#20d99a;--green-dark:#0cad78;--green-light:#5df0bd;--green-soft:#123e34;--teal:#22cbbb;--navy:#061c24;--shadow:0 14px 34px rgba(0,0,0,.22)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}a{color:inherit}button,input{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}button{cursor:pointer}.app-shell{min-height:100vh}
 
-    /* LIGHT MINT SPONSOR HEADER BAR (STICKY AT TOP) */
+    /* LIGHT MINT SPONSOR HEADER BAR (STICKY AT TOP JUST LIKE ORIGINAL) */
     .sponsor-strip{
       position:sticky;
       top:0;
@@ -91,75 +91,82 @@
     [data-theme="dark"] .header-v-sep{background:rgba(255,255,255,.2)}
 
     /* =====================================================================
-      CRISP SNOW-WHITE & EMERALD GREEN HIGH-CONTRAST FAST SLIDER BANNER
+      Halchul Update: Dynamic, Moving & High-Impact Promotional Ad Space
        ===================================================================== */
     .sponsor-slot-box{
-      --slot-h:58px;
       flex:1 1 auto;
       max-width:970px;
       min-width:280px;
-      height:var(--slot-h);
+      height:58px;
       overflow:hidden;
       position:relative;
-      border:2px solid #08a86b;
+      border:2px solid #00cf85;
       border-radius:14px;
-      background:linear-gradient(135deg,#ffffff 0%,#f5fffb 55%,#e8fff5 100%);
-      box-shadow:0 4px 16px rgba(8,168,107,.16), 0 0 0 2px rgba(50,229,161,.22);
+      /* Dynamic shimmer wave moving background */
+      background:linear-gradient(90deg, #10272c, #0d3831 25%, #055e46 50%, #0d3831 75%, #10272c);
+      background-size:240% 100%;
+      box-shadow:0 3px 14px rgba(0,210,135,.15), inset 0 1px 0 rgba(255,255,255,.1);
       text-decoration:none;
-      display:block;
-      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      display:flex;
+      align-items:center;
+      animation: gradientShimmer 6s ease infinite;
     }
     .sponsor-slot-box:hover{
-      border-color:#059669;
-      box-shadow:0 6px 22px rgba(8,168,107,.28), 0 0 0 3px rgba(50,229,161,.35);
+      border-color:#3bffad;
+      box-shadow:0 6px 20px rgba(0,240,150,.35), inset 0 1px 0 rgba(255,255,255,.2);
       transform:translateY(-1px);
     }
     [data-theme="dark"] .sponsor-slot-box{
       border-color:#20d99a;
-      background:linear-gradient(135deg,#102d2a 0%,#143b36 55%,#103331 100%);
-      box-shadow:0 4px 20px rgba(0,0,0,.38), 0 0 0 2px rgba(32,217,154,.2);
+      box-shadow:0 4px 18px rgba(32,217,154,.15);
+    }
+    @keyframes gradientShimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 120% 50%; }
+      100% { background-position: 240% 50%; }
     }
 
-    /* Seamless 4-Slide + 1-Clone Loop (Zero Black/Empty Gap, Fast Every ~3.2s) */
+    /* Continuously Moving Inner Slider Track */
     .banner-slider-track{
       display:flex;
       flex-direction:column;
       width:100%;
-      will-change:transform;
-      animation:bannerFastSlide 12.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+      height:300%; /* Keeps 3 slides stacked vertically */
+      animation:bannerSlide 15s cubic-bezier(0.85, 0, 0.15, 1) infinite;
     }
+    /* Stop transitions on mouse hover so advertisers can focus & interact */
     .sponsor-slot-box:hover .banner-slider-track{
       animation-play-state:paused;
     }
-    @keyframes bannerFastSlide{
-      0%, 20%   { transform: translateY(0); }
-      25%, 45%  { transform: translateY(calc(var(--slot-h) * -1)); }
-      50%, 70%  { transform: translateY(calc(var(--slot-h) * -2)); }
-      75%, 95%  { transform: translateY(calc(var(--slot-h) * -3)); }
-      100%      { transform: translateY(calc(var(--slot-h) * -4)); }
+    @keyframes bannerSlide {
+      0%, 28% { transform: translateY(0); }
+      33%, 61% { transform: translateY(-33.33%); }
+      66%, 95% { transform: translateY(-66.66%); }
+      100% { transform: translateY(0); }
     }
 
+    /* Individual Custom Animated Slide */
     .banner-slide{
-      height:var(--slot-h);
-      min-height:var(--slot-h);
-      max-height:var(--slot-h);
+      height:33.33%;
       width:100%;
-      padding:6px 20px;
+      padding:6px 22px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      gap:16px;
+      color:#ffffff;
       flex-shrink:0;
     }
     .slide-megaicon{
-      font-size:22px;
+      font-size:24px;
       line-height:1;
       flex:0 0 auto;
-      animation:iconPop 2s ease-in-out infinite;
+      filter:drop-shadow(0 0 8px rgba(0,255,165,.4));
+      animation: iconFloat 2.5s ease-in-out infinite;
     }
-    @keyframes iconPop{
-      0%, 100%{ transform:scale(1) translateY(0); }
-      50%{ transform:scale(1.12) translateY(-1.5px); }
+    @keyframes iconFloat{
+      0%, 100%{ transform:translateY(0) scale(1); }
+      50%{ transform:translateY(-2.5px) scale(1.08); }
     }
     .slide-inner-box{
       flex:1 1 auto;
@@ -167,68 +174,48 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
+      text-shadow:0 1.5px 3px rgba(0,0,0,.6);
     }
     .slide-inner-box strong{
       display:block;
-      color:#0b1c38;
+      color:#5affc8;
       font-size:14.5px;
       font-weight:800;
       line-height:1.2;
-      letter-spacing:-.2px;
+      letter-spacing:-.1px;
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
-    }
-    [data-theme="dark"] .slide-inner-box strong{
-      color:#ffffff;
     }
     .slide-inner-box span{
       display:block;
-      margin-top:2px;
-      color:#1e3a5f;
-      font-size:11px;
+      margin-top:2.5px;
+      color:#dcfbf1;
+      font-size:10.5px;
       font-weight:700;
-      line-height:1.25;
+      line-height:1.2;
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
     }
-    [data-theme="dark"] .slide-inner-box span{
-      color:#d6f5ea;
-    }
-
-    /* High-Visibility Colored Text Highlights Inside Banner */
-    .hl-emerald{color:#058856;font-weight:900}
-    [data-theme="dark"] .hl-emerald{color:#4ef2b1}
-    .hl-blue{color:#0369a1;font-weight:900}
-    [data-theme="dark"] .hl-blue{color:#7dd3fc}
-    .hl-amber{color:#b45309;font-weight:900}
-    [data-theme="dark"] .hl-amber{color:#fde047}
-    .hl-violet{color:#6d28d9;font-weight:900}
-    [data-theme="dark"] .hl-violet{color:#c4b5fd}
-
     .slide-glow-cta{
       flex:0 0 auto;
-      padding:7px 15px;
+      padding:6px 15px;
       border-radius:999px;
       font-size:10px;
       font-weight:800;
       text-transform:uppercase;
-      letter-spacing:.35px;
-      color:#ffffff;
-      background:linear-gradient(135deg,#08a86b,#057a4d);
-      box-shadow:0 3px 10px rgba(8,168,107,.28);
-      border:1px solid rgba(255,255,255,.35);
+      letter-spacing:.3px;
+      color:#022c1d;
+      background:linear-gradient(135deg,#a6ffcc,#3ef59c);
+      box-shadow:0 0 10px rgba(62,245,156,.3), inset 0 1px 0 rgba(255,255,255,.5);
+      border:1px solid rgba(255,255,255,.2);
       white-space:nowrap;
-      animation:ctaPulse 1.8s ease-in-out infinite alternate;
+      animation: pulsateGlow 1.8s ease-in-out infinite alternate;
     }
-    [data-theme="dark"] .slide-glow-cta{
-      color:#04291b;
-      background:linear-gradient(135deg,#7dffbe,#20d99a);
-    }
-    @keyframes ctaPulse{
-      0%{ transform:scale(1); box-shadow:0 3px 10px rgba(8,168,107,.26); }
-      100%{ transform:scale(1.03); box-shadow:0 5px 15px rgba(8,168,107,.45); }
+    @keyframes pulsateGlow {
+      0% { box-shadow:0 0 8px rgba(62,245,156,.3); transform: scale(1); }
+      100% { box-shadow:0 0 16px rgba(62,245,156,.7); transform: scale(1.02); }
     }
 
     .sponsor-right-actions{
@@ -265,19 +252,14 @@
       border-radius:50%;
       display:grid;
       place-items:center;
-      border:1.5px solid #08a86b;
-      color:#066d46;
-      background:linear-gradient(145deg,#ffffff,#dcfdf0);
-      box-shadow:0 3px 10px rgba(8,168,107,.16);
+      border:1.5px solid rgba(255,255,255,.75);
+      color:#ffffff;
+      background:linear-gradient(145deg,#818cf8,#4f46e5);
+      box-shadow:0 4px 12px rgba(79,70,229,.28);
       text-decoration:none;
       font-size:12px;
       font-weight:800;
       transition:transform .2s;
-    }
-    [data-theme="dark"] .sponsor-orb-btn{
-      color:#8af0c5;
-      background:linear-gradient(145deg,#123832,#0e2926);
-      border-color:#20d99a;
     }
     .sponsor-orb-btn:hover{transform:translateY(-1px)}
 
@@ -367,7 +349,7 @@
     main{width:100%;max-width:1600px;margin:0 auto;padding:16px 25px 35px}
 
     /* =====================================================================
-      1. COMPACT MINT-THEME HERO BANNER (LARGER CENTER EARTH + 24 TOKENS)
+1. COMPACT MINT-THEME HERO BANNER (LARGER CENTER EARTH + 24 TOKENS)
        ===================================================================== */
     .mint-hero{
       position:relative;
@@ -609,7 +591,7 @@
     .t-swash{background:linear-gradient(135deg,#0d9488,#115e59)}
 
     /* =====================================================================
-      2. TRENDING DEPIN NETWORKS SECTION (WEBSITE MINT THEME + REAL LOGOS)
+2. TRENDING DEPIN NETWORKS SECTION (WEBSITE MINT THEME + REAL LOGOS)
        ===================================================================== */
     .trending-box{
       position:relative;
@@ -814,7 +796,7 @@
     }
 
     /* =====================================================================
-      3. COMPACT 2-COLUMN ECOSYSTEM & WHY CHOOSE SHOWCASE
+3. COMPACT 2-COLUMN ECOSYSTEM & WHY CHOOSE SHOWCASE
        ===================================================================== */
     .ecosystem-split{
       display:grid;
@@ -1057,11 +1039,11 @@
     /* ACCESSIBILITY & RESPONSIVE */
     .side-link:focus-visible,.mint-btn-primary:focus-visible,.mint-btn-secondary:focus-visible,.trend-card:focus-visible,.eco-btn:focus-visible,.eco-btn-ghost:focus-visible,.hub-join-btn:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible,.ticker-item:focus-visible{outline:3px solid var(--green);outline-offset:3px}
     @media(max-width:1360px){.trending-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
-    @media(max-width:1280px){:root{--sidebar-width:235px}.header-brand{min-width:185px}main{padding-left:20px;padding-right:20px}.mint-hero{grid-template-columns:1fr}.mint-art{max-width:450px;margin:0 auto}.trending-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.ecosystem-split,.hub-bottom-band{grid-template-columns:1fr}}
+    @media(max-width:1280px){:root{--sidebar-width:235px}.header-brand{min-width:185px}.slot-arrow{display:none}main{padding-left:20px;padding-right:20px}.mint-hero{grid-template-columns:1fr}.mint-art{max-width:450px;margin:0 auto}.trending-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.ecosystem-split,.hub-bottom-band{grid-template-columns:1fr}}
     @media(max-width:980px){.trending-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{--slot-h:50px}.banner-slide{padding:5px 14px;gap:10px}.slide-inner-box strong{font-size:13px}.slide-inner-box span{font-size:10px}.domain-verified-tag{display:none}.mint-hero{padding:18px}}
-    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{--slot-h:42px;min-width:0}.banner-slide{padding:4px 10px;gap:8px}.slide-megaicon{font-size:17px}.slide-inner-box strong{font-size:11px}.slide-inner-box span{font-size:8.5px}.slide-glow-cta{padding:4px 9px;font-size:8.5px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:50px;gap:8px;padding:6px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 36px}.domain-safety-pill{padding:4px 9px;font-size:9.5px;gap:5px}.domain-lock{width:17px;height:17px;font-size:9.5px}.domain-label-hide,.topbar-ticker{display:none}.community-dropdown{margin-left:auto}.community-btn{width:36px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:35px;min-height:35px;flex:0 0 35px}main{padding:15px 13px 25px}.mint-art{min-height:215px}.em-globe-svg{width:195px}.orbit-token{padding:2.5px 5.5px;font-size:7.6px}.tok-dot{width:12px;height:12px;font-size:7px;flex-basis:12px}.trending-box{padding:15px 13px}.trending-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:16px}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
-    @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slide-megaicon,.slide-glow-cta{display:none}.slide-inner-box strong{font-size:10px}.slide-inner-box span{font-size:7.5px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:6px}.domain-safety-pill{font-size:9px;padding:4px 8px}.mint-art{min-height:195px}.em-globe-svg{width:170px}.orbit-token{padding:2px 4.5px;font-size:7px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}}
+    @media(max-width:900px){.header-brand{min-width:auto}.header-logo{width:36px;height:36px;flex-basis:36px}.sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}.sponsor-slot-box{padding:5px 12px;height:50px}.slot-center-text strong{font-size:13px}.slot-center-text span{font-size:10px}.domain-verified-tag{display:none}.mint-hero{padding:18px}}
+    @media(max-width:760px){:root{--sidebar-width:258px;--sponsor-height:56px}.sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}.header-brand{gap:7px}.header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}.header-brand-name{font-size:11px}.header-brand-subtitle{font-size:8px}.header-v-sep,.sponsor-orb-btn{display:none}.sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}.slot-megaphone{font-size:17px}.slot-center-text strong{font-size:11px}.slot-center-text span{font-size:8px}.sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}.sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}body.menu-open .sidebar{transform:translateX(0)}.mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}body.menu-open .mobile-overlay{display:block}.main-column{margin-left:0}.topbar{min-height:50px;gap:8px;padding:6px 12px}.mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 36px}.domain-safety-pill{padding:4px 9px;font-size:9.5px;gap:5px}.domain-lock{width:17px;height:17px;font-size:9.5px}.domain-label-hide,.topbar-ticker{display:none}.community-dropdown{margin-left:auto}.community-btn{width:36px;padding:0;overflow:hidden;font-size:0}.community-btn::first-letter{font-size:15px}.topbar .icon-btn{width:35px;min-height:35px;flex:0 0 35px}main{padding:15px 13px 25px}.mint-art{min-height:215px}.em-globe-svg{width:195px}.orbit-token{padding:2.5px 5.5px;font-size:7.6px}.tok-dot{width:12px;height:12px;font-size:7px;flex-basis:12px}.trending-box{padding:15px 13px}.trending-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:16px}.hub-metrics{min-height:95px;padding:10px 5px}.hub-metric{padding:4px}.hub-metric strong{font-size:13px}.hub-metric span:last-child{font-size:7px}.hub-community-cta{padding:13px}.cta-art{width:48px;flex-basis:48px}.cta-copy strong{font-size:11px}.hub-join-btn{padding:10px;font-size:9px}}
+    @media(max-width:480px){.header-brand-subtitle{display:none}.header-brand{min-width:96px;gap:6px}.header-brand-name{font-size:10px}.slot-megaphone{display:none}.slot-center-text strong{font-size:10px}.slot-center-text span{font-size:7px}.sponsor-cta{padding:7px 9px;font-size:8px}.topbar{gap:6px}.domain-safety-pill{font-size:9px;padding:4px 8px}.mint-art{min-height:195px}.em-globe-svg{width:170px}.orbit-token{padding:2px 4.5px;font-size:7px}.hub-community-cta{flex-wrap:wrap}.cta-copy{flex:1 1 65%}.hub-join-btn{margin-left:auto}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
@@ -1076,53 +1058,35 @@
 
       <span class="header-v-sep" aria-hidden="true"></span>
 
-      <!-- FAST, COLOR-HIGHLIGHTED, ZERO-GAP 4-SLIDE DYNAMIC BANNER -->
+      <!-- HALCHUL UPGRADED: Dynamic Sliding Banner targeting project founders/advertisers -->
       <a class="sponsor-slot-box" href="legal-pages/contact.html" aria-label="Book Ad Slot Banner">
         <div class="banner-slider-track">
           <!-- Slide 1 -->
           <div class="banner-slide">
             <span class="slide-megaicon" aria-hidden="true">🚀</span>
             <div class="slide-inner-box">
-              <strong>PROMOTE YOUR <span class="hl-emerald">Web3 / DePIN</span> PROJECT HERE</strong>
-              <span>Reach <span class="hl-blue">8,500+</span> Monthly Active Crypto &amp; Node Users · <span class="hl-emerald">Website + YouTube</span> Combo</span>
+              <strong>PROMOTE YOUR Web3 / DePIN PROJECT HERE</strong>
+              <span>Reach 8,500+ Monthly Active Crypto &amp; Node Users · Website + YouTube Combo</span>
             </div>
-            <span class="slide-glow-cta">MEDIA KIT ↗</span>
+            <span class="slide-glow-cta">MEDIA KIT &amp; CONTACT ↗</span>
           </div>
           <!-- Slide 2 -->
           <div class="banner-slide">
-            <span class="slide-megaicon" aria-hidden="true">⚡</span>
+            <span class="slide-megaicon" aria-hidden="true">📈</span>
             <div class="slide-inner-box">
-              <strong>LAUNCHING A NEW <span class="hl-blue">NODE, BOT OR AIRDROP</span>?</strong>
-              <span>Put Your Project in Front of <span class="hl-emerald">Real Node Runners</span> &amp; Daily Crypto Builders</span>
+              <strong>WANT TARGETED DEPIN &amp; AIRDROP TRAFFIC?</strong>
+              <span>Feature Your Node, Bot, Campaign, or Web3 Spot On Our Dynamic Bar Today!</span>
             </div>
             <span class="slide-glow-cta">BOOK SLOT NOW ✉</span>
           </div>
           <!-- Slide 3 -->
           <div class="banner-slide">
-            <span class="slide-megaicon" aria-hidden="true">💎</span>
+            <span class="slide-megaicon" aria-hidden="true">👥</span>
             <div class="slide-inner-box">
-              <strong>FEATURED SPOT + <span class="hl-violet">YOUTUBE SHOWCASE</span> AVAILABLE</strong>
-              <span>Trusted by <span class="hl-amber">200–300+ Daily</span> Genuine Visitors Searching Verified Web3 Tools</span>
+              <strong>8,500+ MONTHLY ACTIVE VISITORS &amp; YOUTUBE</strong>
+              <span>High-Intent Node Runners, Airdrop Hunters, and Web3 Early Adopters!</span>
             </div>
-            <span class="slide-glow-cta">GET FEATURED ★</span>
-          </div>
-          <!-- Slide 4 -->
-          <div class="banner-slide">
-            <span class="slide-megaicon" aria-hidden="true">🤝</span>
-            <div class="slide-inner-box">
-              <strong>GROW FASTER WITH <span class="hl-emerald">TOTAL CRYPTO HUB</span></strong>
-              <span>Direct <span class="hl-blue">Sponsor Inquiries</span> Open — Banner, Top Listing &amp; Community Reach</span>
-            </div>
-            <span class="slide-glow-cta">PARTNER TODAY →</span>
-          </div>
-          <!-- Clone of Slide 1 for Seamless Infinite Loop Without Any Blank Gap -->
-          <div class="banner-slide" aria-hidden="true">
-            <span class="slide-megaicon">🚀</span>
-            <div class="slide-inner-box">
-              <strong>PROMOTE YOUR <span class="hl-emerald">Web3 / DePIN</span> PROJECT HERE</strong>
-              <span>Reach <span class="hl-blue">8,500+</span> Monthly Active Crypto &amp; Node Users · <span class="hl-emerald">Website + YouTube</span> Combo</span>
-            </div>
-            <span class="slide-glow-cta">MEDIA KIT ↗</span>
+            <span class="slide-glow-cta">PARTNER WITH US 🤝</span>
           </div>
         </div>
       </a>
@@ -1421,7 +1385,7 @@
               </div>
               <strong>Nodepay</strong>
               <span class="trend-desc">Decentralized AI Extension</span>
-              <span class="trend-status-tag">Token Listed</span>
+              <span class="trend-status-tag">No Token</span>
               <span class="trend-explore-pill">Explore →</span>
             </a>
 
