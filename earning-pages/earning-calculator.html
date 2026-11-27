@@ -462,6 +462,78 @@
     }
     html[data-theme="dark"] .overview-badge, body[data-theme="dark"] .overview-badge { color: var(--green-light); }
 
+    /* Connected Token Strip from Smart Token Finder */
+    .linked-token-strip {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1.5px solid var(--green);
+      background: var(--surface);
+      box-shadow: 0 6px 16px rgba(8, 168, 107, 0.08);
+    }
+    .linked-token-strip.show { display: flex; animation: fadeIn 0.18s ease-out; }
+    .linked-token-info { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .linked-token-avatar {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      border: 1px solid var(--border);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    html[data-theme="dark"] .linked-token-avatar, body[data-theme="dark"] .linked-token-avatar { color: var(--green-light); }
+    .linked-token-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .linked-token-meta strong {
+      display: block;
+      color: var(--heading);
+      font-size: 12.5px;
+      font-weight: 800;
+    }
+    .linked-token-meta span {
+      display: block;
+      margin-top: 1px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .linked-token-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .linked-apply-btn {
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--green);
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      transition: 0.15s ease;
+    }
+    html[data-theme="dark"] .linked-apply-btn, body[data-theme="dark"] .linked-apply-btn { color: var(--green-light); }
+    .linked-apply-btn:hover { background: var(--green); color: #ffffff; }
+    .linked-dismiss-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      display: inline-grid;
+      place-items: center;
+    }
+    .linked-dismiss-btn:hover { border-color: #e11d48; color: #e11d48; }
+
     .overview-controls {
       display: flex;
       align-items: center;
@@ -965,6 +1037,9 @@
             </div>
           </div>
 
+          <!-- Linked Token Strip from Smart Token Finder -->
+          <div class="linked-token-strip" id="linkedTokenStrip" aria-live="polite"></div>
+
           <div class="overview-metrics">
             <div class="ov-card highlight">
               <span class="ov-label">Estimated Daily Net <span>📅</span></span>
@@ -1416,6 +1491,9 @@
     (() => {
       "use strict";
 
+      const STORAGE_SELECTED_TOKEN_KEY = "tch_selected_token";
+      const STORAGE_CALC_STATE_KEY = "tch_earning_calc_state";
+
       /* SHARED SPONSORSHIP CONFIG */
       const SHARED_SPONSOR_CONFIG = Object.freeze({
         active: false,
@@ -1431,6 +1509,8 @@
 
       let currency = "USD";
       let activeTab = "staking";
+      let linkedToken = null;
+      let lastAppliedTokenStamp = 0;
 
       const TAB_META = {
         staking: {
@@ -1478,6 +1558,14 @@
         referral: null
       };
 
+      const TRACKED_INPUT_IDS = [
+        "stkAmount", "stkApr", "stkDays", "stkCompound",
+        "minTokens", "minPrice", "minWatts", "minElecRate", "minPoolFee", "minOtherCost",
+        "depDevices", "depTokensPerDev", "depPrice", "depUptime", "depMonthlyCost",
+        "airTokens", "airPrice", "airFees", "airDays",
+        "refInvites", "refRate", "refReward", "refExpense"
+      ];
+
       function escapeHTML(str = "") {
         return String(str).replace(/[&<>"']/g, ch => ({
           "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
@@ -1520,6 +1608,155 @@
         const abs = Math.abs(n);
         const locale = currency === "INR" ? "en-IN" : "en-US";
         return `${sign}${currSymbol()}${abs.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      }
+
+      function formatTokenPriceBadge(val, sym = "$") {
+        const n = Number(val);
+        if (!Number.isFinite(n) || n <= 0) return "";
+        if (n >= 1000) return sym + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (n >= 1) return sym + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+        if (n >= 0.01) return sym + n.toFixed(4);
+        return sym + Number(n.toPrecision(4));
+      }
+
+      function getApplicableTokenRate() {
+        if (!linkedToken) return 0;
+        if (currency === "INR" && Number(linkedToken.inr) > 0) {
+          return Number(linkedToken.inr);
+        }
+        return Number(linkedToken.usd) || 0;
+      }
+
+      function applyLinkedTokenPriceToInputs(recalcActive = false) {
+        const rate = getApplicableTokenRate();
+        if (rate <= 0) return;
+        const cleanRate = Number(rate.toPrecision(6));
+        ["#minPrice", "#depPrice", "#airPrice"].forEach(sel => {
+          const input = $(sel);
+          if (input) input.value = cleanRate;
+        });
+
+        if (recalcActive) {
+          if (savedResults.mining || Number($("#minTokens").value) > 0) handleCalculate("mining", true);
+          if (savedResults.depin || Number($("#depTokensPerDev").value) > 0) handleCalculate("depin", true);
+          if (savedResults.airdrop || Number($("#airTokens").value) > 0) handleCalculate("airdrop", true);
+        }
+        saveCalculatorSession();
+      }
+
+      function renderLinkedTokenStrip() {
+        const strip = $("#linkedTokenStrip");
+        if (!strip) return;
+        if (!linkedToken || !linkedToken.name) {
+          strip.classList.remove("show");
+          strip.innerHTML = "";
+          return;
+        }
+
+        const initial = escapeHTML((linkedToken.symbol || linkedToken.name || "T").slice(0, 4).toUpperCase());
+        const usdText = formatTokenPriceBadge(linkedToken.usd, "$");
+        const inrText = formatTokenPriceBadge(linkedToken.inr, "₹");
+        const rateText = usdText
+          ? `${usdText}${inrText ? ` · ${inrText}` : ""}`
+          : (linkedToken.networkLabel || "Selected from Smart Token Finder");
+
+        strip.innerHTML = `
+          <div class="linked-token-info">
+            <div class="linked-token-avatar">
+              ${linkedToken.image ? `<img src="${escapeHTML(linkedToken.image)}" alt="${escapeHTML(linkedToken.name)}" onerror="this.remove()">` : initial}
+            </div>
+            <div class="linked-token-meta">
+              <strong>Connected Token: ${escapeHTML(linkedToken.name)} (${escapeHTML(linkedToken.symbol)})</strong>
+              <span>Live Rate: ${escapeHTML(rateText)}</span>
+            </div>
+          </div>
+          <div class="linked-token-actions">
+            ${Number(linkedToken.usd) > 0 ? `<button type="button" class="linked-apply-btn" id="applyLinkedPriceBtn">Use Live Price ✓</button>` : ""}
+            <button type="button" class="linked-dismiss-btn" id="dismissLinkedTokenBtn" title="Remove linked token" aria-label="Remove linked token">✕</button>
+          </div>`;
+
+        strip.classList.add("show");
+
+        const applyBtn = $("#applyLinkedPriceBtn");
+        if (applyBtn) {
+          applyBtn.addEventListener("click", () => {
+            applyLinkedTokenPriceToInputs(true);
+            applyBtn.textContent = "Applied ✓";
+            setTimeout(() => { if (applyBtn) applyBtn.textContent = "Use Live Price ✓"; }, 1500);
+          });
+        }
+
+        const dismissBtn = $("#dismissLinkedTokenBtn");
+        if (dismissBtn) {
+          dismissBtn.addEventListener("click", () => {
+            linkedToken = null;
+            try { sessionStorage.removeItem(STORAGE_SELECTED_TOKEN_KEY); } catch (_) { /* ignore */ }
+            renderLinkedTokenStrip();
+          });
+        }
+      }
+
+      function saveCalculatorSession() {
+        try {
+          const inputs = {};
+          TRACKED_INPUT_IDS.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) inputs[id] = el.value;
+          });
+          sessionStorage.setItem(STORAGE_CALC_STATE_KEY, JSON.stringify({
+            currency,
+            activeTab,
+            inputs,
+            savedResults,
+            lastAppliedTokenStamp
+          }));
+        } catch (_) { /* ignore */ }
+      }
+
+      function restoreCalculatorSession() {
+        try {
+          const raw = sessionStorage.getItem(STORAGE_CALC_STATE_KEY);
+          if (!raw) return false;
+          const saved = JSON.parse(raw);
+          if (!saved || typeof saved !== "object") return false;
+
+          if (saved.currency === "INR" || saved.currency === "USD") {
+            currency = saved.currency;
+          }
+          if (saved.activeTab && TAB_META[saved.activeTab]) {
+            activeTab = saved.activeTab;
+          }
+          if (Number.isFinite(saved.lastAppliedTokenStamp)) {
+            lastAppliedTokenStamp = saved.lastAppliedTokenStamp;
+          }
+          if (saved.inputs && typeof saved.inputs === "object") {
+            TRACKED_INPUT_IDS.forEach(id => {
+              const el = document.getElementById(id);
+              if (el && Object.prototype.hasOwnProperty.call(saved.inputs, id)) {
+                el.value = saved.inputs[id];
+              }
+            });
+          }
+          if (saved.savedResults && typeof saved.savedResults === "object") {
+            Object.keys(savedResults).forEach(k => {
+              savedResults[k] = saved.savedResults[k] || null;
+            });
+          }
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+
+      function loadLinkedTokenFromFinder() {
+        try {
+          const raw = sessionStorage.getItem(STORAGE_SELECTED_TOKEN_KEY);
+          if (!raw) return;
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === "object" && parsed.name) {
+            linkedToken = parsed;
+          }
+        } catch (_) { /* ignore */ }
       }
 
       function refreshOverviewAndResultBox() {
@@ -1577,6 +1814,7 @@
           panel.classList.toggle("active", panel.dataset.calc === tabName);
         });
         refreshOverviewAndResultBox();
+        saveCalculatorSession();
       }
 
       function setCurrency(nextCurr) {
@@ -1588,9 +1826,10 @@
           el.textContent = currSymbol();
         });
         refreshOverviewAndResultBox();
+        saveCalculatorSession();
       }
 
-      function handleCalculate(type) {
+      function handleCalculate(type, skipSave = false) {
         if (type === "staking") {
           const principal = Math.max(0, Number($("#stkAmount").value) || 0);
           const apr = Math.max(0, Number($("#stkApr").value) || 0) / 100;
@@ -1650,6 +1889,7 @@
         }
 
         refreshOverviewAndResultBox();
+        if (!skipSave) saveCalculatorSession();
       }
 
       function resetSingleCalculator(type) {
@@ -1657,6 +1897,7 @@
         if (form) form.reset();
         savedResults[type] = null;
         refreshOverviewAndResultBox();
+        saveCalculatorSession();
       }
 
       function applyTheme(theme) {
@@ -1726,15 +1967,43 @@
           });
         });
 
+        TRACKED_INPUT_IDS.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.addEventListener("input", saveCalculatorSession);
+            el.addEventListener("change", saveCalculatorSession);
+          }
+        });
+
         $$("[data-reset]").forEach(btn => {
           btn.addEventListener("click", () => resetSingleCalculator(btn.dataset.reset));
         });
 
         $("#resetAllBtn").addEventListener("click", () => {
-          Object.keys(savedResults).forEach(k => resetSingleCalculator(k));
+          Object.keys(savedResults).forEach(k => {
+            const form = $(`#panel-${k}`);
+            if (form) form.reset();
+            savedResults[k] = null;
+          });
+          refreshOverviewAndResultBox();
+          saveCalculatorSession();
         });
 
-        refreshOverviewAndResultBox();
+        restoreCalculatorSession();
+        loadLinkedTokenFromFinder();
+
+        if (linkedToken && Number(linkedToken.usd) > 0) {
+          const tokenStamp = Number(linkedToken.updatedAt) || 1;
+          const priceEmpty = !$("#minPrice").value && !$("#depPrice").value && !$("#airPrice").value;
+          if (tokenStamp !== lastAppliedTokenStamp || priceEmpty) {
+            lastAppliedTokenStamp = tokenStamp;
+            applyLinkedTokenPriceToInputs(true);
+          }
+        }
+
+        renderLinkedTokenStrip();
+        setCurrency(currency);
+        switchTab(activeTab);
       });
     })();
   </script>
