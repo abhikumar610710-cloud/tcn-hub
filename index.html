@@ -65,8 +65,7 @@
       -webkit-font-smoothing:antialiased;
     }
     a{color:inherit}
-    button,input{font:inherit}
-    button{cursor:pointer}
+    button{font:inherit;cursor:pointer}
 
     .app-shell{min-height:100vh}
 
@@ -231,8 +230,6 @@
     .nav-payout{color:#d97706;background:#fef3c7}
 
     .sidebar-spacer{flex:1 0 12px;min-height:12px}
-
-    /* SIDEBAR BOTTOM CARDS (EXACT MATCH TO IMAGE) */
 
     .side-community-card{
       margin:10px 2px 10px;
@@ -406,8 +403,6 @@
       padding:14px 20px 30px;
     }
 
-    /* TOP HERO CANVAS (INCLUDES TOPBAR + HERO BANNER SEAMLESSLY LIKE IMAGE) */
-
     .hero-canvas{
       position:relative;
       isolation:isolate;
@@ -427,7 +422,6 @@
         linear-gradient(108deg,#0a2427 0%,#0f3535 52%,#065f46 100%);
     }
 
-    /* RIGHT EMERALD SWIRL PANEL FOR "EXPLORE CONNECT EARN" */
     .hero-right-wave{
       position:absolute;
       top:0;
@@ -442,15 +436,22 @@
       clip-path:ellipse(92% 78% at 96% 50%);
     }
 
-    /* TOP HEADER BAR INSIDE HERO CANVAS */
+    /* CLEAN TOPBAR (NO SEARCH BAR, NO DESKTOP 3-LINE BUTTON) */
 
     .hero-topbar{
       position:relative;
       z-index:20;
       display:flex;
       align-items:center;
+      justify-content:space-between;
       gap:12px;
-      padding:14px 22px 6px;
+      padding:14px 22px 4px;
+    }
+
+    .mobile-only-left{
+      display:none;
+      align-items:center;
+      gap:9px;
     }
 
     .menu-toggle-btn{
@@ -461,24 +462,20 @@
       place-items:center;
       border-radius:11px;
       border:1px solid var(--border);
-      background:rgba(255,255,255,.82);
+      background:rgba(255,255,255,.88);
       color:var(--heading);
       font-size:17px;
-      transition:background .18s ease;
     }
 
     [data-theme="dark"] .menu-toggle-btn{
-      background:rgba(15,43,46,.85);
+      background:rgba(15,43,46,.88);
     }
 
-    .menu-toggle-btn:hover{background:var(--surface-solid)}
-
     .mobile-mini-logo{
-      display:none;
+      display:inline-flex;
       align-items:center;
       gap:7px;
       text-decoration:none;
-      flex:0 0 auto;
     }
 
     .mobile-mini-logo img{
@@ -495,115 +492,6 @@
       font-weight:800;
     }
 
-    /* PILL SEARCH INPUT */
-
-    .search-shell{
-      position:relative;
-      flex:0 1 420px;
-      min-width:180px;
-    }
-
-    .search-pill{
-      height:40px;
-      display:flex;
-      align-items:center;
-      gap:9px;
-      padding:0 15px;
-      border-radius:999px;
-      border:1.5px solid rgba(140,229,197,.9);
-      background:rgba(255,255,255,.94);
-      box-shadow:0 4px 14px rgba(4,120,87,.07);
-      transition:border-color .18s ease,box-shadow .18s ease;
-    }
-
-    [data-theme="dark"] .search-pill{
-      background:rgba(13,38,41,.94);
-      border-color:var(--border);
-    }
-
-    .search-pill:focus-within{
-      border-color:var(--emerald-mid);
-      box-shadow:0 0 0 3px rgba(16,185,129,.18);
-    }
-
-    .search-pill svg{
-      width:16px;
-      height:16px;
-      flex:0 0 16px;
-      color:var(--emerald);
-    }
-
-    [data-theme="dark"] .search-pill svg{color:var(--emerald-bright)}
-
-    .search-pill input{
-      width:100%;
-      min-width:0;
-      border:0;
-      outline:0;
-      background:transparent;
-      color:var(--heading);
-      font-size:12.2px;
-      font-weight:600;
-    }
-
-    .search-pill input::placeholder{color:var(--muted)}
-
-    .search-clear{
-      display:none;
-      width:20px;
-      height:20px;
-      flex:0 0 20px;
-      border:0;
-      border-radius:50%;
-      background:#d1fae5;
-      color:#065f46;
-      font-size:11px;
-      padding:0;
-    }
-
-    .search-clear.show{display:grid;place-items:center}
-
-    .search-dropdown{
-      display:none;
-      position:absolute;
-      top:calc(100% + 8px);
-      left:0;
-      right:0;
-      z-index:200;
-      max-height:340px;
-      overflow-y:auto;
-      padding:8px;
-      border-radius:16px;
-      border:1.5px solid var(--border);
-      background:var(--surface-solid);
-      box-shadow:0 16px 36px rgba(6,43,49,.18);
-    }
-
-    .search-dropdown.open{display:block}
-
-    .search-hit{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:8px 11px;
-      border-radius:11px;
-      text-decoration:none;
-    }
-
-    .search-hit:hover{background:var(--surface-soft)}
-    .search-hit strong{display:block;color:var(--heading);font-size:12px;font-weight:800}
-    .search-hit span{display:block;color:var(--muted);font-size:10px;font-weight:600}
-    .search-hit-tag{
-      flex:0 0 auto;
-      padding:3px 8px;
-      border-radius:999px;
-      background:#d1fae5;
-      color:#065f46;
-      font-size:9px;
-      font-weight:800;
-    }
-
     .hero-top-actions{
       margin-left:auto;
       display:flex;
@@ -617,7 +505,7 @@
       align-items:center;
       gap:7px;
       height:38px;
-      padding:0 17px;
+      padding:0 18px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.35);
       background:linear-gradient(135deg,#065f46,#047857);
@@ -824,8 +712,6 @@
       color:#6ee7b7;
     }
 
-    /* CENTER 3D GLOBE + 4 COINS STAGE */
-
     .hero-globe-stage{
       position:relative;
       display:flex;
@@ -847,8 +733,6 @@
       filter:drop-shadow(0 12px 24px rgba(4,120,87,.24));
       animation:floatSlow 5.5s ease-in-out infinite;
     }
-
-    /* RIGHT "EXPLORE CONNECT EARN" CALLOUT */
 
     .hero-motto{
       position:relative;
@@ -876,66 +760,74 @@
     }
 
     /* ==========================================
-       3. OFFICIAL SPONSORS STRIP (EXACT DESIGN)
+       3. OFFICIAL SPONSORS BANNER (IMAGE-MATCHED)
     ========================================== */
 
     .sponsors-bar{
       position:relative;
       overflow:hidden;
       margin-top:12px;
-      min-height:66px;
-      border-radius:17px;
-      border:1.5px solid var(--border);
+      min-height:70px;
+      border-radius:18px;
+      border:1.5px solid #7ee2be;
       background:
-        radial-gradient(circle at 8% 50%,rgba(52,211,153,.28),transparent 25%),
-        linear-gradient(95deg,#dcfce7 0%,#f4fffb 45%,#d1fae5 100%);
-      box-shadow:0 8px 22px rgba(4,120,87,.08);
+        radial-gradient(circle at 6% 50%,rgba(16,185,129,.26),transparent 26%),
+        radial-gradient(circle at 75% 50%,rgba(52,211,153,.20),transparent 36%),
+        linear-gradient(92deg,#d6f9e8 0%,#f5fffb 38%,#e8fdf4 72%,#c5f4e0 100%);
+      box-shadow:0 9px 24px rgba(4,120,87,.09);
       display:flex;
       align-items:stretch;
       justify-content:space-between;
-      gap:12px;
+      gap:10px;
     }
 
     [data-theme="dark"] .sponsors-bar{
-      background:linear-gradient(95deg,#0b2b27 0%,#103933 50%,#0b2b27 100%);
+      border-color:#236656;
+      background:linear-gradient(92deg,#0a2926 0%,#103934 45%,#0b2e2b 100%);
     }
 
     .sponsors-left{
       position:relative;
       display:flex;
       align-items:center;
-      gap:12px;
-      padding:10px 16px 10px 18px;
+      gap:13px;
+      padding:11px 16px 11px 24px;
       flex:0 0 auto;
     }
 
+    /* Left emerald diagonal accent wedge just like image */
     .sponsors-left::before{
       content:"";
       position:absolute;
       inset:0 auto 0 0;
-      width:34px;
-      background:linear-gradient(135deg,#059669,#10b981);
-      clip-path:polygon(0 0,100% 0,35% 100%,0 100%);
-      opacity:.85;
+      width:42px;
+      background:linear-gradient(155deg,#10b981 0%,#047857 100%);
+      clip-path:polygon(0 0,100% 0,24% 100%,0 100%);
     }
 
     .megaphone-3d{
       position:relative;
       z-index:1;
-      width:44px;
-      height:44px;
-      flex:0 0 44px;
+      width:46px;
+      height:46px;
+      flex:0 0 46px;
       display:grid;
       place-items:center;
+      filter:drop-shadow(0 5px 10px rgba(4,120,87,.22));
     }
 
-    .sponsors-title-box{position:relative;z-index:1}
+    .sponsors-title-box{
+      position:relative;
+      z-index:1;
+    }
+
     .sponsors-title-box strong{
       display:block;
       color:var(--heading);
-      font-size:15px;
+      font-size:16px;
       font-weight:800;
-      letter-spacing:-.3px;
+      letter-spacing:-.35px;
+      line-height:1.15;
     }
 
     .sponsors-title-box span{
@@ -943,7 +835,7 @@
       color:var(--body);
       font-size:10.5px;
       font-weight:700;
-      margin-top:1px;
+      margin-top:2px;
     }
 
     .sponsors-center{
@@ -951,10 +843,10 @@
       min-width:0;
       display:flex;
       align-items:center;
-      justify-content:space-around;
+      justify-content:space-evenly;
       flex-wrap:wrap;
-      gap:10px 18px;
-      padding:8px 10px;
+      gap:10px 16px;
+      padding:10px 8px;
     }
 
     .sponsor-brand-item{
@@ -963,35 +855,37 @@
       gap:8px;
       padding:6px 12px;
       border-radius:11px;
-      border:1px solid rgba(5,150,105,.22);
-      background:rgba(255,255,255,.78);
+      border:1px solid transparent;
+      background:transparent;
       color:var(--heading);
       text-decoration:none;
-      font-size:13px;
+      font-size:14.5px;
       font-weight:800;
-      letter-spacing:-.2px;
-      transition:transform .18s ease,border-color .18s ease,background .18s ease;
-    }
-
-    [data-theme="dark"] .sponsor-brand-item{
-      background:rgba(13,38,41,.82);
+      letter-spacing:-.25px;
+      transition:transform .18s ease,background .18s ease,border-color .18s ease;
     }
 
     .sponsor-brand-item:hover{
       transform:translateY(-2px);
-      border-color:var(--emerald-mid);
-      background:var(--surface-solid);
+      background:rgba(255,255,255,.85);
+      border-color:var(--border);
+    }
+
+    [data-theme="dark"] .sponsor-brand-item:hover{
+      background:rgba(15,43,46,.85);
     }
 
     .sp-icon{
-      width:24px;
-      height:24px;
+      width:25px;
+      height:25px;
+      flex:0 0 25px;
       border-radius:7px;
       display:grid;
       place-items:center;
       color:#ffffff;
       font-size:11px;
       font-weight:900;
+      box-shadow:0 3px 8px rgba(0,0,0,.14);
     }
 
     .sponsors-right-cta{
@@ -1001,20 +895,22 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      padding:10px 24px 10px 30px;
-      background:linear-gradient(135deg,#047857,#064e3b);
+      padding:11px 24px 11px 32px;
+      background:
+        radial-gradient(circle at 20% 20%,rgba(52,211,153,.28),transparent 55%),
+        linear-gradient(135deg,#059669 0%,#047857 55%,#064e3b 100%);
       color:#ffffff;
       text-decoration:none;
-      clip-path:polygon(14px 0,100% 0,100% 100%,0 100%);
+      clip-path:polygon(16px 0,100% 0,100% 100%,0 100%);
       transition:filter .18s ease;
     }
 
     .sponsors-right-cta:hover{filter:brightness(1.08)}
-    .sponsors-right-cta strong{font-size:13px;font-weight:800;white-space:nowrap}
-    .sponsors-right-cta span{font-size:9.5px;font-weight:700;color:#a7f3d0;margin-top:2px;white-space:nowrap}
+    .sponsors-right-cta strong{font-size:13.5px;font-weight:800;white-space:nowrap}
+    .sponsors-right-cta span{font-size:9.5px;font-weight:700;color:#bbf7d0;margin-top:2px;white-space:nowrap}
 
     /* ==========================================
-       4. TRENDING DEPIN PROJECTS (EXACT DESIGN)
+       4. TRENDING DEPIN PROJECTS
     ========================================== */
 
     .trending-section{
@@ -1116,8 +1012,6 @@
       transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
     }
 
-    .project-card.is-hidden{display:none}
-
     [data-theme="dark"] .project-card{
       border-color:#215d4e;
       background:linear-gradient(180deg,#113236 0%,#0c2629 100%);
@@ -1215,7 +1109,7 @@
     }
 
     /* ==========================================
-       5. BOTTOM TRUST & FEATURE BAR (EXACT DESIGN)
+       5. BOTTOM TRUST & FEATURE BAR
     ========================================== */
 
     .trust-strip-bar{
@@ -1414,10 +1308,9 @@
       .mobile-overlay{position:fixed;inset:0;z-index:145;background:rgba(4,14,27,.45)}
       body.menu-open .mobile-overlay{display:block}
       .main-column{margin-left:0}
-      .mobile-mini-logo{display:inline-flex}
+      .mobile-only-left{display:inline-flex}
       .dashboard-wrap{padding:10px 12px 24px}
-      .hero-topbar{padding:12px 14px 4px;flex-wrap:wrap}
-      .search-shell{order:3;flex:1 1 100%;max-width:none}
+      .hero-topbar{padding:12px 14px 4px}
       .hero-body{padding:10px 15px 18px}
       .projects-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
       .trust-items-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1438,7 +1331,7 @@
   <div class="app-shell">
 
     <!-- ==========================================
-         MINT-GREEN SIDEBAR (EXACT 9-STEP SEQUENCE)
+         MINT-GREEN SIDEBAR (9-STEP SEQUENCE)
     ========================================== -->
 
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
@@ -1467,7 +1360,7 @@
           Home
         </a>
 
-        <!-- 2. DePIN Projects (Decentralized Node Network Logo) -->
+        <!-- 2. DePIN Projects -->
         <a href="depin-pages/depin.html" class="side-link">
           <span class="nav-icon nav-depin">
             <svg viewBox="0 0 24 24">
@@ -1482,7 +1375,7 @@
           DePIN Projects
         </a>
 
-        <!-- 3. Mobile & Community (Smartphone + Wireless Signal Logo) -->
+        <!-- 3. Mobile & Community -->
         <a href="mobile-pages/mobile-mining.html" class="side-link">
           <span class="nav-icon nav-community">
             <svg viewBox="0 0 24 24">
@@ -1495,7 +1388,7 @@
           Mobile &amp; Community
         </a>
 
-        <!-- 4. Airdrops & Campaigns (Parachute Airdrop Logo) -->
+        <!-- 4. Airdrops & Campaigns -->
         <a href="airdrop-pages/airdrops.html" class="side-link">
           <span class="nav-icon nav-airdrop">
             <svg viewBox="0 0 24 24">
@@ -1616,34 +1509,22 @@
       <div class="dashboard-wrap">
 
         <!-- ==========================================
-             HERO CANVAS (TOP SEARCH + HERO + GLOBE + COINS)
+             HERO CANVAS (CLEAN TOPBAR + HERO + GLOBE)
         ========================================== -->
 
         <section class="hero-canvas" aria-labelledby="heroHeading">
 
           <div class="hero-right-wave" aria-hidden="true"></div>
 
-          <!-- TOP BAR INSIDE HERO CANVAS -->
+          <!-- CLEAN TOP BAR (NO SEARCH BAR, NO DESKTOP 3-LINE ICON) -->
           <header class="hero-topbar">
 
-            <button class="menu-toggle-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-
-            <a href="index.html" class="mobile-mini-logo">
-              <img src="logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none';">
-              <span>Total Crypto Hub</span>
-            </a>
-
-            <!-- SEARCH BAR -->
-            <div class="search-shell" id="searchShell">
-              <div class="search-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.35-4.35"></path>
-                </svg>
-                <input type="search" id="globalSearchInput" placeholder="Search DePIN, Project, or Tool..." autocomplete="off" aria-label="Search DePIN, Project, or Tool">
-                <button type="button" class="search-clear" id="searchClearBtn" aria-label="Clear search">✕</button>
-              </div>
-              <div class="search-dropdown" id="searchDropdown" role="listbox"></div>
+            <div class="mobile-only-left">
+              <button class="menu-toggle-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+              <a href="index.html" class="mobile-mini-logo">
+                <img src="logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none';">
+                <span>Total Crypto Hub</span>
+              </a>
             </div>
 
             <div class="hero-top-actions">
@@ -1799,18 +1680,33 @@
         </section>
 
         <!-- ==========================================
-             OFFICIAL SPONSORS BAR (BELOW HERO)
+             OFFICIAL SPONSORS BANNER (IMAGE-MATCHED)
         ========================================== -->
 
         <section class="sponsors-bar" aria-label="Our Official Sponsors">
 
           <div class="sponsors-left">
             <div class="megaphone-3d" aria-hidden="true">
-              <svg viewBox="0 0 48 48" width="42" height="42" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 21 L28 11 L28 35 L8 27 Z" fill="#10b981" stroke="#065f46" stroke-width="2" stroke-linejoin="round"/>
-                <ellipse cx="28" cy="23" rx="4" ry="12" fill="#facc15" stroke="#065f46" stroke-width="2"/>
-                <path d="M12 28 L16 39 L21 38 L17 29" fill="#047857" stroke="#065f46" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M35 16 Q41 23 35 30" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"/>
+              <svg viewBox="0 0 54 54" width="46" height="46" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="megaBody" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#34d399"/>
+                    <stop offset="1" stop-color="#047857"/>
+                  </linearGradient>
+                  <linearGradient id="megaRim" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#fde047"/>
+                    <stop offset="1" stop-color="#f59e0b"/>
+                  </linearGradient>
+                </defs>
+                <!-- Handle -->
+                <path d="M15 31 L20 44 L26 42 L21 31" fill="#065f46" stroke="#022c22" stroke-width="1.8" stroke-linejoin="round"/>
+                <!-- Cone -->
+                <path d="M9 22 L33 11 L33 38 L9 29 Z" fill="url(#megaBody)" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                <!-- Gold Front Rim -->
+                <ellipse cx="33" cy="24.5" rx="4.5" ry="13.5" fill="url(#megaRim)" stroke="#064e3b" stroke-width="2"/>
+                <!-- Sound Waves -->
+                <path d="M41 17 Q47 24.5 41 32" fill="none" stroke="#10b981" stroke-width="2.6" stroke-linecap="round"/>
+                <path d="M45.5 13 Q53 24.5 45.5 36" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round"/>
               </svg>
             </div>
             <div class="sponsors-title-box">
@@ -1831,7 +1727,7 @@
         </section>
 
         <!-- ==========================================
-             TRENDING DEPIN PROJECTS (DIRECTLY BELOW SPONSORS)
+             TRENDING DEPIN PROJECTS
         ========================================== -->
 
         <section class="trending-section" aria-labelledby="trendingHeading">
@@ -1851,7 +1747,7 @@
           <div class="projects-grid" id="projectsGrid">
 
             <!-- #1 TITAN NETWORK -->
-            <a href="projects/titan.html" class="project-card" data-search="titan network edge routing storage usdc">
+            <a href="projects/titan.html" class="project-card">
               <span class="rank-tag">#1</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">T</span>
@@ -1863,7 +1759,7 @@
             </a>
 
             <!-- #2 BIXBERRY -->
-            <a href="projects/bixberry.html" class="project-card" data-search="bixberry mobile background mining">
+            <a href="projects/bixberry.html" class="project-card">
               <span class="rank-tag">#2</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">B</span>
@@ -1875,7 +1771,7 @@
             </a>
 
             <!-- #3 U2U NETWORK -->
-            <a href="projects/u2u.html" class="project-card" data-search="u2u network depin super infrastructure">
+            <a href="projects/u2u.html" class="project-card">
               <span class="rank-tag">#3</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">U</span>
@@ -1887,7 +1783,7 @@
             </a>
 
             <!-- #4 GRASS NETWORK -->
-            <a href="projects/grass.html" class="project-card" data-search="grass network decentralized ai data layer">
+            <a href="projects/grass.html" class="project-card">
               <span class="rank-tag">#4</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">G</span>
@@ -1899,7 +1795,7 @@
             </a>
 
             <!-- #5 HONEYGAIN -->
-            <a href="projects/honeygain.html" class="project-card" data-search="honeygain residential internet monetization">
+            <a href="projects/honeygain.html" class="project-card">
               <span class="rank-tag">#5</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">H</span>
@@ -1911,7 +1807,7 @@
             </a>
 
             <!-- #6 PAWNS.APP -->
-            <a href="projects/pawns.html" class="project-card" data-search="pawns.app bandwidth sharing privacy">
+            <a href="projects/pawns.html" class="project-card">
               <span class="rank-tag">#6</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">P</span>
@@ -1923,7 +1819,7 @@
             </a>
 
             <!-- #7 NODEPAY -->
-            <a href="projects/nodepay.html" class="project-card" data-search="nodepay decentralized ai extension">
+            <a href="projects/nodepay.html" class="project-card">
               <span class="rank-tag">#7</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">N</span>
@@ -1935,7 +1831,7 @@
             </a>
 
             <!-- #8 PACKETSTREAM -->
-            <a href="projects/packetstream.html" class="project-card" data-search="packetstream residential peer proxy node">
+            <a href="projects/packetstream.html" class="project-card">
               <span class="rank-tag">#8</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">P</span>
@@ -1947,7 +1843,7 @@
             </a>
 
             <!-- #9 REPOCKET -->
-            <a href="projects/repocket.html" class="project-card" data-search="repocket spare internet monetization">
+            <a href="projects/repocket.html" class="project-card">
               <span class="rank-tag">#9</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">R</span>
@@ -1959,7 +1855,7 @@
             </a>
 
             <!-- #10 UPROCK -->
-            <a href="projects/uprock.html" class="project-card" data-search="uprock upt mobile ai bandwidth mining">
+            <a href="projects/uprock.html" class="project-card">
               <span class="rank-tag">#10</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">U</span>
@@ -1971,7 +1867,7 @@
             </a>
 
             <!-- #11 MYSTERIUM NETWORK -->
-            <a href="projects/mysterium.html" class="project-card" data-search="mysterium network myst dvpn residential bandwidth">
+            <a href="projects/mysterium.html" class="project-card">
               <span class="rank-tag">#11</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">M</span>
@@ -1983,7 +1879,7 @@
             </a>
 
             <!-- #12 HYRA NETWORK -->
-            <a href="projects/hyra.html" class="project-card" data-search="hyra network pc mobile compute node">
+            <a href="projects/hyra.html" class="project-card">
               <span class="rank-tag">#12</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">H</span>
@@ -1995,7 +1891,7 @@
             </a>
 
             <!-- #13 THETA EDGE NODE -->
-            <a href="projects/theta.html" class="project-card" data-search="theta edge node distributed video ai compute">
+            <a href="projects/theta.html" class="project-card">
               <span class="rank-tag">#13</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">T</span>
@@ -2007,7 +1903,7 @@
             </a>
 
             <!-- #14 SLICE -->
-            <a href="projects/slice.html" class="project-card" data-search="slice browser attention monetization">
+            <a href="projects/slice.html" class="project-card">
               <span class="rank-tag">#14</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">S</span>
@@ -2019,7 +1915,7 @@
             </a>
 
             <!-- #15 NODLE NETWORK -->
-            <a href="projects/nodle.html" class="project-card" data-search="nodle network ble smartphone iot mesh">
+            <a href="projects/nodle.html" class="project-card">
               <span class="rank-tag">#15</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">N</span>
@@ -2031,7 +1927,7 @@
             </a>
 
             <!-- #16 SWASH -->
-            <a href="projects/swash.html" class="project-card" data-search="swash data monetization extension">
+            <a href="projects/swash.html" class="project-card">
               <span class="rank-tag">#16</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">S</span>
@@ -2043,7 +1939,7 @@
             </a>
 
             <!-- #17 OVER THE REALITY -->
-            <a href="projects/over-the-reality.html" class="project-card" data-search="over the reality ovr ar spatial mapping geo node">
+            <a href="projects/over-the-reality.html" class="project-card">
               <span class="rank-tag">#17</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">O</span>
@@ -2055,7 +1951,7 @@
             </a>
 
             <!-- #18 ADREVA -->
-            <a href="projects/adreva.html" class="project-card" data-search="adreva depin advertising privacy">
+            <a href="projects/adreva.html" class="project-card">
               <span class="rank-tag">#18</span>
               <div class="proj-avatar">
                 <span class="proj-fallback" aria-hidden="true">A</span>
@@ -2070,7 +1966,7 @@
         </section>
 
         <!-- ==========================================
-             BOTTOM TRUST & FEATURE STRIP (EXACT DESIGN)
+             BOTTOM TRUST & FEATURE STRIP
         ========================================== -->
 
         <section class="trust-strip-bar" aria-label="Platform Highlights">
@@ -2158,7 +2054,7 @@
   </div>
 
   <!-- ==========================================
-       INTERACTIVE JS (SPONSORS, LIVE SEARCH, THEME)
+       INTERACTIVE JS (SPONSORS, THEME, MOBILE DRAWER)
   ========================================== -->
 
   <script>
@@ -2172,36 +2068,6 @@
         { badge: "S2", color: "#0d9488", name: "Partner Slot #2", url: "legal-pages/contact.html", external: false },
         { badge: "S3", color: "#047857", name: "Partner Slot #3", url: "legal-pages/contact.html", external: false },
         { badge: "AD", color: "#d97706", name: "Sponsor Slot Open", url: "legal-pages/contact.html", external: false }
-      ];
-
-      /* LIVE SEARCH INDEX */
-      const SEARCH_INDEX = [
-        { title: "DePIN Projects Directory", desc: "Automated bandwidth, compute & sensor nodes", tag: "Directory", url: "depin-pages/depin.html" },
-        { title: "Mobile & Community Mining", desc: "Smartphone mining & community apps", tag: "Directory", url: "mobile-pages/mobile-mining.html" },
-        { title: "Airdrops & Campaigns", desc: "Active testnets & free airdrop campaigns", tag: "Directory", url: "airdrop-pages/airdrops.html" },
-        { title: "Wallets & Exchanges", desc: "Safe Web3 wallets & exchange guides", tag: "Directory", url: "wallet-pages/wallets.html" },
-        { title: "Smart Token Finder", desc: "Check live token price in USD & INR", tag: "Tool", url: "token-pages/token-checker.html" },
-        { title: "Earning Calculator", desc: "Calculate daily & monthly crypto earnings", tag: "Tool", url: "earning-pages/earning-calculator.html" },
-        { title: "Gas Fee Checker", desc: "Compare live gas fees across networks", tag: "Tool", url: "tools-pages/gas-checker.html" },
-        { title: "INR Payout Calculator", desc: "Calculate net INR bank payout after fees & tax", tag: "Tool", url: "tools-pages/inr-payout.html" },
-        { title: "Titan Network", desc: "Edge Routing & Storage", tag: "#1 DePIN", url: "projects/titan.html" },
-        { title: "Bixberry", desc: "Mobile Background Mining", tag: "#2 DePIN", url: "projects/bixberry.html" },
-        { title: "U2U Network", desc: "DePIN Super Infrastructure", tag: "#3 DePIN", url: "projects/u2u.html" },
-        { title: "Grass Network", desc: "Decentralized AI Data Layer", tag: "#4 DePIN", url: "projects/grass.html" },
-        { title: "Honeygain", desc: "Residential Internet Monetization", tag: "#5 DePIN", url: "projects/honeygain.html" },
-        { title: "Pawns.app", desc: "Bandwidth Sharing & Privacy", tag: "#6 DePIN", url: "projects/pawns.html" },
-        { title: "Nodepay", desc: "Decentralized AI Extension", tag: "#7 DePIN", url: "projects/nodepay.html" },
-        { title: "PacketStream", desc: "Residential Peer Proxy Node", tag: "#8 DePIN", url: "projects/packetstream.html" },
-        { title: "Repocket", desc: "Spare Internet Monetization", tag: "#9 DePIN", url: "projects/repocket.html" },
-        { title: "UpRock", desc: "Mobile AI Bandwidth Mining", tag: "#10 DePIN", url: "projects/uprock.html" },
-        { title: "Mysterium Network", desc: "dVPN Residential Bandwidth", tag: "#11 DePIN", url: "projects/mysterium.html" },
-        { title: "Hyra Network", desc: "PC & Mobile Compute Node", tag: "#12 DePIN", url: "projects/hyra.html" },
-        { title: "Theta Edge Node", desc: "Distributed Video & AI Compute", tag: "#13 DePIN", url: "projects/theta.html" },
-        { title: "Slice", desc: "Browser Attention Monetization", tag: "#14 DePIN", url: "projects/slice.html" },
-        { title: "Nodle Network", desc: "BLE Smartphone IoT Mesh", tag: "#15 DePIN", url: "projects/nodle.html" },
-        { title: "Swash", desc: "Data Monetization Extension", tag: "#16 DePIN", url: "projects/swash.html" },
-        { title: "Over The Reality", desc: "AR Spatial Mapping & Geo Node", tag: "#17 DePIN", url: "projects/over-the-reality.html" },
-        { title: "Adreva", desc: "DePIN Advertising & Privacy", tag: "#18 DePIN", url: "projects/adreva.html" }
       ];
 
       function renderSponsors() {
@@ -2251,75 +2117,6 @@
           });
         }
 
-        /* LIVE SEARCH & GRID FILTER */
-        const searchShell = document.getElementById("searchShell");
-        const searchInput = document.getElementById("globalSearchInput");
-        const clearBtn = document.getElementById("searchClearBtn");
-        const dropdown = document.getElementById("searchDropdown");
-        const cards = Array.from(document.querySelectorAll("#projectsGrid .project-card"));
-
-        function updateSearch(raw) {
-          const q = raw.trim().toLowerCase();
-          if (clearBtn) clearBtn.classList.toggle("show", raw.length > 0);
-
-          cards.forEach((card) => {
-            if (!q) {
-              card.classList.remove("is-hidden");
-              return;
-            }
-            const text = (card.dataset.search || card.textContent || "").toLowerCase();
-            card.classList.toggle("is-hidden", !text.includes(q));
-          });
-
-          if (!dropdown) return;
-          if (!q) {
-            dropdown.classList.remove("open");
-            dropdown.innerHTML = "";
-            return;
-          }
-
-          const hits = SEARCH_INDEX.filter((item) =>
-            item.title.toLowerCase().includes(q) ||
-            item.desc.toLowerCase().includes(q) ||
-            item.tag.toLowerCase().includes(q)
-          ).slice(0, 7);
-
-          dropdown.innerHTML = hits.length
-            ? hits.map((h) => `
-                <a href="${h.url}" class="search-hit">
-                  <span>
-                    <strong>${h.title}</strong>
-                    <span>${h.desc}</span>
-                  </span>
-                  <span class="search-hit-tag">${h.tag}</span>
-                </a>
-              `).join("")
-            : `<div style="padding:12px;text-align:center;font-size:11px;color:var(--muted);font-weight:700;">No matching project or tool found</div>`;
-
-          dropdown.classList.add("open");
-        }
-
-        if (searchInput) {
-          searchInput.addEventListener("input", () => updateSearch(searchInput.value));
-          searchInput.addEventListener("focus", () => {
-            if (searchInput.value.trim()) updateSearch(searchInput.value);
-          });
-        }
-
-        if (clearBtn && searchInput) {
-          clearBtn.addEventListener("click", () => {
-            searchInput.value = "";
-            updateSearch("");
-            searchInput.focus();
-          });
-        }
-
-        document.addEventListener("click", (e) => {
-          if (searchShell && !searchShell.contains(e.target) && dropdown) {
-            dropdown.classList.remove("open");
-          }
-        });
-
         /* MOBILE SIDEBAR & COMMUNITY MENU */
         const menuBtn = document.getElementById("mobileMenuBtn");
         const overlay = document.getElementById("mobileOverlay");
@@ -2352,7 +2149,6 @@
           if (e.key === "Escape") {
             if (commPop) commPop.classList.remove("show");
             if (commBtn) commBtn.setAttribute("aria-expanded", "false");
-            if (dropdown) dropdown.classList.remove("open");
             closeSidebar();
           }
         });
