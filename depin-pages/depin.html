@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Explore and compare DePIN projects, decentralized infrastructure nodes, and reward networks on Total Crypto Hub.">
   <meta name="keywords" content="DePIN, Crypto Nodes, Bandwidth Sharing, Compute, Storage, Total Crypto Hub">
-  <meta name="theme-color" content="#062d2d">
+  <meta name="theme-color" content="#c9ffea">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <title>DePIN Projects | Total Crypto Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,19 +18,18 @@
       --bg: #f3fbf9;
       --surface: #ffffff;
       --surface-soft: #effcf8;
-      --border: #c8eee1;
+      --border: #bfead9;
       --heading: #102344;
       --body: #29415c;
-      --muted: #6c8299;
+      --muted: #5d748c;
       --green: #08a86b;
-      --green-dark: #008556;
-      --green-light: #39e7a7;
-      --green-soft: #e3fff3;
+      --green-dark: #067d4f;
+      --green-light: #32e5a1;
+      --green-soft: #dcfce9;
       --teal: #08b5a0;
       --navy: #062b31;
       --sidebar-width: 258px;
-      --sponsor-height: 74px;
-      --shadow: 0 12px 32px rgba(8, 168, 107, .09);
+      --shadow: 0 12px 32px rgba(8, 168, 107, 0.09);
       --sidebar-bg: linear-gradient(180deg, #e4fcf1 0%, #d5f7e8 52%, #e4fcf1 100%);
       --sidebar-border: #7ee2be;
       --sidebar-border-soft: #b7eed8;
@@ -38,12 +37,12 @@
       --emerald-bright: #10b981;
     }
 
-    [data-theme="dark"] {
+    html[data-theme="dark"], body[data-theme="dark"] {
       color-scheme: dark;
       --bg: #081a20;
       --surface: #10272c;
-      --surface-soft: #143139;
-      --border: #254b4b;
+      --surface-soft: #14333a;
+      --border: #25574d;
       --heading: #f0fff9;
       --body: #d4eee5;
       --muted: #91b3ad;
@@ -53,7 +52,7 @@
       --green-soft: #123e34;
       --teal: #22cbbb;
       --navy: #061c24;
-      --shadow: 0 14px 34px rgba(0, 0, 0, .24);
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
       --sidebar-bg: linear-gradient(180deg, #092226 0%, #0d2e31 55%, #092226 100%);
       --sidebar-border: #215d4e;
       --sidebar-border-soft: #1b4d41;
@@ -65,8 +64,9 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
+      min-width: 320px;
       min-height: 100vh;
-      overflow-x: hidden;
+      overflow-x: clip;
       background: var(--bg);
       color: var(--body);
       font-family: "Plus Jakarta Sans", sans-serif;
@@ -76,214 +76,91 @@
     button, input, select { font: inherit; }
     button { cursor: pointer; }
 
-    /* LIGHT MINT SPONSOR HEADER BAR (MATCHES WEBSITE THEME) */
-    .sponsor-strip {
+    /* ==========================================
+       MOBILE-ONLY COMPACT TOP BAR (HIDDEN ON DESKTOP)
+    ========================================== */
+    .mobile-topbar {
+      display: none;
       position: sticky;
       top: 0;
       z-index: 200;
-      margin-left: var(--sidebar-width);
-      min-height: var(--sponsor-height);
-      display: flex;
+      min-height: 58px;
+      padding: 8px 12px;
       align-items: center;
-      overflow: hidden;
-      color: #071b38;
-      background:
-        radial-gradient(circle at 8% 50%, rgba(0,235,165,.28), transparent 24%),
-        radial-gradient(circle at 92% 50%, rgba(0,210,160,.24), transparent 24%),
-        linear-gradient(95deg, #c9ffea 0%, #f2fff9 48%, #c4fcef 100%);
+      justify-content: space-between;
+      gap: 8px;
+      background: linear-gradient(95deg, #c9ffea 0%, #f2fff9 50%, #c4fcef 100%);
       border-bottom: 1px solid #96ecd0;
-      box-shadow: 0 4px 18px rgba(0,130,90,.09);
-      isolation: isolate;
+      box-shadow: 0 4px 14px rgba(0, 130, 90, 0.08);
     }
-    [data-theme="dark"] .sponsor-strip {
-      color: #f0fff8;
-      background:
-        radial-gradient(circle at 8% 50%, rgba(0,245,158,.18), transparent 22%),
-        linear-gradient(95deg, #0b2b27 0%, #0f3530 50%, #0b2b27 100%);
+    html[data-theme="dark"] .mobile-topbar, body[data-theme="dark"] .mobile-topbar {
+      background: linear-gradient(95deg, #0b2b27 0%, #0f3530 50%, #0b2b27 100%);
       border-bottom: 1px solid #245f4d;
     }
-    .sponsor-inner {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 1800px;
-      min-height: var(--sponsor-height);
-      margin: auto;
-      padding: 7px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
+    .mobile-topbar-left { display: flex; align-items: center; gap: 9px; min-width: 0; }
     .mobile-menu-btn {
-      display: none;
-      width: 32px;
-      height: 32px;
-      border: 1px solid #00a86b;
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      border: 1px solid rgba(8, 168, 107, 0.35);
       border-radius: 10px;
-      color: #042b1d;
-      background: rgba(255, 255, 255, .85);
-      font-size: 15px;
+      color: var(--heading);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
       font-weight: 800;
-      cursor: pointer;
+      display: grid;
+      place-items: center;
     }
-    [data-theme="dark"] .mobile-menu-btn {
-      color: #f0fff8;
-      background: rgba(16, 39, 44, .9);
-      border-color: #36e5a0;
+    html[data-theme="dark"] .mobile-menu-btn, body[data-theme="dark"] .mobile-menu-btn {
+      background: rgba(16, 39, 44, 0.9);
     }
-    .header-brand {
-      min-width: 210px;
-      flex: 0 0 auto;
+    .mobile-brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 8px;
       text-decoration: none;
+      min-width: 0;
     }
-    .header-logo {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 44px;
+    .mobile-brand-logo {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      border-radius: 50%;
       overflow: hidden;
       display: grid;
       place-items: center;
-      border-radius: 50%;
       border: 2px solid #00bd79;
       background: radial-gradient(circle at 30% 25%, #5bffc8, #009c6d 65%, #004938);
-      box-shadow: 0 3px 12px rgba(0,175,115,.25);
       color: #fff;
-      font-size: 14px;
+      font-size: 11px;
       font-weight: 900;
     }
-    .header-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-    .header-brand-name { display: block; color: var(--heading); font-size: 17px; font-weight: 800; line-height: 1.15; letter-spacing: -.45px; }
-    .header-brand-subtitle { display: block; margin-top: 2px; color: #008556; font-size: 10px; font-weight: 800; }
-    .header-brand-subtitle b { color: #007b51; }
-    [data-theme="dark"] .header-brand-subtitle, [data-theme="dark"] .header-brand-subtitle b { color: #4ef2b1; }
-
-    .header-v-sep {
-      width: 1.5px;
-      height: 36px;
-      flex: 0 0 1.5px;
-      background: rgba(7,27,56,.22);
-    }
-    [data-theme="dark"] .header-v-sep { background: rgba(255,255,255,.2); }
-
-    /* WIDE SPONSOR BANNER SLOT (728x90 / 970x90) */
-    .sponsor-slot-box {
-      flex: 1 1 auto;
-      max-width: 970px;
-      min-width: 280px;
-      height: 58px;
-      padding: 6px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      border: 1.8px dashed #00a86b;
-      border-radius: 14px;
-      background: linear-gradient(90deg, rgba(195,255,231,.72), rgba(245,255,250,.92) 50%, rgba(195,255,231,.72));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), 0 3px 12px rgba(0,150,100,.08);
-      text-decoration: none;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .sponsor-slot-box:hover {
-      transform: translateY(-1px);
-      border-color: #008252;
-      box-shadow: 0 6px 16px rgba(0,160,105,.16);
-    }
-    [data-theme="dark"] .sponsor-slot-box {
-      border-color: #36e5a0;
-      background: linear-gradient(90deg, rgba(18,62,50,.85), rgba(13,41,38,.95) 50%, rgba(18,62,50,.85));
-      box-shadow: none;
-    }
-    .slot-megaphone {
-      font-size: 27px;
-      line-height: 1;
-      flex: 0 0 auto;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,.14));
-    }
-    .slot-arrow {
-      flex: 1 1 60px;
-      max-width: 130px;
-      height: 16px;
-      display: flex;
-      align-items: center;
-      color: #009960;
-    }
-    [data-theme="dark"] .slot-arrow { color: #4ef2b1; }
-    .slot-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
-    .slot-center-text {
-      text-align: center;
-      flex: 0 0 auto;
-    }
-    .slot-center-text strong {
+    .mobile-brand-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .mobile-brand-title {
       display: block;
       color: var(--heading);
-      font-size: 17px;
+      font-size: 14px;
+      font-weight: 800;
       line-height: 1.15;
-      font-weight: 800;
-      letter-spacing: -.35px;
-    }
-    .slot-center-text span {
-      display: block;
-      margin-top: 2px;
-      color: var(--body);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .sponsor-right-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 0 0 auto;
-    }
-    .sponsor-cta {
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      padding: 11px 20px;
-      border-radius: 999px;
-      border: 1.5px solid #00a86b;
-      color: #042b1d;
-      background: linear-gradient(135deg, #8affb8, #3be898);
-      box-shadow: 0 4px 14px rgba(0,185,115,.25), inset 0 1px 1px rgba(255,255,255,.75);
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 800;
       white-space: nowrap;
-      transition: transform .2s, box-shadow .2s;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .sponsor-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(0,185,115,.38);
-    }
-    .sponsor-orb-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      border: 1.5px solid rgba(255,255,255,.75);
-      color: #ffffff;
-      background: linear-gradient(145deg, #818cf8, #4f46e5);
-      box-shadow: 0 4px 12px rgba(79,70,229,.28);
-      text-decoration: none;
-      font-size: 12px;
+    .mobile-brand-sub {
+      display: block;
+      color: #008556;
+      font-size: 9px;
       font-weight: 800;
-      transition: transform .2s;
     }
-    .sponsor-orb-btn:hover { transform: translateY(-1px); }
+    html[data-theme="dark"] .mobile-brand-sub, body[data-theme="dark"] .mobile-brand-sub { color: #4ef2b1; }
+    .mobile-topbar-right { display: flex; align-items: center; gap: 6px; }
 
     /* ==========================================
-       UPDATED MINT-GREEN SIDEBAR
+       FULL-HEIGHT SIDEBAR WITH BRAND LOGO AT TOP
     ========================================== */
     .sidebar {
       position: fixed;
-      z-index: 210;
+      z-index: 150;
       inset: 0 auto 0 0;
       width: var(--sidebar-width);
       height: 100vh;
@@ -293,11 +170,11 @@
       padding: 16px 13px 15px;
       background: var(--sidebar-bg);
       border-right: 1.5px solid var(--sidebar-border);
-      box-shadow: 8px 0 28px rgba(4, 120, 87, .07);
+      box-shadow: 8px 0 28px rgba(4, 120, 87, 0.07);
       overflow-y: auto;
       overflow-x: hidden;
       overscroll-behavior: contain;
-      transition: transform .25s ease;
+      transition: transform 0.25s ease;
     }
     .sidebar::-webkit-scrollbar { width: 5px; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--sidebar-border); border-radius: 10px; }
@@ -306,49 +183,51 @@
       display: flex;
       align-items: center;
       gap: 11px;
-      padding: 2px 6px 15px;
-      margin-bottom: 10px;
+      padding: 4px 6px 15px;
+      margin-bottom: 12px;
       border-bottom: 1px solid var(--sidebar-border-soft);
       text-decoration: none;
       flex-shrink: 0;
     }
-    .brand-orb {
+    .sidebar-logo {
       width: 44px;
       height: 44px;
       flex: 0 0 44px;
-      border-radius: 50%;
       overflow: hidden;
       display: grid;
       place-items: center;
-      border: 2px solid #059669;
-      background: radial-gradient(circle at 30% 25%, #6ee7b7, #059669 65%, #064e3b);
-      box-shadow: 0 4px 14px rgba(5, 150, 105, .32);
+      border-radius: 50%;
+      border: 2px solid #00bd79;
+      background: radial-gradient(circle at 30% 25%, #5bffc8, #009c6d 65%, #004938);
+      box-shadow: 0 4px 12px rgba(0, 175, 115, 0.24);
       color: #fff;
       font-size: 13px;
       font-weight: 900;
     }
-    .brand-orb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    .brand-title {
+    .sidebar-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .sidebar-brand-text { min-width: 0; }
+    .sidebar-brand-name {
       display: block;
       color: var(--heading);
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -.45px;
+      line-height: 1.15;
+      letter-spacing: -0.45px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .brand-sub {
+    .sidebar-brand-subtitle {
       display: block;
       margin-top: 2px;
-      color: var(--emerald);
+      color: #008556;
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    [data-theme="dark"] .brand-sub { color: var(--emerald-bright); }
+    html[data-theme="dark"] .sidebar-brand-subtitle, body[data-theme="dark"] .sidebar-brand-subtitle { color: #4ef2b1; }
 
     .side-nav {
       display: grid;
@@ -368,28 +247,28 @@
       font-size: 12.2px;
       font-weight: 700;
       white-space: nowrap;
-      transition: background .18s ease, border-color .18s ease, transform .18s ease;
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
     }
     .side-link:hover {
-      background: rgba(255, 255, 255, .68);
+      background: rgba(255, 255, 255, 0.68);
       border-color: var(--sidebar-border);
       transform: translateX(2px);
     }
-    [data-theme="dark"] .side-link:hover {
-      background: rgba(16, 185, 129, .14);
+    html[data-theme="dark"] .side-link:hover, body[data-theme="dark"] .side-link:hover {
+      background: rgba(16, 185, 129, 0.14);
     }
     .side-link.active {
       color: #ffffff;
       background: linear-gradient(95deg, #047857 0%, #10b981 58%, #34d399 100%);
       border-color: #059669;
-      box-shadow: 0 6px 16px rgba(5, 150, 105, .28);
+      box-shadow: 0 6px 16px rgba(5, 150, 105, 0.28);
     }
     .side-link.active::after {
       content: "›";
       margin-left: auto;
       font-size: 16px;
       font-weight: 800;
-      opacity: .92;
+      opacity: 0.92;
     }
     .nav-icon {
       width: 31px;
@@ -398,7 +277,7 @@
       display: grid;
       place-items: center;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(4, 120, 87, .08);
+      box-shadow: 0 2px 6px rgba(4, 120, 87, 0.08);
     }
     .nav-icon svg {
       width: 17px;
@@ -410,7 +289,7 @@
       stroke-linejoin: round;
     }
     .side-link.active .nav-icon {
-      background: rgba(255, 255, 255, .24);
+      background: rgba(255, 255, 255, 0.24);
       color: #ffffff;
     }
     .nav-home { color: #047857; background: #ffffff; }
@@ -431,13 +310,13 @@
       border-radius: 18px;
       border: 1.5px solid var(--sidebar-border);
       background:
-        radial-gradient(circle at 85% 15%, rgba(52, 211, 153, .28), transparent 45%),
-        linear-gradient(145deg, rgba(255, 255, 255, .92), rgba(220, 252, 238, .9));
-      box-shadow: 0 8px 20px rgba(4, 120, 87, .09);
+        radial-gradient(circle at 85% 15%, rgba(52, 211, 153, 0.28), transparent 45%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(220, 252, 238, 0.9));
+      box-shadow: 0 8px 20px rgba(4, 120, 87, 0.09);
       text-align: center;
       flex-shrink: 0;
     }
-    [data-theme="dark"] .side-community-card {
+    html[data-theme="dark"] .side-community-card, body[data-theme="dark"] .side-community-card {
       background: linear-gradient(145deg, #103335, #0c2629);
     }
     .comm-card-top {
@@ -457,7 +336,7 @@
       place-items: center;
       background: linear-gradient(135deg, #10b981, #047857);
       color: #ffffff;
-      box-shadow: 0 4px 10px rgba(5, 150, 105, .25);
+      box-shadow: 0 4px 10px rgba(5, 150, 105, 0.25);
     }
     .comm-badge-icon svg {
       width: 20px;
@@ -495,12 +374,12 @@
       text-decoration: none;
       font-size: 11.5px;
       font-weight: 800;
-      box-shadow: 0 5px 14px rgba(4, 120, 87, .28);
-      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 5px 14px rgba(4, 120, 87, 0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
     .side-join-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 7px 18px rgba(4, 120, 87, .36);
+      box-shadow: 0 7px 18px rgba(4, 120, 87, 0.36);
     }
 
     .side-help-card {
@@ -512,14 +391,14 @@
       border-radius: 17px;
       border: 1.5px solid var(--sidebar-border);
       background:
-        radial-gradient(circle at 90% 50%, rgba(52, 211, 153, .22), transparent 45%),
-        rgba(255, 255, 255, .88);
+        radial-gradient(circle at 90% 50%, rgba(52, 211, 153, 0.22), transparent 45%),
+        rgba(255, 255, 255, 0.88);
       text-decoration: none;
       flex-shrink: 0;
-      transition: border-color .18s ease, transform .18s ease;
+      transition: border-color 0.18s ease, transform 0.18s ease;
     }
-    [data-theme="dark"] .side-help-card {
-      background: rgba(15, 43, 46, .9);
+    html[data-theme="dark"] .side-help-card, body[data-theme="dark"] .side-help-card {
+      background: rgba(15, 43, 46, 0.9);
     }
     .side-help-card:hover {
       border-color: var(--emerald-bright);
@@ -535,7 +414,7 @@
       background: #d1fae5;
       color: #047857;
     }
-    [data-theme="dark"] .help-headset {
+    html[data-theme="dark"] .help-headset, body[data-theme="dark"] .help-headset {
       background: #134237;
       color: #6ee7b7;
     }
@@ -561,66 +440,337 @@
       font-size: 10.5px;
       font-weight: 800;
     }
-    [data-theme="dark"] .side-help-card span:last-child { color: var(--emerald-bright); }
+    html[data-theme="dark"] .side-help-card span:last-child, body[data-theme="dark"] .side-help-card span:last-child { color: var(--emerald-bright); }
 
-    /* MAIN COLUMN */
+    /* ==========================================
+       MAIN COLUMN (NO TOP BAR — STARTS WITH HERO)
+    ========================================== */
     .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
+    main { width: 100%; max-width: 1520px; margin: 0 auto; padding: 16px clamp(16px, 2vw, 24px) 36px; }
 
-    /* PAGE CONTENT */
-    main { width: 100%; max-width: 1700px; margin: 0 auto; padding: 18px clamp(16px,2vw,28px) 35px; }
-
-    /* COMPACT DEPIN HERO BANNER */
+    /* HERO BANNER WITH TOP-RIGHT PARTNER, COMMUNITY & THEME CONTROLS */
     .hero-panel {
       position: relative;
       isolation: isolate;
-      overflow: hidden;
-      min-height: 144px;
+      overflow: visible;
+      min-height: 205px;
       display: grid;
-      grid-template-columns: minmax(0,1.25fr) minmax(220px,.52fr);
+      grid-template-columns: minmax(0, 1.2fr) minmax(270px, 0.8fr);
       align-items: center;
-      gap: 16px;
-      padding: 16px 24px;
-      border: 1px solid #96ecd0;
+      gap: 20px;
+      padding: 22px 28px;
+      border: 1.5px solid #8ae6c6;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 86% 24%, rgba(8, 168, 107, 0.28), transparent 36%),
+        linear-gradient(108deg, #d7ffef 0%, #ebfff7 50%, #9ff2dd 100%);
+      box-shadow: 0 10px 26px rgba(8, 168, 107, 0.12);
+    }
+    html[data-theme="dark"] .hero-panel, body[data-theme="dark"] .hero-panel {
+      border-color: #256650;
+      background:
+        radial-gradient(circle at 86% 24%, rgba(28, 223, 157, 0.24), transparent 36%),
+        linear-gradient(105deg, #0f2f2b, #123e38 55%, #115147);
+    }
+
+    /* TOP-RIGHT CONTROLS INSIDE HERO BANNER (MATCHING HOME PAGE) */
+    .hero-top-controls {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .partner-pill-btn {
+      min-height: 36px;
+      padding: 0 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: linear-gradient(135deg, #065f46, #047857);
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.26);
+      white-space: nowrap;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .partner-pill-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(4, 120, 87, 0.36);
+    }
+    .community-dropdown { position: relative; flex-shrink: 0; }
+    .hero-circle-btn {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(8, 168, 107, 0.38);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--heading);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      line-height: 1;
+      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.12);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+    html[data-theme="dark"] .hero-circle-btn, body[data-theme="dark"] .hero-circle-btn {
+      background: rgba(16, 39, 44, 0.92);
+      border-color: #2b6656;
+      color: #f0fff9;
+    }
+    .hero-circle-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--green);
+      color: var(--green);
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 250;
+      top: calc(100% + 9px);
+      right: 0;
+      min-width: 195px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
+    }
+    .dropdown-content.show { display: block; animation: fadeIn 0.16s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown-content a {
+      display: flex;
+      gap: 9px;
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--border);
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .dropdown-content a:last-child { border-bottom: 0; }
+    .dropdown-content a:hover { color: var(--green); background: var(--green-soft); }
+
+    .hero-copy { position: relative; z-index: 2; max-width: 660px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      padding: 5px 12px;
+      border: 1px solid rgba(8, 168, 107, 0.35);
+      border-radius: 999px;
+      color: #008556;
+      background: rgba(255, 255, 255, 0.85);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+    html[data-theme="dark"] .eyebrow, body[data-theme="dark"] .eyebrow { color: #8af0c5; background: rgba(8, 40, 35, 0.65); }
+    .hero-copy h1 {
+      margin: 0 0 8px;
+      color: #102344;
+      font-size: clamp(28px, 2.8vw, 38px);
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+    .hero-copy h1 span { color: #08a86b; }
+    html[data-theme="dark"] .hero-copy h1, body[data-theme="dark"] .hero-copy h1 { color: #f0fff9; }
+    html[data-theme="dark"] .hero-copy h1 span, body[data-theme="dark"] .hero-copy h1 span { color: #5df0bd; }
+    .hero-copy p {
+      max-width: 600px;
+      margin: 0;
+      color: #2f4e68;
+      font-size: 12.5px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+    html[data-theme="dark"] .hero-copy p, body[data-theme="dark"] .hero-copy p { color: #cae9df; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+    .primary-cta, .secondary-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 17px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+    .primary-cta {
+      color: #fff;
+      background: linear-gradient(135deg, #08a86b, #008556);
+      box-shadow: 0 5px 14px rgba(8, 168, 107, 0.25);
+    }
+    .primary-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(8, 168, 107, 0.34); }
+    .secondary-cta {
+      color: #008556;
+      border: 1.5px solid #08a86b;
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .secondary-cta:hover { background: #fff; transform: translateY(-1px); }
+    html[data-theme="dark"] .secondary-cta, body[data-theme="dark"] .secondary-cta { color: #8af0c5; background: rgba(8, 40, 35, 0.65); }
+
+    /* Hero Art Illustration */
+    .hero-art {
+      position: relative;
+      min-height: 165px;
+      padding-top: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-svg {
+      display: block;
+      width: min(100%, 330px);
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 12px 20px rgba(8, 168, 107, 0.22));
+    }
+
+    /* ==========================================
+       SPONSORSHIP BANNER RIGHT BELOW HERO
+       (MATCHING HOME PAGE OFFICIAL SPONSORS POSITION)
+    ========================================== */
+    .sponsor-banner-bar {
+      width: 100%;
+      min-height: 90px;
+      margin-top: 15px;
+      padding: 12px 22px;
+      border: 1.8px dashed #08a86b;
       border-radius: 18px;
       background:
-        radial-gradient(circle at 88% 16%,rgba(8,168,107,.24),transparent 30%),
-        linear-gradient(108deg,#dffff1 0%,#edfff8 50%,#aaf4e2 100%);
-      box-shadow: 0 8px 22px rgba(8,168,107,.10);
+        radial-gradient(circle at 12% 50%, rgba(16, 214, 145, 0.2), transparent 34%),
+        radial-gradient(circle at 88% 50%, rgba(8, 168, 107, 0.22), transparent 34%),
+        linear-gradient(95deg, #d7ffef 0%, #f5fffb 50%, #d4fcee 100%);
+      box-shadow: 0 6px 20px rgba(8, 168, 107, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
-    [data-theme="dark"] .hero-panel { border-color:#215d4c; background:radial-gradient(circle at 88% 5%,rgba(28,223,157,.2),transparent 28%),linear-gradient(105deg,#102e2b,#123b36 55%,#124e45); }
-    .hero-copy { position:relative; z-index:2; max-width:680px; }
-    .eyebrow { display:inline-flex; align-items:center; gap:6px; margin-bottom:6px; padding:4px 10px; border:1px solid rgba(8,168,107,.32); border-radius:999px; color:#008556; background:rgba(255,255,255,.78); font-size:8.5px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; }
-    [data-theme="dark"] .eyebrow { color:#8af0c5; background:rgba(8,40,35,.55); }
-    .hero-copy h1 { margin:0 0 5px; color:#102344; font-size:clamp(24px,2.4vw,34px); line-height:1.12; font-weight:800; letter-spacing:-1px; }
-    .hero-copy h1 span { color:#08a86b; }
-    [data-theme="dark"] .hero-copy h1 { color:#f0fff9; }
-    [data-theme="dark"] .hero-copy h1 span { color:#5df0bd; }
-    .hero-copy p { max-width:620px; margin:0; color:#31516a; font-size:11.5px; line-height:1.55; font-weight:600; }
-    [data-theme="dark"] .hero-copy p { color:#cae9df; }
-    .hero-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:11px; }
-    .primary-cta,.secondary-cta { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:8px 14px; border-radius:999px; text-decoration:none; font-size:9.5px; font-weight:800; transition:.2s ease; }
-    .primary-cta { color:#fff; background:linear-gradient(135deg,#08a86b,#008556); box-shadow:0 5px 14px rgba(8,168,107,.24); }
-    .primary-cta:hover { transform:translateY(-1px); box-shadow:0 8px 18px rgba(8,168,107,.32); }
-    .secondary-cta { color:#008556; border:1px solid #08a86b; background:rgba(255,255,255,.72); }
-    .secondary-cta:hover { background:#fff; transform:translateY(-1px); }
-    [data-theme="dark"] .secondary-cta { color:#8af0c5; background:rgba(8,40,35,.55); }
-    .hero-art { position:relative; min-height:112px; display:flex; align-items:center; justify-content:flex-end; }
-    .hero-svg { display:block; width:min(100%,235px); height:auto; overflow:visible; filter:drop-shadow(0 8px 12px rgba(8,168,107,.16)); }
+    .sponsor-banner-bar:hover {
+      transform: translateY(-1px);
+      border-color: #067d4f;
+      box-shadow: 0 10px 24px rgba(8, 168, 107, 0.15);
+    }
+    html[data-theme="dark"] .sponsor-banner-bar, body[data-theme="dark"] .sponsor-banner-bar {
+      border-color: #26c289;
+      background:
+        radial-gradient(circle at 12% 50%, rgba(32, 217, 154, 0.16), transparent 34%),
+        linear-gradient(95deg, #0d312c 0%, #113a35 50%, #0d312c 100%);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+    }
+    .sponsor-left-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .sponsor-megaphone {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid #96ecd0;
+      font-size: 22px;
+      box-shadow: 0 3px 10px rgba(8, 168, 107, 0.1);
+    }
+    html[data-theme="dark"] .sponsor-megaphone, body[data-theme="dark"] .sponsor-megaphone {
+      background: rgba(16, 39, 44, 0.9);
+      border-color: #2b6656;
+    }
+    .sponsor-arrow {
+      flex: 1 1 70px;
+      max-width: 150px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      color: #08a86b;
+    }
+    html[data-theme="dark"] .sponsor-arrow, body[data-theme="dark"] .sponsor-arrow { color: #4ef2b1; }
+    .sponsor-arrow svg { width: 100%; height: 16px; display: block; overflow: visible; }
+    .sponsor-center-copy {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+    .sponsor-center-copy strong {
+      display: block;
+      color: var(--heading);
+      font-size: 16.5px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .sponsor-center-copy span {
+      display: block;
+      margin-top: 3px;
+      color: var(--body);
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+    .sponsor-cta-pill {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      border: 1.5px solid #08a86b;
+      color: #042b1d;
+      background: linear-gradient(135deg, #8affb8, #3be898);
+      box-shadow: 0 4px 14px rgba(0, 185, 115, 0.24), inset 0 1px 1px rgba(255, 255, 255, 0.75);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
 
     /* PROJECT LIST HEADING + FILTER CHIPS */
-    .projects-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:14px; flex-wrap:wrap; margin:18px 1px 12px; }
-    .heading-title-wrap { position:relative; padding-left:14px; }
-    .heading-title-wrap::before { content:""; position:absolute; left:0; top:2px; bottom:3px; width:5px; border-radius:999px; background:linear-gradient(#08a86b,#39e7a7); }
-    .projects-heading h2 { margin:0; color:var(--heading); font-size:20px; font-weight:800; letter-spacing:-.5px; }
-    .projects-heading p { margin:4px 0 0; color:var(--muted); font-size:10.5px; }
-    .filter-row { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:7px; }
-    .filter-btn,.status-select { min-height:34px; display:inline-flex; align-items:center; justify-content:center; padding:0 13px; border:1px solid #b4edd6; border-radius:999px; color:var(--heading); background:var(--surface); font-size:9.5px; font-weight:800; white-space:nowrap; transition:.18s ease; }
-    [data-theme="dark"] .filter-btn, [data-theme="dark"] .status-select { border-color: var(--border); color: var(--body); }
-    .filter-btn:hover,.status-select:focus { border-color: var(--green); color:var(--green-dark); background: var(--green-soft); }
-    .filter-btn.active { color:#fff; background:linear-gradient(135deg,#08a86b,#008556); border-color:transparent; box-shadow:0 5px 13px rgba(8,168,107,.24); }
-    .status-select { outline:none; cursor:pointer; }
+    .projects-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; margin: 20px 1px 12px; }
+    .heading-title-wrap { position: relative; padding-left: 14px; }
+    .heading-title-wrap::before { content: ""; position: absolute; left: 0; top: 2px; bottom: 3px; width: 5px; border-radius: 999px; background: linear-gradient(#08a86b, #39e7a7); }
+    .projects-heading h2 { margin: 0; color: var(--heading); font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+    .projects-heading p { margin: 4px 0 0; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .filter-row { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 7px; }
+    .filter-btn, .status-select {
+      min-height: 35px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 13px;
+      border: 1.5px solid #a8ebd2;
+      border-radius: 999px;
+      color: var(--heading);
+      background: var(--surface);
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: 0.18s ease;
+    }
+    html[data-theme="dark"] .filter-btn, body[data-theme="dark"] .filter-btn,
+    html[data-theme="dark"] .status-select, body[data-theme="dark"] .status-select { border-color: var(--border); color: var(--body); }
+    .filter-btn:hover, .status-select:focus { border-color: var(--green); color: var(--green-dark); background: var(--green-soft); }
+    .filter-btn.active { color: #fff; background: linear-gradient(135deg, #08a86b, #008556); border-color: transparent; box-shadow: 0 5px 13px rgba(8, 168, 107, 0.24); }
+    .status-select { outline: none; cursor: pointer; }
 
-    /* PROFESSIONAL BRAND-STYLED SEARCH BAR (LEFT ICON + MINT-GREEN ACCENT) */
+    /* SEARCH BAR */
     .directory-toolbar {
       display: flex;
       align-items: center;
@@ -629,15 +779,15 @@
       gap: 14px;
       margin: 0 0 16px;
       padding: 12px 16px;
-      border: 1.5px solid #96ecd0;
+      border: 1.5px solid #8ae6c6;
       border-radius: 18px;
-      background: linear-gradient(95deg, #e7fff4 0%, var(--surface) 45%, #e3fff6 100%);
-      box-shadow: 0 6px 18px rgba(8, 168, 107, .08);
+      background: linear-gradient(95deg, #e2fff3 0%, var(--surface) 48%, #defef2 100%);
+      box-shadow: 0 6px 18px rgba(8, 168, 107, 0.08);
     }
-    [data-theme="dark"] .directory-toolbar {
+    html[data-theme="dark"] .directory-toolbar, body[data-theme="dark"] .directory-toolbar {
       border-color: #256650;
       background: linear-gradient(95deg, #113432 0%, var(--surface) 50%, #103134 100%);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
     .search-wrap { position: relative; flex: 1 1 360px; max-width: 580px; }
     .search-wrap input {
@@ -651,16 +801,16 @@
       background: var(--surface);
       font-size: 12px;
       font-weight: 700;
-      box-shadow: inset 0 1px 3px rgba(8, 168, 107, .06);
-      transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+      box-shadow: inset 0 1px 3px rgba(8, 168, 107, 0.06);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
     }
-    [data-theme="dark"] .search-wrap input {
+    html[data-theme="dark"] .search-wrap input, body[data-theme="dark"] .search-wrap input {
       border-color: #2b755c;
       background: var(--surface-soft);
     }
     .search-wrap input:focus {
       border-color: var(--green);
-      box-shadow: 0 0 0 4px rgba(8, 168, 107, .16);
+      box-shadow: 0 0 0 4px rgba(8, 168, 107, 0.16);
     }
     .search-wrap input::placeholder { color: var(--muted); font-weight: 600; }
     .search-icon {
@@ -679,87 +829,170 @@
       font-weight: 800;
       pointer-events: none;
     }
-    [data-theme="dark"] .search-icon { color: var(--green-light); }
+    html[data-theme="dark"] .search-icon, body[data-theme="dark"] .search-icon { color: var(--green-light); }
     .project-count {
-      padding: 6px 12px;
+      padding: 6px 13px;
       border-radius: 999px;
       background: var(--green-soft);
-      border: 1px solid #b4edd6;
+      border: 1px solid #9be8cd;
       color: var(--green-dark);
       font-size: 10.5px;
       font-weight: 800;
     }
-    [data-theme="dark"] .project-count { color: var(--green-light); border-color: #256650; }
+    html[data-theme="dark"] .project-count, body[data-theme="dark"] .project-count { color: var(--green-light); border-color: #256650; }
 
-    /* BRAND-STYLED PROJECT CARDS (TITAN, U2U, BIXBERRY & ALL DEPIN CARDS) */
-    .project-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    /* ==========================================
+       WEBSITE-THEMED MINT-EMERALD PROJECT CARDS
+    ========================================== */
+    .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
     .project-card {
-      --project-accent:#08a86b;
-      position:relative;
-      isolation:isolate;
-      overflow:hidden;
-      min-width:0;
-      min-height:148px;
-      padding:15px 16px 13px;
-      border:1.5px solid #9be8cd;
-      border-top:3px solid var(--green);
-      border-radius:19px;
+      --project-accent: #08a86b;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-width: 0;
+      min-height: 152px;
+      padding: 16px 16px 14px;
+      border: 1.5px solid #7ee2be;
+      border-top: 3.5px solid #08a86b;
+      border-radius: 20px;
       background:
-        radial-gradient(circle at 95% 8%, rgba(8, 168, 107, .13), transparent 36%),
-        linear-gradient(155deg, #e2fff4 0%, var(--surface) 62%, #ecfff8 100%);
-      box-shadow:0 8px 20px rgba(8, 168, 107, .08);
-      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+        radial-gradient(circle at 96% 6%, rgba(16, 185, 129, 0.2), transparent 40%),
+        radial-gradient(circle at 4% 96%, rgba(52, 211, 153, 0.14), transparent 36%),
+        linear-gradient(155deg, #d6fded 0%, #f1fff9 48%, #ffffff 100%);
+      box-shadow: 0 8px 22px rgba(4, 120, 87, 0.09);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
-    .project-card::before { content:""; position:absolute; z-index:-1; width:155px; height:155px; right:-66px; bottom:-95px; border-radius:50%; background:rgba(8,168,107,.11); transition:transform .25s ease; }
-    .project-card::after { content:""; position:absolute; z-index:-1; width:78px; height:78px; right:13px; top:12px; border:1px solid rgba(8,168,107,.16); border-radius:50%; }
-    .project-card:hover { transform:translateY(-4px); border-color:var(--green); box-shadow:0 14px 28px rgba(8,168,107,.16),0 0 16px rgba(32,217,154,.12); }
-    .project-card:hover::before { transform:scale(1.18); }
-    [data-theme="dark"] .project-card {
+    .project-card::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 165px;
+      height: 165px;
+      right: -68px;
+      bottom: -95px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.22), rgba(8, 168, 107, 0.08));
+      transition: transform 0.25s ease;
+    }
+    .project-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 82px;
+      height: 82px;
+      right: 12px;
+      top: 10px;
+      border: 1px solid rgba(8, 168, 107, 0.2);
+      border-radius: 50%;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: #059669;
+      box-shadow: 0 15px 30px rgba(4, 120, 87, 0.18), 0 0 18px rgba(32, 217, 154, 0.16);
+    }
+    .project-card:hover::before { transform: scale(1.18); }
+
+    html[data-theme="dark"] .project-card, body[data-theme="dark"] .project-card {
       background:
-        radial-gradient(circle at 95% 8%, rgba(32, 217, 154, .14), transparent 38%),
-        linear-gradient(155deg, rgba(18, 62, 50, .58) 0%, var(--surface) 68%, rgba(16, 52, 46, .45) 100%);
-      border-color:#265e4d;
-      border-top-color:var(--green);
+        radial-gradient(circle at 96% 6%, rgba(32, 217, 154, 0.18), transparent 40%),
+        linear-gradient(155deg, #0f3831 0%, #10272c 58%, #0d2e2b 100%);
+      border-color: #256650;
+      border-top-color: #20d99a;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
     }
-    .project-card-head { display:grid; grid-template-columns:48px minmax(0,1fr) auto; align-items:center; gap:10px; }
-    .project-avatar { position:relative; width:46px; height:46px; display:grid; place-items:center; overflow:hidden; border:1.5px solid #8fe5c7; border-radius:50%; background:var(--surface); box-shadow:0 4px 11px rgba(8,168,107,.12); }
-    [data-theme="dark"] .project-avatar { border-color:#2b755c; }
-    .project-avatar img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%; }
-    .project-initial { width:100%; height:100%; display:grid; place-items:center; border-radius:50%; color:#fff; font-size:17px; font-weight:800; }
-    .project-name-wrap { min-width:0; }
-    .project-name { display:flex; align-items:center; gap:5px; flex-wrap:wrap; margin:0 0 4px; color:var(--heading); font-size:13px; line-height:1.3; font-weight:800; }
-    .project-sub { margin:0; color:var(--muted); font-size:9.5px; line-height:1.5; font-weight:600; }
-    .project-category { align-self:start; max-width:100px; padding:5px 8px; border-radius:999px; color:#008556; background:var(--green-soft); border:1px solid #b4edd6; font-size:8px; line-height:1.25; font-weight:800; text-align:center; }
-    [data-theme="dark"] .project-category { color:#8af0c5; background:#164735; border-color:#256650; }
-    .project-badges { display:flex; flex-wrap:wrap; gap:5px; margin:11px 0 10px; }
-    .project-status,.project-verified,.project-new { display:inline-flex; align-items:center; gap:4px; padding:4px 8px; border-radius:999px; font-size:8px; font-weight:800; }
-    .project-status { color:#008556; background:#dcfcf0; border:1px solid #b4edd6; }
-    .project-verified { color:#087b52; background:#e4faef; border:1px solid #b8f2d7; }
-    .project-new { color:#9b5a08; background:#fff1d6; border:1px solid #f7d99c; }
-    [data-theme="dark"] .project-status,[data-theme="dark"] .project-verified { color:#8af0c5; background:#164735; border-color:#256650; }
-    [data-theme="dark"] .project-new { color:#ffd58a; background:#49381c; border-color:#745728; }
-    .project-card-foot { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding-top:9px; border-top:1px solid rgba(8,168,107,.16); }
-    .project-score { color:var(--green-dark); font-size:9.5px; font-weight:800; white-space:nowrap; }
-    [data-theme="dark"] .project-score { color:var(--green-light); }
-    .project-meta-category { color:var(--muted); font-size:8.5px; font-weight:700; }
-    .view-details { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:7px 12px; border-radius:999px; color:#fff; background:linear-gradient(135deg,#08a86b,#008556); text-decoration:none; font-size:8.5px; font-weight:800; box-shadow:0 4px 10px rgba(8,168,107,.2); white-space:nowrap; transition: transform .16s ease, box-shadow .16s ease; }
-    .view-details:hover { transform:translateY(-1px); box-shadow:0 6px 14px rgba(8,168,107,.3); }
-    .project-card[hidden] { display:none !important; }
-    .no-data { display:none; padding:35px 20px; border:1px dashed var(--green); border-radius:16px; color:var(--muted); background:var(--surface); text-align:center; font-size:12px; }
+    html[data-theme="dark"] .project-card:hover, body[data-theme="dark"] .project-card:hover {
+      border-color: #32e5a1;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.34), 0 0 18px rgba(32, 217, 154, 0.14);
+    }
 
-    /* COMMUNITY STRIP + UPGRADED FOOTER */
-    .community-banner { position:relative; overflow:hidden; display:flex; align-items:center; gap:16px; min-height:94px; margin-top:23px; padding:17px 22px; border:1px solid #078f69; border-radius:20px; color:#fff; background:radial-gradient(circle at 82% 0%,rgba(35,224,162,.28),transparent 30%),linear-gradient(105deg,#07875b,#075b50 58%,#032d32); box-shadow:0 9px 22px rgba(8,168,107,.15); }
-    .community-banner-icon { width:49px; height:49px; flex:0 0 49px; display:grid; place-items:center; border-radius:15px; color:#7dffd1; background:rgba(255,255,255,.08); font-size:27px; }
-    .community-banner-copy { min-width:0; flex:1; }
-    .community-banner-copy strong { display:block; color:#fff; font-size:14px; font-weight:800; }
-    .community-banner-copy span { display:block; margin-top:4px; color:#c8f8e8; font-size:9px; }
-    .social-links { display:flex; align-items:center; gap:7px; }
-    .social-links a { width:32px; height:32px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.18); border-radius:50%; color:#fff; background:rgba(255,255,255,.11); text-decoration:none; font-size:13px; font-weight:800; transition:.18s ease; }
-    .social-links a:hover { transform:translateY(-2px); background:rgba(255,255,255,.22); }
-    .community-join { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 16px; border:1px solid rgba(255,255,255,.38); border-radius:999px; color:#06392c; background:linear-gradient(135deg,#a7f3b5,#35e89a); text-decoration:none; font-size:9px; font-weight:800; white-space:nowrap; }
-    .disclaimer { margin:19px 0 0; padding:12px 15px; border:1px solid var(--border); border-radius:12px; color:var(--muted); background:var(--surface); font-size:9px; line-height:1.7; }
+    .project-card-head { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: 10px; }
+    .project-avatar {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 2px solid #10b981;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.15);
+    }
+    html[data-theme="dark"] .project-avatar, body[data-theme="dark"] .project-avatar { border-color: #2b755c; background: #14333a; }
+    .project-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .project-initial { width: 100%; height: 100%; display: grid; place-items: center; border-radius: 50%; color: #fff; font-size: 17px; font-weight: 800; }
+    .project-name-wrap { min-width: 0; }
+    .project-name { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin: 0 0 4px; color: var(--heading); font-size: 13.5px; line-height: 1.3; font-weight: 800; }
+    .project-sub { margin: 0; color: var(--body); font-size: 9.8px; line-height: 1.45; font-weight: 600; opacity: 0.85; }
+    html[data-theme="dark"] .project-sub, body[data-theme="dark"] .project-sub { color: var(--muted); opacity: 1; }
+    .project-category {
+      align-self: start;
+      max-width: 100px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: #047857;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid #7ee2be;
+      font-size: 8.2px;
+      line-height: 1.25;
+      font-weight: 800;
+      text-align: center;
+    }
+    html[data-theme="dark"] .project-category, body[data-theme="dark"] .project-category { color: #8af0c5; background: #164735; border-color: #256650; }
+    .project-badges { display: flex; flex-wrap: wrap; gap: 5px; margin: 11px 0 10px; }
+    .project-status, .project-verified, .project-new { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8.5px; border-radius: 999px; font-size: 8.2px; font-weight: 800; }
+    .project-status { color: #047857; background: rgba(255, 255, 255, 0.88); border: 1px solid #8ae6c6; }
+    .project-verified { color: #065f46; background: #ccfbe8; border: 1px solid #7ee2be; }
+    .project-new { color: #9b5a08; background: #fff1d6; border: 1px solid #f7d99c; }
+    html[data-theme="dark"] .project-status, body[data-theme="dark"] .project-status,
+    html[data-theme="dark"] .project-verified, body[data-theme="dark"] .project-verified { color: #8af0c5; background: #164735; border-color: #256650; }
+    html[data-theme="dark"] .project-new, body[data-theme="dark"] .project-new { color: #ffd58a; background: #49381c; border-color: #745728; }
+    .project-card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 9px;
+      border-top: 1px solid rgba(4, 120, 87, 0.16);
+    }
+    html[data-theme="dark"] .project-card-foot, body[data-theme="dark"] .project-card-foot { border-top-color: rgba(50, 229, 161, 0.16); }
+    .project-score { color: #047857; font-size: 9.8px; font-weight: 800; white-space: nowrap; }
+    html[data-theme="dark"] .project-score, body[data-theme="dark"] .project-score { color: var(--green-light); }
+    .project-meta-category { color: var(--muted); font-size: 8.8px; font-weight: 700; }
+    .view-details {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, #08a86b, #047857);
+      text-decoration: none;
+      font-size: 8.8px;
+      font-weight: 800;
+      box-shadow: 0 4px 10px rgba(4, 120, 87, 0.24);
+      white-space: nowrap;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+    .view-details:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(4, 120, 87, 0.34); }
+    .project-card[hidden] { display: none !important; }
+    .no-data { display: none; padding: 35px 20px; border: 1px dashed var(--green); border-radius: 16px; color: var(--muted); background: var(--surface); text-align: center; font-size: 12px; }
 
-    /* Upgraded Footer */
+    /* COMMUNITY STRIP + FOOTER */
+    .community-banner { position: relative; overflow: hidden; display: flex; align-items: center; gap: 16px; min-height: 94px; margin-top: 23px; padding: 17px 22px; border: 1px solid #078f69; border-radius: 20px; color: #fff; background: radial-gradient(circle at 82% 0%, rgba(35, 224, 162, 0.28), transparent 30%), linear-gradient(105deg, #07875b, #075b50 58%, #032d32); box-shadow: 0 9px 22px rgba(8, 168, 107, 0.15); }
+    .community-banner-icon { width: 49px; height: 49px; flex: 0 0 49px; display: grid; place-items: center; border-radius: 15px; color: #7dffd1; background: rgba(255, 255, 255, 0.08); font-size: 27px; }
+    .community-banner-copy { min-width: 0; flex: 1; }
+    .community-banner-copy strong { display: block; color: #fff; font-size: 14px; font-weight: 800; }
+    .community-banner-copy span { display: block; margin-top: 4px; color: #c8f8e8; font-size: 9.5px; }
+    .social-links { display: flex; align-items: center; gap: 7px; }
+    .social-links a { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 50%; color: #fff; background: rgba(255, 255, 255, 0.11); text-decoration: none; font-size: 13px; font-weight: 800; transition: 0.18s ease; }
+    .social-links a:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.22); }
+    .community-join { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 16px; border: 1px solid rgba(255, 255, 255, 0.38); border-radius: 999px; color: #06392c; background: linear-gradient(135deg, #a7f3b5, #35e89a); text-decoration: none; font-size: 9.5px; font-weight: 800; white-space: nowrap; }
+    .disclaimer { margin: 19px 0 0; padding: 12px 15px; border: 1px solid var(--border); border-radius: 12px; color: var(--muted); background: var(--surface); font-size: 9.5px; line-height: 1.7; }
+
     footer {
       margin-top: 28px;
       padding: 24px 0 10px;
@@ -784,13 +1017,13 @@
       object-fit: cover;
       border: 1.5px solid var(--green);
       background: #fff;
-      box-shadow: 0 3px 10px rgba(8, 168, 107, .18);
+      box-shadow: 0 3px 10px rgba(8, 168, 107, 0.18);
     }
     .footer-brand span {
       color: var(--heading);
       font-size: 14px;
       font-weight: 800;
-      letter-spacing: -.3px;
+      letter-spacing: -0.3px;
     }
     .footer-copy {
       margin: 0;
@@ -810,428 +1043,424 @@
       text-decoration: none;
       font-size: 11px;
       font-weight: 700;
-      transition: color .18s ease;
+      transition: color 0.18s ease;
     }
-    .footer-links a:hover {
-      color: var(--green);
-    }
+    .footer-links a:hover { color: var(--green); }
 
-    .mobile-overlay { display:none; }
-    .side-link:focus-visible,.primary-cta:focus-visible,.secondary-cta:focus-visible,.view-details:focus-visible,.sponsor-cta:focus-visible,.sponsor-slot-box:focus-visible { outline:3px solid var(--green); outline-offset:3px; }
+    .mobile-overlay { display: none; }
+    .side-link:focus-visible, .primary-cta:focus-visible, .secondary-cta:focus-visible, .view-details:focus-visible, .sponsor-banner-bar:focus-visible, .partner-pill-btn:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
 
     /* RESPONSIVE */
-    @media(max-width:1250px) {
-      :root { --sidebar-width:235px; }
-      .header-brand { min-width:185px; }
-      .slot-arrow { display:none; }
-      .project-grid { gap:11px; }
-      main { padding-left:19px; padding-right:19px; }
+    @media (max-width: 1250px) {
+      :root { --sidebar-width: 235px; }
+      .sponsor-arrow { display: none; }
+      .project-grid { gap: 12px; }
+      main { padding-left: 18px; padding-right: 18px; }
     }
-    @media(max-width:1000px) {
-      .project-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-      .filter-row { justify-content:flex-start; }
+    @media (max-width: 1000px) {
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .filter-row { justify-content: flex-start; }
+      .hero-panel { grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr); }
     }
-    @media(max-width:900px) {
-      .header-brand { min-width:auto; }
-      .header-logo { width:36px; height:36px; flex-basis:36px; }
-      .sponsor-inner { gap:10px; padding-left:14px; padding-right:14px; }
-      .sponsor-slot-box { padding:5px 12px; height:50px; }
-      .slot-center-text strong { font-size:13px; }
-      .slot-center-text span { font-size:10px; }
-      .hero-panel { padding:16px 18px; }
-    }
-    @media(max-width:760px) {
-      :root { --sidebar-width:258px; --sponsor-height:56px; }
-      .sponsor-strip { margin-left:0; }
-      .sponsor-inner { justify-content:space-between; gap:8px; padding:6px 10px; }
-      .mobile-menu-btn { display:inline-grid; place-items:center; flex:0 0 32px; }
-      .header-brand { gap:7px; }
-      .header-logo { width:31px; height:31px; flex-basis:31px; font-size:12px; }
-      .header-brand-name { font-size:11px; }
-      .header-brand-subtitle { font-size:8px; }
-      .header-v-sep,.sponsor-orb-btn { display:none; }
-      .sponsor-slot-box { min-width:0; height:42px; padding:4px 10px; justify-content:center; gap:8px; }
-      .slot-megaphone { font-size:17px; }
-      .slot-center-text strong { font-size:11px; }
-      .slot-center-text span { font-size:8px; }
-      .sponsor-cta { padding:8px 11px; font-size:9px; gap:4px; }
-      .sidebar { z-index:220; transform:translateX(-105%); box-shadow:12px 0 35px rgba(0,0,0,.18); }
-      body.menu-open .sidebar { transform:translateX(0); }
-      .mobile-overlay { position:fixed; inset:0; z-index:205; background:rgba(4,14,27,.45); }
-      body.menu-open .mobile-overlay { display:block; }
-      .main-column { margin-left:0; }
-      main { padding:14px 13px 25px; }
-      .hero-panel { grid-template-columns:1fr; min-height:0; padding:14px 15px; border-radius:16px; gap:10px; }
-      .hero-copy h1 { font-size:22px; }
-      .hero-copy p { font-size:10px; }
-      .hero-art { min-height:0; justify-content:center; }
-      .hero-svg { width:min(100%,185px); }
-      .hero-actions { gap:8px; margin-top:10px; }
-      .primary-cta,.secondary-cta { padding:8px 12px; font-size:9px; }
-      .directory-toolbar { padding:10px 12px; }
+    @media (max-width: 760px) {
+      :root { --sidebar-width: 258px; }
+      .mobile-topbar { display: flex; }
+      .sidebar {
+        inset: 58px auto 0 0;
+        height: calc(100vh - 58px);
+        height: calc(100dvh - 58px);
+        transform: translateX(-105%);
+        box-shadow: 12px 0 35px rgba(0, 0, 0, 0.16);
+      }
+      .sidebar-brand { display: none; }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .mobile-overlay { position: fixed; inset: 58px 0 0; z-index: 120; background: rgba(4, 14, 27, 0.45); }
+      body.menu-open .mobile-overlay { display: block; }
+      .main-column { margin-left: 0; min-height: calc(100vh - 58px); }
+
+      main { padding: 14px 12px 26px; }
+      .hero-panel { grid-template-columns: 1fr; min-height: 0; padding: 16px 15px; border-radius: 16px; gap: 12px; }
+      .hero-top-controls { position: static; justify-content: flex-end; margin-bottom: 4px; }
+      .hero-top-controls .community-dropdown,
+      .hero-top-controls .theme-desktop-btn { display: none; }
+      .partner-pill-btn { min-height: 32px; padding: 0 12px; font-size: 10px; }
+      .hero-copy h1 { font-size: 24px; }
+      .hero-copy p { font-size: 11px; }
+      .hero-art { min-height: 0; padding-top: 4px; justify-content: center; }
+      .hero-svg { width: min(100%, 245px); }
+      .hero-actions { gap: 8px; margin-top: 11px; }
+      .primary-cta, .secondary-cta { padding: 8px 13px; font-size: 9.5px; }
+
+      .sponsor-banner-bar { min-height: 96px; flex-wrap: wrap; justify-content: center; text-align: center; padding: 12px 14px; gap: 10px; }
+      .sponsor-left-group { justify-content: center; }
+      .sponsor-megaphone { display: none; }
+      .sponsor-center-copy strong { font-size: 14px; }
+      .sponsor-center-copy span { font-size: 10.5px; }
+      .sponsor-cta-pill { width: 100%; padding: 9px 16px; font-size: 11px; }
+
+      .directory-toolbar { padding: 10px 12px; }
       .search-wrap { flex: 1 1 100%; max-width: none; }
-      .search-wrap input { height:40px; font-size:11px; padding-left:42px; }
-      .projects-heading { align-items:flex-start; margin-top:14px; }
-      .projects-heading h2 { font-size:17px; }
-      .filter-row { width:100%; gap:6px; }
-      .filter-btn,.status-select { min-height:32px; padding:0 9px; font-size:8px; }
-      .project-grid { grid-template-columns:1fr; gap:10px; }
-      .project-card { min-height:140px; padding:14px; }
-      .project-name { font-size:12px; }
-      .community-banner { flex-wrap:wrap; padding:14px; gap:10px; }
-      .community-banner-icon { width:40px; height:40px; flex-basis:40px; }
-      .community-banner-copy strong { font-size:11px; }
-      .social-links { margin-left:50px; }
-      .community-join { margin-left:auto; padding:9px 12px; font-size:8px; }
+      .search-wrap input { height: 40px; font-size: 11px; padding-left: 42px; }
+      .projects-heading { align-items: flex-start; margin-top: 16px; }
+      .projects-heading h2 { font-size: 18px; }
+      .filter-row { width: 100%; gap: 6px; }
+      .filter-btn, .status-select { min-height: 32px; padding: 0 9px; font-size: 8.5px; }
+      .project-grid { grid-template-columns: 1fr; gap: 11px; }
+      .project-card { min-height: 142px; padding: 14px; }
+      .project-name { font-size: 12.5px; }
+      .community-banner { flex-wrap: wrap; padding: 14px; gap: 10px; }
+      .community-banner-icon { width: 40px; height: 40px; flex-basis: 40px; }
+      .community-banner-copy strong { font-size: 12px; }
+      .social-links { margin-left: 50px; }
+      .community-join { margin-left: auto; padding: 9px 13px; font-size: 8.5px; }
     }
-    @media(max-width:480px) {
-      .header-brand-subtitle { display:none; }
-      .header-brand { min-width:90px; gap:6px; }
-      .header-brand-name { font-size:10px; }
-      .slot-megaphone { display:none; }
-      .slot-center-text strong { font-size:10px; }
-      .slot-center-text span { font-size:7px; }
-      .sponsor-cta { padding:7px 9px; font-size:8px; }
-      .hero-copy h1 { font-size:21px; }
-      .eyebrow { font-size:8px; }
-      .filter-row { gap:5px; }
-      .filter-btn,.status-select { padding:0 8px; font-size:7.5px; }
-      .project-card-head { grid-template-columns:42px minmax(0,1fr) auto; gap:8px; }
-      .project-avatar { width:40px; height:40px; }
-      .project-name { font-size:11px; }
-      .project-category { max-width:82px; font-size:7px; }
-      .project-card-foot { gap:6px; }
-      .community-banner-copy { flex:1 1 calc(100% - 55px); }
-      .social-links { margin-left:0; }
-    }
-    @media(prefers-reduced-motion:reduce) {
-      *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 
 <body data-theme="light">
-  <!-- TOP BRAND + PARTNERSHIP STRIP -->
-  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
-    <div class="sponsor-inner">
+  <!-- MOBILE-ONLY TOP BAR (HIDDEN ON DESKTOP TO MATCH HOME PAGE) -->
+  <header class="mobile-topbar">
+    <div class="mobile-topbar-left">
       <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-      <a href="../index.html" class="header-brand">
-        <span class="header-logo">
-          <img src="../logos/tcn-logo.png" alt="Total Crypto Network logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+      <a href="../index.html" class="mobile-brand">
+        <span class="mobile-brand-logo">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
         </span>
         <span>
-          <span class="header-brand-name">Total Crypto Hub</span>
-          <span class="header-brand-subtitle">by <b>Total Crypto Network</b></span>
+          <span class="mobile-brand-title">Total Crypto Hub</span>
+          <span class="mobile-brand-sub">by Total Crypto Network</span>
         </span>
       </a>
+    </div>
+    <div class="mobile-topbar-right">
+      <div class="community-dropdown">
+        <button class="hero-circle-btn" id="mobileCommunityBtn" type="button" aria-expanded="false" aria-label="Community links">👥</button>
+        <div class="dropdown-content" id="mobileCommunityMenu">
+          <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+          <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+          <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
+          <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+        </div>
+      </div>
+      <button class="hero-circle-btn theme-toggle-btn" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
 
-      <span class="header-v-sep" aria-hidden="true"></span>
+  <!-- FULL-HEIGHT SIDEBAR WITH BRAND LOGO AT TOP -->
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <a href="../index.html" class="sidebar-brand">
+      <span class="sidebar-logo">
+        <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+      </span>
+      <span class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Total Crypto Hub</span>
+        <span class="sidebar-brand-subtitle">by Total Crypto Network</span>
+      </span>
+    </a>
 
-      <a class="sponsor-slot-box" href="../legal-pages/contact.html" aria-label="Sponsor Banner Area 728 by 90 or 970 by 90 pixels">
-        <span class="slot-megaphone" aria-hidden="true">📢</span>
-        <span class="slot-arrow" aria-hidden="true">
-          <svg viewBox="0 0 120 16" fill="none">
-            <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <nav class="side-nav">
+      <!-- 1. Home -->
+      <a href="../index.html" class="side-link">
+        <span class="nav-icon nav-home">
+          <svg viewBox="0 0 24 24">
+            <path d="m3 10 9-7 9 7"/>
+            <path d="M5 9v11h14V9"/>
+            <path d="M9 20v-7h6v7"/>
           </svg>
         </span>
-        <div class="slot-center-text">
-          <strong>Sponsor Banner Area</strong>
-          <span>728 &times; 90 px (or 970 &times; 90 px)</span>
+        Home
+      </a>
+
+      <!-- 2. DePIN Projects -->
+      <a href="depin.html" class="side-link active" aria-current="page">
+        <span class="nav-icon nav-depin">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <circle cx="19" cy="5" r="2"/>
+            <circle cx="5" cy="5" r="2"/>
+            <circle cx="19" cy="19" r="2"/>
+            <circle cx="5" cy="19" r="2"/>
+            <path d="m14.2 9.8 3.4-3.4M9.8 9.8 6.4 6.4M14.2 14.2l3.4 3.4M9.8 14.2l-3.4 3.4"/>
+          </svg>
+        </span>
+        DePIN Projects
+      </a>
+
+      <!-- 3. Mobile & Community -->
+      <a href="../mobile-pages/mobile-mining.html" class="side-link">
+        <span class="nav-icon nav-community">
+          <svg viewBox="0 0 24 24">
+            <rect x="6" y="2" width="12" height="20" rx="2.5"/>
+            <path d="M12 18h.01"/>
+            <path d="M9.2 9.5a4 4 0 0 1 5.6 0"/>
+            <path d="M10.8 12a1.8 1.8 0 0 1 2.4 0"/>
+          </svg>
+        </span>
+        Mobile &amp; Community
+      </a>
+
+      <!-- 4. Airdrops & Campaigns -->
+      <a href="../airdrop-pages/airdrops.html" class="side-link">
+        <span class="nav-icon nav-airdrop">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8Z"/>
+            <path d="m4 11 8 6 8-6"/>
+            <path d="M12 11v6"/>
+            <rect x="9" y="17" width="6" height="4" rx="1"/>
+          </svg>
+        </span>
+        Airdrops &amp; Campaigns
+      </a>
+
+      <!-- 5. Wallets & Exchanges -->
+      <a href="../wallet-pages/wallets.html" class="side-link">
+        <span class="nav-icon nav-wallet">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="15" rx="2"/>
+            <path d="M3 9h18M16 14h.01"/>
+            <path d="M3 5V4a2 2 0 0 1 2-2h13"/>
+          </svg>
+        </span>
+        Wallets &amp; Exchanges
+      </a>
+
+      <!-- 6. Smart Token Finder -->
+      <a href="../token-pages/token-checker.html" class="side-link">
+        <span class="nav-icon nav-checker">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </span>
+        Smart Token Finder
+      </a>
+
+      <!-- 7. Earning Calculator -->
+      <a href="../earning-pages/earning-calculator.html" class="side-link">
+        <span class="nav-icon nav-calculator">
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/>
+          </svg>
+        </span>
+        Earning Calculator
+      </a>
+
+      <!-- 8. Gas Fee Checker -->
+      <a href="../tools-pages/gas-checker.html" class="side-link">
+        <span class="nav-icon nav-gas">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 20V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v14"/>
+            <path d="M2 20h15"/>
+            <path d="M7 8h5"/>
+            <path d="M15 10h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-3-3"/>
+          </svg>
+        </span>
+        Gas Fee Checker
+      </a>
+
+      <!-- 9. INR Payout Calculator -->
+      <a href="../tools-pages/inr-payout.html" class="side-link">
+        <span class="nav-icon nav-payout">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 5h10"/>
+            <path d="M7 9h10"/>
+            <path d="M7 5c3.5 0 5.5 1.8 5.5 4S10.5 13 7 13l6.5 6"/>
+          </svg>
+        </span>
+        INR Payout Calculator
+      </a>
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+
+    <!-- SIDEBAR COMMUNITY CARD -->
+    <section class="side-community-card" aria-label="Join Community">
+      <div class="comm-card-top">
+        <span class="comm-badge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </span>
+        <div>
+          <strong>Join Our Community</strong>
+          <span>Let's Grow Together</span>
         </div>
-        <span class="slot-arrow" aria-hidden="true">
+      </div>
+      <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" class="side-join-btn">Join Now →</a>
+    </section>
+
+    <!-- SIDEBAR SUPPORT CARD -->
+    <a href="../legal-pages/contact.html" class="side-help-card">
+      <span class="help-headset" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+          <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+        </svg>
+      </span>
+      <span>
+        <strong>Need Help?</strong>
+        <span>Contact Support →</span>
+      </span>
+    </a>
+  </aside>
+
+  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+
+  <div class="main-column">
+    <main>
+      <!-- 1. DEPIN HERO BANNER WITH TOP-RIGHT CONTROLS (MATCHING HOME PAGE) -->
+      <section class="hero-panel" aria-labelledby="heroTitle">
+        <div class="hero-top-controls">
+          <a href="../legal-pages/contact.html" class="partner-pill-btn">Become a Partner →</a>
+          <div class="community-dropdown">
+            <button class="hero-circle-btn" id="communityBtn" type="button" aria-expanded="false" aria-label="Community links" title="Community">👥</button>
+            <div class="dropdown-content" id="communityMenu">
+              <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+              <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+              <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖️ Twitter (X)</a>
+              <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+            </div>
+          </div>
+          <button class="hero-circle-btn theme-toggle-btn theme-desktop-btn" type="button" aria-label="Toggle dark mode" title="Toggle Dark / Light Mode">🌙</button>
+        </div>
+
+        <div class="hero-copy">
+          <span class="eyebrow">● DePIN Ecosystem · Total Crypto Network</span>
+          <h1 id="heroTitle">DePIN <span>Projects</span></h1>
+          <p>Explore DePIN infrastructure projects, decentralized nodes, and reward networks on Total Crypto Hub.</p>
+          <div class="hero-actions">
+            <a class="primary-cta" href="#projects">🚀 Explore DePIN Nodes →</a>
+            <a class="secondary-cta" href="../mobile-pages/mobile-mining.html">▶ Watch Video</a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <svg class="hero-svg" viewBox="0 0 520 285" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="earthFill" cx="32%" cy="25%" r="75%"><stop stop-color="#c5ffe9"/><stop offset=".42" stop-color="#20d9a0"/><stop offset="1" stop-color="#087e80"/></radialGradient>
+              <linearGradient id="serverFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8ffe0"/><stop offset=".55" stop-color="#13c99a"/><stop offset="1" stop-color="#087e91"/></linearGradient>
+              <linearGradient id="goldFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe68a"/><stop offset=".55" stop-color="#f7a91a"/><stop offset="1" stop-color="#b96a08"/></linearGradient>
+              <clipPath id="earthClip"><circle cx="340" cy="125" r="83"/></clipPath>
+            </defs>
+            <g fill="none" stroke="#1ab993" opacity=".55"><ellipse cx="333" cy="129" rx="190" ry="65" transform="rotate(-13 333 129)" stroke-dasharray="5 7" stroke-width="2"/><ellipse cx="333" cy="129" rx="151" ry="48" transform="rotate(20 333 129)"/><path d="M140 132Q328-2 514 123" stroke-dasharray="3 8"/></g>
+            <g transform="translate(40 55)" stroke="#087e91" stroke-width="3" fill="none"><path d="M35 169 70 28l35 141M48 117h44M55 91h30M62 61h16M70 28v141M35 169h70M48 117l44 52M92 117l-44 52"/><circle cx="70" cy="28" r="8" fill="#37e6c0"/><path d="M17 43q-25 25 0 50M8 32q-39 36 0 72M123 43q25 25 0 50M132 32q39 36 0 72" stroke="#0bbaa7"/></g>
+            <g transform="translate(155 145)"><path d="M0 0 42-16v70L0 38Z" fill="url(#serverFill)" stroke="#c4ffeb" stroke-width="2"/><path d="M42-16 80 0v70L42 54Z" fill="#078d83" stroke="#c4ffeb" stroke-width="2"/><path d="M0 0 38 17 80 0" fill="#75f5ca" stroke="#c4ffeb" stroke-width="2"/><path d="M12 18h18M12 30h18M52 18h17M52 30h17" stroke="#e6fff7" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="43" r="3" fill="#eafff6"/><circle cx="58" cy="43" r="3" fill="#eafff6"/></g>
+            <circle cx="340" cy="125" r="86" fill="url(#earthFill)" stroke="#adffe5" stroke-width="3"/>
+            <g clip-path="url(#earthClip)"><path d="m286 73 20-12 18 8 4 18-13 10-5 17-21-5-9-19zM328 130l18-10 24 12 6 18-12 18-2 21-18 19-14-7-8-25-16-17zM370 75l21-10 22 8 12 15-14 12-16-4-11 13-19-8z" fill="#b8ffe4" opacity=".87"/><g fill="none" stroke="#e0fff3" opacity=".67"><ellipse cx="340" cy="125" rx="38" ry="84"/><ellipse cx="340" cy="125" rx="65" ry="84"/><path d="M254 125h172M267 94h146M267 157h146"/></g><g fill="#edfff8"><circle cx="300" cy="111" r="2"/><circle cx="354" cy="88" r="2"/><circle cx="382" cy="148" r="2"/><circle cx="321" cy="171" r="2"/></g></g>
+            <ellipse cx="340" cy="125" rx="118" ry="34" transform="rotate(-14 340 125)" fill="none" stroke="#b9ffe6" stroke-width="3" opacity=".7"/>
+            <g transform="translate(340 228)"><ellipse rx="108" ry="17" fill="#0b9b83" opacity=".14"/><ellipse rx="82" ry="13" fill="#c1ffe7" stroke="#0bb88a" stroke-width="3"/><path d="M-82 0v13q0 17 82 17t82-17V0" fill="#087f74" stroke="#9bffdf" stroke-width="2"/><ellipse rx="82" ry="13" fill="none" stroke="#65efc1" stroke-width="2"/></g>
+            <g transform="translate(456 42)"><circle r="25" fill="url(#goldFill)" stroke="#fff0ab" stroke-width="3"/><text text-anchor="middle" y="8" fill="white" font-size="28" font-weight="800">₿</text></g>
+            <g transform="translate(465 188)"><circle r="22" fill="#1687bd" stroke="#b5edff" stroke-width="3"/><text text-anchor="middle" y="7" fill="white" font-size="22" font-weight="800">◆</text></g>
+            <g transform="translate(147 76)"><rect width="35" height="35" rx="8" fill="#0ab58b" stroke="#a4ffe0" stroke-width="2" transform="rotate(10 17 17)"/><text x="17" y="23" text-anchor="middle" fill="white" font-size="11" font-weight="800">DePIN</text></g>
+            <g transform="translate(420 185)"><rect width="47" height="55" rx="7" fill="url(#serverFill)" stroke="#d0fff0" stroke-width="2"/><path d="M8 14h30M8 25h30M8 36h30" stroke="#e9fff7" stroke-width="3" stroke-linecap="round"/><circle cx="12" cy="46" r="3" fill="#c8fff0"/></g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 2. SPONSORSHIP BANNER RIGHT BELOW HERO (MATCHING HOME PAGE) -->
+      <a class="sponsor-banner-bar" href="../legal-pages/contact.html" aria-label="Sponsor Banner Area 970 by 90 or 728 by 90 pixels">
+        <div class="sponsor-left-group">
+          <span class="sponsor-megaphone" aria-hidden="true">📢</span>
+          <span class="sponsor-arrow" aria-hidden="true">
+            <svg viewBox="0 0 120 16" fill="none">
+              <line x1="118" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <polyline points="11,2 3,8 11,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+
+        <div class="sponsor-center-copy">
+          <strong>Sponsor Banner Area</strong>
+          <span>970 &times; 90 px (Desktop) &bull; 728 &times; 90 px (Standard)</span>
+        </div>
+
+        <span class="sponsor-arrow" aria-hidden="true">
           <svg viewBox="0 0 120 16" fill="none">
             <line x1="2" y1="8" x2="116" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <polyline points="109,2 117,8 109,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
+
+        <span class="sponsor-cta-pill">Become a Sponsor →</span>
       </a>
 
-      <span class="header-v-sep" aria-hidden="true"></span>
-
-      <div class="sponsor-right-actions">
-        <a href="../legal-pages/contact.html" class="sponsor-cta">Become a Sponsor <span aria-hidden="true">→</span></a>
-        <a href="../legal-pages/contact.html" class="sponsor-orb-btn" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="app-shell">
-    <!-- UPDATED MINT-GREEN SIDEBAR -->
-    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-
-      <a href="../index.html" class="sidebar-brand">
-        <span class="brand-orb">
-          <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
-        </span>
-        <span>
-          <span class="brand-title">Total Crypto Hub</span>
-          <span class="brand-sub">by Total Crypto Network</span>
-        </span>
-      </a>
-
-      <nav class="side-nav">
-
-        <!-- 1. Home -->
-        <a href="../index.html" class="side-link">
-          <span class="nav-icon nav-home">
-            <svg viewBox="0 0 24 24">
-              <path d="m3 10 9-7 9 7"/>
-              <path d="M5 9v11h14V9"/>
-              <path d="M9 20v-7h6v7"/>
-            </svg>
-          </span>
-          Home
-        </a>
-
-        <!-- 2. DePIN Projects -->
-        <a href="depin.html" class="side-link active" aria-current="page">
-          <span class="nav-icon nav-depin">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="3"/>
-              <circle cx="19" cy="5" r="2"/>
-              <circle cx="5" cy="5" r="2"/>
-              <circle cx="19" cy="19" r="2"/>
-              <circle cx="5" cy="19" r="2"/>
-              <path d="m14.2 9.8 3.4-3.4M9.8 9.8 6.4 6.4M14.2 14.2l3.4 3.4M9.8 14.2l-3.4 3.4"/>
-            </svg>
-          </span>
-          DePIN Projects
-        </a>
-
-        <!-- 3. Mobile & Community -->
-        <a href="../mobile-pages/mobile-mining.html" class="side-link">
-          <span class="nav-icon nav-community">
-            <svg viewBox="0 0 24 24">
-              <rect x="6" y="2" width="12" height="20" rx="2.5"/>
-              <path d="M12 18h.01"/>
-              <path d="M9.2 9.5a4 4 0 0 1 5.6 0"/>
-              <path d="M10.8 12a1.8 1.8 0 0 1 2.4 0"/>
-            </svg>
-          </span>
-          Mobile &amp; Community
-        </a>
-
-        <!-- 4. Airdrops & Campaigns -->
-        <a href="../airdrop-pages/airdrops.html" class="side-link">
-          <span class="nav-icon nav-airdrop">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 3a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8Z"/>
-              <path d="m4 11 8 6 8-6"/>
-              <path d="M12 11v6"/>
-              <rect x="9" y="17" width="6" height="4" rx="1"/>
-            </svg>
-          </span>
-          Airdrops &amp; Campaigns
-        </a>
-
-        <!-- 5. Wallets & Exchanges -->
-        <a href="../wallet-pages/wallets.html" class="side-link">
-          <span class="nav-icon nav-wallet">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="5" width="18" height="15" rx="2"/>
-              <path d="M3 9h18M16 14h.01"/>
-              <path d="M3 5V4a2 2 0 0 1 2-2h13"/>
-            </svg>
-          </span>
-          Wallets &amp; Exchanges
-        </a>
-
-        <!-- 6. Smart Token Finder -->
-        <a href="../token-pages/token-checker.html" class="side-link">
-          <span class="nav-icon nav-checker">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
-              <path d="m9 12 2 2 4-4"/>
-            </svg>
-          </span>
-          Smart Token Finder
-        </a>
-
-        <!-- 7. Earning Calculator -->
-        <a href="../earning-pages/earning-calculator.html" class="side-link">
-          <span class="nav-icon nav-calculator">
-            <svg viewBox="0 0 24 24">
-              <rect x="4" y="2" width="16" height="20" rx="2"/>
-              <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/>
-            </svg>
-          </span>
-          Earning Calculator
-        </a>
-
-        <!-- 8. Gas Fee Checker -->
-        <a href="../tools-pages/gas-checker.html" class="side-link">
-          <span class="nav-icon nav-gas">
-            <svg viewBox="0 0 24 24">
-              <path d="M4 20V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v14"/>
-              <path d="M2 20h15"/>
-              <path d="M7 8h5"/>
-              <path d="M15 10h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-3-3"/>
-            </svg>
-          </span>
-          Gas Fee Checker
-        </a>
-
-        <!-- 9. INR Payout Calculator -->
-        <a href="../tools-pages/inr-payout.html" class="side-link">
-          <span class="nav-icon nav-payout">
-            <svg viewBox="0 0 24 24">
-              <path d="M7 5h10"/>
-              <path d="M7 9h10"/>
-              <path d="M7 5c3.5 0 5.5 1.8 5.5 4S10.5 13 7 13l6.5 6"/>
-            </svg>
-          </span>
-          INR Payout Calculator
-        </a>
-
-      </nav>
-
-      <div class="sidebar-spacer"></div>
-
-      <!-- SIDEBAR COMMUNITY CARD -->
-      <section class="side-community-card" aria-label="Join Community">
-        <div class="comm-card-top">
-          <span class="comm-badge-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </span>
-          <div>
-            <strong>Join Our Community</strong>
-            <span>Let's Grow Together</span>
+      <!-- 3. PROJECTS DIRECTORY -->
+      <section id="projects" aria-labelledby="projectHeading">
+        <div class="projects-heading">
+          <div class="heading-title-wrap">
+            <h2 id="projectHeading">DePIN Projects List</h2>
+            <p>Discover decentralized infrastructure networks and compare project details.</p>
+          </div>
+          <div class="filter-row" aria-label="Project filters">
+            <button class="filter-btn active" type="button" data-category="All" onclick="setSubCategory('All',this)">▦ All Projects</button>
+            <button class="filter-btn" type="button" data-category="Compute" onclick="setSubCategory('Compute',this)">▧ Compute</button>
+            <button class="filter-btn" type="button" data-category="Storage" onclick="setSubCategory('Storage',this)">◈ Storage</button>
+            <button class="filter-btn" type="button" data-category="Bandwidth" onclick="setSubCategory('Bandwidth',this)">⌁ Bandwidth</button>
+            <button class="filter-btn" type="button" data-category="Wireless" onclick="setSubCategory('Wireless',this)">◉ Wireless</button>
+            <button class="filter-btn" type="button" data-category="Sensor" onclick="setSubCategory('Sensor',this)">◎ Sensor</button>
+            <select class="status-select" id="statusFilter" onchange="setCategory(this.value)" aria-label="Filter projects by payout status">
+              <option value="All">All Payout Types</option>
+              <option value="Cash Payouts">Cash Payouts</option>
+              <option value="USDC Payout">USDC Payout</option>
+              <option value="Token Listed">Token Listed</option>
+              <option value="No Token">No Token</option>
+            </select>
           </div>
         </div>
-        <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" class="side-join-btn">Join Now →</a>
+
+        <!-- SEARCH BAR -->
+        <div class="directory-toolbar">
+          <label class="search-wrap" aria-label="Search DePIN projects">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="Search projects, categories or payout types..." autocomplete="off">
+          </label>
+          <div class="project-count" id="projectCount" aria-live="polite">Loading projects…</div>
+        </div>
+
+        <div class="project-grid" id="projectGrid" aria-live="polite"></div>
+        <div class="no-data" id="noDataMessage" role="status">No matching project found. Try another search or filter.</div>
       </section>
 
-      <!-- SIDEBAR SUPPORT CARD -->
-      <a href="../legal-pages/contact.html" class="side-help-card">
-        <span class="help-headset" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-          </svg>
-        </span>
-        <span>
-          <strong>Need Help?</strong>
-          <span>Contact Support →</span>
-        </span>
-      </a>
+      <!-- COMMUNITY BANNER -->
+      <section class="community-banner" aria-label="Join the Total Crypto Hub community">
+        <div class="community-banner-icon" aria-hidden="true">↗</div>
+        <div class="community-banner-copy">
+          <strong>Be Part of the DePIN Revolution</strong>
+          <span>Build. Learn. Grow with Total Crypto Hub</span>
+        </div>
+        <nav class="social-links" aria-label="Social channels">
+          <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+          <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer" aria-label="X">𝕏</a>
+          <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">◉</a>
+        </nav>
+        <a class="community-join" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join the Community →</a>
+      </section>
 
-    </aside>
+      <p class="disclaimer"><strong>Disclaimer:</strong> Total Crypto Hub is an educational directory and research portal. Project information, scores and payout status may change. Rewards are not guaranteed. We do not provide financial advice or guarantee the performance, security or profits of third-party protocols. Always perform your own independent research before participating.</p>
 
-    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
-
-    <div class="main-column">
-      <main>
-        <!-- COMPACT DEPIN HERO -->
-        <section class="hero-panel" aria-labelledby="heroTitle">
-          <div class="hero-copy">
-            <span class="eyebrow">● DePIN Ecosystem · Total Crypto Network</span>
-            <h1 id="heroTitle">DePIN <span>Projects</span></h1>
-            <p>Explore DePIN infrastructure projects, decentralized nodes, and reward networks on Total Crypto Hub.</p>
-            <div class="hero-actions">
-              <a class="primary-cta" href="#projects">🚀 Explore DePIN Nodes →</a>
-              <a class="secondary-cta" href="../mobile-pages/mobile-mining.html">▶ Watch Video</a>
-            </div>
-          </div>
-          <div class="hero-art" aria-hidden="true">
-            <svg class="hero-svg" viewBox="0 0 520 285" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <radialGradient id="earthFill" cx="32%" cy="25%" r="75%"><stop stop-color="#c5ffe9"/><stop offset=".42" stop-color="#20d9a0"/><stop offset="1" stop-color="#087e80"/></radialGradient>
-                <linearGradient id="serverFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8ffe0"/><stop offset=".55" stop-color="#13c99a"/><stop offset="1" stop-color="#087e91"/></linearGradient>
-                <linearGradient id="goldFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe68a"/><stop offset=".55" stop-color="#f7a91a"/><stop offset="1" stop-color="#b96a08"/></linearGradient>
-                <clipPath id="earthClip"><circle cx="340" cy="125" r="83"/></clipPath>
-              </defs>
-              <g fill="none" stroke="#1ab993" opacity=".55"><ellipse cx="333" cy="129" rx="190" ry="65" transform="rotate(-13 333 129)" stroke-dasharray="5 7" stroke-width="2"/><ellipse cx="333" cy="129" rx="151" ry="48" transform="rotate(20 333 129)"/><path d="M140 132Q328-2 514 123" stroke-dasharray="3 8"/></g>
-              <g transform="translate(40 55)" stroke="#087e91" stroke-width="3" fill="none"><path d="M35 169 70 28l35 141M48 117h44M55 91h30M62 61h16M70 28v141M35 169h70M48 117l44 52M92 117l-44 52"/><circle cx="70" cy="28" r="8" fill="#37e6c0"/><path d="M17 43q-25 25 0 50M8 32q-39 36 0 72M123 43q25 25 0 50M132 32q39 36 0 72" stroke="#0bbaa7"/></g>
-              <g transform="translate(155 145)"><path d="M0 0 42-16v70L0 38Z" fill="url(#serverFill)" stroke="#c4ffeb" stroke-width="2"/><path d="M42-16 80 0v70L42 54Z" fill="#078d83" stroke="#c4ffeb" stroke-width="2"/><path d="M0 0 38 17 80 0" fill="#75f5ca" stroke="#c4ffeb" stroke-width="2"/><path d="M12 18h18M12 30h18M52 18h17M52 30h17" stroke="#e6fff7" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="43" r="3" fill="#eafff6"/><circle cx="58" cy="43" r="3" fill="#eafff6"/></g>
-              <circle cx="340" cy="125" r="86" fill="url(#earthFill)" stroke="#adffe5" stroke-width="3"/>
-              <g clip-path="url(#earthClip)"><path d="m286 73 20-12 18 8 4 18-13 10-5 17-21-5-9-19zM328 130l18-10 24 12 6 18-12 18-2 21-18 19-14-7-8-25-16-17zM370 75l21-10 22 8 12 15-14 12-16-4-11 13-19-8z" fill="#b8ffe4" opacity=".87"/><g fill="none" stroke="#e0fff3" opacity=".67"><ellipse cx="340" cy="125" rx="38" ry="84"/><ellipse cx="340" cy="125" rx="65" ry="84"/><path d="M254 125h172M267 94h146M267 157h146"/></g><g fill="#edfff8"><circle cx="300" cy="111" r="2"/><circle cx="354" cy="88" r="2"/><circle cx="382" cy="148" r="2"/><circle cx="321" cy="171" r="2"/></g></g>
-              <ellipse cx="340" cy="125" rx="118" ry="34" transform="rotate(-14 340 125)" fill="none" stroke="#b9ffe6" stroke-width="3" opacity=".7"/>
-              <g transform="translate(340 228)"><ellipse rx="108" ry="17" fill="#0b9b83" opacity=".14"/><ellipse rx="82" ry="13" fill="#c1ffe7" stroke="#0bb88a" stroke-width="3"/><path d="M-82 0v13q0 17 82 17t82-17V0" fill="#087f74" stroke="#9bffdf" stroke-width="2"/><ellipse rx="82" ry="13" fill="none" stroke="#65efc1" stroke-width="2"/></g>
-              <g transform="translate(456 42)"><circle r="25" fill="url(#goldFill)" stroke="#fff0ab" stroke-width="3"/><text text-anchor="middle" y="8" fill="white" font-size="28" font-weight="800">₿</text></g>
-              <g transform="translate(465 188)"><circle r="22" fill="#1687bd" stroke="#b5edff" stroke-width="3"/><text text-anchor="middle" y="7" fill="white" font-size="22" font-weight="800">◆</text></g>
-              <g transform="translate(147 76)"><rect width="35" height="35" rx="8" fill="#0ab58b" stroke="#a4ffe0" stroke-width="2" transform="rotate(10 17 17)"/><text x="17" y="23" text-anchor="middle" fill="white" font-size="11" font-weight="800">DePIN</text></g>
-              <g transform="translate(420 185)"><rect width="47" height="55" rx="7" fill="url(#serverFill)" stroke="#d0fff0" stroke-width="2"/><path d="M8 14h30M8 25h30M8 36h30" stroke="#e9fff7" stroke-width="3" stroke-linecap="round"/><circle cx="12" cy="46" r="3" fill="#c8fff0"/></g>
-            </svg>
-          </div>
-        </section>
-
-        <!-- PROJECTS DIRECTORY -->
-        <section id="projects" aria-labelledby="projectHeading">
-          <div class="projects-heading">
-            <div class="heading-title-wrap">
-              <h2 id="projectHeading">DePIN Projects List</h2>
-              <p>Discover decentralized infrastructure networks and compare project details.</p>
-            </div>
-            <div class="filter-row" aria-label="Project filters">
-              <button class="filter-btn active" type="button" data-category="All" onclick="setSubCategory('All',this)">▦ All Projects</button>
-              <button class="filter-btn" type="button" data-category="Compute" onclick="setSubCategory('Compute',this)">▧ Compute</button>
-              <button class="filter-btn" type="button" data-category="Storage" onclick="setSubCategory('Storage',this)">◈ Storage</button>
-              <button class="filter-btn" type="button" data-category="Bandwidth" onclick="setSubCategory('Bandwidth',this)">⌁ Bandwidth</button>
-              <button class="filter-btn" type="button" data-category="Wireless" onclick="setSubCategory('Wireless',this)">◉ Wireless</button>
-              <button class="filter-btn" type="button" data-category="Sensor" onclick="setSubCategory('Sensor',this)">◎ Sensor</button>
-              <select class="status-select" id="statusFilter" onchange="setCategory(this.value)" aria-label="Filter projects by payout status">
-                <option value="All">All Payout Types</option>
-                <option value="Cash Payouts">Cash Payouts</option>
-                <option value="USDC Payout">USDC Payout</option>
-                <option value="Token Listed">Token Listed</option>
-                <option value="No Token">No Token</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- PROFESSIONAL SEARCH BAR WITH LEFT ICON ABOVE THE PROJECT GRID -->
-          <div class="directory-toolbar">
-            <label class="search-wrap" aria-label="Search DePIN projects">
-              <span class="search-icon" aria-hidden="true">⌕</span>
-              <input id="searchInput" type="search" placeholder="Search projects, categories or payout types..." autocomplete="off">
-            </label>
-            <div class="project-count" id="projectCount" aria-live="polite">Loading projects…</div>
-          </div>
-
-          <div class="project-grid" id="projectGrid" aria-live="polite"></div>
-          <div class="no-data" id="noDataMessage" role="status">No matching project found. Try another search or filter.</div>
-        </section>
-
-        <!-- COMMUNITY BANNER -->
-        <section class="community-banner" aria-label="Join the Total Crypto Hub community">
-          <div class="community-banner-icon" aria-hidden="true">↗</div>
-          <div class="community-banner-copy">
-            <strong>Be Part of the DePIN Revolution</strong>
-            <span>Build. Learn. Grow with Total Crypto Hub</span>
-          </div>
-          <nav class="social-links" aria-label="Social channels">
-            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
-            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer" aria-label="X">𝕏</a>
-            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">◉</a>
-          </nav>
-          <a class="community-join" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join the Community →</a>
-        </section>
-
-        <p class="disclaimer"><strong>Disclaimer:</strong> Total Crypto Hub is an educational directory and research portal. Project information, scores and payout status may change. Rewards are not guaranteed. We do not provide financial advice or guarantee the performance, security or profits of third-party protocols. Always perform your own independent research before participating.</p>
-
-        <footer>
-          <a href="../index.html" class="footer-brand">
-            <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
-            <span>Total Crypto Hub</span>
-          </a>
-          <p class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</p>
-          <nav class="footer-links" aria-label="Footer navigation">
-            <a href="../index.html">Home</a>
-            <a href="../legal-pages/about.html">About Us</a>
-            <a href="../legal-pages/contact.html">Contact Us</a>
-            <a href="../legal-pages/privacy.html">Privacy Policy</a>
-            <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
-            <a href="../legal-pages/disclaimer.html">Disclaimer</a>
-          </nav>
-        </footer>
-      </main>
-    </div>
+      <footer>
+        <a href="../index.html" class="footer-brand">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';">
+          <span>Total Crypto Hub</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 Total Crypto Network. All rights reserved.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="../index.html">Home</a>
+          <a href="../legal-pages/about.html">About Us</a>
+          <a href="../legal-pages/contact.html">Contact Us</a>
+          <a href="../legal-pages/privacy.html">Privacy Policy</a>
+          <a href="../legal-pages/terms.html">Terms &amp; Conditions</a>
+          <a href="../legal-pages/disclaimer.html">Disclaimer</a>
+        </nav>
+      </footer>
+    </main>
   </div>
 
   <script>
@@ -1297,47 +1526,47 @@
       { name: "Privasea", sub: "FHE Encrypted Compute Node", category: "Compute", status: "No Token", score: "⭐ 8.3 / 10", link: "../projects/privasea.html", logo: "../logos/Privasea.png", verified: true, isNew: false }
     ];
 
-    let currentStatus = 'All';
-    let currentSubCategory = 'All';
+    let currentStatus = "All";
+    let currentSubCategory = "All";
 
     function escapeHtml(value) {
       return String(value).replace(/[&<>"']/g, ch => ({
-        '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
       }[ch]));
     }
 
     function getAvatarColor(name) {
-      const colors = ['#059669','#10b981','#2563eb','#6366f1','#8b5cf6','#d946ef','#f43f5e','#f59e0b','#0ea5e9'];
+      const colors = ["#059669", "#10b981", "#2563eb", "#6366f1", "#8b5cf6", "#d946ef", "#f43f5e", "#f59e0b", "#0ea5e9"];
       let hash = 0;
-      for (let i=0;i<name.length;i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
       return colors[Math.abs(hash) % colors.length];
     }
 
     function getPrimaryCategory(category) {
-      return String(category || 'DePIN').split(',')[0].trim();
+      return String(category || "DePIN").split(",")[0].trim();
     }
 
     function renderProjects() {
-      const searchInput = document.getElementById('searchInput');
-      const grid = document.getElementById('projectGrid');
-      const count = document.getElementById('projectCount');
-      const noData = document.getElementById('noDataMessage');
+      const searchInput = document.getElementById("searchInput");
+      const grid = document.getElementById("projectGrid");
+      const count = document.getElementById("projectCount");
+      const noData = document.getElementById("noDataMessage");
       if (!grid || !count || !noData) return;
 
-      const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
-      grid.innerHTML = '';
+      const query = (searchInput ? searchInput.value : "").trim().toLowerCase();
+      grid.innerHTML = "";
       let visibleCount = 0;
 
       ALL_PROJECTS.forEach(project => {
-        const extraStatusText = project.extraStatus || '';
+        const extraStatusText = project.extraStatus || "";
         const searchable = `${project.name} ${project.sub} ${project.category} ${project.status} ${extraStatusText}`.toLowerCase();
         const matchesSearch = searchable.includes(query);
         const matchesStatus =
-          currentStatus === 'All' ||
+          currentStatus === "All" ||
           project.status === currentStatus ||
           extraStatusText === currentStatus ||
-          (currentStatus === 'Cash Payouts' && project.status === 'Voucher & Cash Payout');
-        const matchesCategory = currentSubCategory === 'All' || String(project.category).split(',').map(item => item.trim()).includes(currentSubCategory);
+          (currentStatus === "Cash Payouts" && project.status === "Voucher & Cash Payout");
+        const matchesCategory = currentSubCategory === "All" || String(project.category).split(",").map(item => item.trim()).includes(currentSubCategory);
         if (!matchesSearch || !matchesStatus || !matchesCategory) return;
 
         visibleCount++;
@@ -1348,17 +1577,17 @@
         const category = escapeHtml(project.category);
         const categoryLabel = escapeHtml(getPrimaryCategory(project.category));
         const status = escapeHtml(project.status);
-        const extraBadge = project.extraStatus ? `<span class="project-status">${escapeHtml(project.extraStatus)}</span>` : '';
+        const extraBadge = project.extraStatus ? `<span class="project-status">${escapeHtml(project.extraStatus)}</span>` : "";
         const score = escapeHtml(project.score);
-        const safeLink = escapeHtml(project.link || '#');
+        const safeLink = escapeHtml(project.link || "#");
         const logo = project.logo
           ? `<img src="${escapeHtml(project.logo)}" alt="${name} logo" loading="lazy" onerror="this.remove()">`
-          : '';
-        const verified = project.verified ? '<span class="project-verified" title="Marked as verified">✓ Verified</span>' : '';
-        const fresh = project.isNew ? '<span class="project-new">✦ NEW</span>' : '';
+          : "";
+        const verified = project.verified ? '<span class="project-verified" title="Marked as verified">✓ Verified</span>' : "";
+        const fresh = project.isNew ? '<span class="project-new">✦ NEW</span>' : "";
 
-        const card = document.createElement('article');
-        card.className = 'project-card';
+        const card = document.createElement("article");
+        card.className = "project-card";
         card.innerHTML = `
           <div class="project-card-head">
             <div class="project-avatar">
@@ -1386,7 +1615,7 @@
       });
 
       count.textContent = `Showing ${visibleCount} of ${ALL_PROJECTS.length} listed DePIN projects`;
-      noData.style.display = visibleCount === 0 ? 'block' : 'none';
+      noData.style.display = visibleCount === 0 ? "block" : "none";
     }
 
     function setCategory(status) {
@@ -1396,47 +1625,77 @@
 
     function setSubCategory(category, button) {
       currentSubCategory = category;
-      document.querySelectorAll('.filter-btn[data-category]').forEach(item => {
-        item.classList.toggle('active', item === button);
+      document.querySelectorAll(".filter-btn[data-category]").forEach(item => {
+        item.classList.toggle("active", item === button);
       });
       renderProjects();
     }
 
     function applyTheme(theme) {
-      const safeTheme = theme === 'dark' ? 'dark' : 'light';
-      document.body.setAttribute('data-theme', safeTheme);
-      document.documentElement.setAttribute('data-theme', safeTheme);
-      try { localStorage.setItem('theme', safeTheme); } catch (error) { /* Storage may be disabled. */ }
+      const safeTheme = theme === "dark" ? "dark" : "light";
+      document.body.setAttribute("data-theme", safeTheme);
+      document.documentElement.setAttribute("data-theme", safeTheme);
+      document.querySelectorAll(".theme-toggle-btn").forEach(btn => {
+        btn.textContent = safeTheme === "light" ? "🌙" : "☀️";
+      });
+      try { localStorage.setItem("theme", safeTheme); } catch (_) { /* Storage may be disabled. */ }
     }
 
     function closeMobileMenu() {
-      document.body.classList.remove('menu-open');
-      const button = document.getElementById('mobileMenuBtn');
-      if (button) button.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove("menu-open");
+      const button = document.getElementById("mobileMenuBtn");
+      if (button) button.setAttribute("aria-expanded", "false");
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      let savedTheme = 'light';
-      try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (error) { /* Use light theme. */ }
+    function bindDropdown(btnId, menuId) {
+      const btn = document.getElementById(btnId);
+      const menu = document.getElementById(menuId);
+      if (!btn || !menu) return;
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        const isOpen = menu.classList.toggle("show");
+        btn.setAttribute("aria-expanded", String(isOpen));
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      let savedTheme = "light";
+      try { savedTheme = localStorage.getItem("theme") || "light"; } catch (_) { /* Use light theme. */ }
       applyTheme(savedTheme);
       renderProjects();
 
-      const search = document.getElementById('searchInput');
-      if (search) search.addEventListener('input', renderProjects);
+      document.querySelectorAll(".theme-toggle-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          applyTheme(document.body.getAttribute("data-theme") === "light" ? "dark" : "light");
+        });
+      });
 
-      const menuButton = document.getElementById('mobileMenuBtn');
-      const overlay = document.getElementById('mobileOverlay');
+      bindDropdown("communityBtn", "communityMenu");
+      bindDropdown("mobileCommunityBtn", "mobileCommunityMenu");
+
+      document.addEventListener("click", e => {
+        if (!e.target.closest(".community-dropdown")) {
+          document.querySelectorAll(".dropdown-content").forEach(m => m.classList.remove("show"));
+          document.querySelectorAll(".community-dropdown button").forEach(b => b.setAttribute("aria-expanded", "false"));
+        }
+      });
+
+      const search = document.getElementById("searchInput");
+      if (search) search.addEventListener("input", renderProjects);
+
+      const menuButton = document.getElementById("mobileMenuBtn");
+      const overlay = document.getElementById("mobileOverlay");
       if (menuButton) {
-        menuButton.addEventListener('click', function () {
-          const isOpen = document.body.classList.toggle('menu-open');
-          this.setAttribute('aria-expanded', String(isOpen));
+        menuButton.addEventListener("click", function () {
+          const isOpen = document.body.classList.toggle("menu-open");
+          this.setAttribute("aria-expanded", String(isOpen));
         });
       }
-      if (overlay) overlay.addEventListener('click', closeMobileMenu);
-      document.querySelectorAll('.side-link').forEach(link => link.addEventListener('click', closeMobileMenu));
+      if (overlay) overlay.addEventListener("click", closeMobileMenu);
+      document.querySelectorAll(".side-link").forEach(link => link.addEventListener("click", closeMobileMenu));
 
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
           closeMobileMenu();
         }
       });
