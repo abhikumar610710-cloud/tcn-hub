@@ -1,20 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Total Crypto Hub Powered by Total Crypto Network - Explore verified DePIN nodes, community projects, airdrops, wallets, and crypto tools in one safe anti-phishing directory.">
-  <meta name="keywords" content="Total Crypto Hub, Total Crypto Network, DePIN, Community Projects, Airdrops, Crypto Tools, Crypto Wallets">
+  <meta name="description" content="Total Crypto Hub Powered by Total Crypto Network - Explore verified DePIN nodes, mobile & community projects, airdrops, wallets, and smart crypto tools in one safe anti-phishing directory.">
+  <meta name="keywords" content="Total Crypto Hub, Total Crypto Network, DePIN, Mobile Mining, Community Projects, Airdrops, Gas Fee Checker, INR Payout Calculator, Crypto Wallets">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <title>Total Crypto Hub | Ecosystem Portal</title>
+  <title>Total Crypto Hub | All-in-One Web3 &amp; DePIN Directory</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{color-scheme:light;--bg:#f5fbfa;--surface:#fff;--surface-soft:#f1fffb;--border:#d9f0e9;--heading:#102344;--body:#29415c;--muted:#74869b;--green:#08a86b;--green-dark:#087b52;--green-light:#32e5a1;--green-soft:#e3fff3;--teal:#08b5a0;--navy:#062b31;--sidebar-width:258px;--sponsor-height:74px;--shadow:0 12px 32px rgba(20,76,66,.07)}
-    [data-theme="dark"]{color-scheme:dark;--bg:#081a20;--surface:#10272c;--surface-soft:#143139;--border:#254b4b;--heading:#f0fff9;--body:#d4eee5;--muted:#91b3ad;--green:#20d99a;--green-dark:#0cad78;--green-light:#5df0bd;--green-soft:#123e34;--teal:#22cbbb;--navy:#061c24;--shadow:0 14px 34px rgba(0,0,0,.22)}
+    :root{color-scheme:light;--bg:#f3fbf8;--surface:#ffffff;--surface-soft:#eefcf7;--border:#cceee3;--heading:#0d2137;--body:#29415c;--muted:#687c92;--green:#08a86b;--green-dark:#067c50;--green-light:#32e5a1;--green-soft:#dffcf0;--teal:#08b5a0;--navy:#062b31;--sidebar-width:262px;--topbar-height:64px;--shadow:0 12px 32px rgba(8,120,82,.08)}
+    [data-theme="dark"]{color-scheme:dark;--bg:#07181d;--surface:#0e2429;--surface-soft:#133037;--border:#214949;--heading:#f0fff9;--body:#d4eee5;--muted:#8eb1ab;--green:#20d99a;--green-dark:#0cad78;--green-light:#5df0bd;--green-soft:#123e34;--teal:#22cbbb;--navy:#061c24;--shadow:0 14px 34px rgba(0,0,0,.26)}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--body);font-family:"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}
@@ -24,415 +23,86 @@
     .app-shell{min-height:100vh}
 
     /* ==========================================
-       TOTAL CRYPTO HUB TOP HEADER
-    ========================================== */
-
-    .sponsor-strip{
-      position:sticky;
-      top:0;
-      z-index:200;
-      min-height:var(--sponsor-height);
-      display:flex;
-      align-items:center;
-      overflow:hidden;
-      color:#071b38;
-      background:
-        radial-gradient(circle at 8% 50%,rgba(0,235,165,.28),transparent 24%),
-        radial-gradient(circle at 92% 50%,rgba(0,210,160,.24),transparent 24%),
-        linear-gradient(95deg,#c9ffea 0%,#f2fff9 48%,#c4fcef 100%);
-      border-bottom:1px solid #96ecd0;
-      box-shadow:0 4px 18px rgba(0,130,90,.09);
-      isolation:isolate;
-    }
-
-    [data-theme="dark"] .sponsor-strip{
-      color:#f0fff8;
-      background:
-        radial-gradient(circle at 8% 50%,rgba(0,245,158,.18),transparent 22%),
-        linear-gradient(95deg,#0b2b27 0%,#0f3530 50%,#0b2b27 100%);
-      border-bottom:1px solid #245f4d;
-    }
-
-    .sponsor-inner{
-      position:relative;
-      z-index:1;
-      width:100%;
-      max-width:1800px;
-      min-height:var(--sponsor-height);
-      margin:auto;
-      padding:7px 22px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .header-brand{
-      min-width:210px;
-      flex:0 0 auto;
-      display:flex;
-      align-items:center;
-      gap:11px;
-      text-decoration:none;
-    }
-
-    .header-logo{
-      width:44px;
-      height:44px;
-      flex:0 0 44px;
-      overflow:hidden;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      border:2px solid #00bd79;
-      background:radial-gradient(circle at 30% 25%,#5bffc8,#009c6d 65%,#004938);
-      box-shadow:0 3px 12px rgba(0,175,115,.25);
-      color:#fff;
-      font-size:14px;
-      font-weight:900;
-    }
-
-    .header-logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:50%;
-    }
-
-    .header-brand-name{
-      display:block;
-      color:var(--heading);
-      font-size:17px;
-      font-weight:800;
-      line-height:1.15;
-      letter-spacing:-.45px;
-    }
-
-    .header-brand-subtitle{
-      display:block;
-      margin-top:2px;
-      color:#008556;
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .header-brand-subtitle b{color:#007b51}
-
-    [data-theme="dark"] .header-brand-subtitle,
-    [data-theme="dark"] .header-brand-subtitle b{color:#4ef2b1}
-
-    .header-v-sep{
-      width:1.5px;
-      height:36px;
-      flex:0 0 1.5px;
-      background:rgba(7,27,56,.22);
-    }
-
-    [data-theme="dark"] .header-v-sep{background:rgba(255,255,255,.2)}
-
-    /* ==========================================
-       NEW TOTAL CRYPTO HUB PROMOTIONAL BANNER
-       PC: 970 x 58px
-       Mobile: Responsive, one slide at a time
-    ========================================== */
-
-    .sponsor-slot-box{
-      position:relative;
-      isolation:isolate;
-      flex:0 1 970px;
-      width:970px;
-      max-width:970px;
-      min-width:0;
-      height:58px;
-      display:flex;
-      align-items:center;
-      overflow:hidden;
-      border:1.5px solid #00d58d;
-      border-radius:17px;
-      color:#fff;
-      text-decoration:none;
-      background:
-        radial-gradient(ellipse at 12% 50%,rgba(22,255,183,.25),transparent 25%),
-        radial-gradient(ellipse at 86% 50%,rgba(0,230,155,.24),transparent 30%),
-        linear-gradient(105deg,#032c2b 0%,#07513e 36%,#063d35 68%,#022b2d 100%);
-      box-shadow:0 4px 18px rgba(0,205,137,.22),inset 0 1px 0 rgba(255,255,255,.13);
-      transition:border-color .2s ease,box-shadow .2s ease;
-    }
-
-    .sponsor-slot-box::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-1;
-      pointer-events:none;
-      opacity:.42;
-      background:
-        repeating-linear-gradient(122deg,transparent 0 26px,rgba(81,255,190,.08) 27px,transparent 29px 53px),
-        radial-gradient(circle at 50% 130%,rgba(0,255,170,.3),transparent 55%);
-    }
-
-    .sponsor-slot-box:hover{
-      border-color:#6dffbf;
-      box-shadow:0 6px 22px rgba(0,230,155,.3),inset 0 1px 0 rgba(255,255,255,.18);
-    }
-
-    [data-theme="dark"] .sponsor-slot-box{
-      border-color:#20d99a;
-      box-shadow:0 4px 18px rgba(32,217,154,.2);
-    }
-
-    .sponsor-content{
-      position:relative;
-      z-index:1;
-      display:flex;
-      align-items:center;
-      width:100%;
-      height:100%;
-      min-width:0;
-      padding:0 34px 5px;
-    }
-
-    .promo-segment{
-      position:relative;
-      display:flex;
-      flex:1 1 0;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-      min-width:0;
-      height:44px;
-      padding:2px 10px;
-      border-radius:10px;
-      color:#fff;
-      text-decoration:none;
-      transition:background .25s ease,filter .25s ease;
-    }
-
-    .promo-segment.promo-primary{
-      flex:1.17 1 0;
-      justify-content:flex-start;
-      padding-left:5px;
-    }
-
-    .promo-segment.is-active{
-      background:rgba(91,255,195,.075);
-      filter:drop-shadow(0 0 5px rgba(27,255,177,.16));
-    }
-
-    .promo-divider{
-      width:1px;
-      height:32px;
-      flex:0 0 1px;
-      background:linear-gradient(180deg,transparent,rgba(167,255,224,.85),transparent);
-    }
-
-    .promo-brand-mark{
-      width:42px;
-      height:42px;
-      flex:0 0 42px;
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      border:1.5px solid rgba(116,255,206,.85);
-      border-radius:50%;
-      background:radial-gradient(circle at 30% 25%,#6affcd,#00966d 70%,#034a3b);
-      box-shadow:0 0 13px rgba(35,255,178,.35);
-      color:#fff;
-      font-size:10px;
-      font-weight:900;
-    }
-
-    .promo-brand-mark img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:50%;
-    }
-
-    .promo-copy{
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      min-width:0;
-      line-height:1.15;
-    }
-
-    .promo-copy strong{
-      display:block;
-      overflow:hidden;
-      color:#f2fff9;
-      font-size:12.2px;
-      font-weight:800;
-      letter-spacing:-.2px;
-      line-height:1.18;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-
-    .promo-primary .promo-copy strong{font-size:14px}
-
-    .promo-copy span{
-      display:block;
-      overflow:hidden;
-      margin-top:3px;
-      color:#c9fbe8;
-      font-size:9.3px;
-      font-weight:700;
-      line-height:1.15;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-
-    .promo-youtube-icon{
-      width:34px;
-      height:25px;
-      flex:0 0 34px;
-      display:block;
-      filter:drop-shadow(0 2px 5px rgba(0,0,0,.24));
-    }
-
-    .promo-handshake{
-      flex:0 0 auto;
-      font-size:27px;
-      line-height:1;
-      filter:drop-shadow(0 2px 5px rgba(0,0,0,.24));
-    }
-
-    .banner-arrow{
-      position:absolute;
-      z-index:4;
-      top:50%;
-      display:grid;
-      place-items:center;
-      width:25px;
-      height:25px;
-      padding:0;
-      transform:translateY(-50%);
-      border:1px solid rgba(160,255,220,.55);
-      border-radius:50%;
-      color:#fff;
-      background:rgba(0,47,42,.72);
-      box-shadow:0 2px 8px rgba(0,0,0,.18);
-      font-size:15px;
-      line-height:1;
-      cursor:pointer;
-      transition:background .2s ease,transform .2s ease;
-    }
-
-    .banner-arrow:hover{
-      background:#087d5b;
-      transform:translateY(-50%) scale(1.07);
-    }
-
-    .banner-arrow.prev{left:7px}
-    .banner-arrow.next{right:7px}
-
-    .banner-dots{
-      position:absolute;
-      z-index:5;
-      bottom:3px;
-      left:50%;
-      display:flex;
-      align-items:center;
-      gap:5px;
-      transform:translateX(-50%);
-    }
-
-    .banner-dot{
-      width:6px;
-      height:6px;
-      padding:0;
-      border:0;
-      border-radius:99px;
-      background:rgba(222,255,242,.48);
-      cursor:pointer;
-      transition:width .2s ease,background .2s ease;
-    }
-
-    .banner-dot.is-active{
-      width:15px;
-      background:#83ffd0;
-      box-shadow:0 0 7px rgba(101,255,199,.75);
-    }
-
-    .sponsor-right-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex:0 0 auto;
-    }
-
-    .sponsor-cta{
-      flex:0 0 auto;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:7px;
-      padding:11px 20px;
-      border:1.5px solid #00a86b;
-      border-radius:999px;
-      color:#042b1d;
-      background:linear-gradient(135deg,#8affb8,#3be898);
-      box-shadow:0 4px 14px rgba(0,185,115,.25),inset 0 1px 1px rgba(255,255,255,.75);
-      text-decoration:none;
-      font-size:12px;
-      font-weight:800;
-      white-space:nowrap;
-      transition:transform .2s,box-shadow .2s;
-    }
-
-    .sponsor-cta:hover{
-      transform:translateY(-2px);
-      box-shadow:0 6px 18px rgba(0,185,115,.38);
-    }
-
-    .sponsor-orb-btn{
-      width:38px;
-      height:38px;
-      flex:0 0 38px;
-      display:grid;
-      place-items:center;
-      border:1.5px solid rgba(255,255,255,.75);
-      border-radius:50%;
-      color:#fff;
-      background:linear-gradient(145deg,#818cf8,#4f46e5);
-      box-shadow:0 4px 12px rgba(79,70,229,.28);
-      text-decoration:none;
-      font-size:12px;
-      font-weight:800;
-      transition:transform .2s;
-    }
-
-    .sponsor-orb-btn:hover{transform:translateY(-1px)}
-
-    /* ==========================================
-       SIDEBAR
+       LEFT SIDEBAR (WITH BRAND LOGO & 9-STEP ORDER)
     ========================================== */
 
     .sidebar{
       position:fixed;
-      z-index:150;
-      inset:var(--sponsor-height) auto 0 0;
+      z-index:160;
+      inset:0 auto 0 0;
       width:var(--sidebar-width);
-      height:calc(100vh - var(--sponsor-height));
-      height:calc(100dvh - var(--sponsor-height));
+      height:100vh;
+      height:100dvh;
       display:flex;
       flex-direction:column;
-      padding:18px 16px 18px;
-      overflow-y:auto;
-      overflow-x:hidden;
+      padding:14px 14px 16px;
       background:var(--surface);
       border-right:1px solid var(--border);
-      box-shadow:8px 0 28px rgba(21,48,84,.025);
+      box-shadow:8px 0 28px rgba(8,120,82,.04);
+      overflow-y:auto;
+      overflow-x:hidden;
       transition:transform .25s ease;
     }
 
     .sidebar::-webkit-scrollbar{width:5px}
     .sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
 
+    .sidebar-brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      padding:4px 6px 14px;
+      margin-bottom:8px;
+      border-bottom:1px solid var(--border);
+      text-decoration:none;
+      flex-shrink:0;
+    }
+
+    .brand-logo-circle{
+      width:42px;
+      height:42px;
+      flex:0 0 42px;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      border:2px solid #08a86b;
+      background:radial-gradient(circle at 30% 25%,#5bffc8,#009c6d 65%,#004938);
+      box-shadow:0 4px 12px rgba(8,168,107,.25);
+      color:#fff;
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .brand-logo-circle img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+    }
+
+    .brand-title{
+      display:block;
+      color:var(--heading);
+      font-size:16.5px;
+      font-weight:800;
+      line-height:1.15;
+      letter-spacing:-.4px;
+    }
+
+    .brand-sub{
+      display:block;
+      margin-top:2px;
+      color:var(--green-dark);
+      font-size:10px;
+      font-weight:700;
+    }
+
+    [data-theme="dark"] .brand-sub{color:var(--green-light)}
+
     .side-label{
-      padding:12px 13px 10px;
-      color:#9aa8bc;
+      padding:4px 11px 7px;
+      color:var(--muted);
       font-size:9px;
       font-weight:800;
       letter-spacing:1.2px;
@@ -441,23 +111,24 @@
 
     .side-nav{
       display:grid;
-      gap:7px;
+      gap:5px;
       flex-shrink:0;
     }
 
     .side-link{
-      min-height:48px;
+      min-height:43px;
       display:flex;
       align-items:center;
-      gap:12px;
-      padding:9px 12px;
+      gap:11px;
+      padding:7px 11px;
       color:var(--body);
       text-decoration:none;
       border:1px solid transparent;
-      border-radius:15px;
+      border-radius:14px;
       font-size:12px;
       font-weight:700;
-      transition:.2s ease;
+      white-space:nowrap;
+      transition:.18s ease;
     }
 
     .side-link:hover{
@@ -467,31 +138,29 @@
     }
 
     .side-link.active{
-      color:#087b4b;
-      background:linear-gradient(100deg,#e2fff1,#f4fff9);
-      border-color:#b8f2d7;
-      box-shadow:0 5px 13px rgba(8,168,107,.11);
+      color:#ffffff;
+      background:linear-gradient(100deg,#08a86b,#13c884);
+      border-color:#08a86b;
+      box-shadow:0 6px 15px rgba(8,168,107,.24);
     }
 
-    [data-theme="dark"] .side-link.active{
-      color:#65e6b1;
-      background:#12382f;
-      border-color:#23654e;
+    .side-link.active .nav-icon{
+      background:rgba(255,255,255,.22);
+      color:#ffffff;
     }
 
     .nav-icon{
-      width:36px;
-      height:36px;
-      flex:0 0 36px;
+      width:32px;
+      height:32px;
+      flex:0 0 32px;
       display:grid;
       place-items:center;
-      border-radius:12px;
-      font-size:17px;
+      border-radius:10px;
     }
 
     .nav-icon svg{
-      width:19px;
-      height:19px;
+      width:18px;
+      height:18px;
       fill:none;
       stroke:currentColor;
       stroke-width:2;
@@ -506,110 +175,273 @@
     .nav-wallet{color:#9333ea;background:#f1e3ff}
     .nav-checker{color:#0d9488;background:#d9f7f0}
     .nav-calculator{color:#2563eb;background:#e2eaff}
+    .nav-gas{color:#e11d48;background:#ffe4e6}
+    .nav-payout{color:#d97706;background:#fef3c7}
 
-    .sidebar-spacer{flex:1 0 18px;min-height:18px}
+    .sidebar-spacer{flex:1 0 14px;min-height:14px}
 
     .side-promo{
-      margin:18px 6px 13px;
-      padding:19px 14px;
+      margin:12px 4px 10px;
+      padding:15px 12px;
       flex-shrink:0;
       text-align:center;
-      border-radius:23px;
-      border:1px solid #c7f5df;
-      background:radial-gradient(circle at 90% 10%,rgba(92,238,176,.25),transparent 34%),linear-gradient(145deg,#e7fff4,#fff 72%);
-      box-shadow:0 8px 20px rgba(8,168,107,.1);
+      border-radius:20px;
+      border:1px solid #bcefd9;
+      background:radial-gradient(circle at 90% 10%,rgba(50,229,161,.25),transparent 38%),linear-gradient(145deg,#e4fff3,#ffffff 74%);
+      box-shadow:0 8px 20px rgba(8,168,107,.09);
     }
 
     [data-theme="dark"] .side-promo{
-      background:linear-gradient(145deg,#123b32,#142238);
+      background:linear-gradient(145deg,#123b32,#132530);
       border-color:#255c49;
     }
 
-    .promo-gift{margin-bottom:8px;font-size:34px}
-    .side-promo h3{margin:0 0 8px;color:var(--heading);font-size:13px;line-height:1.5;font-weight:800}
-    .side-promo p{margin:0 0 12px;color:var(--muted);font-size:10px;line-height:1.55}
+    .promo-gift{margin-bottom:6px;font-size:28px;line-height:1}
+    .side-promo h3{margin:0 0 5px;color:var(--heading);font-size:12.5px;line-height:1.35;font-weight:800}
+    .side-promo p{margin:0 0 10px;color:var(--muted);font-size:9.8px;line-height:1.45}
 
     .promo-btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:7px;
-      padding:10px 19px;
+      gap:6px;
+      padding:8px 18px;
       border-radius:999px;
       color:#fff;
-      background:linear-gradient(135deg,#08a86b,#06c77a);
+      background:linear-gradient(135deg,#08a86b,#068c59);
       text-decoration:none;
       font-size:11px;
       font-weight:800;
-      box-shadow:0 6px 14px rgba(8,168,107,.2);
+      box-shadow:0 5px 13px rgba(8,168,107,.24);
+      transition:transform .18s ease;
     }
+
+    .promo-btn:hover{transform:translateY(-1px)}
 
     .support-card{
       display:flex;
       align-items:center;
       gap:10px;
-      margin:0 6px;
-      padding:13px;
+      margin:0 4px;
+      padding:11px 12px;
       flex-shrink:0;
-      border-radius:17px;
+      border-radius:16px;
       border:1px solid var(--border);
       background:var(--surface-soft);
       text-decoration:none;
+      transition:border-color .18s ease;
     }
 
+    .support-card:hover{border-color:var(--green)}
+
     .support-icon{
-      width:37px;
-      height:37px;
+      width:34px;
+      height:34px;
+      flex:0 0 34px;
       display:grid;
       place-items:center;
       border-radius:50%;
       color:var(--green-dark);
       background:var(--green-soft);
-      font-size:18px;
+      font-size:16px;
     }
 
+    [data-theme="dark"] .support-icon{color:var(--green-light)}
     .support-card strong{display:block;color:var(--heading);font-size:11px}
-    .support-card span:last-child{display:block;margin-top:4px;color:var(--green);font-size:10px;font-weight:800}
-    .sidebar-note{margin:14px 8px 0;padding-bottom:3px;color:var(--muted);font-size:9px;text-align:center}
+    .support-card span:last-child{display:block;margin-top:2px;color:var(--green);font-size:10px;font-weight:800}
+    .sidebar-note{margin:10px 6px 0;color:var(--muted);font-size:9px;text-align:center}
 
     /* ==========================================
-       MAIN AREA & TOPBAR
+       MAIN COLUMN & STICKY TOPBAR WITH SEARCH
     ========================================== */
 
-    .main-column{min-height:100vh;margin-left:var(--sidebar-width)}
-
-    .mobile-menu-btn{
-      display:none;
-      width:36px;
-      height:36px;
-      border:1px solid var(--border);
-      border-radius:11px;
-      color:var(--heading);
-      background:var(--surface);
+    .main-column{
+      min-height:100vh;
+      margin-left:var(--sidebar-width);
     }
 
     .topbar{
       position:sticky;
-      top:var(--sponsor-height);
-      z-index:100;
-      min-height:54px;
+      top:0;
+      z-index:120;
+      min-height:var(--topbar-height);
       display:flex;
       align-items:center;
       gap:12px;
-      padding:8px 26px;
-      background:color-mix(in srgb,var(--surface) 95%,transparent);
+      padding:10px 24px;
+      background:color-mix(in srgb,var(--surface) 92%,transparent);
       border-bottom:1px solid var(--border);
       backdrop-filter:blur(16px);
     }
 
-    .domain-safety-pill{
-      flex:0 0 auto;
-      display:inline-flex;
+    .mobile-menu-btn{
+      display:none;
+      width:38px;
+      height:38px;
+      flex:0 0 38px;
+      border:1px solid var(--border);
+      border-radius:11px;
+      color:var(--heading);
+      background:var(--surface);
+      font-size:17px;
+    }
+
+    .mobile-brand-mini{
+      display:none;
       align-items:center;
       gap:8px;
-      padding:5px 13px;
+      text-decoration:none;
+      flex:0 0 auto;
+    }
+
+    .mobile-brand-mini img{
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      border:1.5px solid var(--green);
+      object-fit:cover;
+    }
+
+    .mobile-brand-mini span{
+      color:var(--heading);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:-.3px;
+    }
+
+    /* GLOBAL SEARCH BAR */
+
+    .global-search-wrap{
+      position:relative;
+      flex:1 1 420px;
+      max-width:480px;
+      min-width:180px;
+    }
+
+    .global-search-box{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      height:40px;
+      padding:0 14px;
       border-radius:999px;
-      border:1px solid rgba(8,168,107,.3);
+      border:1.5px solid var(--border);
+      background:var(--surface-soft);
+      box-shadow:0 3px 10px rgba(8,168,107,.05);
+      transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
+    }
+
+    .global-search-box:focus-within{
+      border-color:var(--green);
+      background:var(--surface);
+      box-shadow:0 0 0 3px rgba(8,168,107,.14);
+    }
+
+    .search-icon-svg{
+      width:16px;
+      height:16px;
+      flex:0 0 16px;
+      color:var(--green);
+    }
+
+    .global-search-box input{
+      width:100%;
+      min-width:0;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:var(--heading);
+      font-size:12px;
+      font-weight:600;
+    }
+
+    .global-search-box input::placeholder{color:var(--muted);font-weight:600}
+
+    .search-clear-btn{
+      display:none;
+      width:20px;
+      height:20px;
+      flex:0 0 20px;
+      border:0;
+      border-radius:50%;
+      background:var(--border);
+      color:var(--heading);
+      font-size:11px;
+      line-height:1;
+      padding:0;
+    }
+
+    .search-clear-btn.visible{display:grid;place-items:center}
+
+    .search-results-dropdown{
+      display:none;
+      position:absolute;
+      top:calc(100% + 8px);
+      left:0;
+      right:0;
+      z-index:220;
+      max-height:360px;
+      overflow-y:auto;
+      padding:8px;
+      border-radius:16px;
+      border:1.5px solid var(--border);
+      background:var(--surface);
+      box-shadow:0 16px 36px rgba(6,43,49,.16);
+    }
+
+    .search-results-dropdown.open{display:block;animation:fadeIn .16s ease-out}
+
+    .search-result-item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:9px 11px;
+      border-radius:11px;
+      text-decoration:none;
+      transition:background .15s ease;
+    }
+
+    .search-result-item:hover{background:var(--green-soft)}
+    .search-result-main strong{display:block;color:var(--heading);font-size:12px;font-weight:800}
+    .search-result-main span{display:block;color:var(--muted);font-size:10px;font-weight:600;margin-top:1px}
+
+    .search-result-tag{
+      flex:0 0 auto;
+      padding:3px 8px;
+      border-radius:999px;
+      background:var(--surface-soft);
+      border:1px solid var(--border);
+      color:var(--green-dark);
+      font-size:9px;
+      font-weight:800;
+    }
+
+    [data-theme="dark"] .search-result-tag{color:var(--green-light)}
+
+    .search-empty{
+      padding:14px 12px;
+      text-align:center;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .topbar-right{
+      margin-left:auto;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+    }
+
+    .domain-safety-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:6px 13px;
+      border-radius:999px;
+      border:1px solid rgba(8,168,107,.32);
       background:var(--surface-soft);
       color:var(--body);
       font-size:11px;
@@ -617,24 +449,13 @@
       white-space:nowrap;
     }
 
-    .domain-lock{
-      display:inline-grid;
-      place-items:center;
-      width:20px;
-      height:20px;
-      border-radius:50%;
-      background:rgba(8,168,107,.15);
-      color:var(--green);
-      font-size:11px;
-    }
-
-    .domain-url{color:var(--green-dark);font-weight:800;letter-spacing:.1px}
+    .domain-url{color:var(--green-dark);font-weight:800}
     [data-theme="dark"] .domain-url{color:var(--green-light)}
 
     .domain-verified-tag{
       padding:2px 8px;
       border-radius:999px;
-      background:rgba(8,168,107,.14);
+      background:rgba(8,168,107,.15);
       color:var(--green-dark);
       font-size:9.5px;
       font-weight:800;
@@ -642,86 +463,10 @@
 
     [data-theme="dark"] .domain-verified-tag{color:var(--green-light)}
 
-    /* CONTINUOUS PROJECT TICKER */
-
-    .topbar-ticker{
-      flex:1 1 auto;
-      min-width:0;
-      overflow:hidden;
-      position:relative;
-      display:flex;
-      align-items:center;
-      mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);
-      -webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);
-    }
-
-    .ticker-track{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      width:max-content;
-      animation:tickerScroll 36s linear infinite;
-    }
-
-    .topbar-ticker:hover .ticker-track{animation-play-state:paused}
-
-    @keyframes tickerScroll{
-      0%{transform:translateX(0)}
-      100%{transform:translateX(-50%)}
-    }
-
-    .ticker-item{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:4px 10px 4px 5px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:var(--surface-soft);
-      color:var(--heading);
-      text-decoration:none;
-      font-size:10.5px;
-      font-weight:700;
-      white-space:nowrap;
-      transition:border-color .18s ease,color .18s ease,transform .18s ease;
-    }
-
-    .ticker-item:hover{
-      border-color:var(--green);
-      color:var(--green-dark);
-      transform:translateY(-1px);
-    }
-
-    [data-theme="dark"] .ticker-item:hover{color:var(--green-light)}
-
-    .ticker-logo{
-      position:relative;
-      width:18px;
-      height:18px;
-      flex:0 0 18px;
-      border-radius:50%;
-      overflow:hidden;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg,#08a86b,#067c50);
-      color:#fff;
-      font-size:9px;
-      font-weight:800;
-    }
-
-    .ticker-logo img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:50%;
-    }
-
-    .community-dropdown{position:relative;flex:0 0 auto}
+    .community-dropdown{position:relative}
 
     .community-btn,.icon-btn{
-      min-height:36px;
+      min-height:38px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -730,31 +475,28 @@
       border-radius:999px;
       color:var(--heading);
       background:var(--surface);
-      font-size:11px;
+      font-size:11.5px;
       font-weight:800;
-      box-shadow:0 3px 9px rgba(20,45,75,.035);
+      box-shadow:0 3px 9px rgba(20,45,75,.04);
+      transition:border-color .18s ease,color .18s ease;
     }
 
     .community-btn{padding:0 15px}
-    .icon-btn{width:36px;flex:0 0 36px;border-radius:50%;font-size:16px}
-
-    .community-btn:hover,.icon-btn:hover{
-      border-color:var(--green);
-      color:var(--green);
-    }
+    .icon-btn{width:38px;flex:0 0 38px;border-radius:50%;font-size:16px}
+    .community-btn:hover,.icon-btn:hover{border-color:var(--green);color:var(--green)}
 
     .dropdown-content{
       display:none;
       position:absolute;
-      z-index:150;
-      top:calc(100% + 10px);
+      z-index:180;
+      top:calc(100% + 9px);
       right:0;
       min-width:195px;
       overflow:hidden;
       border:1px solid var(--border);
       border-radius:14px;
       background:var(--surface);
-      box-shadow:0 14px 32px rgba(0,0,0,.14);
+      box-shadow:0 14px 32px rgba(0,0,0,.15);
     }
 
     .dropdown-content.show{display:block;animation:fadeIn .18s ease-out}
@@ -767,11 +509,11 @@
     .dropdown-content a{
       display:flex;
       gap:9px;
-      padding:13px 15px;
+      padding:12px 15px;
       border-bottom:1px solid var(--border);
       color:var(--heading);
       text-decoration:none;
-      font-size:11px;
+      font-size:11.5px;
       font-weight:700;
     }
 
@@ -781,29 +523,29 @@
 
     main{
       width:100%;
-      max-width:1600px;
+      max-width:1580px;
       margin:0 auto;
-      padding:16px 25px 35px;
+      padding:16px 24px 36px;
     }
 
     /* ==========================================
-       HERO SECTION
+       1. HERO SECTION (5TH DESIGN STYLE)
     ========================================== */
 
     .mint-hero{
       position:relative;
       isolation:isolate;
       overflow:hidden;
-      min-height:230px;
+      min-height:242px;
       display:grid;
-      grid-template-columns:minmax(0,1.14fr) minmax(330px,.96fr);
+      grid-template-columns:minmax(0,1.16fr) minmax(330px,.94fr);
       align-items:center;
-      gap:14px;
-      padding:18px 26px;
+      gap:16px;
+      padding:20px 28px;
       border-radius:22px;
-      border:1px solid #96ecd0;
+      border:1.5px solid #96ecd0;
       background:
-        radial-gradient(circle at 82% 24%,rgba(59,229,180,.36),transparent 38%),
+        radial-gradient(circle at 82% 24%,rgba(59,229,180,.36),transparent 40%),
         radial-gradient(circle at 12% 10%,rgba(16,201,135,.18),transparent 38%),
         linear-gradient(112deg,#dcfff1 0%,#f0fff8 48%,#b9f6e4 100%);
       box-shadow:0 12px 30px rgba(8,168,107,.10);
@@ -812,7 +554,7 @@
     [data-theme="dark"] .mint-hero{
       border-color:#215d4c;
       background:
-        radial-gradient(circle at 82% 24%,rgba(28,223,157,.24),transparent 38%),
+        radial-gradient(circle at 82% 24%,rgba(28,223,157,.24),transparent 40%),
         linear-gradient(112deg,#0d2b28 0%,#123a35 52%,#144f45 100%);
       box-shadow:0 14px 32px rgba(0,0,0,.28);
     }
@@ -834,39 +576,30 @@
       display:inline-flex;
       align-items:center;
       gap:7px;
-      margin-bottom:7px;
-      padding:5px 12px;
+      margin-bottom:8px;
+      padding:5px 13px;
       border-radius:999px;
-      background:rgba(255,255,255,.86);
+      background:rgba(255,255,255,.88);
       border:1px solid rgba(8,168,107,.32);
       color:#06744a;
-      font-size:9.5px;
+      font-size:10px;
       font-weight:800;
-      letter-spacing:.25px;
+      letter-spacing:.2px;
     }
 
     [data-theme="dark"] .mint-pill{
-      background:rgba(8,40,35,.72);
+      background:rgba(8,40,35,.75);
       border-color:rgba(72,240,180,.38);
       color:#8af0c5;
     }
 
-    .mint-pill::before{
-      content:"";
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:#08a86b;
-      box-shadow:0 0 8px rgba(8,168,107,.75);
-    }
-
     .mint-copy h1{
-      margin:0 0 7px;
+      margin:0 0 8px;
       color:var(--heading);
-      font-size:clamp(22px,2.55vw,33px);
-      line-height:1.13;
+      font-size:clamp(24px,2.7vw,36px);
+      line-height:1.12;
       font-weight:800;
-      letter-spacing:-.85px;
+      letter-spacing:-.9px;
     }
 
     .mint-copy h1 span{display:block;color:var(--green)}
@@ -875,33 +608,33 @@
       margin:0;
       max-width:610px;
       color:var(--body);
-      font-size:12px;
-      line-height:1.55;
+      font-size:12.2px;
+      line-height:1.56;
       font-weight:600;
     }
 
     .mint-trust-tags{
       display:flex;
       flex-wrap:wrap;
-      gap:6px;
-      margin-top:9px;
+      gap:7px;
+      margin-top:11px;
     }
 
     .mint-trust-tag{
       display:inline-flex;
       align-items:center;
       gap:5px;
-      padding:3.5px 9px;
+      padding:4px 10px;
       border-radius:999px;
-      background:rgba(255,255,255,.78);
+      background:rgba(255,255,255,.82);
       border:1px solid rgba(8,168,107,.24);
       color:var(--heading);
-      font-size:9.5px;
+      font-size:10px;
       font-weight:800;
     }
 
     [data-theme="dark"] .mint-trust-tag{
-      background:rgba(10,42,36,.72);
+      background:rgba(10,42,36,.74);
       border-color:rgba(72,240,180,.28);
     }
 
@@ -909,20 +642,20 @@
       display:flex;
       flex-wrap:wrap;
       align-items:center;
-      gap:9px;
-      margin-top:11px;
+      gap:10px;
+      margin-top:13px;
     }
 
     .mint-btn-primary{
       display:inline-flex;
       align-items:center;
       gap:7px;
-      padding:9px 17px;
+      padding:10px 19px;
       border-radius:999px;
       background:linear-gradient(135deg,#08a86b,#068e5a);
       color:#ffffff;
       text-decoration:none;
-      font-size:11px;
+      font-size:11.5px;
       font-weight:800;
       box-shadow:0 6px 16px rgba(8,168,107,.28);
       transition:transform .2s ease,box-shadow .2s ease;
@@ -937,13 +670,13 @@
       display:inline-flex;
       align-items:center;
       gap:7px;
-      padding:9px 16px;
+      padding:10px 17px;
       border-radius:999px;
-      border:1px solid #19c995;
-      background:rgba(255,255,255,.82);
+      border:1.5px solid #19c995;
+      background:rgba(255,255,255,.85);
       color:#087f55;
       text-decoration:none;
-      font-size:11px;
+      font-size:11.5px;
       font-weight:800;
       transition:background .2s ease,transform .2s ease;
     }
@@ -954,7 +687,7 @@
     }
 
     [data-theme="dark"] .mint-btn-secondary{
-      background:rgba(8,40,35,.72);
+      background:rgba(8,40,35,.74);
       color:#8af0c5;
     }
 
@@ -1038,14 +771,11 @@
       flex:0 0 14px;
     }
 
-    /* Major Chains Colors */
     .t-btc{background:linear-gradient(135deg,#f7931a,#d47000)}
     .t-eth{background:linear-gradient(135deg,#627eea,#3b56c4)}
     .t-sol{background:linear-gradient(135deg,#14f195,#9945ff)}
     .t-bnb{background:linear-gradient(135deg,#f3ba2f,#c68e07)}
     .t-usdt{background:linear-gradient(135deg,#26a17b,#0f7858)}
-
-    /* DePIN Token Colors */
     .t-grass{background:linear-gradient(135deg,#16a34a,#065f46)}
     .t-upt{background:linear-gradient(135deg,#f97316,#c2410c)}
     .t-nc{background:linear-gradient(135deg,#0ea5e9,#0369a1)}
@@ -1067,7 +797,360 @@
     .t-swash{background:linear-gradient(135deg,#0d9488,#115e59)}
 
     /* ==========================================
-       TRENDING DEPIN NETWORKS SECTION
+       2. OFFICIAL SPONSORSHIP BANNER (BELOW HERO)
+    ========================================== */
+
+    .mid-sponsor-banner{
+      position:relative;
+      overflow:hidden;
+      margin-top:14px;
+      padding:10px 16px;
+      border-radius:18px;
+      border:1.5px solid #5fe3b2;
+      background:
+        radial-gradient(circle at 10% 50%,rgba(50,229,161,.25),transparent 28%),
+        radial-gradient(circle at 90% 50%,rgba(8,181,160,.22),transparent 30%),
+        linear-gradient(100deg,#e3fff4 0%,#f5fffb 45%,#d7fced 100%);
+      box-shadow:0 8px 22px rgba(8,168,107,.10);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    [data-theme="dark"] .mid-sponsor-banner{
+      border-color:#266953;
+      background:
+        radial-gradient(circle at 10% 50%,rgba(32,217,154,.18),transparent 28%),
+        linear-gradient(100deg,#0b2c27 0%,#103933 50%,#0b2b28 100%);
+    }
+
+    .sponsor-lead{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      flex:0 0 auto;
+    }
+
+    .sponsor-mega-badge{
+      width:42px;
+      height:42px;
+      flex:0 0 42px;
+      border-radius:13px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#08a86b,#067c50);
+      color:#ffffff;
+      font-size:20px;
+      box-shadow:0 5px 14px rgba(8,168,107,.26);
+    }
+
+    .sponsor-lead-text strong{
+      display:block;
+      color:var(--heading);
+      font-size:13.5px;
+      font-weight:800;
+      letter-spacing:-.25px;
+    }
+
+    .sponsor-lead-text span{
+      display:block;
+      color:var(--green-dark);
+      font-size:10px;
+      font-weight:700;
+      margin-top:2px;
+    }
+
+    [data-theme="dark"] .sponsor-lead-text span{color:var(--green-light)}
+
+    .sponsor-slots-row{
+      flex:1 1 auto;
+      min-width:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:9px;
+    }
+
+    .sponsor-pill-card{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 13px;
+      border-radius:12px;
+      border:1px solid #a6ebd2;
+      background:rgba(255,255,255,.92);
+      color:var(--heading);
+      text-decoration:none;
+      font-size:11.5px;
+      font-weight:800;
+      box-shadow:0 3px 10px rgba(8,168,107,.06);
+      transition:transform .18s ease,border-color .18s ease;
+    }
+
+    [data-theme="dark"] .sponsor-pill-card{
+      background:rgba(13,43,38,.9);
+      border-color:#266350;
+    }
+
+    .sponsor-pill-card:hover{
+      transform:translateY(-2px);
+      border-color:var(--green);
+    }
+
+    .sponsor-pill-dot{
+      width:22px;
+      height:22px;
+      border-radius:7px;
+      display:grid;
+      place-items:center;
+      font-size:11px;
+      font-weight:900;
+      color:#fff;
+      background:linear-gradient(135deg,#08a86b,#08b5a0);
+    }
+
+    .sponsor-cta-wrap{
+      flex:0 0 auto;
+    }
+
+    .mid-sponsor-cta{
+      display:inline-flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:8px 18px;
+      border-radius:14px;
+      background:linear-gradient(135deg,#08a86b,#05784d);
+      color:#ffffff;
+      text-decoration:none;
+      box-shadow:0 6px 16px rgba(8,168,107,.28);
+      transition:transform .18s ease,box-shadow .18s ease;
+      white-space:nowrap;
+    }
+
+    .mid-sponsor-cta:hover{
+      transform:translateY(-2px);
+      box-shadow:0 9px 20px rgba(8,168,107,.38);
+    }
+
+    .mid-sponsor-cta strong{font-size:12px;font-weight:800;line-height:1.2}
+    .mid-sponsor-cta span{font-size:9px;font-weight:700;color:#c9fbe8;margin-top:2px}
+
+    /* ==========================================
+       3. FEATURED TOOLS ROW (GAS FEE & INR PAYOUT)
+    ========================================== */
+
+    .tools-showcase-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .tool-banner-card{
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:16px 20px;
+      border-radius:20px;
+      border:1.5px solid #96ecd0;
+      background:
+        radial-gradient(circle at 88% 20%,rgba(50,229,161,.24),transparent 42%),
+        linear-gradient(130deg,var(--surface) 0%,var(--surface-soft) 60%,#d4fced 100%);
+      box-shadow:0 10px 24px rgba(8,168,107,.08);
+      transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+    }
+
+    [data-theme="dark"] .tool-banner-card{
+      border-color:#23614e;
+      background:
+        radial-gradient(circle at 88% 20%,rgba(32,217,154,.18),transparent 42%),
+        linear-gradient(130deg,#0e262b 0%,#123732 62%,#144a40 100%);
+    }
+
+    .tool-banner-card:hover{
+      transform:translateY(-3px);
+      border-color:var(--green);
+      box-shadow:0 14px 28px rgba(8,168,107,.15);
+    }
+
+    .tool-banner-left{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+      z-index:2;
+    }
+
+    .tool-big-icon{
+      width:54px;
+      height:54px;
+      flex:0 0 54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,#d8fbee,#b0f3db);
+      border:1.5px solid #7fe3c0;
+      color:#067c50;
+      box-shadow:0 6px 14px rgba(8,168,107,.14);
+    }
+
+    [data-theme="dark"] .tool-big-icon{
+      background:linear-gradient(145deg,#134237,#0d2e27);
+      border-color:#266d57;
+      color:#5df0bd;
+    }
+
+    .tool-big-icon svg{
+      width:28px;
+      height:28px;
+      fill:none;
+      stroke:currentColor;
+      stroke-width:2.1;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .tool-banner-info{min-width:0}
+
+    .tool-title-row{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .tool-title-row h2{
+      margin:0;
+      color:var(--heading);
+      font-size:17px;
+      font-weight:800;
+      letter-spacing:-.35px;
+    }
+
+    .tool-live-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      padding:2.5px 8px;
+      border-radius:999px;
+      background:#08a86b;
+      color:#ffffff;
+      font-size:9px;
+      font-weight:800;
+    }
+
+    .tool-banner-info p{
+      margin:4px 0 10px;
+      color:var(--body);
+      font-size:11.5px;
+      font-weight:600;
+    }
+
+    .tool-action-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 16px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#08a86b,#067c50);
+      color:#ffffff;
+      text-decoration:none;
+      font-size:11px;
+      font-weight:800;
+      box-shadow:0 5px 14px rgba(8,168,107,.24);
+      transition:transform .18s ease;
+    }
+
+    .tool-action-btn:hover{transform:translateY(-1px)}
+
+    .tool-banner-art{
+      flex:0 0 120px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      opacity:.92;
+    }
+
+    .tool-banner-art svg{
+      width:118px;
+      height:68px;
+      display:block;
+    }
+
+    /* 4-STEP CONNECTED WORKFLOW BAR */
+
+    .workflow-strip{
+      margin-top:12px;
+      padding:10px 16px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:var(--surface);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:8px;
+      box-shadow:0 4px 14px rgba(8,168,107,.04);
+    }
+
+    .workflow-label{
+      color:var(--heading);
+      font-size:11px;
+      font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .workflow-steps{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:6px;
+    }
+
+    .wf-step{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      padding:5px 11px;
+      border-radius:999px;
+      background:var(--surface-soft);
+      border:1px solid var(--border);
+      color:var(--heading);
+      text-decoration:none;
+      font-size:10.5px;
+      font-weight:700;
+      transition:border-color .16s ease,background .16s ease;
+    }
+
+    .wf-step:hover{
+      border-color:var(--green);
+      background:var(--green-soft);
+    }
+
+    .wf-num{
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--green);
+      color:#fff;
+      font-size:9px;
+      font-weight:900;
+    }
+
+    .wf-arrow{color:var(--muted);font-size:11px;font-weight:800}
+
+    /* ==========================================
+       4. TRENDING DEPIN NETWORKS SECTION
     ========================================== */
 
     .trending-box{
@@ -1169,6 +1252,8 @@
       text-decoration:none;
       transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
     }
+
+    .trend-card.is-hidden{display:none}
 
     [data-theme="dark"] .trend-card{
       border-color:#265e4d;
@@ -1292,7 +1377,7 @@
     }
 
     /* ==========================================
-       ECOSYSTEM & WHY CHOOSE SECTION
+       5. ECOSYSTEM & WHY CHOOSE SECTION
     ========================================== */
 
     .ecosystem-split{
@@ -1515,7 +1600,7 @@
     }
 
     /* ==========================================
-       JOURNEY TAGLINE
+       6. JOURNEY TAGLINE & TRUST BAR
     ========================================== */
 
     .journey-tagline{
@@ -1557,10 +1642,6 @@
       font-weight:700;
     }
 
-    /* ==========================================
-       BOTTOM METRICS AND COMMUNITY CTA
-    ========================================== */
-
     .hub-bottom-band{
       display:grid;
       grid-template-columns:1.35fr 1fr;
@@ -1598,8 +1679,8 @@
 
     .hub-metric:last-child{border-right:0}
     .metric-icon{margin-bottom:4px;color:#08a86b;font-size:21px;font-weight:800}
-    .hub-metric strong{color:var(--heading);font-size:17px;font-weight:800}
-    .hub-metric span:last-child{margin-top:3px;color:var(--muted);font-size:8px;font-weight:700}
+    .hub-metric strong{color:var(--heading);font-size:16px;font-weight:800}
+    .hub-metric span:last-child{margin-top:3px;color:var(--muted);font-size:8.5px;font-weight:700}
 
     .hub-community-cta{
       position:relative;
@@ -1617,9 +1698,9 @@
     }
 
     .cta-art{
-      width:68px;
-      height:62px;
-      flex:0 0 68px;
+      width:64px;
+      height:58px;
+      flex:0 0 64px;
       display:grid;
       place-items:center;
       color:#61efc0;
@@ -1633,7 +1714,6 @@
       stroke-width:2.5;
       stroke-linecap:round;
       stroke-linejoin:round;
-      filter:drop-shadow(0 5px 10px rgba(0,0,0,.15));
     }
 
     .cta-copy{
@@ -1641,31 +1721,31 @@
       flex:1;
       display:flex;
       flex-direction:column;
-      gap:5px;
+      gap:4px;
     }
 
-    .cta-copy strong{color:#fff;font-size:13px;line-height:1.4;font-weight:800}
-    .cta-copy span{color:#c8f8e8;font-size:9px;line-height:1.5;font-weight:600}
+    .cta-copy strong{color:#fff;font-size:13px;line-height:1.35;font-weight:800}
+    .cta-copy span{color:#c8f8e8;font-size:9.5px;line-height:1.45;font-weight:600}
 
     .hub-join-btn{
       flex:0 0 auto;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
-      padding:11px 17px;
+      gap:7px;
+      padding:10px 16px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.45);
       color:#06392c;
       background:linear-gradient(135deg,#a7f3b5,#35e89a);
       text-decoration:none;
-      font-size:10px;
+      font-size:10.5px;
       font-weight:800;
       transition:.2s ease;
     }
 
     .hub-join-btn:hover{
-      transform:translateY(-3px);
+      transform:translateY(-2px);
       box-shadow:0 8px 17px rgba(0,0,0,.17);
     }
 
@@ -1676,7 +1756,7 @@
       background:var(--surface);
       border:1px solid var(--border);
       border-radius:13px;
-      font-size:9px;
+      font-size:9.5px;
       line-height:1.7;
     }
 
@@ -1685,8 +1765,8 @@
     ========================================== */
 
     footer{
-      margin-top:26px;
-      padding:24px 0 10px;
+      margin-top:24px;
+      padding:22px 0 10px;
       border-top:1px solid var(--border);
       display:flex;
       flex-direction:column;
@@ -1741,19 +1821,18 @@
     .footer-links a:hover{color:var(--green)}
 
     /* ==========================================
-       ORIGINAL RESPONSIVE LAYOUT
+       RESPONSIVE BREAKPOINTS
     ========================================== */
 
     .side-link:focus-visible,
     .mint-btn-primary:focus-visible,
     .mint-btn-secondary:focus-visible,
+    .tool-action-btn:focus-visible,
     .trend-card:focus-visible,
     .eco-btn:focus-visible,
     .eco-btn-ghost:focus-visible,
     .hub-join-btn:focus-visible,
-    .sponsor-cta:focus-visible,
-    .sponsor-slot-box:focus-visible,
-    .ticker-item:focus-visible{
+    .mid-sponsor-cta:focus-visible{
       outline:3px solid var(--green);
       outline-offset:3px;
     }
@@ -1762,217 +1841,61 @@
       .trending-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
     }
 
-    @media(max-width:1280px){
-      :root{--sidebar-width:235px}
-      .header-brand{min-width:185px}
-      .slot-arrow{display:none}
-      main{padding-left:20px;padding-right:20px}
+    @media(max-width:1240px){
+      :root{--sidebar-width:240px}
+      main{padding-left:18px;padding-right:18px}
       .mint-hero{grid-template-columns:1fr}
       .mint-art{max-width:450px;margin:0 auto}
+      .mid-sponsor-banner{flex-wrap:wrap;justify-content:center;text-align:center}
+      .tools-showcase-grid{grid-template-columns:1fr}
       .trending-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
       .ecosystem-split,.hub-bottom-band{grid-template-columns:1fr}
     }
 
     @media(max-width:980px){
       .trending-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    }
-
-    @media(max-width:900px){
-      .header-brand{min-width:auto}
-      .header-logo{width:36px;height:36px;flex-basis:36px}
-      .sponsor-inner{gap:10px;padding-left:14px;padding-right:14px}
-      .sponsor-slot-box{padding:5px 12px;height:50px}
-      .slot-center-text strong{font-size:13px}
-      .slot-center-text span{font-size:10px}
       .domain-verified-tag{display:none}
-      .mint-hero{padding:18px}
     }
 
     @media(max-width:760px){
-      :root{--sidebar-width:258px;--sponsor-height:56px}
-      .sponsor-inner{justify-content:space-between;gap:8px;padding:6px 10px}
-      .header-brand{gap:7px}
-      .header-logo{width:31px;height:31px;flex-basis:31px;font-size:12px}
-      .header-brand-name{font-size:11px}
-      .header-brand-subtitle{font-size:8px}
-      .header-v-sep,.sponsor-orb-btn{display:none}
-      .sponsor-slot-box{min-width:0;height:42px;padding:4px 10px;justify-content:center;gap:8px}
-      .slot-megaphone{font-size:17px}
-      .slot-center-text strong{font-size:11px}
-      .slot-center-text span{font-size:8px}
-      .sponsor-cta{padding:8px 11px;font-size:9px;gap:4px}
-      .sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}
+      :root{--sidebar-width:262px;--topbar-height:58px}
+      .sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.18)}
       body.menu-open .sidebar{transform:translateX(0)}
-      .mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}
+      .mobile-overlay{position:fixed;inset:0;z-index:140;background:rgba(4,14,27,.45)}
       body.menu-open .mobile-overlay{display:block}
       .main-column{margin-left:0}
-      .topbar{min-height:50px;gap:8px;padding:6px 12px}
-      .mobile-menu-btn{display:inline-grid;place-items:center;flex:0 0 36px}
-      .domain-safety-pill{padding:4px 9px;font-size:9.5px;gap:5px}
-      .domain-lock{width:17px;height:17px;font-size:9.5px}
-      .domain-label-hide,.topbar-ticker{display:none}
-      .community-dropdown{margin-left:auto}
-      .community-btn{width:36px;padding:0;overflow:hidden;font-size:0}
+      .topbar{padding:8px 12px;gap:8px}
+      .mobile-menu-btn{display:inline-grid;place-items:center}
+      .mobile-brand-mini{display:inline-flex}
+      .domain-safety-pill{display:none}
+      .global-search-wrap{flex:1 1 auto;min-width:0}
+      .global-search-box{height:36px;padding:0 11px}
+      .community-btn{width:36px;min-height:36px;padding:0;overflow:hidden;font-size:0}
       .community-btn::first-letter{font-size:15px}
-      .topbar .icon-btn{width:35px;min-height:35px;flex:0 0 35px}
-      main{padding:15px 13px 25px}
-      .mint-art{min-height:215px}
-      .em-globe-svg{width:195px}
+      .icon-btn{width:36px;min-height:36px;flex:0 0 36px}
+      main{padding:14px 12px 26px}
+      .mint-hero{padding:16px}
+      .mint-art{min-height:210px}
+      .em-globe-svg{width:190px}
       .orbit-token{padding:2.5px 5.5px;font-size:7.6px}
       .tok-dot{width:12px;height:12px;font-size:7px;flex-basis:12px}
-      .trending-box{padding:15px 13px}
+      .tool-banner-card{padding:14px 15px}
+      .tool-banner-art{display:none}
+      .trending-box{padding:15px 12px}
       .trending-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-      .eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:16px}
-      .hub-metrics{min-height:95px;padding:10px 5px}
-      .hub-metric{padding:4px}
+      .eco-map-card,.why-choose-card{grid-template-columns:1fr;padding:15px}
+      .hub-metrics{min-height:92px;padding:10px 6px}
       .hub-metric strong{font-size:13px}
-      .hub-metric span:last-child{font-size:7px}
-      .hub-community-cta{padding:13px}
-      .cta-art{width:48px;flex-basis:48px}
-      .cta-copy strong{font-size:11px}
-      .hub-join-btn{padding:10px;font-size:9px}
-    }
-
-    @media(max-width:480px){
-      .header-brand-subtitle{display:none}
-      .header-brand{min-width:96px;gap:6px}
-      .header-brand-name{font-size:10px}
-      .slot-megaphone{display:none}
-      .slot-center-text strong{font-size:10px}
-      .slot-center-text span{font-size:7px}
-      .sponsor-cta{padding:7px 9px;font-size:8px}
-      .topbar{gap:6px}
-      .domain-safety-pill{font-size:9px;padding:4px 8px}
-      .mint-art{min-height:195px}
-      .em-globe-svg{width:170px}
-      .orbit-token{padding:2px 4.5px;font-size:7px}
-      .hub-community-cta{flex-wrap:wrap}
-      .cta-copy{flex:1 1 65%}
+      .hub-community-cta{flex-wrap:wrap;padding:13px}
+      .cta-art{width:46px;flex-basis:46px}
       .hub-join-btn{margin-left:auto}
     }
 
-    /* ==========================================
-       PROMOTIONAL BANNER RESPONSIVE LAYOUT
-       Desktop / Laptop: keep banner readable at 970px max.
-       Tablet / Phone: use a separate row for the banner.
-    ========================================== */
-
-    @media(max-width:1500px){
-      :root{--sponsor-height:126px}
-
-      .sponsor-inner{
-        display:grid;
-        grid-template-columns:minmax(0,1fr) auto;
-        grid-template-rows:38px 58px;
-        grid-template-areas:"brand actions" "banner banner";
-        align-content:center;
-        gap:8px 12px;
-        min-height:var(--sponsor-height);
-        padding:8px 12px;
-      }
-
-      .header-brand{
-        grid-area:brand;
-        min-width:0;
-        gap:8px;
-      }
-
-      .header-logo{width:36px;height:36px;flex-basis:36px}
-      .header-brand-name{font-size:14px}
-      .header-brand-subtitle{font-size:8.5px}
-      .header-v-sep{display:none}
-
-      .sponsor-right-actions{
-        grid-area:actions;
-        justify-self:end;
-        gap:7px;
-      }
-
-      .sponsor-cta{padding:8px 13px;font-size:10px}
-      .sponsor-orb-btn{width:32px;height:32px;flex-basis:32px}
-
-      .sponsor-slot-box{
-        grid-area:banner;
-        justify-self:center;
-        width:100%;
-        max-width:970px;
-        min-width:0;
-        height:58px;
-        flex:none;
-      }
-
-      .sponsor-content{justify-content:center;padding:0 38px 5px}
-
-      .promo-segment{
-        display:none;
-        flex:1 1 100%;
-        justify-content:center;
-        max-width:100%;
-        padding:2px 5px;
-      }
-
-      .promo-segment.is-active{display:flex}
-      .promo-divider{display:none}
-      .promo-brand-mark{width:38px;height:38px;flex-basis:38px}
-      .promo-copy strong,.promo-primary .promo-copy strong{font-size:13px}
-      .promo-copy span{font-size:9.5px}
-    }
-
-    @media(max-width:760px){
-      :root{--sidebar-width:258px;--sponsor-height:126px}
-
-      .sponsor-inner{padding:8px 10px;gap:8px}
-      .header-brand{gap:7px}
-      .header-logo{width:32px;height:32px;flex-basis:32px}
-      .header-brand-name{font-size:12px}
-      .header-brand-subtitle{font-size:8px}
-      .sponsor-orb-btn{display:none}
-      .sponsor-cta{padding:8px 11px;font-size:9px}
-
-      .sponsor-slot-box{
-        width:100%;
-        max-width:none;
-        border-radius:13px;
-      }
-
-      .promo-brand-mark{width:35px;height:35px;flex-basis:35px}
-      .promo-copy strong,.promo-primary .promo-copy strong{font-size:12px}
-      .promo-copy span{font-size:9px}
-      .promo-handshake{font-size:25px}
-      .banner-arrow{width:23px;height:23px}
-      .banner-arrow.prev{left:6px}
-      .banner-arrow.next{right:6px}
-
-      .sidebar{transform:translateX(-105%);box-shadow:12px 0 35px rgba(0,0,0,.13)}
-      body.menu-open .sidebar{transform:translateX(0)}
-      .mobile-overlay{position:fixed;inset:var(--sponsor-height) 0 0;z-index:110;background:rgba(4,14,27,.42)}
-      body.menu-open .mobile-overlay{display:block}
-      .main-column{margin-left:0}
-      .topbar{top:var(--sponsor-height)}
-    }
-
     @media(max-width:480px){
-      :root{--sponsor-height:119px}
-
-      .sponsor-inner{
-        grid-template-rows:34px 58px;
-        gap:7px 8px;
-        padding:7px 9px;
-      }
-
-      .header-brand{min-width:0;gap:6px}
-      .header-logo{width:29px;height:29px;flex-basis:29px}
-      .header-brand-name{font-size:10.5px}
-      .header-brand-subtitle{display:none}
-      .sponsor-cta{padding:7px 9px;font-size:8.5px;gap:4px}
-      .sponsor-slot-box{height:58px}
-      .sponsor-content{padding:0 32px 5px}
-      .promo-brand-mark{width:32px;height:32px;flex-basis:32px}
-      .promo-copy strong,.promo-primary .promo-copy strong{font-size:10.5px}
-      .promo-copy span{font-size:8px}
-      .promo-youtube-icon{width:30px;height:22px;flex-basis:30px}
-      .promo-handshake{font-size:23px}
-      .banner-arrow{width:21px;height:21px;font-size:13px}
+      .mobile-brand-mini span{display:none}
+      .mint-art{min-height:190px}
+      .em-globe-svg{width:168px}
+      .orbit-token{padding:2px 4.5px;font-size:7px}
     }
 
     @media(prefers-reduced-motion:reduce){
@@ -1988,110 +1911,29 @@
 
 <body data-theme="light">
 
-  <!-- ==========================================
-       TOP SPONSORSHIP HEADER
-  ========================================== -->
-
-  <section class="sponsor-strip" aria-label="Sponsorship opportunity">
-    <div class="sponsor-inner">
-
-      <a href="index.html" class="header-brand">
-        <span class="header-logo">
-          <img src="logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
-        </span>
-
-        <span>
-          <span class="header-brand-name">Total Crypto Hub</span>
-          <span class="header-brand-subtitle">by <b>Total Crypto Network</b></span>
-        </span>
-      </a>
-
-      <span class="header-v-sep" aria-hidden="true"></span>
-
-      <!-- RESPONSIVE TOTAL CRYPTO HUB PROMOTIONAL BANNER -->
-      <div class="sponsor-slot-box" id="tcnPromoBanner" role="region" aria-label="Total Crypto Hub promotions">
-
-        <button class="banner-arrow prev" type="button" aria-label="Previous promotion">&#8249;</button>
-
-        <div class="sponsor-content">
-
-          <!-- SLIDE 1: TOTAL CRYPTO HUB -->
-          <a class="promo-segment promo-primary is-active" href="index.html" data-promo="0">
-            <span class="promo-brand-mark">
-              <img src="logos/tcn-logo.png" alt="" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
-            </span>
-
-            <span class="promo-copy">
-              <strong>Total Crypto Hub</strong>
-              <span>Your Gateway to DePIN &amp; Web3</span>
-            </span>
-          </a>
-
-          <span class="promo-divider" aria-hidden="true"></span>
-
-          <!-- SLIDE 2: YOUTUBE -->
-          <a class="promo-segment" href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer" data-promo="1">
-
-            <svg class="promo-youtube-icon" viewBox="0 0 34 25" aria-hidden="true">
-              <rect x="0" y="0" width="34" height="25" rx="7" fill="#ff1717"></rect>
-              <path d="M14 6.5 23 12.5 14 18.5Z" fill="#fff"></path>
-            </svg>
-
-            <span class="promo-copy">
-              <strong>Watch Our YouTube</strong>
-              <span>Learn · Explore · Grow</span>
-            </span>
-          </a>
-
-          <span class="promo-divider" aria-hidden="true"></span>
-
-          <!-- SLIDE 3: PARTNERSHIP -->
-          <a class="promo-segment" href="legal-pages/contact.html" data-promo="2">
-            <span class="promo-handshake" aria-hidden="true">🤝</span>
-
-            <span class="promo-copy">
-              <strong>Partner With Us</strong>
-              <span>Grow Together</span>
-            </span>
-          </a>
-
-        </div>
-
-        <button class="banner-arrow next" type="button" aria-label="Next promotion">&#8250;</button>
-
-        <div class="banner-dots" aria-label="Choose a promotion">
-          <button class="banner-dot is-active" type="button" aria-label="Show Total Crypto Hub promotion"></button>
-          <button class="banner-dot" type="button" aria-label="Show YouTube promotion"></button>
-          <button class="banner-dot" type="button" aria-label="Show partnership promotion"></button>
-        </div>
-
-      </div>
-
-      <span class="header-v-sep" aria-hidden="true"></span>
-
-      <div class="sponsor-right-actions">
-        <a href="legal-pages/contact.html" class="sponsor-cta">
-          Become a Sponsor <span aria-hidden="true">→</span>
-        </a>
-
-        <a href="legal-pages/contact.html" class="sponsor-orb-btn" title="Sponsor Details" aria-label="Sponsor Details">▼</a>
-      </div>
-
-    </div>
-  </section>
-
   <div class="app-shell">
 
     <!-- ==========================================
-         SIDEBAR
+         LEFT SIDEBAR (9-STEP SEQUENCE + NEW LOGOS)
     ========================================== -->
 
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+
+      <a href="index.html" class="sidebar-brand">
+        <span class="brand-logo-circle">
+          <img src="logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+        </span>
+        <span>
+          <span class="brand-title">Total Crypto Hub</span>
+          <span class="brand-sub">by Total Crypto Network</span>
+        </span>
+      </a>
 
       <div class="side-label">Workspace</div>
 
       <nav class="side-nav">
 
+        <!-- 1. Home -->
         <a href="index.html" class="side-link active" aria-current="page">
           <span class="nav-icon nav-home">
             <svg viewBox="0 0 24 24">
@@ -2103,39 +1945,48 @@
           Home
         </a>
 
+        <!-- 2. DePIN Projects (Decentralized Node Network Logo) -->
         <a href="depin-pages/depin.html" class="side-link">
           <span class="nav-icon nav-depin">
             <svg viewBox="0 0 24 24">
-              <path d="M13 2 4 13h7l-1 9 10-13h-7z"/>
+              <circle cx="12" cy="12" r="3"/>
+              <circle cx="19" cy="5" r="2"/>
+              <circle cx="5" cy="5" r="2"/>
+              <circle cx="19" cy="19" r="2"/>
+              <circle cx="5" cy="19" r="2"/>
+              <path d="m14.2 9.8 3.4-3.4M9.8 9.8 6.4 6.4M14.2 14.2l3.4 3.4M9.8 14.2l-3.4 3.4"/>
             </svg>
           </span>
           DePIN Projects
         </a>
 
+        <!-- 3. Mobile & Community (Smartphone + Wireless Signal Logo) -->
         <a href="mobile-pages/mobile-mining.html" class="side-link">
           <span class="nav-icon nav-community">
             <svg viewBox="0 0 24 24">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              <rect x="6" y="2" width="12" height="20" rx="2.5"/>
+              <path d="M12 18h.01"/>
+              <path d="M9.2 9.5a4 4 0 0 1 5.6 0"/>
+              <path d="M10.8 12a1.8 1.8 0 0 1 2.4 0"/>
             </svg>
           </span>
-          Community Projects
+          Mobile &amp; Community
         </a>
 
+        <!-- 4. Airdrops & Campaigns (Parachute Airdrop Logo) -->
         <a href="airdrop-pages/airdrops.html" class="side-link">
           <span class="nav-icon nav-airdrop">
             <svg viewBox="0 0 24 24">
-              <rect x="3" y="8" width="18" height="13" rx="2"/>
-              <path d="M12 8v13M3 12h18"/>
-              <path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/>
-              <path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/>
+              <path d="M12 3a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8Z"/>
+              <path d="m4 11 8 6 8-6"/>
+              <path d="M12 11v6"/>
+              <rect x="9" y="17" width="6" height="4" rx="1"/>
             </svg>
           </span>
           Airdrops &amp; Campaigns
         </a>
 
+        <!-- 5. Wallets & Exchanges -->
         <a href="wallet-pages/wallets.html" class="side-link">
           <span class="nav-icon nav-wallet">
             <svg viewBox="0 0 24 24">
@@ -2147,6 +1998,7 @@
           Wallets &amp; Exchanges
         </a>
 
+        <!-- 6. Smart Token Finder -->
         <a href="token-pages/token-checker.html" class="side-link">
           <span class="nav-icon nav-checker">
             <svg viewBox="0 0 24 24">
@@ -2157,6 +2009,7 @@
           Smart Token Finder
         </a>
 
+        <!-- 7. Earning Calculator -->
         <a href="earning-pages/earning-calculator.html" class="side-link">
           <span class="nav-icon nav-calculator">
             <svg viewBox="0 0 24 24">
@@ -2167,19 +2020,44 @@
           Earning Calculator
         </a>
 
+        <!-- 8. Gas Fee Checker (Fuel / Gas Pump Logo) -->
+        <a href="tools-pages/gas-checker.html" class="side-link">
+          <span class="nav-icon nav-gas">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 20V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v14"/>
+              <path d="M2 20h15"/>
+              <path d="M7 8h5"/>
+              <path d="M15 10h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-3-3"/>
+            </svg>
+          </span>
+          Gas Fee Checker
+        </a>
+
+        <!-- 9. INR Payout Calculator (Indian Rupee ₹ Logo) -->
+        <a href="tools-pages/inr-payout.html" class="side-link">
+          <span class="nav-icon nav-payout">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 5h10"/>
+              <path d="M7 9h10"/>
+              <path d="M7 5c3.5 0 5.5 1.8 5.5 4S10.5 13 7 13l6.5 6"/>
+            </svg>
+          </span>
+          INR Payout Calculator
+        </a>
+
       </nav>
 
       <div class="sidebar-spacer"></div>
 
       <section class="side-promo" aria-label="Community invitation">
-        <div class="promo-gift" aria-hidden="true">🎁</div>
-        <h3>Join the Community<br>&amp; Earn Together</h3>
+        <div class="promo-gift" aria-hidden="true">🤝</div>
+        <h3>Join Our Community<br>Let's Grow Together</h3>
         <p>Follow project updates, guides and community announcements.</p>
         <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" class="promo-btn">Join Now →</a>
       </section>
 
       <a href="legal-pages/contact.html" class="support-card">
-        <span class="support-icon" aria-hidden="true">♧</span>
+        <span class="support-icon" aria-hidden="true">🎧</span>
         <span>
           <strong>Need Help?</strong>
           <span>Contact Support →</span>
@@ -2195,258 +2073,84 @@
     <div class="main-column">
 
       <!-- ==========================================
-           TOPBAR WITH OFFICIAL DOMAIN & PROJECT TICKER
+           STICKY TOPBAR WITH GLOBAL LIVE SEARCH
       ========================================== -->
 
       <header class="topbar">
 
         <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
 
-        <div class="domain-safety-pill" title="Always verify you are on the official Total Crypto Hub domain">
-          <span class="domain-lock" aria-hidden="true">🔒</span>
-          <span>
-            <span class="domain-label-hide">Official Domain: </span>
+        <a href="index.html" class="mobile-brand-mini">
+          <img src="logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none';">
+          <span>Total Crypto Hub</span>
+        </a>
+
+        <!-- GLOBAL SEARCH BAR -->
+        <div class="global-search-wrap" id="globalSearchWrap">
+          <div class="global-search-box">
+            <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="search" id="globalSearchInput" placeholder="Search DePIN, Project, or Tool..." autocomplete="off" aria-label="Search DePIN, Project, or Tool">
+            <button type="button" class="search-clear-btn" id="searchClearBtn" aria-label="Clear search">✕</button>
+          </div>
+          <div class="search-results-dropdown" id="searchResultsDropdown" role="listbox"></div>
+        </div>
+
+        <div class="topbar-right">
+
+          <div class="domain-safety-pill" title="Always verify you are on the official Total Crypto Hub domain">
+            <span aria-hidden="true">🔒</span>
             <span class="domain-url">totalcryptohub.com</span>
-          </span>
-          <span class="domain-verified-tag">✓ Anti-Phishing Verified</span>
-        </div>
-
-        <!-- LIVE CONTINUOUS SCROLLING PROJECT TICKER -->
-
-        <div class="topbar-ticker" aria-label="Live DePIN Projects">
-
-          <div class="ticker-track">
-
-            <!-- SET 1 -->
-
-            <a href="projects/titan.html" class="ticker-item">
-              <span class="ticker-logo">T<img src="logos/titan.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Titan Network
-            </a>
-
-            <a href="projects/bixberry.html" class="ticker-item">
-              <span class="ticker-logo">B<img src="logos/Bixberry.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Bixberry
-            </a>
-
-            <a href="projects/u2u.html" class="ticker-item">
-              <span class="ticker-logo">U<img src="logos/u2u.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              U2U Network
-            </a>
-
-            <a href="projects/grass.html" class="ticker-item">
-              <span class="ticker-logo">G<img src="logos/grass.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Grass Network
-            </a>
-
-            <a href="projects/honeygain.html" class="ticker-item">
-              <span class="ticker-logo">H<img src="logos/Honeygain.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Honeygain
-            </a>
-
-            <a href="projects/pawns.html" class="ticker-item">
-              <span class="ticker-logo">P<img src="logos/Pawns.app.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Pawns.app
-            </a>
-
-            <a href="projects/nodepay.html" class="ticker-item">
-              <span class="ticker-logo">N<img src="logos/nodepay.png" alt="" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='logos/Nodepay.png';}else{this.remove();}"></span>
-              Nodepay
-            </a>
-
-            <a href="projects/packetstream.html" class="ticker-item">
-              <span class="ticker-logo">P<img src="logos/packetstream.png" alt="" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='logos/PacketStream.png';}else{this.remove();}"></span>
-              PacketStream
-            </a>
-
-            <a href="projects/repocket.html" class="ticker-item">
-              <span class="ticker-logo">R<img src="logos/Repocket.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Repocket
-            </a>
-
-            <a href="projects/uprock.html" class="ticker-item">
-              <span class="ticker-logo">U<img src="logos/uprock.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              UpRock
-            </a>
-
-            <a href="projects/mysterium.html" class="ticker-item">
-              <span class="ticker-logo">M<img src="logos/Mysterium Network.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Mysterium Network
-            </a>
-
-            <a href="projects/hyra.html" class="ticker-item">
-              <span class="ticker-logo">H<img src="logos/Hyra Network.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Hyra Network
-            </a>
-
-            <a href="projects/theta.html" class="ticker-item">
-              <span class="ticker-logo">T<img src="logos/Theta Edge Node.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Theta Edge Node
-            </a>
-
-            <a href="projects/slice.html" class="ticker-item">
-              <span class="ticker-logo">S<img src="logos/Slice.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Slice
-            </a>
-
-            <a href="projects/nodle.html" class="ticker-item">
-              <span class="ticker-logo">N<img src="logos/Nodle Network.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Nodle Network
-            </a>
-
-            <a href="projects/swash.html" class="ticker-item">
-              <span class="ticker-logo">S<img src="logos/swash.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Swash
-            </a>
-
-            <a href="projects/over-the-reality.html" class="ticker-item">
-              <span class="ticker-logo">O<img src="logos/over-the-reality.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Over The Reality
-            </a>
-
-            <a href="projects/adreva.html" class="ticker-item">
-              <span class="ticker-logo">A<img src="logos/adreva.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Adreva
-            </a>
-
-            <!-- SET 2: SEAMLESS LOOP DUPLICATE -->
-
-            <a href="projects/titan.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">T<img src="logos/titan.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Titan Network
-            </a>
-
-            <a href="projects/bixberry.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">B<img src="logos/Bixberry.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Bixberry
-            </a>
-
-            <a href="projects/u2u.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">U<img src="logos/u2u.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              U2U Network
-            </a>
-
-            <a href="projects/grass.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">G<img src="logos/grass.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Grass Network
-            </a>
-
-            <a href="projects/honeygain.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">H<img src="logos/Honeygain.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Honeygain
-            </a>
-
-            <a href="projects/pawns.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">P<img src="logos/Pawns.app.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Pawns.app
-            </a>
-
-            <a href="projects/nodepay.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">N<img src="logos/nodepay.png" alt="" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='logos/Nodepay.png';}else{this.remove();}"></span>
-              Nodepay
-            </a>
-
-            <a href="projects/packetstream.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">P<img src="logos/packetstream.png" alt="" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='logos/PacketStream.png';}else{this.remove();}"></span>
-              PacketStream
-            </a>
-
-            <a href="projects/repocket.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">R<img src="logos/Repocket.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Repocket
-            </a>
-
-            <a href="projects/uprock.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">U<img src="logos/uprock.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              UpRock
-            </a>
-
-            <a href="projects/mysterium.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">M<img src="logos/Mysterium Network.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Mysterium Network
-            </a>
-
-            <a href="projects/hyra.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">H<img src="logos/Hyra Network.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Hyra Network
-            </a>
-
-            <a href="projects/theta.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">T<img src="logos/Theta Edge Node.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Theta Edge Node
-            </a>
-
-            <a href="projects/slice.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">S<img src="logos/Slice.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Slice
-            </a>
-
-            <a href="projects/nodle.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">N<img src="logos/Nodle Network.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Nodle Network
-            </a>
-
-            <a href="projects/swash.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">S<img src="logos/swash.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Swash
-            </a>
-
-            <a href="projects/over-the-reality.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">O<img src="logos/over-the-reality.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Over The Reality
-            </a>
-
-            <a href="projects/adreva.html" class="ticker-item" aria-hidden="true" tabindex="-1">
-              <span class="ticker-logo">A<img src="logos/adreva.png" alt="" loading="lazy" onerror="this.remove()"></span>
-              Adreva
-            </a>
-
+            <span class="domain-verified-tag">✓ Verified</span>
           </div>
-        </div>
 
-        <div class="community-dropdown">
-          <button class="community-btn" type="button" id="communityButton" aria-expanded="false">👥 Community</button>
+          <div class="community-dropdown">
+            <button class="community-btn" type="button" id="communityButton" aria-expanded="false">👥 Community</button>
 
-          <div class="dropdown-content" id="communityMenu">
-            <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
-            <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-            <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a>
-            <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+            <div class="dropdown-content" id="communityMenu">
+              <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
+              <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+              <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a>
+              <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+            </div>
           </div>
-        </div>
 
-        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+          <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+
+        </div>
 
       </header>
 
       <main>
 
         <!-- ==========================================
-             HERO SECTION
+             1. HERO SECTION
         ========================================== -->
 
         <section class="mint-hero" aria-labelledby="heroTitle">
 
           <div class="mint-copy">
 
-            <span class="mint-pill">🛡️ Curated Web3 Directory · Powered by Total Crypto Network</span>
+            <span class="mint-pill">🚀 All-in-One Web3 &amp; DePIN Directory · Total Crypto Network</span>
 
             <h1 id="heroTitle">
               Total Crypto Hub
               <span>Your Safe Gateway to DePIN &amp; Web3</span>
             </h1>
 
-            <p>Stop risking your wallet on fake Telegram bots, unverified apps, and phishing links. Total Crypto Hub brings official DePIN nodes, community projects, active airdrops, hardware &amp; software wallet guides, and smart crypto tools together in one safe directory — everything you need in one place without searching elsewhere.</p>
+            <p>Explore DePIN projects, mobile &amp; community mining apps, verified airdrops, wallet guides, and smart crypto tools — track live token prices, calculate earnings, check gas fees, and estimate final INR payouts in one safe place.</p>
 
             <div class="mint-trust-tags">
-              <span class="mint-trust-tag">✓ Official Direct Links</span>
-              <span class="mint-trust-tag">🛡️ Anti-Phishing Safety</span>
-              <span class="mint-trust-tag">⚡ DePIN · Wallets · Tools</span>
+              <span class="mint-trust-tag">✓ Explore Directory</span>
+              <span class="mint-trust-tag">✓ Powerful Web3 Tools</span>
+              <span class="mint-trust-tag">✓ Anti-Phishing Safety</span>
             </div>
 
             <div class="mint-actions">
-              <a href="depin-pages/depin.html" class="mint-btn-primary">🚀 Explore Projects →</a>
-              <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer" class="mint-btn-secondary">▶ Watch Video</a>
+              <a href="depin-pages/depin.html" class="mint-btn-primary">🧭 Explore Directory →</a>
+              <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer" class="mint-btn-secondary">▶ Watch Intro Video</a>
             </div>
 
           </div>
@@ -2510,16 +2214,13 @@
                 </clipPath>
               </defs>
 
-              <!-- PEDESTAL -->
               <ellipse cx="160" cy="226" rx="130" ry="19" fill="url(#emPedestal)"/>
               <ellipse cx="160" cy="224" rx="102" ry="13" fill="none" stroke="#08a86b" stroke-width="1.8" opacity="0.55"/>
               <ellipse cx="160" cy="222" rx="74" ry="9.5" fill="#b7ffe6" stroke="#08a86b" stroke-width="1.8"/>
 
-              <!-- ORBIT NETWORK RINGS -->
               <ellipse cx="160" cy="122" rx="146" ry="54" transform="rotate(-15 160 122)" fill="none" stroke="#08a86b" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.5"/>
               <ellipse cx="160" cy="122" rx="126" ry="46" transform="rotate(20 160 122)" fill="none" stroke="#08a86b" stroke-width="1.3" opacity="0.42"/>
 
-              <!-- MAIN EARTH -->
               <circle cx="160" cy="122" r="84" fill="url(#emSphere)" stroke="#8affd4" stroke-width="2.5"/>
 
               <g clip-path="url(#emGlobeClip)">
@@ -2553,7 +2254,117 @@
         </section>
 
         <!-- ==========================================
-             TRENDING DEPIN NETWORKS
+             2. OFFICIAL SPONSORSHIP BANNER (5TH DESIGN)
+        ========================================== -->
+
+        <section class="mid-sponsor-banner" aria-label="Official Sponsors">
+
+          <div class="sponsor-lead">
+            <span class="sponsor-mega-badge" aria-hidden="true">📢</span>
+            <div class="sponsor-lead-text">
+              <strong>Our Official Sponsors</strong>
+              <span>Building a Decentralized Future Together</span>
+            </div>
+          </div>
+
+          <div class="sponsor-slots-row" id="sponsorSlotsRow">
+            <!-- Populated cleanly via SHARED_SPONSOR_CONFIG in JS -->
+          </div>
+
+          <div class="sponsor-cta-wrap">
+            <a href="legal-pages/contact.html" class="mid-sponsor-cta">
+              <strong>Become a Sponsor →</strong>
+              <span>Grow Your Brand with Us</span>
+            </a>
+          </div>
+
+        </section>
+
+        <!-- ==========================================
+             3. FEATURED TOOLS (GAS FEE & INR PAYOUT)
+        ========================================== -->
+
+        <section class="tools-showcase-grid" aria-label="Featured Web3 Utilities">
+
+          <!-- CARD 1: GAS FEE CHECKER -->
+          <div class="tool-banner-card">
+            <div class="tool-banner-left">
+              <div class="tool-big-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 20V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v14"/>
+                  <path d="M2 20h15"/>
+                  <path d="M7 8h5"/>
+                  <path d="M15 10h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-3-3"/>
+                </svg>
+              </div>
+              <div class="tool-banner-info">
+                <div class="tool-title-row">
+                  <h2>Gas Fee Checker</h2>
+                  <span class="tool-live-pill">● Live Data</span>
+                </div>
+                <p>Check Live Gas Fees Across All Networks in $ &amp; ₹</p>
+                <a href="tools-pages/gas-checker.html" class="tool-action-btn">Check Now →</a>
+              </div>
+            </div>
+
+            <div class="tool-banner-art" aria-hidden="true">
+              <svg viewBox="0 0 120 68" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="6,54 28,44 48,48 70,28 92,32 114,12" fill="none" stroke="#08a86b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="28" cy="44" r="3.5" fill="#08a86b"/>
+                <circle cx="70" cy="28" r="3.5" fill="#08a86b"/>
+                <circle cx="114" cy="12" r="4.5" fill="#067c50" stroke="#ffffff" stroke-width="1.5"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- CARD 2: INR PAYOUT CALCULATOR -->
+          <div class="tool-banner-card">
+            <div class="tool-banner-left">
+              <div class="tool-big-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 5h10"/>
+                  <path d="M7 9h10"/>
+                  <path d="M7 5c3.5 0 5.5 1.8 5.5 4S10.5 13 7 13l6.5 6"/>
+                </svg>
+              </div>
+              <div class="tool-banner-info">
+                <div class="tool-title-row">
+                  <h2>INR Payout Calculator</h2>
+                  <span class="tool-live-pill">Tax &amp; TDS Ready</span>
+                </div>
+                <p>Convert &amp; Calculate Net Bank Earnings in INR</p>
+                <a href="tools-pages/inr-payout.html" class="tool-action-btn">Calculate Now →</a>
+              </div>
+            </div>
+
+            <div class="tool-banner-art" aria-hidden="true">
+              <svg viewBox="0 0 120 68" xmlns="http://www.w3.org/2000/svg">
+                <rect x="18" y="42" width="16" height="18" rx="4" fill="#32e5a1" opacity="0.55"/>
+                <rect x="42" y="30" width="16" height="30" rx="4" fill="#08b5a0" opacity="0.72"/>
+                <rect x="66" y="18" width="16" height="42" rx="4" fill="#08a86b"/>
+                <path d="M88 34 108 14M96 14h12v12" fill="none" stroke="#067c50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- CONNECTED 4-STEP EARNING-TO-BANK WORKFLOW BAR -->
+        <div class="workflow-strip" aria-label="Connected Web3 Tool Sequence">
+          <span class="workflow-label">⚡ A-to-Z Earning Flow:</span>
+          <div class="workflow-steps">
+            <a href="token-pages/token-checker.html" class="wf-step"><span class="wf-num">1</span>Smart Token Finder</a>
+            <span class="wf-arrow">→</span>
+            <a href="earning-pages/earning-calculator.html" class="wf-step"><span class="wf-num">2</span>Earning Calculator</a>
+            <span class="wf-arrow">→</span>
+            <a href="tools-pages/gas-checker.html" class="wf-step"><span class="wf-num">3</span>Gas Fee Checker</a>
+            <span class="wf-arrow">→</span>
+            <a href="tools-pages/inr-payout.html" class="wf-step"><span class="wf-num">4</span>INR Payout Calculator</a>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             4. TRENDING DEPIN NETWORKS
         ========================================== -->
 
         <section class="trending-box" id="dashboardGrid" aria-labelledby="trendingTitle">
@@ -2561,18 +2372,18 @@
           <div class="trending-head">
 
             <div class="trending-title-wrap">
-              <span class="trending-badge" id="trendingTitle">⚡ Trending DePIN Networks</span>
-              <span class="trending-sub">Automated bandwidth, compute &amp; sensor nodes — set up once and run effortlessly.</span>
+              <span class="trending-badge" id="trendingTitle">🔥 Trending DePIN Projects</span>
+              <span class="trending-sub">Discover the most promising DePIN projects in the Web3 ecosystem.</span>
             </div>
 
-            <a href="depin-pages/depin.html" class="view-all-btn">View All 57+ DePINs →</a>
+            <a href="depin-pages/depin.html" class="view-all-btn">View All 57+ Projects →</a>
 
           </div>
 
-          <div class="trending-grid">
+          <div class="trending-grid" id="trendingGrid">
 
             <!-- #1 TITAN NETWORK -->
-            <a href="projects/titan.html" class="trend-card">
+            <a href="projects/titan.html" class="trend-card" data-search="titan network edge routing bandwidth storage usdc">
               <span class="trend-rank rank-top">#1</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">T</span>
@@ -2585,7 +2396,7 @@
             </a>
 
             <!-- #2 BIXBERRY -->
-            <a href="projects/bixberry.html" class="trend-card">
+            <a href="projects/bixberry.html" class="trend-card" data-search="bixberry mobile background mining cash payout vouchers">
               <span class="trend-rank rank-top">#2</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">B</span>
@@ -2598,7 +2409,7 @@
             </a>
 
             <!-- #3 U2U NETWORK -->
-            <a href="projects/u2u.html" class="trend-card">
+            <a href="projects/u2u.html" class="trend-card" data-search="u2u network depin subnet infrastructure token listed">
               <span class="trend-rank rank-top">#3</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">U</span>
@@ -2611,7 +2422,7 @@
             </a>
 
             <!-- #4 GRASS NETWORK -->
-            <a href="projects/grass.html" class="trend-card">
+            <a href="projects/grass.html" class="trend-card" data-search="grass network decentralized ai data layer token listed">
               <span class="trend-rank rank-top">#4</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">G</span>
@@ -2624,7 +2435,7 @@
             </a>
 
             <!-- #5 HONEYGAIN -->
-            <a href="projects/honeygain.html" class="trend-card">
+            <a href="projects/honeygain.html" class="trend-card" data-search="honeygain residential internet monetization cash payouts">
               <span class="trend-rank rank-top">#5</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">H</span>
@@ -2637,20 +2448,20 @@
             </a>
 
             <!-- #6 PAWNS.APP -->
-            <a href="projects/pawns.html" class="trend-card">
+            <a href="projects/pawns.html" class="trend-card" data-search="pawns.app bandwidth sharing privacy surveys cash payouts">
               <span class="trend-rank">#6</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">P</span>
                 <img src="logos/Pawns.app.png" alt="Pawns.app logo" loading="lazy" onerror="this.remove()">
               </div>
               <strong>Pawns.app</strong>
-              <span class="trend-desc">Bandwidth Sharing &amp; Surveys</span>
+              <span class="trend-desc">Bandwidth Sharing &amp; Privacy</span>
               <span class="trend-status-tag">Cash Payouts</span>
               <span class="trend-explore-pill">Explore →</span>
             </a>
 
             <!-- #7 NODEPAY -->
-            <a href="projects/nodepay.html" class="trend-card">
+            <a href="projects/nodepay.html" class="trend-card" data-search="nodepay decentralized ai extension">
               <span class="trend-rank">#7</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">N</span>
@@ -2663,7 +2474,7 @@
             </a>
 
             <!-- #8 PACKETSTREAM -->
-            <a href="projects/packetstream.html" class="trend-card">
+            <a href="projects/packetstream.html" class="trend-card" data-search="packetstream residential peer proxy node cash payouts">
               <span class="trend-rank">#8</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">P</span>
@@ -2676,7 +2487,7 @@
             </a>
 
             <!-- #9 REPOCKET -->
-            <a href="projects/repocket.html" class="trend-card">
+            <a href="projects/repocket.html" class="trend-card" data-search="repocket spare internet monetization cash payouts">
               <span class="trend-rank">#9</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">R</span>
@@ -2689,7 +2500,7 @@
             </a>
 
             <!-- #10 UPROCK -->
-            <a href="projects/uprock.html" class="trend-card">
+            <a href="projects/uprock.html" class="trend-card" data-search="uprock upt mobile ai bandwidth mining token listed">
               <span class="trend-rank">#10</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">U</span>
@@ -2702,7 +2513,7 @@
             </a>
 
             <!-- #11 MYSTERIUM NETWORK -->
-            <a href="projects/mysterium.html" class="trend-card">
+            <a href="projects/mysterium.html" class="trend-card" data-search="mysterium network myst dvpn residential bandwidth">
               <span class="trend-rank">#11</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">M</span>
@@ -2715,7 +2526,7 @@
             </a>
 
             <!-- #12 HYRA NETWORK -->
-            <a href="projects/hyra.html" class="trend-card">
+            <a href="projects/hyra.html" class="trend-card" data-search="hyra network pc mobile compute node">
               <span class="trend-rank">#12</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">H</span>
@@ -2728,7 +2539,7 @@
             </a>
 
             <!-- #13 THETA EDGE NODE -->
-            <a href="projects/theta.html" class="trend-card">
+            <a href="projects/theta.html" class="trend-card" data-search="theta edge node distributed video ai compute">
               <span class="trend-rank">#13</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">T</span>
@@ -2741,7 +2552,7 @@
             </a>
 
             <!-- #14 SLICE -->
-            <a href="projects/slice.html" class="trend-card">
+            <a href="projects/slice.html" class="trend-card" data-search="slice browser attention monetization">
               <span class="trend-rank">#14</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">S</span>
@@ -2754,7 +2565,7 @@
             </a>
 
             <!-- #15 NODLE NETWORK -->
-            <a href="projects/nodle.html" class="trend-card">
+            <a href="projects/nodle.html" class="trend-card" data-search="nodle network ble smartphone iot mesh">
               <span class="trend-rank">#15</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">N</span>
@@ -2767,7 +2578,7 @@
             </a>
 
             <!-- #16 SWASH -->
-            <a href="projects/swash.html" class="trend-card">
+            <a href="projects/swash.html" class="trend-card" data-search="swash data monetization extension">
               <span class="trend-rank">#16</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">S</span>
@@ -2780,7 +2591,7 @@
             </a>
 
             <!-- #17 OVER THE REALITY -->
-            <a href="projects/over-the-reality.html" class="trend-card">
+            <a href="projects/over-the-reality.html" class="trend-card" data-search="over the reality ovr ar spatial mapping geo node">
               <span class="trend-rank">#17</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">O</span>
@@ -2793,7 +2604,7 @@
             </a>
 
             <!-- #18 ADREVA -->
-            <a href="projects/adreva.html" class="trend-card">
+            <a href="projects/adreva.html" class="trend-card" data-search="adreva depin advertising privacy">
               <span class="trend-rank">#18</span>
               <div class="trend-logo">
                 <span class="trend-fallback" aria-hidden="true">A</span>
@@ -2809,12 +2620,10 @@
         </section>
 
         <!-- ==========================================
-             ECOSYSTEM & WHY CHOOSE SECTION
+             5. ECOSYSTEM & WHY CHOOSE SECTION
         ========================================== -->
 
         <section class="ecosystem-split" aria-label="Web3 Ecosystem Overview">
-
-          <!-- LEFT: ECOSYSTEM MAP -->
 
           <div class="eco-map-card">
 
@@ -2823,17 +2632,17 @@
 
               <h2>A Connected <span>Decentralized World</span></h2>
 
-              <p>No need to jump between risky links or scattered platforms. Total Crypto Hub connects curated DePIN nodes, community mining apps, airdrops, wallet guides, and smart tools in one safe hub.</p>
+              <p>No need to jump between risky links or scattered platforms. Total Crypto Hub connects curated DePIN nodes, mobile &amp; community apps, airdrops, wallet guides, and smart tools in one safe hub.</p>
 
               <div class="eco-pillars">
                 <span class="eco-pillar">⚡ 57+ DePIN Nodes</span>
-                <span class="eco-pillar">🛡️ Scam &amp; Token Check</span>
-                <span class="eco-pillar">🧮 Earning Calculator</span>
+                <span class="eco-pillar">⛽ Live Gas Checker</span>
+                <span class="eco-pillar">₹ INR Payout Tool</span>
               </div>
 
               <div class="eco-btn-row">
                 <a href="depin-pages/depin.html" class="eco-btn">Explore Ecosystem →</a>
-                <a href="token-pages/token-checker.html" class="eco-btn-ghost">🛡️ Verify Token</a>
+                <a href="token-pages/token-checker.html" class="eco-btn-ghost">🛡️ Find Token Price</a>
               </div>
             </div>
 
@@ -2893,8 +2702,6 @@
             </div>
           </div>
 
-          <!-- RIGHT: WHY CHOOSE TOTAL CRYPTO HUB -->
-
           <div class="why-choose-card">
 
             <div>
@@ -2903,7 +2710,7 @@
               <ul class="why-list">
                 <li><span class="why-check">✓</span>Curated Official Project Links</li>
                 <li><span class="why-check">✓</span>Anti-Phishing &amp; Scam Safety Focus</li>
-                <li><span class="why-check">✓</span>DePIN, Airdrops, Wallets &amp; Tools</li>
+                <li><span class="why-check">✓</span>Step-by-Step Earning to INR Tools</li>
                 <li><span class="why-check">✓</span>Everything in One Trusted Portal</li>
               </ul>
             </div>
@@ -2940,7 +2747,7 @@
         </section>
 
         <!-- ==========================================
-             JOURNEY TAGLINE
+             6. JOURNEY TAGLINE & BOTTOM TRUST BAR
         ========================================== -->
 
         <div class="journey-tagline">
@@ -2950,36 +2757,32 @@
           <p>Explore. Participate. Earn.</p>
         </div>
 
-        <!-- ==========================================
-             BOTTOM METRICS AND COMMUNITY CTA
-        ========================================== -->
-
         <section class="hub-bottom-band" aria-label="Total Crypto Hub highlights and community">
 
           <div class="hub-metrics">
 
             <div class="hub-metric">
+              <span class="metric-icon">🛡️</span>
+              <strong>100% Secure</strong>
+              <span>Anti-Phishing Focus</span>
+            </div>
+
+            <div class="hub-metric">
+              <span class="metric-icon">⚡</span>
+              <strong>Real-Time</strong>
+              <span>Live RPC &amp; Price Data</span>
+            </div>
+
+            <div class="hub-metric">
               <span class="metric-icon">◈</span>
-              <strong>57+</strong>
-              <span>DePIN Projects</span>
+              <strong>57+ Projects</strong>
+              <span>Curated Web3 Directory</span>
             </div>
 
             <div class="hub-metric">
-              <span class="metric-icon">▦</span>
-              <strong>6</strong>
-              <span>Hub Sections</span>
-            </div>
-
-            <div class="hub-metric">
-              <span class="metric-icon">♧</span>
-              <strong>One</strong>
+              <span class="metric-icon">🌐</span>
+              <strong>9 Sections</strong>
               <span>Connected Ecosystem</span>
-            </div>
-
-            <div class="hub-metric">
-              <span class="metric-icon">✓</span>
-              <strong>Research-Led</strong>
-              <span>Directory &amp; Resources</span>
             </div>
 
           </div>
@@ -3036,23 +2839,98 @@
   </div>
 
   <!-- ==========================================
-       WEBSITE JAVASCRIPT
+       WEBSITE JAVASCRIPT (SEARCH, SPONSORS, THEME)
   ========================================== -->
 
   <script>
     (() => {
       "use strict";
 
-      /* THEME CONTROL */
+      /* ==========================================
+         SHARED SPONSORSHIP CONFIG
+         (Replace or add real sponsor objects anytime)
+      ========================================== */
+      const SHARED_SPONSOR_CONFIG = [
+        {
+          badge: "TCN",
+          name: "Total Crypto Network",
+          url: "https://www.youtube.com/@TotalCryptoNetwork",
+          external: true
+        },
+        {
+          badge: "★",
+          name: "Official Sponsor Slot #1",
+          url: "legal-pages/contact.html",
+          external: false
+        },
+        {
+          badge: "★",
+          name: "Official Sponsor Slot #2",
+          url: "legal-pages/contact.html",
+          external: false
+        },
+        {
+          badge: "★",
+          name: "Official Sponsor Slot #3",
+          url: "legal-pages/contact.html",
+          external: false
+        }
+      ];
 
+      /* ==========================================
+         GLOBAL SEARCH DIRECTORY INDEX
+      ========================================== */
+      const SEARCH_DIRECTORY = [
+        { title: "DePIN Projects Directory", desc: "57+ Automated bandwidth, compute & sensor nodes", tag: "Section", url: "depin-pages/depin.html" },
+        { title: "Mobile & Community Mining", desc: "Smartphone mining & community reward apps", tag: "Section", url: "mobile-pages/mobile-mining.html" },
+        { title: "Airdrops & Campaigns", desc: "Verified active testnets & airdrop tasks", tag: "Section", url: "airdrop-pages/airdrops.html" },
+        { title: "Wallets & Exchanges", desc: "Safe Web3 wallets & exchange guides", tag: "Section", url: "wallet-pages/wallets.html" },
+        { title: "Smart Token Finder", desc: "Check live token price in USD & INR", tag: "Tool #1", url: "token-pages/token-checker.html" },
+        { title: "Earning Calculator", desc: "Calculate daily, monthly & yearly crypto rewards", tag: "Tool #2", url: "earning-pages/earning-calculator.html" },
+        { title: "Gas Fee Checker", desc: "Live gas & transfer fees across ETH, Base, Arbitrum, SOL, BNB, Polygon", tag: "Tool #3", url: "tools-pages/gas-checker.html" },
+        { title: "INR Payout Calculator", desc: "Calculate net bank INR after exchange fees & tax/TDS", tag: "Tool #4", url: "tools-pages/inr-payout.html" },
+        { title: "Titan Network", desc: "Edge Routing, Bandwidth & Storage (USDC Reward)", tag: "DePIN #1", url: "projects/titan.html" },
+        { title: "Bixberry", desc: "Mobile Background Mining & Cash Payouts", tag: "DePIN #2", url: "projects/bixberry.html" },
+        { title: "U2U Network", desc: "DePIN Subnet Infrastructure (Token Listed)", tag: "DePIN #3", url: "projects/u2u.html" },
+        { title: "Grass Network", desc: "Decentralized AI Data Layer (GRASS)", tag: "DePIN #4", url: "projects/grass.html" },
+        { title: "Honeygain", desc: "Residential Internet Monetization", tag: "DePIN #5", url: "projects/honeygain.html" },
+        { title: "Pawns.app", desc: "Bandwidth Sharing & Surveys", tag: "DePIN #6", url: "projects/pawns.html" },
+        { title: "Nodepay", desc: "Decentralized AI Extension", tag: "DePIN #7", url: "projects/nodepay.html" },
+        { title: "PacketStream", desc: "Residential Peer Proxy Node", tag: "DePIN #8", url: "projects/packetstream.html" },
+        { title: "Repocket", desc: "Spare Internet Monetization", tag: "DePIN #9", url: "projects/repocket.html" },
+        { title: "UpRock", desc: "Mobile AI Bandwidth Mining (UPT)", tag: "DePIN #10", url: "projects/uprock.html" },
+        { title: "Mysterium Network", desc: "dVPN Residential Bandwidth (MYST)", tag: "DePIN #11", url: "projects/mysterium.html" },
+        { title: "Hyra Network", desc: "PC & Mobile Compute Node", tag: "DePIN #12", url: "projects/hyra.html" },
+        { title: "Theta Edge Node", desc: "Distributed Video & AI Compute (THETA)", tag: "DePIN #13", url: "projects/theta.html" },
+        { title: "Slice", desc: "Browser Attention Monetization", tag: "DePIN #14", url: "projects/slice.html" },
+        { title: "Nodle Network", desc: "BLE Smartphone IoT Mesh", tag: "DePIN #15", url: "projects/nodle.html" },
+        { title: "Swash", desc: "Data Monetization Extension", tag: "DePIN #16", url: "projects/swash.html" },
+        { title: "Over The Reality", desc: "AR Spatial Mapping & Geo Node (OVR)", tag: "DePIN #17", url: "projects/over-the-reality.html" },
+        { title: "Adreva", desc: "DePIN Advertising & Privacy", tag: "DePIN #18", url: "projects/adreva.html" }
+      ];
+
+      function renderSponsorSlots() {
+        const container = document.getElementById("sponsorSlotsRow");
+        if (!container) return;
+
+        container.innerHTML = SHARED_SPONSOR_CONFIG.map((slot) => {
+          const targetAttrs = slot.external ? ' target="_blank" rel="noopener noreferrer"' : "";
+          return `
+            <a href="${slot.url}" class="sponsor-pill-card"${targetAttrs}>
+              <span class="sponsor-pill-dot">${slot.badge}</span>
+              <span>${slot.name}</span>
+            </a>
+          `;
+        }).join("");
+      }
+
+      /* THEME CONTROL */
       function applyTheme(theme) {
         const safeTheme = theme === "dark" ? "dark" : "light";
-
         document.body.setAttribute("data-theme", safeTheme);
         document.documentElement.setAttribute("data-theme", safeTheme);
 
         const toggle = document.getElementById("themeToggle");
-
         if (toggle) {
           toggle.textContent = safeTheme === "light" ? "🌙" : "☀️";
           toggle.setAttribute(
@@ -3063,9 +2941,7 @@
 
         try {
           localStorage.setItem("theme", safeTheme);
-        } catch (_) {
-          /* Storage may be unavailable in private browsing. */
-        }
+        } catch (_) {}
       }
 
       function toggleTheme() {
@@ -3074,218 +2950,163 @@
       }
 
       /* CLOSE MOBILE SIDEBAR */
-
       function closeMobileMenu() {
         document.body.classList.remove("menu-open");
-
         const menuButton = document.getElementById("mobileMenuBtn");
-
         if (menuButton) {
           menuButton.setAttribute("aria-expanded", "false");
         }
       }
 
       window.addEventListener("DOMContentLoaded", () => {
-
-        /* LOAD SAVED THEME */
+        renderSponsorSlots();
 
         let savedTheme = "light";
-
         try {
           savedTheme = localStorage.getItem("theme") || "light";
-        } catch (_) {
-          /* Use light theme. */
-        }
-
+        } catch (_) {}
         applyTheme(savedTheme);
 
         const themeToggle = document.getElementById("themeToggle");
-
         if (themeToggle) {
           themeToggle.addEventListener("click", toggleTheme);
         }
 
         /* ==========================================
-           RESPONSIVE TOP PROMOTIONAL BANNER
+           GLOBAL LIVE SEARCH & CARD FILTERING
         ========================================== */
+        const searchWrap = document.getElementById("globalSearchWrap");
+        const searchInput = document.getElementById("globalSearchInput");
+        const searchClearBtn = document.getElementById("searchClearBtn");
+        const searchDropdown = document.getElementById("searchResultsDropdown");
+        const trendCards = Array.from(document.querySelectorAll("#trendingGrid .trend-card"));
 
-        const promoBanner = document.getElementById("tcnPromoBanner");
-
-        if (promoBanner) {
-
-          const promoItems = Array.from(
-            promoBanner.querySelectorAll(".promo-segment")
-          );
-
-          const promoDots = Array.from(
-            promoBanner.querySelectorAll(".banner-dot")
-          );
-
-          const promoPrev = promoBanner.querySelector(".banner-arrow.prev");
-          const promoNext = promoBanner.querySelector(".banner-arrow.next");
-
-          let activePromo = 0;
-          let promoTimer = null;
-
-          const showPromo = (index) => {
-
-            activePromo = (index + promoItems.length) % promoItems.length;
-
-            promoItems.forEach((item, itemIndex) => {
-              item.classList.toggle("is-active", itemIndex === activePromo);
-            });
-
-            promoDots.forEach((dot, dotIndex) => {
-              dot.classList.toggle("is-active", dotIndex === activePromo);
-            });
-
-          };
-
-          const stopPromo = () => {
-            if (promoTimer) {
-              window.clearInterval(promoTimer);
-            }
-
-            promoTimer = null;
-          };
-
-          const startPromo = () => {
-
-            stopPromo();
-
-            if (
-              window.matchMedia &&
-              window.matchMedia("(prefers-reduced-motion: reduce)").matches
-            ) {
+        function filterTrendCards(query) {
+          const clean = query.trim().toLowerCase();
+          trendCards.forEach((card) => {
+            if (!clean) {
+              card.classList.remove("is-hidden");
               return;
             }
-
-            promoTimer = window.setInterval(() => {
-              showPromo(activePromo + 1);
-            }, 4500);
-
-          };
-
-          if (promoPrev) {
-            promoPrev.addEventListener("click", () => {
-              showPromo(activePromo - 1);
-              startPromo();
-            });
-          }
-
-          if (promoNext) {
-            promoNext.addEventListener("click", () => {
-              showPromo(activePromo + 1);
-              startPromo();
-            });
-          }
-
-          promoDots.forEach((dot, index) => {
-            dot.addEventListener("click", () => {
-              showPromo(index);
-              startPromo();
-            });
+            const haystack = (card.dataset.search || card.textContent || "").toLowerCase();
+            card.classList.toggle("is-hidden", !haystack.includes(clean));
           });
-
-          promoBanner.addEventListener("mouseenter", stopPromo);
-          promoBanner.addEventListener("mouseleave", startPromo);
-          promoBanner.addEventListener("focusin", stopPromo);
-          promoBanner.addEventListener("focusout", startPromo);
-
-          document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-              stopPromo();
-            } else {
-              startPromo();
-            }
-          });
-
-          showPromo(0);
-          startPromo();
-
         }
 
-        /* ==========================================
-           MOBILE SIDEBAR
-        ========================================== */
+        function renderSearchDropdown(query) {
+          if (!searchDropdown) return;
+          const clean = query.trim().toLowerCase();
 
+          if (!clean) {
+            searchDropdown.classList.remove("open");
+            searchDropdown.innerHTML = "";
+            return;
+          }
+
+          const matches = SEARCH_DIRECTORY.filter((item) =>
+            item.title.toLowerCase().includes(clean) ||
+            item.desc.toLowerCase().includes(clean) ||
+            item.tag.toLowerCase().includes(clean)
+          ).slice(0, 8);
+
+          if (matches.length === 0) {
+            searchDropdown.innerHTML = `<div class="search-empty">No matching project or tool found for "${query.replace(/</g, "&lt;")}"</div>`;
+          } else {
+            searchDropdown.innerHTML = matches.map((item) => `
+              <a href="${item.url}" class="search-result-item">
+                <span class="search-result-main">
+                  <strong>${item.title}</strong>
+                  <span>${item.desc}</span>
+                </span>
+                <span class="search-result-tag">${item.tag}</span>
+              </a>
+            `).join("");
+          }
+
+          searchDropdown.classList.add("open");
+        }
+
+        if (searchInput) {
+          searchInput.addEventListener("input", () => {
+            const val = searchInput.value;
+            if (searchClearBtn) {
+              searchClearBtn.classList.toggle("visible", val.length > 0);
+            }
+            renderSearchDropdown(val);
+            filterTrendCards(val);
+          });
+
+          searchInput.addEventListener("focus", () => {
+            if (searchInput.value.trim()) {
+              renderSearchDropdown(searchInput.value);
+            }
+          });
+        }
+
+        if (searchClearBtn && searchInput) {
+          searchClearBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            searchClearBtn.classList.remove("visible");
+            renderSearchDropdown("");
+            filterTrendCards("");
+            searchInput.focus();
+          });
+        }
+
+        document.addEventListener("click", (event) => {
+          if (searchWrap && !searchWrap.contains(event.target) && searchDropdown) {
+            searchDropdown.classList.remove("open");
+          }
+        });
+
+        /* ==========================================
+           MOBILE SIDEBAR & COMMUNITY DROPDOWN
+        ========================================== */
         const menuButton = document.getElementById("mobileMenuBtn");
         const mobileOverlay = document.getElementById("mobileOverlay");
 
         if (menuButton) {
-
           menuButton.addEventListener("click", function () {
-
             const isOpen = document.body.classList.toggle("menu-open");
-
             this.setAttribute("aria-expanded", String(isOpen));
-
           });
-
         }
 
         if (mobileOverlay) {
           mobileOverlay.addEventListener("click", closeMobileMenu);
         }
 
-        document.querySelectorAll(".side-link").forEach(link => {
+        document.querySelectorAll(".side-link").forEach((link) => {
           link.addEventListener("click", closeMobileMenu);
         });
-
-        /* ==========================================
-           COMMUNITY DROPDOWN
-        ========================================== */
 
         const dropdown = document.querySelector(".community-dropdown");
         const menu = document.getElementById("communityMenu");
         const communityButton = document.getElementById("communityButton");
 
         if (communityButton && menu) {
-
           communityButton.addEventListener("click", () => {
-
             const isOpen = menu.classList.toggle("show");
-
             communityButton.setAttribute("aria-expanded", String(isOpen));
-
           });
 
-          document.addEventListener("click", event => {
-
+          document.addEventListener("click", (event) => {
             if (dropdown && !dropdown.contains(event.target)) {
-
               menu.classList.remove("show");
-
               communityButton.setAttribute("aria-expanded", "false");
-
             }
-
           });
-
         }
 
-        /* ESCAPE KEY CLOSES MENUS */
-
-        document.addEventListener("keydown", event => {
-
+        document.addEventListener("keydown", (event) => {
           if (event.key === "Escape") {
-
-            if (menu) {
-              menu.classList.remove("show");
-            }
-
-            if (communityButton) {
-              communityButton.setAttribute("aria-expanded", "false");
-            }
-
+            if (menu) menu.classList.remove("show");
+            if (communityButton) communityButton.setAttribute("aria-expanded", "false");
+            if (searchDropdown) searchDropdown.classList.remove("open");
             closeMobileMenu();
-
           }
-
         });
-
       });
-
     })();
   </script>
 
