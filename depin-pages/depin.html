@@ -31,6 +31,11 @@
       --sidebar-width: 258px;
       --sponsor-height: 74px;
       --shadow: 0 12px 32px rgba(8, 168, 107, .09);
+      --sidebar-bg: linear-gradient(180deg, #e4fcf1 0%, #d5f7e8 52%, #e4fcf1 100%);
+      --sidebar-border: #7ee2be;
+      --sidebar-border-soft: #b7eed8;
+      --emerald: #047857;
+      --emerald-bright: #10b981;
     }
 
     [data-theme="dark"] {
@@ -49,6 +54,11 @@
       --teal: #22cbbb;
       --navy: #061c24;
       --shadow: 0 14px 34px rgba(0, 0, 0, .24);
+      --sidebar-bg: linear-gradient(180deg, #092226 0%, #0d2e31 55%, #092226 100%);
+      --sidebar-border: #215d4e;
+      --sidebar-border-soft: #1b4d41;
+      --emerald: #10b981;
+      --emerald-bright: #6ee7b7;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -71,6 +81,7 @@
       position: sticky;
       top: 0;
       z-index: 200;
+      margin-left: var(--sidebar-width);
       min-height: var(--sponsor-height);
       display: flex;
       align-items: center;
@@ -267,76 +278,290 @@
     }
     .sponsor-orb-btn:hover { transform: translateY(-1px); }
 
-    /* LEFT WORKSPACE SIDEBAR */
+    /* ==========================================
+       UPDATED MINT-GREEN SIDEBAR
+    ========================================== */
     .sidebar {
       position: fixed;
-      z-index: 150;
-      inset: var(--sponsor-height) auto 0 0;
+      z-index: 210;
+      inset: 0 auto 0 0;
       width: var(--sidebar-width);
-      height: calc(100vh - var(--sponsor-height));
-      height: calc(100dvh - var(--sponsor-height));
+      height: 100vh;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
-      padding: 20px 16px 18px;
+      padding: 16px 13px 15px;
+      background: var(--sidebar-bg);
+      border-right: 1.5px solid var(--sidebar-border);
+      box-shadow: 8px 0 28px rgba(4, 120, 87, .07);
       overflow-y: auto;
       overflow-x: hidden;
       overscroll-behavior: contain;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      box-shadow: 8px 0 28px rgba(21,48,84,.025);
       transition: transform .25s ease;
     }
     .sidebar::-webkit-scrollbar { width: 5px; }
-    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-    .side-label { padding: 14px 13px 10px; color: #9aa8bc; font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
-    .side-nav { display: grid; gap: 7px; flex-shrink: 0; }
-    .side-link {
-      min-height: 47px;
+    .sidebar::-webkit-scrollbar-thumb { background: var(--sidebar-border); border-radius: 10px; }
+
+    .sidebar-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 12px;
-      color: var(--body);
+      gap: 11px;
+      padding: 2px 6px 15px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--sidebar-border-soft);
       text-decoration: none;
-      border: 1px solid transparent;
-      border-radius: 15px;
-      font-size: 12px;
-      font-weight: 700;
-      transition: .2s ease;
-    }
-    .side-link:hover { background: var(--surface-soft); border-color: var(--border); transform: translateX(2px); }
-    .side-link.active { color: #087b4b; background: linear-gradient(100deg,#e2fff1,#f4fff9); border-color: #b8f2d7; box-shadow: 0 5px 13px rgba(8,168,107,.11); }
-    [data-theme="dark"] .side-link.active { color: #65e6b1; background: #12382f; border-color: #23654e; }
-    .nav-icon { width: 36px; height: 36px; flex: 0 0 36px; display: grid; place-items: center; border-radius: 12px; font-size: 17px; }
-    .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .nav-home { color: #079b69; background: #d9f8e9; }
-    .nav-depin { color: #1687ff; background: #dfeeff; }
-    .nav-community { color: #8b5cf6; background: #eee5ff; }
-    .nav-airdrop { color: #f07819; background: #fff0d9; }
-    .nav-wallet { color: #9333ea; background: #f1e3ff; }
-    .nav-checker { color: #0d9488; background: #d9f7f0; }
-    .nav-calculator { color: #2563eb; background: #e2eaff; }
-    .sidebar-spacer { flex: 1 0 18px; min-height: 18px; }
-    .side-promo {
-      margin: 18px 6px 13px;
-      padding: 19px 14px;
       flex-shrink: 0;
-      text-align: center;
-      border-radius: 23px;
-      border: 1px solid #c7f5df;
-      background: radial-gradient(circle at 90% 10%,rgba(92,238,176,.25),transparent 34%),linear-gradient(145deg,#e7fff4,#fff 72%);
-      box-shadow: 0 8px 20px rgba(8,168,107,.10);
     }
-    [data-theme="dark"] .side-promo { background: linear-gradient(145deg,#123b32,#142238); border-color: #255c49; }
-    .promo-gift { margin-bottom: 8px; font-size: 34px; }
-    .side-promo h3 { margin: 0 0 8px; color: var(--heading); font-size: 13px; line-height: 1.5; font-weight: 800; }
-    .side-promo p { margin: 0 0 12px; color: var(--muted); font-size: 10px; line-height: 1.55; }
-    .promo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 19px; border-radius: 999px; color: #fff; background: linear-gradient(135deg,#08a86b,#06c77a); text-decoration: none; font-size: 11px; font-weight: 800; box-shadow: 0 6px 14px rgba(8,168,107,.2); }
-    .support-card { display: flex; align-items: center; gap: 10px; margin: 0 6px; padding: 13px; flex-shrink: 0; border-radius: 17px; border: 1px solid var(--border); background: var(--surface-soft); text-decoration: none; }
-    .support-icon { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 18px; }
-    .support-card strong { display: block; color: var(--heading); font-size: 11px; }
-    .support-card span:last-child { display: block; margin-top: 4px; color: var(--green); font-size: 10px; font-weight: 800; }
-    .sidebar-note { margin: 14px 8px 0; padding-bottom: 3px; color: var(--muted); font-size: 9px; text-align: center; }
+    .brand-orb {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border: 2px solid #059669;
+      background: radial-gradient(circle at 30% 25%, #6ee7b7, #059669 65%, #064e3b);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, .32);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .brand-orb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .brand-title {
+      display: block;
+      color: var(--heading);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -.45px;
+    }
+    .brand-sub {
+      display: block;
+      margin-top: 2px;
+      color: var(--emerald);
+      font-size: 10px;
+      font-weight: 700;
+    }
+    [data-theme="dark"] .brand-sub { color: var(--emerald-bright); }
+
+    .side-nav {
+      display: grid;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .side-link {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 7px 11px;
+      border-radius: 13px;
+      border: 1px solid transparent;
+      color: var(--heading);
+      text-decoration: none;
+      font-size: 12.2px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+    .side-link:hover {
+      background: rgba(255, 255, 255, .68);
+      border-color: var(--sidebar-border);
+      transform: translateX(2px);
+    }
+    [data-theme="dark"] .side-link:hover {
+      background: rgba(16, 185, 129, .14);
+    }
+    .side-link.active {
+      color: #ffffff;
+      background: linear-gradient(95deg, #047857 0%, #10b981 58%, #34d399 100%);
+      border-color: #059669;
+      box-shadow: 0 6px 16px rgba(5, 150, 105, .28);
+    }
+    .side-link.active::after {
+      content: "›";
+      margin-left: auto;
+      font-size: 16px;
+      font-weight: 800;
+      opacity: .92;
+    }
+    .nav-icon {
+      width: 31px;
+      height: 31px;
+      flex: 0 0 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(4, 120, 87, .08);
+    }
+    .nav-icon svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .side-link.active .nav-icon {
+      background: rgba(255, 255, 255, .24);
+      color: #ffffff;
+    }
+    .nav-home { color: #047857; background: #ffffff; }
+    .nav-depin { color: #0284c7; background: #e0f2fe; }
+    .nav-community { color: #7c3aed; background: #ede9fe; }
+    .nav-airdrop { color: #ea580c; background: #ffedd5; }
+    .nav-wallet { color: #9333ea; background: #f3e8ff; }
+    .nav-checker { color: #0d9488; background: #ccfbf1; }
+    .nav-calculator { color: #2563eb; background: #dbeafe; }
+    .nav-gas { color: #e11d48; background: #ffe4e6; }
+    .nav-payout { color: #d97706; background: #fef3c7; }
+
+    .sidebar-spacer { flex: 1 0 12px; min-height: 12px; }
+
+    .side-community-card {
+      margin: 10px 2px 10px;
+      padding: 14px 12px;
+      border-radius: 18px;
+      border: 1.5px solid var(--sidebar-border);
+      background:
+        radial-gradient(circle at 85% 15%, rgba(52, 211, 153, .28), transparent 45%),
+        linear-gradient(145deg, rgba(255, 255, 255, .92), rgba(220, 252, 238, .9));
+      box-shadow: 0 8px 20px rgba(4, 120, 87, .09);
+      text-align: center;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .side-community-card {
+      background: linear-gradient(145deg, #103335, #0c2629);
+    }
+    .comm-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .comm-badge-icon {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #10b981, #047857);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(5, 150, 105, .25);
+    }
+    .comm-badge-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .comm-card-top strong {
+      display: block;
+      color: var(--heading);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .comm-card-top span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .side-join-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 86%;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #065f46, #047857);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      box-shadow: 0 5px 14px rgba(4, 120, 87, .28);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .side-join-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 7px 18px rgba(4, 120, 87, .36);
+    }
+
+    .side-help-card {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0 2px;
+      padding: 12px 13px;
+      border-radius: 17px;
+      border: 1.5px solid var(--sidebar-border);
+      background:
+        radial-gradient(circle at 90% 50%, rgba(52, 211, 153, .22), transparent 45%),
+        rgba(255, 255, 255, .88);
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: border-color .18s ease, transform .18s ease;
+    }
+    [data-theme="dark"] .side-help-card {
+      background: rgba(15, 43, 46, .9);
+    }
+    .side-help-card:hover {
+      border-color: var(--emerald-bright);
+      transform: translateY(-1px);
+    }
+    .help-headset {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #d1fae5;
+      color: #047857;
+    }
+    [data-theme="dark"] .help-headset {
+      background: #134237;
+      color: #6ee7b7;
+    }
+    .help-headset svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .side-help-card strong {
+      display: block;
+      color: var(--heading);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .side-help-card span:last-child {
+      display: block;
+      margin-top: 2px;
+      color: var(--emerald);
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+    [data-theme="dark"] .side-help-card span:last-child { color: var(--emerald-bright); }
 
     /* MAIN COLUMN */
     .main-column { min-height: 100vh; margin-left: var(--sidebar-width); }
@@ -617,6 +842,7 @@
     }
     @media(max-width:760px) {
       :root { --sidebar-width:258px; --sponsor-height:56px; }
+      .sponsor-strip { margin-left:0; }
       .sponsor-inner { justify-content:space-between; gap:8px; padding:6px 10px; }
       .mobile-menu-btn { display:inline-grid; place-items:center; flex:0 0 32px; }
       .header-brand { gap:7px; }
@@ -629,9 +855,9 @@
       .slot-center-text strong { font-size:11px; }
       .slot-center-text span { font-size:8px; }
       .sponsor-cta { padding:8px 11px; font-size:9px; gap:4px; }
-      .sidebar { transform:translateX(-105%); box-shadow:12px 0 35px rgba(0,0,0,.13); }
+      .sidebar { z-index:220; transform:translateX(-105%); box-shadow:12px 0 35px rgba(0,0,0,.18); }
       body.menu-open .sidebar { transform:translateX(0); }
-      .mobile-overlay { position:fixed; inset:var(--sponsor-height) 0 0; z-index:110; background:rgba(4,14,27,.42); }
+      .mobile-overlay { position:fixed; inset:0; z-index:205; background:rgba(4,14,27,.45); }
       body.menu-open .mobile-overlay { display:block; }
       .main-column { margin-left:0; }
       main { padding:14px 13px 25px; }
@@ -731,44 +957,170 @@
   </section>
 
   <div class="app-shell">
-    <!-- LEFT WORKSPACE NAVIGATION -->
+    <!-- UPDATED MINT-GREEN SIDEBAR -->
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-      <div class="side-label">Workspace</div>
-      <nav class="side-nav">
-        <a href="../index.html" class="side-link">
-          <span class="nav-icon nav-home"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-7h6v7"/></svg></span>Home
-        </a>
-        <a href="depin.html" class="side-link active" aria-current="page">
-          <span class="nav-icon nav-depin"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h7l-1 9 10-13h-7z"/></svg></span>DePIN Projects
-        </a>
-        <a href="../mobile-pages/mobile-mining.html" class="side-link">
-          <span class="nav-icon nav-community"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Community Projects
-        </a>
-        <a href="../airdrop-pages/airdrops.html" class="side-link">
-          <span class="nav-icon nav-airdrop"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2C10.5 6 12 8 12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2C13.5 6 12 8 12 8Z"/></svg></span>Airdrops & Campaigns
-        </a>
-        <a href="../wallet-pages/wallets.html" class="side-link">
-          <span class="nav-icon nav-wallet"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M16 14h.01M3 5V4a2 2 0 0 1 2-2h13"/></svg></span>Wallets & Exchanges
-        </a>
-        <a href="../token-pages/token-checker.html" class="side-link">
-          <span class="nav-icon nav-checker"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Smart Token Finder
-        </a>
-        <a href="../earning-pages/earning-calculator.html" class="side-link">
-          <span class="nav-icon nav-calculator"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span>Earning Calculator
-        </a>
-      </nav>
-      <div class="sidebar-spacer"></div>
-      <section class="side-promo" aria-label="Community invitation">
-        <div class="promo-gift" aria-hidden="true">🎁</div>
-        <h3>Join the Community<br>&amp; Earn Together</h3>
-        <p>Follow project updates, guides and community announcements.</p>
-        <a class="promo-btn" href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">Join Now →</a>
-      </section>
-      <a class="support-card" href="../legal-pages/contact.html">
-        <span class="support-icon" aria-hidden="true">♧</span>
-        <span><strong>Need Help?</strong><span>Contact Support →</span></span>
+
+      <a href="../index.html" class="sidebar-brand">
+        <span class="brand-orb">
+          <img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
+        </span>
+        <span>
+          <span class="brand-title">Total Crypto Hub</span>
+          <span class="brand-sub">by Total Crypto Network</span>
+        </span>
       </a>
-      <p class="sidebar-note">A research-led Web3 directory</p>
+
+      <nav class="side-nav">
+
+        <!-- 1. Home -->
+        <a href="../index.html" class="side-link">
+          <span class="nav-icon nav-home">
+            <svg viewBox="0 0 24 24">
+              <path d="m3 10 9-7 9 7"/>
+              <path d="M5 9v11h14V9"/>
+              <path d="M9 20v-7h6v7"/>
+            </svg>
+          </span>
+          Home
+        </a>
+
+        <!-- 2. DePIN Projects -->
+        <a href="depin.html" class="side-link active" aria-current="page">
+          <span class="nav-icon nav-depin">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"/>
+              <circle cx="19" cy="5" r="2"/>
+              <circle cx="5" cy="5" r="2"/>
+              <circle cx="19" cy="19" r="2"/>
+              <circle cx="5" cy="19" r="2"/>
+              <path d="m14.2 9.8 3.4-3.4M9.8 9.8 6.4 6.4M14.2 14.2l3.4 3.4M9.8 14.2l-3.4 3.4"/>
+            </svg>
+          </span>
+          DePIN Projects
+        </a>
+
+        <!-- 3. Mobile & Community -->
+        <a href="../mobile-pages/mobile-mining.html" class="side-link">
+          <span class="nav-icon nav-community">
+            <svg viewBox="0 0 24 24">
+              <rect x="6" y="2" width="12" height="20" rx="2.5"/>
+              <path d="M12 18h.01"/>
+              <path d="M9.2 9.5a4 4 0 0 1 5.6 0"/>
+              <path d="M10.8 12a1.8 1.8 0 0 1 2.4 0"/>
+            </svg>
+          </span>
+          Mobile &amp; Community
+        </a>
+
+        <!-- 4. Airdrops & Campaigns -->
+        <a href="../airdrop-pages/airdrops.html" class="side-link">
+          <span class="nav-icon nav-airdrop">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8Z"/>
+              <path d="m4 11 8 6 8-6"/>
+              <path d="M12 11v6"/>
+              <rect x="9" y="17" width="6" height="4" rx="1"/>
+            </svg>
+          </span>
+          Airdrops &amp; Campaigns
+        </a>
+
+        <!-- 5. Wallets & Exchanges -->
+        <a href="../wallet-pages/wallets.html" class="side-link">
+          <span class="nav-icon nav-wallet">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="15" rx="2"/>
+              <path d="M3 9h18M16 14h.01"/>
+              <path d="M3 5V4a2 2 0 0 1 2-2h13"/>
+            </svg>
+          </span>
+          Wallets &amp; Exchanges
+        </a>
+
+        <!-- 6. Smart Token Finder -->
+        <a href="../token-pages/token-checker.html" class="side-link">
+          <span class="nav-icon nav-checker">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </span>
+          Smart Token Finder
+        </a>
+
+        <!-- 7. Earning Calculator -->
+        <a href="../earning-pages/earning-calculator.html" class="side-link">
+          <span class="nav-icon nav-calculator">
+            <svg viewBox="0 0 24 24">
+              <rect x="4" y="2" width="16" height="20" rx="2"/>
+              <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/>
+            </svg>
+          </span>
+          Earning Calculator
+        </a>
+
+        <!-- 8. Gas Fee Checker -->
+        <a href="../tools-pages/gas-checker.html" class="side-link">
+          <span class="nav-icon nav-gas">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 20V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v14"/>
+              <path d="M2 20h15"/>
+              <path d="M7 8h5"/>
+              <path d="M15 10h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-3-3"/>
+            </svg>
+          </span>
+          Gas Fee Checker
+        </a>
+
+        <!-- 9. INR Payout Calculator -->
+        <a href="../tools-pages/inr-payout.html" class="side-link">
+          <span class="nav-icon nav-payout">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 5h10"/>
+              <path d="M7 9h10"/>
+              <path d="M7 5c3.5 0 5.5 1.8 5.5 4S10.5 13 7 13l6.5 6"/>
+            </svg>
+          </span>
+          INR Payout Calculator
+        </a>
+
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+
+      <!-- SIDEBAR COMMUNITY CARD -->
+      <section class="side-community-card" aria-label="Join Community">
+        <div class="comm-card-top">
+          <span class="comm-badge-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
+          <div>
+            <strong>Join Our Community</strong>
+            <span>Let's Grow Together</span>
+          </div>
+        </div>
+        <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer" class="side-join-btn">Join Now →</a>
+      </section>
+
+      <!-- SIDEBAR SUPPORT CARD -->
+      <a href="../legal-pages/contact.html" class="side-help-card">
+        <span class="help-headset" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+        </span>
+        <span>
+          <strong>Need Help?</strong>
+          <span>Contact Support →</span>
+        </span>
+      </a>
+
     </aside>
 
     <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
