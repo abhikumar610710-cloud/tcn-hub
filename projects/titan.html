@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DePIN Projects | Total Crypto Hub</title>
+  <title>DePIN Projects — Titan Network | Total Crypto Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f4fbf8;
+      --bg: #f3fbf8;
       --surface: #ffffff;
       --surface-soft: #effcf8;
       --border: #cdeee2;
       --heading: #0f2342;
-      --body: #314964;
-      --muted: #6c849c;
+      --body: #2f4863;
+      --muted: #6a829a;
       --green: #0ea66e;
       --green-dark: #068456;
+      --green-light: #39e7a7;
       --green-soft: #e3fff4;
       --sidebar-w: 256px;
       --header-h: 68px;
@@ -33,6 +34,7 @@
       --muted: #90b2ac;
       --green: #20d99a;
       --green-dark: #0cad78;
+      --green-light: #5df0bd;
       --green-soft: #123e34;
     }
 
@@ -46,10 +48,10 @@
       font-family: "Plus Jakarta Sans", sans-serif;
     }
     a { color: inherit; text-decoration: none; }
-    button, input, select { font: inherit; }
+    button, input { font: inherit; }
     button { cursor: pointer; }
 
-    /* FIXED TOP HEADER BAR (UNCHANGED) */
+    /* TOP HEADER BAR */
     .top-header {
       position: sticky;
       top: 0;
@@ -68,11 +70,7 @@
       border-bottom-color: #245f4d;
     }
 
-    .brand-left {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-    }
+    .brand-left { display: flex; align-items: center; gap: 11px; }
     .brand-logo {
       width: 42px;
       height: 42px;
@@ -91,11 +89,7 @@
     .brand-sub { font-size: 10.5px; color: var(--green-dark); font-weight: 600; }
     [data-theme="dark"] .brand-sub { color: #5df0bd; }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
     .btn-sponsor {
       height: 35px;
       padding: 0 15px;
@@ -133,7 +127,7 @@
       font-size: 14px;
     }
 
-    /* FIXED LEFT SIDEBAR (UNCHANGED) */
+    /* LEFT SIDEBAR */
     .sidebar {
       position: fixed;
       top: var(--header-h);
@@ -176,10 +170,7 @@
       border: 1px solid #bcefd9;
       text-align: center;
     }
-    [data-theme="dark"] .side-community {
-      background: var(--surface-soft);
-      border-color: #245f4d;
-    }
+    [data-theme="dark"] .side-community { background: var(--surface-soft); border-color: #245f4d; }
     .side-community .gift { font-size: 26px; margin-bottom: 4px; }
     .side-community h4 { margin: 0; font-size: 12.5px; font-weight: 800; color: var(--heading); }
     .side-community p { margin: 2px 0 10px; font-size: 10.5px; color: var(--muted); }
@@ -213,7 +204,10 @@
       padding: 20px 24px 44px;
     }
 
-    /* LIST VIEW (DEFAULT) */
+    .list-view.hidden { display: none; }
+    .detail-view { display: none; }
+    .detail-view.active { display: block; }
+
     .page-banner {
       border-radius: 20px;
       padding: 24px 26px;
@@ -290,6 +284,7 @@
       border-radius: 999px;
       background: var(--green-soft);
       color: var(--green-dark);
+      border: 1px solid #b8f2d7;
     }
     .card-foot {
       display: flex;
@@ -310,30 +305,59 @@
       font-weight: 800;
     }
 
-    /* IN-PAGE DETAIL VIEW (OPENS INSIDE SAME PAGE) */
-    .detail-view { display: none; }
-    .detail-view.active { display: block; }
-    .list-view.hidden { display: none; }
-
-    .detail-toolbar {
+    /* IN-PAGE DETAIL HEADER, TABS & TITAN CONTENT */
+    .detail-top-bar {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 14px;
       flex-wrap: wrap;
+      margin-bottom: 12px;
     }
-    .btn-back-list {
+    .btn-back-pill {
       padding: 6px 14px;
       border-radius: 999px;
       border: 1px solid var(--green);
       background: var(--green-soft);
       color: var(--green-dark);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
     }
+    .detail-crumb {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .detail-crumb b { color: var(--heading); }
+
+    .detail-tabs {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 14px;
+      scrollbar-width: none;
+    }
+    .detail-tabs::-webkit-scrollbar { display: none; }
+    .d-tab {
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .d-tab.active, .d-tab:hover {
+      background: linear-gradient(135deg, #10b978, #068456);
+      color: #fff;
+      border-color: var(--green);
+    }
+
     .detail-hero {
       display: grid;
-      grid-template-columns: 1.4fr .8fr;
+      grid-template-columns: 1.4fr .82fr;
       gap: 18px;
       align-items: center;
       padding: 22px 24px;
@@ -346,16 +370,32 @@
       background: linear-gradient(110deg, #0b2b27 0%, #0f3530 55%, #0b2b27 100%);
       border-color: #236350;
     }
-    .detail-hero h1 { margin: 4px 0 6px; font-size: 26px; font-weight: 800; color: var(--heading); }
-    .detail-hero p { margin: 0; font-size: 13px; color: var(--body); line-height: 1.6; }
+    .detail-hero-left { display: flex; gap: 14px; align-items: flex-start; }
+    .detail-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: var(--surface);
+      border: 2px solid var(--green);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green-dark);
+      flex: 0 0 64px;
+      overflow: hidden;
+    }
+    .detail-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-hero h1 { margin: 4px 0 6px; font-size: 25px; font-weight: 800; color: var(--heading); }
+    .detail-hero p { margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--body); }
 
-    .invite-box {
+    .invite-card {
       background: var(--surface);
       border: 1px solid #9beed1;
       border-radius: 16px;
       padding: 14px 16px;
     }
-    .invite-code-row {
+    .invite-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -366,9 +406,10 @@
       border: 1px dashed var(--green);
       margin-bottom: 10px;
     }
-    .invite-code-row strong { font-family: monospace; font-size: 14px; color: var(--heading); }
+    .invite-row small { display: block; font-size: 9.5px; font-weight: 800; color: var(--green-dark); }
+    .invite-row strong { font-family: monospace; font-size: 14px; color: var(--heading); }
     .btn-copy {
-      padding: 5px 11px;
+      padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid var(--green);
       background: var(--surface);
@@ -376,7 +417,7 @@
       font-size: 11px;
       font-weight: 800;
     }
-    .btn-join-now {
+    .btn-join {
       display: block;
       text-align: center;
       padding: 10px 14px;
@@ -387,16 +428,39 @@
       font-weight: 800;
     }
 
-    .detail-sections { display: grid; gap: 14px; }
-    .detail-box {
+    .detail-stack { display: grid; gap: 14px; }
+    .detail-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 20px 22px;
+      scroll-margin-top: 90px;
     }
-    .detail-box h2 { margin: 0 0 10px; font-size: 17px; font-weight: 800; color: var(--heading); }
-    .detail-box p { margin: 0 0 10px; font-size: 13px; line-height: 1.7; }
-    .detail-box p:last-child { margin-bottom: 0; }
+    .detail-card h2 { margin: 0 0 10px; font-size: 17px; font-weight: 800; color: var(--heading); }
+    .detail-card h3 { margin: 12px 0 5px; font-size: 14px; font-weight: 800; color: var(--heading); }
+    .detail-card p { margin: 0 0 10px; font-size: 13px; line-height: 1.72; }
+    .detail-card p:last-child { margin-bottom: 0; }
+    .detail-card ul { margin: 6px 0 10px; padding-left: 18px; font-size: 12.5px; line-height: 1.7; }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .pill {
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #b8f2d7;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .sub-box {
+      padding: 14px;
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+    .sub-box h3 { margin: 0 0 6px; font-size: 13.5px; color: var(--green-dark); }
 
     .mobile-toggle { display: none; }
 
@@ -410,12 +474,13 @@
       .sidebar { transform: translateX(-100%); }
       body.nav-open .sidebar { transform: translateX(0); }
       .main-area { margin-left: 0; padding: 16px; }
-      .cards-grid { grid-template-columns: 1fr; }
+      .cards-grid, .two-col { grid-template-columns: 1fr; }
+      .detail-hero-left { flex-direction: column; }
     }
   </style>
 </head>
 <body data-theme="light">
-  <!-- TOP HEADER (UNCHANGED) -->
+  <!-- TOP HEADER -->
   <header class="top-header">
     <div class="brand-left">
       <button type="button" class="icon-circle mobile-toggle" onclick="toggleNav()" aria-label="Menu">☰</button>
@@ -438,11 +503,11 @@
     </div>
   </header>
 
-  <!-- LEFT SIDEBAR (UNCHANGED) -->
+  <!-- LEFT SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <nav class="side-menu">
       <a href="../index.html" class="side-item">🏠 Home</a>
-      <a href="depin.html" class="side-item active" onclick="showListView(); return false;">⚡ DePIN Projects</a>
+      <a href="depin.html" class="side-item active" onclick="closeTitanDetail(); return false;">⚡ DePIN Projects</a>
       <a href="../mobile-pages/mobile-mining.html" class="side-item">📱 Mobile &amp; Community</a>
       <a href="../airdrop-pages/airdrops.html" class="side-item">🎁 Airdrops &amp; Campaigns</a>
       <a href="../wallet-pages/wallets.html" class="side-item">💳 Wallets &amp; Exchanges</a>
@@ -467,9 +532,9 @@
     </a>
   </aside>
 
-  <!-- MAIN CONTENT AREA -->
+  <!-- MAIN AREA -->
   <main class="main-area">
-    <!-- LIST VIEW -->
+    <!-- DEPIN LIST VIEW -->
     <section class="list-view" id="listView">
       <div class="page-banner">
         <span class="tag">• DePIN Ecosystem • Total Crypto Network</span>
@@ -505,7 +570,7 @@
           </div>
           <div class="card-foot">
             <span>★ 9.8 / 10</span>
-            <button type="button" class="btn-view-details" onclick="openProjectDetail('titan')">View Details →</button>
+            <button type="button" class="btn-view-details" onclick="openTitanDetail()">View Details →</button>
           </div>
         </article>
 
@@ -527,7 +592,7 @@
           </div>
           <div class="card-foot">
             <span>★ 9.5 / 10</span>
-            <button type="button" class="btn-view-details" onclick="openProjectDetail('u2u')">View Details →</button>
+            <button type="button" class="btn-view-details" onclick="openTitanDetail()">View Details →</button>
           </div>
         </article>
 
@@ -548,147 +613,174 @@
           </div>
           <div class="card-foot">
             <span>★ 8.2 / 10</span>
-            <button type="button" class="btn-view-details" onclick="openProjectDetail('bixberry')">View Details →</button>
+            <button type="button" class="btn-view-details" onclick="openTitanDetail()">View Details →</button>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- IN-PAGE PROJECT DETAIL VIEW (OPENS INSIDE SAME PAGE) -->
-    <section class="detail-view" id="detailView" aria-live="polite">
-      <div class="detail-toolbar">
-        <button type="button" class="btn-back-list" onclick="showListView()">← Back</button>
-        <span style="font-size:12px;color:var(--muted);font-weight:700;">
-          Home / DePIN Projects / <strong id="crumbName" style="color:var(--heading);">Titan Network</strong>
-        </span>
+    <!-- IN-PAGE TITAN NETWORK DETAIL VIEW -->
+    <section class="detail-view" id="titanDetailView" aria-live="polite">
+      <div class="detail-top-bar">
+        <button type="button" class="btn-back-pill" onclick="closeTitanDetail()">← Back</button>
+        <span class="detail-crumb">Home / DePIN Projects / <b>Titan Network</b></span>
       </div>
 
+      <nav class="detail-tabs" aria-label="Titan sections">
+        <a href="#t-overview" class="d-tab active">Overview</a>
+        <a href="#t-network" class="d-tab">Network</a>
+        <a href="#t-devices" class="d-tab">Devices</a>
+        <a href="#t-safety" class="d-tab">Safety</a>
+        <a href="#t-earning" class="d-tab">Earning</a>
+        <a href="#t-tokenomics" class="d-tab">Tokenomics</a>
+        <a href="#t-team" class="d-tab">Team</a>
+        <a href="#t-join" class="d-tab">Join Guide</a>
+        <a href="#t-verdict" class="d-tab">Verdict</a>
+        <a href="#t-faq" class="d-tab">FAQ</a>
+      </nav>
+
       <div class="detail-hero">
-        <div>
-          <div class="tags-row" id="detailBadges" style="margin-bottom:8px;"></div>
-          <h1 id="detailTitle">Titan Network</h1>
-          <p id="detailDesc"></p>
+        <div class="detail-hero-left">
+          <div class="detail-logo">
+            <img src="../logos/titan.png" alt="Titan Network" onerror="this.style.display='none';this.parentElement.textContent='T';">
+          </div>
+          <div>
+            <div class="tags-row" style="margin-top:0;margin-bottom:6px;">
+              <span class="tag">✓ DePIN</span>
+              <span class="tag">🌐 Edge Routing</span>
+              <span class="tag">⚡ USDC &amp; TNTIP</span>
+            </div>
+            <h1>Titan Network</h1>
+            <p>Decentralized Edge Routing &amp; Automated Data Execution Network. An educational guide to how Titan Network aggregates spare residential bandwidth, edge infrastructure, and community participation.</p>
+          </div>
         </div>
 
-        <div class="invite-box">
-          <div class="invite-code-row">
+        <div class="invite-card">
+          <div class="invite-row">
             <div>
-              <div style="font-size:10px;font-weight:800;color:var(--green-dark);">INVITE CODE • JOIN BONUS</div>
-              <strong id="detailInviteCode">AFD8CQ3U</strong>
+              <small>INVITE CODE • JOIN BONUS</small>
+              <strong id="titanCode">AFD8CQ3U</strong>
             </div>
-            <button type="button" class="btn-copy" id="copyInviteBtn" onclick="copyInvite()">📋 Copy Code</button>
+            <button type="button" class="btn-copy" id="copyTitanBtn" onclick="copyTitanCode()">📋 Copy Code</button>
           </div>
-          <a href="https://edge.titannet.info/signup?inviteCode=AFD8CQ3U" target="_blank" rel="noopener noreferrer" class="btn-join-now" id="detailJoinLink">
+          <a href="https://edge.titannet.info/signup?inviteCode=AFD8CQ3U" target="_blank" rel="noopener noreferrer" class="btn-join">
             Join Project Now →
           </a>
         </div>
       </div>
 
-      <div class="detail-sections" id="detailSections"></div>
+      <div class="detail-stack">
+        <article class="detail-card" id="t-overview">
+          <h2>🌐 About Titan Network</h2>
+          <p><strong>Titan Network</strong> is a community-driven Decentralized Physical Infrastructure Network (DePIN) built to transform idle digital resources—such as unused home internet bandwidth, computing power, and storage capacity—into a globally accessible edge infrastructure layer.</p>
+          <p>Instead of relying solely on centralized data centers, Titan connects everyday devices from real users to serve edge routing, web data indexing, content delivery, and storage tasks.</p>
+        </article>
+
+        <article class="detail-card" id="t-network">
+          <h2>🔗 Network Architecture &amp; Task Routing</h2>
+          <p>Titan matches live enterprise data requests with active nodes based on region, IP reputation, latency, and connection stability.</p>
+          <p>Inside <strong>Earnings Tasks</strong>, you can check regional task payout rates, monitor completions, enable/pause tasks, and re-authorize a task if it shows a re-authorization prompt.</p>
+        </article>
+
+        <article class="detail-card" id="t-devices">
+          <h2>📱 Devices</h2>
+          <p>Connected and disconnected nodes are tracked under <strong>Device Management</strong> with connection status, IP address, IP &amp; network quality, node count on IP, uptime, and earnings.</p>
+          <div class="pills">
+            <span class="pill">Browser Extensions</span>
+            <span class="pill">Windows / Mac / Linux PCs</span>
+            <span class="pill">Android Smartphones</span>
+            <span class="pill">CLI &amp; Docker</span>
+          </div>
+        </article>
+
+        <article class="detail-card" id="t-safety">
+          <h2>🛡️ Safety</h2>
+          <p><strong>No Commercial VPNs or Data Centers:</strong> Commercial VPN tunnels, VPS exits, and datacenter IPs are blocked; use genuine residential or mobile connections.</p>
+          <p><strong>Security Hygiene:</strong> Always use official links, watch pending audit vs. withdrawable status, and never share private keys or recovery phrases.</p>
+        </article>
+
+        <article class="detail-card" id="t-earning">
+          <h2>⚡ Earning Mechanics &amp; Reward Structure</h2>
+          <p>Titan combines <strong>USDC</strong> task settlements and <strong>+50 TNTIP</strong> task bonuses with uptime rewards, daily check-ins (<strong>+200 TNTIP</strong>), streak milestones, and community/special missions.</p>
+        </article>
+
+        <article class="detail-card" id="t-tokenomics">
+          <h2>🪙 Tokenomics</h2>
+          <p>Pairs liquid <strong>USDC</strong> task credits with <strong>TNTIP</strong> ecosystem points. Check official documentation and whitepaper for full reward and audit rules.</p>
+          <div class="pills">
+            <a href="https://titannet.gitbook.io/titan-network-en" target="_blank" rel="noopener noreferrer" class="pill">📘 Official Docs →</a>
+            <a href="https://whitepaper.titannet.io/en" target="_blank" rel="noopener noreferrer" class="pill">📄 Official Whitepaper →</a>
+          </div>
+        </article>
+
+        <article class="detail-card" id="t-team">
+          <h2>👥 Team &amp; Official Channels</h2>
+          <p>Verify announcements and updates only through official Titan Network links:</p>
+          <div class="pills">
+            <a href="https://www.titannet.io/" target="_blank" rel="noopener noreferrer" class="pill">🌐 Official Website →</a>
+            <a href="https://x.com/Titannet_dao" target="_blank" rel="noopener noreferrer" class="pill">𝕏 Official X →</a>
+            <a href="https://discord.com/invite/titannetwork" target="_blank" rel="noopener noreferrer" class="pill">💬 Official Discord →</a>
+          </div>
+        </article>
+
+        <article class="detail-card" id="t-join">
+          <h2>🚀 Join Guide</h2>
+          <ul>
+            <li><strong>Step 1:</strong> Register using invite code <strong>AFD8CQ3U</strong> via <strong>Join Project Now</strong>.</li>
+            <li><strong>Step 2:</strong> Install the browser extension, desktop/mobile client, or CLI/Docker node over a non-VPN connection.</li>
+            <li><strong>Step 3:</strong> Track your devices, daily check-ins, missions, and USDC/TNTIP balances.</li>
+          </ul>
+        </article>
+
+        <article class="detail-card" id="t-verdict">
+          <h2>⚖️ Verdict</h2>
+          <div class="two-col">
+            <div class="sub-box">
+              <h3>✓ Pros</h3>
+              <ul>
+                <li>Works on standard consumer devices without heavy GPUs.</li>
+                <li>Dual USDC + TNTIP reward and mission structure.</li>
+                <li>Clear device and task controls in dashboard.</li>
+              </ul>
+            </div>
+            <div class="sub-box">
+              <h3>! Cons &amp; Considerations</h3>
+              <ul>
+                <li>VPNs and datacenter/VPS IPs are restricted.</li>
+                <li>Task availability and rates vary by region and demand.</li>
+                <li>Uses bandwidth, power, and active connection time.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="detail-card" id="t-faq">
+          <h2>❓ FAQ</h2>
+          <p><strong>Do I need a GPU?</strong> No, Titan runs on regular PCs, browsers, and Android phones (plus CLI/Docker).</p>
+          <p><strong>Can I use a VPN or VPS?</strong> No, commercial VPNs and datacenter/VPS connections are not allowed.</p>
+          <p><strong>How do I apply the invite code?</strong> Click <strong>Join Project Now</strong> or copy code <strong>AFD8CQ3U</strong> during signup.</p>
+        </article>
+      </div>
     </section>
   </main>
 
   <script>
-    const PROJECT_DATA = {
-      titan: {
-        name: 'Titan Network',
-        badges: ['✓ DePIN', '🌐 Edge Routing', '⚡ USDC & TNTIP'],
-        desc: 'Decentralized Edge Routing & Automated Data Execution Network. An educational guide to how Titan Network aggregates spare residential bandwidth, edge infrastructure, and community participation.',
-        inviteCode: 'AFD8CQ3U',
-        joinUrl: 'https://edge.titannet.info/signup?inviteCode=AFD8CQ3U',
-        sections: [
-          {
-            title: '🌐 About Titan Network',
-            body: 'Titan Network is a community-driven Decentralized Physical Infrastructure Network (DePIN) built to transform idle digital resources—such as unused home internet bandwidth, computing power, and storage capacity—into a globally accessible edge infrastructure layer.'
-          },
-          {
-            title: '🔗 Network & Regional Tasks',
-            body: 'Titan dispatches region-specific automated data and e-commerce routing tasks across active nodes and tracks IP & network quality, uptime, and task authorization inside your dashboard.'
-          },
-          {
-            title: '⚡ Earning & Tokenomics (USDC & TNTIP)',
-            body: 'Eligible tasks credit USDC alongside bonus TNTIP (+50 per task), while uptime, daily check-ins, streak milestones, and community missions add TNTIP points under program terms.'
-          },
-          {
-            title: '🛡️ Safety & Rules',
-            body: 'Commercial VPNs, datacenter proxies, and VPS exits are restricted. Run on genuine residential/mobile connections and follow official Titan Network guidelines.'
-          }
-        ]
-      },
-      u2u: {
-        name: 'U2U Network',
-        badges: ['✓ DePIN', '🧩 Subnet Infrastructure'],
-        desc: 'Modular DePIN subnet infrastructure designed for scalable decentralized physical infrastructure networks.',
-        inviteCode: 'U2U-NODE',
-        joinUrl: '../depin-pages/depin.html',
-        sections: [
-          {
-            title: '🌐 About U2U Network',
-            body: 'U2U Network focuses on subnet architecture tailored for decentralized infrastructure applications and node participation.'
-          },
-          {
-            title: '⚡ Participation & Ecosystem',
-            body: 'Review official documentation, node requirements, and ecosystem updates before joining any subnet or campaign.'
-          }
-        ]
-      },
-      bixberry: {
-        name: 'Bixberry',
-        badges: ['✓ DePIN', '📱 Mobile'],
-        desc: 'Mobile-focused background compute and community participation network.',
-        inviteCode: 'BIX-HUB',
-        joinUrl: '../depin-pages/depin.html',
-        sections: [
-          {
-            title: '🌐 About Bixberry',
-            body: 'Bixberry enables mobile background participation with battery, data usage, and app permission controls.'
-          },
-          {
-            title: '🛡️ Usage Note',
-            body: 'Monitor device battery temperature, background permissions, and official reward terms.'
-          }
-        ]
-      }
-    };
-
-    let currentInviteCode = 'AFD8CQ3U';
-
-    function openProjectDetail(key) {
-      const data = PROJECT_DATA[key] || PROJECT_DATA.titan;
-      currentInviteCode = data.inviteCode;
-
-      document.getElementById('crumbName').textContent = data.name;
-      document.getElementById('detailTitle').textContent = data.name;
-      document.getElementById('detailDesc').textContent = data.desc;
-      document.getElementById('detailInviteCode').textContent = data.inviteCode;
-      document.getElementById('detailJoinLink').href = data.joinUrl;
-
-      const badgesEl = document.getElementById('detailBadges');
-      badgesEl.innerHTML = data.badges.map(b => `<span class="tag">${b}</span>`).join('');
-
-      const secEl = document.getElementById('detailSections');
-      secEl.innerHTML = data.sections.map(s => `
-        <article class="detail-box">
-          <h2>${s.title}</h2>
-          <p>${s.body}</p>
-        </article>
-      `).join('');
-
+    function openTitanDetail() {
       document.getElementById('listView').classList.add('hidden');
-      document.getElementById('detailView').classList.add('active');
+      document.getElementById('titanDetailView').classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function showListView() {
-      document.getElementById('detailView').classList.remove('active');
+    function closeTitanDetail() {
+      document.getElementById('titanDetailView').classList.remove('active');
       document.getElementById('listView').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function copyInvite() {
-      const btn = document.getElementById('copyInviteBtn');
+    function copyTitanCode() {
+      const btn = document.getElementById('copyTitanBtn');
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(currentInviteCode).then(() => {
+        navigator.clipboard.writeText('AFD8CQ3U').then(() => {
           btn.textContent = '✓ Copied!';
           setTimeout(() => { btn.textContent = '📋 Copy Code'; }, 1800);
         }).catch(() => {});
@@ -697,26 +789,31 @@
 
     function filterCards() {
       const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
-      const cards = Array.from(document.querySelectorAll('.project-card'));
       let visible = 0;
-      cards.forEach(card => {
-        const match = !q || (card.getAttribute('data-search') || '').includes(q);
-        card.style.display = match ? '' : 'none';
-        if (match) visible++;
+      document.querySelectorAll('.project-card').forEach(card => {
+        const ok = !q || (card.getAttribute('data-search') || '').includes(q);
+        card.style.display = ok ? '' : 'none';
+        if (ok) visible++;
       });
       document.getElementById('countText').textContent = `Showing ${visible} DePIN projects`;
     }
 
     function toggleTheme() {
-      const body = document.body;
-      const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      body.setAttribute('data-theme', next);
+      const next = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', next);
       document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
     }
 
     function toggleNav() {
       document.body.classList.toggle('nav-open');
     }
+
+    document.querySelectorAll('.d-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.d-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
   </script>
 </body>
 </html>
