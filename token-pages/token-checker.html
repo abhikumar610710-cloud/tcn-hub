@@ -341,33 +341,56 @@
       padding: 18px 24px 36px;
     }
 
-    /* 1. CLEAN LARGE SEARCH BOX ONLY */
+    /* 1. CLEAN LARGE SEARCH BOX (TOTAL CRYPTO HUB BRAND THEME) */
     .hero-search-form {
       display: flex;
       align-items: center;
       gap: 12px;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
+      background:
+        radial-gradient(circle at 6% 50%, rgba(0, 235, 165, 0.24), transparent 28%),
+        radial-gradient(circle at 94% 50%, rgba(0, 210, 160, 0.2), transparent 28%),
+        linear-gradient(95deg, #c9ffea 0%, #f2fff9 48%, #c4fcef 100%);
+      border: 1.5px solid #7fe4c2;
       border-radius: 18px;
-      padding: 8px 8px 8px 18px;
-      box-shadow: var(--shadow);
-      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+      padding: 8px 8px 8px 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 10px 26px rgba(8, 168, 107, 0.11);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+    html[data-theme="dark"] .hero-search-form, body[data-theme="dark"] .hero-search-form {
+      background:
+        radial-gradient(circle at 6% 50%, rgba(0, 245, 158, 0.17), transparent 28%),
+        linear-gradient(95deg, #0b2b27 0%, #0f3530 50%, #0b2b27 100%);
+      border-color: #2b7a63;
+      box-shadow: inset 0 1px 0 rgba(93, 240, 189, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28);
     }
     .hero-search-form:focus-within {
-      border-color: var(--green);
-      box-shadow: 0 12px 26px rgba(8, 168, 107, 0.16);
+      border-color: #08a86b;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 0 3px rgba(8, 168, 107, 0.16), 0 14px 30px rgba(8, 168, 107, 0.18);
+    }
+    html[data-theme="dark"] .hero-search-form:focus-within, body[data-theme="dark"] .hero-search-form:focus-within {
+      border-color: #32e5a1;
+      box-shadow: 0 0 0 3px rgba(32, 217, 154, 0.18), 0 14px 30px rgba(0, 0, 0, 0.34);
     }
     .search-prefix-icon {
-      width: 22px;
-      height: 22px;
-      flex: 0 0 22px;
-      color: var(--green);
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(8, 168, 107, 0.3);
+      color: #008556;
       display: grid;
       place-items: center;
+      box-shadow: 0 2px 8px rgba(8, 168, 107, 0.1);
+    }
+    html[data-theme="dark"] .search-prefix-icon, body[data-theme="dark"] .search-prefix-icon {
+      background: rgba(16, 39, 44, 0.92);
+      border-color: #2b6656;
+      color: #4ef2b1;
     }
     .search-prefix-icon svg {
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2.3;
@@ -381,40 +404,57 @@
       border: 0;
       outline: none;
       background: transparent;
-      color: var(--heading);
+      color: #071b38;
       font-size: 15px;
       font-weight: 700;
     }
-    .hero-search-input::placeholder { color: var(--muted); font-weight: 500; font-size: 13.5px; }
+    html[data-theme="dark"] .hero-search-input, body[data-theme="dark"] .hero-search-input {
+      color: #f0fff9;
+    }
+    .hero-search-input::placeholder { color: #38675f; font-weight: 600; font-size: 13.5px; }
+    html[data-theme="dark"] .hero-search-input::placeholder, body[data-theme="dark"] .hero-search-input::placeholder {
+      color: #91b3ad;
+    }
     .clear-search-btn {
       display: none;
       width: 32px;
       height: 32px;
-      border: 0;
+      border: 1px solid rgba(8, 168, 107, 0.32);
       border-radius: 50%;
-      background: var(--surface-soft);
-      color: var(--muted);
+      background: rgba(255, 255, 255, 0.88);
+      color: #008556;
       font-size: 12px;
       font-weight: 800;
       flex-shrink: 0;
+      transition: 0.15s ease;
+    }
+    .clear-search-btn:hover { background: #ffffff; color: #057a4e; }
+    html[data-theme="dark"] .clear-search-btn, body[data-theme="dark"] .clear-search-btn {
+      background: rgba(16, 39, 44, 0.92);
+      border-color: #2b6656;
+      color: #5df0bd;
     }
     .clear-search-btn.show { display: inline-grid; place-items: center; }
     .hero-search-submit {
       height: 48px;
-      padding: 0 26px;
-      border: 0;
+      padding: 0 28px;
+      border: 1px solid #057a4e;
       border-radius: 14px;
-      background: linear-gradient(135deg, #08a86b, #057a4e);
+      background: linear-gradient(135deg, #08a86b, #007d50);
       color: #ffffff;
       font-size: 13.5px;
       font-weight: 800;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.25px;
       white-space: nowrap;
       flex-shrink: 0;
-      box-shadow: 0 4px 14px rgba(8, 168, 107, 0.25);
-      transition: transform 0.14s ease, filter 0.14s ease;
+      box-shadow: 0 5px 15px rgba(8, 168, 107, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: transform 0.14s ease, filter 0.14s ease, box-shadow 0.14s ease;
     }
-    .hero-search-submit:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.04); }
+    .hero-search-submit:hover:not(:disabled) {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 7px 18px rgba(8, 168, 107, 0.36);
+    }
     .hero-search-submit:disabled { opacity: 0.7; cursor: wait; }
 
     /* 2. INSPECTED TOKEN / NETWORK RESULT CARD */
@@ -803,7 +843,8 @@
       .sponsor-left { flex-wrap: wrap; }
       .sponsor-copy strong, .sponsor-copy span { white-space: normal; }
       .sponsor-cta-btn { width: 100%; text-align: center; }
-      .hero-search-form { padding: 6px 6px 6px 14px; gap: 8px; border-radius: 15px; }
+      .hero-search-form { padding: 6px 6px 6px 10px; gap: 8px; border-radius: 15px; }
+      .search-prefix-icon { width: 34px; height: 34px; flex: 0 0 34px; border-radius: 10px; }
       .hero-search-submit { height: 42px; padding: 0 18px; font-size: 12.5px; }
       .hero-search-input { height: 42px; font-size: 13.5px; }
       .slot-metrics-grid { grid-template-columns: 1fr; }
@@ -947,6 +988,9 @@
     (() => {
       "use strict";
 
+      const STORAGE_SEARCH_STATE_KEY = "tch_token_search_state";
+      const STORAGE_SELECTED_TOKEN_KEY = "tch_selected_token";
+
       /* SHARED SPONSORSHIP CONFIG */
       const SHARED_SPONSOR_CONFIG = Object.freeze({
         active: false,
@@ -1007,6 +1051,43 @@
 
       const $ = (sel, root = document) => root.querySelector(sel);
       const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+      function saveSharedToken(item) {
+        if (!item) return;
+        try {
+          sessionStorage.setItem(STORAGE_SELECTED_TOKEN_KEY, JSON.stringify({
+            name: item.name || "",
+            symbol: item.symbol || "",
+            usd: Number(item.usd) || 0,
+            inr: Number(item.inr) || 0,
+            networkLabel: item.networkLabel || "",
+            image: item.image || "",
+            updatedAt: Date.now()
+          }));
+        } catch (_) { /* ignore storage quota/privacy errors */ }
+      }
+
+      function saveSearchSession(inspectedItem = null, rowIdx = -1) {
+        try {
+          const input = $("#tokenSearchInput");
+          const query = input ? input.value.trim() : "";
+          const titleEl = $("#resultsTitle");
+          const payload = {
+            query,
+            resultsTitle: titleEl ? titleEl.textContent : "Blockchain Networks & Core Stablecoins",
+            rows: query ? activeRows : [],
+            selectedIndex: rowIdx,
+            inspectedItem: inspectedItem || null
+          };
+          sessionStorage.setItem(STORAGE_SEARCH_STATE_KEY, JSON.stringify(payload));
+        } catch (_) { /* ignore */ }
+      }
+
+      function clearSearchSession() {
+        try {
+          sessionStorage.removeItem(STORAGE_SEARCH_STATE_KEY);
+        } catch (_) { /* ignore */ }
+      }
 
       function escapeHTML(str = "") {
         return String(str).replace(/[&<>"']/g, ch => ({
@@ -1101,14 +1182,23 @@
         slot.classList.remove("show");
         slot.innerHTML = "";
         $$("tr[data-row-index]").forEach(tr => tr.classList.remove("selected-row"));
+        const input = $("#tokenSearchInput");
+        if (input && input.value.trim()) {
+          saveSearchSession(null, -1);
+        } else {
+          clearSearchSession();
+        }
       }
 
-      function openInlineSlotAndJump(item, rowIdx = -1) {
+      function openInlineSlotAndJump(item, rowIdx = -1, skipScroll = false) {
         if (!item) return;
         selectedIndex = rowIdx;
         $$("tr[data-row-index]").forEach(tr => {
           tr.classList.toggle("selected-row", Number(tr.dataset.rowIndex) === rowIdx);
         });
+
+        saveSharedToken(item);
+        saveSearchSession(item, rowIdx);
 
         const slot = $("#inlineTokenSlot");
         const initial = escapeHTML(item.badge || (item.symbol || item.name || "T").slice(0, 4).toUpperCase());
@@ -1167,9 +1257,11 @@
           setTimeout(() => { if (copyBtn) copyBtn.textContent = "Copy Info"; }, 1600);
         });
 
-        requestAnimationFrame(() => {
-          slot.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        });
+        if (!skipScroll) {
+          requestAnimationFrame(() => {
+            slot.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          });
+        }
       }
 
       function renderTableRows(rows, emptyMessageTitle = "No matching token or chain found", emptyMessageDesc = "Try another token name, ticker, or smart contract address.") {
@@ -1240,8 +1332,10 @@
       }
 
       /* SYNC LIVE PRICES FOR THE 21 CHAINS & 2 STABLECOINS */
-      async function loadChainAndStableDirectory() {
-        $("#liveStatusText").textContent = "Syncing live rates…";
+      async function loadChainAndStableDirectory(renderToDom = true) {
+        if (renderToDom) {
+          $("#liveStatusText").textContent = "Syncing live rates…";
+        }
         const ids = Array.from(new Set(
           CHAIN_AND_STABLE_DIRECTORY.map(item => item.coingeckoId).filter(Boolean)
         )).join(",");
@@ -1268,12 +1362,16 @@
             };
           });
 
-          $("#resultsTitle").textContent = "Blockchain Networks & Core Stablecoins";
-          $("#liveStatusText").textContent = "Live Updated";
-          renderTableRows(directoryRows);
+          if (renderToDom && !$("#tokenSearchInput").value.trim()) {
+            $("#resultsTitle").textContent = "Blockchain Networks & Core Stablecoins";
+            $("#liveStatusText").textContent = "Live Updated";
+            renderTableRows(directoryRows);
+          }
         } catch (_) {
-          $("#liveStatusText").textContent = "Directory Ready";
-          renderTableRows(directoryRows);
+          if (renderToDom && !$("#tokenSearchInput").value.trim()) {
+            $("#liveStatusText").textContent = "Directory Ready";
+            renderTableRows(directoryRows);
+          }
         }
       }
 
@@ -1281,6 +1379,7 @@
       async function runLiveTokenSearch(rawQuery) {
         const query = String(rawQuery || "").trim();
         if (!query) {
+          clearSearchSession();
           closeInlineSlot();
           $("#resultsTitle").textContent = "Blockchain Networks & Core Stablecoins";
           renderTableRows(directoryRows);
@@ -1316,7 +1415,11 @@
             $("#resultsTitle").textContent = `Contract Search: “${query}”`;
             $("#liveStatusText").textContent = "Live Updated";
             renderTableRows(pairs, "No active pool found for this contract", "Verify the contract address and try again.");
-            if (pairs.length) openInlineSlotAndJump(pairs[0], 0);
+            if (pairs.length) {
+              openInlineSlotAndJump(pairs[0], 0);
+            } else {
+              saveSearchSession(null, -1);
+            }
             return;
           }
 
@@ -1379,7 +1482,11 @@
             `No verified token or chain found for “${query}”`,
             "Try searching another token name, symbol, or smart contract address."
           );
-          if (merged.length) openInlineSlotAndJump(merged[0], 0);
+          if (merged.length) {
+            openInlineSlotAndJump(merged[0], 0);
+          } else {
+            saveSearchSession(null, -1);
+          }
         } catch (_) {
           $("#liveStatusText").textContent = "Search error";
           renderTableRows([], "Unable to fetch live search results", "Please try again in a few moments.");
@@ -1387,6 +1494,39 @@
           btn.disabled = false;
           btn.textContent = "Search";
         }
+      }
+
+      function restorePreviousSession() {
+        try {
+          const raw = sessionStorage.getItem(STORAGE_SEARCH_STATE_KEY);
+          if (!raw) return false;
+          const saved = JSON.parse(raw);
+          if (!saved || typeof saved !== "object") return false;
+
+          const input = $("#tokenSearchInput");
+          const clearBtn = $("#clearSearchBtn");
+
+          if (saved.query && Array.isArray(saved.rows)) {
+            input.value = saved.query;
+            clearBtn.classList.add("show");
+            $("#resultsTitle").textContent = saved.resultsTitle || `Search Results for “${saved.query}”`;
+            $("#liveStatusText").textContent = saved.rows.length ? "Live Updated" : "0 matches";
+            selectedIndex = Number.isInteger(saved.selectedIndex) ? saved.selectedIndex : -1;
+            renderTableRows(saved.rows);
+            if (saved.inspectedItem) {
+              openInlineSlotAndJump(saved.inspectedItem, selectedIndex, true);
+            }
+            return true;
+          }
+
+          if (saved.inspectedItem) {
+            selectedIndex = Number.isInteger(saved.selectedIndex) ? saved.selectedIndex : -1;
+            renderTableRows(directoryRows);
+            openInlineSlotAndJump(saved.inspectedItem, selectedIndex, true);
+            return true;
+          }
+        } catch (_) { /* ignore corrupted storage */ }
+        return false;
       }
 
       function applyTheme(theme) {
@@ -1446,6 +1586,7 @@
         input.addEventListener("input", () => {
           clearBtn.classList.toggle("show", input.value.trim().length > 0);
           if (!input.value.trim()) {
+            clearSearchSession();
             closeInlineSlot();
             $("#resultsTitle").textContent = "Blockchain Networks & Core Stablecoins";
             renderTableRows(directoryRows);
@@ -1455,6 +1596,7 @@
         clearBtn.addEventListener("click", () => {
           input.value = "";
           clearBtn.classList.remove("show");
+          clearSearchSession();
           closeInlineSlot();
           $("#resultsTitle").textContent = "Blockchain Networks & Core Stablecoins";
           renderTableRows(directoryRows);
@@ -1466,8 +1608,13 @@
           runLiveTokenSearch(input.value);
         });
 
-        renderTableRows(directoryRows);
-        loadChainAndStableDirectory();
+        const hasRestored = restorePreviousSession();
+        if (hasRestored) {
+          loadChainAndStableDirectory(false);
+        } else {
+          renderTableRows(directoryRows);
+          loadChainAndStableDirectory(true);
+        }
       });
     })();
   </script>
