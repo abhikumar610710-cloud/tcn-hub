@@ -60,7 +60,7 @@
       margin: 0;
       min-width: 320px;
       min-height: 100vh;
-      overflow-x: hidden;
+      overflow-x: clip;
       background: var(--bg);
       color: var(--body);
       font-family: "Plus Jakarta Sans", sans-serif;
@@ -102,13 +102,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 12px;
     }
-    .header-left { display: flex; align-items: center; gap: 12px; }
+    .header-left { display: flex; align-items: center; gap: 11px; min-width: 0; }
     .mobile-menu-btn {
       display: none;
       width: 38px;
       height: 38px;
+      flex: 0 0 38px;
       border: 1px solid rgba(8, 168, 107, 0.35);
       border-radius: 11px;
       color: var(--heading);
@@ -117,7 +118,8 @@
     html[data-theme="dark"] .mobile-menu-btn, body[data-theme="dark"] .mobile-menu-btn {
       background: rgba(16, 39, 44, 0.85);
     }
-    .header-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .header-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; min-width: 0; }
+    .header-brand-text { display: block; min-width: 0; }
     .header-logo {
       width: 42px;
       height: 42px;
@@ -141,6 +143,9 @@
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.45px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .header-brand-subtitle {
       display: block;
@@ -148,11 +153,14 @@
       color: #008556;
       font-size: 10px;
       font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     html[data-theme="dark"] .header-brand-subtitle, body[data-theme="dark"] .header-brand-subtitle { color: #4ef2b1; }
 
-    .header-right { display: flex; align-items: center; gap: 10px; }
-    .community-dropdown { position: relative; }
+    .header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .community-dropdown { position: relative; flex-shrink: 0; }
     .community-btn, .icon-btn {
       min-height: 38px;
       display: inline-flex;
@@ -167,6 +175,7 @@
       font-weight: 800;
       box-shadow: 0 3px 10px rgba(8, 130, 90, 0.08);
       transition: 0.18s ease;
+      flex-shrink: 0;
     }
     html[data-theme="dark"] .community-btn, body[data-theme="dark"] .community-btn,
     html[data-theme="dark"] .icon-btn, body[data-theme="dark"] .icon-btn {
@@ -174,7 +183,8 @@
       border-color: #2b6656;
     }
     .community-btn { padding: 0 16px; }
-    .icon-btn { width: 38px; border-radius: 50%; font-size: 16px; }
+    .comm-icon { font-size: 15px; line-height: 1; }
+    .icon-btn { width: 38px; height: 38px; flex: 0 0 38px; border-radius: 50%; font-size: 16px; line-height: 1; }
     .community-btn:hover, .icon-btn:hover { border-color: var(--green); color: var(--green); }
     .dropdown-content {
       display: none;
@@ -1066,11 +1076,14 @@
       body.menu-open .mobile-overlay { display: block; }
       .main-column { margin-left: 0; }
       .mobile-menu-btn { display: inline-grid; place-items: center; }
-      .header-inner { padding: 8px 13px; }
+      .header-inner { padding: 8px 12px; gap: 8px; }
+      .header-logo { width: 36px; height: 36px; flex: 0 0 36px; }
+      .header-brand { gap: 8px; }
       .header-brand-name { font-size: 14px; }
-      .header-brand-subtitle { display: none; }
-      .community-btn { width: 38px; padding: 0; overflow: hidden; font-size: 0; }
-      .community-btn::first-letter { font-size: 15px; }
+      .header-brand-subtitle { display: block; font-size: 9px; margin-top: 1px; }
+      .community-btn { width: 38px; height: 38px; padding: 0; }
+      .community-btn .comm-text { display: none; }
+      .community-btn .comm-icon { font-size: 16px; }
       main { padding: 14px 12px 28px; }
       .sponsorship-banner { max-height: none; flex-wrap: wrap; padding: 12px 14px; }
       .sponsor-left { flex-wrap: wrap; }
@@ -1089,7 +1102,7 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
         <a href="../index.html" class="header-brand">
           <span class="header-logo"><img src="../logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';"></span>
-          <span>
+          <span class="header-brand-text">
             <span class="header-brand-name">Total Crypto Hub</span>
             <span class="header-brand-subtitle">by Total Crypto Network</span>
           </span>
@@ -1098,7 +1111,10 @@
 
       <div class="header-right">
         <div class="community-dropdown">
-          <button class="community-btn" id="communityBtn" type="button" aria-expanded="false">👥 Community</button>
+          <button class="community-btn" id="communityBtn" type="button" aria-expanded="false" aria-label="Community links">
+            <span class="comm-icon" aria-hidden="true">👥</span>
+            <span class="comm-text">Community</span>
+          </button>
           <div class="dropdown-content" id="communityMenu">
             <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
             <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
@@ -1106,7 +1122,7 @@
             <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
           </div>
         </div>
-        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle Dark / Light Mode">🌙</button>
       </div>
     </div>
   </header>
