@@ -29,6 +29,7 @@
       --emerald-mid:#059669;
       --emerald-bright:#10b981;
       --mint-glow:#34d399;
+      --topbar-height:58px;
       --sidebar-width:258px;
       --shadow-card:0 10px 26px rgba(4,120,87,.09);
     }
@@ -67,57 +68,77 @@
     a{color:inherit}
     button{font:inherit;cursor:pointer}
 
-    .app-shell{min-height:100vh}
-
     /* ==========================================
-       1. MINT-GREEN SIDEBAR (KEPT SAME)
+0. THIN GLOBAL TOP BAR (LOGO + BRAND + CTAS)
     ========================================== */
 
-    .sidebar{
+    .global-topbar{
       position:fixed;
-      z-index:160;
-      inset:0 auto 0 0;
-      width:var(--sidebar-width);
-      height:100vh;
-      height:100dvh;
-      display:flex;
-      flex-direction:column;
-      padding:16px 13px 15px;
-      background:var(--sidebar-bg);
-      border-right:1.5px solid var(--border);
-      box-shadow:8px 0 28px rgba(4,120,87,.07);
-      overflow-y:auto;
-      overflow-x:hidden;
-      transition:transform .25s ease;
-    }
-
-    .sidebar::-webkit-scrollbar{width:5px}
-    .sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
-
-    .sidebar-brand{
+      top:0;
+      left:0;
+      right:0;
+      z-index:210;
+      height:var(--topbar-height);
+      padding:0 18px;
       display:flex;
       align-items:center;
-      gap:11px;
-      padding:2px 6px 15px;
-      margin-bottom:10px;
-      border-bottom:1px solid var(--border-soft);
+      justify-content:space-between;
+      gap:12px;
+      background:linear-gradient(95deg,#c9ffea 0%,#f2fff9 50%,#c4fcef 100%);
+      border-bottom:1.5px solid var(--border);
+      box-shadow:0 4px 16px rgba(4,120,87,.08);
+    }
+
+    [data-theme="dark"] .global-topbar{
+      background:linear-gradient(95deg,#092427 0%,#0f3535 50%,#092427 100%);
+      border-bottom-color:var(--border);
+    }
+
+    .topbar-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .menu-toggle-btn{
+      display:none;
+      width:36px;
+      height:36px;
+      flex:0 0 36px;
+      place-items:center;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.9);
+      color:var(--heading);
+      font-size:16px;
+    }
+
+    [data-theme="dark"] .menu-toggle-btn{
+      background:rgba(15,43,46,.9);
+    }
+
+    .topbar-brand{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
       text-decoration:none;
-      flex-shrink:0;
+      min-width:0;
     }
 
     .brand-orb{
-      width:44px;
-      height:44px;
-      flex:0 0 44px;
+      width:38px;
+      height:38px;
+      flex:0 0 38px;
       border-radius:50%;
       overflow:hidden;
       display:grid;
       place-items:center;
       border:2px solid #059669;
       background:radial-gradient(circle at 30% 25%,#6ee7b7,#059669 65%,#064e3b);
-      box-shadow:0 4px 14px rgba(5,150,105,.32);
+      box-shadow:0 3px 10px rgba(5,150,105,.25);
       color:#fff;
-      font-size:13px;
+      font-size:12px;
       font-weight:900;
     }
 
@@ -128,13 +149,18 @@
       border-radius:50%;
     }
 
+    .brand-text-wrap{min-width:0}
+
     .brand-title{
       display:block;
       color:var(--heading);
-      font-size:17px;
+      font-size:15.5px;
       font-weight:800;
       line-height:1.12;
-      letter-spacing:-.45px;
+      letter-spacing:-.4px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .brand-sub{
@@ -143,9 +169,149 @@
       color:var(--emerald);
       font-size:10px;
       font-weight:700;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     [data-theme="dark"] .brand-sub{color:var(--emerald-bright)}
+
+    .topbar-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex:0 0 auto;
+    }
+
+    .sponsor-pill-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      height:34px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1.5px solid var(--emerald-mid);
+      background:rgba(255,255,255,.88);
+      color:#065f46;
+      text-decoration:none;
+      font-size:11px;
+      font-weight:800;
+      white-space:nowrap;
+      transition:transform .18s ease,background .18s ease;
+    }
+
+    .sponsor-pill-btn:hover{
+      transform:translateY(-1px);
+      background:#ffffff;
+    }
+
+    [data-theme="dark"] .sponsor-pill-btn{
+      background:rgba(15,43,46,.9);
+      color:#6ee7b7;
+      border-color:var(--border);
+    }
+
+    .partner-pill-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      height:34px;
+      padding:0 15px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.35);
+      background:linear-gradient(135deg,#065f46,#047857);
+      color:#ffffff;
+      text-decoration:none;
+      font-size:11px;
+      font-weight:800;
+      box-shadow:0 4px 12px rgba(4,120,87,.24);
+      white-space:nowrap;
+      transition:transform .18s ease;
+    }
+
+    .partner-pill-btn:hover{transform:translateY(-1px)}
+
+    .top-circle-btn{
+      width:34px;
+      height:34px;
+      flex:0 0 34px;
+      border-radius:50%;
+      border:1px solid rgba(5,150,105,.35);
+      background:rgba(255,255,255,.92);
+      color:var(--heading);
+      display:grid;
+      place-items:center;
+      font-size:14px;
+      box-shadow:0 3px 10px rgba(4,120,87,.1);
+    }
+
+    [data-theme="dark"] .top-circle-btn{
+      background:rgba(13,38,41,.92);
+      border-color:var(--border);
+    }
+
+    .community-wrap{position:relative}
+
+    .community-pop{
+      display:none;
+      position:absolute;
+      top:calc(100% + 8px);
+      right:0;
+      z-index:250;
+      min-width:185px;
+      border-radius:14px;
+      border:1.5px solid var(--border);
+      background:var(--surface-solid);
+      box-shadow:0 14px 32px rgba(0,0,0,.16);
+      overflow:hidden;
+    }
+
+    .community-pop.show{display:block}
+    .community-pop a{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-bottom:1px solid var(--border-soft);
+      color:var(--heading);
+      text-decoration:none;
+      font-size:11.5px;
+      font-weight:700;
+    }
+    .community-pop a:last-child{border-bottom:0}
+    .community-pop a:hover{background:var(--surface-soft);color:var(--emerald)}
+
+    .app-shell{
+      min-height:100vh;
+      padding-top:var(--topbar-height);
+    }
+
+    /* ==========================================
+1. MINT-GREEN SIDEBAR (STARTS BELOW TOP BAR WITH HOME FIRST)
+    ========================================== */
+
+    .sidebar{
+      position:fixed;
+      z-index:160;
+      top:var(--topbar-height);
+      left:0;
+      bottom:0;
+      width:var(--sidebar-width);
+      height:calc(100vh - var(--topbar-height));
+      height:calc(100dvh - var(--topbar-height));
+      display:flex;
+      flex-direction:column;
+      padding:14px 13px 15px;
+      background:var(--sidebar-bg);
+      border-right:1.5px solid var(--border);
+      box-shadow:8px 0 28px rgba(4,120,87,.07);
+      overflow-y:auto;
+      overflow-x:hidden;
+      transition:transform .25s ease;
+    }
+
+    .sidebar::-webkit-scrollbar{width:5px}
+    .sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
 
     .side-nav{
       display:grid;
@@ -386,11 +552,11 @@
     [data-theme="dark"] .side-help-card span:last-child{color:var(--emerald-bright)}
 
     /* ==========================================
-       2. RIGHT FRAME & COMPACT-BOTTOM HERO BANNER
+2. RIGHT FRAME & COMPACT-BOTTOM HERO BANNER
     ========================================== */
 
     .main-column{
-      min-height:100vh;
+      min-height:calc(100vh - var(--topbar-height));
       margin-left:var(--sidebar-width);
     }
 
@@ -436,84 +602,22 @@
       clip-path:ellipse(92% 80% at 96% 50%);
     }
 
-    /* TOPBAR: KICKER ALIGNED WITH BECOME A PARTNER ON SAME ROW */
-    .hero-topbar{
-      position:relative;
-      z-index:20;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 24px 2px;
-    }
-
-    .hero-top-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .mobile-only-left{
-      display:none;
-      align-items:center;
-      gap:8px;
-    }
-
-    .menu-toggle-btn{
-      width:36px;
-      height:36px;
-      flex:0 0 36px;
-      display:grid;
-      place-items:center;
-      border-radius:10px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.88);
-      color:var(--heading);
-      font-size:16px;
-    }
-
-    [data-theme="dark"] .menu-toggle-btn{
-      background:rgba(15,43,46,.88);
-    }
-
-    .mobile-mini-logo{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      text-decoration:none;
-    }
-
-    .mobile-mini-logo img{
-      width:26px;
-      height:26px;
-      border-radius:50%;
-      border:1.5px solid var(--emerald-mid);
-      object-fit:cover;
-    }
-
-    .mobile-mini-logo span{
-      color:var(--heading);
-      font-size:12px;
-      font-weight:800;
-    }
-
-    /* ENLARGED TOP PILL LEVEL WITH BECOME A PARTNER */
     .hero-kicker{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      height:38px;
-      padding:0 18px;
+      height:32px;
+      padding:0 15px;
       border-radius:999px;
       background:linear-gradient(135deg,#d1fae5,#a7f3d0);
       border:1.5px solid #34d399;
       color:#065f46;
-      font-size:12.5px;
+      font-size:11.5px;
       font-weight:800;
       letter-spacing:-.15px;
-      box-shadow:0 4px 12px rgba(5,150,105,.16);
+      box-shadow:0 3px 10px rgba(5,150,105,.14);
       white-space:nowrap;
+      margin-bottom:8px;
     }
 
     [data-theme="dark"] .hero-kicker{
@@ -522,84 +626,6 @@
       color:#a7f3d0;
     }
 
-    .hero-top-actions{
-      margin-left:auto;
-      display:flex;
-      align-items:center;
-      gap:9px;
-      flex:0 0 auto;
-    }
-
-    .partner-pill-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      height:38px;
-      padding:0 18px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.35);
-      background:linear-gradient(135deg,#065f46,#047857);
-      color:#ffffff;
-      text-decoration:none;
-      font-size:11.5px;
-      font-weight:800;
-      box-shadow:0 5px 14px rgba(4,120,87,.26);
-      white-space:nowrap;
-      transition:transform .18s ease;
-    }
-
-    .partner-pill-btn:hover{transform:translateY(-1px)}
-
-    .top-circle-btn{
-      width:38px;
-      height:38px;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.7);
-      background:rgba(255,255,255,.9);
-      color:var(--heading);
-      display:grid;
-      place-items:center;
-      font-size:15px;
-      box-shadow:0 4px 12px rgba(4,120,87,.12);
-    }
-
-    [data-theme="dark"] .top-circle-btn{
-      background:rgba(13,38,41,.9);
-      border-color:var(--border);
-    }
-
-    .community-wrap{position:relative}
-
-    .community-pop{
-      display:none;
-      position:absolute;
-      top:calc(100% + 8px);
-      right:0;
-      z-index:200;
-      min-width:185px;
-      border-radius:14px;
-      border:1.5px solid var(--border);
-      background:var(--surface-solid);
-      box-shadow:0 14px 32px rgba(0,0,0,.16);
-      overflow:hidden;
-    }
-
-    .community-pop.show{display:block}
-    .community-pop a{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-bottom:1px solid var(--border-soft);
-      color:var(--heading);
-      text-decoration:none;
-      font-size:11.5px;
-      font-weight:700;
-    }
-    .community-pop a:last-child{border-bottom:0}
-    .community-pop a:hover{background:var(--surface-soft);color:var(--emerald)}
-
-    /* SLIGHTLY TRIMMED BOTTOM HEIGHT FOR CLEAN PROPORTIONS */
     .hero-body{
       position:relative;
       z-index:4;
@@ -607,7 +633,7 @@
       grid-template-columns:minmax(0,1.06fr) minmax(320px,.98fr) 144px;
       align-items:center;
       gap:12px;
-      padding:4px 24px 13px;
+      padding:16px 24px 14px;
     }
 
     .hero-left{max-width:570px}
@@ -721,7 +747,6 @@
       color:#6ee7b7;
     }
 
-    /* GLOBE + LARGE COINS FITTED CLEANLY INSIDE COMPACT HERO */
     .hero-globe-stage{
       position:relative;
       display:flex;
@@ -770,7 +795,7 @@
     }
 
     /* ==========================================
-       3. LARGE STANDARD SPONSORSHIP BANNER
+3. LARGE STANDARD SPONSORSHIP BANNER
     ========================================== */
 
     .sponsors-bar{
@@ -921,7 +946,7 @@
     .sponsors-right-cta span{font-size:9.8px;font-weight:700;color:#bbf7d0;margin-top:2px;white-space:nowrap}
 
     /* ==========================================
-       4. TRENDING DEPIN PROJECTS
+4. TRENDING DEPIN PROJECTS
     ========================================== */
 
     .trending-section{
@@ -1120,7 +1145,7 @@
     }
 
     /* ==========================================
-       5. BOTTOM TRUST STRIP & MINT FOOTER SECTION
+5. BOTTOM TRUST STRIP & MINT FOOTER SECTION
     ========================================== */
 
     .trust-strip-bar{
@@ -1405,7 +1430,7 @@
     .footer-nav a:hover{color:var(--emerald)}
 
     /* ==========================================
-       6. RESPONSIVE ADAPTATION
+6. RESPONSIVE ADAPTATION
     ========================================== */
 
     @media(max-width:1360px){
@@ -1430,25 +1455,26 @@
     }
 
     @media(max-width:820px){
+      .menu-toggle-btn{display:grid}
       .sidebar{transform:translateX(-105%)}
       body.menu-open .sidebar{transform:translateX(0)}
-      .mobile-overlay{position:fixed;inset:0;z-index:145;background:rgba(4,14,27,.45)}
+      .mobile-overlay{position:fixed;inset:var(--topbar-height) 0 0;z-index:145;background:rgba(4,14,27,.45)}
       body.menu-open .mobile-overlay{display:block}
       .main-column{margin-left:0}
-      .mobile-only-left{display:inline-flex}
+      .global-topbar{padding:0 10px;gap:6px}
+      .brand-orb{width:32px;height:32px;flex-basis:32px}
+      .brand-title{font-size:13.5px}
+      .brand-sub{font-size:8.8px}
+      .sponsor-pill-btn,.partner-pill-btn{display:none}
       .dashboard-wrap{padding:10px 12px 24px}
-      .hero-topbar{flex-wrap:wrap;padding:10px 14px 4px}
-      .hero-top-left{width:100%;justify-content:space-between;flex-wrap:wrap}
-      .hero-kicker{height:32px;padding:0 13px;font-size:11px}
-      .hero-body{padding:6px 15px 15px}
+      .hero-body{padding:14px 15px 15px}
       .projects-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
       .trust-items-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .trust-cell{border-right:0;justify-content:flex-start}
     }
 
     @media(max-width:480px){
-      .mobile-mini-logo span{display:none}
-      .partner-pill-btn{padding:0 12px;font-size:10.5px}
+      .brand-sub{display:none}
       .hero-globe-stage svg{max-width:290px}
       .trust-items-grid{grid-template-columns:1fr}
     }
@@ -1457,23 +1483,46 @@
 
 <body data-theme="light">
 
-  <div class="app-shell">
-
-    <!-- ==========================================
-         MINT-GREEN SIDEBAR (KEPT SAME DOWNWARD)
-    ========================================== -->
-
-    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-
-      <a href="index.html" class="sidebar-brand">
+  <!-- THIN GLOBAL TOP BAR -->
+  <header class="global-topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <a href="index.html" class="topbar-brand">
         <span class="brand-orb">
           <img src="logos/tcn-logo.png" alt="Total Crypto Network Logo" onerror="this.style.display='none';this.parentElement.textContent='TCN';">
         </span>
-        <span>
+        <span class="brand-text-wrap">
           <span class="brand-title">Total Crypto Hub</span>
           <span class="brand-sub">by Total Crypto Network</span>
         </span>
       </a>
+    </div>
+
+    <div class="topbar-actions">
+      <a href="legal-pages/contact.html" class="sponsor-pill-btn">Become a Sponsor</a>
+      <a href="legal-pages/contact.html" class="partner-pill-btn">Become a Partner →</a>
+
+      <div class="community-wrap" id="communityWrap">
+        <button class="top-circle-btn" id="communityBtn" type="button" title="Community Links" aria-label="Community Links" aria-expanded="false">👥</button>
+        <div class="community-pop" id="communityPop">
+          <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
+          <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+          <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a>
+          <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+        </div>
+      </div>
+
+      <button class="top-circle-btn" id="themeToggle" type="button" title="Toggle Theme" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+
+    <!-- ==========================================
+         MINT-GREEN SIDEBAR (STARTS WITH HOME)
+    ========================================== -->
+
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
 
       <nav class="side-nav">
 
@@ -1642,43 +1691,12 @@
 
           <div class="hero-right-wave" aria-hidden="true"></div>
 
-          <!-- TOP BAR: KICKER ALIGNED WITH BECOME A PARTNER -->
-          <header class="hero-topbar">
-
-            <div class="hero-top-left">
-              <div class="mobile-only-left">
-                <button class="menu-toggle-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-                <a href="index.html" class="mobile-mini-logo">
-                  <img src="logos/tcn-logo.png" alt="TCN" onerror="this.style.display='none';">
-                  <span>Total Crypto Hub</span>
-                </a>
-              </div>
-
-              <span class="hero-kicker">🚀 All-in-One Web3 &amp; DePIN Directory</span>
-            </div>
-
-            <div class="hero-top-actions">
-              <a href="legal-pages/contact.html" class="partner-pill-btn">Become a Partner →</a>
-
-              <div class="community-wrap" id="communityWrap">
-                <button class="top-circle-btn" id="communityBtn" type="button" title="Community Links" aria-label="Community Links" aria-expanded="false">👥</button>
-                <div class="community-pop" id="communityPop">
-                  <a href="https://www.youtube.com/@TotalCryptoNetwork" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
-                  <a href="https://whatsapp.com/channel/0029VbCg0vGCRs1kHMrVIN43" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
-                  <a href="https://x.com/TotalCryptoOff" target="_blank" rel="noopener noreferrer">✖ Twitter (X)</a>
-                  <a href="https://www.facebook.com/share/19vKASvvAd/" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-                </div>
-              </div>
-
-              <button class="top-circle-btn" id="themeToggle" type="button" title="Toggle Theme" aria-label="Toggle dark mode">🌙</button>
-            </div>
-
-          </header>
-
           <!-- HERO CONTENT -->
           <div class="hero-body">
 
             <div class="hero-left">
+              <span class="hero-kicker">🚀 All-in-One Web3 &amp; DePIN Directory</span>
+
               <h1 id="heroHeading">
                 Total Crypto Hub
                 <span>Your Safe Gateway to DePIN &amp; Web3</span>
